@@ -1,0 +1,7 @@
+Package: case-studies
+Title: Case Studies
+Version: 0.0.1
+Depends:
+  devtools,
+  knitr,
+  bookdown,
