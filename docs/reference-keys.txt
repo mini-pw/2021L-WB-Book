@@ -1,4 +1,4 @@
-explainable-artificial-inteligence-python
+explainable-artificial-intelligence
 explainable-artificial-inteligence-r
 deep-learning-1
 deep-learning-2
