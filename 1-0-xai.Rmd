@@ -1,1 +1,10 @@
-# Explainable artificial inteligence (Python)
+# Explainable Artificial Intelligence
+
+*Author: Anna Kozak*
+
+Machine Learning is used more and more in virtually any aspect of our life. We train models to predict the future in banking, telecommunication, insurance, industry, and many other areas. The models give us predictions, however, very often we do not know how they are calculated. Can we trust these predictions? Why should we use the results of models which we do not fully understand?
+
+This results in a lack of understanding of the results obtained, so there is now a strong need to explain the decisions made by the non-interpretable models called black boxes. There are several tools for exploring and explaining the predictive models, which allow to understanding how they are works.
+
+During the class, we explored methods of explaining global as well as local, which you can read more about in the Explanatory Model Analysis [@EMA] book.
+Teams work on data from a Kaggle that described problems in the world around us. Each team was responsible for analyzing, modeling, and building explanations for complex models. Each chapter includes a story about how to use explainable AI to understand the model.
