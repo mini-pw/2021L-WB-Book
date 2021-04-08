@@ -1,4 +1,4 @@
-## Report title {#xai1-explainable-hotels}
+## eXplaining predictions of booking cancelations {#xai1-explainable-hotels}
 
 *Authors: Mateusz Krzyziński, Anna Urbala, Artur Żółkowski (Warsaw University of Technology)*
 
