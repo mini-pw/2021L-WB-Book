@@ -1,4 +1,5 @@
 explainable-artificial-intelligence
+xai1-explainable-cards
 xai1-explainable-wine
 xai1-explainable-hotels
 introduction
