@@ -1,4 +1,6 @@
 explainable-artificial-intelligence
+xai1-explainable-hotels
+introduction
 explainable-artificial-inteligence-r
 deep-learning-1
 deep-learning-2
