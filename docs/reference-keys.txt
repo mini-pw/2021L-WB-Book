@@ -1,8 +1,10 @@
 explainable-artificial-intelligence
 xai1-explainable-cards
+xai-heart-disease
+introduction
 xai1-explainable-wine
 xai1-explainable-hotels
-introduction
+introduction-1
 explainable-artificial-inteligence-r
 deep-learning-1
 deep-learning-2
