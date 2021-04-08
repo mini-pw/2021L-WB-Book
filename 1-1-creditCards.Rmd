@@ -1,0 +1,4 @@
+
+## Explaining Credit Card Customers churns{#xai1-explainable-cards}
+
+*Authors: Katarzyna Solawa, Przemysław Chojecki, Bartosz Sawicki (Warsaw University of Techcnology)*
