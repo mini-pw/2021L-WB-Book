@@ -1,3 +1,0 @@
-## Title: Transparent Machine Learning to Support Predicting COVID-19 Infection Risk Based on Chronic Diseases
-
-### Authors: Hubert Ruczyński, Dawid Przybyliński, Kinga Ulasik
