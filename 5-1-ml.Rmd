@@ -1,0 +1,5 @@
+## Validation and comparison of COVID-19 mortatility prediction models on multi-source data
+
+*Authors: Komorowski Michał, Olender Przemysław, Sieńko Piotr, Welkier Konrad*
+
+### Introduction
