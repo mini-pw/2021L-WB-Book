@@ -6,12 +6,12 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>Chapter 1 Explainable Artificial Intelligence | Case Studies</title>
   <meta name="description" content="Case studies for explainable artificial intelligence, deep learning, machine learning." />
-  <meta name="generator" content="bookdown 0.21 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.22 and GitBook 2.6.7" />
 
   <meta property="og:title" content="Chapter 1 Explainable Artificial Intelligence | Case Studies" />
   <meta property="og:type" content="book" />
   
-  <meta property="og:image" content="images/cover.png" />
+  <meta property="og:image" content="/images/cover.png" />
   <meta property="og:description" content="Case studies for explainable artificial intelligence, deep learning, machine learning." />
   
 
@@ -19,11 +19,11 @@
   <meta name="twitter:title" content="Chapter 1 Explainable Artificial Intelligence | Case Studies" />
   
   <meta name="twitter:description" content="Case studies for explainable artificial intelligence, deep learning, machine learning." />
-  <meta name="twitter:image" content="images/cover.png" />
+  <meta name="twitter:image" content="/images/cover.png" />
 
 
 
-<meta name="date" content="2021-04-20" />
+<meta name="date" content="2021-04-23" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -50,8 +50,33 @@
 
 
 
+<link href="libs/anchor-sections/anchor-sections.css" rel="stylesheet" />
+<script src="libs/anchor-sections/anchor-sections.js"></script>
 
 
+
+<style type="text/css">
+/* Used with Pandoc 2.11+ new --citeproc when CSL is used */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+}
+.hanging div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}
+</style>
 
 <link rel="stylesheet" href="css/style.css" type="text/css" />
 </head>
@@ -98,7 +123,13 @@
 <li class="chapter" data-level="2" data-path="explainable-artificial-inteligence-r.html"><a href="explainable-artificial-inteligence-r.html"><i class="fa fa-check"></i><b>2</b> Explainable artificial inteligence (R)</a></li>
 <li class="chapter" data-level="3" data-path="deep-learning-1.html"><a href="deep-learning-1.html"><i class="fa fa-check"></i><b>3</b> Deep Learning 1</a></li>
 <li class="chapter" data-level="4" data-path="deep-learning-2.html"><a href="deep-learning-2.html"><i class="fa fa-check"></i><b>4</b> Deep Learning 2</a></li>
-<li class="chapter" data-level="5" data-path="machine-learning.html"><a href="machine-learning.html"><i class="fa fa-check"></i><b>5</b> Machine Learning</a></li>
+<li class="chapter" data-level="5" data-path="machine-learning.html"><a href="machine-learning.html"><i class="fa fa-check"></i><b>5</b> Machine Learning</a>
+<ul>
+<li class="chapter" data-level="5.1" data-path="one-model-to-fit-them-all-covid-19-mortality-prediction-using-multinational-data.html"><a href="one-model-to-fit-them-all-covid-19-mortality-prediction-using-multinational-data.html"><i class="fa fa-check"></i><b>5.1</b> One model to fit them all: COVID-19 mortality prediction using multinational data</a>
+<ul>
+<li class="chapter" data-level="5.1.1" data-path="one-model-to-fit-them-all-covid-19-mortality-prediction-using-multinational-data.html"><a href="one-model-to-fit-them-all-covid-19-mortality-prediction-using-multinational-data.html#introduction-3"><i class="fa fa-check"></i><b>5.1.1</b> Introduction</a></li>
+</ul></li>
+</ul></li>
 <li class="chapter" data-level="6" data-path="rashomonml.html"><a href="rashomonml.html"><i class="fa fa-check"></i><b>6</b> RashomonML</a>
 <ul>
 <li class="chapter" data-level="6.1" data-path="roshomon-sets-on-death-prediction-xgb-models-using-mimic-iii-database.html"><a href="roshomon-sets-on-death-prediction-xgb-models-using-mimic-iii-database.html"><i class="fa fa-check"></i><b>6.1</b> Roshomon sets on death prediction XGB models using MIMIC-III database</a></li>
@@ -128,9 +159,15 @@
 <p><em>Author: Anna Kozak</em></p>
 <p>Machine Learning is used more and more in virtually any aspect of our life. We train models to predict the future in banking, telecommunication, insurance, industry, and many other areas. The models give us predictions, however, very often we do not know how they are calculated. Can we trust these predictions? Why should we use the results of models which we do not fully understand?</p>
 <p>This results in a lack of understanding of the results obtained, so there is now a strong need to explain the decisions made by the non-interpretable models called black boxes. There are several tools for exploring and explaining the predictive models, which allow to understanding how they are works.</p>
-<p>During the class, we explored methods of explaining global as well as local, which you can read more about in the Explanatory Model Analysis <span class="citation">(<a href="roshomon-sets-on-death-prediction-xgb-models-using-mimic-iii-database.html#ref-EMA" role="doc-biblioref">Biecek and Burzykowski 2021</a>)</span> book.
+<p>During the class, we explored methods of explaining global as well as local, which you can read more about in the Explanatory Model Analysis <span class="citation">(<a href="#ref-EMA" role="doc-biblioref">Biecek and Burzykowski 2021</a>)</span> book.
 Teams work on data from a Kaggle that described problems in the world around us. Each team was responsible for analyzing, modeling, and building explanations for complex models. Each chapter includes a story about how to use explainable AI to understand the model.</p>
 <!--chapter:end:1-0-xai.Rmd-->
+</div>
+<h3>References</h3>
+<div id="refs" class="references csl-bib-body hanging-indent">
+<div id="ref-EMA" class="csl-entry">
+Biecek, Przemyslaw, and Tomasz Burzykowski. 2021. <em><span>Explanatory Model Analysis</span></em>. Chapman; Hall/CRC, New York. <a href="https://pbiecek.github.io/ema/">https://pbiecek.github.io/ema/</a>.
+</div>
 </div>
             </section>
 
@@ -161,6 +198,7 @@ gitbook.start({
 "weibo": false,
 "instapaper": false,
 "vk": false,
+"whatsapp": false,
 "all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
 },
 "fontsettings": {

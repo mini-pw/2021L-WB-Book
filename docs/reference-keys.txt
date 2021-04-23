@@ -16,5 +16,7 @@ explainable-artificial-inteligence-r
 deep-learning-1
 deep-learning-2
 machine-learning
+one-model-to-fit-them-all-covid-19-mortality-prediction-using-multinational-data
+introduction-3
 rashomonml
 roshomon-sets-on-death-prediction-xgb-models-using-mimic-iii-database
