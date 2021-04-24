@@ -16,9 +16,13 @@ explainable-artificial-inteligence-r
 deep-learning-1
 deep-learning-2
 machine-learning
-one-model-to-fit-them-all-covid-19-mortality-prediction-using-multinational-data
+validation-and-comparison-of-covid-19-mortatility-prediction-models-on-multi-source-data
 introduction-3
-transparent-machine-learning-to-support-predicting-covid-19-infection-risk-based-on-chronic-diseases
+one-model-to-fit-them-all-covid-19-mortality-prediction-using-multinational-data
 introduction-4
+transparent-machine-learning-to-support-predicting-covid-19-infection-risk-based-on-chronic-diseases
+introduction-5
+comparison-of-deep-learning-and-tree-based-models-in-the-clinical-prediction-of-the-course-of-covid-19-illness
+abstract-1
 rashomonml
 roshomon-sets-on-death-prediction-xgb-models-using-mimic-iii-database
