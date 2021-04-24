@@ -1,0 +1,6 @@
+## Comparison of deep learning and tree-based models in the clinical prediction of the course of COVID-19 illness
+
+*Authors: Jakub Fołtyn, Kacper Grzymkowski, Konrad Komisarczyk*
+
+
+### Abstract
