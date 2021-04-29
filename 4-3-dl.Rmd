@@ -1,7 +1,7 @@
-# Rethinking the U-Net architecture for multimodal biomedical image segmentation
+## Rethinking the U-Net architecture for multimodal biomedical image segmentation
 
 *Grudzień Adrianna, Łukaszyk Marcin, Piasecki Michał *
 
-## Introduction
+### Introduction
 
 Tutaj będzie tekst kiedyś
