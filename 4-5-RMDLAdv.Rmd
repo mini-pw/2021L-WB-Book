@@ -1,6 +1,6 @@
-# DL2-Test
+## DL2-Test
 
-## Projekt 1
+### Projekt 1
 
 <style type="text/css">
 .tg  {border-collapse:collapse;border-spacing:0;}
@@ -84,7 +84,7 @@
 </tbody>
 </table>
 
-## Reuters-21578
+#### Reuters-21578
 Architekture danego modelu zapisujemy w postaci [D, R, C], gdzie D-liczba użytych sieci DNN, R-liczba użytych sieci RNN, C-liczba użytych sieci CNN. Oczywiście najbardziej optymalnym byłoby wykorzystanie porówno tych sieci, jednak nie było to możliwe z powodów ograniczenia czasowego i długiego trwania obliczeń dla danych sieci.
 
 Próba 1*-[1,0,2]: Accuracy: 0.876449155349453
