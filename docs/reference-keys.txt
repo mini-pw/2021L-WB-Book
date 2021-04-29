@@ -28,8 +28,10 @@ summary-and-conclusions-1
 explainable-artificial-inteligence-r
 deep-learning-1
 deep-learning-2
+ara-cnn---a-bayesian-deep-learning-model-intended-for-histopathological-image-classification.
 rethinking-the-u-net-architecture-for-multimodal-biomedical-image-segmentation
 introduction-3
+dl2-rmdl-unet
 machine-learning
 validation-and-comparison-of-covid-19-mortatility-prediction-models-on-multi-source-data
 introduction-4
