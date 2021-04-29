@@ -32,6 +32,9 @@ ara-cnn---a-bayesian-deep-learning-model-intended-for-histopathological-image-cl
 rethinking-the-u-net-architecture-for-multimodal-biomedical-image-segmentation
 introduction-3
 dl2-rmdl-unet
+dl2-test
+projekt-1
+reuters-21578
 machine-learning
 validation-and-comparison-of-covid-19-mortatility-prediction-models-on-multi-source-data
 introduction-4

@@ -4,11 +4,11 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>1.1 Explaining Credit Card Customers churns | Case Studies</title>
+  <title>6.1 Projekt 1 | Case Studies</title>
   <meta name="description" content="Case studies for explainable artificial intelligence, deep learning, machine learning." />
   <meta name="generator" content="bookdown 0.22 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="1.1 Explaining Credit Card Customers churns | Case Studies" />
+  <meta property="og:title" content="6.1 Projekt 1 | Case Studies" />
   <meta property="og:type" content="book" />
   
   <meta property="og:image" content="/images/cover.png" />
@@ -16,7 +16,7 @@
   
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="1.1 Explaining Credit Card Customers churns | Case Studies" />
+  <meta name="twitter:title" content="6.1 Projekt 1 | Case Studies" />
   
   <meta name="twitter:description" content="Case studies for explainable artificial intelligence, deep learning, machine learning." />
   <meta name="twitter:image" content="/images/cover.png" />
@@ -30,8 +30,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-<link rel="prev" href="explainable-artificial-intelligence.html"/>
-<link rel="next" href="ml-in-predition-of-real-estate-prices.html"/>
+<link rel="prev" href="dl2-test.html"/>
+<link rel="next" href="reuters-21578.html"/>
 <script src="libs/header-attrs/header-attrs.js"></script>
 <script src="libs/jquery/jquery.min.js"></script>
 <link href="libs/gitbook/css/style.css" rel="stylesheet" />
@@ -183,18 +183,200 @@ div.csl-indent {
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="xai1-explainable-cards" class="section level2" number="1.1">
-<h2><span class="header-section-number">1.1</span> Explaining Credit Card Customers churns</h2>
-<p><em>Authors: Katarzyna Solawa, Przemysław Chojecki, Bartosz Sawicki (Warsaw University of Techcnology)</em></p>
-
+<div id="projekt-1" class="section level2" number="6.1">
+<h2><span class="header-section-number">6.1</span> Projekt 1</h2>
+<style type="text/css">
+.tg  {border-collapse:collapse;border-spacing:0;}
+.tg td{border-color:black;border-style:solid;border-width:1px;font-family:Arial, sans-serif;font-size:14px;
+  overflow:hidden;padding:10px 5px;word-break:normal;}
+.tg th{border-color:black;border-style:solid;border-width:1px;font-family:Arial, sans-serif;font-size:14px;
+  font-weight:normal;overflow:hidden;padding:10px 5px;word-break:normal;}
+.tg .tg-c3ow{border-color:inherit;text-align:center;vertical-align:top}
+.tg .tg-0pky{border-color:inherit;text-align:left;vertical-align:top}
+</style>
+<table class="tg">
+<thead>
+<tr>
+<th class="tg-0pky" colspan="2" rowspan="2">
+</th>
+<th class="tg-c3ow" colspan="8">
+Dataset
+</th>
+</tr>
+<tr>
+<td class="tg-c3ow" colspan="2">
+WOS-5736
+</td>
+<td class="tg-c3ow" colspan="2">
+WOS-11967
+</td>
+<td class="tg-c3ow" colspan="2">
+WOS-46985
+</td>
+<td class="tg-c3ow" colspan="2">
+Reuters-21578
+</td>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tg-c3ow" colspan="2">
+Score Source<br>
+</td>
+<td class="tg-c3ow">
+Paper
+</td>
+<td class="tg-c3ow">
+Repr.
+</td>
+<td class="tg-c3ow">
+Paper
+</td>
+<td class="tg-c3ow">
+Repr.
+</td>
+<td class="tg-c3ow">
+Paper
+</td>
+<td class="tg-c3ow">
+Repr.
+</td>
+<td class="tg-c3ow">
+Paper
+</td>
+<td class="tg-c3ow">
+Repr.
+</td>
+</tr>
+<tr>
+<td class="tg-c3ow" rowspan="4">
+RMDL
+</td>
+<td class="tg-0pky">
+3 RDLs<br>
+</td>
+<td class="tg-0pky">
+90.86
+</td>
+<td class="tg-0pky">
+89.37
+</td>
+<td class="tg-0pky">
+87.39
+</td>
+<td class="tg-0pky">
+84.25
+</td>
+<td class="tg-0pky">
+78.39
+</td>
+<td class="tg-0pky">
+—
+</td>
+<td class="tg-0pky">
+89.10
+</td>
+<td class="tg-0pky">
+87.64
+</td>
+</tr>
+<tr>
+<td class="tg-0pky">
+9 RDLs
+</td>
+<td class="tg-0pky">
+92.60
+</td>
+<td class="tg-0pky">
+89.28
+</td>
+<td class="tg-0pky">
+90.65
+</td>
+<td class="tg-0pky">
+—
+</td>
+<td class="tg-0pky">
+81.92
+</td>
+<td class="tg-0pky">
+—
+</td>
+<td class="tg-0pky">
+90.36
+</td>
+<td class="tg-0pky">
+89.83
+</td>
+</tr>
+<tr>
+<td class="tg-0pky">
+15 RDLs
+</td>
+<td class="tg-0pky">
+92.66
+</td>
+<td class="tg-0pky">
+—
+</td>
+<td class="tg-0pky">
+91.01
+</td>
+<td class="tg-0pky">
+—
+</td>
+<td class="tg-0pky">
+81.86
+</td>
+<td class="tg-0pky">
+—
+</td>
+<td class="tg-0pky">
+89.91
+</td>
+<td class="tg-0pky">
+—
+</td>
+</tr>
+<tr>
+<td class="tg-0pky">
+30 RDLs
+</td>
+<td class="tg-0pky">
+93.57
+</td>
+<td class="tg-0pky">
+—
+</td>
+<td class="tg-0pky">
+91.59
+</td>
+<td class="tg-0pky">
+—
+</td>
+<td class="tg-0pky">
+82.42
+</td>
+<td class="tg-0pky">
+—
+</td>
+<td class="tg-0pky">
+90.69
+</td>
+<td class="tg-0pky">
+—
+</td>
+</tr>
+</tbody>
+</table>
 </div>
             </section>
 
           </div>
         </div>
       </div>
-<a href="explainable-artificial-intelligence.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="ml-in-predition-of-real-estate-prices.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="dl2-test.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="reuters-21578.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook/js/app.min.js"></script>
@@ -226,7 +408,7 @@ gitbook.start({
 "size": 2
 },
 "edit": {
-"link": "https://github.com/mini-pw/2021L-WB-Book/edit/master/1-1-creditCards.Rmd",
+"link": "https://github.com/mini-pw/2021L-WB-Book/edit/master/4-5-RMDLAdv.Rmd",
 "text": "Edit"
 },
 "history": {

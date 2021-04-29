@@ -4,11 +4,11 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>1.1 Explaining Credit Card Customers churns | Case Studies</title>
+  <title>6.2 Reuters-21578 | Case Studies</title>
   <meta name="description" content="Case studies for explainable artificial intelligence, deep learning, machine learning." />
   <meta name="generator" content="bookdown 0.22 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="1.1 Explaining Credit Card Customers churns | Case Studies" />
+  <meta property="og:title" content="6.2 Reuters-21578 | Case Studies" />
   <meta property="og:type" content="book" />
   
   <meta property="og:image" content="/images/cover.png" />
@@ -16,7 +16,7 @@
   
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="1.1 Explaining Credit Card Customers churns | Case Studies" />
+  <meta name="twitter:title" content="6.2 Reuters-21578 | Case Studies" />
   
   <meta name="twitter:description" content="Case studies for explainable artificial intelligence, deep learning, machine learning." />
   <meta name="twitter:image" content="/images/cover.png" />
@@ -30,8 +30,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-<link rel="prev" href="explainable-artificial-intelligence.html"/>
-<link rel="next" href="ml-in-predition-of-real-estate-prices.html"/>
+<link rel="prev" href="projekt-1.html"/>
+<link rel="next" href="machine-learning.html"/>
 <script src="libs/header-attrs/header-attrs.js"></script>
 <script src="libs/jquery/jquery.min.js"></script>
 <link href="libs/gitbook/css/style.css" rel="stylesheet" />
@@ -183,18 +183,44 @@ div.csl-indent {
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="xai1-explainable-cards" class="section level2" number="1.1">
-<h2><span class="header-section-number">1.1</span> Explaining Credit Card Customers churns</h2>
-<p><em>Authors: Katarzyna Solawa, Przemysław Chojecki, Bartosz Sawicki (Warsaw University of Techcnology)</em></p>
+<div id="reuters-21578" class="section level2" number="6.2">
+<h2><span class="header-section-number">6.2</span> Reuters-21578</h2>
+<p>Architekture danego modelu zapisujemy w postaci [D, R, C], gdzie D-liczba użytych sieci DNN, R-liczba użytych sieci RNN, C-liczba użytych sieci CNN. Oczywiście najbardziej optymalnym byłoby wykorzystanie porówno tych sieci, jednak nie było to możliwe z powodów ograniczenia czasowego i długiego trwania obliczeń dla danych sieci.</p>
+<p>Próba 1*-[1,0,2]: Accuracy: 0.876449155349453</p>
+<p>Próba 2-[2,0,1]: Accuracy: 0.8691619741636304</p>
+<p>Próba 3-[3,0,3]: Accuracy: 0.8840675720437231</p>
+<p>Próba 4-[3,0,3]: Accuracy: 0.8906922822126532</p>
+<p>Próba 5*-[5,0,4]: Accuracy: 0.8983106989069228</p>
+<p>*-próba umieszczona w tabeli</p>
+<p>Porównanie wykresu twórców oraz naszych dla RMDL o 9 losowych architekturach. Zakładamy tu że kod który autorzy umieścili na githubie jest tym użytym do generowania ich przykładów. Nie mamy co do tego pewności, z pewnością funkcja generująca wykresy ine jest dokładnie tą samą. Drugą rzeczą którą się różni kod autorów i ich wykres to ilość epok dla tych sieci. (W kodzie 120, tu na wykresie 100.)</p>
+<table>
+<thead>
+<tr class="header">
+<th>Paper’s Plots</th>
+<th>Our Reproduction</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><img src="https://i.imgur.com/x79FakJ.png" width="425"/></td>
+<td><img src="https://i.imgur.com/Q7tCGMt.png" width="425"/></td>
+</tr>
+<tr class="even">
+<td><img src="https://i.imgur.com/OBtIcfz.png" width="425"/></td>
+<td><img src="https://i.imgur.com/iR3jZEx.png" width="425"/></td>
+</tr>
+</tbody>
+</table>
 
 </div>
+<!-- </div> -->
             </section>
 
           </div>
         </div>
       </div>
-<a href="explainable-artificial-intelligence.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="ml-in-predition-of-real-estate-prices.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="projekt-1.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="machine-learning.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook/js/app.min.js"></script>
@@ -226,7 +252,7 @@ gitbook.start({
 "size": 2
 },
 "edit": {
-"link": "https://github.com/mini-pw/2021L-WB-Book/edit/master/1-1-creditCards.Rmd",
+"link": "https://github.com/mini-pw/2021L-WB-Book/edit/master/4-5-RMDLAdv.Rmd",
 "text": "Edit"
 },
 "history": {
