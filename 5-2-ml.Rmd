@@ -1,0 +1,5 @@
+## One model to fit them all: COVID-19 mortality prediction using multinational data
+
+*Authors: Kurek Marcelina, Stączek Mateusz, Wiśniewski Jakub, Zdulska Hanna*
+
+### Introduction

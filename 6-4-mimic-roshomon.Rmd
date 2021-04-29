@@ -1,0 +1,3 @@
+
+## Roshomon sets on death prediction XGB models using MIMIC-III database
+*Authors: Ada Gąssowska, Elżbieta Jowik (Warsaw University of Techcnology)*
