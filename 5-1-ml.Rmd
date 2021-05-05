@@ -14,5 +14,3 @@ The article ‘An interpretable mortality prediction model for COVID-19 patients
 ### Dashboard
 
 ### Results
-
-### Bibliography
