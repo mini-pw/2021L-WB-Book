@@ -1,0 +1,36 @@
+## Classifying people as good or bad credit risks {#xai1-explainable-german-credits}
+
+*Authors: Paweł Fijałkowski, Paulina Jaszczuk, Jakub Szypuła (Warsaw University of Technology)*
+
+### Introduction
+
+### Dataset and models
+
+### Local explanations
+
+To better understand the behavior of Random Forest, we employed a set of machine learning explanation methods. In order to comprehend the reasoning behind model predictions and interactions between variables we began at the local level, i.e. single observation. This way, we could compare influence of each variable within a clearly defined context of every potential borrower. Our primary motivation in selecting observations to present in this paper was to show how variables interact with one another in our model in creating predictions. As a result, selection varies depending on the method.
+
+Methods employed by us were Break-down, SHAP, LIME and Ceteris Paribus.
+
+#### Break-down method
+
+We began by analyzing the output of the Break-down method. Once compared side-by-side (see the figure) several key differences emerge. First of all, the importance of checking status variable (which will return in forthcoming sections). One can also notice the importance of the "age" variable, which seems intuitive. A further conclusion can be drawn from this - influence of a variable depends on its value. In fact, depending on interactions between variables in the dataset even the same value can have opposite effects. An example (although miniscule) can be found by comparing observations 60 and 230. The same value of "purpose" variable (i.e. "furniture/equipment") gives opposite influences (-1.6% "good" probability and +0.4% respectively). Thus we should always take into account context in which each variable is evaluated.
+ 
+Regarding specific conjectures on the dataset one can draw from this comparison, we can see that both observations share 7 out of the top 10 most influential variables. Among them are, for example age, checking status, which would be expected by a "common sense" intuition. Influences confirm that intuition. Young age contributes negatively towards credit rating and lower duration positively. Same for checking status - the higher the better. 
+
+```{r 2-2-breakdown, out.width="700", fig.align="center", echo=FALSE, fig.cap='Comparison of plots of breakdown method for two observations - number 1 (left) and number 94 (right). Positive values indicate an increase in probability of being classified as a "good" borrower while negative values indicate the opposite.'}
+knitr::include_graphics('images/2-2-breakdown-comparison.png')
+```
+
+#### Break-down method
+
+Consequently, we used SHAP method to analyze the first observations and compare results with the Break-Down method. The results of this can be seen in the figure below. Duration and checking status remain the two most important variables, while age grows in importance. 8 of the top 10 variables remain the same, with around the same influences. The major difference being absence of information on existing credits and residence since, have been replaced with credit amount and purpose. This method offers new information, primarily about the variation of influence of each variable. One can notice that age is the most varied (since it can affect the prediction both positively and negatively), which again would correspond to the "common sense" intuition (as with duration, the credit amount and checking status). The opposite occurs with credit history, purpose, property magnitude and length of employment, where variation remains lower compared to influence. Changes, in order of importance are rather small, only the installment commitment moves by more than 3 places (from number 5 to number 10). The rest is swapping of checking status and duration, fall of property magnitude by 2 places, employment by 1 place and rise of age by 2 places. It should be noted that all these changes occur similar or very similar absolute influence values in break-down method. One can judge that importance of variables is a trait that can remain consistent between various explanation methods.
+
+```{r 2-2-breakdown, out.width="700", fig.align="center", echo=FALSE, fig.cap='Plot of results of SHAP method for 1st observation'}
+knitr::include_graphics('images/2-2-shap.png')
+```
+
+
+### Global explanations
+
+### Summary and conclusions
