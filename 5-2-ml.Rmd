@@ -2,4 +2,14 @@
 
 *Authors: Kurek Marcelina, Stączek Mateusz, Wiśniewski Jakub, Zdulska Hanna*
 
+### Abstract
+During the outbreak of SARS-CoV-2 many scientists tried to build a model that was able to predict survival or death of patients based on available medical data. 
+Yan et al.[@5-2-china] were among first researchers to publish their model based on blood data (lactic dehydrogenase (LDH), lymphocyte percentage and high-sensitivity C-reactive protein (hs-CRP)) with 90% accuracy, however recreations of this model trained on other countries' data - US, Netherlands and France were not so successful. In this article we explore the possibility of building an international model for predicting COVID survival. Our research concludes that discarding place of origin resulted in unsatisfying performance around 0.70 ROC AUC score, while taking into account mentioned place of origin scored nearly 0.75 ROC AUC score.
+
 ### Introduction
+### Data sources
+### Model building
+### Results
+### Discussion
+
+
