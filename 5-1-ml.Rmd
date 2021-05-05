@@ -2,4 +2,17 @@
 
 *Authors: Komorowski Michał, Olender Przemysław, Sieńko Piotr, Welkier Konrad*
 
+
+### Abstract
+The article ‘An interpretable mortality prediction model for COVID-19 patients’ written in the first months of the pandemic laid the foundations for further research in the area of machine learning models for patients classification. Since that time a few papers have emerged that touch upon the same issue in which other scientists tested the same decision tree on their datasets. We decided that their approach is worth further research and hence in the following paper we present results of our work which aim was to build models on each of the considered datasets as well as on all of them combined in order to find an universal approach for patients from various countries. After testing multiple ways of coping with the problem we came up with the conclusion that there is no one model for all of the datasets that includes only such variables as c_protein, lactate, lymphocyte or even age and differences in levels of the aforementioned variables.
+
+
 ### Introduction
+
+### Comparison of the models
+
+### Dashboard
+
+### Results
+
+### Bibliography
