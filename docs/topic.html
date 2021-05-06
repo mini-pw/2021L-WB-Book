@@ -204,9 +204,32 @@ div.csl-indent {
 <h3><span class="header-section-number">6.1.1</span> Literature review</h3>
 <p>Rashomon is a intriguing Japanese movie in which four people witness an incident from different vantage points. When they come to testify in court, they all report the same facts, but their stories of what happened are very different.
 In machine learning Rashomon set is used to characterise problem in which many different models offer accurate results describing the same data.
-However, not every accurate model gives a right conclusion as described in [6-0-breiman2001statistical]: <em>“If the model is a poor emulation of nature, the conclusion might be worng”</em>. Herein authors also explain basics of Rashomon sets on example. Much more in depth and mathematical description is provided in [6-0-rashomon-intro].
-Another important topic related to Rashomon sets is analysing the feature importance of the model. It was described in this article [6-0-rashomon-variable-importance], where authors suggested to study the maximum and minimum of variable importance across all models included in the Rashomon set. This technique was called MCR (Model Class Reliance). Furthermore, [6-0-rashomon-variable-importance-cloud] presented technique to visualise the “cloud” of variable importance for models in the set, which could help us understand the Rashomon set and choose the one which give the best interpretation. The last question stated in the article [6-0-rudin-challenges] was about choosing model from the Rashomon set. It might be a difficult task, especially when we lack good exploration tools. [6-1-beams-system] created a system called BEAMS that allows to choose the most important features. Next, the program searches the hypothesis space in order to find model which fits best to given constraints. Since this system works only with linear regression classifiers, [6-0-rudin-challenges] stated a question if it is possible to design a simmilar system which will search only models within the Rashomon set.</p>
+However, not every accurate model gives a right conclusion as described in <span class="citation">(<a href="#ref-6-0-breiman2001statistical" role="doc-biblioref">Breiman and others 2001</a>)</span>: <em>“If the model is a poor emulation of nature, the conclusion might be worng”</em>. Herein authors also explain basics of Rashomon sets on example. Much more in depth and mathematical description is provided in <span class="citation">(<a href="#ref-6-0-rashomon-intro" role="doc-biblioref">Semenova, Rudin, and Parr 2019</a>)</span>.
+Another important topic related to Rashomon sets is analysing the feature importance of the model. It was described in this article <span class="citation">(<a href="#ref-6-0-rashomon-variable-importance" role="doc-biblioref">Fisher, Rudin, and Dominici 2019</a>)</span>, where authors suggested to study the maximum and minimum of variable importance across all models included in the Rashomon set. This technique was called MCR (Model Class Reliance).
+Furthermore, <span class="citation">(<a href="#ref-6-0-rashomon-variable-importance-cloud" role="doc-biblioref">Dong and Rudin 2020</a>)</span> presented technique to visualise the “cloud” of variable importance for models in the set, which could help us understand the Rashomon set and choose the one which give the best interpretation. The last question stated in the article <span class="citation">(<a href="#ref-6-0-rudin-challenges" role="doc-biblioref">Rudin et al. 2021</a>)</span> was about choosing model from the Rashomon set. It might be a difficult task, especially when we lack good exploration tools.
+<span class="citation">(<a href="#ref-6-1-beams-system" role="doc-biblioref">Das et al. 2019</a>)</span> created a system called BEAMS that allows to choose the most important features. Next, the program searches the hypothesis space in order to find model which fits best to given constraints. Since this system works only with linear regression classifiers, <span class="citation">(<a href="#ref-6-0-rudin-challenges" role="doc-biblioref">Rudin et al. 2021</a>)</span> stated a question if it is possible to design a simmilar system which will search only models within the Rashomon set.</p>
 
+</div>
+</div>
+<h3>References</h3>
+<div id="refs" class="references csl-bib-body hanging-indent">
+<div id="ref-6-0-breiman2001statistical" class="csl-entry">
+Breiman, Leo, and others. 2001. <span>“Statistical Modeling: The Two Cultures (with Comments and a Rejoinder by the Author).”</span> <em>Statistical Science</em> 16 (3): 199–231.
+</div>
+<div id="ref-6-1-beams-system" class="csl-entry">
+Das, Subhajit, Dylan Cashman, Remco Chang, and Alex Endert. 2019. <span>“BEAMES: Interactive Multimodel Steering, Selection, and Inspection for Regression Tasks.”</span> <em>IEEE Computer Graphics and Applications</em> 39 (5): 20–32. <a href="https://doi.org/10.1109/MCG.2019.2922592">https://doi.org/10.1109/MCG.2019.2922592</a>.
+</div>
+<div id="ref-6-0-rashomon-variable-importance-cloud" class="csl-entry">
+Dong, Jiayun, and Cynthia Rudin. 2020. <span>“Exploring the Cloud of Variable Importance for the Set of All Good Models.”</span> <em>Nature Machine Intelligence</em> 2 (12): 810–24.
+</div>
+<div id="ref-6-0-rashomon-variable-importance" class="csl-entry">
+Fisher, Aaron, Cynthia Rudin, and Francesca Dominici. 2019. <span>“All Models Are Wrong, but Many Are Useful: Learning a Variable’s Importance by Studying an Entire Class of Prediction Models Simultaneously.”</span> <em>Journal of Machine Learning Research</em> 20 (177): 1–81.
+</div>
+<div id="ref-6-0-rudin-challenges" class="csl-entry">
+Rudin, Cynthia, Chaofan Chen, Zhi Chen, Haiyang Huang, Lesia Semenova, and Chudi Zhong. 2021. <span>“Interpretable Machine Learning: Fundamental Principles and 10 Grand Challenges.”</span> <em>arXiv Preprint arXiv:2103.11251</em>.
+</div>
+<div id="ref-6-0-rashomon-intro" class="csl-entry">
+Semenova, Lesia, Cynthia Rudin, and Ronald Parr. 2019. <span>“A Study in Rashomon Curves and Volumes: A New Perspective on Generalization and Model Simplicity in Machine Learning.”</span> <em>arXiv Preprint arXiv:1908.01755</em>.
 </div>
 </div>
             </section>
