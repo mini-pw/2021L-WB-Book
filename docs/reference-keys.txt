@@ -48,3 +48,11 @@ comparison-of-deep-learning-and-tree-based-models-in-the-clinical-prediction-of-
 abstract-1
 rashomonml
 roshomon-sets-on-death-prediction-xgb-models-using-mimic-iii-database
+xai1-explainable-german-credits
+dataset-and-models-1
+local-explanations-1
+break-down-method
+break-down-method-1
+global-explanations-1
+summary-and-conclusions-2
+introduction-8
