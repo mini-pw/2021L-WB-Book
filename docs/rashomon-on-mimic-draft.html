@@ -4,11 +4,11 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>Case Studies</title>
+  <title>8.1 Rashomon on MIMIC - draft | Case Studies</title>
   <meta name="description" content="Case studies for explainable artificial intelligence, deep learning, machine learning." />
   <meta name="generator" content="bookdown 0.22 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="Case Studies" />
+  <meta property="og:title" content="8.1 Rashomon on MIMIC - draft | Case Studies" />
   <meta property="og:type" content="book" />
   
   <meta property="og:image" content="/images/cover.png" />
@@ -16,7 +16,7 @@
   
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Case Studies" />
+  <meta name="twitter:title" content="8.1 Rashomon on MIMIC - draft | Case Studies" />
   
   <meta name="twitter:description" content="Case studies for explainable artificial intelligence, deep learning, machine learning." />
   <meta name="twitter:image" content="/images/cover.png" />
@@ -30,8 +30,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-
-<link rel="next" href="technical-setup.html"/>
+<link rel="prev" href="literature-review.html"/>
+<link rel="next" href="roshomon-sets-on-death-prediction-xgb-models-using-mimic-iii-database.html"/>
 <script src="libs/header-attrs/header-attrs.js"></script>
 <script src="libs/jquery/jquery.min.js"></script>
 <link href="libs/gitbook/css/style.css" rel="stylesheet" />
@@ -195,32 +195,39 @@ div.csl-indent {
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="header">
-<h1 class="title">Case Studies</h1>
-<p class="author"><em></em></p>
-<p class="date" style="margin-top: 1.5em;"><em>2021-05-06</em></p>
+<div id="rashomon-on-mimic---draft" class="section level2" number="8.1">
+<h2><span class="header-section-number">8.1</span> Rashomon on MIMIC - draft</h2>
+<p><em>Authors: Degórski Karol, Fic Piotr, Kamiński Adrian (Warsaw University of Techcnology)</em></p>
+<div id="review-of-the-literature" class="section level3" number="8.1.1">
+<h3><span class="header-section-number">8.1.1</span> Review of the literature</h3>
+<p>The term Rashomon effect was created to describe a situation when there are many different models with quite similar predictions. Very often there are many different descriptions giving about the same minimum error rate, so that we cannot point one model as the best <span class="citation"><a href="#ref-6-0-breiman2001statistical" role="doc-biblioref">Breiman and others</a> (<a href="#ref-6-0-breiman2001statistical" role="doc-biblioref">2001</a>)</span>. As an example of this effect in reality they gave Linear Regression model and finding 5 from 30 best describing variables of a given problem. In this case there are approximately 140,000 such subsets. The authors explained that usually we choose the model which has best results on a test set, although there may be also different subsets of 5 variables that give very similar results. They also noticed that this effect occurs in different models, such as decision trees or neural networks.</p>
+<p>Furthermore, <span class="citation"><a href="#ref-6-0-rashomon-intro" role="doc-biblioref">Semenova, Rudin, and Parr</a> (<a href="#ref-6-0-rashomon-intro" role="doc-biblioref">2019</a>)</span> contributed to expand the study about Rashomon effect. They defined Rashomon set as a subset of models that have similar performance to the best model in terms of loss function. Moreover they introduced Rashomon ratio, that represents the fraction of models that fit our data equally well. Also they explained that Rashomon curve is a function of empirical risk versus the Rashomon ratio. They saw that there is a good generalization of the Rashomon curve’s elbow model when choosing between performance and simplicity of the model. They found out that interpretability of model is connected with Rashomon sets. Accordingly, when the Rashomon set is large there may exist simpler and higher performing model.</p>
+<p>Analysis of the Rashomon effect is still a new and open for developement field of the interpretable machine learning. Because of that, there are remaining challanges and problems, which are missing a state-of-the-art approach. Some of them are a proper measure of the Rashomon set, the best techniques of its visualization and optimal choice of the model from the Rashomon set <span class="citation"><a href="#ref-6-0-rudin-challenges" role="doc-biblioref">Rudin et al.</a> (<a href="#ref-6-0-rudin-challenges" role="doc-biblioref">2021</a>)</span>. One of useful tools for the mentioned tasks is a framework called Variable Importance Clouds <span class="citation"><a href="#ref-6-0-rashomon-variable-importance-cloud" role="doc-biblioref">Dong and Rudin</a> (<a href="#ref-6-0-rashomon-variable-importance-cloud" role="doc-biblioref">2020</a>)</span>, which can be used for studying the variable importance among Rashomon set.</p>
+
 </div>
-<div id="preface" class="section level1 unnumbered">
-<h1>Preface</h1>
-<p><img src="images/cover.png" width="500" style="display: block; margin: auto;" /></p>
-<p>This book is the result of a student projects for <a href="https://github.com/mini-pw/2021L-WarsztatyBadawcze">Case Studies</a> course at the Warsaw University of Technology. Each team prepared an article on one of the topics selected from reproducibility, imputation, and interpretability.</p>
-<p>This project is inspired by a book <a href="https://compstat-lmu.github.io/iml_methods_limitations/">Limitations of Interpretable Machine Learning Methods</a> created at the Department of Statistics, LMU Munich <a href="https://pbiecek.github.io/xai_stories/">XAI Stories. Case studies for eXplainable Artificial Intelligence</a> done at the Warsaw University of Technology and at the University of Warsaw and <a href="https://mini-pw.github.io/2020L-WB-Book/">ML Case Studies</a> during a case study a year ago.
-We used the LIML project as the cornerstone for this repository.</p>
-<p>The cover created by Anna Kozak.</p>
-<div class="figure">
-<img src="images/by-nc-sa.png" alt="" />
-<p class="caption">Creative Commons License</p>
 </div>
-<p>This book is licensed under the <a href="http://creativecommons.org/licenses/by-nc-sa/4.0/">Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International License</a>.</p>
-<!-- Technical setup -->
+<h3>References</h3>
+<div id="refs" class="references csl-bib-body hanging-indent">
+<div id="ref-6-0-breiman2001statistical" class="csl-entry">
+Breiman, Leo, and others. 2001. <span>“Statistical Modeling: The Two Cultures (with Comments and a Rejoinder by the Author).”</span> <em>Statistical Science</em> 16 (3): 199–231.
+</div>
+<div id="ref-6-0-rashomon-variable-importance-cloud" class="csl-entry">
+Dong, Jiayun, and Cynthia Rudin. 2020. <span>“Exploring the Cloud of Variable Importance for the Set of All Good Models.”</span> <em>Nature Machine Intelligence</em> 2 (12): 810–24.
+</div>
+<div id="ref-6-0-rudin-challenges" class="csl-entry">
+Rudin, Cynthia, Chaofan Chen, Zhi Chen, Haiyang Huang, Lesia Semenova, and Chudi Zhong. 2021. <span>“Interpretable Machine Learning: Fundamental Principles and 10 Grand Challenges.”</span> <em>arXiv Preprint arXiv:2103.11251</em>.
+</div>
+<div id="ref-6-0-rashomon-intro" class="csl-entry">
+Semenova, Lesia, Cynthia Rudin, and Ronald Parr. 2019. <span>“A Study in Rashomon Curves and Volumes: A New Perspective on Generalization and Model Simplicity in Machine Learning.”</span> <em>arXiv Preprint arXiv:1908.01755</em>.
+</div>
 </div>
             </section>
 
           </div>
         </div>
       </div>
-
-<a href="technical-setup.html" class="navigation navigation-next navigation-unique" aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="literature-review.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="roshomon-sets-on-death-prediction-xgb-models-using-mimic-iii-database.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook/js/app.min.js"></script>
@@ -252,7 +259,7 @@ gitbook.start({
 "size": 2
 },
 "edit": {
-"link": "https://github.com/mini-pw/2021L-WB-Book/edit/master/index.Rmd",
+"link": "https://github.com/mini-pw/2021L-WB-Book/edit/master/6-3-draft.Rmd",
 "text": "Edit"
 },
 "history": {
