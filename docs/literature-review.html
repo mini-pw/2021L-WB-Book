@@ -4,11 +4,11 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>Case Studies</title>
+  <title>Chapter 8 Literature review | Case Studies</title>
   <meta name="description" content="Case studies for explainable artificial intelligence, deep learning, machine learning." />
   <meta name="generator" content="bookdown 0.22 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="Case Studies" />
+  <meta property="og:title" content="Chapter 8 Literature review | Case Studies" />
   <meta property="og:type" content="book" />
   
   <meta property="og:image" content="/images/cover.png" />
@@ -16,7 +16,7 @@
   
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Case Studies" />
+  <meta name="twitter:title" content="Chapter 8 Literature review | Case Studies" />
   
   <meta name="twitter:description" content="Case studies for explainable artificial intelligence, deep learning, machine learning." />
   <meta name="twitter:image" content="/images/cover.png" />
@@ -30,8 +30,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-
-<link rel="next" href="technical-setup.html"/>
+<link rel="prev" href="topic.html"/>
+<link rel="next" href="roshomon-sets-on-death-prediction-xgb-models-using-mimic-iii-database.html"/>
 <script src="libs/header-attrs/header-attrs.js"></script>
 <script src="libs/jquery/jquery.min.js"></script>
 <link href="libs/gitbook/css/style.css" rel="stylesheet" />
@@ -191,32 +191,21 @@ div.csl-indent {
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="header">
-<h1 class="title">Case Studies</h1>
-<p class="author"><em></em></p>
-<p class="date" style="margin-top: 1.5em;"><em>2021-05-06</em></p>
-</div>
-<div id="preface" class="section level1 unnumbered">
-<h1>Preface</h1>
-<p><img src="images/cover.png" width="500" style="display: block; margin: auto;" /></p>
-<p>This book is the result of a student projects for <a href="https://github.com/mini-pw/2021L-WarsztatyBadawcze">Case Studies</a> course at the Warsaw University of Technology. Each team prepared an article on one of the topics selected from reproducibility, imputation, and interpretability.</p>
-<p>This project is inspired by a book <a href="https://compstat-lmu.github.io/iml_methods_limitations/">Limitations of Interpretable Machine Learning Methods</a> created at the Department of Statistics, LMU Munich <a href="https://pbiecek.github.io/xai_stories/">XAI Stories. Case studies for eXplainable Artificial Intelligence</a> done at the Warsaw University of Technology and at the University of Warsaw and <a href="https://mini-pw.github.io/2020L-WB-Book/">ML Case Studies</a> during a case study a year ago.
-We used the LIML project as the cornerstone for this repository.</p>
-<p>The cover created by Anna Kozak.</p>
-<div class="figure">
-<img src="images/by-nc-sa.png" alt="" />
-<p class="caption">Creative Commons License</p>
-</div>
-<p>This book is licensed under the <a href="http://creativecommons.org/licenses/by-nc-sa/4.0/">Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International License</a>.</p>
-<!-- Technical setup -->
+<div id="literature-review" class="section level1" number="8">
+<h1><span class="header-section-number">Chapter 8</span> Literature review</h1>
+<p>Rashomon is a intriguing Japanese movie in which four people witness an incident from different vantage points. When they come to testify in court, they all report the same facts, but their stories of what happened are very different.
+In machine learning Rashomon set is used to characterise problem in which many different models offer accurate results describing the same data.
+However, not every accurate model gives a right conclusion as described in [6-0-breiman2001statistical]: <em>“If the model is a poor emulation of nature, the conclusion might be worng”</em>. Herein authors also explain basics of Rashomon sets on example. Much more in depth and mathematical description is provided in [6-0-rashomon-intro].
+Another important topic related to Rashomon sets is analysing the feature importance of the model. It was described in this article [6-0-rashomon-variable-importance], where authors suggested to study the maximum and minimum of variable importance across all models included in the Rashomon set. This technique was called MCR (Model Class Reliance). Furthermore, [6-0-rashomon-variable-importance-cloud] presented technique to visualise the “cloud” of variable importance for models in the set, which could help us understand the Rashomon set and choose the one which give the best interpretation. The last question stated in the article [6-0-rudin-challenges] was about choosing model from the Rashomon set. It might be a difficult task, especially when we lack good exploration tools. [6-1-beams-system] created a system called BEAMS that allows to choose the most important features. Next, the program searches the hypothesis space in order to find model which fits best to given constraints. Since this system works only with linear regression classifiers, [6-0-rudin-challenges] stated a question if it is possible to design a simmilar system which will search only models within the Rashomon set.</p>
+<!--chapter:end:6-1-MIMIC.Rmd-->
 </div>
             </section>
 
           </div>
         </div>
       </div>
-
-<a href="technical-setup.html" class="navigation navigation-next navigation-unique" aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="topic.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="roshomon-sets-on-death-prediction-xgb-models-using-mimic-iii-database.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook/js/app.min.js"></script>
@@ -248,7 +237,7 @@ gitbook.start({
 "size": 2
 },
 "edit": {
-"link": "https://github.com/mini-pw/2021L-WB-Book/edit/master/index.Rmd",
+"link": "https://github.com/mini-pw/2021L-WB-Book/edit/master/6-4-mimic-roshomon.Rmd",
 "text": "Edit"
 },
 "history": {
