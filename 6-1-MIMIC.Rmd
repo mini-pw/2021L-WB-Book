@@ -1,9 +1,9 @@
-# Topic
+## Topic
 
 *Authors: Adrian Stańdo, Maciej Pawlikowski, Mariusz Słapek (Warsaw University of Technology)*
 
 
-# Literature review
+### Literature review
 
 Rashomon is a intriguing Japanese movie in which four people witness an incident from different vantage points. When they come to testify in court, they all report the same facts, but their stories of what happened are very different.
 In machine learning Rashomon set is used to characterise problem in which many different models offer accurate results describing the same data.
