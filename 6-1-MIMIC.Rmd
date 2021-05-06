@@ -1,6 +1,6 @@
 # Topic
 
-*Authors: Adrian Stańdo, Maciej Pawlikowski, Mariusz Słapek (Warsaw University of Techcnology)*
+*Authors: Adrian Stańdo, Maciej Pawlikowski, Mariusz Słapek (Warsaw University of Technology)*
 
 
 # Literature review
