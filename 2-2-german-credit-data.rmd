@@ -55,17 +55,51 @@ We began by analyzing the output of the Break-down method. Once compared side-by
 Regarding specific conjectures on the data set one can draw from this comparison, we can see that both observations share 7 out of the top 10 most influential variables. Among them are, for example age, checking status, which would be expected by a "common sense" intuition. Influences confirm that intuition. Young age contributes negatively towards credit rating and lower duration positively. Same for checking status - the higher the better. 
 
 ```{r 2-2-breakdown, out.width="700", fig.align="center", echo=FALSE, fig.cap='Comparison of plots of breakdown method for two observations - number 1 (left) and number 94 (right). Positive values indicate an increase in probability of being classified as a "good" borrower while negative values indicate the opposite.'}
-knitr::include_graphics('images/2-2-breakdown-comparison.png')
+knitr::include_graphics('C:\\Users\\pauli\\OneDrive\\Pulpit\\2-2-breakdown-comparison.png')
 ```
 
-#### Break-down method
+#### Shap method
 
 Consequently, we used SHAP method to analyze the first observations and compare results with the Break-Down method. The results of this can be seen in the figure below. Duration and checking status remain the two most important variables, while age grows in importance. 8 of the top 10 variables remain the same, with around the same influences. The major difference being absence of information on existing credits and residence since, have been replaced with credit amount and purpose. This method offers new information, primarily about the variation of influence of each variable. One can notice that age is the most varied (since it can affect the prediction both positively and negatively), which again would correspond to the "common sense" intuition (as with duration, the credit amount and checking status). The opposite occurs with credit history, purpose, property magnitude and length of employment, where variation remains lower compared to influence. Changes, in order of importance are rather small, only the installment commitment moves by more than 3 places (from number 5 to number 10). The rest is swapping of checking status and duration, fall of property magnitude by 2 places, employment by 1 place and rise of age by 2 places. It should be noted that all these changes occur similar or very similar absolute influence values in break-down method. One can judge that importance of variables is a trait that can remain consistent between various explanation methods.
 
-```{r 2-2-breakdown, out.width="700", fig.align="center", echo=FALSE, fig.cap='Plot of results of SHAP method for 1st observation'}
-knitr::include_graphics('images/2-2-shap.png')
+```{r 2-2-breakdown2, out.width="700", fig.align="center", echo=FALSE, fig.cap='A plot of results of SHAP method for 1st observation'}
+knitr::include_graphics('2-2-shap.png')
 ```
 
+#### False positive and false negative predictions
+
+Although the accuracy of our model is at satisfactory level, sometimes it is providing incorrect predictions. We decided to take a closer look and analyze the situations when our model misclassifies. For this purpose we explained the false positives and false negatives predictions with the local methods LIME and SHAP.
+
+##### False positive
+
+```{r 2-2-lime_false_pos, out.width="700", fig.align="center", echo=FALSE, fig.cap='A plot of results of LIME method for 56th observation which was missclasified by our model and predicted as false positive'}
+knitr::include_graphics('2-2-lime_false_pos.png')
+```
+
+The model classified the observation positively mainly on the basis of the features duration (12 months) and savings status (no known savings). This is in line with our earlier conclusions - a short loan duration has a positive effect on prediction. 
+
+To better understand the operation of the model in this case, we also made an explanation using the SHAP method. 
+
+```{r 2-2-shap_false_pos, out.width="700", fig.align="center", echo=FALSE, fig.cap='A plot of results of SHAP method for 56th observation which was missclasified by our model and predicted as false positive'}
+knitr::include_graphics('2-2-shap_false_pos.png')
+```
+
+The explanations agree on the influence of feature savings status but according to the SHAP method, duration has a marginal positive effect on prediction. Interestingly, both methods give checking status as the most influential feature. Its value (in the range from 0 to 200) negatively affects the prediction which is how the model should classify this observation but this is outweighed by the positive effects of other features.
+
+##### False negative
+
+```{r 2-2-lime_false_neg, out.width="700", fig.align="center", echo=FALSE, fig.cap='A plot of results of LIME method for 945th observation which was missclasified by our model and predicted as false negative.'}
+knitr::include_graphics('2-2-lime_false_neg.png')
+```
+
+The model's prediction was not certain, but it indicated that the client is a bad borrower with a probability of 65%. The biggest negative contributions are related to checking status (in the range from 0 to 200), credit history (no credits/all paid) and duration (48 months). While the relatively long loan term may indeed have a negative effect on the prediction, the fact that there are no other loans seems to be contradictory. The LIME method did not answer all our questions. To dispel any doubts we also explained the observations using the SHAP method.
+
+```{r 2-2-shap_false_neg, out.width="700", fig.align="center", echo=FALSE, fig.cap='A plot of results of SHAP method for 945th observation which was missclasified by our model and predicted as false negative.'}
+knitr::include_graphics('2-2-shap_false_neg.png')
+```
+
+SHAP's explanations are very similar to those LIME's ones. 
+Again, features duration, checking status and credit hisotry have the greatest influence on negative prediction. Perhaps the strange contribution of the feature credit history is due to its interaction with other variables.
 
 
 ### Global explanations
