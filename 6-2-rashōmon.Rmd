@@ -1,0 +1,18 @@
+
+## Roshomon sets of in-hospital mortality prediction random forest models
+
+*Authors: Jeugeniusz Winiczenko, Mikołaj Malec, Patryk Wrona (Warsaw University of Techcnology)*
+
+### Related work
+
+
+Rashomon sets are sets of models performing extraordinarily well on a given task. In machine learning, this term was used for the very first time by Leo Breiman in his paper issued in 2001 [@6-0-breiman2001statistical]. Just as the task could be any, like in our case predicting patient's mortality, the use of given features in order to explain vary among many highly accurate models. Moreover, Leo Breiman also described this situation as the Rashomon Effect and explained details using exemplary models.
+
+Until recently, the Rashomon sets have been rarely a subject of scientific research. In 2019 [@6-0-rashomon-intro] approached the issue creating mathematical and statistical definitions and notations regarding such sets of models. They described Rashomon sets as subspaces of the hypothesis space, that is subsets of models having comparable performance as the best model with respect to a loss function. In order to define well the problem, they introduced Rashomon ratio (fraction of models in rashomon set and all models from hypothesis space)  and shattering coefficient - the maximum number of ways any n data points can be classified using functions from the hypothesis space.
+
+Another outstanding remark concerning Rashomon set was made when in 2019  [@6-0-rashomon-variable-importance] emphasized the analysis of features' importance within Rashomon sets. The authors suggested Model Class Reliance - a new variable importance (VI) tool to study the the range of VI values across all highly accurate models - models included in rashomon sets. Later, [@6-0-rudin-challenges] provided basic rules for interpretable machine learning and identified 10 technical challenge areas in interpretable machine learning. They emphasized the troubleshooting and easiness of using glass-box models today as well as their advantage over black-box models due to their inscrutable nature. In this article, Challenge number 9 involves understanding, exploring, and measuring the Rashomon set. The authors address questions about how to characterize and visualize rashomon sets, and finally, how to pick the best model out of rashomon set. The Variable Importance Clouds, introduced in [@6-0-rashomon-variable-importance-cloud], are an excellent tool that one can use to address the above problems. Sush cloud maps every variable to its importance for every well-performing model.
+
+In our work, we choose and visualize the Rashomon sets built on a set of features as well as their subset. We address the problem of searching the most crucial predictive variables among those Rashomon sets and investigate the impact of choosing subsets of input features on the whole process of determining Rashomon sets and their characteristics.
+
+
+
