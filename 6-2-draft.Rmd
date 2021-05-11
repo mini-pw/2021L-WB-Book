@@ -2,7 +2,7 @@
 ## Title
 Authors: Jan Borowski, Konstanty Kraszewski, Krzysztof Wolny
 
-##Literature review 
+### Literature review
 
  
 In 1950 Japanese director, Akira Kurosawa, presented film Rashomon. Movie resolves around four witnesses, that describes the same crime in four different ways. This situation was called Rashomon effect after the name of the movie. In other words Rashomon effect is a situation when we have multiple different descriptions to the same event. This term is commonly used in multiple sciences like sociology, psychology or history.  
