@@ -1,6 +1,8 @@
-## DL2-Test
+## Some title
+Reproduction Importance
+### Random Multimodel Deep Learning for Classification
 
-### Projekt 1
+Results
 
 <style type="text/css">
 .tg  {border-collapse:collapse;border-spacing:0;}
@@ -83,25 +85,166 @@
   </tr>
 </tbody>
 </table>
+<center>Table 1</center>
+<br>
 
 #### Reuters-21578
-Architekture danego modelu zapisujemy w postaci [D, R, C], gdzie D-liczba użytych sieci DNN, R-liczba użytych sieci RNN, C-liczba użytych sieci CNN. Oczywiście najbardziej optymalnym byłoby wykorzystanie porówno tych sieci, jednak nie było to możliwe z powodów ograniczenia czasowego i długiego trwania obliczeń dla danych sieci.
-
-Próba 1*-[1,0,2]: Accuracy: 0.876449155349453
-
-Próba 2-[2,0,1]: Accuracy: 0.8691619741636304
-
-Próba 3-[3,0,3]: Accuracy: 0.8840675720437231
-
-Próba 4-[3,0,3]: Accuracy: 0.8906922822126532
-
-Próba 5*-[5,0,4]: Accuracy: 0.8983106989069228 
-
-*-próba umieszczona w tabeli
-
-Porównanie wykresu twórców oraz naszych dla RMDL o 9 losowych architekturach. Zakładamy tu że kod który autorzy umieścili na githubie jest tym użytym do generowania ich przykładów. Nie mamy co do tego pewności, z pewnością funkcja generująca wykresy ine jest dokładnie tą samą. Drugą rzeczą którą się różni kod autorów i ich wykres to ilość epok dla tych sieci. (W kodzie 120, tu na wykresie 100.)
 
 Paper's Plots | Our Reproduction
 --- | ---
-<img src="images/4-5-ReutersPaperTrain.png" width="425"/> | <img src="images/4-5-ReutersReproductionTrain.png" width="425"/>
-<img src="images/4-5-ReutersPaperTest.png" width="425"/> | <img src="images/4-5-ReutersReproductionTest.png" width="425"/>
+<img src="images/4-5-ReutersPaperTrain.png" width="425" height="310"/> | <img src="images/4-5-ReutersReproductionTrain.png" width="425"/>
+<img src="images/4-5-ReutersPaperTest.png" width="425" height="305"/> | <img src="images/4-5-ReutersReproductionTest.png" width="425"/>
+<center>Figure 1</center>
+
+#### WOS-5736
+
+Paper's Plots | Our Reproduction
+--- | ---
+<img src="images/4-5-WOS5736PaperTrain.png" width="425" height="290"/> | <img src="images/4-5-WOS5736ReproductionTrain.png" width="425"/>
+<img src="images/4-5-WOS5736PaperTest.png" width="425" height="285"/> | <img src="images/4-5-WOS5736ReproductionTest.png" width="425"/>
+<center>Figure 2</center>
+
+
+<style type="text/css">
+.tg  {border-collapse:collapse;border-spacing:0;}
+.tg td{border-color:black;border-style:solid;border-width:1px;font-family:Arial, sans-serif;font-size:14px;
+  overflow:hidden;padding:10px 5px;word-break:normal;}
+.tg th{border-color:black;border-style:solid;border-width:1px;font-family:Arial, sans-serif;font-size:14px;
+  font-weight:normal;overflow:hidden;padding:10px 5px;word-break:normal;}
+.tg .tg-9wq8{border-color:inherit;text-align:center;vertical-align:middle}
+.tg .tg-c3ow{border-color:inherit;text-align:center;vertical-align:top}
+.tg .tg-0pky{border-color:inherit;text-align:left;vertical-align:top}
+</style>
+<table class="tg">
+<thead>
+  <tr>
+    <th class="tg-0pky" colspan="2" rowspan="2"></th>
+    <th class="tg-c3ow" colspan="4">Dataset</th>
+  </tr>
+  <tr>
+    <td class="tg-c3ow" colspan="2">IMDB</td>
+    <td class="tg-c3ow" colspan="2">20NewsGroup<br></td>
+  </tr>
+</thead>
+<tbody>
+  <tr>
+    <td class="tg-c3ow" colspan="2">Score Source<br></td>
+    <td class="tg-c3ow">Paper</td>
+    <td class="tg-c3ow">Repr.</td>
+    <td class="tg-c3ow">Paper</td>
+    <td class="tg-c3ow">Repr.</td>
+  </tr>
+  <tr>
+    <td class="tg-9wq8" rowspan="3">RMDL</td>
+    <td class="tg-0pky">3 RDLs</td>
+    <td class="tg-0pky">89.91</td>
+    <td class="tg-0pky">88.49</td>
+    <td class="tg-0pky">86.73</td>
+    <td class="tg-0pky">---</td>
+  </tr>
+  <tr>
+    <td class="tg-0pky">9 RDLs</td>
+    <td class="tg-0pky">90.13</td>
+    <td class="tg-0pky">---</td>
+    <td class="tg-0pky">87.62</td>
+    <td class="tg-0pky">---</td>
+  </tr>
+  <tr>
+    <td class="tg-0pky">15 RDLs</td>
+    <td class="tg-0pky">90.79</td>
+    <td class="tg-0pky">---</td>
+    <td class="tg-0pky">87.91</td>
+    <td class="tg-0pky">---</td>
+  </tr>
+</tbody>
+</table>
+<center>Table 2</center>
+<br>
+
+
+ERROR RATE 1-Accuracy
+
+<style type="text/css">
+.tg  {border-collapse:collapse;border-spacing:0;}
+.tg td{border-color:black;border-style:solid;border-width:1px;font-family:Arial, sans-serif;font-size:14px;
+  overflow:hidden;padding:10px 5px;word-break:normal;}
+.tg th{border-color:black;border-style:solid;border-width:1px;font-family:Arial, sans-serif;font-size:14px;
+  font-weight:normal;overflow:hidden;padding:10px 5px;word-break:normal;}
+.tg .tg-9wq8{border-color:inherit;text-align:center;vertical-align:middle}
+.tg .tg-c3ow{border-color:inherit;text-align:center;vertical-align:top}
+.tg .tg-0pky{border-color:inherit;text-align:left;vertical-align:top}
+</style>
+<table class="tg">
+<thead>
+  <tr>
+    <th class="tg-0pky" colspan="2" rowspan="2"></th>
+    <th class="tg-c3ow" colspan="4">Dataset</th>
+  </tr>
+  <tr>
+    <td class="tg-c3ow" colspan="2">MNIST</td>
+    <td class="tg-c3ow" colspan="2">CIFAR-10<br></td>
+  </tr>
+</thead>
+<tbody>
+  <tr>
+    <td class="tg-c3ow" colspan="2">Score Source<br></td>
+    <td class="tg-c3ow">Paper</td>
+    <td class="tg-c3ow">Repr.</td>
+    <td class="tg-c3ow">Paper</td>
+    <td class="tg-c3ow">Repr.</td>
+  </tr>
+  <tr>
+    <td class="tg-9wq8" rowspan="4">RMDL</td>
+    <td class="tg-0pky">3 RDLs<br></td>
+    <td class="tg-0pky">0.51<br></td>
+    <td class="tg-0pky">0.55<br></td>
+    <td class="tg-0pky">9.89</td>
+    <td class="tg-0pky">38.23</td>
+  </tr>
+  <tr>
+    <td class="tg-0pky">9 RDLs</td>
+    <td class="tg-0pky">0.41</td>
+    <td class="tg-0pky">0.65</td>
+    <td class="tg-0pky">9.1</td>
+    <td class="tg-0pky">36.91</td>
+  </tr>
+  <tr>
+    <td class="tg-0pky">15 RDLs</td>
+    <td class="tg-0pky">0.21</td>
+    <td class="tg-0pky">---</td>
+    <td class="tg-0pky">8.74<br></td>
+    <td class="tg-0pky">---</td>
+  </tr>
+  <tr>
+    <td class="tg-0pky">30 RDLs</td>
+    <td class="tg-0pky">0.18</td>
+    <td class="tg-0pky">---</td>
+    <td class="tg-0pky">8.79</td>
+    <td class="tg-0pky">---</td>
+  </tr>
+</tbody>
+</table>
+<center>Table 3</center>
+
+
+#### CIFAR 10
+
+Paper's Plots | Our Reproduction
+--- | ---
+<img src="images/4-5-Cifar10PaperTrain.png" width="425" height="285"/> | <img src="images/4-5-Cifar10ReproductionTrain.png" width="425"/>
+<img src="images/4-5-Cifar10PaperTest.png" width="425" height="300"/> | <img src="images/4-5-Cifar10ReproductionTest.png" width="425"/>
+<center>Figure 3</center>
+
+#### MNIST
+
+Paper's Plots | Our Reproduction
+--- | ---
+<img src="images/4-5-MNISTPaperTrain.png" width="425" height="300"/> | <img src="images/4-5-MNISTReproductionTrain.png" width="425"/>
+<img src="images/4-5-MNISTPaperTest.png" width="425" height="300"/> | <img src="images/4-5-MNISTReproductionTest.png" width="425"/>
+<center>Figure 4</center>
+
+
+#### Summary
+Our Summary
+
+### Adversarial Attacks Against Medical Deep Learning Systems
