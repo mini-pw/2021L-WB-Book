@@ -1,0 +1,4 @@
+## ARA-CNN - a Bayesian deep learning model intended for histopathological image classification.
+
+*Authors: Wojciech Szczypek, Jakub Lis, Jan Gąska (Warsaw University of Techcnology)
+
