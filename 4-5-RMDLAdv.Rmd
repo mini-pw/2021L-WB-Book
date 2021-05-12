@@ -103,5 +103,5 @@ Porównanie wykresu twórców oraz naszych dla RMDL o 9 losowych architekturach.
 
 Paper's Plots | Our Reproduction
 --- | ---
-<img src="https://i.imgur.com/x79FakJ.png" width="425"/> | <img src="https://i.imgur.com/Q7tCGMt.png" width="425"/>
-<img src="https://i.imgur.com/OBtIcfz.png" width="425"/> | <img src="https://i.imgur.com/iR3jZEx.png" width="425"/>
+<img src="images/4-5-ReutersPaperTrain.png" width="425"/> | <img src="images/4-5-ReutersReproductionTrain.png" width="425"/>
+<img src="images/4-5-ReutersPaperTest.png" width="425"/> | <img src="images/4-5-ReutersReproductionTest.png" width="425"/>
