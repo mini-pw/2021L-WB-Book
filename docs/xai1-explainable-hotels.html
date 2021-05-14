@@ -118,8 +118,8 @@ div.csl-indent {
 <li class="chapter" data-level="1.5" data-path="xai1-explainable-hotels.html"><a href="xai1-explainable-hotels.html"><i class="fa fa-check"></i><b>1.5</b> eXplaining predictions of booking cancelations</a>
 <ul>
 <li class="chapter" data-level="1.5.1" data-path="xai1-explainable-hotels.html"><a href="xai1-explainable-hotels.html#introduction-2"><i class="fa fa-check"></i><b>1.5.1</b> Introduction</a></li>
-<li class="chapter" data-level="1.5.2" data-path="xai1-explainable-hotels.html"><a href="xai1-explainable-hotels.html#dataset-and-models"><i class="fa fa-check"></i><b>1.5.2</b> Dataset and models</a></li>
-<li class="chapter" data-level="1.5.3" data-path="xai1-explainable-hotels.html"><a href="xai1-explainable-hotels.html#local-explanations"><i class="fa fa-check"></i><b>1.5.3</b> Local explanations</a></li>
+<li class="chapter" data-level="1.5.2" data-path="xai1-explainable-hotels.html"><a href="xai1-explainable-hotels.html#dataset_models"><i class="fa fa-check"></i><b>1.5.2</b> Dataset and models</a></li>
+<li class="chapter" data-level="1.5.3" data-path="xai1-explainable-hotels.html"><a href="xai1-explainable-hotels.html#local"><i class="fa fa-check"></i><b>1.5.3</b> Local explanations</a></li>
 <li class="chapter" data-level="1.5.4" data-path="xai1-explainable-hotels.html"><a href="xai1-explainable-hotels.html#global-explanations"><i class="fa fa-check"></i><b>1.5.4</b> Global explanations</a></li>
 <li class="chapter" data-level="1.5.5" data-path="xai1-explainable-hotels.html"><a href="xai1-explainable-hotels.html#summary-and-conclusions-1"><i class="fa fa-check"></i><b>1.5.5</b> Summary and conclusions</a></li>
 </ul></li>
@@ -223,12 +223,18 @@ div.csl-indent {
 <p><em>Authors: Mateusz Krzyziński, Anna Urbala, Artur Żółkowski (Warsaw University of Technology)</em></p>
 <div id="introduction-2" class="section level3" number="1.5.1">
 <h3><span class="header-section-number">1.5.1</span> Introduction</h3>
-<p>Introduction</p>
+<p>One of the biggest problems and challenges facing the hospitality industry is the significant number of canceled reservations. Common reasons for cancellations include sudden deterioration in health, accidents, bad weather conditions, schedule conflicts or unexpected responsibilities <span class="citation">(<a href="#ref-1-5-hotels-modelling-cancellation-behaviour" role="doc-biblioref">Falk and Vieru 2018</a>)</span>. Interestingly, a noticeable group consists of customers who, after making a reservation, are still looking for new, better offers, and even make many reservations at the same time to be able to choose the most advantageous one <span class="citation">(<a href="#ref-1-5-hotels-predicting-to-decrease-uncertainty-increase-revenue" role="doc-biblioref">Antonio, Almeida, and Nunes 2017</a>)</span>.</p>
+<p>The hospitality industry’s response to the above problem are hotel cancellation policies. They play a crucial role in determining various
+aspects of the hotel business, including the ultimate goal of
+revenues and profits optimisation. In recent years (before the pandemic), there has been a clear tightening of these policies. Hotels do this, for example by shortening the free cancellation windows or increasing cancellation penalties <span class="citation">(<a href="#ref-1-5-hotels-cancellation-policies-shift" role="doc-biblioref">Riasi, Schwartz, and Chen 2019</a>; <a href="#ref-1-5-cancellations-policies-study" role="doc-biblioref">Smith et al. 2015</a>)</span>.</p>
+<p>The use of machine learning to forecast and identify potential cancellations is also playing an increasing role. There are many systems to support hotel management that use booking data. Various machine learning algorithms are used for this purpose, ranging from support vector machines, through artificial neural networks, to the most common tree-based models <span class="citation">(<a href="#ref-1-5-hotels-efficient-forecasting" role="doc-biblioref">Sánchez-Medina and C-Sánchez 2020</a>; <a href="#ref-1-5-hotels-prediction-using-crisp-dm" role="doc-biblioref">Andriawan et al. 2020</a>)</span>. Most of the solutions and projects are only theoretical, while some have been tested in practice, enabling cancellations to be reduced by up to 37 percentage points <span class="citation">(<a href="#ref-1-5-hotels-automated-ml-system" role="doc-biblioref">Antonio, Almeida, and Nunes 2019</a>)</span>.</p>
+<p>Unfortunately, most papers do not tackle the issue of the importance of the used explanatory variables and do not try to explain the model’s predictions. However, it is the exploration of trained models that should be treated as one of the key factors in the design of hotel management support systems. Business validation and ethical verification of solutions is necessary. Bearing in mind that a strict cancellation policy or overbooking strategy can have negative effects on both reputation and revenue, systems designers should be wary of unfair biased behaviour. At the same time, the use of explanatory artificial intelligence methods is helpful in creating models with better performance scores.</p>
+<p>In the following chapter, we present an analysis of predictive models for hotel bookings cancellations. We answer questions about the reasons for the model prediction both in general view and in relation to individual reservations.</p>
 </div>
-<div id="dataset-and-models" class="section level3" number="1.5.2">
+<div id="dataset_models" class="section level3" number="1.5.2">
 <h3><span class="header-section-number">1.5.2</span> Dataset and models</h3>
 </div>
-<div id="local-explanations" class="section level3" number="1.5.3">
+<div id="local" class="section level3" number="1.5.3">
 <h3><span class="header-section-number">1.5.3</span> Local explanations</h3>
 <p>In order to explain model output for a particular guest and their booking, we used instance-level exploration methods, such as Break-down, SHAP (SHapley Additive exPlanations), LIME (Local Interpretable Model-agnostic Explanations), CP (Ceteris Paribus). We decided to investigate noteworthy predictions, i.e. false positive and false negative (respectively canceled bookings predicted as not canceled and vice versa), the most valid (the predictions the model was most sure of), and the closest to decision boundary.</p>
 <div id="false-positive-and-false-negative-predictions" class="section level4" number="1.5.3.1">
@@ -290,24 +296,24 @@ FIGURE 1.6: Ceteris-paribus profiles for the selected continuous explanatory var
 <h4><span class="header-section-number">1.5.3.3</span> The closest to decision boundary predictions</h4>
 <p>We analyzed the situations when the model is sure of the returned output. However, the observations for which the prediction was uncertain, close to the decision limit, are also worth considering.</p>
 <p>We might want to know the answer to the question of whether it is a matter of similar numbers of explanatory variables shifting the prediction in different directions, or maybe there are variables that do not fit the whole picture, and therefore the model is not certain. It is also worth checking how much such predictions fluctuate depending on the changes in the explanatory variables.</p>
-<div class="figure" style="text-align: center">
+<div class="figure" style="text-align: center"><span id="fig:shap-negative-50"></span>
 <img src="images/1-5-shap_negative_50.png" alt="A plot of Shapley values for random forest model and observation classified as negative with probability near 50%. The elements of the plot were described above." width="700" />
 <p class="caption">
-(#fig:shap_negative_50)A plot of Shapley values for random forest model and observation classified as negative with probability near 50%. The elements of the plot were described above.
+FIGURE 1.7: A plot of Shapley values for random forest model and observation classified as negative with probability near 50%. The elements of the plot were described above.
 </p>
 </div>
 <p>This is a very interesting example. One variable fixed prediction. Very short lead time (one day) opposed all other factors like Portugal as country of origin or no special requests and made the model predict correctly. It is amazing, that one factor can change everything.</p>
-<div class="figure" style="text-align: center">
+<div class="figure" style="text-align: center"><span id="fig:shap-positive-50"></span>
 <img src="images/1-5-shap_positive_50.png" alt="A plot of Shapley values for random forest model and observation classified as positive with probability near 50%. The elements of the plot were described above." width="700" />
 <p class="caption">
-(#fig:shap_positive_50)A plot of Shapley values for random forest model and observation classified as positive with probability near 50%. The elements of the plot were described above.
+FIGURE 1.8: A plot of Shapley values for random forest model and observation classified as positive with probability near 50%. The elements of the plot were described above.
 </p>
 </div>
 <p>This observation is not so exciting as the previous one, but it is the next evidence that the special requests decrease the probability that the client will cancel the reservation. Nevertheless, this observation was classified as positive. Agent was the most important positive variable although in the previous examples he did not have such a contribution. But… agent has that huge contribution only in Shapley.</p>
-<div class="figure" style="text-align: center">
+<div class="figure" style="text-align: center"><span id="fig:lime-positive-50"></span>
 <img src="images/1-5-lime_positive_50.png" alt="A plot of LIME model values for the random forest model and the same observation." width="700" />
 <p class="caption">
-(#fig:lime_positive_50)A plot of LIME model values for the random forest model and the same observation.
+FIGURE 1.9: A plot of LIME model values for the random forest model and the same observation.
 </p>
 </div>
 <p>Here agent has much less impact. This is a reminder for us that each method works differently and takes different variables into account. It is worth remembering this. In this method for that (and a lot of other) observation the most important factor is no previous cancelations, but it is not enough for the model to make a negative decision.</p>
@@ -315,6 +321,99 @@ FIGURE 1.6: Ceteris-paribus profiles for the selected continuous explanatory var
 </div>
 <div id="global-explanations" class="section level3" number="1.5.4">
 <h3><span class="header-section-number">1.5.4</span> Global explanations</h3>
+<p>The second group of methods of explainable artificial intelligence are those concerning not a single observation, but the entire set of them. We used these model level explanations to provide information about the quality of the model performance and infer how the model behaves in general. The methods we used for this purpose are Permutational Variable Importance, PDP (Partial Dependence Profile), ALE (Accumulated Local Effects). We applied them not only to the main random forest model, but also to other trained models to compare the obtained results.</p>
+<div id="importance-of-explanatory-variables" class="section level4" number="1.5.4.1">
+<h4><span class="header-section-number">1.5.4.1</span> Importance of explanatory variables</h4>
+<p>First, we decided to check which variables are important for our main model and compare the obtained results with the intuitions we had after conducting the exploration at the prediction level.</p>
+<div class="figure" style="text-align: center"><span id="fig:pvi-main-model"></span>
+<img src="images/1-5-pvi-main-model.png" alt="A plot of variable importance. The length of each bar represents the difference between the loss function (1-AUC) for the original data and the data with the permuted values of a particular variable." width="700" />
+<p class="caption">
+FIGURE 1.10: A plot of variable importance. The length of each bar represents the difference between the loss function (1-AUC) for the original data and the data with the permuted values of a particular variable.
+</p>
+</div>
+<p>As we can see above, the most important variable for the model is the information about the guest’s country of origin. This confirms the intuitions obtained thanks to local explanations, for many observations this variable was the key aspect. In particular, the origin of Portugal (the country where the hotels are located) is the most significant for the prediction.</p>
+<p>The method indicated that the next principal variables for predictions are information on lead time and number of special booking requests. Lead time is the number of days that elapsed between the entering date of the booking into the system and the arrival date. It is a factor that may inform about whether the stay was planned long before or it is spontaneous. Meanwhile, the number of special requests is related to additional interest in the booking, which may indicate that it is an important stay for the client.</p>
+<p>The next variables with a significant average impact on the model are the group of those concerning the booking method (agent and market segment) and the type of booking (customer type and adr associated with the booking cost).</p>
+<p>It should also be noted that some of the variables are of marginal importance.
+These are (from the bottom of the plot) the type of hotel (recall that the data relate to two hotels of different specificity), the number of adults, the number of previously not canceled bookings (this is probably also related to a small number of observations with a non-zero value of this feature - 3.1% in the entire dataset), the type of room reserved.
+These are the variables that should be considered to be excluded in order to simplify the model.</p>
+<p>On the other hand, it is quite surprising that the number of previously canceled reservation, which was often indicated by LIME as one of the most important factors for the predictions under consideration, is so insignificant (0.007 drop-out loss) according to the algorithm of the permutational variable importance.</p>
+</div>
+<div id="comparison-with-other-models" class="section level4" number="1.5.4.2">
+<h4><span class="header-section-number">1.5.4.2</span> Comparison with other models</h4>
+<p>Plots similar to that above in Figure <a href="xai1-explainable-hotels.html#fig:pvi-main-model">1.10</a> are useful for comparison of a variables’ importance in different models. It may be helpful in generating new knowledge - identification of recurring key variables may lead to the discovery of new factors involved in a particular mechanism <span class="citation">(<a href="#ref-EMA" role="doc-biblioref">Biecek and Burzykowski 2021</a>)</span> (in our case, cancellation of reservations).</p>
+<p>Thus, we decided to compare the importance of the variables in the models we had trained, described in the <a href="xai1-explainable-hotels.html#dataset_models">Dataset and models</a> section. The plots below show the results for our main Random Forest model and 4 other models with legend:</p>
+<ul>
+<li><span style="color:#8fddbf"><strong>green</strong></span> - Random Forest with label encoding (main model),</li>
+<li><span style="color:#eb5872"><strong>red</strong></span> - Random Forest with one hot encoding,</li>
+<li><span style="color:#3e09a1"><strong>purple</strong></span> - Logistic Regression,</li>
+<li><span style="color:#53bac1"><strong>blue</strong></span> - Decision Tree,</li>
+<li><span style="color:#fba58e"><strong>orange</strong></span> - XGBoost.</li>
+</ul>
+<div class="figure" style="text-align: center"><span id="fig:pvi-comparison"></span>
+<img src="images/1-5-pvi-comparison.png" alt="The comparison of the importance of explanatory variables for selected models. The elements of a single plot were described above. Note the different starting locations for the bars, due to differences in the AUC score value obtained for the training dataset for different models." width="700" />
+<p class="caption">
+FIGURE 1.11: The comparison of the importance of explanatory variables for selected models. The elements of a single plot were described above. Note the different starting locations for the bars, due to differences in the AUC score value obtained for the training dataset for different models.
+</p>
+</div>
+<p>It can be seen that the importance of the variables is related to the type of algorithm used in a given model. For example, in a decision tree, each variable has a clearly noticeable effect on the predictions.</p>
+<p>In all the tree-based models explained, the most important variable overlaps - it is the aforementioned country of origin. In logistic regression model, this feature is the third most important variable, but it is the model with the worst score overall.</p>
+<p>However, in general, the groups of the most important variables in each model are also similar. So our earlier conclusions regarding the key booking cancellation factors are confirmed. Likewise, in each of the tree-based models (even in a single decision tree model) the same variables were indicated as least important.</p>
+<p>An interesting fact is that in random forest with one hot encoding the agent variable is even more important than in random forest with label encoding. It is a categorical variable, so we can see the influence of encoding here - trees could extract more information from this variable thanks to not creating unnatural numerical relationships as with label encoding. The second noticeable difference between these models is the importance of the market segment.</p>
+</div>
+<div id="the-global-impact-of-variables" class="section level4" number="1.5.4.3">
+<h4><span class="header-section-number">1.5.4.3</span> The global impact of variables</h4>
+<p>Then we decided to check the influence of the most influential variables on the predictions in the context of the whole set. For this, we used the ALE method. The plots below show the results for our Random Forest and 3 other tree-based models with legend:</p>
+<ul>
+<li><span style="color:#8fddbf"><strong>green</strong></span> - Random Forest with label encoding (main model),</li>
+<li><span style="color:#eb5872"><strong>red</strong></span> - Random Forest with one hot encoding,</li>
+<li><span style="color:#53bac1"><strong>blue</strong></span> - Decision Tree,</li>
+<li><span style="color:#fba58e"><strong>orange</strong></span> - XGBoost.</li>
+</ul>
+<p>Note that we chose not to generate plots for the logistic regression model because it performed too poorly.</p>
+<div class="figure" style="text-align: center"><span id="fig:ale-country"></span>
+<img src="images/1-5-ale-country.png" alt="ALE plot for the country. The ALE plots work like Ceteris Paribus - they show how the variable affects a prediction but not only for one observation - for the entire training dataset." width="700" />
+<p class="caption">
+FIGURE 1.12: ALE plot for the country. The ALE plots work like Ceteris Paribus - they show how the variable affects a prediction but not only for one observation - for the entire training dataset.
+</p>
+</div>
+<p>We have a greater probability of resignation for one country - this is Portugal. This confirms our hypothesis built on the basis of local explanatory methods. Generally, compatriots more often resign from booking.</p>
+<div class="figure" style="text-align: center"><span id="fig:ale-leadtime"></span>
+<img src="images/1-5-ale-leadtime.png" alt="ALE plot for lead time. The elements of a single plot were described above." width="700" />
+<p class="caption">
+FIGURE 1.13: ALE plot for lead time. The elements of a single plot were described above.
+</p>
+</div>
+<p>And again we have confirmation that the longer the lead time, the greater the chance that the customer will resign.</p>
+<p>The ALE plots are very similar to Ceteris Paribus but that’s a great example that they’re not the same. Look at the Ceteris Paribus profile for lead time in the <a href="xai1-explainable-hotels.html#local">Local explanations</a> section. The probability of resignation increased to about 170 days, then decreased and remained at a constant level. Here we can see that it was the “local behavior.” Globally, the probability only grows, then it stabilizes (after about 350 days - a year). Therefore, you may suspect that it is not worth allowing reservations so far in advance.</p>
+<div class="figure" style="text-align: center"><span id="fig:ale-requests"></span>
+<img src="images/1-5-ale-requests.png" alt="ALE plot for total of special requests and required car parking spaces. The elements of a single plot were described above." width="700" />
+<p class="caption">
+FIGURE 1.14: ALE plot for total of special requests and required car parking spaces. The elements of a single plot were described above.
+</p>
+</div>
+<p>Additional actions taken by the client regarding booking reduce the likelihood of cancellation.</p>
+<p>The very first special request significantly reduces the probability of resignation. The influence of the next ones is not that clear. This also confirms the thesis we made earlier that the lack of special requests increases the probability of resignation.</p>
+<p>Reserving a parking space has an even greater impact on the predictions. We may think that in these hotels it is payable in advance, or that car travelers are less dependent on public transport, so their arrival is more certain.</p>
+<div class="figure" style="text-align: center"><span id="fig:ale-previous"></span>
+<img src="images/1-5-ale-previous.png" alt="ALE plot for previous cancellations and previous bookings not canceled. The elements of a single plot were described above." width="700" />
+<p class="caption">
+FIGURE 1.15: ALE plot for previous cancellations and previous bookings not canceled. The elements of a single plot were described above.
+</p>
+</div>
+<p>Information about a given customer’s prior bookings is also very valuable for prediction. The fact of earlier cancellation of a reservation strongly influences the prediction of the next one, which seems natural.</p>
+<p>A non-zero number of prior non-canceled bookings works the opposite way, but the prediction values don’t fluctuate that much.</p>
+<p>After analyzing these examples, an important conclusion can be drawn about the XAI methods. ALE plots can be a great tool for analyzing the influence of variables on the prediction - they can be used to verify the hypotheses put forward at the stage of local explanations and introduce new ones.</p>
+<p>When comparing the results for different models, note that the profiles for random forests with both versions of the categorical variable encoding are almost identical (green and red lines in the graphs).</p>
+<p>Looking more broadly, the profiles are comparable for all models. The most significant differences can be seen in the variables relating to the previous reservations of a given customer - the number of canceled and non-canceled reservations. The XGBoost model favors non-zero values more - the prediction changes are bigger. In general, this model is the most sensitive to all variables, as can be seen from the shape of the profile curves.</p>
+<p>Moreover, we used the comparison of the PDP and ALE plots for our main model (see Figure <a href="xai1-explainable-hotels.html#fig:ale-pdp">1.16</a>). In the case of some variables, the profiles generated using both methods almost coincide. However, there are also variables where you can see differences in prediction values, but profiles are parallel to each other. This parallelism suggests and allows us to conclude that the used model is additive due for these explanatory variables <span class="citation">(<a href="#ref-EMA" role="doc-biblioref">Biecek and Burzykowski 2021</a>)</span>.</p>
+<div class="figure" style="text-align: center"><span id="fig:ale-pdp"></span>
+<img src="images/1-5-ale-vs-pdp.png" alt="Partial-dependence and accumulated-local profiles for the main random forest model and selected variables" width="700" />
+<p class="caption">
+FIGURE 1.16: Partial-dependence and accumulated-local profiles for the main random forest model and selected variables
+</p>
+</div>
+</div>
 </div>
 <div id="summary-and-conclusions-1" class="section level3" number="1.5.5">
 <h3><span class="header-section-number">1.5.5</span> Summary and conclusions</h3>
@@ -322,6 +421,33 @@ FIGURE 1.6: Ceteris-paribus profiles for the selected continuous explanatory var
 </div>
 </div>
 <!-- </div> -->
+<h3>References</h3>
+<div id="refs" class="references csl-bib-body hanging-indent">
+<div id="ref-1-5-hotels-prediction-using-crisp-dm" class="csl-entry">
+Andriawan, Z. A., S. R. Purnama, A. S. Darmawan, Ricko, A. Wibowo, A. Sugiharto, and F. Wijayanto. 2020. <span>“Prediction of Hotel Booking Cancellation Using CRISP-DM.”</span> In <em>2020 4th International Conference on Informatics and Computational Sciences (ICICoS)</em>, 1–6. <a href="https://doi.org/10.1109/ICICoS51170.2020.9299011">https://doi.org/10.1109/ICICoS51170.2020.9299011</a>.
+</div>
+<div id="ref-1-5-hotels-predicting-to-decrease-uncertainty-increase-revenue" class="csl-entry">
+Antonio, Nuno, Ana de Almeida, and Luis Nunes. 2017. <span>“Predicting Hotel Booking Cancellations to Decrease Uncertainty and Increase Revenue.”</span> <em>Tourism &amp; Management Studies</em> 13 (2): 25–39. <a href="https://doi.org/10.18089/tms.2017.13203">https://doi.org/10.18089/tms.2017.13203</a>.
+</div>
+<div id="ref-1-5-hotels-automated-ml-system" class="csl-entry">
+———. 2019. <span>“An Automated Machine Learning Based Decision Support System to Predict Hotel Booking Cancellations.”</span> <em>Data Science Journal</em> 18 (1): 1–20. <a href="https://doi.org/10.5334/dsj-2019-032">https://doi.org/10.5334/dsj-2019-032</a>.
+</div>
+<div id="ref-EMA" class="csl-entry">
+Biecek, Przemyslaw, and Tomasz Burzykowski. 2021. <em><span>Explanatory Model Analysis</span></em>. Chapman; Hall/CRC, New York. <a href="https://pbiecek.github.io/ema/">https://pbiecek.github.io/ema/</a>.
+</div>
+<div id="ref-1-5-hotels-modelling-cancellation-behaviour" class="csl-entry">
+Falk, Martin, and Markku Vieru. 2018. <span>“Modelling the Cancellation Behaviour of Hotel Guests.”</span> <em>International Journal of Contemporary Hospitality Management</em> 30 (10): 3100–3116. <a href="https://doi.org/10.1108/ijchm-08-2017-0509">https://doi.org/10.1108/ijchm-08-2017-0509</a>.
+</div>
+<div id="ref-1-5-hotels-cancellation-policies-shift" class="csl-entry">
+Riasi, Arash, Zvi Schwartz, and Chih-Chien Chen. 2019. <span>“A Paradigm Shift in Revenue Management? The New Landscape of Hotel Cancellation Policies.”</span> <em>Journal of Revenue and Pricing Management</em> 18 (6): 434–40. <a href="https://doi.org/10.1057/s41272-019-00189-3">https://doi.org/10.1057/s41272-019-00189-3</a>.
+</div>
+<div id="ref-1-5-hotels-efficient-forecasting" class="csl-entry">
+Sánchez-Medina, Agustín J, and Eleazar C-Sánchez. 2020. <span>“Using Machine Learning and Big Data for Efficient Forecasting of Hotel Booking Cancellations.”</span> <em>International Journal of Hospitality Management</em> 89: 102546. <a href="https://doi.org/10.1016/j.ijhm.2020.102546">https://doi.org/10.1016/j.ijhm.2020.102546</a>.
+</div>
+<div id="ref-1-5-cancellations-policies-study" class="csl-entry">
+Smith, Scott J., H. G. Parsa, Milos Bujisic, and Jean-Pierre van der Rest. 2015. <span>“Hotel Cancelation Policies, Distributive and Procedural Fairness, and Consumer Patronage: A Study of the Lodging Industry.”</span> <em>Journal of Travel &amp; Tourism Marketing</em> 32: 886–906. <a href="https://doi.org/10.1080/10548408.2015.1063864">https://doi.org/10.1080/10548408.2015.1063864</a>.
+</div>
+</div>
             </section>
 
           </div>
