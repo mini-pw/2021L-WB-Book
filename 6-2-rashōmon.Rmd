@@ -1,7 +1,13 @@
 
 ## Roshomon sets of in-hospital mortality prediction random forest models
 
-*Authors: Jeugeniusz Winiczenko, Mikołaj Malec, Patryk Wrona (Warsaw University of Techcnology)*
+*Authors: Jeugeniusz Winiczenko, Mikolaj Malec, Patryk Wrona (Warsaw University of Techcnology)*
+
+
+### Abstract
+
+The concept of Rashomon set is gaining more and more popularity in machine learning world. However, most efficient ways of building and analysing such sets are yet to be discovered. The main aim of this study was to develop several approaches to creating Rashomon sets, examining their characteristics and using them for further predictions. Performance of models was estimated using the area under the receiver operating characteristic (AUC) curve. For models from Rashomon sets analysis of features' importance and PDP curves was also conducted. In this study, physiological time-series and medical histories from the Medical Information Mart for Intensive Care (MIMIC-III) database were used. Random forest models were trained for mortality prediction task on 2 datasets; the first containing only physiological time-series and the second containing both physiological time-series and medical histories. For 2 sets of trained models, corresponding to 2 datasets, several Rashomon sets were created using different thresholds.
+
 
 ### Related work
 
