@@ -10,6 +10,23 @@ Yan et al.[@5-2-china] were among first researchers to publish their model based
 ### Data sources
 ### Model building
 ### Results
+
+First, a model performing very well on data can perform poorly on data coming from a different location. In our case, we found that the model presented by Yan et al.  is not portable and does perform poorly on data from NY and NETHERLANDS.
+
+Combining data from different sources results in much bigger dataset to train a model on. In our dataset we combined data from CHINA, NY and NETHERLANDS and got 5 columns: first 3 columns contained data about blood samples (LDH, CRP and Lymphocytes), next column was the goal and the last column contained the source of data.
+
+However, models trained on such a dataset tend to include the source of data as an important feature [LINK TO TREE PICTURE]. That means the model creates sub-models and is biased for some or every source of data to give better predictions. Unfortunately, such models have low scores in different performance metrics and are worse than a model created specifically for a given source of data. Below, the Table 1 presents those scores of 3 models.
+
+Table: Table 1: Scores from the DALEX explainer for 3 classifiers after grid search parameter tuning. Selected models were in the top 3 models tested by LazyPredict, sorted by “ROC AUC”.
+
+| Tested model         | recall | precision |   f1 | accuracy |  auc |
+|----------------------|-------:|----------:|-----:|---------:|-----:|
+| AdaBoostClassifier   |   0.43 |      0.68 | 0.53 |     0.73 | 0.80 |
+| NearestCentroid      |   0.58 |      0.56 | 0.57 |     0.70 | 0.66 |
+| KNeighborsClassifier |   0.72 |      0.65 | 0.68 |     0.77 | 0.84 |
+
+When the source of data is excluded from the training dataset, the results look even less promising. This is expected as the origin of data proved to be a useful feature. Scores of the trained models are therefore a bit lower and there is not a single model that would be ready for use in the medical industry.
+
 ### Discussion
 
 
