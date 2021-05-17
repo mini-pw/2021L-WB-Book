@@ -1,5 +1,8 @@
 ## Rashomon on MIMIC - draft
-*Authors: Degórski Karol, Fic Piotr, Kamiński Adrian (Warsaw University of Techcnology)*
+*Authors: Degórski Karol, Fic Piotr, Kamiński Adrian (Warsaw University of Technology)*
+
+### Abstract
+Rashomon effect occurs when there are many different machine learning models with similar predictions. Therefore choosing only one model out of them may have impact on the final results, so it should be done consciously, carefully and with the help of XAI methods. In our study, we performed an analysis of different XGBoost models using PCA and KMeans algorithms, so that we explained the factors that influenced on their final behavior. The task that we reproduced was an in-hospital mortality prediction conducted by Fengi Tang et. al. in their paper (2018). For building rashomon sets we used publicly available MIMIC-III dataset, which contains medical information. Our results suggest that XGB models from rashomon set may be grouped into clusters in the reduced parameter space. 
 
 ### Review of the literature
 The term Rashomon effect was created to describe a situation when there are many different models with quite similar predictions. Very often there are many different descriptions giving about the same minimum error rate, so that we cannot point one model as the best @6-0-breiman2001statistical. As an example of this effect in reality they gave Linear Regression model and finding 5 from 30 best describing variables of a given problem. In this case there are approximately 140,000 such subsets. The authors explained that usually we choose the model which has best results on a test set, although there may be also different subsets of 5 variables that give very similar results. They also noticed that this effect occurs in different models, such as decision trees or neural networks.  
