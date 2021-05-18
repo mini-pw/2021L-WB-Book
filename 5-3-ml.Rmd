@@ -1,5 +1,5 @@
 ---
-bibliography: references.bib  
+bibliography: book.bib  
 ---
 
 ## Transparent machine learning to support predicting COVID-19 infection risk based on chronic diseases
