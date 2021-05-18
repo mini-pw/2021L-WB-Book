@@ -2,6 +2,13 @@
 
 *Authors: Adrian Stańdo, Maciej Pawlikowski, Mariusz Słapek (Warsaw University of Technology)*
 
+### Abstract
+
+Technological advances were early adopted by healthcare with great benefits and developments. In many health-related realms machine learning is crucial such as: development of new medical procedures, the treatment of chronic diseases, the management of patient records and data. Explainable AI (XAI) gives invaluable tools in healthcare for understanding the models by humans. 
+The aim of this article is to compare PDP profiles for a Rashomon set with a given metric. Following we use five different metrics of distance function and based on that we compare PDP curves. 
+Additionally, the library in the Python language has been created, which automates this research. We have observed that the created models, which have similar scores, have different variable importances.
+In this paper these differences were measured and assessed to understand better the problem of predicting hospital mortality using data from MIMIC-III.
+
 
 ### Literature review
 
