@@ -1,0 +1,12 @@
+
+## Title
+Authors: Jan Borowski, Konstanty Kraszewski, Krzysztof Wolny
+
+### Literature review
+
+ 
+In 1950 Japanese director, Akira Kurosawa, presented film Rashomon. Movie resolves around four witnesses, that describes the same crime in four different ways. This situation was called Rashomon effect after the name of the movie. In other words Rashomon effect is a situation when we have multiple different descriptions to the same event. This term is commonly used in multiple sciences like sociology, psychology or history.  
+
+At the begging of the 21st century Rashomon effect was introduced to predictive modelling by Leo Breiman and his work ‘Statistical modeling: The Two Cultures'[@6-0-breiman2001statistical]. In this article he named Rashomon effect situation, where there are many approximately-equally accurate models. Although these models have similar results, they can differ, when it comes to the way they managed to achieve it. Breiman called for closer examination of the Rashomon effect and conclusions that can be drawn from it.  
+
+Recently, we can observe growing interest in Rashomon effect, although there is still a lot to be discovered. One of the articles, that bring closer the problem is ‘A study in Rashomon curves and volumes: A new perspective on generalization and model simplicity in machine learning’[6-0-rashomon-intro]. It provides several approaches for estimating the size of the Rashomon effect as well as the usefulness of the Rashomon curve in model selection.  

@@ -13,6 +13,4 @@ The work of [@yan_et_al_2020] from the first months of the COVID-19 pandemic lai
 
 ### Comparison of the models
 
-### Dashboard
-
 ### Results
