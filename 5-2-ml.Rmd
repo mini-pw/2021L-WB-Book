@@ -3,11 +3,45 @@
 *Authors: Kurek Marcelina, Stączek Mateusz, Wiśniewski Jakub, Zdulska Hanna*
 
 ### Abstract
-During the outbreak of SARS-CoV-2 many scientists tried to build a model that was able to predict survival or death of patients based on available medical data. 
-Yan et al.[@5-2-china] were among first researchers to publish their model based on blood data (lactic dehydrogenase (LDH), lymphocyte percentage and high-sensitivity C-reactive protein (hs-CRP)) with 90% accuracy, however recreations of this model trained on other countries' data - US, Netherlands and France were not so successful. In this article we explore the possibility of building an international model for predicting COVID survival. Our research concludes that discarding place of origin resulted in unsatisfying performance around 0.70 ROC AUC score, while taking into account mentioned place of origin scored nearly 0.75 ROC AUC score.
+During the outbreak of SARS-CoV-2 many scientists tried to build a model that was able to predict survival or death of patients based on available medical data. [@5-2-china] were among first researchers to publish their model based on blood data (lactic dehydrogenase (LDH), lymphocyte percentage and high-sensitivity C-reactive protein (hs-CRP)) with 90% accuracy, however recreations of this model trained on other countries' data - US, Netherlands and France were not so successful. In this article we explore the possibility of building an international model for predicting COVID survival. Our research concludes that discarding place of origin resulted in unsatisfying performance around 0.70 ROC AUC score, while taking into account mentioned place of origin scored nearly 0.75 ROC AUC score.
 
 ### Introduction
 ### Data sources
+### Methods
+
+In this section we will explore the ways to measure the effect of training on the data from certain country. As we may expect the origin should be somewhat important in the modelling. Whether it is the effect of the healthcare system, biological differences between people, or the hospitals they were in, it may influence the model in ways that may not be clearly predicted. To measure this we used tools available in [@5-2-dalex].   
+
+To determinate how important was place of origin we trained RandomForestClassifier on data with said place. After grid search the best model was RandomForestClassifier with parameters max_depth 5 and n_estimators 50. It scored 0.72 on ROC AUC metric. We can see in figure below that the two most important features are blood related. However third is information whether patient was from China or not.  
+
+```{r var-imp, out.width="700", fig.align="center", echo=FALSE, fig.cap='Variable importance for RandomForestClassifier'}
+knitr::include_graphics('images/5-2-var_imp.png')
+```
+
+The variable importance here is measured with perturbations [@5-2-variableimportance]. The idea behind it is that we firstly measure the performance on the entire model. Secondly, we reorder elements of a column (variable), train model, and measure performance again. The difference in performances is called drop-out loss and it depicts how important are the variables.  
+
+This information was not surprising however we made also a similar test to also simplify the model. We made a surrogate decision tree model from the earlier model. The surrogate model is trained to approximate the predictions of a black mox model [@5-2-iml].
+
+```{r tree, out.width="700", fig.align="center", echo=FALSE, fig.cap='Surrogate model for RandomForestClassifier'}
+knitr::include_graphics('images/5-2-exp.png')
+```
+
+As expected the variable indicating the source of the data was among the three most important splits. We also had concerns over the bias introduced by said sources. The bias (or fairness) of the model is discrimination in decisions made by the model. The kind of fairness that we will focus on is called group fairness and it concerns the difference in decisions between groups of people. There is a lot of ways to measure this bias with so-called fairness metrics.  They all can be derived from confusion matrices for different subgroups. We will focus on five of them that are used in `Fairness check` [@5-2-fairmodels]. With the help of Equal Opportunity (TPR) [@5-2-tpr], Predictive Parity (PPV) [@5-2-ppv], Predictive Equality (FPR) [@5-2-fpr], Statistical Parity (STP) [@5-2-stp], and Accuracy Equality (ACC) [@5-2-acc]. The `Fairness check` detects bias in metrics via the four-fifths rule [@5-2-fourfifths]. It simply looks at metric in privileged subgroup (in this case whether data comes from China) and in unprivileged subgroups and takes the ratio of them. If the said ratio is within (0.8, 1.25) then there is no bias. 
+To investigate this claim we trained two machine learning models. The first one was XGBoost with the same parameters as in @5-2-china. The results were quite surprising as the model introduced bias in 4 metrics.  
+
+```{r xgboost-fairness, out.width="700", fig.align="center", echo=FALSE, fig.cap='Fairness check on XGBoost. The model has bias present in four metrics.'}
+knitr::include_graphics('images/5-2-xgboost-fairness.png')
+```
+
+To make sure that the model did not overfit to the data and gave steady predictions we also checked fairness of Histogram-based Gradient Boosting Classification Tree from scikit-learn package. The results were better but not satisfying enough. Therefore we also decided to use bias mitigation strategies. To do this, we firstly merged some subgroups for the algorithms to work better. We tried to make "fair classifiers" with two Python packages `fairtorch` and `fairlearn` [@5-2-fairlearn]. They are related to each other as the `fairtorch` implements the solutions from `fairlearn`. Using those in-processing algorithms (this are the kind of mitigation approaches that reduce the bias during model training) we obtained 2 additional models. One of them was a neural net and the other was the Histogram-based Gradient Boosting Classification Tree that was trained using the reductions approach. The amount of bias reduced by the neural net from `fairtorch` was not satisfying enough and therefore will not be shown here. However the results from `fairlearn` were quite good.  
+
+```{r fairclassifier, out.width="700", fig.align="center", echo=FALSE, fig.cap='Fairness check on models before and after the reductions.'}
+knitr::include_graphics('images/5-2-fairclassifier.png')
+```
+
+As we can see despite the fact that the reduced model does not fit within the green field we decided that the bias was in fact reduced. The last thing to check was the performance of the reduced model. Such reductions in the amount of bias may result in significant drop in performance. In this case it was the same. The AUC dropped from 0.71 to 0.59 which for the medical aplications is not enough. 
+
+Therefore we concluded that in the case of this data the models were biased towards different origins. Our attempts at reducing this bias were not succesful. We think that with a bigger dataset we would have a slightly better chance at meeting our goal. 
+
 ### Model building
 ### Results
 
