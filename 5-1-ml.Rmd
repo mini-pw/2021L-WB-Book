@@ -1,0 +1,16 @@
+## Validation and comparison of COVID-19 mortatility prediction models on multi-source data
+
+*Authors: Michał Komorowski, Przemysław Olender, Piotr Sieńko, Konrad Welkier*
+
+
+### Abstract
+The work of [@yan_et_al_2020] from the first months of the COVID-19 pandemic laid the foundations for further research in the area of machine learning models for patients classification by introducing a simple decision tree that in the opinion of the inventors resolved the whole issue. Since that time a few papers have emerged that touch upon the same case in which other reseachers tested this decision tree on their datasets. Their findings that the original model is not suitable for patients from other countries than China appeared interesting to us and hence in the following paper we present results of our work which aim was to build models on each of the considered datasets as well as on all of them combined in order to find an universal approach for classification of patients from various countries. After testing various models such as XGBoost, Logistic Regression, SVM and Tabnet we came up with the conclusion that there is no one model for all of the datasets that includes only at most 5 crucial variables.
+
+
+### Introduction
+
+### Data description
+
+### Comparison of the models
+
+### Results

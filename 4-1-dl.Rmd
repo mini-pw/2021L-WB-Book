@@ -1,0 +1,5 @@
+## AxonDeepSeg: automatic axon and myelin segmentation from microscopy data using convolutional neural networks
+
+*Authors: Jakubowski Mikołaj, Tomaszewski Patryk, Ziemła Mateusz*
+
+### Introduction
