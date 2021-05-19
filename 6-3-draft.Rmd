@@ -2,11 +2,40 @@
 *Authors: Degórski Karol, Fic Piotr, Kamiński Adrian (Warsaw University of Technology)*
 
 ### Abstract
-Rashomon effect occurs when there are many different machine learning models with similar predictions. Therefore choosing only one model out of them may have impact on the final results, so it should be done consciously, carefully and with the help of XAI methods. In our study, we performed an analysis of different XGBoost models using PCA and KMeans algorithms, so that we explained the factors that influenced on their final behavior. The task that we reproduced was an in-hospital mortality prediction conducted by Fengi Tang et. al. in their paper (2018). For building rashomon sets we used publicly available MIMIC-III dataset, which contains medical information. Our results suggest that XGB models from rashomon set may be grouped into clusters in the reduced parameter space. 
+Rashomon effect occurs when there are many different machine learning models with similar predictions. Therefore choosing only one model out of them may have impact on the final results, so it should be done consciously, carefully and with the help of XAI methods. In our study, we performed an analysis of different XGBoost models using PCA and KMeans algorithms, so that we explained the factors that influenced on their final behavior. The task that we reproduced was an in-hospital mortality prediction conducted by [@6-0-tang2018predictive]. For building rashomon sets we used publicly available MIMIC-III dataset, which contains medical information. Our results suggest that XGB models from rashomon set may be grouped into clusters in the reduced parameter space. 
 
 ### Review of the literature
-The term Rashomon effect was created to describe a situation when there are many different models with quite similar predictions. Very often there are many different descriptions giving about the same minimum error rate, so that we cannot point one model as the best @6-0-breiman2001statistical. As an example of this effect in reality they gave Linear Regression model and finding 5 from 30 best describing variables of a given problem. In this case there are approximately 140,000 such subsets. The authors explained that usually we choose the model which has best results on a test set, although there may be also different subsets of 5 variables that give very similar results. They also noticed that this effect occurs in different models, such as decision trees or neural networks.  
+The term Rashomon effect was created to describe a situation when there are many different models with quite similar predictions. Very often there are many different descriptions giving about the same minimum error rate, so that we cannot point one model as the best [@6-0-breiman2001statistical]. As an example of this effect in reality they gave Linear Regression model and finding 5 from 30 best describing variables of a given problem. In this case there are approximately 140,000 such subsets. The authors explained that usually we choose the model which has best results on a test set, although there may be also different subsets of 5 variables that give very similar results. They also noticed that this effect occurs in different models, such as decision trees or neural networks.  
 
-Furthermore, @6-0-rashomon-intro contributed to expand the study about Rashomon effect. They defined Rashomon set as a subset of models that have similar performance to the best model in terms of loss function. Moreover they introduced Rashomon ratio, that represents the fraction of models that fit our data equally well. Also they explained that Rashomon curve is a function of empirical risk versus the Rashomon ratio. They saw that there is a good generalization of the Rashomon curve’s elbow model when choosing between performance and simplicity of the model. They found out that interpretability of model is connected with Rashomon sets. Accordingly, when the Rashomon set is large there may exist simpler and higher performing model.  
+Furthermore, [@6-0-rashomon-intro] contributed to expand the study about Rashomon effect. They defined Rashomon set as a subset of models that have similar performance to the best model in terms of loss function. Moreover they introduced Rashomon ratio, that represents the fraction of models that fit our data equally well. Also they explained that Rashomon curve is a function of empirical risk versus the Rashomon ratio. They saw that there is a good generalization of the Rashomon curve’s elbow model when choosing between performance and simplicity of the model. They found out that interpretability of model is connected with Rashomon sets. Accordingly, when the Rashomon set is large there may exist simpler and higher performing model.  
 
-Analysis of the Rashomon effect is still a new and open for developement field of the interpretable machine learning. Because of that, there are remaining challanges and problems, which are missing a state-of-the-art approach. Some of them are a proper measure of the Rashomon set, the best techniques of its visualization and optimal choice of the model from the Rashomon set @6-0-rudin-challenges. One of useful tools for the mentioned tasks is a framework called Variable Importance Clouds @6-0-rashomon-variable-importance-cloud, which can be used for studying the variable importance among Rashomon set.
+Analysis of the Rashomon effect is still a new and open for developement field of the interpretable machine learning. Because of that, there are remaining challanges and problems, which are missing a state-of-the-art approach. Some of them are a proper measure of the Rashomon set, the best techniques of its visualization and optimal choice of the model from the Rashomon set [@6-0-rudin-challenges]. One of useful tools for the mentioned tasks is a framework called Variable Importance Clouds [@6-0-rashomon-variable-importance-cloud], which can be used for studying the variable importance among Rashomon set.
+
+### Raw results
+#### PCA dimension reduction in hyper-parameters space
+
+![](images/6-3-pca.png)
+
+#### Mean hyper-parameters values among clusters
+![](images/6-3-clusters_params.png)
+
+#### Mean score values among clusters
+![](images/6-3-clusters_scores.png)
+
+#### The best models from clusters: variable importance
+![](images/6-3-vi_1.png)
+
+![](images/6-3-vi_2.png)
+
+#### The best models from clusters: PD plots
+![](images/6-3-pd_plots.png)
+
+#### The best models from clusters: ALE plots
+![](images/6-3-ale_plots.png)
+
+#### Metrics change versus hyper-parameters over rashomon set
+![](images/6-3-alpha.png)
+
+![](images/6-3-lambda.png)
+
+![](images/6-3-eta.png)
