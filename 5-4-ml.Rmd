@@ -4,3 +4,17 @@
 
 
 ### Abstract
+
+The COVID-19 pandemic overwhelmed medical staff around the world, showing that effective and explainable models are needed to help allocate limited resources to those in need. 
+Many published models for predicting COVID-19 related ICU admission and mortality were tree-based models [@yan_et_al_2020] or neural network models [@li_et_al_2020].
+We compared the two architectures in effectiveness, explainability and reproducibility.
+The two architectures appear to be similar with regards to their effectiveness, but the DNN model had significant reproducibility issues and worse explainability.
+
+
+### Introduction
+
+### Methods
+
+### Results
+
+### Discussion
