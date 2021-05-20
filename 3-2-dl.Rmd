@@ -1,1 +1,7 @@
-3-0-BCDUNet_network
+## BCDUNet
+
+*Authors: Maria Kałuska, Paweł Koźmiński, Mikołaj Spytek*
+
+### Abstract
+
+Some text will be here in the future
