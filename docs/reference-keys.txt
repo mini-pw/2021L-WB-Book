@@ -14,6 +14,12 @@ fig:ale-leadtime
 fig:ale-requests
 fig:ale-previous
 fig:ale-pdp
+fig:unnamed-chunk-2
+fig:unnamed-chunk-3
+fig:unnamed-chunk-4
+fig:unnamed-chunk-5
+fig:unnamed-chunk-6
+fig:unnamed-chunk-7
 explainable-artificial-intelligence
 xai1-explainable-cards
 ml-in-predition-of-real-estate-prices
@@ -87,12 +93,13 @@ data
 application
 conclusions
 references-1
-comparison-of-deep-learning-and-tree-based-models-in-the-clinical-prediction-of-the-course-of-covid-19-illness
+comparison-of-neural-networks-and-tree-based-models-in-the-clinical-prediction-of-the-course-of-covid-19-illness
 abstract-4
 introduction-9
 methods-1
 results-3
 discussion-2
+source-code
 rashomonml
 topic
 abstract-5
