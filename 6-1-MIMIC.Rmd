@@ -18,3 +18,30 @@ However, not every accurate model gives a right conclusion as described in [@6-0
 Another important topic related to Rashomon sets is analysing the feature importance of the model. It was described in this article [@6-0-rashomon-variable-importance], where authors suggested to study the maximum and minimum of variable importance across all models included in the Rashomon set. This technique was called MCR (Model Class Reliance). 
 Furthermore, [@6-0-rashomon-variable-importance-cloud] presented technique to visualise the "cloud" of variable importance for models in the set, which could help us understand the Rashomon set and choose the one which give the best interpretation. The last question stated in the article [@6-0-rudin-challenges] was about choosing model from the Rashomon set. It might be a difficult task, especially when we lack good exploration tools. 
 [@6-1-beams-system] created a system called BEAMS that allows to choose the most important features. Next, the program searches the hypothesis space in order to find model which fits best to given constraints. Since this system works only with linear regression classifiers, [@6-0-rudin-challenges] stated a question if it is possible to design a simmilar system which will search only models within the Rashomon set.
+
+### Results
+
+#### Results of models search
+
+![](images/6-1-rashomon_ratio.png)
+
+### Best models
+
+![](images/6-1-results.png)
+
+#### Boxplots of abs_sum metric for the best models
+
+![](images/6-1-boxplot_1.png)
+
+#### Boxplots of abs_sum metric for each feature
+
+![](images/6-1-boxplot_2.png)
+
+#### PDP curve for albumin_std
+
+![](images/6-1-albumin_std_pdp.png)
+
+#### PDP curve for atempc_min
+
+![](images/6-1-tempc_min_pdp.png)
+
