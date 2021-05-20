@@ -21,4 +21,48 @@ Another outstanding remark concerning Rashomon set was made when in 2019  [@6-0-
 In our work, we choose and visualize the Rashomon sets built on a set of features as well as their subset. We address the problem of searching the most crucial predictive variables among those Rashomon sets and investigate the impact of choosing subsets of input features on the whole process of determining Rashomon sets and their characteristics.
 
 
+### Results
 
+#### Number of models in Rashomon set - influence on AUC
+
+![](images/6-5-n_of_models_influence_on_auc.png)
+
+The best number of models that we can deduce from this figure is about 10 models in a Rashomon set.
+
+#### Variable Importance Plots
+
+##### Best AUC Rashomon Sets - X48
+
+![](images/6-5-vi_auc_X48.png)
+
+##### Experts Rashomon Sets - X48
+
+![](images/6-5-vi_experts_W48.png)
+
+The is no any ramarkable difference between most importanr variables across these different Rashomon sets made on X48.
+
+##### Best AUC Rashomon Sets - W48
+
+![](images/6-5-vi_auc_W48.png)
+
+Half of 6 best AUC models do not treasure that much the variables from X48 (having numbers up to 73) - only the most important one (46) is noticeable in 3 cases. 
+
+##### Experts Rashomon Sets - W48
+
+![](images/6-5-vi_experts_W48.png)
+
+All expert models emphasize the influence of X48 variables. Moreover, in 3 cases (out of 6 models) variables being less important than the 46(mean_inr) variable are now more important. These varables are 27(model 2) and 56(model 4 & model 5).
+
+#### Voting in mortality prediction
+
+##### MSE - Best AUC & Experts Rashomon Set made on X48
+
+![](images/6-5-voting_X48.png)
+
+Voting experts had better results than the best model/models when given smaller set of variables - X48.
+
+##### MSE - Best AUC & Experts Rashomon Set made on W48
+
+![](images/6-5-voting_W48.png)
+
+This time, voting experts had worse results than the best model/models when given larger set of variables - W48.
