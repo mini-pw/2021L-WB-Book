@@ -23,7 +23,7 @@
 
 
 
-<meta name="date" content="2021-05-20" />
+<meta name="date" content="2021-05-21" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -100,7 +100,10 @@ div.csl-indent {
 </ul></li>
 <li class="chapter" data-level="1" data-path="explainable-artificial-intelligence.html"><a href="explainable-artificial-intelligence.html"><i class="fa fa-check"></i><b>1</b> Explainable Artificial Intelligence</a>
 <ul>
-<li class="chapter" data-level="1.1" data-path="xai1-explainable-cards.html"><a href="xai1-explainable-cards.html"><i class="fa fa-check"></i><b>1.1</b> Explaining Credit Card Customers churns</a></li>
+<li class="chapter" data-level="1.1" data-path="xai1-explainable-cards.html"><a href="xai1-explainable-cards.html"><i class="fa fa-check"></i><b>1.1</b> Explaining Credit Card Customers churns</a>
+<ul>
+<li class="chapter" data-level="1.1.1" data-path="xai1-explainable-cards.html"><a href="xai1-explainable-cards.html#global-explanations"><i class="fa fa-check"></i><b>1.1.1</b> Global explanations</a></li>
+</ul></li>
 <li class="chapter" data-level="1.2" data-path="ml-in-predition-of-real-estate-prices.html"><a href="ml-in-predition-of-real-estate-prices.html"><i class="fa fa-check"></i><b>1.2</b> ML in predition of real estate prices</a>
 <ul>
 <li class="chapter" data-level="1.2.1" data-path="ml-in-predition-of-real-estate-prices.html"><a href="ml-in-predition-of-real-estate-prices.html#abstract"><i class="fa fa-check"></i><b>1.2.1</b> Abstract</a></li>
@@ -120,7 +123,7 @@ div.csl-indent {
 <li class="chapter" data-level="1.5.1" data-path="xai1-explainable-hotels.html"><a href="xai1-explainable-hotels.html#introduction-2"><i class="fa fa-check"></i><b>1.5.1</b> Introduction</a></li>
 <li class="chapter" data-level="1.5.2" data-path="xai1-explainable-hotels.html"><a href="xai1-explainable-hotels.html#dataset_models"><i class="fa fa-check"></i><b>1.5.2</b> Dataset and models</a></li>
 <li class="chapter" data-level="1.5.3" data-path="xai1-explainable-hotels.html"><a href="xai1-explainable-hotels.html#local"><i class="fa fa-check"></i><b>1.5.3</b> Local explanations</a></li>
-<li class="chapter" data-level="1.5.4" data-path="xai1-explainable-hotels.html"><a href="xai1-explainable-hotels.html#global-explanations"><i class="fa fa-check"></i><b>1.5.4</b> Global explanations</a></li>
+<li class="chapter" data-level="1.5.4" data-path="xai1-explainable-hotels.html"><a href="xai1-explainable-hotels.html#global-explanations-1"><i class="fa fa-check"></i><b>1.5.4</b> Global explanations</a></li>
 <li class="chapter" data-level="1.5.5" data-path="xai1-explainable-hotels.html"><a href="xai1-explainable-hotels.html#summary-and-conclusions-1"><i class="fa fa-check"></i><b>1.5.5</b> Summary and conclusions</a></li>
 </ul></li>
 </ul></li>
@@ -283,21 +286,21 @@ revenues and profits optimisation. In recent years (before the pandemic), there 
 <div class="figure" style="text-align: center"><span id="fig:shap-false-positive"></span>
 <img src="images/1-5-shap-false-positive.png" alt="A plot of Shapley values for random forest model and misclassified observation (false positive) with the highest probability of cancellation. The green and red bars correspond to the contribution of the variable to the prediction. The green ones increase the probability of cancellation, while the red ones decrease it (increase the probability of no cancellation). On the x-axis, there is the model prediction value, while on the y-axis there are variables and their values for the observation." width="700" />
 <p class="caption">
-FIGURE 1.1: A plot of Shapley values for random forest model and misclassified observation (false positive) with the highest probability of cancellation. The green and red bars correspond to the contribution of the variable to the prediction. The green ones increase the probability of cancellation, while the red ones decrease it (increase the probability of no cancellation). On the x-axis, there is the model prediction value, while on the y-axis there are variables and their values for the observation.
+FIGURE 1.14: A plot of Shapley values for random forest model and misclassified observation (false positive) with the highest probability of cancellation. The green and red bars correspond to the contribution of the variable to the prediction. The green ones increase the probability of cancellation, while the red ones decrease it (increase the probability of no cancellation). On the x-axis, there is the model prediction value, while on the y-axis there are variables and their values for the observation.
 </p>
 </div>
 <p>Informations with the biggest contribution to the final prediction are guest’s country of origin (Portugal), a total number of special requests equals zero, and the fact that customer type related to the given booking is Transient-Party. This is an indication that the model may be slightly biased due to the country of origin. It is the property of the customer and not of the booking itself. Thus, depending on the application, it is worth considering whether this response is satisfactory and meets ethical standards. With every value contributes to the misprediction, the only feature with the correct contribution is customer type (Transient-Party guests are the most popular type of customers, accounting for as much as 75% of bookers).</p>
 <div class="figure" style="text-align: center"><span id="fig:shap-false-negative"></span>
 <img src="images/1-5-shap-false-negative.png" alt="A plot of Shapley values for random forest model and misclassified observation (false negative) with the lowest probability of cancellation. The elements of the plot have the same meaning as in the previous case." width="700" />
 <p class="caption">
-FIGURE 1.2: A plot of Shapley values for random forest model and misclassified observation (false negative) with the lowest probability of cancellation. The elements of the plot have the same meaning as in the previous case.
+FIGURE 1.15: A plot of Shapley values for random forest model and misclassified observation (false negative) with the lowest probability of cancellation. The elements of the plot have the same meaning as in the previous case.
 </p>
 </div>
 <p>It can be seen that the largest contributions are related to the country of origin of the booker and the type of guest assigned to them. It is worth noting that the values of these variables are the same as in the case of the observation analyzed above. Again, they contribute to the same side of the prediction, but the contribution values are different. In this case, the type of client turns out to be the most important. Most of the values also affect the prediction of no cancellation. It is interesting that a slightly later booking in relation to the date of stay (lead time) has the opposite effect than in the previous example. The reason is the dependencies between the variables.</p>
 <div class="figure" style="text-align: center"><span id="fig:shap-false-predictions"></span>
 <img src="images/1-5-lime-false-predictions.png" alt="A plot of LIME model values for the random forest model and the most misslassified observations." width="700" />
 <p class="caption">
-FIGURE 1.3: A plot of LIME model values for the random forest model and the most misslassified observations.
+FIGURE 1.16: A plot of LIME model values for the random forest model and the most misslassified observations.
 </p>
 </div>
 <p>The similarity between the observations is also noticeable in the lime method. The first five variables are identical and have almost the same coefficients. Therefore, it is these less significant variables that influence the final prediction.</p>
@@ -310,21 +313,21 @@ FIGURE 1.3: A plot of LIME model values for the random forest model and the most
 <div class="figure" style="text-align: center"><span id="fig:shap-best-negative"></span>
 <img src="images/1-5-shap-best-negative.png" alt="A plot of Shapley values for random forest model and observation with sure negative prediction. The elements of the plot were described above." width="700" />
 <p class="caption">
-FIGURE 1.4: A plot of Shapley values for random forest model and observation with sure negative prediction. The elements of the plot were described above.
+FIGURE 1.17: A plot of Shapley values for random forest model and observation with sure negative prediction. The elements of the plot were described above.
 </p>
 </div>
 <p>Like in the previous examples - the largest contribution has the country, in that case: France. Again, this is a Transient-Party customer and that also affected the prediction. Also, no special requests affect negatively to prediction (more than eg. no previous cancellations). Only one of the top variables affected positively: it was no required car parking spaces, but this impact was unnoticeable in the final prediction.</p>
 <div class="figure" style="text-align: center"><span id="fig:shap-best-positive"></span>
 <img src="images/1-5-shap-best-positive.png" alt="A plot of Shapley values for random forest model and observation with sure positive prediction. The elements of the plot were described above." width="700" />
 <p class="caption">
-FIGURE 1.5: A plot of Shapley values for random forest model and observation with sure positive prediction. The elements of the plot were described above.
+FIGURE 1.18: A plot of Shapley values for random forest model and observation with sure positive prediction. The elements of the plot were described above.
 </p>
 </div>
 <p>Again, Portugal as a country of origin affected positively the probability of cancelation (keep in mind that the hotel is in Portugal, so we can assume that compatriots cancel their reservations more often). Also, no special requests affected positively on prediction (although in the previous case it had a negative effect). We can notice that for positive prediction other factors have the biggest impact than for negative. Eg. a longer lead time moved up to third place and now has a positive impact.</p>
 <div class="figure" style="text-align: center"><span id="fig:ceteris-paribus-sure"></span>
 <img src="images/1-5-ceteris-paribus-sure.png" alt="Ceteris-paribus profiles for the selected continuous explanatory variables and label encoded country variable for the random forest model and observations with the sure prediction. Dots indicate the values of the variables and the values of the predictions for observations. Green profiles are for sure positive prediction (a cancellation), while blue profiles are for sure negative prediction." width="700" />
 <p class="caption">
-FIGURE 1.6: Ceteris-paribus profiles for the selected continuous explanatory variables and label encoded country variable for the random forest model and observations with the sure prediction. Dots indicate the values of the variables and the values of the predictions for observations. Green profiles are for sure positive prediction (a cancellation), while blue profiles are for sure negative prediction.
+FIGURE 1.19: Ceteris-paribus profiles for the selected continuous explanatory variables and label encoded country variable for the random forest model and observations with the sure prediction. Dots indicate the values of the variables and the values of the predictions for observations. Green profiles are for sure positive prediction (a cancellation), while blue profiles are for sure negative prediction.
 </p>
 </div>
 <p>Looking at the ceteris paribus profiles, it is intuitive to see that the prediction for the observation classified as the not canceled stay is more stable, i.e. less sensitive to changes in the values of explanatory variables.</p>
@@ -338,27 +341,27 @@ FIGURE 1.6: Ceteris-paribus profiles for the selected continuous explanatory var
 <div class="figure" style="text-align: center"><span id="fig:shap-negative-50"></span>
 <img src="images/1-5-shap_negative_50.png" alt="A plot of Shapley values for random forest model and observation classified as negative with probability near 50%. The elements of the plot were described above." width="700" />
 <p class="caption">
-FIGURE 1.7: A plot of Shapley values for random forest model and observation classified as negative with probability near 50%. The elements of the plot were described above.
+FIGURE 1.20: A plot of Shapley values for random forest model and observation classified as negative with probability near 50%. The elements of the plot were described above.
 </p>
 </div>
 <p>This is a very interesting example. One variable fixed prediction. Very short lead time (one day) opposed all other factors like Portugal as country of origin or no special requests and made the model predict correctly. It is amazing, that one factor can change everything.</p>
 <div class="figure" style="text-align: center"><span id="fig:shap-positive-50"></span>
 <img src="images/1-5-shap_positive_50.png" alt="A plot of Shapley values for random forest model and observation classified as positive with probability near 50%. The elements of the plot were described above." width="700" />
 <p class="caption">
-FIGURE 1.8: A plot of Shapley values for random forest model and observation classified as positive with probability near 50%. The elements of the plot were described above.
+FIGURE 1.21: A plot of Shapley values for random forest model and observation classified as positive with probability near 50%. The elements of the plot were described above.
 </p>
 </div>
 <p>This observation is not so exciting as the previous one, but it is the next evidence that the special requests decrease the probability that the client will cancel the reservation. Nevertheless, this observation was classified as positive. Agent was the most important positive variable although in the previous examples he did not have such a contribution. But… agent has that huge contribution only in Shapley.</p>
 <div class="figure" style="text-align: center"><span id="fig:lime-positive-50"></span>
 <img src="images/1-5-lime_positive_50.png" alt="A plot of LIME model values for the random forest model and the same observation." width="700" />
 <p class="caption">
-FIGURE 1.9: A plot of LIME model values for the random forest model and the same observation.
+FIGURE 1.22: A plot of LIME model values for the random forest model and the same observation.
 </p>
 </div>
 <p>Here agent has much less impact. This is a reminder for us that each method works differently and takes different variables into account. It is worth remembering this. In this method for that (and a lot of other) observation the most important factor is no previous cancelations, but it is not enough for the model to make a negative decision.</p>
 </div>
 </div>
-<div id="global-explanations" class="section level3" number="1.5.4">
+<div id="global-explanations-1" class="section level3" number="1.5.4">
 <h3><span class="header-section-number">1.5.4</span> Global explanations</h3>
 <p>The second group of methods of explainable artificial intelligence are those concerning not a single observation, but the entire set of them. We used these model level explanations to provide information about the quality of the model performance and infer how the model behaves in general. The methods we used for this purpose are Permutational Variable Importance, PDP (Partial Dependence Profile), ALE (Accumulated Local Effects). We applied them not only to the main random forest model, but also to other trained models to compare the obtained results.</p>
 <div id="importance-of-explanatory-variables" class="section level4" number="1.5.4.1">
@@ -367,7 +370,7 @@ FIGURE 1.9: A plot of LIME model values for the random forest model and the same
 <div class="figure" style="text-align: center"><span id="fig:pvi-main-model"></span>
 <img src="images/1-5-pvi-main-model.png" alt="A plot of variable importance. The length of each bar represents the difference between the loss function (1-AUC) for the original data and the data with the permuted values of a particular variable." width="700" />
 <p class="caption">
-FIGURE 1.10: A plot of variable importance. The length of each bar represents the difference between the loss function (1-AUC) for the original data and the data with the permuted values of a particular variable.
+FIGURE 1.23: A plot of variable importance. The length of each bar represents the difference between the loss function (1-AUC) for the original data and the data with the permuted values of a particular variable.
 </p>
 </div>
 <p>As we can see above, the most important variable for the model is the information about the guest’s country of origin. This confirms the intuitions obtained thanks to local explanations, for many observations this variable was the key aspect. In particular, the origin of Portugal (the country where the hotels are located) is the most significant for the prediction.</p>
@@ -380,7 +383,7 @@ These are the variables that should be considered to be excluded in order to sim
 </div>
 <div id="comparison-with-other-models" class="section level4" number="1.5.4.2">
 <h4><span class="header-section-number">1.5.4.2</span> Comparison with other models</h4>
-<p>Plots similar to that above in Figure <a href="xai1-explainable-hotels.html#fig:pvi-main-model">1.10</a> are useful for comparison of a variables’ importance in different models. It may be helpful in generating new knowledge - identification of recurring key variables may lead to the discovery of new factors involved in a particular mechanism <span class="citation">(<a href="#ref-EMA" role="doc-biblioref">Biecek and Burzykowski 2021</a>)</span> (in our case, cancellation of reservations).</p>
+<p>Plots similar to that above in Figure <a href="xai1-explainable-hotels.html#fig:pvi-main-model">1.23</a> are useful for comparison of a variables’ importance in different models. It may be helpful in generating new knowledge - identification of recurring key variables may lead to the discovery of new factors involved in a particular mechanism <span class="citation">(<a href="#ref-EMA" role="doc-biblioref">Biecek and Burzykowski 2021</a>)</span> (in our case, cancellation of reservations).</p>
 <p>Thus, we decided to compare the importance of the variables in the models we had trained, described in the <a href="xai1-explainable-hotels.html#dataset_models">Dataset and models</a> section. The plots below show the results for our main Random Forest model and 4 other models with legend:</p>
 <ul>
 <li><span style="color:#8fddbf"><strong>green</strong></span> - Random Forest with label encoding (main model),</li>
@@ -392,7 +395,7 @@ These are the variables that should be considered to be excluded in order to sim
 <div class="figure" style="text-align: center"><span id="fig:pvi-comparison"></span>
 <img src="images/1-5-pvi-comparison.png" alt="The comparison of the importance of explanatory variables for selected models. The elements of a single plot were described above. Note the different starting locations for the bars, due to differences in the AUC score value obtained for the training dataset for different models." width="700" />
 <p class="caption">
-FIGURE 1.11: The comparison of the importance of explanatory variables for selected models. The elements of a single plot were described above. Note the different starting locations for the bars, due to differences in the AUC score value obtained for the training dataset for different models.
+FIGURE 1.24: The comparison of the importance of explanatory variables for selected models. The elements of a single plot were described above. Note the different starting locations for the bars, due to differences in the AUC score value obtained for the training dataset for different models.
 </p>
 </div>
 <p>It can be seen that the importance of the variables is related to the type of algorithm used in a given model. For example, in a decision tree, each variable has a clearly noticeable effect on the predictions.</p>
@@ -413,14 +416,14 @@ FIGURE 1.11: The comparison of the importance of explanatory variables for selec
 <div class="figure" style="text-align: center"><span id="fig:ale-country"></span>
 <img src="images/1-5-ale-country.png" alt="ALE plot for the country. The ALE plots work like Ceteris Paribus - they show how the variable affects a prediction but not only for one observation - for the entire training dataset." width="700" />
 <p class="caption">
-FIGURE 1.12: ALE plot for the country. The ALE plots work like Ceteris Paribus - they show how the variable affects a prediction but not only for one observation - for the entire training dataset.
+FIGURE 1.25: ALE plot for the country. The ALE plots work like Ceteris Paribus - they show how the variable affects a prediction but not only for one observation - for the entire training dataset.
 </p>
 </div>
 <p>We have a greater probability of resignation for one country - this is Portugal. This confirms our hypothesis built on the basis of local explanatory methods. Generally, compatriots more often resign from booking.</p>
 <div class="figure" style="text-align: center"><span id="fig:ale-leadtime"></span>
 <img src="images/1-5-ale-leadtime.png" alt="ALE plot for lead time. The elements of a single plot were described above." width="700" />
 <p class="caption">
-FIGURE 1.13: ALE plot for lead time. The elements of a single plot were described above.
+FIGURE 1.26: ALE plot for lead time. The elements of a single plot were described above.
 </p>
 </div>
 <p>And again we have confirmation that the longer the lead time, the greater the chance that the customer will resign.</p>
@@ -428,7 +431,7 @@ FIGURE 1.13: ALE plot for lead time. The elements of a single plot were describe
 <div class="figure" style="text-align: center"><span id="fig:ale-requests"></span>
 <img src="images/1-5-ale-requests.png" alt="ALE plot for total of special requests and required car parking spaces. The elements of a single plot were described above." width="700" />
 <p class="caption">
-FIGURE 1.14: ALE plot for total of special requests and required car parking spaces. The elements of a single plot were described above.
+FIGURE 1.27: ALE plot for total of special requests and required car parking spaces. The elements of a single plot were described above.
 </p>
 </div>
 <p>Additional actions taken by the client regarding booking reduce the likelihood of cancellation.</p>
@@ -437,7 +440,7 @@ FIGURE 1.14: ALE plot for total of special requests and required car parking spa
 <div class="figure" style="text-align: center"><span id="fig:ale-previous"></span>
 <img src="images/1-5-ale-previous.png" alt="ALE plot for previous cancellations and previous bookings not canceled. The elements of a single plot were described above." width="700" />
 <p class="caption">
-FIGURE 1.15: ALE plot for previous cancellations and previous bookings not canceled. The elements of a single plot were described above.
+FIGURE 1.28: ALE plot for previous cancellations and previous bookings not canceled. The elements of a single plot were described above.
 </p>
 </div>
 <p>Information about a given customer’s prior bookings is also very valuable for prediction. The fact of earlier cancellation of a reservation strongly influences the prediction of the next one, which seems natural.</p>
@@ -445,11 +448,11 @@ FIGURE 1.15: ALE plot for previous cancellations and previous bookings not cance
 <p>After analyzing these examples, an important conclusion can be drawn about the XAI methods. ALE plots can be a great tool for analyzing the influence of variables on the prediction - they can be used to verify the hypotheses put forward at the stage of local explanations and introduce new ones.</p>
 <p>When comparing the results for different models, note that the profiles for random forests with both versions of the categorical variable encoding are almost identical (green and red lines in the graphs).</p>
 <p>Looking more broadly, the profiles are comparable for all models. The most significant differences can be seen in the variables relating to the previous reservations of a given customer - the number of canceled and non-canceled reservations. The XGBoost model favors non-zero values more - the prediction changes are bigger. In general, this model is the most sensitive to all variables, as can be seen from the shape of the profile curves.</p>
-<p>Moreover, we used the comparison of the PDP and ALE plots for our main model (see Figure <a href="xai1-explainable-hotels.html#fig:ale-pdp">1.16</a>). In the case of some variables, the profiles generated using both methods almost coincide. However, there are also variables where you can see differences in prediction values, but profiles are parallel to each other. This parallelism suggests and allows us to conclude that the used model is additive due for these explanatory variables <span class="citation">(<a href="#ref-EMA" role="doc-biblioref">Biecek and Burzykowski 2021</a>)</span>.</p>
+<p>Moreover, we used the comparison of the PDP and ALE plots for our main model (see Figure <a href="xai1-explainable-hotels.html#fig:ale-pdp">1.29</a>). In the case of some variables, the profiles generated using both methods almost coincide. However, there are also variables where you can see differences in prediction values, but profiles are parallel to each other. This parallelism suggests and allows us to conclude that the used model is additive due for these explanatory variables <span class="citation">(<a href="#ref-EMA" role="doc-biblioref">Biecek and Burzykowski 2021</a>)</span>.</p>
 <div class="figure" style="text-align: center"><span id="fig:ale-pdp"></span>
 <img src="images/1-5-ale-vs-pdp.png" alt="Partial-dependence and accumulated-local profiles for the main random forest model and selected variables" width="700" />
 <p class="caption">
-FIGURE 1.16: Partial-dependence and accumulated-local profiles for the main random forest model and selected variables
+FIGURE 1.29: Partial-dependence and accumulated-local profiles for the main random forest model and selected variables
 </p>
 </div>
 </div>

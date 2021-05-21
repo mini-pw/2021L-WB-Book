@@ -23,7 +23,7 @@
 
 
 
-<meta name="date" content="2021-05-20" />
+<meta name="date" content="2021-05-21" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -100,7 +100,10 @@ div.csl-indent {
 </ul></li>
 <li class="chapter" data-level="1" data-path="explainable-artificial-intelligence.html"><a href="explainable-artificial-intelligence.html"><i class="fa fa-check"></i><b>1</b> Explainable Artificial Intelligence</a>
 <ul>
-<li class="chapter" data-level="1.1" data-path="xai1-explainable-cards.html"><a href="xai1-explainable-cards.html"><i class="fa fa-check"></i><b>1.1</b> Explaining Credit Card Customers churns</a></li>
+<li class="chapter" data-level="1.1" data-path="xai1-explainable-cards.html"><a href="xai1-explainable-cards.html"><i class="fa fa-check"></i><b>1.1</b> Explaining Credit Card Customers churns</a>
+<ul>
+<li class="chapter" data-level="1.1.1" data-path="xai1-explainable-cards.html"><a href="xai1-explainable-cards.html#global-explanations"><i class="fa fa-check"></i><b>1.1.1</b> Global explanations</a></li>
+</ul></li>
 <li class="chapter" data-level="1.2" data-path="ml-in-predition-of-real-estate-prices.html"><a href="ml-in-predition-of-real-estate-prices.html"><i class="fa fa-check"></i><b>1.2</b> ML in predition of real estate prices</a>
 <ul>
 <li class="chapter" data-level="1.2.1" data-path="ml-in-predition-of-real-estate-prices.html"><a href="ml-in-predition-of-real-estate-prices.html#abstract"><i class="fa fa-check"></i><b>1.2.1</b> Abstract</a></li>
@@ -120,7 +123,7 @@ div.csl-indent {
 <li class="chapter" data-level="1.5.1" data-path="xai1-explainable-hotels.html"><a href="xai1-explainable-hotels.html#introduction-2"><i class="fa fa-check"></i><b>1.5.1</b> Introduction</a></li>
 <li class="chapter" data-level="1.5.2" data-path="xai1-explainable-hotels.html"><a href="xai1-explainable-hotels.html#dataset_models"><i class="fa fa-check"></i><b>1.5.2</b> Dataset and models</a></li>
 <li class="chapter" data-level="1.5.3" data-path="xai1-explainable-hotels.html"><a href="xai1-explainable-hotels.html#local"><i class="fa fa-check"></i><b>1.5.3</b> Local explanations</a></li>
-<li class="chapter" data-level="1.5.4" data-path="xai1-explainable-hotels.html"><a href="xai1-explainable-hotels.html#global-explanations"><i class="fa fa-check"></i><b>1.5.4</b> Global explanations</a></li>
+<li class="chapter" data-level="1.5.4" data-path="xai1-explainable-hotels.html"><a href="xai1-explainable-hotels.html#global-explanations-1"><i class="fa fa-check"></i><b>1.5.4</b> Global explanations</a></li>
 <li class="chapter" data-level="1.5.5" data-path="xai1-explainable-hotels.html"><a href="xai1-explainable-hotels.html#summary-and-conclusions-1"><i class="fa fa-check"></i><b>1.5.5</b> Summary and conclusions</a></li>
 </ul></li>
 </ul></li>
@@ -259,8 +262,124 @@ div.csl-indent {
             <section class="normal" id="section-">
 <div id="xai1-explainable-cards" class="section level2" number="1.1">
 <h2><span class="header-section-number">1.1</span> Explaining Credit Card Customers churns</h2>
-<p><em>Authors: Katarzyna Solawa, Przemysław Chojecki, Bartosz Sawicki (Warsaw University of Techcnology)</em></p>
+<p><em>Authors: Katarzyna Solawa, Przemysław Chojecki, Bartosz Sawicki (Warsaw University of Technology)</em></p>
+<div id="global-explanations" class="section level3" number="1.1.1">
+<h3><span class="header-section-number">1.1.1</span> Global explanations</h3>
+<p>In this section we describe our discoveries made by using explenatory methods globally.</p>
+<div id="permutational-feature-importance" class="section level4" number="1.1.1.1">
+<h4><span class="header-section-number">1.1.1.1</span> Permutational Feature Importance</h4>
+<p>We calculated permutational feature importance for XGBoost model, Random Forest model and a group of logistic regression models. The regression models were created with L1 regularization and different <code>C</code> coefficient was applied among the group. This coefficient is an inverse of a penalty term in L1 regularization, which means the smaller it is, the more weights shrinkage we expect. We examined if such shrinkage is noticeable in Permutational Feature Importance method. Then, we compared PFI obtained from different models.</p>
+<div id="logistic-regression-models" class="section level5" number="1.1.1.1.1">
+<h5><span class="header-section-number">1.1.1.1.1</span> Logistic Regression Models</h5>
+<div class="figure" style="text-align: center"><span id="fig:pfi-log-reg-total-ct-chng"></span>
+<img src="images/1-1-pfi-log-reg-group-total-ct-chng.png" alt="Permutational Feature Impotance of `Total_Ct_Chng_Q4_Q1` for the group of logistic regression models" width="700" />
+<p class="caption">
+FIGURE 1.1: Permutational Feature Impotance of <code>Total_Ct_Chng_Q4_Q1</code> for the group of logistic regression models
+</p>
+</div>
+<p>The variable with the highest (among the group of logistic regressions) drop-out loss is shown in <a href="xai1-explainable-cards.html#fig:pfi-log-reg-total-ct-chng">1.1</a>. The drop-out increases with the increase of <code>C</code> coefficient. The feature is more important for models with low regularization parameter, therefore it was shrinked by the Lasso.</p>
+<div class="figure" style="text-align: center"><span id="fig:pfi-log-reg-total-bal"></span>
+<img src="images/1-1-pfi-log-reg-group-total-revolving-bal.png" alt="Permutational Feature Impotance of `Total_Revolving_Bal` for the group of logistic regression models" width="700" />
+<p class="caption">
+FIGURE 1.2: Permutational Feature Impotance of <code>Total_Revolving_Bal</code> for the group of logistic regression models
+</p>
+</div>
+<p><a href="xai1-explainable-cards.html#fig:pfi-log-reg-total-bal">1.2</a> presents a variable importance plot of <code>Total_Revolving_Bal</code> feature, which has the second highest drop-out loss. It was not regularized, because drop-out loss decreases with the increase of <code>C</code>. It is the only column, which has this property.</p>
+<div class="figure" style="text-align: center"><span id="fig:pfi-log-reg-gender"></span>
+<img src="images/1-1-pfi-log-reg-group-gender.png" alt="Permutational Feature Impotance of `Gender` for the group of logistic regression models" width="700" />
+<p class="caption">
+FIGURE 1.3: Permutational Feature Impotance of <code>Gender</code> for the group of logistic regression models
+</p>
+</div>
+<div class="figure" style="text-align: center"><span id="fig:pfi-log-reg-utilization"></span>
+<img src="images/1-1-pfi-log-reg-group-utilization.png" alt="Permutational Feature Impotance of `Avg_Utilization_Ratio` for the group of logistic regression models" width="700" />
+<p class="caption">
+FIGURE 1.4: Permutational Feature Impotance of <code>Avg_Utilization_Ratio</code> for the group of logistic regression models
+</p>
+</div>
+<p>On the other plots, such as <a href="xai1-explainable-cards.html#fig:pfi-log-reg-gender">1.3</a> and <a href="xai1-explainable-cards.html#fig:pfi-log-reg-utilization">1.4</a>, the shrinkage made by L1 regularization is clearly visable. Models with high regularization parameter, and accordingly low <code>C</code> parameter, have smaller drop-out losses, which indicates lower importance of features.</p>
+<p>Drop-out loss increases proportionally to <code>C</code> parameter in nearly all of 21 columns. This shows that the effects of Lasso regularization can be observed in variable importance plots of logistic regression models.</p>
+</div>
+<div id="xgboost-and-random-forest-models" class="section level5" number="1.1.1.1.2">
+<h5><span class="header-section-number">1.1.1.1.2</span> XGBoost and Random Forest models</h5>
+<p>In <a href="xai1-explainable-cards.html#fig:pfi-xgb-rf">1.5</a> we can observe that the most important column for both models is <code>Total_Trans_Amt</code>. This outcome can be logically explained: customers who do not use their credit card to execute many valuable transactions probably do not need that service, consequently resign. However, the drop-out loss for that column for the XGBoost is over 2 times higher than for the Random Forest, which means that the prior model bases its prediction on this column more than the latter model. Furthermore, more features are important for the XGBoost than for the Random Forest. We suppose this is a result of the models different training processes. New iterations (trees) in XGB are based on observations that were previously predicted incorrectly, thus new columns are taken into consideration to represent the differences between the observations. On the other hand, the Random Forest model selects the subset of the features randomly in each tree.</p>
+<div class="figure" style="text-align: center"><span id="fig:pfi-xgb-rf"></span>
+<img src="images/1-1-permutational-feature-xgb-rf.png" alt="Top 9 most important features in XGBoost and RandomForest feature importance comparison" width="700" />
+<p class="caption">
+FIGURE 1.5: Top 9 most important features in XGBoost and RandomForest feature importance comparison
+</p>
+</div>
+</div>
+<div id="models-comparison" class="section level5" number="1.1.1.1.3">
+<h5><span class="header-section-number">1.1.1.1.3</span> Models comparison</h5>
+<p>We compared the permutational feature importance of the group of logistic regression models, XGBoost model and Random Forest model. We can see in <a href="xai1-explainable-cards.html#fig:pfi-all-total-trans">1.6</a> the drop-out loss in XGBoost is similar to drop-out in logistic regression models.</p>
+<div class="figure" style="text-align: center"><span id="fig:pfi-all-total-trans"></span>
+<img src="images/1-1-pfi-all-models-total-trans-amt.png" alt="Permutational Feature Impotance of `Total_Trans_Amt` for all models" width="700" />
+<p class="caption">
+FIGURE 1.6: Permutational Feature Impotance of <code>Total_Trans_Amt</code> for all models
+</p>
+</div>
+If we compare the importance of <code>Total_Revolving_Bal</code> in <a href="xai1-explainable-cards.html#fig:pfi-all-total-bal">1.7</a>, we see a huge difference between tree based models and regression models. The drop-out loss for the first ones is around 20 times lower than for the latter.
+<div class="figure" style="text-align: center"><span id="fig:pfi-all-total-bal"></span>
+<img src="images/1-1-pfi-all-models-total-revolving-bal.png" alt="Permutational Feature Impotance of `Total_Revolving_Bal` for all models" width="700" />
+<p class="caption">
+FIGURE 1.7: Permutational Feature Impotance of <code>Total_Revolving_Bal</code> for all models
+</p>
+</div>
+<div class="figure" style="text-align: center"><span id="fig:pfi-all-gender"></span>
+<img src="images/1-1-pfi-all-models-gender.png" alt="Permutational Feature Impotance of `Gender` for all models" width="700" />
+<p class="caption">
+FIGURE 1.8: Permutational Feature Impotance of <code>Gender</code> for all models
+</p>
+</div>
+<div class="figure" style="text-align: center"><span id="fig:pfi-all-utilization"></span>
+<img src="images/1-1-pfi-all-models-utilization-ratio.png" alt="Permutational Feature Impotance of `Avg_Utilization_Ratio` for all models" width="700" />
+<p class="caption">
+FIGURE 1.9: Permutational Feature Impotance of <code>Avg_Utilization_Ratio</code> for all models
+</p>
+</div>
+<p>We can also examine some of the less important features such as <code>Gender</code> (see <a href="xai1-explainable-cards.html#fig:pfi-all-gender">1.8</a> ) and <code>Avg_Utilization_Ratio</code> (see <a href="xai1-explainable-cards.html#fig:pfi-all-utilization">1.9</a>). In comparison to regression models importance of these variables in XGBoost and Random forest is neglectable. Therefore, we conclude that although the effects of L1 regularization in logistic regression are observable, tree-based models such as XGBoost and Random Forest select the most important features more restrictively.</p>
+</div>
+</div>
+<div id="pdp-profiles" class="section level4" number="1.1.1.2">
+<h4><span class="header-section-number">1.1.1.2</span> PDP profiles</h4>
+<p>We created Partial Dependence Plots of all variables in the dataset for XGBoost, Random Forest and Logistic Regression with L1 models. Many of the plots turned out to be a horizontal line located on the level of the mean prediction of the models. An example of such a variable is shown in <a href="xai1-explainable-cards.html#fig:pdp-chosen">1.10</a>, predictions of models does not change with the change of <code>Gender</code>. However, features that have high importance do have more complex plots. One can observe prediction varying with the change of <code>Total_Trans_Amt</code>, <code>Total_Revolving_Bal</code> or <code>Total_Ct_Chng_Q4_Q1</code>.</p>
+<div class="figure" style="text-align: center"><span id="fig:pdp-chosen"></span>
+<img src="images/1-1-pdp-chosen-vars.png" alt="Partial Dependence Plots of chosen features" width="700" />
+<p class="caption">
+FIGURE 1.10: Partial Dependence Plots of chosen features
+</p>
+</div>
+<p>What we find interesting in <a href="xai1-explainable-cards.html#fig:pdp-chosen">1.10</a> is an unobserved earlier effect of the <code>Contacts_Count_12_mon</code> variable. The plot is steady for values 1-5 and raises rapidly when the feature takes the value of 6. We examined this case and figured out, that only approx. 0.58% of all observations have value 6 in <code>Contacts_Count_12_mon</code> column. What is more, all of them describe attrited customers. We concluded there are two possible solutions:</p>
+<ol style="list-style-type: decimal">
+<li>The dataset is not balanced for this feature.</li>
+<li>Indeed, the 6th contact with the bank representative is a breakthrough in the relationship with the customer.</li>
+</ol>
+</div>
+<div id="ale-profiles" class="section level4" number="1.1.1.3">
+<h4><span class="header-section-number">1.1.1.3</span> ALE profiles</h4>
+<div class="figure" style="text-align: center"><span id="fig:ale-chosen"></span>
+<img src="images/1-1-ale-chosen-vars.png" alt="Accumulated-local Profiles Plots of chosen features" width="700" />
+<p class="caption">
+FIGURE 1.11: Accumulated-local Profiles Plots of chosen features
+</p>
+</div>
+<p>Accumulated-local Profiles for XGBoost, Random Forest and Logistic Regression with L1 were calculated. The results for chosen variables are shown in <a href="xai1-explainable-cards.html#fig:ale-chosen">1.11</a>. ALE plots seem to be very similar to PDP profiles. It may suggest there are no interactions between variables in the models. To examine that we plotted both PDP and ALE profiles in <a href="xai1-explainable-cards.html#fig:ale-pdp-chosen-xgb">1.12</a>, <a href="xai1-explainable-cards.html#fig:ale-pdp-chosen-rf">1.13</a>. We skip these plots for Logistic Regression because, by definition, there are no variables interactions in this class of models. ALE and PDP plots are parallel thus models detected no interactions between features and they are additive.</p>
+<div class="figure" style="text-align: center"><span id="fig:ale-pdp-chosen-xgb"></span>
+<img src="images/1-1-ale-pdp-xgb.png" alt="Accumulated-local Profiles and Partial Dependence Profiles Plots of chosen features for XGBoost" width="700" />
+<p class="caption">
+FIGURE 1.12: Accumulated-local Profiles and Partial Dependence Profiles Plots of chosen features for XGBoost
+</p>
+</div>
+<div class="figure" style="text-align: center"><span id="fig:ale-pdp-chosen-rf"></span>
+<img src="images/1-1-ale-pdp-rf.png" alt="Accumulated-local Profiles and Partial Dependence Profiles Plots of chosen features for Random Forest" width="700" />
+<p class="caption">
+FIGURE 1.13: Accumulated-local Profiles and Partial Dependence Profiles Plots of chosen features for Random Forest
+</p>
+</div>
 
+</div>
+</div>
 </div>
             </section>
 
