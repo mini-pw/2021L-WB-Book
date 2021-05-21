@@ -9,24 +9,101 @@ bibliography: book.bib
 
 ### Abstract
 
-The moment the COVID-19 outbreak in 2019 occured people started using machine learning in order to help in managing the situation. Our work is a build up to research described in [@5-3-chinese_et_al] and in [@5-3-mexican_et_al] articles, we also use the same data in order to create our own models. We improve and create new models predicting COVID-19 mortality based on blood parameters and analyze original models presented in the articles. We train a predicion model with over 70% accuracy calculating risk of getting infected with the virus depending only on person's sex, age and chronic diseases and created an application which calculates the COVID-19 infection risk based on input data and explains the model with visulisations. Considering accuracy of the model, calculations based only on chronic dieases may not achieve best results but we propose an approch which doesnt need any additional medical information, is explainable and easy to understand and requires only data that everyone has access to. 
-
-
+The moment the COVID-19 outbreak in 2019 occurred people started using machine learning in order to help in managing the situation. Our work is a build up to research described in [@5-3-chinese_et_al] and in [@5-3-mexican_et_al] articles, we also use the same data in order to create our own models. We improve and create new models predicting COVID-19 mortality based on blood parameters and analyze original models presented in the articles. We train a prediction model with over 70% accuracy calculating risk of getting infected with the virus depending only on person's sex, age and chronic diseases and created an application which calculates the COVID-19 mortality risk based on input data and explains the model with visualizations. Considering accuracy of the model, calculations based only on chronic diseases may not achieve best results but we propose an approach which doesn't need any additional medical information, is explainable and easy to understand and requires only data that everyone has access to. 
 
 ### Introduction
 
+The COVID-19 pandemic is currently the world's most biggest problem, affecting not only everyone's private lives, but also other areas of human activity, including research. In the scientific field, this is a specific issue that scientists are still able to approach this problem in completely different ways, because no distinctive and right path has yet been established. It was in the combination of these three aspects that we saw an opportunity to deepen the current understanding of the pandemic and create a useful tool for predicting mortality from the disease.
+
 ### Case Study
+<!--- tu trzeba uzupenić -->
+
 
 ### Flaws
 
+As a first step, we started analyzing one of the first articles [1] on the development of predictive models to predict COVID-19 mortality in depth. The main disadvantages of the model presented in it were the very poor prediction of mortality in the case of testing on external data sets [2] [3] and the related allegation of not testing one's solution on external data [2]. In addition, our team noticed a very large bias present in the original data, thanks to which even the simplest models achieved extremely high efficiency of over 90%.
+
 ### Improvements
+
+Our first approach to the problem was to try to improve the work of the articles authors in question through very different methods.
+
+<!---na razie damy te 4ry hashe potem zobaczymy -->
+#### Prediction using original parameters on external data
+
+First, we decided to use the broader pandemic knowledge that the authors of the original article did not have to improve the model on its default data. Inspired by a newer article [4], we decided to test how the selection of variables improved according to the latest knowledge will affect the predictions of the predictive models. For the suggested parameters: age, C-reactive protein, chloride, albumin, lymphocyte count and LDH, we created a correlation map to select the most important of them.
+
+![Correlation heatmap](5-3-Correlation.png)
+
+From the above analysis we distinguished that the most important features there are age, albumin, LDH and C protein, which we used in our models. After training and testing the GradientBoostingClassifier and AdaBoostClassifier models on slightly reduced data (the original test set had to be replaced by the test and validation set), we obtained cross-validation precision at the level of 0.979 and 0.958 and the following reports:
+
+![Confusion matrix for GradientBoosting](5-3-confmatGradient.png)
+![Confusion matrix for AdaBoosting](5-3-confmatAda.png)
+
+The above results confirmed the improvement in the quality of the original model, whose precision score for death was only 0.81 and cross-validation stood around 0.97.
+
+Thanks to the authors of the paper [@5-3-american], we were given access to additional data with features coincident with those we already had. Dataset contained over 1000 observations and only fourteen features that were selected by owners to fitas best model as possible. In order to test prevoius model (AdaBoost), we used it to predict the outcome for those thousand patients, receiving following results:
+
+![Results received for external data](5-3-new_data_performance.png)
+
+Model performance has dropped significantly, the outcome is far from desired.
+
+#### PCA
+
+In order to analyze data further, we performed Principal Component Analysis. For visualization's simplification we considered only first two, most substantial components. Obtained two-dimensional plot is shown on Figure 8. Explained variance ratios were: 0.226 (for the first component) and 0.063 for the second component), which results in total explained variance ratio of 0.289 for both components together. Taking absolute values of the scores of each feature from the first component might be also used for feature selection. Those with the highest magnitudes were: 'Prothrombin activity', 'Lactate dehydrogenase', 'albumin', 'Urea', 'neutrophils(%)', '(%)lymphocyte'. Some of the features are those, that we have already known are important, such as 'albumin', '(\%)lymphocyte' or 'Lactate dehydrogenase', but 'age' was around the middle, not among the top ones.
+
+![Principal Component Analysis](5-3-pca1.png)
+
+The most noticeable fact is that our two classes are almost separable with just a single line. Even without any sort of complex machine learning or other algorithms, it’s possible and not complicated to fit a line that divides cases ended in death from cases followed by patient’s recovery. As an example, same visualization with additional function $y=2.5x+2.5$, created without any sort of optimization techniques, is presented below
+
+![Principal Component Analysis with line separator](5-3-pca2.png)
+
+Such division achieves (train) accuracy of 0.94, which is almost as good as results received by machine learning algorithms described in the paper, what might encourage to consider given data not authoritative.
+
+#### Data distribution analysis
+
+We analyzed the distribution of percentage of Lymphocytes, Lactate dehydrogenase and High sensitivity C-reactive protein by creating histograms for the original and the new data.
+![](5-3-hist1.png)
+![Original Data distribution](5-3-hist2.png)
+
+We noticed that all variables are strongly left skewed which is unfavorable for the model because more reliable predictions are made if the predictors and the target variable are normally distributed. Trying to make our model better, we applied square root transformation. Then we trained a new model on them (also using Ada Boost Classifier) and we tested it on the new data:
+![](5-3-skeweddataresults.png)
+
+We can see that the model generally improved (the accuracy is higher) and it perform slightly better.
+
+#### General drawbacks
+
+In addition to the aforementioned bias, our models can still be accused of learning on very small data sets not exceeding even 1000 observations, which still affects the uncertainty related to the effectiveness of the presented proposals.
+
+Moreover, the most promising model, developed on an external data set, unfortunately did not show sufficiently high efficiency to be useful in medical applications.
+
+In addition, the models that have been proposed by us, unfortunately, are not explainable models, which makes them less desirable by doctors.
+
+The last, and perhaps least obvious, disadvantage is that the data used for prediction alone is unattainable for single entities, as blood tests can only be performed by highly qualified medical personnel. This aspect makes solutions based on these models incomprehensible to the average person, which significantly limits their usefulness.
+
+#### Summary
+
+To sum up, the most desirable effect of our work turns out to be an explainable model with high-quality predictions, based on a large database. In addition, it should be based on easy-to-obtain information about a person's health and be understandable to both ordinary people and physicians. In search of research that would help us explore this branch of machine learning, we managed to find an article [6], which provided us with both a comprehensive set of data, understandable to everyone, and a very rich information background.
+
 
 ### Transparent Machine Learning
 
+While working in Machine Learning and creating Artificial Intelligence one can often encounter an issue called the Black Box problem. It occurs when a model is complex, unexplainable and not transparent. Explainability solves this problem by “unpacking the Black Box” which is essential in building trust in the model. 
+That is why we want to create an explainable model which could be useful to every person which doesn't need any additional medical information and easy to understand and requires only data that everyone has access to. To create the model we use random forest from [@5-3-ranger] package constructing a multitude of decision trees which are one of the most transparent and easy to explain models, even for people not familiar with machine learning concepts. We used explainers from [@5-3-DALEX], package for eXplainable Machine Learning, to create visualizations, that allow user to understand where the results come from and because of that, they are more transparent and clear.
+
 ### Data
+
+The data set used in the application is the same one that was used in the article [@5-3-mexican_et_al] and it is an open source data published by General Directorate of Epidemiology in Mexico.
+It consists of 150,000 records from Mexican hospitals, of which over 50,000 are patients with confirmed coronavirus. The most important data for the project were information on chronic diseases, age and date of death.
 
 ### Application
 
+In order to achieve our goal we created an easy application, in which one can choose his or hers chronic diseases, sex, age and it calculates the COVID-19 mortality risk for particular infected person. Additionally, in the bookmarks there are presented plots about the model. The first one is a Break Down plot which shows how the contributions attributed to individual explanatory variables change the mean models prediction. Despite printing out the risk it also enables its user an easy option to understand the outcome. Another one is Ceteris Paribus profile which examines the influence of an explanatory variable (which is Age in this case) by assuming that the values of all other variables do not change. This visualization is very useful for doctors to properly distinguish a higher risk groups. The last one is a SHAP plot, it calculates the importance of a feature by comparing what a model predicts with and without the feature.
+![Mortality Breakdown profile](5-3-mortalBreakdown.png)
+
+![Mortality Ceteris Paribus profile](5-3-mortalParibus.png)
+
+![Mortality SHAP profile](5-3-mortalSHAP.png)
+
 ### Conclusions
 
-### References
+Thanks to our research, people may have easier access to transparent and explainable model that estimates mortality risk in case of being infected by COVID-19. Our application allows people to see which diseases are contributing the most to the outcome, without the need of doctor's examination, such as any blood properties and other information, that can only be gathered by a specialist are not necessary. Only by selecting diseases that one suffers from, reliable prediction can be obtained quickly and without leaving home.
