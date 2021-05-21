@@ -4,11 +4,11 @@
 
 ### Abstract
 
-Wine is, on the one hand, an important element of the culture of a large part of the world, but on the other, in its own way, a mysterious drink whose quality assessment remains a mystery to the absolute majority of people. Although there are many varieties of this drink, it is not really known what causes the advantage of some wines over others. In this paper, we have looked at this issue by a fresh look at the Red Wine Quality from Kaggle comunity dataset ^1^. Much to our initial surprise, despite the fact that a dozen or so chemical factors were taken into account, there is one that strongly goes through the series and seems to be the main predictor of the drink's assessment by experts - it is alcohol. The study used four black box models interpreted through modern methods of explainable artificial intelligence.
+Wine is, on the one hand, an important element of the culture of a large part of the world, but on the other, in its own way, a mysterious drink whose quality assessment remains a mystery to the absolute majority of people. Although there are many varieties of this drink, it is not really known what causes the advantage of some wines over others. In this paper, we have looked at this issue by a fresh look at the Red Wine Quality from Kaggle comunity dataset^1^. Much to our initial surprise, despite the fact that a dozen or so chemical factors were taken into account, there is one that strongly goes through the series and seems to be the main predictor of the drink's assessment by experts - it is alcohol. The study used four black box models interpreted through modern methods of explainable artificial intelligence.
 
 ### Introduction and Motivation
 
-Interpretation of the glass boxs models is by definition simple. The case is completely different in the case of the black box models. There are many projects on the Internet that look at Red Wine Quality dataset from both perspectives, but it is different when it comes to using and interpreting these more advanced methods. The idea of this chapter is to compile XAI solutions in terms of the analysis of the above-mentioned valuable dataset, together with the confrontation with the previous research on the quality of red wine.
+Interpretation of the glass boxs models is by definition simple. The case is completely different in the case of the black box models. There are many projects on the Internet that look at Red Wine Quality dataset^1^ from both perspectives, but it is different when it comes to using and interpreting these more advanced methods. The idea of this chapter is to compile XAI solutions in terms of the analysis of the above-mentioned valuable dataset, together with the confrontation with the previous research on the quality of red wine.
 
 ### Methodology
 
@@ -30,13 +30,25 @@ The original collection contains 1 600 observations, each representing one portu
 
 The decision variable was originally *quality* - the average rating of experts who made their classification on a scale from 0 to 10. Due to the capabilities of the analyzed XAI tools, our team decided to make it shallow to the binary dimension - transforming the wines of rating <= 5 to 0, while the others - to 1. Thie division resulted in a simple intuition of "bad / good" wine, which resulted in 855 "good" wines and 744 "bad" wines.
 
-![](images/1-4-targetCounts.png)
+![](images/1-4-01targetCounts.png)
 
 #### Machine learning algorithms used
 
-In order to look at the nature of this data, four well-known algorithms have been trained
+In order to look at the nature of this data, four well-known algorithms have been trained from data divided into: 1199 observations for the training set and 400 for the test set.
 
-TODO: opisz je
+1. **XGBoost** (*gbm*) - powerful modern method based on *AdaBoost*^2^ and gradient boosting, imported from *xgboost* package^3^, with tuned hyperparameters using the randomized search method from *sklearn* package^4^, with the best values obtained: *min_child_weight* - 1, *max_depth* - 12, *learning_rate* - 0.05, *gamma* - 0.2 and *colsample_bytree* - 0.7
+
+2. **Support Vector Machine** (*svm*) - algorithm, in which we plot each data item as a point in n-dimensional space (where n is number of features you have) with the value of each feature being the value of a particular coordinate. Then, we perform classification by finding the hyper-plane that differentiates the two classes very well; imported from *sklearn* package^5^, with tuned hyperparameters using the grid search method from *sklearn* package^6^, with the best values obteined: *C* - 10000, *gamma* - 0.0001 and *kernel* - rbf
+
+3. **Random Forest** (*rfm*) - method building multiple decision trees^7^ and merges them together to get a more accurate and stable prediction; imported from *sklearn* package^8^, with tuned hyperparameters using the randomized search method from *sklearn* package^4^, with the best values obtained: *n_estimators* - 2000, *min_samples_split* - 2, *min_samples_leaf* - 2, *max_features* - auto, *max_depth* - 100 and *bootstrap* - True
+
+4. **Gradient Boosting** (*xgm*) - a type of machine learning boosting. It relies on the intuition that the best possible next model, when combined with previous models, minimizes the overall prediction error; imported from *sklearn* package^9^, with tuned hyperparameters using the grid search method from *sklearn* package^6^, with the best values obteined: *learning_rate* - 0.1, *max_depth* - 7 and *n_estimators* - 50
+
+All solutions have been implemented in Python with random states set to 42. The choice of these solutions was made on the basis of their popularity, diversity and practicality, taking into account the essence of the problem under consideration.
+
+After checking the operation of the models on the test set, the following quality measures were obtained:
+
+![](images/1-4-02ModelsMeasures.png)
 
 ### Results
 
@@ -44,9 +56,37 @@ TODO: po podrozdziale na każdą metodę; po kilka wykresów i parę-kilkanaści
 
 ### Summary
 
+TODO: hurra im wino mocniejsze tym lepsze, ale nie do konca
+
 ### Conclusions
+
+TODO: yay XAI jest super, czarne skrzynki można tlumaczyc, dokonalismy przelomu
 
 ### References
 
 *^1^Red Wine Quality dataset: simple and clean practice dataset for regression or classification modelling*
 https://www.kaggle.com/uciml/red-wine-quality-cortez-et-al-2009
+
+*^2^AdaBoost: AdaBoost, short for Adaptive Boosting, is a statistical classification meta-algorithm formulated by Yoav Freund and Robert Schapire, who won the 2003 Gödel Prize for their work*
+https://en.wikipedia.org/wiki/AdaBoost
+
+*^3^XGBoost Python package*
+https://xgboost.readthedocs.io/en/latest/python/index.html
+
+*^4^RandomizedSearchCV from sklearn*
+https://scikit-learn.org/stable/modules/generated/sklearn.model_selection.RandomizedSearchCV.html
+
+*^5^Support Vector Machine from sklearn*
+https://scikit-learn.org/stable/modules/svm.html
+
+*^6^GridSearchCV from sklearn*
+https://scikit-learn.org/stable/modules/generated/sklearn.model_selection.GridSearchCV.html
+
+*^7^Decision tree: a flowchart-like structure in which each internal node represents a "test" on an attribute (e.g. whether a coin flip comes up heads or tails), each branch represents the outcome of the test, and each leaf node represents a class label (decision taken after computing all attributes)*
+https://en.wikipedia.org/wiki/Decision_tree
+
+*^8^Random Forest classifier from sklearn*
+https://scikit-learn.org/stable/modules/generated/sklearn.ensemble.RandomForestClassifier.html
+
+*^9^Gradient Boosting classifier from sklearn*
+https://scikit-learn.org/stable/modules/generated/sklearn.ensemble.GradientBoostingClassifier.html

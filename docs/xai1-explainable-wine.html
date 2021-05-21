@@ -274,11 +274,11 @@ div.csl-indent {
 <p><em>Authors: Jakub Kosterna, Bartosz Siński, Jan Smoleń (Warsaw University of Technology)</em></p>
 <div id="abstract-1" class="section level3" number="1.4.1">
 <h3><span class="header-section-number">1.4.1</span> Abstract</h3>
-<p>Wine is, on the one hand, an important element of the culture of a large part of the world, but on the other, in its own way, a mysterious drink whose quality assessment remains a mystery to the absolute majority of people. Although there are many varieties of this drink, it is not really known what causes the advantage of some wines over others. In this paper, we have looked at this issue by a fresh look at the Red Wine Quality from Kaggle comunity dataset <sup>1</sup>. Much to our initial surprise, despite the fact that a dozen or so chemical factors were taken into account, there is one that strongly goes through the series and seems to be the main predictor of the drink’s assessment by experts - it is alcohol. The study used four black box models interpreted through modern methods of explainable artificial intelligence.</p>
+<p>Wine is, on the one hand, an important element of the culture of a large part of the world, but on the other, in its own way, a mysterious drink whose quality assessment remains a mystery to the absolute majority of people. Although there are many varieties of this drink, it is not really known what causes the advantage of some wines over others. In this paper, we have looked at this issue by a fresh look at the Red Wine Quality from Kaggle comunity dataset<sup>1</sup>. Much to our initial surprise, despite the fact that a dozen or so chemical factors were taken into account, there is one that strongly goes through the series and seems to be the main predictor of the drink’s assessment by experts - it is alcohol. The study used four black box models interpreted through modern methods of explainable artificial intelligence.</p>
 </div>
 <div id="introduction-and-motivation" class="section level3" number="1.4.2">
 <h3><span class="header-section-number">1.4.2</span> Introduction and Motivation</h3>
-<p>Interpretation of the glass boxs models is by definition simple. The case is completely different in the case of the black box models. There are many projects on the Internet that look at Red Wine Quality dataset from both perspectives, but it is different when it comes to using and interpreting these more advanced methods. The idea of this chapter is to compile XAI solutions in terms of the analysis of the above-mentioned valuable dataset, together with the confrontation with the previous research on the quality of red wine.</p>
+<p>Interpretation of the glass boxs models is by definition simple. The case is completely different in the case of the black box models. There are many projects on the Internet that look at Red Wine Quality dataset<sup>1</sup> from both perspectives, but it is different when it comes to using and interpreting these more advanced methods. The idea of this chapter is to compile XAI solutions in terms of the analysis of the above-mentioned valuable dataset, together with the confrontation with the previous research on the quality of red wine.</p>
 </div>
 <div id="methodology-1" class="section level3" number="1.4.3">
 <h3><span class="header-section-number">1.4.3</span> Methodology</h3>
@@ -299,12 +299,20 @@ div.csl-indent {
 <li><em>alcohol</em> - the percent alcohol content of the wine</li>
 </ul>
 <p>The decision variable was originally <em>quality</em> - the average rating of experts who made their classification on a scale from 0 to 10. Due to the capabilities of the analyzed XAI tools, our team decided to make it shallow to the binary dimension - transforming the wines of rating &lt;= 5 to 0, while the others - to 1. Thie division resulted in a simple intuition of “bad / good” wine, which resulted in 855 “good” wines and 744 “bad” wines.</p>
-<p><img src="images/1-4-targetCounts.png" /></p>
+<p><img src="images/1-4-01targetCounts.png" /></p>
 </div>
 <div id="machine-learning-algorithms-used" class="section level4" number="1.4.3.2">
 <h4><span class="header-section-number">1.4.3.2</span> Machine learning algorithms used</h4>
-<p>In order to look at the nature of this data, four well-known algorithms have been trained</p>
-<p>TODO: opisz je</p>
+<p>In order to look at the nature of this data, four well-known algorithms have been trained from data divided into: 1199 observations for the training set and 400 for the test set.</p>
+<ol style="list-style-type: decimal">
+<li><p><strong>XGBoost</strong> (<em>gbm</em>) - powerful modern method based on <em>AdaBoost</em><sup>2</sup> and gradient boosting, imported from <em>xgboost</em> package<sup>3</sup>, with tuned hyperparameters using the randomized search method from <em>sklearn</em> package<sup>4</sup>, with the best values obtained: <em>min_child_weight</em> - 1, <em>max_depth</em> - 12, <em>learning_rate</em> - 0.05, <em>gamma</em> - 0.2 and <em>colsample_bytree</em> - 0.7</p></li>
+<li><p><strong>Support Vector Machine</strong> (<em>svm</em>) - algorithm, in which we plot each data item as a point in n-dimensional space (where n is number of features you have) with the value of each feature being the value of a particular coordinate. Then, we perform classification by finding the hyper-plane that differentiates the two classes very well; imported from <em>sklearn</em> package<sup>5</sup>, with tuned hyperparameters using the grid search method from <em>sklearn</em> package<sup>6</sup>, with the best values obteined: <em>C</em> - 10000, <em>gamma</em> - 0.0001 and <em>kernel</em> - rbf</p></li>
+<li><p><strong>Random Forest</strong> (<em>rfm</em>) - method building multiple decision trees<sup>7</sup> and merges them together to get a more accurate and stable prediction; imported from <em>sklearn</em> package<sup>8</sup>, with tuned hyperparameters using the randomized search method from <em>sklearn</em> package<sup>4</sup>, with the best values obtained: <em>n_estimators</em> - 2000, <em>min_samples_split</em> - 2, <em>min_samples_leaf</em> - 2, <em>max_features</em> - auto, <em>max_depth</em> - 100 and <em>bootstrap</em> - True</p></li>
+<li><p><strong>Gradient Boosting</strong> (<em>xgm</em>) - a type of machine learning boosting. It relies on the intuition that the best possible next model, when combined with previous models, minimizes the overall prediction error; imported from <em>sklearn</em> package<sup>9</sup>, with tuned hyperparameters using the grid search method from <em>sklearn</em> package<sup>6</sup>, with the best values obteined: <em>learning_rate</em> - 0.1, <em>max_depth</em> - 7 and <em>n_estimators</em> - 50</p></li>
+</ol>
+<p>All solutions have been implemented in Python with random states set to 42. The choice of these solutions was made on the basis of their popularity, diversity and practicality, taking into account the essence of the problem under consideration.</p>
+<p>After checking the operation of the models on the test set, the following quality measures were obtained:</p>
+<p><img src="images/1-4-02modelsMeasures.png" /></p>
 </div>
 </div>
 <div id="results-1" class="section level3" number="1.4.4">
@@ -321,6 +329,22 @@ div.csl-indent {
 <h3><span class="header-section-number">1.4.7</span> References</h3>
 <p><em><sup>1</sup>Red Wine Quality dataset: simple and clean practice dataset for regression or classification modelling</em>
 <a href="https://www.kaggle.com/uciml/red-wine-quality-cortez-et-al-2009" class="uri">https://www.kaggle.com/uciml/red-wine-quality-cortez-et-al-2009</a></p>
+<p><em><sup>2</sup>AdaBoost: AdaBoost, short for Adaptive Boosting, is a statistical classification meta-algorithm formulated by Yoav Freund and Robert Schapire, who won the 2003 Gödel Prize for their work</em>
+<a href="https://en.wikipedia.org/wiki/AdaBoost" class="uri">https://en.wikipedia.org/wiki/AdaBoost</a></p>
+<p><em><sup>3</sup>XGBoost Python package</em></p>
+<p><a href="https://xgboost.readthedocs.io/en/latest/python/index.html" class="uri">https://xgboost.readthedocs.io/en/latest/python/index.html</a></p>
+<p><em><sup>4</sup>RandomizedSearchCV from sklearn</em>
+<a href="https://scikit-learn.org/stable/modules/generated/sklearn.model_selection.RandomizedSearchCV.html" class="uri">https://scikit-learn.org/stable/modules/generated/sklearn.model_selection.RandomizedSearchCV.html</a></p>
+<p><em><sup>5</sup>Support Vector Machine from sklearn</em>
+<a href="https://scikit-learn.org/stable/modules/svm.html" class="uri">https://scikit-learn.org/stable/modules/svm.html</a></p>
+<p><em><sup>6</sup>GridSearchCV from sklearn</em>
+<a href="https://scikit-learn.org/stable/modules/generated/sklearn.model_selection.GridSearchCV.html" class="uri">https://scikit-learn.org/stable/modules/generated/sklearn.model_selection.GridSearchCV.html</a></p>
+<p><em><sup>7</sup>Decision tree: a flowchart-like structure in which each internal node represents a “test” on an attribute (e.g. whether a coin flip comes up heads or tails), each branch represents the outcome of the test, and each leaf node represents a class label (decision taken after computing all attributes)</em>
+<a href="https://en.wikipedia.org/wiki/Decision_tree" class="uri">https://en.wikipedia.org/wiki/Decision_tree</a></p>
+<p><em><sup>8</sup>Random Forest classifier from sklearn</em>
+<a href="https://scikit-learn.org/stable/modules/generated/sklearn.ensemble.RandomForestClassifier.html" class="uri">https://scikit-learn.org/stable/modules/generated/sklearn.ensemble.RandomForestClassifier.html</a></p>
+<p><em><sup>9</sup>Gradient Boosting classifier from sklearn</em>
+<a href="https://scikit-learn.org/stable/modules/generated/sklearn.ensemble.GradientBoostingClassifier.html" class="uri">https://scikit-learn.org/stable/modules/generated/sklearn.ensemble.GradientBoostingClassifier.html</a></p>
 
 </div>
 </div>
