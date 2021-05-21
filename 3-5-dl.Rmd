@@ -1,0 +1,5 @@
+## COVID-Net
+
+*Authors: Jakub Kozieł, Tomek Nocoń, Kacper Staroń*
+
+### Introduction

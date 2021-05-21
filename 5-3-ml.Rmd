@@ -107,3 +107,4 @@ In order to achieve our goal we created an easy application, in which one can ch
 ### Conclusions
 
 Thanks to our research, people may have easier access to transparent and explainable model that estimates mortality risk in case of being infected by COVID-19. Our application allows people to see which diseases are contributing the most to the outcome, without the need of doctor's examination, such as any blood properties and other information, that can only be gathered by a specialist are not necessary. Only by selecting diseases that one suffers from, reliable prediction can be obtained quickly and without leaving home.
+
