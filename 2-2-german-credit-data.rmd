@@ -115,3 +115,7 @@ knitr::include_graphics('2-2-feature_importance.png')
 ```
 
 ### Summary and conclusions
+
+Applying XAI methods to our black-box model helped understand it, turning it, even if by a minimal margin, into more of a glass-box model. We found the most important features (that is checking status, duration, credit amount and age) and the rules governing their influence on predictions. We also confirmed the validity of a "common sense" intuition, e.g. the probability of being a "good" borrower being lower for very young and very old people. This allows us not only to validate the performance of our model, but also to better understand the rules governing this dataset. 
+
+We can confidently say, that the main aim of our work has been achieved. The model has been explained and various explanations remained stable between methods used. Assuming our methodology was correct, it would mean that it is an adequate explanation that works not only within the model, but also within the data. With real-life data this can approach could prove useful in finding dependencies and interactions with phenomena, one would not connect with machine learning on first instinct. However, this would require greater research, far exceeding scope of this article.  
