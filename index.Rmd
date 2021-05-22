@@ -1,6 +1,6 @@
 --- 
 title: "Case Studies"
-author: ""
+author: "Faculty of Mathematics and Information Science, Warsaw University of Technology"
 date: "`r Sys.Date()`"
 site: bookdown::bookdown_site
 documentclass: krantz
@@ -14,6 +14,7 @@ lof: False
 description: "Case studies in machine learning."
 graphics: yes
 cover-image: images/cover.png
+github-repo: mini-pw/2020L-WB-Book
 ---
 
 
