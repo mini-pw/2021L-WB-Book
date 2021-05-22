@@ -272,10 +272,10 @@ The two architectures appear to be similar with regards to their effectiveness, 
 <div id="introduction-11" class="section level3" number="5.4.2">
 <h3><span class="header-section-number">5.4.2</span> Introduction</h3>
 <p>In 2020 many papers presenting models aimed to predict the course of COVID-19 in patients emerged <span class="citation">(<a href="#ref-5-4-ma-ng-xu" role="doc-biblioref">Ma et al. 2020</a>; <a href="#ref-5-4-yan-et-al" role="doc-biblioref">Yan et al. 2020d</a>; <a href="#ref-5-4-zheng-zhu" role="doc-biblioref">Zheng et al. 2020</a>)</span>. Article we are referring to <span class="citation">(<a href="#ref-5-4-li-et-al" role="doc-biblioref">Li et al. 2020</a>)</span> differed from the majority with the use of neural networks.</p>
-<p>In the past there were many attempts to compare effectiveness of artificial neural networks and tree-based models at various tasks using different types of data including tabular data <span class="citation"><a href="#ref-arsad_buniyamin_manan_2013" role="doc-biblioref">Arsad et al.</a> (<a href="#ref-arsad_buniyamin_manan_2013" role="doc-biblioref">2013</a>)</span> and tasks connected to hospital patients outcomes <span class="citation">(<a href="#ref-wang_li_hu_zhu_2009" role="doc-biblioref">J. Wang et al. 2009</a>)</span>.
-There were analyses showing superiority of forests over simple neural networks on small (up to 1000 records) tabular datasets <span class="citation">(<a href="#ref-klambauer_2017_selfnormalizing" role="doc-biblioref">Klambauer et al. 2017</a>)</span>. Data used by the referred article’s authors consisted of 1020 or 1106 observations depending on the researched problem.</p>
-<p>Authors note the importance of explainability of clinical models <span class="citation">(<a href="#ref-pmlr_tonekaboni19a" role="doc-biblioref">Tonekaboni et al. 2019</a>)</span> due to the need of establishing clinician’s trust to successfully deploy a model. There are tools for explaining tree-based models <span class="citation">(<a href="#ref-EMA" role="doc-biblioref">Biecek and Burzykowski 2021</a>; <a href="#ref-chen_guestrin_2016" role="doc-biblioref">Chen and Guestrin 2016</a>)</span> and some of methods are not available for neural networks. Tools to calculate SHAP values for forest models were developed, while general algorithm to compute them exactly in a reasonable complexity for deep learning models, only approximations can be made <span class="citation">(<a href="#ref-lundberg_2019_consistent" role="doc-biblioref">Lundberg et al. 2019</a>)</span>. Explaining neural networks with SHAP values is an important issue in the field <span class="citation">(<a href="#ref-wang_2021_shapley" role="doc-biblioref">R. Wang et al. 2021</a>)</span>.</p>
-<p>The referred article does not provide a source code for the replication of the results. Taking care about the reproducibility is considered a major problem in the academic society <span class="citation">(<a href="#ref-wb_2020" role="doc-biblioref">Technology 2020</a>)</span>.</p>
+<p>In the past there were many attempts to compare effectiveness of artificial neural networks and tree-based models at various tasks using different types of data including tabular data <span class="citation">(<a href="#ref-5-4-ahmad-mourshed" role="doc-biblioref">Ahmad et al. 2017</a>; <a href="#ref-5-4-arsad-buniyamin" role="doc-biblioref">Arsad et al. 2013</a>)</span> and tasks connected to hospital patients outcomes <span class="citation">(<a href="#ref-5-4-wang-li" role="doc-biblioref">J. Wang et al. 2009</a>)</span>.
+There were analyses showing superiority of forests over simple neural networks on small (up to 1000 records) tabular datasets <span class="citation">(<a href="#ref-5-4-klambauer-normalizing" role="doc-biblioref">Klambauer et al. 2017</a>)</span>. Data used by the referred article’s authors consisted of 1020 or 1106 observations depending on the researched problem.</p>
+<p>Authors note the importance of explainability of clinical models <span class="citation">(<a href="#ref-5-4-tonekaboni19a" role="doc-biblioref">Tonekaboni et al. 2019</a>)</span> due to the need of establishing clinician’s trust to successfully deploy a model. There are tools for explaining tree-based models <span class="citation">(<a href="#ref-EMA" role="doc-biblioref">Biecek and Burzykowski 2021</a>; <a href="#ref-5-4-chen-guestrin" role="doc-biblioref">Chen and Guestrin 2016</a>)</span> and some of methods are not available for neural networks. Tools to calculate SHAP values for forest models were developed, while general algorithm to compute them exactly in a reasonable complexity for deep learning models, only approximations can be made <span class="citation">(<a href="#ref-5-4-lundberg-consistent" role="doc-biblioref">Lundberg et al. 2019</a>)</span>. Explaining neural networks with SHAP values is an important issue in the field <span class="citation">(<a href="#ref-5-4-wang-shapley" role="doc-biblioref">R. Wang et al. 2021</a>)</span>.</p>
+<p>The referred article does not provide a source code for the replication of the results. Taking care about the reproducibility is considered a major problem in the academic society <span class="citation">(<a href="#ref-wb_2020" role="doc-biblioref">WUoT 2020</a>)</span>.</p>
 <p>Motivated by the preceding we aim to contribute to the work started by the authors of the referred article. At first, we try to replicate models. Then we propose different network architectures and XGBoost models. Finally, we compare the effectiveness of all the models at the prediction tasks and their explanations based on the SHAP values.</p>
 </div>
 <div id="methods-1" class="section level3" number="5.4.3">
@@ -292,7 +292,7 @@ All models were trained and tested on data provided in the article <span class="
 Feature selection was performed as described in the article.
 Data was split 0.1 test set size and 0.9 train set size.
 To reduce overfitting, an internal 0.2 validation set size was used.</p>
-<p>Effectiveness of those models were compared using receiver operating characteristic area under curve (ROC AUC) metric. <span class="citation">(<a href="#ref-hanley_2014" role="doc-biblioref">Hanley 2014</a>)</span>
+<p>Effectiveness of those models were compared using receiver operating characteristic area under curve (ROC AUC) metric <span class="citation">(<a href="#ref-5-4-hanley" role="doc-biblioref">Hanley 2014</a>)</span>.
 ROC AUC values were calculated using the test data held out from training.
 Neural network models were trained 25 times each to compare stability.</p>
 <p>SHAP values were calculated for the xgboost models using r <code>treeshap</code> library <span class="citation">(<a href="#ref-5-4-treeshap" role="doc-biblioref">Komisarczyk, Konrad and Maksymiuk, Szymon and Koźmiński, Paweł and Biecek, Przemysław 2020</a>)</span>.
@@ -363,20 +363,23 @@ In conclusion, we have shown the importance of providing reproducible code, as w
 <!-- </div> -->
 <h3>References</h3>
 <div id="refs" class="references csl-bib-body hanging-indent" line-spacing="2">
-<div id="ref-arsad_buniyamin_manan_2013" class="csl-entry">
-Arsad, P. M., Buniyamin, N., &amp; Manan, J. A. (2013). Prediction of engineering students’ academic performance using artificial neural network and linear regression: A comparison. <em>2013 IEEE 5th Conference on Engineering Education (ICEED)</em>. <a href="https://doi.org/10.1109/iceed.2013.6908300">https://doi.org/10.1109/iceed.2013.6908300</a>
+<div id="ref-5-4-ahmad-mourshed" class="csl-entry">
+Ahmad, M. W., Mourshed, M., &amp; Rezgui, Y. (2017). <span class="nocase">Trees vs Neurons: Comparison between random forest and ANN for high-resolution prediction of building energy consumption</span>. <em>Energy and Buildings</em>, <em>147</em>, 77--89. <a href="https://doi.org/10.1016/j.enbuild.2017.04.038">https://doi.org/10.1016/j.enbuild.2017.04.038</a>
+</div>
+<div id="ref-5-4-arsad-buniyamin" class="csl-entry">
+Arsad, P. M., Buniyamin, N., &amp; Manan, J. A. (2013). <span class="nocase">Prediction of engineering students’ academic performance using Artificial Neural Network and Linear Regression: A comparison</span>. <em>ICEED</em>. <a href="https://doi.org/10.1109/iceed.2013.6908300">https://doi.org/10.1109/iceed.2013.6908300</a>
 </div>
 <div id="ref-EMA" class="csl-entry">
 Biecek, P., &amp; Burzykowski, T. (2021). <em><span>Explanatory Model Analysis</span></em>. Chapman; Hall/CRC, New York. <a href="https://pbiecek.github.io/ema/">https://pbiecek.github.io/ema/</a>
 </div>
-<div id="ref-chen_guestrin_2016" class="csl-entry">
-Chen, T., &amp; Guestrin, C. (2016). XGBoost. <em>Proceedings of the 22nd ACM SIGKDD International Conference on Knowledge Discovery and Data Mining</em>. <a href="https://doi.org/10.1145/2939672.2939785">https://doi.org/10.1145/2939672.2939785</a>
+<div id="ref-5-4-chen-guestrin" class="csl-entry">
+Chen, T., &amp; Guestrin, C. (2016). <span>XGBoost: A Scalable Tree Boosting System</span>. <em>KDD</em>. https://doi.org/<a href="https://doi.org/10.1145/2939672.2939785">https://doi.org/10.1145/2939672.2939785</a>
 </div>
-<div id="ref-hanley_2014" class="csl-entry">
-Hanley, J. A. (2014). Receiver operating characteristic (ROC) curves. <em>Wiley StatsRef: Statistics Reference Online</em>. <a href="https://doi.org/10.1002/9781118445112.stat05255">https://doi.org/10.1002/9781118445112.stat05255</a>
+<div id="ref-5-4-hanley" class="csl-entry">
+Hanley, J. A. (2014). <span>Receiver Operating Characteristic (ROC) Curves</span>. <em>Wiley StatsRef: Statistics Reference Online</em>. <a href="https://doi.org/10.1002/9781118445112.stat05255">https://doi.org/10.1002/9781118445112.stat05255</a>
 </div>
-<div id="ref-klambauer_2017_selfnormalizing" class="csl-entry">
-Klambauer, G., Unterthiner, T., Mayr, A., &amp; Hochreiter, S. (2017). Self-normalizing neural networks. <a href="https://arxiv.org/abs/1706.02515">https://arxiv.org/abs/1706.02515</a>
+<div id="ref-5-4-klambauer-normalizing" class="csl-entry">
+Klambauer, G., Unterthiner, T., Mayr, A., &amp; Hochreiter, S. (2017). <span>Self-Normalizing Neural Networks</span>. <em>arXiv:1706.02515</em>. <a href="https://arxiv.org/abs/1706.02515">https://arxiv.org/abs/1706.02515</a>
 </div>
 <div id="ref-5-4-treeshap" class="csl-entry">
 Komisarczyk, Konrad and Maksymiuk, Szymon and Koźmiński, Paweł and Biecek, Przemysław. (2020). <span class="nocase">treeshap: Fast SHAP values computation for ensemble models</span>. <a href="https://github.com/ModelOriented/treeshap">https://github.com/ModelOriented/treeshap</a>
@@ -384,23 +387,23 @@ Komisarczyk, Konrad and Maksymiuk, Szymon and Koźmiński, Paweł and Biecek, Pr
 <div id="ref-5-4-li-et-al" class="csl-entry">
 Li, X., Ge, P., Zhu, J., Li, H., Graham, J., Singer, A., et al. (2020). <span class="nocase">Deep learning prediction of likelihood of ICU admission and mortality in COVID-19 patients using clinical variables</span>. <em>PeerJ</em>, <em>8</em>. <a href="https://peerj.com/articles/10337/">https://peerj.com/articles/10337/</a>
 </div>
-<div id="ref-lundberg_2019_consistent" class="csl-entry">
-Lundberg, S. M., Erion, G. G., &amp; Lee, S.-I. (2019). Consistent individualized feature attribution for tree ensembles. <a href="https://arxiv.org/abs/1802.03888">https://arxiv.org/abs/1802.03888</a>
+<div id="ref-5-4-lundberg-consistent" class="csl-entry">
+Lundberg, S. M., Erion, G. G., &amp; Lee, S.-I. (2019). <span class="nocase">Consistent Individualized Feature Attribution for Tree Ensembles</span>. <em>ICML Workshop</em>. <a href="https://arxiv.org/abs/1802.03888">https://arxiv.org/abs/1802.03888</a>
 </div>
 <div id="ref-5-4-ma-ng-xu" class="csl-entry">
 Ma, X., Ng, M., Xu, S., Xu, Z., Qiu, H., Liu, Y., et al. (2020). <span class="nocase">Development and validation of prognosis model of mortality risk in patients with COVID-19</span>. <em>Epidemiology and Infection</em>, <em>148</em>. <a href="http://doi.org/10.1017/S0950268820001727">http://doi.org/10.1017/S0950268820001727</a>
 </div>
+<div id="ref-5-4-tonekaboni19a" class="csl-entry">
+Tonekaboni, S., Joshi, S., McCradden, M. D., &amp; Goldenberg, A. (2019). <span class="nocase">What Clinicians Want: Contextualizing Explainable Machine Learning for Clinical End Use</span>. <em>Machine Learning for Healthcare</em>. <a href="http://proceedings.mlr.press/v106/tonekaboni19a.html">http://proceedings.mlr.press/v106/tonekaboni19a.html</a>
+</div>
+<div id="ref-5-4-wang-li" class="csl-entry">
+Wang, J., Li, M., Hu, Y., &amp; Zhu, Y. (2009). <span class="nocase">Comparison of hospital charge prediction models for gastric cancer patients: neural network vs. decision tree models</span>. <em>BMC Health Services Research</em>, <em>9</em>(1). <a href="https://doi.org/10.1186/1472-6963-9-161">https://doi.org/10.1186/1472-6963-9-161</a>
+</div>
+<div id="ref-5-4-wang-shapley" class="csl-entry">
+Wang, R., Wang, X., &amp; Inouye, D. I. (2021). <span>Shapley Explanation Networks</span>. <em>ICLR</em>. <a href="https://openreview.net/forum?id=vsU0efpivw">https://openreview.net/forum?id=vsU0efpivw</a>
+</div>
 <div id="ref-wb_2020" class="csl-entry">
-Technology, W. U. of. (2020). ML case studies: Reproducibility of scientific papers. <a href="https://mini-pw.github.io/2020L-WB-Book/reproducibility.html">https://mini-pw.github.io/2020L-WB-Book/reproducibility.html</a>
-</div>
-<div id="ref-pmlr_tonekaboni19a" class="csl-entry">
-Tonekaboni, S., Joshi, S., McCradden, M. D., &amp; Goldenberg, A. (2019). What clinicians want: Contextualizing explainable machine learning for clinical end use. (F. Doshi-Velez, J. Fackler, K. Jung, D. Kale, R. Ranganath, B. Wallace, &amp; J. Wiens, Eds.). Ann Arbor, Michigan: PMLR. <a href="http://proceedings.mlr.press/v106/tonekaboni19a.html">http://proceedings.mlr.press/v106/tonekaboni19a.html</a>
-</div>
-<div id="ref-wang_li_hu_zhu_2009" class="csl-entry">
-Wang, J., Li, M., Hu, Y., &amp; Zhu, Y. (2009). Comparison of hospital charge prediction models for gastric cancer patients: Neural network vs. Decision tree models. <em>BMC Health Services Research</em>, <em>9</em>(1). <a href="https://doi.org/10.1186/1472-6963-9-161">https://doi.org/10.1186/1472-6963-9-161</a>
-</div>
-<div id="ref-wang_2021_shapley" class="csl-entry">
-Wang, R., Wang, X., &amp; Inouye, D. I. (2021). Shapley explanation networks. In <em>International conference on learning representations</em>. <a href="https://openreview.net/forum?id=vsU0efpivw">https://openreview.net/forum?id=vsU0efpivw</a>
+WUoT. (2020). ML case studies: Reproducibility of scientific papers. <a href="https://mini-pw.github.io/2020L-WB-Book/reproducibility.html">https://mini-pw.github.io/2020L-WB-Book/reproducibility.html</a>
 </div>
 <div id="ref-5-4-yan-et-al" class="csl-entry">
 Yan, L., Zhang, H.-T., Goncalves, J., Xiao, Y., Wang, M., Guo, Y., et al. (2020d). <span class="nocase">An interpretable mortality prediction model for COVID-19 patients</span>. <em>Nature Machine Intelligence</em>, <em>2</em>(5), 283--288. <a href="https://www.nature.com/articles/s42256-020-0180-7">https://www.nature.com/articles/s42256-020-0180-7</a>
