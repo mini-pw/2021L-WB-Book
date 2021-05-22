@@ -4,6 +4,15 @@
 
 ### Introduction
 
+In 1980s first ever PC was introduced to the public. Since then, rapid technological progress in computer-science lead to enormous demand for implementing and developing previously theoretical studies to suit capable of remembering and performing extensive calculations machines. By combining academic effort with pragmatical, engineer approach, humanity succeeded in building complex infrastructure that is able to solve pretty much any problem we have ever faced.
+
+We found ourselves in the point, where machine-learning algorithms make sensitive and in many cases opinion-based decisions, based on numerical and statistical analysis. It may seem harmless on the first glance, but do we really "trust" these models when it comes to predicting lung cancer? Or granting us a credit? In many cases, we do not and we should not.
+
+This is where XAI or Explainable Artificial Intelligence kicks in. It is a branch of AI, which results can be clearly understand and interpreted by experts in a given field (in order to e.g. comply with regulations or improve model user experience). XAI, using multiple complementary tools, turns black-box (meaning, very hard to interpret and understand even by specialist) ML models into white-box predictable solutions. Why is it important? Mainly for two reasons. First one is, we feel safer knowing what is going under the hood. We can't simply "believe" outputted answer without digging into specifics on what grounds it was constructed. It gives us sense of security and provides a way of detecting possible miscalculations. Second reason is, these models, due to their mathematical construction (often minimizing value of loss function) in many cases proved to tend towards biases. 
+This cannot be accepted while building systems supporting banks or hospitals. 
+
+In the article below, we are facing the problem of creating explainable classifier for German bank credit score. We will build black-box model and then employ XAI methods in order for us to understand which features and statistics tend to outbalance model's decision towards good/bad borrower classification.
+
 ### Dataset and models
 
 During entire analysis, we'll be operating on publicly available data set containing information about German borrowers. Input was processed/collected by Professor Dr. Hans Hofmann from [University of Hamburg](https://www.uni-hamburg.de/en.html) and is available [here](https://archive.ics.uci.edu/ml/datasets/statlog+(german+credit+data)).
