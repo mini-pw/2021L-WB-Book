@@ -3,7 +3,7 @@
 *Authors: Marcelina Kurek, Mateusz Stączek, Jakub Wiśniewski, Hanna Zdulska*
  
 ### Abstract
-During the outbreak of SARS-CoV-2 many scientists tried to build a model that was able to predict the survival or death of patients based on available medical data. [@5-2-china] were among the first researchers to introduce their model based on blood data (lactic dehydrogenase (LDH), lymphocyte percentage, and high-sensitivity C-reactive protein (hs-CRP)) with 0.90 accuracy, however, recreations of this model trained on other countries' data - the US, Netherlands, and France were not so successful. In this article, we explore the possibility of building an international model for predicting COVID-19 survival. We focused on exploring the models, their variable importance, analyzed the bias they introduced, and concluded with guidelines for future researchers working on this topic.
+During the outbreak of SARS-CoV-2 many scientists tried to build a model that was able to predict the survival or death of patients based on available medical data. @5-2-china were among the first researchers to introduce their model based on blood data (lactic dehydrogenase (LDH), lymphocyte percentage, and high-sensitivity C-reactive protein (hs-CRP)) with 0.90 accuracy, however, recreations of this model trained on other countries' data - the US, Netherlands, and France were not so successful. In this article, we explore the possibility of building an international model for predicting COVID-19 survival. We focused on exploring the models, their variable importance, analyzed the bias they introduced, and concluded with guidelines for future researchers working on this topic.
  
  
  
