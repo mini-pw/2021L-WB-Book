@@ -48,7 +48,7 @@ Effectiveness of those models were compared using receiver operating characteris
 ROC AUC values were calculated using the test data held out from training.
 Neural network models were trained 25 times each to compare stability.
 
-SHAP values were calculated for the xgboost models using r `treeshap` library [@treeshap_2020]. 
+SHAP values were calculated for the xgboost models using r `treeshap` library [@5-4-treeshap]. 
 Approximate SHAP values were approximated for neural network models using DeepExplainer from the Python SHAP library.
 Feature importance was calculated using mean SHAP values and compared.
 
