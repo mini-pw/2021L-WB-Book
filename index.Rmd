@@ -14,7 +14,7 @@ lof: False
 description: "Case studies in machine learning."
 graphics: yes
 cover-image: images/cover.png
-github-repo: mini-pw/2020L-WB-Book
+github-repo: mini-pw/2021L-WB-Book
 ---
 
 
