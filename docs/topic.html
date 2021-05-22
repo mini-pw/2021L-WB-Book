@@ -272,10 +272,10 @@ In this paper these differences were measured and assessed to understand better 
 <h3><span class="header-section-number">6.1.2</span> Literature review</h3>
 <p>Rashomon is a intriguing Japanese movie in which four people witness an incident from different vantage points. When they come to testify in court, they all report the same facts, but their stories of what happened are very different.
 In machine learning Rashomon set is used to characterise problem in which many different models offer accurate results describing the same data.
-However, not every accurate model gives a right conclusion as described in <span class="citation">(<a href="#ref-6-0-breiman2001statistical" role="doc-biblioref">Breiman &amp; others, 2001</a>)</span>: <em>“If the model is a poor emulation of nature, the conclusion might be worng”</em>. Herein authors also explain basics of Rashomon sets on example. Much more in depth and mathematical description is provided in <span class="citation">(<a href="#ref-6-0-rashomon-intro" role="doc-biblioref">Semenova et al., 2019</a>)</span>.
-Another important topic related to Rashomon sets is analysing the feature importance of the model. It was described in this article <span class="citation">(<a href="#ref-6-0-rashomon-variable-importance" role="doc-biblioref">Fisher et al., 2019a</a>)</span>, where authors suggested to study the maximum and minimum of variable importance across all models included in the Rashomon set. This technique was called MCR (Model Class Reliance).
-Furthermore, <span class="citation">(<a href="#ref-6-0-rashomon-variable-importance-cloud" role="doc-biblioref">Dong &amp; Rudin, 2020</a>)</span> presented technique to visualise the “cloud” of variable importance for models in the set, which could help us understand the Rashomon set and choose the one which give the best interpretation. The last question stated in the article <span class="citation">(<a href="#ref-6-0-rudin-challenges" role="doc-biblioref">Rudin et al., 2021</a>)</span> was about choosing model from the Rashomon set. It might be a difficult task, especially when we lack good exploration tools.
-<span class="citation">(<a href="#ref-6-1-beams-system" role="doc-biblioref">Das et al., 2019</a>)</span> created a system called BEAMS that allows to choose the most important features. Next, the program searches the hypothesis space in order to find model which fits best to given constraints. Since this system works only with linear regression classifiers, <span class="citation">(<a href="#ref-6-0-rudin-challenges" role="doc-biblioref">Rudin et al., 2021</a>)</span> stated a question if it is possible to design a simmilar system which will search only models within the Rashomon set.</p>
+However, not every accurate model gives a right conclusion as described in <span class="citation">(<a href="#ref-6-0-breiman2001statistical" role="doc-biblioref">Breiman and others 2001</a>)</span>: <em>“If the model is a poor emulation of nature, the conclusion might be worng”</em>. Herein authors also explain basics of Rashomon sets on example. Much more in depth and mathematical description is provided in <span class="citation">(<a href="#ref-6-0-rashomon-intro" role="doc-biblioref">Semenova et al. 2019</a>)</span>.
+Another important topic related to Rashomon sets is analysing the feature importance of the model. It was described in this article <span class="citation">(<a href="#ref-6-0-rashomon-variable-importance" role="doc-biblioref">Fisher et al. 2019b</a>)</span>, where authors suggested to study the maximum and minimum of variable importance across all models included in the Rashomon set. This technique was called MCR (Model Class Reliance).
+Furthermore, <span class="citation">(<a href="#ref-6-0-rashomon-variable-importance-cloud" role="doc-biblioref">Dong and Rudin 2020</a>)</span> presented technique to visualise the “cloud” of variable importance for models in the set, which could help us understand the Rashomon set and choose the one which give the best interpretation. The last question stated in the article <span class="citation">(<a href="#ref-6-0-rudin-challenges" role="doc-biblioref">Rudin et al. 2021</a>)</span> was about choosing model from the Rashomon set. It might be a difficult task, especially when we lack good exploration tools.
+<span class="citation">(<a href="#ref-6-1-beams-system" role="doc-biblioref">Das et al. 2019</a>)</span> created a system called BEAMS that allows to choose the most important features. Next, the program searches the hypothesis space in order to find model which fits best to given constraints. Since this system works only with linear regression classifiers, <span class="citation">(<a href="#ref-6-0-rudin-challenges" role="doc-biblioref">Rudin et al. 2021</a>)</span> stated a question if it is possible to design a simmilar system which will search only models within the Rashomon set.</p>
 </div>
 <div id="results-3" class="section level3" number="6.1.3">
 <h3><span class="header-section-number">6.1.3</span> Results</h3>
@@ -309,7 +309,7 @@ Furthermore, <span class="citation">(<a href="#ref-6-0-rashomon-variable-importa
 <h3>References</h3>
 <div id="refs" class="references csl-bib-body hanging-indent" line-spacing="2">
 <div id="ref-6-0-breiman2001statistical" class="csl-entry">
-Breiman, L., &amp; others. (2001). Statistical modeling: The two cultures (with comments and a rejoinder by the author). <em>Statistical Science</em>, <em>16</em>(3), 199–231.
+Breiman, L., &amp; others. (2001). Statistical modeling: The two cultures (with comments and a rejoinder by the author). <em>Statistical science</em>, <em>16</em>(3), 199–231.
 </div>
 <div id="ref-6-1-beams-system" class="csl-entry">
 Das, S., Cashman, D., Chang, R., &amp; Endert, A. (2019). BEAMES: Interactive multimodel steering, selection, and inspection for regression tasks. <em>IEEE Computer Graphics and Applications</em>, <em>39</em>(5), 20–32. <a href="https://doi.org/10.1109/MCG.2019.2922592">https://doi.org/10.1109/MCG.2019.2922592</a>
@@ -318,13 +318,13 @@ Das, S., Cashman, D., Chang, R., &amp; Endert, A. (2019). BEAMES: Interactive mu
 Dong, J., &amp; Rudin, C. (2020). Exploring the cloud of variable importance for the set of all good models. <em>Nature Machine Intelligence</em>, <em>2</em>(12), 810–824.
 </div>
 <div id="ref-6-0-rashomon-variable-importance" class="csl-entry">
-Fisher, A., Rudin, C., &amp; Dominici, F. (2019a). All models are wrong, but many are useful: Learning a variable’s importance by studying an entire class of prediction models simultaneously. <em>Journal of Machine Learning Research</em>, <em>20</em>(177), 1–81.
+Fisher, A., Rudin, C., &amp; Dominici, F. (2019b). All models are wrong, but many are useful: Learning a variable’s importance by studying an entire class of prediction models simultaneously. <em>Journal of Machine Learning Research</em>, <em>20</em>(177), 1–81.
 </div>
 <div id="ref-6-0-rudin-challenges" class="csl-entry">
-Rudin, C., Chen, C., Chen, Z., Huang, H., Semenova, L., &amp; Zhong, C. (2021). Interpretable machine learning: Fundamental principles and 10 grand challenges. <em>arXiv Preprint arXiv:2103.11251</em>.
+Rudin, C., Chen, C., Chen, Z., Huang, H., Semenova, L., &amp; Zhong, C. (2021). Interpretable machine learning: Fundamental principles and 10 grand challenges. <em>arXiv preprint arXiv:2103.11251</em>.
 </div>
 <div id="ref-6-0-rashomon-intro" class="csl-entry">
-Semenova, L., Rudin, C., &amp; Parr, R. (2019). A study in rashomon curves and volumes: A new perspective on generalization and model simplicity in machine learning. <em>arXiv Preprint arXiv:1908.01755</em>.
+Semenova, L., Rudin, C., &amp; Parr, R. (2019). A study in rashomon curves and volumes: A new perspective on generalization and model simplicity in machine learning. <em>arXiv preprint arXiv:1908.01755</em>.
 </div>
 </div>
             </section>
