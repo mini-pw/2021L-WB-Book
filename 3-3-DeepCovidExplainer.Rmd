@@ -1,0 +1,5 @@
+## An Exploration of DeepCovidExplainer: Explainable COVID-19 Diagnosis from Chest X-rays
+
+*Authors: Kurowski Kacper, Mróz Zuzanna, Podsiad Aleksander*
+
+### Introduction
