@@ -19,10 +19,10 @@ The two architectures appear to be similar with regards to their effectiveness, 
 
 In 2020 many papers presenting models aimed to predict the course of COVID-19 in patients emerged [@5-4-ma-ng-xu; @5-4-yan-et-al; @5-4-zheng-zhu]. Article we are referring to [@5-4-li-et-al] differed from the majority with the use of neural networks. 
 
-In the past there were many attempts to compare effectiveness of artificial neural networks and tree-based models at various tasks using different types of data including tabular data [@ahmad_mourshed_rezgui_2017, @arsad_buniyamin_manan_2013] and tasks connected to hospital patients outcomes [@wang_li_hu_zhu_2009]. 
-There were analyses showing superiority of forests over simple neural networks on small (up to 1000 records) tabular datasets [@klambauer_2017_selfnormalizing]. Data used by the referred article's authors consisted of 1020 or 1106 observations depending on the researched problem. 
+In the past there were many attempts to compare effectiveness of artificial neural networks and tree-based models at various tasks using different types of data including tabular data [@5-4-ahmad-mourshed; @5-4-arsad-buniyamin] and tasks connected to hospital patients outcomes [@5-4-wang-li]. 
+There were analyses showing superiority of forests over simple neural networks on small (up to 1000 records) tabular datasets [@5-4-klambauer-normalizing]. Data used by the referred article's authors consisted of 1020 or 1106 observations depending on the researched problem. 
 
-Authors note the importance of explainability of clinical models [@pmlr_tonekaboni19a] due to the need of establishing clinician's trust to successfully deploy a model. There are tools for explaining tree-based models [@chen_guestrin_2016; @EMA] and some of methods are not available for neural networks. Tools to calculate SHAP values for forest models were developed, while general algorithm to compute them exactly in a reasonable complexity for deep learning models, only approximations can be made [@lundberg_2019_consistent]. Explaining neural networks with SHAP values is an important issue in the field [@wang_2021_shapley].
+Authors note the importance of explainability of clinical models [@5-4-tonekaboni19a] due to the need of establishing clinician's trust to successfully deploy a model. There are tools for explaining tree-based models [@5-4-chen-guestrin; @EMA] and some of methods are not available for neural networks. Tools to calculate SHAP values for forest models were developed, while general algorithm to compute them exactly in a reasonable complexity for deep learning models, only approximations can be made [@5-4-lundberg-consistent]. Explaining neural networks with SHAP values is an important issue in the field [@5-4-wang-shapley].
 
 The referred article does not provide a source code for the replication of the results. Taking care about the reproducibility is considered a major problem in the academic society [@wb_2020].
 
@@ -44,7 +44,7 @@ Feature selection was performed as described in the article.
 Data was split 0.1 test set size and 0.9 train set size.
 To reduce overfitting, an internal 0.2 validation set size was used.
 
-Effectiveness of those models were compared using receiver operating characteristic area under curve (ROC AUC) metric. [@hanley_2014]
+Effectiveness of those models were compared using receiver operating characteristic area under curve (ROC AUC) metric [@5-4-hanley].
 ROC AUC values were calculated using the test data held out from training.
 Neural network models were trained 25 times each to compare stability.
 
