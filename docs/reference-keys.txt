@@ -37,7 +37,7 @@ fig:unnamed-chunk-4
 fig:unnamed-chunk-5
 fig:unnamed-chunk-6
 fig:unnamed-chunk-7
-explainable-artificial-intelligence
+explainable-artificial-intelligence-1
 xai1-explainable-cards
 global-explanations
 permutational-feature-importance
@@ -68,7 +68,7 @@ importance-of-explanatory-variables
 comparison-with-other-models
 the-global-impact-of-variables
 summary-and-conclusions-1
-explainable-artificial-inteligence-r
+explainable-artificial-intelligence-2
 deep-learning-1
 bcdunet
 abstract-1

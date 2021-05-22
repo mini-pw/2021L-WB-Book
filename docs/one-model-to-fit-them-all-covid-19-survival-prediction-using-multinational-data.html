@@ -98,7 +98,7 @@ div.csl-indent {
 <ul>
 <li class="chapter" data-level="" data-path="technical-setup.html"><a href="technical-setup.html"><i class="fa fa-check"></i>Technical Setup</a></li>
 </ul></li>
-<li class="chapter" data-level="1" data-path="explainable-artificial-intelligence.html"><a href="explainable-artificial-intelligence.html"><i class="fa fa-check"></i><b>1</b> Explainable Artificial Intelligence</a>
+<li class="chapter" data-level="1" data-path="explainable-artificial-intelligence-1.html"><a href="explainable-artificial-intelligence-1.html"><i class="fa fa-check"></i><b>1</b> Explainable Artificial Intelligence 1</a>
 <ul>
 <li class="chapter" data-level="1.1" data-path="xai1-explainable-cards.html"><a href="xai1-explainable-cards.html"><i class="fa fa-check"></i><b>1.1</b> Explaining Credit Card Customers churns</a>
 <ul>
@@ -127,7 +127,7 @@ div.csl-indent {
 <li class="chapter" data-level="1.5.5" data-path="xai1-explainable-hotels.html"><a href="xai1-explainable-hotels.html#summary-and-conclusions-1"><i class="fa fa-check"></i><b>1.5.5</b> Summary and conclusions</a></li>
 </ul></li>
 </ul></li>
-<li class="chapter" data-level="2" data-path="explainable-artificial-inteligence-r.html"><a href="explainable-artificial-inteligence-r.html"><i class="fa fa-check"></i><b>2</b> Explainable artificial inteligence (R)</a></li>
+<li class="chapter" data-level="2" data-path="explainable-artificial-intelligence-2.html"><a href="explainable-artificial-intelligence-2.html"><i class="fa fa-check"></i><b>2</b> Explainable Artificial Intelligence 2</a></li>
 <li class="chapter" data-level="3" data-path="deep-learning-1.html"><a href="deep-learning-1.html"><i class="fa fa-check"></i><b>3</b> Deep Learning 1</a>
 <ul>
 <li class="chapter" data-level="3.1" data-path="bcdunet.html"><a href="bcdunet.html"><i class="fa fa-check"></i><b>3.1</b> BCDUNet</a>
@@ -372,7 +372,7 @@ In our research, entitled ‘One model to predict them all,’ we focused on ans
 Figure 5.1: Variable importance for RandomForestClassifier
 </p>
 </div>
-<p>The variable importance here is measured with perturbations <span class="citation">(<a href="#ref-5-2-variableimportance" role="doc-biblioref">Fisher, Rudin, and Dominici 2019a</a>)</span>. The idea behind it is that we first measure the performance on the entire model. Secondly, we reorder elements of a column (variable), train model, and then measure performance again. The difference in performances is called drop-out loss and it depicts how important the variables are.</p>
+<p>The variable importance here is measured with perturbations <span class="citation">(<a href="#ref-5-2-variableimportance" role="doc-biblioref">Fisher, Rudin, and Dominici 2019b</a>)</span>. The idea behind it is that we first measure the performance on the entire model. Secondly, we reorder elements of a column (variable), train model, and then measure performance again. The difference in performances is called drop-out loss and it depicts how important the variables are.</p>
 <p>This information was not surprising, however, we also made a similar test that conveniently simplifies the model. We created a surrogate decision tree from the earlier classifier. The surrogate model is trained to approximate the predictions of a black box predictor <span class="citation">(<a href="#ref-5-2-iml" role="doc-biblioref">Molnar 2019</a>)</span>.</p>
 <div class="figure" style="text-align: center"><span id="fig:tree"></span>
 <img src="images/5-2-exp.png" alt="Surrogate model for RandomForestClassifier" width="700" />
@@ -413,43 +413,43 @@ Figure 5.4: Fairness check on models before and after the reductions.
 <h3>References</h3>
 <div id="refs" class="references csl-bib-body hanging-indent">
 <div id="ref-5-2-dalex" class="csl-entry">
-Baniecki, Hubert, Wojciech Kretowicz, Piotr Piatyszek, Jakub Wisniewski, and Przemyslaw Biecek. 2020. <span>“Dalex: Responsible Machine Learning with Interactive Explainability and Fairness in Python.”</span> <a href="https://arxiv.org/abs/2012.14406">https://arxiv.org/abs/2012.14406</a>.
+Baniecki, Hubert, Wojciech Kretowicz, Piotr Piatyszek, Jakub Wisniewski, and Przemyslaw Biecek. 2020. <span>“<span class="nocase">dalex: Responsible Machine Learning with Interactive Explainability and Fairness in Python</span>.”</span> <em>arXiv:2012.14406</em>. <a href="https://arxiv.org/abs/2012.14406">https://arxiv.org/abs/2012.14406</a>.
 </div>
 <div id="ref-5-2-newyork" class="csl-entry">
-Barish, Matthew, Siavash Bolourani, Lawrence F. Lau, Sareen Shah, and Theodoros P. Zanos. 2021. <span>“External Validation Demonstrates Limited Clinical Utility of the Interpretable Mortality Prediction Model for Patients with COVID-19.”</span> <em>Nature Machine Intelligence</em> 3 (1): 25–27. <a href="https://doi.org/10.1038/s42256-020-00254-2">https://doi.org/10.1038/s42256-020-00254-2</a>.
+Barish, Matthew, Siavash Bolourani, Lawrence F. Lau, Sareen Shah, and Theodoros P. Zanos. 2021. <span>“<span class="nocase">External validation demonstrates limited clinical utility of the interpretable mortality prediction model for patients with COVID-19</span>.”</span> <em>Nature Machine Intelligence</em> 3 (1): 25–27. <a href="https://doi.org/10.1038/s42256-020-00254-2">https://doi.org/10.1038/s42256-020-00254-2</a>.
 </div>
 <div id="ref-5-2-acc" class="csl-entry">
-Berk, Richard, Hoda Heidari, Shahin Jabbari, Michael Kearns, and Aaron Roth. 2017. <span>“Fairness in Criminal Justice Risk Assessments: The State of the Art.”</span> <em>Sociological Methods &amp; Research</em>, March. <a href="https://doi.org/10.1177/0049124118782533">https://doi.org/10.1177/0049124118782533</a>.
+Berk, Richard, Hoda Heidari, Shahin Jabbari, Michael Kearns, and Aaron Roth. 2017. <span>“<span class="nocase">Fairness in Criminal Justice Risk Assessments: The State of the Art</span>.”</span> <em>Sociological Methods &amp; Research</em>. <a href="https://doi.org/10.1177/0049124118782533">https://doi.org/10.1177/0049124118782533</a>.
 </div>
 <div id="ref-5-2-fairlearn" class="csl-entry">
-Bird, Sarah, Miro Dudík, Richard Edgar, Brandon Horn, Roman Lutz, Vanessa Milan, Mehrnoosh Sameki, Hanna Wallach, and Kathleen Walker. 2020. <span>“Fairlearn: A Toolkit for Assessing and Improving Fairness in <span>AI</span>.”</span> MSR-TR-2020-32. Microsoft. <a href="https://www.microsoft.com/en-us/research/publication/fairlearn-a-toolkit-for-assessing-and-improving-fairness-in-ai/">https://www.microsoft.com/en-us/research/publication/fairlearn-a-toolkit-for-assessing-and-improving-fairness-in-ai/</a>.
+Bird, Sarah, Miro Dudík, Richard Edgar, Brandon Horn, Roman Lutz, Vanessa Milan, Mehrnoosh Sameki, Hanna Wallach, and Kathleen Walker. 2020. <span>“<span class="nocase">Fairlearn: A toolkit for assessing and improving fairness in AI</span>.”</span> MSR-TR-2020-32. Microsoft. <a href="https://www.microsoft.com/en-us/research/publication/fairlearn-a-toolkit-for-assessing-and-improving-fairness-in-ai/">https://www.microsoft.com/en-us/research/publication/fairlearn-a-toolkit-for-assessing-and-improving-fairness-in-ai/</a>.
 </div>
 <div id="ref-5-2-ppv" class="csl-entry">
-Chouldechova, Alexandra. 2016. <span>“Fair Prediction with Disparate Impact: A Study of Bias in Recidivism Prediction Instruments.”</span> <em>Big Data</em> 5 (October). <a href="https://doi.org/10.1089/big.2016.0047">https://doi.org/10.1089/big.2016.0047</a>.
+Chouldechova, Alexandra. 2016. <span>“<span class="nocase">Fair Prediction with Disparate Impact: A Study of Bias in Recidivism Prediction Instruments</span>.”</span> <em>Big Data</em> 5. <a href="https://doi.org/10.1089/big.2016.0047">https://doi.org/10.1089/big.2016.0047</a>.
 </div>
 <div id="ref-5-2-fourfifths" class="csl-entry">
 Code of Federal Regulations. 1978. <span>“SECTION 4d, UNIFORM GUIDELINES ON EMPLOYEE SELECTION PROCEDURES (1978).”</span> <a href="https://www.govinfo.gov/content/pkg/CFR-2014-title29-vol4/xml/CFR-2014-title29-vol4-part1607.xml">https://www.govinfo.gov/content/pkg/CFR-2014-title29-vol4/xml/CFR-2014-title29-vol4-part1607.xml</a>.
 </div>
 <div id="ref-5-2-fpr" class="csl-entry">
-Corbett-Davies, Sam, Emma Pierson, Avi Feller, Sharad Goel, and Aziz Huq. 2017. <span>“Algorithmic Decision Making and the Cost of Fairness.”</span> In <em>Proceedings of the 23rd ACM SIGKDD International Conference on Knowledge Discovery and Data Mining</em>, 797–806. KDD ’17. New York, NY, USA: Association for Computing Machinery. <a href="https://doi.org/10.1145/3097983.3098095">https://doi.org/10.1145/3097983.3098095</a>.
+Corbett-Davies, Sam, Emma Pierson, Avi Feller, Sharad Goel, and Aziz Huq. 2017. <span>“<span class="nocase">Algorithmic Decision Making and the Cost of Fairness</span>,”</span> KDD,. <a href="https://doi.org/10.1145/3097983.3098095">https://doi.org/10.1145/3097983.3098095</a>.
 </div>
 <div id="ref-5-2-stp" class="csl-entry">
-Dwork, Cynthia, Moritz Hardt, Toniann Pitassi, Omer Reingold, and Richard Zemel. 2012. <span>“Fairness Through Awareness.”</span> In <em>Proceedings of the 3rd Innovations in Theoretical Computer Science Conference</em>, 214–26. ITCS ’12. New York, NY, USA: Association for Computing Machinery. <a href="https://doi.org/10.1145/2090236.2090255">https://doi.org/10.1145/2090236.2090255</a>.
+Dwork, Cynthia, Moritz Hardt, Toniann Pitassi, Omer Reingold, and Richard Zemel. 2012. <span>“Fairness Through Awareness.”</span> <em>ITCS</em>. <a href="https://doi.org/10.1145/2090236.2090255">https://doi.org/10.1145/2090236.2090255</a>.
 </div>
 <div id="ref-5-2-variableimportance" class="csl-entry">
-Fisher, Aaron, Cynthia Rudin, and Francesca Dominici. 2019a. <span>“All Models Are Wrong, but Many Are Useful: Learning a Variable’s Importance by Studying an Entire Class of Prediction Models Simultaneously.”</span> <em>Journal of Machine Learning Research</em> 20 (177): 1–81. <a href="http://jmlr.org/papers/v20/18-760.html">http://jmlr.org/papers/v20/18-760.html</a>.
+———. 2019b. <span>“<span class="nocase">All Models are Wrong, but Many are Useful: Learning a Variable’s Importance by Studying an Entire Class of Prediction Models Simultaneously</span>.”</span> <em>Journal of Machine Learning Research</em> 20 (177): 1–81. <a href="http://jmlr.org/papers/v20/18-760.html">http://jmlr.org/papers/v20/18-760.html</a>.
 </div>
 <div id="ref-5-2-tpr" class="csl-entry">
-Hardt, Moritz, Eric Price, Eric Price, and Nati Srebro. 2016. <span>“Equality of Opportunity in Supervised Learning.”</span> In <em>Advances in Neural Information Processing Systems 29</em>, edited by D. D. Lee, M. Sugiyama, U. V. Luxburg, I. Guyon, and R. Garnett, 3315–23. Curran Associates, Inc. <a href="http://papers.nips.cc/paper/6374-equality-of-opportunity-in-supervised-learning.pdf">http://papers.nips.cc/paper/6374-equality-of-opportunity-in-supervised-learning.pdf</a>.
+Hardt, Moritz, Eric Price, Eric Price, and Nati Srebro. 2016. <span>“<span class="nocase">Equality of Opportunity in Supervised Learning</span>.”</span> <em>NeurIPS</em>. <a href="https://papers.nips.cc/paper/2016/hash/9d2682367c3935defcb1f9e247a97c0d-Abstract.html">https://papers.nips.cc/paper/2016/hash/9d2682367c3935defcb1f9e247a97c0d-Abstract.html</a>.
 </div>
 <div id="ref-5-2-bias-in-hc" class="csl-entry">
-Kaushal, Amit, Russ Altman, and Curt Langlotz. 2020. <span>“Health Care AI Systems Are Biased.”</span>
+Kaushal, Amit, Russ Altman, and Curt Langlotz. 2020. <span>“<span>Health Care AI Systems Are Biased</span>.”</span> <em>Scientific American</em>. <a href="https://www.scientificamerican.com/article/health-care-ai-systems-are-biased">https://www.scientificamerican.com/article/health-care-ai-systems-are-biased</a>.
 </div>
 <div id="ref-5-2-iml" class="csl-entry">
-Molnar, Christoph. 2019. <em>Interpretable Machine Learning: A Guide for Making Black Box Models Explainable</em>.
+Molnar, Christoph. 2019. <span>“<span class="nocase">Interpretable Machine Learning: A Guide for Making Black Box Models Explainable</span>.”</span> <a href="https://christophm.github.io/interpretable-ml-book">https://christophm.github.io/interpretable-ml-book</a>.
 </div>
 <div id="ref-5-2-scikit-learn" class="csl-entry">
-Pedregosa, F., G. Varoquaux, A. Gramfort, V. Michel, B. Thirion, O. Grisel, M. Blondel, et al. 2011. <span>“Scikit-Learn: Machine Learning in <span>P</span>ython.”</span> <em>Journal of Machine Learning Research</em> 12: 2825–30.
+Pedregosa, F., G. Varoquaux, A. Gramfort, V. Michel, B. Thirion, O. Grisel, M. Blondel, et al. 2011. <span>“<span class="nocase">Scikit-learn: Machine Learning in Python</span>.”</span> <em>Journal of Machine Learning Research</em> 12: 2825–30.
 </div>
 <div id="ref-5-2-netherlands" class="csl-entry">
 Quanjel, Marian J. R., Thijs C. van Holten, Pieternel C. Gunst-van der Vliet, Jette Wielaard, Bekir Karakaya, Maaike Söhne, Hazra S. Moeniralam, and Jan C. Grutters. 2021. <span>“Replication of a Mortality Prediction Model in Dutch Patients with COVID-19.”</span> <em>Nature Machine Intelligence</em> 3 (1): 23–24. <a href="https://doi.org/10.1038/s42256-020-00253-3">https://doi.org/10.1038/s42256-020-00253-3</a>.
@@ -458,10 +458,10 @@ Quanjel, Marian J. R., Thijs C. van Holten, Pieternel C. Gunst-van der Vliet, Je
 Wiens, Jenna, John Guttag, and Eric Horvitz. 2014. <span>“<span class="nocase">A study in transfer learning: leveraging data from multiple hospitals to enhance hospital-specific predictions</span>.”</span> <em>Journal of the American Medical Informatics Association</em> 21 (4): 699–706. <a href="https://doi.org/10.1136/amiajnl-2013-002162">https://doi.org/10.1136/amiajnl-2013-002162</a>.
 </div>
 <div id="ref-5-2-fairmodels" class="csl-entry">
-Wiśniewski, Jakub, and Przemysław Biecek. 2021. <span>“Fairmodels: A Flexible Tool for Bias Detection, Visualization, and Mitigation.”</span> <a href="https://arxiv.org/abs/2104.00507">https://arxiv.org/abs/2104.00507</a>.
+Wiśniewski, Jakub, and Przemysław Biecek. 2021. <span>“<span class="nocase">fairmodels: A Flexible Tool For Bias Detection, Visualization, And Mitigation</span>.”</span> <em>arXiv:2104.00507</em>. <a href="https://arxiv.org/abs/2104.00507">https://arxiv.org/abs/2104.00507</a>.
 </div>
 <div id="ref-5-2-china" class="csl-entry">
-Yan, Li, Hai-Tao Zhang, Jorge Goncalves, Yang Xiao, Maolin Wang, Yuqi Guo, Chuan Sun, Xiuchuan Tang, Liang Jing, Mingyang Zhang, Xiang Huang, et al. 2020. <span>“An Interpretable Mortality Prediction Model for COVID-19 Patients.”</span> <em>Nature Machine Intelligence</em> 2 (5): 283–88. <a href="https://doi.org/10.1038/s42256-020-0180-7">https://doi.org/10.1038/s42256-020-0180-7</a>.
+Yan, Li, Hai-Tao Zhang, Jorge Goncalves, Yang Xiao, Maolin Wang, Yuqi Guo, Chuan Sun, Xiuchuan Tang, Liang Jing, Mingyang Zhang, Xiang Huang, et al. 2020. <span>“<span class="nocase">An interpretable mortality prediction model for COVID-19 patients</span>.”</span> <em>Nature Machine Intelligence</em> 2 (5): 283–88. <a href="https://doi.org/10.1038/s42256-020-0180-7">https://doi.org/10.1038/s42256-020-0180-7</a>.
 </div>
 </div>
             </section>
