@@ -1,0 +1,200 @@
+## eXplaining predictions of booking cancelations {#xai1-explainable-hotels}
+
+*Authors: Mateusz Krzyziński, Anna Urbala, Artur Żółkowski (Warsaw University of Technology)*
+
+### Introduction
+One of the biggest problems and challenges facing the hospitality industry is the significant number of canceled reservations. Common reasons for cancellations include sudden deterioration in health, accidents, bad weather conditions, schedule conflicts or unexpected responsibilities [@1-5-hotels-modelling-cancellation-behaviour]. Interestingly, a noticeable group consists of customers who, after making a reservation, are still looking for new, better offers, and even make many reservations at the same time to be able to choose the most advantageous one [@1-5-hotels-predicting-to-decrease-uncertainty-increase-revenue].
+
+The hospitality industry's response to the above problem are hotel cancellation policies. They play a crucial role in determining various
+aspects of the hotel business, including the ultimate goal of
+revenues and profits optimisation. In recent years (before the pandemic), there has been a clear tightening of these policies. Hotels do this, for example by shortening the free cancellation windows or increasing cancellation penalties [@1-5-hotels-cancellation-policies-shift; @1-5-cancellations-policies-study].
+
+The use of machine learning to forecast and identify potential cancellations is also playing an increasing role. There are many systems to support hotel management that use booking data. Various machine learning algorithms are used for this purpose, ranging from support vector machines, through artificial neural networks, to the most common tree-based models [@1-5-hotels-efficient-forecasting; @1-5-hotels-prediction-using-crisp-dm]. Most of the solutions and projects are only theoretical, while some have been tested in practice, enabling cancellations to be reduced by up to 37 percentage points [@1-5-hotels-automated-ml-system].
+ 
+Unfortunately, most papers do not tackle the issue of the importance of the used explanatory variables and do not try to explain the model's predictions. However, it is the exploration of trained models that should be treated as one of the key factors in the design of hotel management support systems. Business validation and ethical verification of solutions is necessary. Bearing in mind that a strict cancellation policy or overbooking strategy can have negative effects on both reputation and revenue, systems designers should be wary of unfair biased behaviour. At the same time, the use of explanatory artificial intelligence methods is helpful in creating models with better performance scores.
+
+In the following chapter, we present an analysis of predictive models for hotel bookings cancellations. We answer questions about the reasons for the model prediction both in general view and in relation to individual reservations.
+
+### Dataset and models {#dataset_models}
+
+### Local explanations {#local}
+In order to explain model output for a particular guest and their booking, we used instance-level exploration methods, such as Break-down, SHAP (SHapley Additive exPlanations), LIME (Local Interpretable Model-agnostic Explanations), CP (Ceteris Paribus). We decided to investigate noteworthy predictions, i.e. false positive and false negative (respectively canceled bookings predicted as not canceled and vice versa), the most valid (the predictions the model was most sure of), and the closest to decision boundary.
+
+#### False positive and false negative predictions
+We might discover that the model is providing incorrect predictions. The key is to find the reasons for this, that is, to answer the question what has driven the wrong prediction.
+
+We used local explanations methods for the observations in both groups with the worst predictions, i.e. the lowest probability of proper classification.
+
+```{r shap-false-positive, out.width="700", fig.align="center", echo=FALSE, fig.cap='A plot of Shapley values for random forest model and misclassified observation (false positive) with the highest probability of cancellation. The green and red bars correspond to the contribution of the variable to the prediction. The green ones increase the probability of cancellation, while the red ones decrease it (increase the probability of no cancellation). On the x-axis, there is the model prediction value, while on the y-axis there are variables and their values for the observation.'}
+knitr::include_graphics('images/1-5-shap-false-positive.png')
+```
+Informations with the biggest contribution to the final prediction are guest's country of origin (Portugal), a total number of special requests equals zero, and the fact that customer type related to the given booking is Transient-Party. This is an indication that the model may be slightly biased due to the country of origin. It is the property of the customer and not of the booking itself. Thus, depending on the application, it is worth considering whether this response is satisfactory and meets ethical standards. With every value contributes to the misprediction, the only feature with the correct contribution is customer type (Transient-Party guests are the most popular type of customers, accounting for as much as 75% of bookers).
+
+```{r shap-false-negative, out.width="700", fig.align="center", echo=FALSE, fig.cap='A plot of Shapley values for random forest model and misclassified observation (false negative) with the lowest probability of cancellation. The elements of the plot have the same meaning as in the previous case.'}
+knitr::include_graphics('images/1-5-shap-false-negative.png')
+```
+It can be seen that the largest contributions are related to the country of origin of the booker and the type of guest assigned to them. It is worth noting that the values of these variables are the same as in the case of the observation analyzed above. Again, they contribute to the same side of the prediction, but the contribution values are different. In this case, the type of client turns out to be the most important. Most of the values also affect the prediction of no cancellation. It is interesting that a slightly later booking in relation to the date of stay (lead time) has the opposite effect than in the previous example. The reason is the dependencies between the variables.
+
+```{r shap-false-predictions, out.width="700", fig.align="center", echo=FALSE, fig.cap='A plot of LIME model values for the random forest model and the most misslassified observations.'}
+knitr::include_graphics('images/1-5-lime-false-predictions.png')
+```
+The similarity between the observations is also noticeable in the lime method. The first five variables are identical and have almost the same coefficients. Therefore, it is these less significant variables that influence the final prediction.
+
+In the case of these two observations with similar characteristics, but completely different predictions, the use of the SHAP method (generalizing the breakdown method) gives a better picture. The Glass-box model selected in LIME method to approximate the black-box model, and not the data themselves, is not able to capture dependencies between variables.
+
+
+#### The most valid predictions
+The considered model returns an appropriate prediction in over 89% of cases. However, the level of certainty of the model with respect to the prediction (i.e. the probability that an observation is assigned to a class) may be different. Thus, it is worth considering why the model is almost sure of some outputs and how would the model's predictions change if the values of some of the explanatory variables changed.
+
+We used local explanations methods for the observations in both groups with the best predictions, i.e. the highest probability of proper classification (equal to 1.0).
+
+```{r shap-best-negative, out.width="700", fig.align="center", echo=FALSE, fig.cap='A plot of Shapley values for random forest model and observation with sure negative prediction. The elements of the plot were described above.'}
+knitr::include_graphics('images/1-5-shap-best-negative.png')
+```
+Like in the previous examples - the largest contribution has the country, in that case: France. Again, this is a Transient-Party customer and that also affected the prediction. Also, no special requests affect negatively to prediction (more than eg. no previous cancellations). Only one of the top variables affected positively: it was no required car parking spaces, but this impact was unnoticeable in the final prediction.
+
+```{r shap-best-positive, out.width="700", fig.align="center", echo=FALSE, fig.cap='A plot of Shapley values for random forest model and observation with sure positive prediction. The elements of the plot were described above.'}
+knitr::include_graphics('images/1-5-shap-best-positive.png')
+```
+Again, Portugal as a country of origin affected positively the probability of cancelation (keep in mind that the hotel is in Portugal, so we can assume that compatriots cancel their reservations more often). Also, no special requests affected positively on prediction (although in the previous case it had a negative effect). We can notice that for positive prediction other factors have the biggest impact than for negative. Eg. a longer lead time moved up to third place and now has a positive impact.
+
+```{r ceteris-paribus-sure, out.width="700", fig.align="center", echo=FALSE, fig.cap='Ceteris-paribus profiles for the selected continuous explanatory variables and label encoded country variable for the random forest model and observations with the sure prediction. Dots indicate the values of the variables and the values of the predictions for observations. Green profiles are for sure positive prediction (a cancellation), while blue profiles are for sure negative prediction.'}
+knitr::include_graphics('images/1-5-ceteris-paribus-sure.png')
+```
+Looking at the ceteris paribus profiles, it is intuitive to see that the prediction for the observation classified as the not canceled stay is more stable, i.e. less sensitive to changes in the values of explanatory variables.
+
+In the case of observation of canceled reservations, a change of the arrival date by a few weeks would cause a significant decrease in the certainty of the prediction. It is related to the seasonality of bookings (the decrease occurs at the beginning of July - the holiday period). However, the biggest changes in the prediction for this observation could be due to noting the fact of additional booking requirements (required car parking spaces and a total number of special requests). Changing these values to non-zero would change the prediction completely. Moreover, the huge changes depend on the country of origin of the booker, which in this case is Portugal.
+
+When considering the prediction for an observation classified as not canceled, we see that the only explanatory variable whose change would have a significant impact on the certainty of the prediction is the number of previously canceled reservations. A change to any non-zero value would change the prediction, but its certainty would be close to the decision boundary.
+
+
+#### The closest to decision boundary predictions
+We analyzed the situations when the model is sure of the returned output. However, the observations for which the prediction was uncertain, close to the decision limit, are also worth considering.
+
+We might want to know the answer to the question of whether it is a matter of similar numbers of explanatory variables shifting the prediction in different directions, or maybe there are variables that do not fit the whole picture, and therefore the model is not certain. It is also worth checking how much such predictions fluctuate depending on the changes in the explanatory variables.
+
+
+```{r shap-negative-50, out.width="700", fig.align="center", echo=FALSE, fig.cap='A plot of Shapley values for random forest model and observation classified as negative with probability near 50%. The elements of the plot were described above.'}
+knitr::include_graphics('images/1-5-shap_negative_50.png')
+```
+
+This is a very interesting example. One variable fixed prediction. Very short lead time (one day) opposed all other factors like Portugal as country of origin or no special requests and made the model predict correctly. It is amazing, that one factor can change everything.
+
+```{r shap-positive-50, out.width="700", fig.align="center", echo=FALSE, fig.cap='A plot of Shapley values for random forest model and observation classified as positive with probability near 50%. The elements of the plot were described above.'}
+knitr::include_graphics('images/1-5-shap_positive_50.png')
+```
+This observation is not so exciting as the previous one, but it is the next evidence that the special requests decrease the probability that the client will cancel the reservation. Nevertheless, this observation was classified as positive. Agent was the most important positive variable although in the previous examples he did not have such a contribution. But... agent has that huge contribution only in Shapley.
+
+```{r lime-positive-50, out.width="700", fig.align="center", echo=FALSE, fig.cap='A plot of LIME model values for the random forest model and the same observation.'}
+knitr::include_graphics('images/1-5-lime_positive_50.png')
+```
+Here agent has much less impact. This is a reminder for us that each method works differently and takes different variables into account. It is worth remembering this. In this method for that (and a lot of other) observation the most important factor is no previous cancelations, but it is not enough for the model to make a negative decision.
+
+### Global explanations
+
+The second group of methods of explainable artificial intelligence are those concerning not a single observation, but the entire set of them. We used these model level explanations to provide information about the quality of the model performance and infer how the model behaves in general. The methods we used for this purpose are Permutational Variable Importance, PDP (Partial Dependence Profile), ALE (Accumulated Local Effects). We applied them not only to the main random forest model, but also to other trained models to compare the obtained results.
+
+#### Importance of explanatory variables
+First, we decided to check which variables are important for our main model and compare the obtained results with the intuitions we had after conducting the exploration at the prediction level.  
+
+```{r pvi-main-model, out.width="700", fig.align="center", echo=FALSE, fig.cap='A plot of variable importance. The length of each bar represents the difference between the loss function (1-AUC) for the original data and the data with the permuted values of a particular variable.'}
+knitr::include_graphics('images/1-5-pvi-main-model.png')
+```
+As we can see above, the most important variable for the model is the information about the guest's country of origin. This confirms the intuitions obtained thanks to local explanations, for many observations this variable was the key aspect. In particular, the origin of Portugal (the country where the hotels are located) is the most significant for the prediction. 
+
+The method indicated that the next principal variables for predictions are information on lead time and number of special booking requests. Lead time is the number of days that elapsed between the entering date of the booking into the system and the arrival date. It is a factor that may inform about whether the stay was planned long before or it is spontaneous. Meanwhile, the number of special requests is related to additional interest in the booking, which may indicate that it is an important stay for the client.
+
+The next variables with a significant average impact on the model are the group of those concerning the booking method (agent and market segment) and the type of booking (customer type and adr associated with the booking cost).
+
+It should also be noted that some of the variables are of marginal importance.
+These are (from the bottom of the plot) the type of hotel (recall that the data relate to two hotels of different specificity), the number of adults, the number of previously not canceled bookings (this is probably also related to a small number of observations with a non-zero value of this feature - 3.1% in the entire dataset), the type of room reserved.
+These are the variables that should be considered to be excluded in order to simplify the model.
+
+On the other hand, it is quite surprising that the number of previously canceled reservation, which was often indicated by LIME as one of the most important factors for the predictions under consideration, is so insignificant (0.007 drop-out loss) according to the algorithm of the permutational variable importance.
+
+
+
+#### Comparison with other models
+
+Plots similar to that above in Figure \@ref(fig:pvi-main-model) are useful for comparison of a variables' importance in different models. It may be helpful in generating new knowledge - identification of recurring key variables may lead to the discovery of new factors involved in a particular mechanism [@EMA] (in our case, cancellation of reservations). 
+
+Thus, we decided to compare the importance of the variables in the models we had trained, described in the [Dataset and models](#dataset_models) section. The plots below show the results for our main Random Forest model and 4 other models with legend:
+
+- <span style="color:#8fddbf">**green**</span> - Random Forest with label encoding (main model),
+- <span style="color:#eb5872">**red**</span> - Random Forest with one hot encoding,
+- <span style="color:#3e09a1">**purple**</span> - Logistic Regression,
+- <span style="color:#53bac1">**blue**</span> - Decision Tree,
+- <span style="color:#fba58e">**orange**</span> - XGBoost.
+
+
+```{r pvi-comparison, out.width="700", fig.align="center", echo=FALSE, fig.cap='The comparison of the importance of explanatory variables for selected models. The elements of a single plot were described above. Note the different starting locations for the bars, due to differences in the AUC score value obtained for the training dataset for different models.'}
+knitr::include_graphics('images/1-5-pvi-comparison.png')
+```
+
+It can be seen that the importance of the variables is related to the type of algorithm used in a given model. For example, in a decision tree, each variable has a clearly noticeable effect on the predictions.
+
+In all the tree-based models explained, the most important variable overlaps - it is the aforementioned country of origin. In logistic regression model, this feature is the third most important variable, but it is the model with the worst score overall. 
+
+However, in general, the groups of the most important variables in each model are also similar. So our earlier conclusions regarding the key booking cancellation factors are confirmed. Likewise, in each of the tree-based models (even in a single decision tree model) the same variables were indicated as least important. 
+
+An interesting fact is that in random forest with one hot encoding the agent variable is even more important than in random forest with label encoding. It is a categorical variable, so we can see the influence of encoding here - trees could extract more information from this variable thanks to not creating unnatural numerical relationships as with label encoding. The second noticeable difference between these models is the importance of the market segment. 
+
+
+#### The global impact of variables
+
+Then we decided to check the influence of the most influential variables on the predictions in the context of the whole set. For this, we used the ALE method. The plots below show the results for our Random Forest and 3 other tree-based models with legend:
+
+- <span style="color:#8fddbf">**green**</span> - Random Forest with label encoding (main model),
+- <span style="color:#eb5872">**red**</span> - Random Forest with one hot encoding,
+- <span style="color:#53bac1">**blue**</span> - Decision Tree,
+- <span style="color:#fba58e">**orange**</span> - XGBoost.
+
+Note that we chose not to generate plots for the logistic regression model because it performed too poorly.
+
+```{r ale-country, out.width="700", fig.align="center", echo=FALSE, fig.cap='ALE plot for the country. The ALE plots work like Ceteris Paribus - they show how the variable affects a prediction but not only for one observation - for the entire training dataset.'}
+knitr::include_graphics('images/1-5-ale-country.png')
+```
+
+We have a greater probability of resignation for one country - this is Portugal. This confirms our hypothesis built on the basis of local explanatory methods. Generally, compatriots more often resign from booking.
+
+```{r ale-leadtime, out.width="700", fig.align="center", echo=FALSE, fig.cap='ALE plot for lead time. The elements of a single plot were described above.'}
+knitr::include_graphics('images/1-5-ale-leadtime.png')
+```
+
+And again we have confirmation that the longer the lead time, the greater the chance that the customer will resign. 
+
+The ALE plots are very similar to Ceteris Paribus but that's a great example that they're not the same. Look at the Ceteris Paribus profile for lead time in the [Local explanations](#local) section. The probability of resignation increased to about 170 days, then decreased and remained at a constant level. Here we can see that it was the "local behavior". Globally, the probability only grows, then it stabilizes (after about 350 days - a year). Therefore, you may suspect that it is not worth allowing reservations so far in advance.
+
+```{r ale-requests, out.width="700", fig.align="center", echo=FALSE, fig.cap='ALE plot for total of special requests and required car parking spaces. The elements of a single plot were described above.'}
+knitr::include_graphics('images/1-5-ale-requests.png')
+```
+
+Additional actions taken by the client regarding booking reduce the likelihood of cancellation.
+
+The very first special request significantly reduces the probability of resignation. The influence of the next ones is not that clear. This also confirms the thesis we made earlier that the lack of special requests increases the probability of resignation. 
+
+Reserving a parking space has an even greater impact on the predictions. We may think that in these hotels it is payable in advance, or that car travelers are less dependent on public transport, so their arrival is more certain.
+
+
+```{r ale-previous, out.width="700", fig.align="center", echo=FALSE, fig.cap='ALE plot for previous cancellations and previous bookings not canceled. The elements of a single plot were described above.'}
+knitr::include_graphics('images/1-5-ale-previous.png')
+```
+
+Information about a given customer's prior bookings is also very valuable for prediction. The fact of earlier cancellation of a reservation strongly influences the prediction of the next one, which seems natural.
+
+A non-zero number of prior non-canceled bookings works the opposite way, but the prediction values don't fluctuate that much.
+
+After analyzing these examples, an important conclusion can be drawn about the XAI methods. ALE plots can be a great tool for analyzing the influence of variables on the prediction - they can be used to verify the hypotheses put forward at the stage of local explanations and introduce new ones. 
+
+When comparing the results for different models, note that the profiles for random forests with both versions of the categorical variable encoding are almost identical (green and red lines in the graphs).
+
+Looking more broadly, the profiles are comparable for all models. The most significant differences can be seen in the variables relating to the previous reservations of a given customer - the number of canceled and non-canceled reservations. The XGBoost model favors non-zero values more - the prediction changes are bigger. In general, this model is the most sensitive to all variables, as can be seen from the shape of the profile curves.
+
+Moreover, we used the comparison of the PDP and ALE plots for our main model (see Figure \@ref(fig:ale-pdp)). In the case of some variables, the profiles generated using both methods almost coincide. However, there are also variables where you can see differences in prediction values, but profiles are parallel to each other. This parallelism suggests and allows us to conclude that the used model is additive due for these explanatory variables [@EMA].
+
+```{r ale-pdp, out.width="700", fig.align="center", echo=FALSE, fig.cap='Partial-dependence and accumulated-local profiles for the main random forest model and selected variables'}
+knitr::include_graphics('images/1-5-ale-vs-pdp.png')
+```
+
+
+### Summary and conclusions
