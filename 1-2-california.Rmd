@@ -8,11 +8,11 @@ Lorem ipsum
 
 ### Introduction
 
-Lorem ipsum
+Real estate plays a key role in past and present economy. In 2011 it was valued in total \$25 trillion in the US only, \$16 trillion of that figure comes from residential households. To compare, at the and of that year the capitalisation of US stock market was around \$18 trillion. In its prices are interested both ordinary people, who treat real estate as basic good, and investors, who view the real estate as asset. The task of determining a relationship between dependent factors and final price is non-trivial. Machine learning methods employed to carry it often either give unsatisfactory results or fail to deliver a clear explanation. This article describes research attempting to develop an ML model tasked with predicting real estate value and then make its decisions as clear as possible, using various XAI methods.
 
 ### Related Work
 
-Lorem ipsum
+#### Determinants of real estate value
 
 ### Methodology
 
