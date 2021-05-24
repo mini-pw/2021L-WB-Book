@@ -52,6 +52,7 @@ ml-in-predition-of-real-estate-prices
 abstract
 introduction
 related-work
+determinants-of-real-estate-value
 methodology
 results
 summary-and-conclusions
