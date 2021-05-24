@@ -20,6 +20,8 @@ Real estate plays a key role in past and present economy. In 2011 it was valued 
 * Hedonic factors
 * Global and local state of economy
 
+etc.
+
 ### Methodology
 
 Lorem ipsum
