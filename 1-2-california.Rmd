@@ -13,6 +13,12 @@ Real estate plays a key role in past and present economy. In 2011 it was valued 
 ### Related Work
 
 #### Determinants of real estate value
+[@1-2-german_determinants] links the factors influencing the real estate prices with four phenonena:
+
+* Future expected revenue
+* Accessibility
+* Hedonic factors
+* Global and local state of economy
 
 ### Methodology
 
