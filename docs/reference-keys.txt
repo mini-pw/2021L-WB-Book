@@ -52,7 +52,9 @@ ml-in-predition-of-real-estate-prices
 abstract
 introduction
 related-work
+characteristic-of-real-estate-market
 determinants-of-real-estate-value
+machine-learning-uses
 methodology
 results
 summary-and-conclusions

@@ -282,25 +282,36 @@ div.csl-indent {
 </div>
 <div id="introduction" class="section level3" number="1.2.2">
 <h3><span class="header-section-number">1.2.2</span> Introduction</h3>
-<p>Real estate plays a key role in past and present economy. In 2011 it was valued in total $25 trillion in the US only, $16 trillion of that figure comes from residential households. To compare, at the and of that year the capitalisation of US stock market was around $18 trillion. In its prices are interested both ordinary people, who treat real estate as basic good, and investors, who view the real estate as asset. The task of determining a relationship between dependent factors and final price is non-trivial. Machine learning methods employed to carry it often either give unsatisfactory results or fail to deliver a clear explanation. This article describes research attempting to develop an ML model tasked with predicting real estate value and then make its decisions as clear as possible, using various XAI methods.</p>
+<p>Real estate plays a key role in past and present economy. In 2011 it was valued in total $25 trillion in the US only, $16 trillion of that figure comes from residential households. To compare, at the and of that year the capitalisation of US stock market was around $18 trillion. In its prices are interested both ordinary people, who treat real estate as basic good, and investors, who view the real estate as asset.</p>
+<p>The task of determining a relationship between dependent factors and final price is non-trivial and requires a vast, domain-specific knowledge. However, machine learning (ML) methods allow to surpass this requirement by determining the interaction in data themselves and leaving only the task of data selection and learning supervision to the human user.</p>
+<p>This comes with a cost, though: the most efficient ML models are of the so-called <em>black box</em> family and they are complex beyond human undestrstanding. If they are to be fair, trusted and fully usable, their decision process has to be brought closer to the human user.</p>
+<p>This article describes research performing a case study based on the actual US Census data from California from 1990. An ML model tasked with predicting real estate value is developed and then its decisions are made as clear as possible, using various XAI methods.</p>
 </div>
 <div id="related-work" class="section level3" number="1.2.3">
 <h3><span class="header-section-number">1.2.3</span> Related Work</h3>
-<div id="determinants-of-real-estate-value" class="section level4" number="1.2.3.1">
-<h4><span class="header-section-number">1.2.3.1</span> Determinants of real estate value</h4>
+<div id="characteristic-of-real-estate-market" class="section level4" number="1.2.3.1">
+<h4><span class="header-section-number">1.2.3.1</span> Characteristic of real estate market</h4>
+<p><span class="citation">(<a href="#ref-1-2-forecasting" role="doc-biblioref">Ghysels et al. 2013</a>)</span> in the introduction point out, that the real estate market is not a typical one. It is extremely heterogenous - goods offered vary between themselves in location, state and other physical attributes. It is also nonliquid, since transaction costs are high and not reversible. This makes the task of forecasting a price of a particular house particularly difficult. Instead, certain indicators of the price are predicted, the simplest one of them being the median house value.</p>
+</div>
+<div id="determinants-of-real-estate-value" class="section level4" number="1.2.3.2">
+<h4><span class="header-section-number">1.2.3.2</span> Determinants of real estate value</h4>
 <p><span class="citation">(<a href="#ref-1-2-german_determinants" role="doc-biblioref">Belke and Keil 2017</a>)</span> links the factors influencing the real estate prices with four phenonena:</p>
 <ul>
-<li>Future expected revenue</li>
-<li>Accessibility</li>
-<li>Hedonic factors</li>
-<li>Global and local state of economy</li>
+<li>Future expected revenue,</li>
+<li>Accessibility,</li>
+<li>Hedonic factors,</li>
+<li>Global and local state of economy.</li>
 </ul>
-<p>etc.</p>
+<p>In an asset pricing approach <strong>expected revenue</strong> plays a key role. Here factors such as forecasted future rent, upkeep cost and taxes are taken into account. A second approach focuses on <strong>accessibility</strong>. It takes into account affordability and sustainability of house prices. It brings, among others, the montlhy income of potential owners into equation. <strong>Hedonic</strong> factors are object-specific and neighbourhood-specific characteristics, which contribute to the real estate value. Their examples are local population, housing density and infrastracture accessibility (such as public transportation, healthcare or education facilities). Finally, the state of global economy contributes to the price, and the state itself is measured by indicators like GDP, inflation rate, unemployment rate and construction activity.</p>
+</div>
+<div id="machine-learning-uses" class="section level4" number="1.2.3.3">
+<h4><span class="header-section-number">1.2.3.3</span> Machine Learning uses</h4>
 </div>
 </div>
 <div id="methodology" class="section level3" number="1.2.4">
 <h3><span class="header-section-number">1.2.4</span> Methodology</h3>
-<p>Lorem ipsum</p>
+<p>Data accessible to us sets the boundaries of our research. It contains characteristics of households in California at one, specific point in time, so incorporating global economic indicators makes no sense. Many desirable predictors, such as number of bathrooms in a household or the exact state of local infrastracture are simply not available. In this paper we focus on <strong>accessibility</strong> and <strong>hedonic factors</strong>.</p>
+<p>The presence of exact location is vital to the credibility of this research. Factors connected with household location, which could have influence on final price, are numerous. Leaving some of them out could lead to selection bias present in the results of our work <span class="citation">(<a href="#ref-1-2-forecasting" role="doc-biblioref">Ghysels et al. 2013</a>)</span>. Thankfully, any factors connected with location - such as the local unemployment or state of infrastracture - are tied with geographical coordinates and are present in our data, although implicitly.</p>
 </div>
 <div id="results" class="section level3" number="1.2.5">
 <h3><span class="header-section-number">1.2.5</span> Results</h3>
@@ -316,6 +327,9 @@ div.csl-indent {
 <div id="refs" class="references csl-bib-body hanging-indent" line-spacing="2">
 <div id="ref-1-2-german_determinants" class="csl-entry">
 Belke, A., &amp; Keil, J. (2017). Fundamental determinants of real estate prices: A panel study of german regions, (731). Ruhr Economic Papers. <a href="https://doi.org/10.4419/86788851">https://doi.org/10.4419/86788851</a>
+</div>
+<div id="ref-1-2-forecasting" class="csl-entry">
+Ghysels, E., Plazzi, A., Valkanov, R., &amp; Torous, W. (2013). Chapter 9 - forecasting real estate prices, <em>2</em>, 509–580. https://doi.org/<a href="https://doi.org/10.1016/B978-0-444-53683-9.00009-8">https://doi.org/10.1016/B978-0-444-53683-9.00009-8</a>
 </div>
 </div>
             </section>
