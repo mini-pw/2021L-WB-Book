@@ -1,0 +1,13 @@
+
+## Roshomon sets on death prediction XGB models using MIMIC-III database
+*Authors: Ada Gąssowska, Elżbieta Jowik (Warsaw University of Techcnology)*
+
+### An initial literature review
+
+As the Rashomon Effect is not a common concept, any references to the term in the literature are somewhat limited.  The phenomenon is considered to occur when the same matter can be explained equally aptly in multitudinous ways.  Hence the core of the name concept is the title of the Kurosawa's movie from 1950 in which each character has different perspective on the same crime.   
+
+In relation to Machine Learning the Rashomon Effect term was first used in [@6-0-breiman2001statistical] to introduce a class of problems where many differing, accurate models exist to describe the same data i.e. to describe the case where there exist many models that are non-identical but almost-equally-accurate for a given issue. Breiman emphasized that the observation of many different accurate models on specific datasets is a common phenomenon. However, from 2001 on the topic has rarely been discussed.  
+
+While doing research on different machine learning models, data was quite often not taken into consideration at all. As stated in the recent article [@6-0-rashomon-intro] Rashomon Effect is directly linked to the topic of Explainable Machine Learning. According to the paper, large volume of data in the Rashomon set might imply the existence of multiple explainable model performing on the dataset equally accurately. The article aims to analyze the Rashomon effect on various datasets and attempt to formulate a statement regarding the information about the machine learning problem carried by the size of the Rashomon set. 
+
+Another matter closely related to the Rashomon effect that needs to be addressed, is the variables importance analysis. This area of research is described in an [@6-0-rashomon-variable-importance] article. The publication emphasizes the existence the fields where Explainable Machine Learning (including Rashomon effect) is particularly important, as the non-explainable models may rely on undesirable variables.  In an [@6-0-rashomon-variable-importance-cloud] paper, it is pointed out that only by comparing many models of similar performance the importance of a variable compared to other variables can be profoundly understood. The authors presented the concept of variable importance cloud and conducted the research showing that the variable importance may dramatically differ in approximately equally good models.  

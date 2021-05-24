@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>6.2 Reuters-21578 | Case Studies</title>
+  <meta name="description" content="Case studies for explainable artificial intelligence, deep learning, machine learning." />
+  <meta name="generator" content="bookdown 0.22 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="6.2 Reuters-21578 | Case Studies" />
+  <meta property="og:type" content="book" />
+  
+  <meta property="og:image" content="/images/cover.png" />
+  <meta property="og:description" content="Case studies for explainable artificial intelligence, deep learning, machine learning." />
+  
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="6.2 Reuters-21578 | Case Studies" />
+  
+  <meta name="twitter:description" content="Case studies for explainable artificial intelligence, deep learning, machine learning." />
+  <meta name="twitter:image" content="/images/cover.png" />
+
+
+
+<meta name="date" content="2021-04-29" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="projekt-1.html"/>
+<link rel="next" href="machine-learning.html"/>
+<script src="libs/header-attrs/header-attrs.js"></script>
+<script src="libs/jquery/jquery.min.js"></script>
+<link href="libs/gitbook/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+
+<link href="libs/anchor-sections/anchor-sections.css" rel="stylesheet" />
+<script src="libs/anchor-sections/anchor-sections.js"></script>
+
+
+
+<style type="text/css">
+/* Used with Pandoc 2.11+ new --citeproc when CSL is used */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+}
+.hanging div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}
+</style>
+
+<link rel="stylesheet" href="css/style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./"><h3>Case Studies</h3></a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Preface</a>
+<ul>
+<li class="chapter" data-level="" data-path="technical-setup.html"><a href="technical-setup.html"><i class="fa fa-check"></i>Technical Setup</a></li>
+</ul></li>
+<li class="chapter" data-level="1" data-path="explainable-artificial-intelligence.html"><a href="explainable-artificial-intelligence.html"><i class="fa fa-check"></i><b>1</b> Explainable Artificial Intelligence</a>
+<ul>
+<li class="chapter" data-level="1.1" data-path="xai1-explainable-cards.html"><a href="xai1-explainable-cards.html"><i class="fa fa-check"></i><b>1.1</b> Explaining Credit Card Customers churns</a></li>
+<li class="chapter" data-level="1.2" data-path="ml-in-predition-of-real-estate-prices.html"><a href="ml-in-predition-of-real-estate-prices.html"><i class="fa fa-check"></i><b>1.2</b> ML in predition of real estate prices</a>
+<ul>
+<li class="chapter" data-level="1.2.1" data-path="ml-in-predition-of-real-estate-prices.html"><a href="ml-in-predition-of-real-estate-prices.html#abstract"><i class="fa fa-check"></i><b>1.2.1</b> Abstract</a></li>
+<li class="chapter" data-level="1.2.2" data-path="ml-in-predition-of-real-estate-prices.html"><a href="ml-in-predition-of-real-estate-prices.html#introduction"><i class="fa fa-check"></i><b>1.2.2</b> Introduction</a></li>
+<li class="chapter" data-level="1.2.3" data-path="ml-in-predition-of-real-estate-prices.html"><a href="ml-in-predition-of-real-estate-prices.html#related-work"><i class="fa fa-check"></i><b>1.2.3</b> Related Work</a></li>
+<li class="chapter" data-level="1.2.4" data-path="ml-in-predition-of-real-estate-prices.html"><a href="ml-in-predition-of-real-estate-prices.html#methodology"><i class="fa fa-check"></i><b>1.2.4</b> Methodology</a></li>
+<li class="chapter" data-level="1.2.5" data-path="ml-in-predition-of-real-estate-prices.html"><a href="ml-in-predition-of-real-estate-prices.html#results"><i class="fa fa-check"></i><b>1.2.5</b> Results</a></li>
+<li class="chapter" data-level="1.2.6" data-path="ml-in-predition-of-real-estate-prices.html"><a href="ml-in-predition-of-real-estate-prices.html#summary-and-conclusions"><i class="fa fa-check"></i><b>1.2.6</b> Summary and conclusions</a></li>
+</ul></li>
+<li class="chapter" data-level="1.3" data-path="xai-heart-disease.html"><a href="xai-heart-disease.html"><i class="fa fa-check"></i><b>1.3</b> How not to have broken heart &lt;3</a>
+<ul>
+<li class="chapter" data-level="1.3.1" data-path="xai-heart-disease.html"><a href="xai-heart-disease.html#introduction-1"><i class="fa fa-check"></i><b>1.3.1</b> Introduction</a></li>
+</ul></li>
+<li class="chapter" data-level="1.4" data-path="xai1-explainable-wine.html"><a href="xai1-explainable-wine.html"><i class="fa fa-check"></i><b>1.4</b> Wines</a></li>
+<li class="chapter" data-level="1.5" data-path="xai1-explainable-hotels.html"><a href="xai1-explainable-hotels.html"><i class="fa fa-check"></i><b>1.5</b> eXplaining predictions of booking cancelations</a>
+<ul>
+<li class="chapter" data-level="1.5.1" data-path="xai1-explainable-hotels.html"><a href="xai1-explainable-hotels.html#introduction-2"><i class="fa fa-check"></i><b>1.5.1</b> Introduction</a></li>
+<li class="chapter" data-level="1.5.2" data-path="xai1-explainable-hotels.html"><a href="xai1-explainable-hotels.html#dataset-and-models"><i class="fa fa-check"></i><b>1.5.2</b> Dataset and models</a></li>
+<li class="chapter" data-level="1.5.3" data-path="xai1-explainable-hotels.html"><a href="xai1-explainable-hotels.html#local-explanations"><i class="fa fa-check"></i><b>1.5.3</b> Local explanations</a></li>
+<li class="chapter" data-level="1.5.4" data-path="xai1-explainable-hotels.html"><a href="xai1-explainable-hotels.html#global-explanations"><i class="fa fa-check"></i><b>1.5.4</b> Global explanations</a></li>
+<li class="chapter" data-level="1.5.5" data-path="xai1-explainable-hotels.html"><a href="xai1-explainable-hotels.html#summary-and-conclusions-1"><i class="fa fa-check"></i><b>1.5.5</b> Summary and conclusions</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="explainable-artificial-inteligence-r.html"><a href="explainable-artificial-inteligence-r.html"><i class="fa fa-check"></i><b>2</b> Explainable artificial inteligence (R)</a></li>
+<li class="chapter" data-level="3" data-path="deep-learning-1.html"><a href="deep-learning-1.html"><i class="fa fa-check"></i><b>3</b> Deep Learning 1</a></li>
+<li class="chapter" data-level="4" data-path="deep-learning-2.html"><a href="deep-learning-2.html"><i class="fa fa-check"></i><b>4</b> Deep Learning 2</a>
+<ul>
+<li class="chapter" data-level="4.1" data-path="ara-cnn-a-bayesian-deep-learning-model-intended-for-histopathological-image-classification-.html"><a href="ara-cnn-a-bayesian-deep-learning-model-intended-for-histopathological-image-classification-.html"><i class="fa fa-check"></i><b>4.1</b> ARA-CNN - a Bayesian deep learning model intended for histopathological image classification.</a></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="rethinking-the-u-net-architecture-for-multimodal-biomedical-image-segmentation.html"><a href="rethinking-the-u-net-architecture-for-multimodal-biomedical-image-segmentation.html"><i class="fa fa-check"></i><b>5</b> Rethinking the U-Net architecture for multimodal biomedical image segmentation</a>
+<ul>
+<li class="chapter" data-level="5.1" data-path="introduction-3.html"><a href="introduction-3.html"><i class="fa fa-check"></i><b>5.1</b> Introduction</a></li>
+<li class="chapter" data-level="5.2" data-path="dl2-rmdl-unet.html"><a href="dl2-rmdl-unet.html"><i class="fa fa-check"></i><b>5.2</b> Analyzing Reproducibility churns</a></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="dl2-test.html"><a href="dl2-test.html"><i class="fa fa-check"></i><b>6</b> DL2-Test</a>
+<ul>
+<li class="chapter" data-level="6.1" data-path="projekt-1.html"><a href="projekt-1.html"><i class="fa fa-check"></i><b>6.1</b> Projekt 1</a></li>
+<li class="chapter" data-level="6.2" data-path="reuters-21578.html"><a href="reuters-21578.html"><i class="fa fa-check"></i><b>6.2</b> Reuters-21578</a></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="machine-learning.html"><a href="machine-learning.html"><i class="fa fa-check"></i><b>7</b> Machine Learning</a>
+<ul>
+<li class="chapter" data-level="7.1" data-path="validation-and-comparison-of-covid-19-mortatility-prediction-models-on-multi-source-data.html"><a href="validation-and-comparison-of-covid-19-mortatility-prediction-models-on-multi-source-data.html"><i class="fa fa-check"></i><b>7.1</b> Validation and comparison of COVID-19 mortatility prediction models on multi-source data</a>
+<ul>
+<li class="chapter" data-level="7.1.1" data-path="validation-and-comparison-of-covid-19-mortatility-prediction-models-on-multi-source-data.html"><a href="validation-and-comparison-of-covid-19-mortatility-prediction-models-on-multi-source-data.html#introduction-4"><i class="fa fa-check"></i><b>7.1.1</b> Introduction</a></li>
+</ul></li>
+<li class="chapter" data-level="7.2" data-path="one-model-to-fit-them-all-covid-19-mortality-prediction-using-multinational-data.html"><a href="one-model-to-fit-them-all-covid-19-mortality-prediction-using-multinational-data.html"><i class="fa fa-check"></i><b>7.2</b> One model to fit them all: COVID-19 mortality prediction using multinational data</a>
+<ul>
+<li class="chapter" data-level="7.2.1" data-path="one-model-to-fit-them-all-covid-19-mortality-prediction-using-multinational-data.html"><a href="one-model-to-fit-them-all-covid-19-mortality-prediction-using-multinational-data.html#introduction-5"><i class="fa fa-check"></i><b>7.2.1</b> Introduction</a></li>
+</ul></li>
+<li class="chapter" data-level="7.3" data-path="transparent-machine-learning-to-support-predicting-covid-19-infection-risk-based-on-chronic-diseases.html"><a href="transparent-machine-learning-to-support-predicting-covid-19-infection-risk-based-on-chronic-diseases.html"><i class="fa fa-check"></i><b>7.3</b> Transparent Machine Learning to Support Predicting COVID-19 Infection Risk Based on Chronic Diseases</a>
+<ul>
+<li class="chapter" data-level="7.3.1" data-path="transparent-machine-learning-to-support-predicting-covid-19-infection-risk-based-on-chronic-diseases.html"><a href="transparent-machine-learning-to-support-predicting-covid-19-infection-risk-based-on-chronic-diseases.html#introduction-6"><i class="fa fa-check"></i><b>7.3.1</b> Introduction</a></li>
+</ul></li>
+<li class="chapter" data-level="7.4" data-path="comparison-of-deep-learning-and-tree-based-models-in-the-clinical-prediction-of-the-course-of-covid-19-illness.html"><a href="comparison-of-deep-learning-and-tree-based-models-in-the-clinical-prediction-of-the-course-of-covid-19-illness.html"><i class="fa fa-check"></i><b>7.4</b> Comparison of deep learning and tree-based models in the clinical prediction of the course of COVID-19 illness</a>
+<ul>
+<li class="chapter" data-level="7.4.1" data-path="comparison-of-deep-learning-and-tree-based-models-in-the-clinical-prediction-of-the-course-of-covid-19-illness.html"><a href="comparison-of-deep-learning-and-tree-based-models-in-the-clinical-prediction-of-the-course-of-covid-19-illness.html#abstract-1"><i class="fa fa-check"></i><b>7.4.1</b> Abstract</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="8" data-path="rashomonml.html"><a href="rashomonml.html"><i class="fa fa-check"></i><b>8</b> RashomonML</a>
+<ul>
+<li class="chapter" data-level="8.1" data-path="roshomon-sets-on-death-prediction-xgb-models-using-mimic-iii-database.html"><a href="roshomon-sets-on-death-prediction-xgb-models-using-mimic-iii-database.html"><i class="fa fa-check"></i><b>8.1</b> Roshomon sets on death prediction XGB models using MIMIC-III database</a></li>
+</ul></li>
+<li class="divider"></li>
+<li><a href="https://bookdown.org" target="_blank">Published with bookdown</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Case Studies</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="reuters-21578" class="section level2" number="6.2">
+<h2><span class="header-section-number">6.2</span> Reuters-21578</h2>
+<p>Architekture danego modelu zapisujemy w postaci [D, R, C], gdzie D-liczba użytych sieci DNN, R-liczba użytych sieci RNN, C-liczba użytych sieci CNN. Oczywiście najbardziej optymalnym byłoby wykorzystanie porówno tych sieci, jednak nie było to możliwe z powodów ograniczenia czasowego i długiego trwania obliczeń dla danych sieci.</p>
+<p>Próba 1*-[1,0,2]: Accuracy: 0.876449155349453</p>
+<p>Próba 2-[2,0,1]: Accuracy: 0.8691619741636304</p>
+<p>Próba 3-[3,0,3]: Accuracy: 0.8840675720437231</p>
+<p>Próba 4-[3,0,3]: Accuracy: 0.8906922822126532</p>
+<p>Próba 5*-[5,0,4]: Accuracy: 0.8983106989069228</p>
+<p>*-próba umieszczona w tabeli</p>
+<p>Porównanie wykresu twórców oraz naszych dla RMDL o 9 losowych architekturach. Zakładamy tu że kod który autorzy umieścili na githubie jest tym użytym do generowania ich przykładów. Nie mamy co do tego pewności, z pewnością funkcja generująca wykresy ine jest dokładnie tą samą. Drugą rzeczą którą się różni kod autorów i ich wykres to ilość epok dla tych sieci. (W kodzie 120, tu na wykresie 100.)</p>
+<table>
+<thead>
+<tr class="header">
+<th>Paper’s Plots</th>
+<th>Our Reproduction</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><img src="https://i.imgur.com/x79FakJ.png" width="425"/></td>
+<td><img src="https://i.imgur.com/Q7tCGMt.png" width="425"/></td>
+</tr>
+<tr class="even">
+<td><img src="https://i.imgur.com/OBtIcfz.png" width="425"/></td>
+<td><img src="https://i.imgur.com/iR3jZEx.png" width="425"/></td>
+</tr>
+</tbody>
+</table>
+
+</div>
+<!-- </div> -->
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="projekt-1.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="machine-learning.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook/js/app.min.js"></script>
+<script src="libs/gitbook/js/lunr.js"></script>
+<script src="libs/gitbook/js/clipboard.min.js"></script>
+<script src="libs/gitbook/js/plugin-search.js"></script>
+<script src="libs/gitbook/js/plugin-sharing.js"></script>
+<script src="libs/gitbook/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook/js/jquery.highlight.js"></script>
+<script src="libs/gitbook/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": true,
+"facebook": false,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"whatsapp": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": "https://github.com/mini-pw/2021L-WB-Book/edit/master/4-5-RMDLAdv.Rmd",
+"text": "Edit"
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": ["book.pdf", "book.epub"],
+"toc": {
+"collapse": "section"
+}
+});
+});
+</script>
+
+</body>
+
+</html>
