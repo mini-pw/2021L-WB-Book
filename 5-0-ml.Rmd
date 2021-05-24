@@ -4,8 +4,9 @@
 
 An ever-growing domain of machine learning decision systems in medicine has crossed ways with the COVID-19 pandemic. Precariously, a vast majority of the proposed predictive models focus on achieving high performance; while overlooking comprehensive validation. Nowadays, providing representative data, model explainability, even bias detection become mandatory for responsible prediction making in high-stakes medical applications.
 
-The following chapters introduce new views into the already published work on the topic of patients' COVID-19 mortality prognosis using supervised machine learning:
-1. TBA
-2. TBA
-3. TBA
-4. TBA
+The following short papers introduce new views into the already published work on the topic of patients' COVID-19 mortality prognosis using supervised machine learning:
+
+1. Validation and comparison of COVID-19 mortatility prediction models on multi-source data. *Michał Komorowski, Przemysław Olender, Piotr Sieńko, Konrad Welkier*
+2. One model to fit them all: COVID-19 survival prediction using multinational data. *Marcelina Kurek, Mateusz Stączek, Jakub Wiśniewski, Hanna Zdulska*
+3. Transparent machine learning to support predicting COVID-19 infection risk based on chronic diseases. *Dawid Przybyliński, Hubert Ruczyński, Kinga Ulasik*
+4. Comparison of neural networks and tree-based models in the clinical prediction of the course of COVID-19 illness. *Jakub Fołtyn, Kacper Grzymkowski, Konrad Komisarczyk*
