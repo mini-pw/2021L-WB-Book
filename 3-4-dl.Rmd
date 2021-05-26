@@ -1,0 +1,5 @@
+## COVID-Net
+
+*Authors: Bartlomiej Eljasiak, Tomasz Krupinski, Dominik Pawlak*
+
+### Introduction
