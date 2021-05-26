@@ -1,4 +1,4 @@
-## COVID-Net
+## ERSCovid
 
 *Authors: Bartlomiej Eljasiak, Tomasz Krupinski, Dominik Pawlak*
 
