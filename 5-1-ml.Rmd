@@ -65,7 +65,7 @@ knitr::include_graphics('images/5-1-neuDist.png')
 
 Age is also crucial feature in predicting virus severity, the young people get sick more mildly than the old ones.
 
-```{r 5-1-neuAge, out.width="850", fig.align="center", echo=FALSE, fig.cap='Comparison of patients age amongst datasets'}
+```{r 5-1-ageDist, out.width="850", fig.align="center", echo=FALSE, fig.cap='Comparison of patients age amongst datasets'}
 knitr::include_graphics('images/5-1-ageDist.png')
 ```
 
