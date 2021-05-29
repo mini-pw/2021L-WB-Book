@@ -59,6 +59,7 @@ It has been slightly modified so that it could be used in a two-output model.
 Despite the small number of epochs = 2, the model results are satisfactory.
 
 **Classification results**
+
 | Accuracy        | Sensitivity           | Precision  | F1 Score |
 | ------------- |-------------| -----|-------------|
 | 0.9221     | 0.6066 | 1 | 0.7551 |
