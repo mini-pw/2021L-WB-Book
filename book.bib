@@ -1291,3 +1291,141 @@ publisher = {PMLR},
 pdf = {http://proceedings.mlr.press/v97/aivodji19a/aivodji19a.pdf}, 
 url = { http://proceedings.mlr.press/v97/aivodji19a.html }
 }
+
+@article{2-3-xai,
+title = "Explainable Artificial Intelligence (XAI): Concepts, taxonomies, opportunities and challenges toward responsible AI",
+journal = "Information Fusion",
+volume = "58",
+pages = "82 - 115",
+year = "2020",
+issn = "1566-2535",
+url = "http://www.sciencedirect.com/science/article/pii/S1566253519308103",
+author = "Alejandro {Barredo Arrieta} and Natalia Díaz-Rodríguez and Javier {Del Ser} and Adrien Bennetot and Siham Tabik and Alberto Barbado and Salvador Garcia and Sergio Gil-Lopez and Daniel Molina and Richard Benjamins and Raja Chatila and Francisco Herrera",
+keywords = "Explainable Artificial Intelligence, Machine Learning, Deep Learning, Data Fusion, Interpretability, Comprehensibility, Transparency, Privacy, Fairness, Accountability, Responsible Artificial Intelligence"}
+
+@misc{2-3-landscape,
+  title={Landscape of R packages for eXplainable Artificial Intelligence}, 
+  author={Szymon Maksymiuk and Alicja Gosiewska and Przemyslaw Biecek},
+  year={2021},
+  eprint={2009.13248},
+  archivePrefix={arXiv},
+  primaryClass={cs.LG}
+}
+
+@Article{2-3-dalex,
+  title = {{DALEX: Explainers for Complex Predictive Models in R}},
+  author = {Przemyslaw Biecek},
+  journal = {Journal of Machine Learning Research},
+  year = {2018},
+  volume = {19},
+  pages = {1-5},
+  number = {84},
+  url = {http://jmlr.org/papers/v19/18-416.html},
+}
+
+@article{2-3-openml,
+author = {Vanschoren, Joaquin and van Rijn, Jan N. and Bischl, Bernd and Torgo, Luis},
+title = {OpenML: Networked Science in Machine Learning},
+journal = {SIGKDD Explorations},
+volume = {15},
+number = {2},
+year = {2013},
+pages = {49--60},
+url = {http://doi.acm.org/10.1145/2641190.2641198},
+doi = {10.1145/2641190.2641198},
+publisher = {ACM},
+address = {New York, NY, USA},
+} 
+
+@Article{2-3-ranger,
+    title = {{{ranger}: A Fast Implementation of Random Forests for High Dimensional Data in {C++} and {R}}},
+    author = {Marvin N. Wright and Andreas Ziegler},
+    journal = {Journal of Statistical Software},
+    year = {2017},
+    volume = {77},
+    number = {1},
+    pages = {1--17},
+    doi = {10.18637/jss.v077.i01},
+  }
+
+@article{2-3-roc-1,
+author = {Bradley, Andrew P.},
+title = {The Use of the Area under the ROC Curve in the Evaluation of Machine Learning Algorithms},
+year = {1997},
+issue_date = {July, 1997},
+publisher = {Elsevier Science Inc.},
+address = {USA},
+volume = {30},
+number = {7},
+issn = {0031-3203},
+url = {https://doi.org/10.1016/S0031-3203(96)00142-2},
+doi = {10.1016/S0031-3203(96)00142-2},
+abstract = {In this paper we investigate the use of the area under the receiver operating characteristic (ROC) curve (AUC) as a performance measure for machine learning algorithms. As a case study we evaluate six machine learning algorithms (C4.5, Multiscale Classifier, Perceptron, Multi-layer Perceptron, k-Nearest Neighbours, and a Quadratic Discriminant Function) on six ''real world'' medical diagnostics data sets. We compare and discuss the use of AUC to the more conventional overall accuracy and find that AUC exhibits a number of desirable properties when compared to overall accuracy: increased sensitivity in Analysis of Variance (ANOVA) tests; a standard error that decreased as both AUC and the number of test samples increased; decision threshold independent; and it is invariant to a priori class probabilities. The paper concludes with the recommendation that AUC be used in preference to overall accuracy for ''single number'' evaluation of machine learning algorithms.},
+journal = {Pattern Recogn.},
+month = jul,
+pages = {1145–1159},
+numpages = {15},
+keywords = {Wilcoxon statistic, Accuracy measures, Standard error, Cross-validation, The area under the ROC curve (AUC), The ROC curve}
+}
+
+@article{2-3-roc-2,
+title = {An introduction to ROC analysis},
+journal = {Pattern Recognition Letters},
+volume = {27},
+number = {8},
+pages = {861-874},
+year = {2006},
+note = {ROC Analysis in Pattern Recognition},
+issn = {0167-8655},
+doi = {https://doi.org/10.1016/j.patrec.2005.10.010},
+url = {https://www.sciencedirect.com/science/article/pii/S016786550500303X},
+author = {Tom Fawcett},
+keywords = {ROC analysis, Classifier evaluation, Evaluation metrics},
+abstract = {Receiver operating characteristics (ROC) graphs are useful for organizing classifiers and visualizing their performance. ROC graphs are commonly used in medical decision making, and in recent years have been used increasingly in machine learning and data mining research. Although ROC graphs are apparently simple, there are some common misconceptions and pitfalls when using them in practice. The purpose of this article is to serve as an introduction to ROC graphs and as a guide for using them in research.}
+}
+
+@article{2-3-pr-1,
+author = {Raghavan, Vijay and Bollmann, Peter and Jung, Gwang S.},
+title = {A Critical Investigation of Recall and Precision as Measures of Retrieval System Performance},
+year = {1989},
+issue_date = {July 1989},
+publisher = {Association for Computing Machinery},
+address = {New York, NY, USA},
+volume = {7},
+number = {3},
+issn = {1046-8188},
+url = {https://doi.org/10.1145/65943.65945},
+doi = {10.1145/65943.65945},
+abstract = {Recall and precision are often used to evaluate the effectiveness of information retrieval systems. They are easy to define if there is a single query and if the retrieval result generated for the query is a linear ordering. However, when the retrieval results are weakly ordered, in the sense that several documents have an identical retrieval status value with respect to a query, some probabilistic notion of precision has to be introduced. Relevance probability, expected precision, and so forth, are some alternatives mentioned in the literature for this purpose. Furthermore, when many queries are to be evaluated and the retrieval results averaged over these queries, some method of interpolation of precision values at certain preselected recall levels is needed. The currently popular approaches for handling both a weak ordering and interpolation are found to be inconsistent, and the results obtained are not easy to interpret. Moreover, in cases where some alternatives are available, no comparative analysis that would facilitate the selection of a particular strategy has been provided. In this paper, we systematically investigate the various problems and issues associated with the use of recall and precision as measures of retrieval system performance. Our motivation is to provide a comparative analysis of methods available for defining precision in a probabilistic sense and to promote a better understanding of the various issues involved in retrieval performance evaluation.},
+journal = {ACM Trans. Inf. Syst.},
+month = jul,
+pages = {205–229},
+numpages = {25}
+}
+
+@inproceedings{2-3-pr-2,
+author = {Davis, Jesse and Goadrich, Mark},
+title = {The Relationship between Precision-Recall and ROC Curves},
+year = {2006},
+isbn = {1595933832},
+publisher = {Association for Computing Machinery},
+address = {New York, NY, USA},
+url = {https://doi.org/10.1145/1143844.1143874},
+doi = {10.1145/1143844.1143874},
+abstract = {Receiver Operator Characteristic (ROC) curves are commonly used to present results for binary decision problems in machine learning. However, when dealing with highly skewed datasets, Precision-Recall (PR) curves give a more informative picture of an algorithm's performance. We show that a deep connection exists between ROC space and PR space, such that a curve dominates in ROC space if and only if it dominates in PR space. A corollary is the notion of an achievable PR curve, which has properties much like the convex hull in ROC space; we show an efficient algorithm for computing this curve. Finally, we also note differences in the two types of curves are significant for algorithm design. For example, in PR space it is incorrect to linearly interpolate between points. Furthermore, algorithms that optimize the area under the ROC curve are not guaranteed to optimize the area under the PR curve.},
+booktitle = {Proceedings of the 23rd International Conference on Machine Learning},
+pages = {233–240},
+numpages = {8},
+location = {Pittsburgh, Pennsylvania, USA},
+series = {ICML '06}
+}
+
+@article{2-3-pr-3,
+  title={The Precision-Recall Plot Is More Informative than the ROC Plot When Evaluating Binary Classifiers on Imbalanced Datasets},
+  volume={10},
+  DOI={10.1371/journal.pone.0118432},
+  number={3},
+  journal={Plos One},
+  author={Saito, Takaya and Rehmsmeier, Marc},
+  year={2015}
+} 
