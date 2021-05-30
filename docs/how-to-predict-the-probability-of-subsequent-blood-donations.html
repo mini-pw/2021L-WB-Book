@@ -4,11 +4,11 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>Chapter 6 RashomonML | Case Studies</title>
+  <title>2.2 How to predict the probability of subsequent blood donations? | Case Studies</title>
   <meta name="description" content="Case studies in machine learning." />
   <meta name="generator" content="bookdown 0.22 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="Chapter 6 RashomonML | Case Studies" />
+  <meta property="og:title" content="2.2 How to predict the probability of subsequent blood donations? | Case Studies" />
   <meta property="og:type" content="book" />
   
   <meta property="og:image" content="/images/cover.png" />
@@ -16,7 +16,7 @@
   <meta name="github-repo" content="mini-pw/2021L-WB-Book" />
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Chapter 6 RashomonML | Case Studies" />
+  <meta name="twitter:title" content="2.2 How to predict the probability of subsequent blood donations? | Case Studies" />
   
   <meta name="twitter:description" content="Case studies in machine learning." />
   <meta name="twitter:image" content="/images/cover.png" />
@@ -31,8 +31,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-<link rel="prev" href="comparison-of-neural-networks-and-tree-based-models-in-the-clinical-prediction-of-the-course-of-covid-19-illness.html"/>
-<link rel="next" href="topic.html"/>
+<link rel="prev" href="xai1-explainable-german-credits.html"/>
+<link rel="next" href="how-the-price-of-the-house-is-influenced-by-neighborhood-xai-methods-for-interpretation-the-black-box-model.html"/>
 <script src="libs/header-attrs/header-attrs.js"></script>
 <script src="libs/jquery/jquery.min.js"></script>
 <link href="libs/gitbook/css/style.css" rel="stylesheet" />
@@ -307,17 +307,202 @@ div.csl-indent {
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="rashomonml" class="section level1" number="6">
-<h1><span class="header-section-number">Chapter 6</span> RashomonML</h1>
-<!--chapter:end:6-0-Rml.Rmd-->
+<div id="how-to-predict-the-probability-of-subsequent-blood-donations" class="section level2" number="2.2">
+<h2><span class="header-section-number">2.2</span> How to predict the probability of subsequent blood donations?</h2>
+<p><em>Authors: Maciej Chylak, Mateusz Grzyb, Dawid Janus (Warsaw University of Technology)</em></p>
+<div id="abstract-2" class="section level3" number="2.2.1">
+<h3><span class="header-section-number">2.2.1</span> Abstract</h3>
+<p>placeholder</p>
+</div>
+<div id="introduction-and-motivation-1" class="section level3" number="2.2.2">
+<h3><span class="header-section-number">2.2.2</span> Introduction and motivation</h3>
+<p>Interest in explainable artificial intelligence (XAI) has increased significantly in recent years. XAI facilitates humans to understand artificial intelligence (AI) solutions <span class="citation">(<a href="#ref-2-3-xai" role="doc-biblioref">Barredo Arrieta et al. 2020a</a>)</span>. It contrasts with the concept of a black box where even its designers cannot explain why an AI model has arrived at a specific conclusion. The intense development of such methods has led to a wide choice of XAI tools that we have today <span class="citation">(<a href="#ref-2-3-landscape" role="doc-biblioref">Maksymiuk et al. 2021</a>)</span>. It includes the R package DALEX <span class="citation">(<a href="#ref-2-3-dalex" role="doc-biblioref">Biecek 2018</a>)</span>, which is the foundation of this work.</p>
+<p>Our goal is to prepare and explain a model designed to predict the probability of subsequent blood donations based on a history of a patient’s previous offerings. Careful use of XAI tools allows us to verify model correctness and discover phenomenons affecting blood donations that hide in the data. Obtained knowledge may have various implications, including improvement of planning and advertising of blood donation campaigns.</p>
+</div>
+<div id="related-work-1" class="section level3" number="2.2.3">
+<h3><span class="header-section-number">2.2.3</span> Related work</h3>
+<p>placeholder</p>
+</div>
+<div id="data-and-model" class="section level3" number="2.2.4">
+<h3><span class="header-section-number">2.2.4</span> Data and model</h3>
+<div id="original-dataset" class="section level4" number="2.2.4.1">
+<h4><span class="header-section-number">2.2.4.1</span> Original dataset</h4>
+<p>The data which all the prepared models are based upon comes from the Blood Transfusion Service Center Data Set, which is available through OpenML website <span class="citation">(<a href="#ref-2-3-openml" role="doc-biblioref">Vanschoren et al. 2013</a>)</span>.</p>
+<p>The dataset consists of 748 observations (representing individual patients) described by 5 attributes:</p>
+<ul>
+<li>recency - months since last blood donation,</li>
+<li>frequency - total number of blood donations,</li>
+<li>monetary - total amount of donated blood in c.c.,</li>
+<li>time - months since first blood donation,</li>
+<li>donated - a binary variable representing whether he/she donated blood in March 2007.</li>
+</ul>
+</div>
+<div id="data-analysis" class="section level4" number="2.2.4.2">
+<h4><span class="header-section-number">2.2.4.2</span> Data analysis</h4>
+<p>Initial data analysis is a critical process allowing to discover patterns and check assumptions about the data. It is performed with the help of summary statistics and graphical data representations.</p>
+<p>The short data analysis below is based on two visualizations representing distributions and correlations of variables.</p>
+<div class="figure" style="text-align: center"><span id="fig:2-3-distributions"></span>
+<img src="images/2-3-distributions.png" alt="Distributions of explanatory variables (histogram)." width="600" />
+<p class="caption">
+Figure 2.11: Distributions of explanatory variables (histogram).
+</p>
+</div>
+<p>Based on the above figure <a href="how-to-predict-the-probability-of-subsequent-blood-donations.html#fig:2-3-distributions">2.11</a> an important insight can be made - distributions of Frequency and Monetary variables are identical (excluding support). It probably comes from the fact that during every donation the same amount of blood is drawn. The presence of both of these variables in the final model is pointless.</p>
+<div class="figure" style="text-align: center"><span id="fig:2-3-correlations"></span>
+<img src="images/2-3-correlations.png" alt="Correlations of explanatory variables (correlation matrix)." width="600" />
+<p class="caption">
+Figure 2.12: Correlations of explanatory variables (correlation matrix).
+</p>
+</div>
+<p>The above figure <a href="how-to-predict-the-probability-of-subsequent-blood-donations.html#fig:2-3-correlations">2.12</a> represents correlations of explanatory variables measured using robust Spearman’s rank correlation coefficient. Apart from the already clear perfect correlation of Monetary and Frequency variables, a strong correlation of Time and Monetary/Frequency variables is visible. It probably comes from the fact that the minimal interval between subsequent donations is strictly controlled. Such dependence can negatively affect model performance and explanations. This potential problem is addressed during pre-processing of used data.</p>
+</div>
+<div id="pre-processing" class="section level4" number="2.2.4.3">
+<h4><span class="header-section-number">2.2.4.3</span> Pre-processing</h4>
+<p>Simple data pre-processing is conducted, mainly to reduce detected correlations of explanatory variables.</p>
+<p>Firstly, the variable Monetary is removed from the dataset. The information it carries duplicates information contained in the Frequency variable.</p>
+<p>Secondly, a derived variable is introduced instead of Time variable. It is called Intensity and is calculated as follows:</p>
+<p><span class="math display">\[\textrm{Intensity} = \frac{\textrm{Frequency}}{\textrm{Time}-\textrm{Recency}}\]</span></p>
+<p>The above equation results in values from range <span class="math inline">\([0.03125, 1.00000]\)</span>.</p>
+<p>The denominator can be interpreted as a time window bounding all the known donations of a given patient.</p>
+<p>Spearman’s rank correlation coefficient of the new variable Intensity and the old variable Frequency is <span class="math inline">\(-0.46\)</span>, which is lower compared to the previous <span class="math inline">\(0.72\)</span> value for the Time/Frequency combination.</p>
+</div>
+<div id="final-model" class="section level4" number="2.2.4.4">
+<h4><span class="header-section-number">2.2.4.4</span> Final model</h4>
+<p>According to the OpenML website Ranger implementation of Random Forests [2-3-ranger] is among the best performing classifiers for the considered task. All the tested models utilize this ML algorithm.</p>
+<p>Performance of the models is assessed through three measures - basic classification accuracy and more complex areas under the ROC <span class="citation">(<a href="#ref-2-3-roc-1" role="doc-biblioref">Bradley 1997</a>)</span> <span class="citation">(<a href="#ref-2-3-roc-2" role="doc-biblioref">Fawcett 2006</a>)</span> / PR <span class="citation">(<a href="#ref-2-3-pr-1" role="doc-biblioref">Raghavan et al. 1989</a>)</span> <span class="citation">(<a href="#ref-2-3-pr-2" role="doc-biblioref">Davis and Goadrich 2006</a>)</span> curves. The area under the PR curve is an especially adequate measure for unbalanced classification problems <span class="citation">(<a href="#ref-2-3-pr-3" role="doc-biblioref">Saito and Rehmsmeier 2015</a>)</span>, which is the case here.</p>
+<p>Based on the described measures, the best model is chosen from models trained on the following explanatory variables subsets:</p>
+<ul>
+<li>Recency, Time</li>
+<li>Recency, Frequency,</li>
+<li>Recency, Frequency, Time</li>
+<li>Recency, Frequency, Intensity</li>
+</ul>
+<p>Models utilizing only two explanatory variables perform significantly worse. Out of the last two models, the model utilizing the Time variable is slightly worse than the model utilizing the Intensity variable.</p>
+<p>The accuracy of the last model is <span class="math inline">\(0.85\)</span>, other performance measures describing it are presented graphically below.</p>
+<div class="figure" style="text-align: center"><span id="fig:2-3-roc"></span>
+<img src="images/2-3-roc.png" alt="ROC curve and corresponding AUC for final model." width="600" />
+<p class="caption">
+Figure 2.13: ROC curve and corresponding AUC for final model.
+</p>
+</div>
+<p>ROC curve visible in the above figure <a href="how-to-predict-the-probability-of-subsequent-blood-donations.html#fig:2-3-roc">2.13</a> represents good model performance and AUC value of almost <span class="math inline">\(0.92\)</span> is definitely satisfactory.</p>
+<div class="figure" style="text-align: center"><span id="fig:2-3-pr"></span>
+<img src="images/2-3-pr.png" alt="PR curve and corresponding AUC for final model." width="600" />
+<p class="caption">
+Figure 2.14: PR curve and corresponding AUC for final model.
+</p>
+</div>
+<p>The baseline for the ROC AUC is always <span class="math inline">\(0.5\)</span>, but it is not the case for the PR AUC. Here, the baseline AUC is equal to the proportion of positive observations in the data. In our case it is <span class="math inline">\(\frac{178}{748}=0.238\)</span>. Due to the above, the PR AUC value of around <span class="math inline">\(0.81\)</span> visible in the figure <a href="how-to-predict-the-probability-of-subsequent-blood-donations.html#fig:2-3-pr">2.14</a> is also proof of high model precision.</p>
+<p>Summarizing the above model selection, the final model used in all the presented explanations is Ranger implementation of Random Forests utilizing the Recency, Frequency, and Intensity variables. Its performance measures are at least good, so the prepared explanations have a chance to be accurate.</p>
+</div>
+</div>
+<div id="global-explanations-4" class="section level3" number="2.2.5">
+<h3><span class="header-section-number">2.2.5</span> Global explanations</h3>
+<p>placeholder</p>
+<div id="permutation-feature-importance" class="section level4" number="2.2.5.1">
+<h4><span class="header-section-number">2.2.5.1</span> Permutation Feature Importance</h4>
+<div class="figure" style="text-align: center"><span id="fig:2-3-permutation"></span>
+<img src="images/2-3-permutation.png" alt="Permutation Feature Importance for final model." width="600" />
+<p class="caption">
+Figure 2.15: Permutation Feature Importance for final model.
+</p>
+</div>
+</div>
+<div id="partial-dependence-profile" class="section level4" number="2.2.5.2">
+<h4><span class="header-section-number">2.2.5.2</span> Partial Dependence Profile</h4>
+<div class="figure" style="text-align: center"><span id="fig:2-3-pdp"></span>
+<img src="images/2-3-pdp.png" alt="Partial Dependence Profile for final model." width="600" />
+<p class="caption">
+Figure 2.16: Partial Dependence Profile for final model.
+</p>
+</div>
+</div>
+<div id="accumulated-local-effect-profile" class="section level4" number="2.2.5.3">
+<h4><span class="header-section-number">2.2.5.3</span> Accumulated Local Effect Profile</h4>
+<div class="figure" style="text-align: center"><span id="fig:2-3-ale"></span>
+<img src="images/2-3-ale.png" alt="Accumulated Local Effect Profile for final model." width="600" />
+<p class="caption">
+Figure 2.17: Accumulated Local Effect Profile for final model.
+</p>
+</div>
+</div>
+</div>
+<div id="local-explanations-1" class="section level3" number="2.2.6">
+<h3><span class="header-section-number">2.2.6</span> Local explanations</h3>
+<div id="ceteris-paribus-profiles" class="section level4" number="2.2.6.1">
+<h4><span class="header-section-number">2.2.6.1</span> Ceteris Paribus Profiles</h4>
+<div class="figure" style="text-align: center"><span id="fig:2-3-ceteris1"></span>
+<img src="images/2-3-ceteris1.png" alt="Ceteris Paribus Profile for observation number 342." width="600" />
+<p class="caption">
+Figure 2.18: Ceteris Paribus Profile for observation number 342.
+</p>
+</div>
+<div class="figure" style="text-align: center"><span id="fig:2-3-ceteris2"></span>
+<img src="images/2-3-ceteris2.png" alt="Ceteris Paribus Profile for observation number 16." width="600" />
+<p class="caption">
+Figure 2.19: Ceteris Paribus Profile for observation number 16.
+</p>
+</div>
+</div>
+<div id="break-down-profiles" class="section level4" number="2.2.6.2">
+<h4><span class="header-section-number">2.2.6.2</span> Break Down Profiles</h4>
+<div class="figure" style="text-align: center"><span id="fig:2-3-break1"></span>
+<img src="images/2-3-break1.png" alt="Break Down Profile for observation number 4." width="600" />
+<p class="caption">
+Figure 2.20: Break Down Profile for observation number 4.
+</p>
+</div>
+<div class="figure" style="text-align: center"><span id="fig:2-3-break2"></span>
+<img src="images/2-3-break2.png" alt="Break Down Profile for observation number 109." width="600" />
+<p class="caption">
+Figure 2.21: Break Down Profile for observation number 109.
+</p>
+</div>
+</div>
+</div>
+<div id="conclusions-and-summary" class="section level3" number="2.2.7">
+<h3><span class="header-section-number">2.2.7</span> Conclusions and summary</h3>
+<p>placeholder</p>
+
+</div>
+</div>
+<h3>References</h3>
+<div id="refs" class="references csl-bib-body hanging-indent" line-spacing="2">
+<div id="ref-2-3-xai" class="csl-entry">
+Barredo Arrieta, A., Díaz-Rodríguez, N., Del Ser, J., Bennetot, A., Tabik, S., Barbado, A., et al. (2020a). Explainable artificial intelligence (XAI): Concepts, taxonomies, opportunities and challenges toward responsible AI. <em>Information Fusion</em>, <em>58</em>, 82–115. <a href="http://www.sciencedirect.com/science/article/pii/S1566253519308103">http://www.sciencedirect.com/science/article/pii/S1566253519308103</a>
+</div>
+<div id="ref-2-3-dalex" class="csl-entry">
+Biecek, P. (2018). <span class="nocase">DALEX: Explainers for Complex Predictive Models in R</span>. <em>Journal of Machine Learning Research</em>, <em>19</em>(84), 1–5. <a href="http://jmlr.org/papers/v19/18-416.html">http://jmlr.org/papers/v19/18-416.html</a>
+</div>
+<div id="ref-2-3-roc-1" class="csl-entry">
+Bradley, A. P. (1997). The use of the area under the ROC curve in the evaluation of machine learning algorithms. <em>Pattern Recogn.</em>, <em>30</em>(7), 1145–1159. <a href="https://doi.org/10.1016/S0031-3203(96)00142-2">https://doi.org/10.1016/S0031-3203(96)00142-2</a>
+</div>
+<div id="ref-2-3-pr-2" class="csl-entry">
+Davis, J., &amp; Goadrich, M. (2006). The relationship between precision-recall and ROC curves. In <em>Proceedings of the 23rd international conference on machine learning</em> (pp. 233–240). New York, NY, USA: Association for Computing Machinery. <a href="https://doi.org/10.1145/1143844.1143874">https://doi.org/10.1145/1143844.1143874</a>
+</div>
+<div id="ref-2-3-roc-2" class="csl-entry">
+Fawcett, T. (2006). An introduction to ROC analysis. <em>Pattern Recognition Letters</em>, <em>27</em>(8), 861–874. https://doi.org/<a href="https://doi.org/10.1016/j.patrec.2005.10.010">https://doi.org/10.1016/j.patrec.2005.10.010</a>
+</div>
+<div id="ref-2-3-landscape" class="csl-entry">
+Maksymiuk, S., Gosiewska, A., &amp; Biecek, P. (2021). Landscape of r packages for eXplainable artificial intelligence. <a href="https://arxiv.org/abs/2009.13248">https://arxiv.org/abs/2009.13248</a>
+</div>
+<div id="ref-2-3-pr-1" class="csl-entry">
+Raghavan, V., Bollmann, P., &amp; Jung, G. S. (1989). A critical investigation of recall and precision as measures of retrieval system performance. <em>ACM Trans. Inf. Syst.</em>, <em>7</em>(3), 205–229. <a href="https://doi.org/10.1145/65943.65945">https://doi.org/10.1145/65943.65945</a>
+</div>
+<div id="ref-2-3-pr-3" class="csl-entry">
+Saito, T., &amp; Rehmsmeier, M. (2015). The precision-recall plot is more informative than the ROC plot when evaluating binary classifiers on imbalanced datasets. <em>Plos One</em>, <em>10</em>(3). <a href="https://doi.org/10.1371/journal.pone.0118432">https://doi.org/10.1371/journal.pone.0118432</a>
+</div>
+<div id="ref-2-3-openml" class="csl-entry">
+Vanschoren, J., Rijn, J. N. van, Bischl, B., &amp; Torgo, L. (2013). OpenML: Networked science in machine learning. <em>SIGKDD Explorations</em>, <em>15</em>(2), 49–60. <a href="https://doi.org/10.1145/2641190.2641198">https://doi.org/10.1145/2641190.2641198</a>
+</div>
 </div>
             </section>
 
           </div>
         </div>
       </div>
-<a href="comparison-of-neural-networks-and-tree-based-models-in-the-clinical-prediction-of-the-course-of-covid-19-illness.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="topic.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="xai1-explainable-german-credits.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="how-the-price-of-the-house-is-influenced-by-neighborhood-xai-methods-for-interpretation-the-black-box-model.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook/js/app.min.js"></script>
@@ -349,7 +534,7 @@ gitbook.start({
 "size": 2
 },
 "edit": {
-"link": "https://github.com/mini-pw/2021L-WB-Book/edit/master/6-1-MIMIC.Rmd",
+"link": "https://github.com/mini-pw/2021L-WB-Book/edit/master/2-3-blood-transfusion.rmd",
 "text": "Edit"
 },
 "history": {
