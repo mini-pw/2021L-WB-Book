@@ -1,6 +1,6 @@
 ## BCDUNet
 
-*Authors: Maria Kałuska, Paweł Koźmiński, Mikołaj Spytek*
+*Authors: Maria Kałuska, Paweł Koźmiński, Mikołaj Spytek (Warsaw University of Technology)*
 
 ### Abstract
 
@@ -8,19 +8,31 @@ Some text will be here in the future
 
 ### Introduction
 
-TODO
-### Dataset
+Being able to reproduce results presented in published papers is a significant part of the scientific process. It is important mainly because it allows other scientists to verify that the method produces consistant results. The main goal of our work was to reproduce the results of the BCDU-Net deep neural network [@3-2-bcdu] and to check if the source code provided with the paper was of sufficient quality so as to add our own modifications to the network. We focused on working with the verison of the network which performed a lung segmentation task.
+
+The architecture of the BCDU network is based on U-Net [@3-2-unet] which takes its name from the shape of the model. Both, the original and the improved models consist of max-pooling layers, convolutional layers and up-convolutional layers, but what makes BCDU-net stand out, is the usage of BConvLSTM cells. They allow easier flow of information between the first and last layers of the model, which in turn improves the performance.
+
+#### Dataset
 
 The dataset used by the authors of the article was downloaded from Kaggle ![link do danych]() and consists of eight files 
 in NIfTI(Neuroimaging Informatics Technology Initiative) format. There are four 3D CT scans of human chest, 
 the other four files are corresponding masks. Each photo consists of horizontal sections with the resolution 512x512.
  After unpacking those images, there were about 1200 horizontal images of lungs and corresponding masks. ![Lungs with mask](images/3-2-dataset.png)
 
-#### Preprocessing
+##### Preprocessing
 
 The preprocessing applied to the lung images was to normalize the grayscale to the range [0, 255] and to remove blood vessels and bones. 
 In addition, horizontal sections consisting only of black pixels have been removed. In the case of masks, all pixels have been limited 
 to the value set {0, 1}. Moreover, masks around the lung area were generated, and binary erosion was also used in the photos prepared in this way.
+
+#### Execution
+
+The code repository provided with the article contained all the necessary files to train the model and obtain results. At first we didn't see if the authors attached information about the versions of packages they used, so we decided to try the following: `keras==2.4.3`, `tensorflow==2.4.1`, `scikit-learn==0.24.1`, `numpy==1.19.5`, `matplotlib==3.3.4` and ran the code in `python 3.8.7`. Much later it turned out that the list of versions of packages was included in one of the pull requests in the Github repository, but we decided to stick with the ones chosen by us, as by then they worked and allowed us to obtain results.
+
+Even though the code was mostly functional, it still required some debugging. Some errors seemed as though they were simple omissions, whereas some might have been the result of us using slightly different versions of packages. In order to get the model to work we: added `import os` to the `Prepare_data.py` file, added `import numpy as np` to the `models.py` file, changed argument names from `input, output` to `inputs, outputs` in the definition of the model in the `models.py` file. After implementing these changes we succesfully trained and evaluated the model.
+
+Even though at this moment the model was working, it was extremely slow. It was due to the fact that the calculations were being carried out using the CPU. To improve training speed we installed the cuDNN library, so that we were able to use the performance of our graphics cards.
+
 
 ### Experiments
 
