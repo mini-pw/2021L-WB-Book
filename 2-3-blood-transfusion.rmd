@@ -62,11 +62,11 @@ The above equation results in values from range $[0.03125, 1.00000]$.
 
 The denominator can be interpreted as a time window bounding all the known donations of a given patient.
 
-Spearman's rank correlation coefficient of the new variable Intensity and the old variable Frequency is $-0.46$, which is lower compared to the previous $0.72$ value for the Time/Frequency combination.
+Spearman's rank correlation coefficient of the new variable Intensity and the old variable Frequency is $-0.46$, which is lower compared to the previous $0.72$ value for the Time / Frequency combination.
 
 #### Final model
 
-According to the OpenML website Ranger implementation of Random Forests [2-3-ranger] is among the best performing classifiers for the considered task. All the tested models utilize this ML algorithm.
+According to the OpenML website Ranger implementation of Random Forests [@2-3-ranger] is among the best performing classifiers for the considered task. All the tested models utilize this ML algorithm.
 
 Performance of the models is assessed through three measures - basic classification accuracy and more complex areas under the ROC [@2-3-roc-1] [@2-3-roc-2] / PR [@2-3-pr-1] [@2-3-pr-2] curves. The area under the PR curve is an especially adequate measure for unbalanced classification problems [@2-3-pr-3], which is the case here.
 
@@ -97,25 +97,58 @@ Summarizing the above model selection, the final model used in all the presented
 
 ### Global explanations
 
-placeholder
+Global explanations are used to discover how individual variables affect average model prediction on the level of the whole dataset. Here, we can learn how strong is the influence of a given variable or how its particular values shape the overall model response.
+
+In the case of large numbers of observations, global explanations can be prepared using only a fraction of them to save calculations time. Dataset presented in this work can be considered small, and therefore all observations are always used.
 
 #### Permutation Feature Importance
+
+Permutation Feature Importance [@2-3-pfi] is a method of assessing how strongly given variable affects the overall model prediction. The idea behind it is to measure change in model's performance when it is not allowed to utilize selected feature. Removal of variables from the model is realized through multiple random permutations of it.
 
 ```{r 2-3-permutation, out.width='600', fig.align='center', echo=FALSE, fig.cap='Permutation Feature Importance for final model.'}
 knitr::include_graphics('images/2-3-permutation.png')
 ```
 
+Figure \@ref(fig:2-3-permutation) shows, all explanatory variables have significant importance in the model under study. The most important feature is Recency (highest loss after permutation) followed by derived variable Intensity and Frequency in the last.
+
+The significance of the Recency variable is well visible later on, especially when local explanations are considered.
+
 #### Partial Dependence Profile
+
+Partial Dependence Profile [@2-3-pdp-1] [@2-3-pdp-2] allows users to see how the expected model prediction behaves as a function of a given variable. It is realized through averaging (basic arithmetic mean) of multiple Ceteris-Paribus Profiles, a method described in the Local Explanations section.
 
 ```{r 2-3-pdp, out.width='600', fig.align='center', echo=FALSE, fig.cap='Partial Dependence Profile for final model.'}
 knitr::include_graphics('images/2-3-pdp.png')
 ```
 
+Firstly, curves presented in the figure above \@ref(fig:2-3-pdp) are visibly ragged. This is mostly caused by the selection of the ML algorithm - Random Forests contain many if-then rules that can change the final prediction value rapidly, even with small explanatory variable change. Therefore, it is best to look at the overall shape of yielded curves and ignore the uneven details.
+
+Visible shapes are mostly in line with intuition - higher Frequency and Intensity values yield higher prediction (probability of subsequent blood donation to recall), whereas the impact of Recency is inverse - the lower the value the higher the prediction.
+
+However, some parts of the curves need further investigation - the tails. For the Frequency variable, the profile tail simply flattens, whereas for the other two variables there is a significant change in the mean prediction value.
+
+The explanation of the strange Frequency / Recency curves is simple - an insufficient amount of data. There are only eight observations with $\textrm{Frequency} > 30$ and only nine observations with $\textrm{Recency} > 24$. It is a worthy remainder that XAI methods can be only as good as the data and the model itself.
+
+Interestingly enough, the case of the sudden drop in mean prediction as a function of the Intensity variable value is much different. It is a genuine pattern contained in the data itself, that the model has learned to take advantage of. The following table aids greatly in interpreting these results:
+
+|                                  | Observations with Intensity > 0.55 (group A) | Observations with Intensity < 0.55 (group B) |
+|:--------------------------------:|:--------------------------------------------:|:--------------------------------------------:|
+| **Total number of observations** |                      241                     |                      507                     |
+|   **Number of positive cases**   |                      42                      |                      136                     |
+
+In group A there is $17\%$ of positive observations, and in group B there is $27\%$. Using Fisher's exact test [@2-3-fisher] it can be shown that the difference in proportions between mentioned groups is statistically significant (p-value $0.0028$).
+
+The probable hypothesis is that above a certain Intensity threshold there is an increased chance of patients burnout caused by too frequent donations.
+
 #### Accumulated Local Effect Profile
+
+The method presented in the previous subsection - Partial Dependence Profile, can be misleading if explanatory variables are strongly correlated, which to some extent is still the case here, even after pre-processing. Accumulated Local Effect Profile [@2-3-ale] is another method for explaining a variable's effect on prediction, that is designed to address mentioned issue.
 
 ```{r 2-3-ale, out.width='600', fig.align='center', echo=FALSE, fig.cap='Accumulated Local Effect Profile for final model.'}
 knitr::include_graphics('images/2-3-ale.png')
 ```
+
+Although this method addresses the very problem the used data has, no significant difference is visible in the figure \@ref(fig:2-3-ale) when compared to the previous figure \@ref(fig:2-3-pdp). This only reassures that the conclusions presented in the previous subsection are correct. 
 
 ### Local explanations
 
