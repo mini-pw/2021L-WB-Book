@@ -44,6 +44,19 @@ We tried applying both l1, and l2 regularization to the original model. The resu
 
 ![Results of l2-regularized model](images/3-2-l2-regularization.png)
 
+#### Additional preprocessing
+
+Even though the authors of the model already implemented some preprocessing features such as removing artefacts, we've decided to try some methods used to change the input pictures. They are often used as a way to improve the performance of a model. We tried two methods of altering the pictures: histogram stretching and histogram equalization.
+
+Contrast stretching is a technique, which allows the image to take up the entire brightness spectrum. The metod works by scaling the interval of the brightness values which appear in the image, to the whole available space. In traditional imaging that would be the interval $[0,255]$, but in our network $[0,1]$ as BCDU-net uses values from the unit interval. In the case of our images, they were already scaled such that the lowest and highest values already appear in each picture. Because of that our implementation of histogram stretching didn't have any effect on the pictures.
+
+The other method we've tried produced far greater results. Histogram equalization works by changing pixels' brightness values such that the number of pixels of each brightness is approximately equal. There is however one modification we applied to this method. The value of zero contains valuable information in the case of our task. Because of that we left pixels of this value unchanged and applied the equalization only to positive values of brightness. The resulting images can be seen below.
+
+![Histogram equalization](images/3-2-hist_eq.png)
+
+We've trained the original architecture from the BCDU-net article using data preprocessed with histogram equalization. The results were lower than these achieved by the original model. 
+
+
 #### GAN for CT images
 
 ##### CycleGAN
@@ -88,5 +101,15 @@ Below you can see lung images, masks and their labels.
 ![Images with labels](images/3-2-images_dual_output.png)
 
 ### Conclusion
+
+**Results**
+
+| | Accuracy | Jaccard score | F1 score | ROC AUC |
+|---|---|---|---|---|
+original model | 0.9961 | 0.9741 | 0.9869 | 0.9933 |
+arbitrary modifications | 0.8955 | 0.2904 | 0.4501 | 0.6453 |
+auxiliary task | 0.9933 | 0.9660 | 0.9827 | 0.9926 |
+histogram equalization | 0.9860 | 0.9313 | 0.9644 | 0.9883 |
+l2 regularization | 0.9867 | 0.9311 | 0.9643 | 0.9693 |
 
 TODO
