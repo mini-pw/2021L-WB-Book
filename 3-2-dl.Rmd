@@ -65,6 +65,9 @@ The other method we've tried produced far greater results. Histogram equalizatio
 
 We've trained the original architecture from the BCDU-net article using data preprocessed with histogram equalization. The results were lower than these achieved by the original model. 
 
+We have also tried to use non linear transforms. Such methods are often used in photograpy so as to apply filters to pictures. We didn't however find any sources which would suggest using these methods in medical imaging. We've changed the value of each picture using the $\tanh$ function. The results shown below seemed to be just a brightened version of the pictures. Due to the lack of time, we decided that the images weren't different enough from the original ones to train the model using  them.
+
+![Non-linear transform](images/3-2-nonlinear_transform.png)
 
 #### GAN for CT images
 
@@ -94,7 +97,7 @@ Despite the small number of epochs = 2, the model results are satisfactory.
 |----------|-------------|-----------|----------|
 | 0.9221   | 0.6066      | 1         | 0.7551   |
 
-On the image below you can see lung images, masks and their labels produced by this modification to the network.
+In the image below you can see lung images, masks and their labels produced by this modification to the network.
 ![Images with labels](images/3-2-images_dual_output.png)
 
 ### Conclusion
