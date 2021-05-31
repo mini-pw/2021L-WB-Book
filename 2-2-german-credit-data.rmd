@@ -4,14 +4,14 @@
 
 ### Introduction
 
-In 1980s first ever PC was introduced to the public. Since then, rapid technological progress in computer-science lead to enormous demand for implementing and developing previously theoretical studies to suit capable of remembering and performing extensive calculations machines. By combining academic effort with pragmatical, engineer approach, humanity succeeded in building complex infrastructure that is able to solve pretty much any problem we have ever faced.
+In 1980s first ever PC was introduced to the public. Since then, rapid technological progress in computer-science lead to enormous demand for implementing and developing previously theoretical studies to suit capable of remembering and performing extensive calculations machines [@2-2-campbell2018computer]. By combining academic effort with pragmatical, engineer approach, humanity succeeded in building complex infrastructure that is able to solve pretty much any problem we have ever faced [@2-2-siler2013computers; @2-2-quandt1983computational].
 
-We found ourselves in the point, where machine-learning algorithms make sensitive and in many cases opinion-based decisions, based on numerical and statistical analysis. It may seem harmless on the first glance, but do we really "trust" these models when it comes to predicting lung cancer? Or granting us a credit? In many cases, we do not and we should not.
+We found ourselves in the point, where machine-learning algorithms make sensitive and in many cases opinion-based decisions, based on numerical and statistical analysis [@2-2-deo2015machine; @2-2-mattern2010ict; @2-2-yoo2010computing]. It may seem harmless on the first glance, but do we really "trust" these models when it comes to predicting lung cancer? Or granting us a credit? In many cases, we do not and we should not.
 
-This is where XAI or Explainable Artificial Intelligence kicks in. It is a branch of AI, which results can be clearly understand and interpreted by experts in a given field (in order to e.g. comply with regulations or improve model user experience). XAI, using multiple complementary tools, turns black-box (meaning, very hard to interpret and understand even by specialist) ML models into white-box predictable solutions. Why is it important? Mainly for two reasons. First one is, we feel safer knowing what is going under the hood. We can't simply "believe" outputted answer without digging into specifics on what grounds it was constructed. It gives us sense of security and provides a way of detecting possible miscalculations. Second reason is, these models, due to their mathematical construction (often minimizing value of loss function) in many cases proved to tend towards biases. 
+This is where XAI or Explainable Artificial Intelligence [@2-2-gunning2019xai; @2-2-adadi2018peeking; @2-2-arrieta2020explainable] kicks in. It is a branch of AI, which results can be clearly understand and interpreted by experts in a given field (in order to e.g. comply with regulations or improve model user experience). XAI, using multiple complementary tools, turns black-box (meaning, very hard to interpret and understand even by specialist) ML models into white-box predictable solutions. Why is it important? Mainly for two reasons. First one is, we feel safer knowing what is going under the hood. We can't simply "believe" outputted answer without digging into specifics on what grounds it was constructed. It gives us sense of security and provides a way of detecting possible miscalculations. Second reason is, these models, due to their mathematical construction (often minimizing value of loss function) in many cases proved to tend towards biases. 
 This cannot be accepted while building systems supporting banks or hospitals. 
 
-In the article below, we are facing the problem of creating explainable classifier for German bank credit score. We will build black-box model and then employ XAI methods in order for us to understand which features and statistics tend to outbalance model's decision towards good/bad borrower classification.
+In the article below, we are facing the problem of creating explainable classifier for German bank credit score [@2-2-yu2010comparative; @2-2-religia2020south]. We will build black-box model and then employ XAI methods in order for us to understand which features and statistics tend to outbalance model's decision towards good/bad borrower classification.
 
 ### Dataset and models
 
@@ -47,15 +47,15 @@ foreign_worker            Worker from abroad (qualitative)
 
 Author also suggest using cost function that "punishes" model more for false-positives (classification of bad customer as a good one) than for false-negatives. For a model user (i.e bank-owner), it is much worse to classify bad customer as a good one, than the other way around.
 
-After careful deliberation and testing using multiple metrics the team decided to use random forest as a baseline model for further modeling and explanations. Random forest is a supervised machine learning algorithm, basing on a simple idea of decision tree. Each decision tree is making a classification prediction and then their votes are counted/merged. Only difference between
-standard forest voting and random forest is that in the latter case, only random subset of features is considered during selecting most important feature (with lowest gini index value).
-Model performed exceptionally good during cross-validation, even without fine parameter hyper-tuning.
+After careful deliberation and testing using multiple metrics the team decided to use random forest [@2-2-pal2005random] as a baseline model for further modeling and explanations. Random forest is a supervised machine learning algorithm, basing on a simple idea of decision tree. Each decision tree is making a classification prediction and then their votes are counted/merged. Only difference between
+standard forest voting and random forest is that in the latter case, only random subset of features is considered during selecting most important feature (with lowest gini index value [@2-2-lerman1984note]).
+Model performed exceptionally good during cross-validation [@2-2-browne2000cross], even without fine parameter hyper-tuning.
 
 ### Local explanations
 
 To better understand the behavior of Random Forest, we employed a set of machine learning explanation methods. In order to comprehend the reasoning behind model predictions and interactions between variables we began at the local level, i.e. single observation. This way, we could compare influence of each variable within a clearly defined context of every potential borrower. Our primary motivation in selecting observations to present in this paper was to show interesting cases and how variables interact with one another in our model in creating predictions. As a result we selected various observations.
 
-Methods employed by us were Break-down, SHAP, LIME and Ceteris Paribus.
+Methods employed by us were Break-down [@2-2-staniak2018explanations], SHAP [@2-2-maksymiuk2020landscape], LIME [@2-2-ribeiro2016should] and Ceteris Paribus [@2-2-biecek2021explanatory; 2-2-biecek2018dalex].
 
 #### Initial analysis
 
@@ -145,7 +145,7 @@ A major shortcoming of local explanations is that they are just that - local. It
 #### Feature Importance
 
 
-First of all, we began with Feature Importance method which gives information on the importance of features in the model. The results of applying this method on our model can be seen in the figure below.  
+First of all, we began with Feature Importance method [@2-2-biecek2021explanatory] which gives information on the importance of features in the model. The results of applying this method on our model can be seen in the figure below.  
 
 ```{r 2-2-feature_importance, out.width="700", fig.align="center", echo=FALSE, fig.cap='A plot of Feature Importance values for each variable for our model.'}
 knitr::include_graphics('images/2-2-featureimportance.png')
@@ -161,7 +161,7 @@ If we assume that the model is correct, then we can also draw conclusions regard
 
 #### Dependence of variables
 
-The feature importance method seems to be very helpful in exploring the model, but it also has some drawbacks. One is that it does not perform well on correlated variables - permutating only one dependent variable while the other remains constant is not the best solution. In the case of our data set this problem also occurs - for example, the duration of the loan is strongly correlated with its amount. For this reason, we decided to use the triplot package which enables the analysis of grouped variables. We divided the features of our data into 3 categories - those relating to the loan (e.g. credit amount and duration), the client's account (e.g. checking and savings status) and the borrower himsefl (e.g. age and employment). Then we explained the contribution of the whole groups of variables.
+The feature importance method seems to be very helpful in exploring the model, but it also has some drawbacks. One is that it does not perform well on correlated variables - permutating only one dependent variable while the other remains constant is not the best solution. In the case of our data set this problem also occurs - for example, the duration of the loan is strongly correlated with its amount. For this reason, we decided to use the triplot package [@2-2-pekala2021triplot] which enables the analysis of grouped variables. We divided the features of our data into 3 categories - those relating to the loan (e.g. credit amount and duration), the client's account (e.g. checking and savings status) and the borrower himsefl (e.g. age and employment). Then we explained the contribution of the whole groups of variables.
 
 ```{r 2-2-triplot, out.width="700", fig.align="center", echo=FALSE, fig.cap='triplot for grouped variables.'}
 knitr::include_graphics('images/2-2-triplot.png')
@@ -170,7 +170,7 @@ knitr::include_graphics('images/2-2-triplot.png')
 As we can see, although according to Feature Importance the most important variable for our model is checking status (rating group), the total prediction is influenced most by the characteristics of the loan itself while the variables connected with the current account have the most marginal effect on the model
 
 #### Global impact of specific variables
-In order to better understand the influence of specific variables on the model prediction in relation to the global reference, we decided to perform the PDP explanations. This method works similarly to Cateris Paribus - it shows the preduction of the model for different values of the variable while maintaining other features of the model constants. We explained the four features that turned out to be the most significant for our model according to Feature Importance (checking status, duration, credit amount, age).
+In order to better understand the influence of specific variables on the model prediction in relation to the global reference, we decided to perform the PDP explanations [@2-2-greenwell2017pdp]. This method works similarly to Cateris Paribus - it shows the preduction of the model for different values of the variable while maintaining other features of the model constants. We explained the four features that turned out to be the most significant for our model according to Feature Importance (checking status, duration, credit amount, age).
 
 ##### Checking status
 
@@ -210,4 +210,3 @@ The age plot is consistent with our earlier assumptions and intuition - young bo
 Applying XAI methods to our black-box model helped understand it, turning it, even if by a minimal margin, into more of a glass-box model. We found the most important features (that is checking status, duration, credit amount and age) and the rules governing their influence on predictions. We also confirmed the validity of a "common sense" intuition, e.g. the probability of being a "good" borrower being lower for very young and very old people. This allows us not only to validate the performance of our model, but also to better understand the rules governing this dataset. 
 
 We can confidently say, that the main aim of our work has been achieved. The model has been explained and various explanations remained stable between methods used. Assuming our methodology was correct, it would mean that it is an adequate explanation that works not only within the model, but also within the data. With real-life data this can approach could prove useful in finding dependencies and interactions with phenomena, one would not connect with machine learning on first instinct. However, this would require greater research, far exceeding scope of this article.  
-
