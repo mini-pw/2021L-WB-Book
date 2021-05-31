@@ -100,6 +100,14 @@ Despite the small number of epochs = 2, the model results are satisfactory.
 In the image below you can see lung images, masks and their labels produced by this modification to the network.
 ![Images with labels](images/3-2-images_dual_output.png)
 
+#### XAI
+
+We've also worked on the aspect of explainability. Although deep neural networks are mostly seen as black boxes, in the recent years there's been a lot of rapid development in methods which explain neural networks' results, especially in the field of computer vision. However, we've encountered a problem, most of these methods are developed for classiication tasks, and almost none of them work with segmentation. In the end we did find one, which worked - GradCAM. The method makes use of the gradients which are used to optimize the layers' weights during training and can highlight the areas which are taken into consideration when producing the mask. In the example below we can see that the network focuses on the tissues which are inside of the human body but outside the lung area. We can deduce, that it recognizes the boundries of the mask in that way.
+
+![GradCAM](images/3-2-xai.png)
+
+
+
 ### Conclusion
 
 **Results**
