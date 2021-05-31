@@ -8,7 +8,7 @@ placeholder
 
 ### Introduction and motivation
 
-Interest in explainable artificial intelligence (XAI) has increased significantly in recent years. XAI facilitates humans to understand artificial intelligence (AI) solutions [@2-3-xai]. It contrasts with the concept of a black box where even its designers cannot explain why an AI model has arrived at a specific conclusion. The intense development of such methods has led to a wide choice of XAI tools that we have today [@2-3-landscape]. It includes the R package DALEX [@2-3-dalex], which is the foundation of this work.
+Interest in explainable artificial intelligence (XAI) has increased significantly in recent years. XAI facilitates humans to understand artificial intelligence solutions [@2-3-xai]. It contrasts with the concept of a black box where even its designers cannot explain why an AI model has arrived at a specific conclusion. The intense development of such methods has led to a wide choice of XAI tools that we have today [@2-3-landscape]. It includes the R package DALEX [@2-3-dalex], which is the foundation of this work.
 
 Our goal is to prepare and explain a model designed to predict the probability of subsequent blood donations based on a history of a patient's previous offerings. Careful use of XAI tools allows us to verify model correctness and discover phenomenons affecting blood donations that hide in the data. Obtained knowledge may have various implications, including improvement of planning and advertising of blood donation campaigns.
 
@@ -28,7 +28,7 @@ The dataset consists of 748 observations (representing individual patients) desc
   * frequency - total number of blood donations,
   * monetary - total amount of donated blood in c.c.,
   * time - months since first blood donation,
-  * donated - a binary variable representing whether he/she donated blood in March 2007.
+  * donated - a binary variable representing whether she/he donated blood in March 2007.
 
 #### Data analysis
 
@@ -40,7 +40,7 @@ The short data analysis below is based on two visualizations representing distri
 knitr::include_graphics('images/2-3-distributions.png')
 ```
 
-Based on the above figure \@ref(fig:2-3-distributions) an important insight can be made - distributions of Frequency and Monetary variables are identical (excluding support). It probably comes from the fact that during every donation the same amount of blood is drawn. The presence of both of these variables in the final model is pointless.
+Based on the above figure \@ref(fig:2-3-distributions), an important insight can be made - distributions of Frequency and Monetary variables are identical (excluding support). It probably comes from the fact that during every donation the same amount of blood is drawn. The presence of both of these variables in the final model is pointless.
 
 ```{r 2-3-correlations, out.width='600', fig.align='center', echo=FALSE, fig.cap='Correlations of explanatory variables (correlation matrix).'}
 knitr::include_graphics('images/2-3-correlations.png')
@@ -54,19 +54,19 @@ Simple data pre-processing is conducted, mainly to reduce detected correlations 
 
 Firstly, the variable Monetary is removed from the dataset. The information it carries duplicates information contained in the Frequency variable.
 
-Secondly, a derived variable is introduced instead of Time variable. It is called Intensity and is calculated as follows:
+Secondly, a derived variable is introduced instead of the Time variable. It is called Intensity and is calculated as follows:
 
 $$\textrm{Intensity} = \frac{\textrm{Frequency}}{\textrm{Time}-\textrm{Recency}}$$
 
-The above equation results in values from range $[0.03125, 1.00000]$.
+The above equation results in values from range [0.03125, 1.00000].
 
 The denominator can be interpreted as a time window bounding all the known donations of a given patient.
 
-Spearman's rank correlation coefficient of the new variable Intensity and the old variable Frequency is $-0.46$, which is lower compared to the previous $0.72$ value for the Time / Frequency combination.
+Spearman's rank correlation coefficient of the new variable Intensity and the old variable Frequency is -0.46, which is better compared to the previous 0.72 value for the Time / Frequency combination.
 
 #### Final model
 
-According to the OpenML website Ranger implementation of Random Forests [@2-3-ranger] is among the best performing classifiers for the considered task. All the tested models utilize this ML algorithm.
+According to the OpenML website, Ranger implementation of Random Forests [@2-3-ranger] is among the best performing classifiers for the considered task. All the tested models utilize this ML algorithm.
 
 Performance of the models is assessed through three measures - basic classification accuracy and more complex areas under the ROC [@2-3-roc-1] [@2-3-roc-2] / PR [@2-3-pr-1] [@2-3-pr-2] curves. The area under the PR curve is an especially adequate measure for unbalanced classification problems [@2-3-pr-3], which is the case here.
 
@@ -79,19 +79,19 @@ Based on the described measures, the best model is chosen from models trained on
 
 Models utilizing only two explanatory variables perform significantly worse. Out of the last two models, the model utilizing the Time variable is slightly worse than the model utilizing the Intensity variable.
 
-The accuracy of the last model is $0.85$, other performance measures describing it are presented graphically below.
+The accuracy of the last model is 0.85, other performance measures describing it are presented graphically below.
 
 ```{r 2-3-roc, out.width='600', fig.align='center', echo=FALSE, fig.cap='ROC curve and corresponding AUC for final model.'}
 knitr::include_graphics('images/2-3-roc.png')
 ```
 
-ROC curve visible in the above figure \@ref(fig:2-3-roc) represents good model performance and AUC value of almost $0.92$ is definitely satisfactory.
+ROC curve visible in the above figure \@ref(fig:2-3-roc) represents good model performance and AUC value of almost 0.92 is satisfactory.
 
 ```{r 2-3-pr, out.width='600', fig.align='center', echo=FALSE, fig.cap='PR curve and corresponding AUC for final model.'}
 knitr::include_graphics('images/2-3-pr.png')
 ```
 
-The baseline for the ROC AUC is always $0.5$, but it is not the case for the PR AUC. Here, the baseline AUC is equal to the proportion of positive observations in the data. In our case it is $\frac{178}{748}=0.238$. Due to the above, the PR AUC value of around $0.81$ visible in the figure \@ref(fig:2-3-pr) is also proof of high model precision.
+The baseline for the ROC AUC is always 0.5, but it is not the case for the PR AUC. Here, the baseline AUC is equal to the proportion of positive observations in the data. In our case it is $\frac{178}{748}=0.238$. Due to the above, the PR AUC value of around 0.81 visible in the figure \@ref(fig:2-3-pr) is also proof of high model precision.
 
 Summarizing the above model selection, the final model used in all the presented explanations is Ranger implementation of Random Forests utilizing the Recency, Frequency, and Intensity variables. Its performance measures are at least good, so the prepared explanations have a chance to be accurate.
 
@@ -136,13 +136,13 @@ Interestingly enough, the case of the sudden drop in mean prediction as a functi
 | **Total number of observations** |                      241                     |                      507                     |
 |   **Number of positive cases**   |                      42                      |                      136                     |
 
-In group A there is $17\%$ of positive observations, and in group B there is $27\%$. Using Fisher's exact test [@2-3-fisher] it can be shown that the difference in proportions between mentioned groups is statistically significant (p-value $0.0028$).
+In group A there is 17 % of positive observations, and in group B there is 27 %. Using Fisher's exact test [@2-3-fisher] it can be shown that the difference in proportions between mentioned groups is statistically significant (p-value 0.0028).
 
 The probable hypothesis is that above a certain Intensity threshold there is an increased chance of patients burnout caused by too frequent donations.
 
 #### Accumulated Local Effect Profile
 
-The method presented in the previous subsection - Partial Dependence Profile, can be misleading if explanatory variables are strongly correlated, which to some extent is still the case here, even after pre-processing. Accumulated Local Effect Profile [@2-3-ale] is another method for explaining a variable's effect on prediction, that is designed to address mentioned issue.
+The method presented in the previous subsection - Partial Dependence Profile, can be misleading if explanatory variables are strongly correlated, which to some extent is still the case here, even after the pre-processing. Accumulated Local Effect Profile [@2-3-ale] is an another method of explaining a variable's effect on the prediction, which is designed to address mentioned issue.
 
 ```{r 2-3-ale, out.width='600', fig.align='center', echo=FALSE, fig.cap='Accumulated Local Effect Profile for final model.'}
 knitr::include_graphics('images/2-3-ale.png')
@@ -152,25 +152,62 @@ Although this method addresses the very problem the used data has, no significan
 
 ### Local explanations
 
+Local explanations are relevant on a level of a single observation. They aid in understanding how strongly and in what way explanatory variables contribute to the model's prediction when considering a single instance of data. It is a visible contrast when compared to the previously presented global explanations.
+
 #### Ceteris Paribus Profiles
+
+"Ceteris Paribus" is a Latin phrase that translates to "other things held constant" or "all else unchanged". The idea is rather simple - for every variable, prediction is plotted as a function of its changing value while all other variables are held constant. Primary variables' values come from a previously selected single observation and are marked with dots.
+
+This tool is also known as Individual Conditional Expectations [@2-3-ice].
 
 ```{r 2-3-ceteris1, out.width='600', fig.align='center', echo=FALSE, fig.cap='Ceteris Paribus Profile for observation number 342.'}
 knitr::include_graphics('images/2-3-ceteris1.png')
 ```
 
+In the figure above \@ref(fig:2-3-ceteris1) Ceteris Paribus Profile for observation number 342 is presented. This patient is characterized by high Frequency and Intensity values (which has already been shown positive in terms of the model's prediction), but also high Recency value (which on the contrary is considered a negative trait).
+
+It is worth noting that the model's prediction for this observation is correct (she / he did not donate).
+
+As the rightmost plot shows, the model's prediction could be improved significantly only by lowering the Recency value. It is coincident with common sense - if someone was, at a time, an active donor but has not donated for almost two years, the chance of another donation seems low.
+
+This local explanation also completes the previously presented Permutation Feature Importance well - explanatory variable Recency is the most important one because it can negate positive values of both the other variables.
+
 ```{r 2-3-ceteris2, out.width='600', fig.align='center', echo=FALSE, fig.cap='Ceteris Paribus Profile for observation number 16.'}
 knitr::include_graphics('images/2-3-ceteris2.png')
 ```
 
+In the figure above \@ref(fig:2-3-ceteris2) Ceteris Paribus Profile for observation number 16 is presented. This patient is characterized by a moderate Frequency value, a high Intensity value and a low Recency value.
+
+It is worth noting that the model's prediction for this observation is correct (she / he did donate).
+
+What is interesting here is that the Intensity variable value is nearly perfect. Value even a little higher would raise the risk of the hypothetical donation burnout and lower the predicted donation probability. It is a convincing
+proof that described before patterns in the dataset are expressed in the model and reveal themselves on a level of single observations.
+
 #### Break Down Profiles
+
+The last method presented aims to answer probably the most elementary question that can be asked when trying to explain the model's behavior - what is the contribution of particular variables to the prediction for a single observation? Break Down Profile [@2-3-break] does it by evaluating changes in the mean model's prediction when the values of consecutive variables are being fixed.
 
 ```{r 2-3-break1, out.width='600', fig.align='center', echo=FALSE, fig.cap='Break Down Profile for observation number 4.'}
 knitr::include_graphics('images/2-3-break1.png')
 ```
 
+In the figure above \@ref(fig:2-3-break1) Break Down Profile for observation number 4 is presented. The patient's characteristics are good and well balanced - twenty completed donations, only two months since the last donation, and an Intensity value of around 0.47, which is high but, as it has been shown already, not too high.
+
+It is worth noting that the model's prediction for this observation is correct (she / he did donate).
+
+The plot shows, the contributions of variables are all positive and well balanced as the values themselves. The result is not surprising but creates a good reference point for the following explanation.
+
 ```{r 2-3-break2, out.width='600', fig.align='center', echo=FALSE, fig.cap='Break Down Profile for observation number 109.'}
 knitr::include_graphics('images/2-3-break2.png')
 ```
+
+In the figure above \@ref(fig:2-3-break2) Break Down Profile for observation number 109 is presented. This patient is chosen deliberately because of the same low Recency value as the previous example, but also much lower Intensity and Frequency values.
+
+It is worth noting that the model's prediction for this observation is correct (she / he did not donate).
+
+Recency of two months still has a similar positive impact, but a mediocre Intensity value and low Frequency change the prediction dramatically.
+
+When compared to the previous explanation, this plot is a perfect example of how important for positive prediction is that all variables' values are well balanced. Previously (first Ceteris Paribus profile), it was visible that a high Recency value can negate positive values of the other two variables, but here it becomes clear that a low Recency value cannot make up for negative values of the other two variables.
 
 ### Conclusions and summary
 
