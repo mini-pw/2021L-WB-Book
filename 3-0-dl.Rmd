@@ -1,1 +1,15 @@
 # Deep Learning 1
+
+*Author: Weronika Hryniewska*
+
+Deep learning is one of the most rapidly developing field in artificial intelligence. Problems that previously required a lot of features engineering became easily solvable. New possibilities opened, and deep learning has started to adopt in various domains. One of the most demanding disciplines is medicine.
+
+As a result of the outbreak of the COVID-19 pandemic, many scientists became interested in the possibilities of deep learning application in radiology. Many solutions have been created for classification, segmentation and detection based on computed tomography and radiographs of the lungs.
+
+During classes, we explored deep learning methods for computer vision. If you would like to read more about them, please take a look at books: "Deep Learning with Python" [@Chollet] and "Hands-On Machine Learning with Scikit-Learn, Keras, and TensorFlow: Concepts, Tools, and Techniques to Build Intelligent Systems" [@Geron]. We focused on results reproduction and/or further development of the available code of the following papers::
+
+1. LungNet [@3-0-LungNet] *Adam Frej, Piotr Marciniak, Piotr Piątyszek*
+2. BCDU-Net [@3-0-BCDUNet_network] [@3-0-BCDUNet_segmentation] *Maria Kałuska, Paweł Koźmiński, Mikołaj Spytek*
+3. DeepCOVIDExplainer [@3-0-DeepCOVIDExplainer] *Kacper Kurowski, Zuzanna Mróz, Aleksander Podsiad*
+4. ERSCovid [@3-0-ERSCovid] *Bartłomiej Eljasiak, Tomasz Krupiński, Dominik Pawlak*
+5. COVID-Net [@3-0-COVIDNet] *Jakub Kozieł, Tomasz Nocoń, Kacper Staroń*
