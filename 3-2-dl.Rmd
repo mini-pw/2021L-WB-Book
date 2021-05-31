@@ -14,16 +14,13 @@ The architecture of the BCDU network is based on U-Net [@3-2-unet] which takes i
 
 #### Dataset
 
-The dataset used by the authors of the article was downloaded from Kaggle ![link do danych]() and consists of eight files 
-in NIfTI(Neuroimaging Informatics Technology Initiative) format. There are four 3D CT scans of human chest, 
-the other four files are corresponding masks. Each photo consists of horizontal sections with the resolution 512x512.
- After unpacking those images, there were about 1200 horizontal images of lungs and corresponding masks. ![Lungs with mask](images/3-2-dataset.png)
+The dataset used by the authors of the article was downloaded from Kaggle ![link do danych]() and consists of eight files in NIfTI(Neuroimaging Informatics Technology Initiative) format. There are four 3D CT scans of human chest, the other four files are corresponding masks. Each photo consists of horizontal sections with the resolution 512x512.
+
+After unpacking those images, there were about 1200 horizontal images of lungs and corresponding masks. ![Lungs with mask](images/3-2-dataset.png)
 
 ##### Preprocessing
 
-The preprocessing applied to the lung images was to normalize the grayscale to the range $[0, 255]$ and to remove blood vessels and bones. 
-In addition, horizontal sections consisting only of black pixels have been removed. In the case of masks, all pixels have been limited 
-to the value set $\{0, 1\}$. Moreover, masks around the lung area were generated, and binary erosion was also used in the photos prepared in this way.
+The preprocessing applied to the lung images was to normalize the grayscale to the range $[0, 255]$ and to remove blood vessels and bones. In addition, horizontal sections consisting only of black pixels have been removed. In the case of masks, all pixels have been limited to the value set $\{0, 1\}$. Moreover, masks around the lung area were generated, and binary erosion was also used in the photos prepared in this way.
 
 #### Execution
 
@@ -34,7 +31,19 @@ Even though the code was mostly functional, it still required some debugging. So
 Even though at this moment the model was working, it was extremely slow. It was due to the fact that the calculations were being carried out using the CPU. To improve training speed we installed the cuDNN library, so that we were able to use the performance of our graphics cards.
 
 
-### Experiments
+### Reproduction of the results
+
+Using the setup described in previous paragraphs we were able to train the model provided by the authors of the article and obtain results. Due to the technical limitations of our hardware we were forced to change some hyperparameters. We changed the batch size from 2 to 1, and the number of epochs from 50 to 40. Achieved results are presented in the table below.
+
+|                        | Accuracy | Sensitivity | Specificity | ROC AUC | Jaccard Score | F1 Score |
+|------------------------|----------|-------------|-------------|---------|---------------|----------|
+| claimed in the article | 0.9972   | 0.9910      | 0.9982      | 0.9946  |     0.9972    | 0.9904   |
+| reproduced by us       | 0.9961   | 0.9894      | 0.9973      | 0.9933  |     0.9741    | 0.9869   |
+
+
+The difference between these two models in most of these metrics is less than 0.1%. The only one with a bigger gap is Jaccard score. Our model produced results which show Jaccard score to be 2% lower than these claimed by the authors of the article. In our opinion the results are satisfactory and the difference can be blamed on the shorter learning time and changed batch size. The results from the article can be reproduced.
+
+### Further experiments
 
 #### Regularization
 
@@ -61,55 +70,43 @@ We've trained the original architecture from the BCDU-net article using data pre
 
 ##### CycleGAN
 
-First idea was to use available CycleGAN[@3-2-cycle-gan] to transfer non-contrast images to contrast images, this approach changes just the grayscale on image and does not change the shape of lungs, so we wouldn't have to generate additional masks.
-However to use CycleGAN one need to have both datasets: contrast and noncontrast.
-We had only one data set. Therefore images after histogram equalization were used as contrast images. 
-To generated images and corresponding masks dilation with random kernel was applied, it was in order to diversify the initial dataset from the generated dataset. 
-This action resulted in reduction of the lung area. 
+The first idea was to use the available CycleGAN[@3-2-cycle-gan] to transfer non-contrast images to contrast images. This approach changes just the grayscale on image and does not change the shape of lungs, so we wouldn't have to generate additional masks. However to use CycleGAN one needs to have both datasets: contrast and noncontrast. Only one data set was available to us. Therefore images we've prepared via histogram equalization were used as contrast images. Dilation with random kernel was applied to the generated images and corresponding masks in order to furhter diversify the initial dataset from the generated dataset. This action resulted in reduction of the lung area.
+
 ![CyceGAN results](images/3-2-cycle_gan.png)
 
-Secondly, a mix of both inital and generated dataset was used to train the BCDU-net. Unfortunately, the training results were significantly worse. It might have happened due to the small differences between generated images' ground truth 
-masks and masks generated by us.
+Later, a mix of both inital and generated dataset was used to train the BCDU-net. Unfortunately, the training results were significantly worse. It might have happened due to the small differences between generated images' ground truth masks and masks generated by us.
 
 ##### DCGAN
 
-The next approach was to generate images and masks from noise with DCGAN by supplying on Discriminator's input both image and corresponding to it mask. 
-This approach has been previously applied to chest X-ray images generation [@3-2-gan-cxr].
-The aim was to teach generator to generate image with corresponding mask simultaneously. The issue with this approach was that such a network requires hours of learning on strong GPU. 
-Therefore only the code was implemented and run on not enough number  of
-epochs, which did not give satisfying results.
+The next approach was to generate images and masks from random noise with DCGAN by supplying to the network's discriminator's input both an image and a corresponding mask. This approach has been previously applied to chest X-ray images generation [@3-2-gan-cxr]. The aim was to teach generator to generate images with corresponding masks simultaneously. The issue with this approach was that such a network requires hours of learning on a strong GPU. Therefore the code was implemented and run for too few epochs, which did not provide satisfying results.
 
 #### Dual output model
 
-The goal was to help the person who interprets the photos locate them in the human body. 
-Therefore, apart from the masks, we decided to generate labels informing about where a given lung section is located. 
-There were two possible locations 'upper' and 'lower'. 
-The division was based on the image below. The uppert part is the part above human heart. ![Lung's division](images/3-2-lung_division.png)
+The goal was to help the person who interprets the photos locate them in the human body. Therefore, apart from the masks, we decided to generate labels informing about where a given lung section is located. There were two possible locations 'upper' and 'lower'. The division was based on the image below. The upper part is the part above human heart. ![Lung's division](images/3-2-lung_division.png)
 
-The newly created network consisted of two branches. The first branch was the BCDUNet network, while the second branch responsible for the classification of photos was the ResNet[@3-2-resnet] network. 
-It has been slightly modified so that it could be used in a two-output model.
+The newly created network consisted of two branches. The first branch was the BCDUNet network, while the second branch responsible for the classification of photos was the ResNet[@3-2-resnet] network. It has been slightly modified so that it could be used in a two-output model.
 
 Despite the small number of epochs = 2, the model results are satisfactory.
 
 **Classification results**
 
-| Accuracy        | Sensitivity           | Precision  | F1 Score |
-| ------------- |-------------| -----|-------------|
-| 0.9221     | 0.6066 | 1 | 0.7551 |
+| Accuracy | Sensitivity | Precision | F1 Score |
+|----------|-------------|-----------|----------|
+| 0.9221   | 0.6066      | 1         | 0.7551   |
 
-Below you can see lung images, masks and their labels.
+On the image below you can see lung images, masks and their labels produced by this modification to the network.
 ![Images with labels](images/3-2-images_dual_output.png)
 
 ### Conclusion
 
 **Results**
 
-| | Accuracy | Jaccard score | F1 score | ROC AUC |
-|---|---|---|---|---|
-original model | 0.9961 | 0.9741 | 0.9869 | 0.9933 |
-arbitrary modifications | 0.8955 | 0.2904 | 0.4501 | 0.6453 |
-auxiliary task | 0.9933 | 0.9660 | 0.9827 | 0.9926 |
-histogram equalization | 0.9860 | 0.9313 | 0.9644 | 0.9883 |
-l2 regularization | 0.9867 | 0.9311 | 0.9643 | 0.9693 |
+|                         | Accuracy | Sensitivity | Specificity | ROC AUC | Jaccard score | F1 score |
+|-------------------------|----------|-------------|-------------|---------|---------------|----------|
+reproduced original model | 0.9961   | 0.9894      | 0.9973      | 0.9933  | 0.9741        | 0.9869   |
+arbitrary modifications   | 0.8955   | 0.2908      | 0.9997      | 0.6453  | 0.2904        | 0.4501   |
+auxiliary task            | 0.9933   | 0.9915      | 0.9937      | 0.9926  | 0.9660        | 0.9827   |
+histogram equalization    | 0.9860   | 0.9920      | 0.9845      | 0.9883  | 0.9313        | 0.9644   |
+l2 regularization         | 0.9867   | 0.9413      | 0.9974      | 0.9693  | 0.9311        | 0.9643   |
 
 TODO
