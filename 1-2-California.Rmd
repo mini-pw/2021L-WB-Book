@@ -96,7 +96,7 @@ knitr::include_graphics('images/1-2-location_5168.png')
 If we take a closer look at the Shapley Values decomposition plot for this prediction (\ref@(fig:shapley_values_5168)), we can notice that this time the two most important variables turned out to be *latitude* and *londitude*, denoting the geographical coordinates of the flat. 
 
 ```{r shapley_values_5168, out.width="700", fig.align="center", echo=FALSE, fig.cap='Street View for observation No. 5168'}
-knitr::include_graphics('images/1-2-shapley_values_6168.png')
+knitr::include_graphics('images/1-2-shapley_values_5168.png')
 ```
 
 As we can see, our model has learned that apartments located close to or in Los Angeles itself are usually worth much more than those outside of the city. Only a low value of the *median_income* variable could suggest that the apartment is not as expensive as it might seem (in fact, it is not expensive at all), but still there were more hints speaking for the fact that it is rather a luxurious property.
