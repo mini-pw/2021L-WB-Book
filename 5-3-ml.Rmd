@@ -1,4 +1,3 @@
-
 ---
 bibliography: book.bib
 ---
@@ -6,6 +5,7 @@ bibliography: book.bib
 ## Transparent machine learning to support predicting COVID-19 infection risk based on chronic diseases
 
 *Authors: Dawid Przybyliński, Hubert Ruczyński, Kinga Ulasik*
+
 
 ### Abstract
 
@@ -20,6 +20,7 @@ All available models for predicting coronavirus mortality have numerous disadvan
 The proposed application bases its mortality prediction on the information about chronic diseases that the patient suffers from. In addition to the predicted mortality, it also provides a break down plot as an explanation of the mortality, SHAP visualization, to show impact of the most important parameters and also analysis of the mortality risk depending on age.
 By using the random forest model, we also ensure the explainability of the entire process. Thanks to this solution, our application is useful for both ordinary people and doctors.
 
+
 ### Flaws
 
 As a first step, we started analyzing one of the first articles [@5-3-chinese_et_al] on the development of predictive models to predict COVID-19 mortality in depth. The main disadvantages of the model presented in it were the very poor prediction of mortality in the case of testing on external data sets [@5-3-dutch_et_al], [@5-3-american_et_al] and the related allegation of not testing one's solution on external data [@5-3-american_et_al]. In addition, our team noticed a very large bias present in the original data, thanks to which even the simplest models achieved extremely high efficiency of over 90%.
@@ -33,36 +34,38 @@ Next, we used Principal Component Analysis to try to split the data using reduci
 
 While evaluating the models we mainly focused on precision score which defines what percentage of patients predicted to be in chosen class (survival and death in this case) really represents that class. If the precision score is low it is either dangerous for people's life or leads to overcrowding the hospitals.
 
+
 **Prediction using original parameters on external data**
 
 First, we decided to use the broader pandemic knowledge that the authors of the original article did not have to improve the model on its default data. Inspired by a newer article [@5-3-mortality_risk_prediction], we decided to test how the selection of variables improved according to the latest knowledge will affect the predictions of the predictive models. For the suggested parameters: age, C-reactive protein, chloride, albumin, lymphocyte count and LDH, we created a correlation map to select the most important of them.
 
-```{r fig1, out.width="1000", fig.align="center", echo=FALSE, fig.cap='Correlation heatmap'}
+```{r 5-3-fig1, out.width="1000", fig.align="center", echo=FALSE, fig.cap='Correlation heatmap'}
 knitr::include_graphics('images/5-3-Correlation.png')
 ```
 
-Figure \@ref(fig:fig1) shows that among the most important features there are age, albumin, LDH and C protein, which we used in our models. After training and testing the GradientBoostingClassifier and AdaBoostClassifier models on slightly reduced data (the original test set had to be replaced by the test and validation set), we obtain cross-validation precision at the level of 0.979 and 0.958 and the following reports \@ref(fig:fig2), \@ref(fig:fig3). Moreover we present confusion matrix from original model \@ref(fig:fig4).
+Figure \@ref(fig:5-3-fig1) shows that among the most important features there are age, albumin, LDH and C protein, which we used in our models. After training and testing the GradientBoostingClassifier and AdaBoostClassifier models on slightly reduced data (the original test set had to be replaced by the test and validation set), we obtain cross-validation precision at the level of 0.979 and 0.958 and the following reports \@ref(fig:5-3-fig2), \@ref(fig:5-3-fig3). Moreover we present confusion matrix from original model \@ref(fig:5-3-fig4).
 
 
-```{r fig2, out.width="500", fig.align="center", echo=FALSE, fig.cap='Confusion matrix for GradientBoosting'}
+```{r 5-3-fig2, out.width="500", fig.align="center", echo=FALSE, fig.cap='Confusion matrix for GradientBoosting'}
 knitr::include_graphics('images/5-3-confmatGradientexcel.png')
 ```
 
-```{r fig3, out.width="500", fig.align="center", echo=FALSE, fig.cap='Confusion matrix for AdaBoosting'}
+```{r 5-3-fig3, out.width="500", fig.align="center", echo=FALSE, fig.cap='Confusion matrix for AdaBoosting'}
 knitr::include_graphics('images/5-3-confmatAdaexcel.png')
 ```
 
-```{r fig4, out.width="500", fig.align="center", echo=FALSE, fig.cap='Confusion matrix for original model'}
+```{r 5-3-fig4, out.width="500", fig.align="center", echo=FALSE, fig.cap='Confusion matrix for original model'}
 knitr::include_graphics('images/5-3-original_confusion_matrix.png')
 ```
 
-The above results confirm the improvement in the quality of the original model \@ref(fig:fig4), whose precision score for death is only 0.81 and cross-validation stands around 0.97.
+The above results confirm the improvement in the quality of the original model \@ref(fig:5-3-fig4), whose precision score for death is only 0.81 and cross-validation stands around 0.97.
 
-Thanks to the authors of the paper [@5-3-american], we were given access to additional data with features coincident with those we already had. Data set contained over 1000 observations and only fourteen features that were selected by owners to fit as good model as possible. In order to test previous model (AdaBoost), we used it to predict the outcome for those thousand patients, receiving following results \@ref(fig:fig5).
+Thanks to the authors of the paper [@5-3-american], we were given access to additional data with features coincident with those we already had. Data set contained over 1000 observations and only fourteen features that were selected by owners to fit as good model as possible. In order to test previous model (AdaBoost), we used it to predict the outcome for those thousand patients, receiving following results \@ref(fig:5-3-fig5).
 
-```{r fig5, out.width="500", fig.align="center", echo=FALSE, fig.cap='Results received for external data'}
+```{r 5-3-fig5, out.width="500", fig.align="center", echo=FALSE, fig.cap='Results received for external data'}
 knitr::include_graphics('images/5-3-new_data_performance_excel.png')
 ```
+
 
 Model performance has dropped significantly, the outcome is far from desired.
 
@@ -70,13 +73,13 @@ Model performance has dropped significantly, the outcome is far from desired.
 
 In order to analyze data further, we performed Principal Component Analysis. For visualization's simplification we considered only first two, most substantial components. Obtained two-dimensional plot is shown on Figure 8. Explained variance ratios were: 0.226 (for the first component) and 0.063 for the second component), which results in total explained variance ratio of 0.289 for both components together. Taking absolute values of the scores of each feature from the first component might be also used for feature selection. Those with the highest magnitudes were: `Prothrombin activity`, `Lactate dehydrogenase`, `albumin`, `Urea`, `neutrophils(%)`, `(%)lymphocyte`. Some of the features are those, that we have already known are important, such as `albumin`, `(\%)lymphocyte` or `Lactate dehydrogenase`, but `age` was around the middle, not among the top ones.
 
-```{r fig6, out.width="500", fig.align="center", echo=FALSE, fig.cap='Principal Component Analysis'}
+```{r 5-3-fig6, out.width="500", fig.align="center", echo=FALSE, fig.cap='Principal Component Analysis'}
 knitr::include_graphics('images/5-3-pca1.png')
 ```
 
 The most noticeable fact is that our two classes are almost separable with just a single line. Even without any sort of complex machine learning or other algorithms, it’s possible and not complicated to fit a line that divides cases ended in death from cases followed by patient’s recovery. As an example, same visualization with additional function $y=2.5x+2.5$, created without any sort of optimization techniques, is presented below.
 
-```{r fig7, out.width="500", fig.align="center", echo=FALSE, fig.cap='Principal Component Analysis with line separator'}
+```{r 5-3-fig7, out.width="500", fig.align="center", echo=FALSE, fig.cap='Principal Component Analysis with line separator'}
 knitr::include_graphics('images/5-3-pca2.png')
 ```
 
@@ -86,21 +89,21 @@ Such division achieves (train) accuracy of 0.94, which is almost as good as resu
 
 We analyzed the distribution of percentage of Lymphocytes, Lactate dehydrogenase and High sensitivity C-reactive protein by creating histograms for the original and the new data.
 
-```{r fig8, out.width="750", fig.align="center", echo=FALSE, fig.cap='Original Data distribution'}
+```{r 5-3-fig8, out.width="750", fig.align="center", echo=FALSE, fig.cap='Original Data distribution'}
 knitr::include_graphics('images/5-3-hist1.png')
 ```
 
-```{r fig9, out.width="750", fig.align="center", echo=FALSE, fig.cap='New Data distribution'}
+```{r 5-3-fig9, out.width="750", fig.align="center", echo=FALSE, fig.cap='New Data distribution'}
 knitr::include_graphics('images/5-3-hist2.png')
 ```
 
 We noticed that all variables are strongly left skewed which is unfavorable for the model because more reliable predictions are made if the predictors and the target variable are normally distributed. Trying to make our model better, we applied square root transformation. Then we trained a new model on them (also using Ada Boost Classifier) and we tested it on the new data:
 
-```{r fig10, out.width="500", fig.align="center", echo=FALSE, fig.cap='Skewed data results'}
+```{r 5-3-fig10, out.width="500", fig.align="center", echo=FALSE, fig.cap='Skewed data results'}
 knitr::include_graphics('images/5-3-skeweddataresults_excel.png')
 ```
 
-From figure \@ref(fig:fig10) we can see that the model generally improved (the accuracy is higher) and it perform slightly better.
+From figure \@ref(fig:5-3-fig10) we can see that the model generally improved (the accuracy is higher) and it perform slightly better.
 
 **General drawbacks**
 
@@ -113,15 +116,16 @@ The last, and perhaps the least obvious disadvantage is that the data used for p
 
 To sum up, the most desirable effect of our work turns out to be an explainable model with high-quality predictions, based on a large database. In addition, it should be based on easy-to-obtain information about a person's health and be understandable to both ordinary people and physicians. In search of research that would help us explore this branch of machine learning, we manage to find an article [@5-3-mexican_et_al], which provided us with both a comprehensive set of data, understandable to everyone, and a very rich information background.
 
+
 ### Transparent Machine Learning
 
 While working in machine learning one can often encounter an issue called the black-box problem [@5-3-black_box]. It occurs when a model is complex, unexplainable and not transparent. Explainability solves this problem by “unpacking the black-box” which is essential in building trust in the model. That is why we want to create an explainable model which could be useful to every person which doesn't need any additional medical information and easy to understand and requires only data that everyone has access to. We used explainers from [@5-3-DALEX], package for explainable Machine Learning, to create visualizations, that allow user to understand where the results come from and because of that, they are more transparent and clear.
 
 **Model**
 
-To create the model we use random forest from [@5-3-ranger] package constructing a multitude of decision trees which are one of the most transparent and easy to explain models, even for people not familiar with machine learning concepts. Moreover, we tuned and tested XGBoost ([@5-3-xgboost] and Support Vector Machines from [@5-3-svm] package to maximize AUC measure. Ranger performs best with AUC of 0.92, XGboost turns out to be slightly worse with AUC of 0.87. Support Vector Machines achieve the worst results - AUC around 0.78 (figure \@ref(fig:fig11)).
+To create the model we use random forest from [@5-3-ranger] package constructing a multitude of decision trees which are one of the most transparent and easy to explain models, even for people not familiar with machine learning concepts. Moreover, we tuned and tested XGBoost ([@5-3-xgboost] and Support Vector Machines from [@5-3-svm] package to maximize AUC measure. Ranger performs best with AUC of 0.92, XGboost turns out to be slightly worse with AUC of 0.87. Support Vector Machines achieve the worst results - AUC around 0.78 (figure \@ref(fig:5-3-fig11)).
 
-```{r fig11, out.width="500", fig.align="center", echo=FALSE, fig.cap='AUC for considered models'}
+```{r 5-3-fig11, out.width="500", fig.align="center", echo=FALSE, fig.cap='AUC for considered models'}
 knitr::include_graphics('images/5-3-auc.png')
 ```
 
@@ -132,26 +136,26 @@ It consists of 150,000 records from Mexican hospitals, of which over 50,000 are 
 
 ### Application
 
-In order to achieve our goal we create an easy application, in which one can choose his or hers chronic diseases, sex, age and it calculates the COVID-19 mortality risk for particular infected person. Additionally, in the bookmarks there are presented plots about the model. The first one \@ref(fig:fig12) is a Break Down plot which shows how the contributions attributed to individual explanatory variables change the mean models prediction. Despite printing out the risk it also enables its user an easy option to understand the outcome. Another one \@ref(fig:fig13) is Ceteris Paribus profile which examines the influence of an explanatory variable (which is `age` in this case) by assuming that the values of all other variables do not change. This visualization is very useful for doctors to properly distinguish a higher risk groups. The last one \@ref(fig:fig14) is a SHAP plot, it calculates the importance of a feature by comparing what a model predicts with and without the feature.
+In order to achieve our goal we create an easy application, in which one can choose his or hers chronic diseases, sex, age and it calculates the COVID-19 mortality risk for particular infected person. Additionally, in the bookmarks there are presented plots about the model. The first one \@ref(fig:5-3-fig12) is a Break Down plot which shows how the contributions attributed to individual explanatory variables change the mean models prediction. Despite printing out the risk it also enables its user an easy option to understand the outcome. Another one \@ref(fig:5-3-fig13) is Ceteris Paribus profile which examines the influence of an explanatory variable (which is `age` in this case) by assuming that the values of all other variables do not change. This visualization is very useful for doctors to properly distinguish a higher risk groups. The last one \@ref(fig:5-3-fig14) is a SHAP plot, it calculates the importance of a feature by comparing what a model predicts with and without the feature.
 
 Our application is avaiable here: https://hubertr21.shinyapps.io/Explainable_COVID19_Mortality_Predictor/
 
-```{r fig12, out.width="750", fig.align="center", echo=FALSE, fig.cap='Mortality Breakdown profile'}
+```{r 5-3-fig12, out.width="750", fig.align="center", echo=FALSE, fig.cap='Mortality Breakdown profile'}
 knitr::include_graphics('images/5-3-mortalBreakdown.png')
 ```
 
-```{r fig13, out.width="750", fig.align="center", echo=FALSE, fig.cap='Mortality Ceteris Paribus profile'}
+```{r 5-3-fig13, out.width="750", fig.align="center", echo=FALSE, fig.cap='Mortality Ceteris Paribus profile'}
 knitr::include_graphics('images/5-3-mortalParibus.png')
 ```
 
-```{r fig14, out.width="750", fig.align="center", echo=FALSE, fig.cap='Mortality SHAP profile'}
+```{r 5-3-fig14, out.width="750", fig.align="center", echo=FALSE, fig.cap='Mortality SHAP profile'}
 knitr::include_graphics('images/5-3-mortalSHAP.png')
 ```
 
 ### Conclusions
 
-```{r fig15, out.width="750", fig.align="center", echo=FALSE, fig.cap='XAI stakeholders from [@5-3-XAI_et_al]'}
+```{r 5-3-fig15, out.width="750", fig.align="center", echo=FALSE, fig.cap='XAI stakeholders from [@5-3-XAI_et_al]'}
 knitr::include_graphics('images/5-3-XAI_stakeholders.jpg')
 ```
 
-Thanks to the developed application, various XAI stakeholders, as presented in [@5-3-XAI_et_al] - \@ref(fig:fig15), may have easier access to transparent and explainable model that estimates mortality risk in case of being infected by COVID-19. Our application allows people to see which diseases are contributing the most to the outcome, without the need of doctor's examination, such as any blood properties and other information, that can only be gathered by a specialist are not necessary. Only by selecting diseases that one suffers from, reliable prediction can be obtained quickly and without leaving home.
+Thanks to the developed application, various XAI stakeholders, as presented in [@5-3-XAI_et_al] - \@ref(fig:5-3-fig15), may have easier access to transparent and explainable model that estimates mortality risk in case of being infected by COVID-19. Our application allows people to see which diseases are contributing the most to the outcome, without the need of doctor's examination, such as any blood properties and other information, that can only be gathered by a specialist are not necessary. Only by selecting diseases that one suffers from, reliable prediction can be obtained quickly and without leaving home.
