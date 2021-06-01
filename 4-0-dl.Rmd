@@ -1,1 +1,17 @@
 # Deep Learning 2
+
+*Author: Paulina Tomaszewska*
+
+Artificial Intelligence (AI) especially Deep Learning (DL) is a rapidly emerging field. It is proved by the number of publications – every day some new paper is released. In the spirit of “open science” [@4-open_science] not only papers are published in journals but also are available previously as preprints. This helps in the fast exchange of knowledge between researchers. In order to fasten progress in the field even more, it is recommended to open source also the code as well as data used for analysis in the paper. In such a scenario, researchers inspired by someone’s papers will not have to implement the described solution independently but rather focus on adding improvements. Such a workflow, however, requires the reproducibility of the results shown in the paper. It means that by running the code given by the authors, the same results as described in the paper should be obtained.
+
+People started to verify the reproducibility of the papers also to check whether the results in the paper are reliable. It sometimes happens that the authors do “cherry-picking” of the results.
+
+The reproducibility of the papers is getting more and more attention. There is a web page [@4-reproducedpapers] where the outcomes of the paper reproducibility studies are stored.
+
+In this chapters, students focused on the reproducibility of Deep Learning papers. It was motivated by two facts featuring models in Deep Learning:
+
+ - they are complex (often have an immense number of parameters)
+
+-  they have an inherent component of randomness (e.g. weight initialization, data augmentation)
+
+These two points show that the task of reproducibility in Deep Learning can be sometimes a challenge [@4-reproducibility]. 

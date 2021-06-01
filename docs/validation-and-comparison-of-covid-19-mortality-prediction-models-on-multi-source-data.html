@@ -1,0 +1,654 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>5.1 Validation and comparison of COVID-19 mortality prediction models on multi-source data | Case Studies</title>
+  <meta name="description" content="Case studies in machine learning." />
+  <meta name="generator" content="bookdown 0.22 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="5.1 Validation and comparison of COVID-19 mortality prediction models on multi-source data | Case Studies" />
+  <meta property="og:type" content="book" />
+  
+  <meta property="og:image" content="/images/cover.png" />
+  <meta property="og:description" content="Case studies in machine learning." />
+  <meta name="github-repo" content="mini-pw/2021L-WB-Book" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="5.1 Validation and comparison of COVID-19 mortality prediction models on multi-source data | Case Studies" />
+  
+  <meta name="twitter:description" content="Case studies in machine learning." />
+  <meta name="twitter:image" content="/images/cover.png" />
+
+<meta name="author" content="Faculty of Mathematics and Information Science, Warsaw University of Technology" />
+
+
+<meta name="date" content="2021-05-31" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="machine-learning.html"/>
+<link rel="next" href="one-model-to-fit-them-all-covid-19-survival-prediction-using-multinational-data.html"/>
+<script src="libs/header-attrs/header-attrs.js"></script>
+<script src="libs/jquery/jquery.min.js"></script>
+<link href="libs/gitbook/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+
+<link href="libs/anchor-sections/anchor-sections.css" rel="stylesheet" />
+<script src="libs/anchor-sections/anchor-sections.js"></script>
+
+
+
+<style type="text/css">
+/* Used with Pandoc 2.11+ new --citeproc when CSL is used */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+}
+.hanging div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}
+</style>
+
+<link rel="stylesheet" href="css/style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./"><h3>Case Studies</h3></a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Preface</a>
+<ul>
+<li class="chapter" data-level="" data-path="technical-setup.html"><a href="technical-setup.html"><i class="fa fa-check"></i>Technical Setup</a></li>
+</ul></li>
+<li class="chapter" data-level="1" data-path="explainable-artificial-intelligence-1.html"><a href="explainable-artificial-intelligence-1.html"><i class="fa fa-check"></i><b>1</b> Explainable Artificial Intelligence 1</a>
+<ul>
+<li class="chapter" data-level="1.1" data-path="xai1-explainable-cards.html"><a href="xai1-explainable-cards.html"><i class="fa fa-check"></i><b>1.1</b> Explaining Credit Card Customers churns</a>
+<ul>
+<li class="chapter" data-level="1.1.1" data-path="xai1-explainable-cards.html"><a href="xai1-explainable-cards.html#global-explanations"><i class="fa fa-check"></i><b>1.1.1</b> Global explanations</a></li>
+</ul></li>
+<li class="chapter" data-level="1.2" data-path="ml-in-predition-of-real-estate-prices.html"><a href="ml-in-predition-of-real-estate-prices.html"><i class="fa fa-check"></i><b>1.2</b> ML in predition of real estate prices</a>
+<ul>
+<li class="chapter" data-level="1.2.1" data-path="ml-in-predition-of-real-estate-prices.html"><a href="ml-in-predition-of-real-estate-prices.html#abstract"><i class="fa fa-check"></i><b>1.2.1</b> Abstract</a></li>
+<li class="chapter" data-level="1.2.2" data-path="ml-in-predition-of-real-estate-prices.html"><a href="ml-in-predition-of-real-estate-prices.html#introduction"><i class="fa fa-check"></i><b>1.2.2</b> Introduction</a></li>
+<li class="chapter" data-level="1.2.3" data-path="ml-in-predition-of-real-estate-prices.html"><a href="ml-in-predition-of-real-estate-prices.html#related-work"><i class="fa fa-check"></i><b>1.2.3</b> Related Work</a></li>
+<li class="chapter" data-level="1.2.4" data-path="ml-in-predition-of-real-estate-prices.html"><a href="ml-in-predition-of-real-estate-prices.html#methodology"><i class="fa fa-check"></i><b>1.2.4</b> Methodology</a></li>
+<li class="chapter" data-level="1.2.5" data-path="ml-in-predition-of-real-estate-prices.html"><a href="ml-in-predition-of-real-estate-prices.html#results"><i class="fa fa-check"></i><b>1.2.5</b> Results</a></li>
+<li class="chapter" data-level="1.2.6" data-path="ml-in-predition-of-real-estate-prices.html"><a href="ml-in-predition-of-real-estate-prices.html#summary-and-conclusions"><i class="fa fa-check"></i><b>1.2.6</b> Summary and conclusions</a></li>
+</ul></li>
+<li class="chapter" data-level="1.3" data-path="xai-heart-disease.html"><a href="xai-heart-disease.html"><i class="fa fa-check"></i><b>1.3</b> How not to have broken heart &lt;3</a>
+<ul>
+<li class="chapter" data-level="1.3.1" data-path="xai-heart-disease.html"><a href="xai-heart-disease.html#introduction-1"><i class="fa fa-check"></i><b>1.3.1</b> Introduction</a></li>
+</ul></li>
+<li class="chapter" data-level="1.4" data-path="xai1-explainable-wine.html"><a href="xai1-explainable-wine.html"><i class="fa fa-check"></i><b>1.4</b> Red wine quality mystery</a>
+<ul>
+<li class="chapter" data-level="1.4.1" data-path="xai1-explainable-wine.html"><a href="xai1-explainable-wine.html#abstract-1"><i class="fa fa-check"></i><b>1.4.1</b> Abstract</a></li>
+<li class="chapter" data-level="1.4.2" data-path="xai1-explainable-wine.html"><a href="xai1-explainable-wine.html#introduction-and-motivation"><i class="fa fa-check"></i><b>1.4.2</b> Introduction and Motivation</a></li>
+<li class="chapter" data-level="1.4.3" data-path="xai1-explainable-wine.html"><a href="xai1-explainable-wine.html#methodology-1"><i class="fa fa-check"></i><b>1.4.3</b> Methodology</a></li>
+<li class="chapter" data-level="1.4.4" data-path="xai1-explainable-wine.html"><a href="xai1-explainable-wine.html#global-explanations-1"><i class="fa fa-check"></i><b>1.4.4</b> Global explanations</a></li>
+<li class="chapter" data-level="1.4.5" data-path="xai1-explainable-wine.html"><a href="xai1-explainable-wine.html#summary"><i class="fa fa-check"></i><b>1.4.5</b> Summary</a></li>
+<li class="chapter" data-level="1.4.6" data-path="xai1-explainable-wine.html"><a href="xai1-explainable-wine.html#conclusions"><i class="fa fa-check"></i><b>1.4.6</b> Conclusions</a></li>
+<li class="chapter" data-level="1.4.7" data-path="xai1-explainable-wine.html"><a href="xai1-explainable-wine.html#references"><i class="fa fa-check"></i><b>1.4.7</b> References</a></li>
+</ul></li>
+<li class="chapter" data-level="1.5" data-path="xai1-explainable-hotels.html"><a href="xai1-explainable-hotels.html"><i class="fa fa-check"></i><b>1.5</b> eXplaining predictions of booking cancelations</a>
+<ul>
+<li class="chapter" data-level="1.5.1" data-path="xai1-explainable-hotels.html"><a href="xai1-explainable-hotels.html#introduction-2"><i class="fa fa-check"></i><b>1.5.1</b> Introduction</a></li>
+<li class="chapter" data-level="1.5.2" data-path="xai1-explainable-hotels.html"><a href="xai1-explainable-hotels.html#dataset_models"><i class="fa fa-check"></i><b>1.5.2</b> Dataset and models</a></li>
+<li class="chapter" data-level="1.5.3" data-path="xai1-explainable-hotels.html"><a href="xai1-explainable-hotels.html#local"><i class="fa fa-check"></i><b>1.5.3</b> Local explanations</a></li>
+<li class="chapter" data-level="1.5.4" data-path="xai1-explainable-hotels.html"><a href="xai1-explainable-hotels.html#global-explanations-2"><i class="fa fa-check"></i><b>1.5.4</b> Global explanations</a></li>
+<li class="chapter" data-level="1.5.5" data-path="xai1-explainable-hotels.html"><a href="xai1-explainable-hotels.html#summary-and-conclusions-1"><i class="fa fa-check"></i><b>1.5.5</b> Summary and conclusions</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="explainable-artificial-intelligence-2.html"><a href="explainable-artificial-intelligence-2.html"><i class="fa fa-check"></i><b>2</b> Explainable Artificial Intelligence 2</a>
+<ul>
+<li class="chapter" data-level="2.1" data-path="xai1-explainable-german-credits.html"><a href="xai1-explainable-german-credits.html"><i class="fa fa-check"></i><b>2.1</b> Classifying people as good or bad credit risks</a>
+<ul>
+<li class="chapter" data-level="2.1.1" data-path="xai1-explainable-german-credits.html"><a href="xai1-explainable-german-credits.html#introduction-3"><i class="fa fa-check"></i><b>2.1.1</b> Introduction</a></li>
+<li class="chapter" data-level="2.1.2" data-path="xai1-explainable-german-credits.html"><a href="xai1-explainable-german-credits.html#dataset-and-models"><i class="fa fa-check"></i><b>2.1.2</b> Dataset and models</a></li>
+<li class="chapter" data-level="2.1.3" data-path="xai1-explainable-german-credits.html"><a href="xai1-explainable-german-credits.html#local-explanations"><i class="fa fa-check"></i><b>2.1.3</b> Local explanations</a></li>
+<li class="chapter" data-level="2.1.4" data-path="xai1-explainable-german-credits.html"><a href="xai1-explainable-german-credits.html#global-explanations-3"><i class="fa fa-check"></i><b>2.1.4</b> Global explanations</a></li>
+<li class="chapter" data-level="2.1.5" data-path="xai1-explainable-german-credits.html"><a href="xai1-explainable-german-credits.html#summary-and-conclusions-2"><i class="fa fa-check"></i><b>2.1.5</b> Summary and conclusions</a></li>
+</ul></li>
+<li class="chapter" data-level="2.2" data-path="how-to-predict-the-probability-of-subsequent-blood-donations.html"><a href="how-to-predict-the-probability-of-subsequent-blood-donations.html"><i class="fa fa-check"></i><b>2.2</b> How to predict the probability of subsequent blood donations?</a>
+<ul>
+<li class="chapter" data-level="2.2.1" data-path="how-to-predict-the-probability-of-subsequent-blood-donations.html"><a href="how-to-predict-the-probability-of-subsequent-blood-donations.html#abstract-2"><i class="fa fa-check"></i><b>2.2.1</b> Abstract</a></li>
+<li class="chapter" data-level="2.2.2" data-path="how-to-predict-the-probability-of-subsequent-blood-donations.html"><a href="how-to-predict-the-probability-of-subsequent-blood-donations.html#introduction-and-motivation-1"><i class="fa fa-check"></i><b>2.2.2</b> Introduction and motivation</a></li>
+<li class="chapter" data-level="2.2.3" data-path="how-to-predict-the-probability-of-subsequent-blood-donations.html"><a href="how-to-predict-the-probability-of-subsequent-blood-donations.html#related-work-1"><i class="fa fa-check"></i><b>2.2.3</b> Related work</a></li>
+<li class="chapter" data-level="2.2.4" data-path="how-to-predict-the-probability-of-subsequent-blood-donations.html"><a href="how-to-predict-the-probability-of-subsequent-blood-donations.html#data-and-model"><i class="fa fa-check"></i><b>2.2.4</b> Data and model</a></li>
+<li class="chapter" data-level="2.2.5" data-path="how-to-predict-the-probability-of-subsequent-blood-donations.html"><a href="how-to-predict-the-probability-of-subsequent-blood-donations.html#global-explanations-4"><i class="fa fa-check"></i><b>2.2.5</b> Global explanations</a></li>
+<li class="chapter" data-level="2.2.6" data-path="how-to-predict-the-probability-of-subsequent-blood-donations.html"><a href="how-to-predict-the-probability-of-subsequent-blood-donations.html#local-explanations-1"><i class="fa fa-check"></i><b>2.2.6</b> Local explanations</a></li>
+<li class="chapter" data-level="2.2.7" data-path="how-to-predict-the-probability-of-subsequent-blood-donations.html"><a href="how-to-predict-the-probability-of-subsequent-blood-donations.html#conclusions-and-summary"><i class="fa fa-check"></i><b>2.2.7</b> Conclusions and summary</a></li>
+</ul></li>
+<li class="chapter" data-level="2.3" data-path="how-the-price-of-the-house-is-influenced-by-neighborhood-xai-methods-for-interpretation-the-black-box-model.html"><a href="how-the-price-of-the-house-is-influenced-by-neighborhood-xai-methods-for-interpretation-the-black-box-model.html"><i class="fa fa-check"></i><b>2.3</b> How the price of the house is influenced by neighborhood? XAI methods for interpretation the black box model</a>
+<ul>
+<li class="chapter" data-level="2.3.1" data-path="how-the-price-of-the-house-is-influenced-by-neighborhood-xai-methods-for-interpretation-the-black-box-model.html"><a href="how-the-price-of-the-house-is-influenced-by-neighborhood-xai-methods-for-interpretation-the-black-box-model.html#abstract-3"><i class="fa fa-check"></i><b>2.3.1</b> Abstract</a></li>
+<li class="chapter" data-level="2.3.2" data-path="how-the-price-of-the-house-is-influenced-by-neighborhood-xai-methods-for-interpretation-the-black-box-model.html"><a href="how-the-price-of-the-house-is-influenced-by-neighborhood-xai-methods-for-interpretation-the-black-box-model.html#introduction-4"><i class="fa fa-check"></i><b>2.3.2</b> Introduction</a></li>
+<li class="chapter" data-level="2.3.3" data-path="how-the-price-of-the-house-is-influenced-by-neighborhood-xai-methods-for-interpretation-the-black-box-model.html"><a href="how-the-price-of-the-house-is-influenced-by-neighborhood-xai-methods-for-interpretation-the-black-box-model.html#literature"><i class="fa fa-check"></i><b>2.3.3</b> Literature</a></li>
+<li class="chapter" data-level="2.3.4" data-path="how-the-price-of-the-house-is-influenced-by-neighborhood-xai-methods-for-interpretation-the-black-box-model.html"><a href="how-the-price-of-the-house-is-influenced-by-neighborhood-xai-methods-for-interpretation-the-black-box-model.html#local-explanations-2"><i class="fa fa-check"></i><b>2.3.4</b> Local explanations</a></li>
+<li class="chapter" data-level="2.3.5" data-path="how-the-price-of-the-house-is-influenced-by-neighborhood-xai-methods-for-interpretation-the-black-box-model.html"><a href="how-the-price-of-the-house-is-influenced-by-neighborhood-xai-methods-for-interpretation-the-black-box-model.html#global-explanations-5"><i class="fa fa-check"></i><b>2.3.5</b> Global explanations</a></li>
+<li class="chapter" data-level="2.3.6" data-path="how-the-price-of-the-house-is-influenced-by-neighborhood-xai-methods-for-interpretation-the-black-box-model.html"><a href="how-the-price-of-the-house-is-influenced-by-neighborhood-xai-methods-for-interpretation-the-black-box-model.html#conclusion"><i class="fa fa-check"></i><b>2.3.6</b> Conclusion</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="deep-learning-1.html"><a href="deep-learning-1.html"><i class="fa fa-check"></i><b>3</b> Deep Learning 1</a>
+<ul>
+<li class="chapter" data-level="3.1" data-path="bcdunet.html"><a href="bcdunet.html"><i class="fa fa-check"></i><b>3.1</b> BCDUNet</a>
+<ul>
+<li class="chapter" data-level="3.1.1" data-path="bcdunet.html"><a href="bcdunet.html#abstract-4"><i class="fa fa-check"></i><b>3.1.1</b> Abstract</a></li>
+</ul></li>
+<li class="chapter" data-level="3.2" data-path="an-exploration-of-deepcovidexplainer-explainable-covid-19-diagnosis-from-chest-x-rays.html"><a href="an-exploration-of-deepcovidexplainer-explainable-covid-19-diagnosis-from-chest-x-rays.html"><i class="fa fa-check"></i><b>3.2</b> An Exploration of DeepCovidExplainer: Explainable COVID-19 Diagnosis from Chest X-rays</a>
+<ul>
+<li class="chapter" data-level="3.2.1" data-path="an-exploration-of-deepcovidexplainer-explainable-covid-19-diagnosis-from-chest-x-rays.html"><a href="an-exploration-of-deepcovidexplainer-explainable-covid-19-diagnosis-from-chest-x-rays.html#introduction-5"><i class="fa fa-check"></i><b>3.2.1</b> Introduction</a></li>
+</ul></li>
+<li class="chapter" data-level="3.3" data-path="erscovid.html"><a href="erscovid.html"><i class="fa fa-check"></i><b>3.3</b> ERSCovid</a>
+<ul>
+<li class="chapter" data-level="3.3.1" data-path="erscovid.html"><a href="erscovid.html#introduction-6"><i class="fa fa-check"></i><b>3.3.1</b> Introduction</a></li>
+</ul></li>
+<li class="chapter" data-level="3.4" data-path="covid-net.html"><a href="covid-net.html"><i class="fa fa-check"></i><b>3.4</b> COVID-Net</a>
+<ul>
+<li class="chapter" data-level="3.4.1" data-path="covid-net.html"><a href="covid-net.html#introduction-7"><i class="fa fa-check"></i><b>3.4.1</b> Introduction</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="deep-learning-2.html"><a href="deep-learning-2.html"><i class="fa fa-check"></i><b>4</b> Deep Learning 2</a>
+<ul>
+<li class="chapter" data-level="4.1" data-path="what-does-it-mean-for-an-article-to-be-reproducible-analyzing-axondeepseg-as-an-example-of-a-reproducible-article.html"><a href="what-does-it-mean-for-an-article-to-be-reproducible-analyzing-axondeepseg-as-an-example-of-a-reproducible-article.html"><i class="fa fa-check"></i><b>4.1</b> What does it mean for an article to be reproducible? Analyzing AxonDeepSeg as an example of a reproducible article</a>
+<ul>
+<li class="chapter" data-level="4.1.1" data-path="what-does-it-mean-for-an-article-to-be-reproducible-analyzing-axondeepseg-as-an-example-of-a-reproducible-article.html"><a href="what-does-it-mean-for-an-article-to-be-reproducible-analyzing-axondeepseg-as-an-example-of-a-reproducible-article.html#introduction-8"><i class="fa fa-check"></i><b>4.1.1</b> Introduction</a></li>
+<li class="chapter" data-level="4.1.2" data-path="what-does-it-mean-for-an-article-to-be-reproducible-analyzing-axondeepseg-as-an-example-of-a-reproducible-article.html"><a href="what-does-it-mean-for-an-article-to-be-reproducible-analyzing-axondeepseg-as-an-example-of-a-reproducible-article.html#analyzing-the-ferplus-paper"><i class="fa fa-check"></i><b>4.1.2</b> Analyzing the FERPlus paper</a></li>
+<li class="chapter" data-level="4.1.3" data-path="what-does-it-mean-for-an-article-to-be-reproducible-analyzing-axondeepseg-as-an-example-of-a-reproducible-article.html"><a href="what-does-it-mean-for-an-article-to-be-reproducible-analyzing-axondeepseg-as-an-example-of-a-reproducible-article.html#reproducibility-analysis"><i class="fa fa-check"></i><b>4.1.3</b> Reproducibility analysis</a></li>
+<li class="chapter" data-level="4.1.4" data-path="what-does-it-mean-for-an-article-to-be-reproducible-analyzing-axondeepseg-as-an-example-of-a-reproducible-article.html"><a href="what-does-it-mean-for-an-article-to-be-reproducible-analyzing-axondeepseg-as-an-example-of-a-reproducible-article.html#analyzing-the-axondeepseg-paper"><i class="fa fa-check"></i><b>4.1.4</b> Analyzing the AxonDeepSeg paper</a></li>
+<li class="chapter" data-level="4.1.5" data-path="what-does-it-mean-for-an-article-to-be-reproducible-analyzing-axondeepseg-as-an-example-of-a-reproducible-article.html"><a href="what-does-it-mean-for-an-article-to-be-reproducible-analyzing-axondeepseg-as-an-example-of-a-reproducible-article.html#reproducibility-analysis-1"><i class="fa fa-check"></i><b>4.1.5</b> Reproducibility analysis</a></li>
+<li class="chapter" data-level="4.1.6" data-path="what-does-it-mean-for-an-article-to-be-reproducible-analyzing-axondeepseg-as-an-example-of-a-reproducible-article.html"><a href="what-does-it-mean-for-an-article-to-be-reproducible-analyzing-axondeepseg-as-an-example-of-a-reproducible-article.html#conclusion-1"><i class="fa fa-check"></i><b>4.1.6</b> Conclusion</a></li>
+</ul></li>
+<li class="chapter" data-level="4.2" data-path="ara-cnn-a-bayesian-deep-learning-model-intended-for-histopathological-image-classification-.html"><a href="ara-cnn-a-bayesian-deep-learning-model-intended-for-histopathological-image-classification-.html"><i class="fa fa-check"></i><b>4.2</b> ARA-CNN - a Bayesian deep learning model intended for histopathological image classification.</a></li>
+<li class="chapter" data-level="4.3" data-path="rethinking-the-u-net-architecture-for-multimodal-biomedical-image-segmentation.html"><a href="rethinking-the-u-net-architecture-for-multimodal-biomedical-image-segmentation.html"><i class="fa fa-check"></i><b>4.3</b> Rethinking the U-Net architecture for multimodal biomedical image segmentation</a>
+<ul>
+<li class="chapter" data-level="4.3.1" data-path="rethinking-the-u-net-architecture-for-multimodal-biomedical-image-segmentation.html"><a href="rethinking-the-u-net-architecture-for-multimodal-biomedical-image-segmentation.html#introduction-9"><i class="fa fa-check"></i><b>4.3.1</b> Introduction</a></li>
+</ul></li>
+<li class="chapter" data-level="4.4" data-path="dl2-rmdl-unet.html"><a href="dl2-rmdl-unet.html"><i class="fa fa-check"></i><b>4.4</b> Analyzing Reproducibility churns</a></li>
+<li class="chapter" data-level="4.5" data-path="title.html"><a href="title.html"><i class="fa fa-check"></i><b>4.5</b> Title</a>
+<ul>
+<li class="chapter" data-level="4.5.1" data-path="title.html"><a href="title.html#title-authors-abstract-keywords"><i class="fa fa-check"></i><b>4.5.1</b> Title, Authors, Abstract, Keywords</a></li>
+<li class="chapter" data-level="4.5.2" data-path="title.html"><a href="title.html#introduction-10"><i class="fa fa-check"></i><b>4.5.2</b> Introduction</a></li>
+<li class="chapter" data-level="4.5.3" data-path="title.html"><a href="title.html#related-literature"><i class="fa fa-check"></i><b>4.5.3</b> Related Literature</a></li>
+<li class="chapter" data-level="4.5.4" data-path="title.html"><a href="title.html#methods-1"><i class="fa fa-check"></i><b>4.5.4</b> Methods</a></li>
+<li class="chapter" data-level="4.5.5" data-path="title.html"><a href="title.html#result"><i class="fa fa-check"></i><b>4.5.5</b> Result</a></li>
+<li class="chapter" data-level="4.5.6" data-path="title.html"><a href="title.html#discussion"><i class="fa fa-check"></i><b>4.5.6</b> Discussion</a></li>
+<li class="chapter" data-level="4.5.7" data-path="title.html"><a href="title.html#conclusion-2"><i class="fa fa-check"></i><b>4.5.7</b> Conclusion</a></li>
+<li class="chapter" data-level="4.5.8" data-path="title.html"><a href="title.html#references-1"><i class="fa fa-check"></i><b>4.5.8</b> References</a></li>
+<li class="chapter" data-level="4.5.9" data-path="title.html"><a href="title.html#random-multimodel-deep-learning-for-classification"><i class="fa fa-check"></i><b>4.5.9</b> Random Multimodel Deep Learning for Classification</a></li>
+<li class="chapter" data-level="4.5.10" data-path="title.html"><a href="title.html#adversarial-attacks-against-medical-deep-learning-systems"><i class="fa fa-check"></i><b>4.5.10</b> Adversarial Attacks Against Medical Deep Learning Systems</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="machine-learning.html"><a href="machine-learning.html"><i class="fa fa-check"></i><b>5</b> Machine Learning</a>
+<ul>
+<li class="chapter" data-level="5.1" data-path="validation-and-comparison-of-covid-19-mortality-prediction-models-on-multi-source-data.html"><a href="validation-and-comparison-of-covid-19-mortality-prediction-models-on-multi-source-data.html"><i class="fa fa-check"></i><b>5.1</b> Validation and comparison of COVID-19 mortality prediction models on multi-source data</a>
+<ul>
+<li class="chapter" data-level="5.1.1" data-path="validation-and-comparison-of-covid-19-mortality-prediction-models-on-multi-source-data.html"><a href="validation-and-comparison-of-covid-19-mortality-prediction-models-on-multi-source-data.html#abstract-5"><i class="fa fa-check"></i><b>5.1.1</b> Abstract</a></li>
+<li class="chapter" data-level="5.1.2" data-path="validation-and-comparison-of-covid-19-mortality-prediction-models-on-multi-source-data.html"><a href="validation-and-comparison-of-covid-19-mortality-prediction-models-on-multi-source-data.html#introduction-11"><i class="fa fa-check"></i><b>5.1.2</b> Introduction</a></li>
+<li class="chapter" data-level="5.1.3" data-path="validation-and-comparison-of-covid-19-mortality-prediction-models-on-multi-source-data.html"><a href="validation-and-comparison-of-covid-19-mortality-prediction-models-on-multi-source-data.html#data-description"><i class="fa fa-check"></i><b>5.1.3</b> Data description</a></li>
+<li class="chapter" data-level="5.1.4" data-path="validation-and-comparison-of-covid-19-mortality-prediction-models-on-multi-source-data.html"><a href="validation-and-comparison-of-covid-19-mortality-prediction-models-on-multi-source-data.html#comparison-of-the-models"><i class="fa fa-check"></i><b>5.1.4</b> Comparison of the models</a></li>
+<li class="chapter" data-level="5.1.5" data-path="validation-and-comparison-of-covid-19-mortality-prediction-models-on-multi-source-data.html"><a href="validation-and-comparison-of-covid-19-mortality-prediction-models-on-multi-source-data.html#conclusions-1"><i class="fa fa-check"></i><b>5.1.5</b> Conclusions</a></li>
+</ul></li>
+<li class="chapter" data-level="5.2" data-path="one-model-to-fit-them-all-covid-19-survival-prediction-using-multinational-data.html"><a href="one-model-to-fit-them-all-covid-19-survival-prediction-using-multinational-data.html"><i class="fa fa-check"></i><b>5.2</b> One model to fit them all: COVID-19 survival prediction using multinational data</a>
+<ul>
+<li class="chapter" data-level="5.2.1" data-path="one-model-to-fit-them-all-covid-19-survival-prediction-using-multinational-data.html"><a href="one-model-to-fit-them-all-covid-19-survival-prediction-using-multinational-data.html#abstract-6"><i class="fa fa-check"></i><b>5.2.1</b> Abstract</a></li>
+<li class="chapter" data-level="5.2.2" data-path="one-model-to-fit-them-all-covid-19-survival-prediction-using-multinational-data.html"><a href="one-model-to-fit-them-all-covid-19-survival-prediction-using-multinational-data.html#introduction-12"><i class="fa fa-check"></i><b>5.2.2</b> Introduction</a></li>
+<li class="chapter" data-level="5.2.3" data-path="one-model-to-fit-them-all-covid-19-survival-prediction-using-multinational-data.html"><a href="one-model-to-fit-them-all-covid-19-survival-prediction-using-multinational-data.html#data-sources"><i class="fa fa-check"></i><b>5.2.3</b> Data sources</a></li>
+<li class="chapter" data-level="5.2.4" data-path="one-model-to-fit-them-all-covid-19-survival-prediction-using-multinational-data.html"><a href="one-model-to-fit-them-all-covid-19-survival-prediction-using-multinational-data.html#model-building"><i class="fa fa-check"></i><b>5.2.4</b> Model building</a></li>
+<li class="chapter" data-level="5.2.5" data-path="one-model-to-fit-them-all-covid-19-survival-prediction-using-multinational-data.html"><a href="one-model-to-fit-them-all-covid-19-survival-prediction-using-multinational-data.html#summary-and-discussion"><i class="fa fa-check"></i><b>5.2.5</b> Summary and discussion</a></li>
+</ul></li>
+<li class="chapter" data-level="5.3" data-path="transparent-machine-learning-to-support-predicting-covid-19-infection-risk-based-on-chronic-diseases.html"><a href="transparent-machine-learning-to-support-predicting-covid-19-infection-risk-based-on-chronic-diseases.html"><i class="fa fa-check"></i><b>5.3</b> Transparent machine learning to support predicting COVID-19 infection risk based on chronic diseases</a>
+<ul>
+<li class="chapter" data-level="5.3.1" data-path="transparent-machine-learning-to-support-predicting-covid-19-infection-risk-based-on-chronic-diseases.html"><a href="transparent-machine-learning-to-support-predicting-covid-19-infection-risk-based-on-chronic-diseases.html#abstract-7"><i class="fa fa-check"></i><b>5.3.1</b> Abstract</a></li>
+<li class="chapter" data-level="5.3.2" data-path="transparent-machine-learning-to-support-predicting-covid-19-infection-risk-based-on-chronic-diseases.html"><a href="transparent-machine-learning-to-support-predicting-covid-19-infection-risk-based-on-chronic-diseases.html#introduction-13"><i class="fa fa-check"></i><b>5.3.2</b> Introduction</a></li>
+<li class="chapter" data-level="5.3.3" data-path="transparent-machine-learning-to-support-predicting-covid-19-infection-risk-based-on-chronic-diseases.html"><a href="transparent-machine-learning-to-support-predicting-covid-19-infection-risk-based-on-chronic-diseases.html#case-study"><i class="fa fa-check"></i><b>5.3.3</b> Case Study</a></li>
+<li class="chapter" data-level="5.3.4" data-path="transparent-machine-learning-to-support-predicting-covid-19-infection-risk-based-on-chronic-diseases.html"><a href="transparent-machine-learning-to-support-predicting-covid-19-infection-risk-based-on-chronic-diseases.html#flaws"><i class="fa fa-check"></i><b>5.3.4</b> Flaws</a></li>
+<li class="chapter" data-level="5.3.5" data-path="transparent-machine-learning-to-support-predicting-covid-19-infection-risk-based-on-chronic-diseases.html"><a href="transparent-machine-learning-to-support-predicting-covid-19-infection-risk-based-on-chronic-diseases.html#improvements"><i class="fa fa-check"></i><b>5.3.5</b> Improvements</a></li>
+<li class="chapter" data-level="5.3.6" data-path="transparent-machine-learning-to-support-predicting-covid-19-infection-risk-based-on-chronic-diseases.html"><a href="transparent-machine-learning-to-support-predicting-covid-19-infection-risk-based-on-chronic-diseases.html#transparent-machine-learning"><i class="fa fa-check"></i><b>5.3.6</b> Transparent Machine Learning</a></li>
+<li class="chapter" data-level="5.3.7" data-path="transparent-machine-learning-to-support-predicting-covid-19-infection-risk-based-on-chronic-diseases.html"><a href="transparent-machine-learning-to-support-predicting-covid-19-infection-risk-based-on-chronic-diseases.html#data"><i class="fa fa-check"></i><b>5.3.7</b> Data</a></li>
+<li class="chapter" data-level="5.3.8" data-path="transparent-machine-learning-to-support-predicting-covid-19-infection-risk-based-on-chronic-diseases.html"><a href="transparent-machine-learning-to-support-predicting-covid-19-infection-risk-based-on-chronic-diseases.html#application"><i class="fa fa-check"></i><b>5.3.8</b> Application</a></li>
+<li class="chapter" data-level="5.3.9" data-path="transparent-machine-learning-to-support-predicting-covid-19-infection-risk-based-on-chronic-diseases.html"><a href="transparent-machine-learning-to-support-predicting-covid-19-infection-risk-based-on-chronic-diseases.html#conclusions-2"><i class="fa fa-check"></i><b>5.3.9</b> Conclusions</a></li>
+</ul></li>
+<li class="chapter" data-level="5.4" data-path="comparison-of-neural-networks-and-tree-based-models-in-the-clinical-prediction-of-the-course-of-covid-19-illness.html"><a href="comparison-of-neural-networks-and-tree-based-models-in-the-clinical-prediction-of-the-course-of-covid-19-illness.html"><i class="fa fa-check"></i><b>5.4</b> Comparison of neural networks and tree-based models in the clinical prediction of the course of COVID-19 illness</a>
+<ul>
+<li class="chapter" data-level="5.4.1" data-path="comparison-of-neural-networks-and-tree-based-models-in-the-clinical-prediction-of-the-course-of-covid-19-illness.html"><a href="comparison-of-neural-networks-and-tree-based-models-in-the-clinical-prediction-of-the-course-of-covid-19-illness.html#abstract-8"><i class="fa fa-check"></i><b>5.4.1</b> Abstract</a></li>
+<li class="chapter" data-level="5.4.2" data-path="comparison-of-neural-networks-and-tree-based-models-in-the-clinical-prediction-of-the-course-of-covid-19-illness.html"><a href="comparison-of-neural-networks-and-tree-based-models-in-the-clinical-prediction-of-the-course-of-covid-19-illness.html#introduction-14"><i class="fa fa-check"></i><b>5.4.2</b> Introduction</a></li>
+<li class="chapter" data-level="5.4.3" data-path="comparison-of-neural-networks-and-tree-based-models-in-the-clinical-prediction-of-the-course-of-covid-19-illness.html"><a href="comparison-of-neural-networks-and-tree-based-models-in-the-clinical-prediction-of-the-course-of-covid-19-illness.html#methods-2"><i class="fa fa-check"></i><b>5.4.3</b> Methods</a></li>
+<li class="chapter" data-level="5.4.4" data-path="comparison-of-neural-networks-and-tree-based-models-in-the-clinical-prediction-of-the-course-of-covid-19-illness.html"><a href="comparison-of-neural-networks-and-tree-based-models-in-the-clinical-prediction-of-the-course-of-covid-19-illness.html#results-1"><i class="fa fa-check"></i><b>5.4.4</b> Results</a></li>
+<li class="chapter" data-level="5.4.5" data-path="comparison-of-neural-networks-and-tree-based-models-in-the-clinical-prediction-of-the-course-of-covid-19-illness.html"><a href="comparison-of-neural-networks-and-tree-based-models-in-the-clinical-prediction-of-the-course-of-covid-19-illness.html#discussion-1"><i class="fa fa-check"></i><b>5.4.5</b> Discussion</a></li>
+<li class="chapter" data-level="5.4.6" data-path="comparison-of-neural-networks-and-tree-based-models-in-the-clinical-prediction-of-the-course-of-covid-19-illness.html"><a href="comparison-of-neural-networks-and-tree-based-models-in-the-clinical-prediction-of-the-course-of-covid-19-illness.html#source-code"><i class="fa fa-check"></i><b>5.4.6</b> Source code</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="rashomonml.html"><a href="rashomonml.html"><i class="fa fa-check"></i><b>6</b> RashomonML</a>
+<ul>
+<li class="chapter" data-level="6.1" data-path="topic.html"><a href="topic.html"><i class="fa fa-check"></i><b>6.1</b> Topic</a>
+<ul>
+<li class="chapter" data-level="6.1.1" data-path="topic.html"><a href="topic.html#abstract-9"><i class="fa fa-check"></i><b>6.1.1</b> Abstract</a></li>
+<li class="chapter" data-level="6.1.2" data-path="topic.html"><a href="topic.html#literature-review"><i class="fa fa-check"></i><b>6.1.2</b> Literature review</a></li>
+<li class="chapter" data-level="6.1.3" data-path="topic.html"><a href="topic.html#results-2"><i class="fa fa-check"></i><b>6.1.3</b> Results</a></li>
+<li class="chapter" data-level="6.1.4" data-path="topic.html"><a href="topic.html#best-models"><i class="fa fa-check"></i><b>6.1.4</b> Best models</a></li>
+</ul></li>
+<li class="chapter" data-level="6.2" data-path="title-1.html"><a href="title-1.html"><i class="fa fa-check"></i><b>6.2</b> Title</a>
+<ul>
+<li class="chapter" data-level="6.2.1" data-path="title-1.html"><a href="title-1.html#literature-review-1"><i class="fa fa-check"></i><b>6.2.1</b> Literature review</a></li>
+</ul></li>
+<li class="chapter" data-level="6.3" data-path="rashomon-on-mimic-draft.html"><a href="rashomon-on-mimic-draft.html"><i class="fa fa-check"></i><b>6.3</b> Rashomon on MIMIC - draft</a>
+<ul>
+<li class="chapter" data-level="6.3.1" data-path="rashomon-on-mimic-draft.html"><a href="rashomon-on-mimic-draft.html#abstract-10"><i class="fa fa-check"></i><b>6.3.1</b> Abstract</a></li>
+<li class="chapter" data-level="6.3.2" data-path="rashomon-on-mimic-draft.html"><a href="rashomon-on-mimic-draft.html#review-of-the-literature"><i class="fa fa-check"></i><b>6.3.2</b> Review of the literature</a></li>
+<li class="chapter" data-level="6.3.3" data-path="rashomon-on-mimic-draft.html"><a href="rashomon-on-mimic-draft.html#raw-results"><i class="fa fa-check"></i><b>6.3.3</b> Raw results</a></li>
+</ul></li>
+<li class="chapter" data-level="6.4" data-path="roshomon-sets-on-death-prediction-xgb-models-using-mimic-iii-database.html"><a href="roshomon-sets-on-death-prediction-xgb-models-using-mimic-iii-database.html"><i class="fa fa-check"></i><b>6.4</b> Roshomon sets on death prediction XGB models using MIMIC-III database</a>
+<ul>
+<li class="chapter" data-level="6.4.1" data-path="roshomon-sets-on-death-prediction-xgb-models-using-mimic-iii-database.html"><a href="roshomon-sets-on-death-prediction-xgb-models-using-mimic-iii-database.html#an-initial-literature-review"><i class="fa fa-check"></i><b>6.4.1</b> An initial literature review</a></li>
+</ul></li>
+<li class="chapter" data-level="6.5" data-path="roshomon-sets-of-in-hospital-mortality-prediction-random-forest-models.html"><a href="roshomon-sets-of-in-hospital-mortality-prediction-random-forest-models.html"><i class="fa fa-check"></i><b>6.5</b> Roshomon sets of in-hospital mortality prediction random forest models</a>
+<ul>
+<li class="chapter" data-level="6.5.1" data-path="roshomon-sets-of-in-hospital-mortality-prediction-random-forest-models.html"><a href="roshomon-sets-of-in-hospital-mortality-prediction-random-forest-models.html#abstract-11"><i class="fa fa-check"></i><b>6.5.1</b> Abstract</a></li>
+<li class="chapter" data-level="6.5.2" data-path="roshomon-sets-of-in-hospital-mortality-prediction-random-forest-models.html"><a href="roshomon-sets-of-in-hospital-mortality-prediction-random-forest-models.html#related-work-2"><i class="fa fa-check"></i><b>6.5.2</b> Related work</a></li>
+<li class="chapter" data-level="6.5.3" data-path="roshomon-sets-of-in-hospital-mortality-prediction-random-forest-models.html"><a href="roshomon-sets-of-in-hospital-mortality-prediction-random-forest-models.html#results-3"><i class="fa fa-check"></i><b>6.5.3</b> Results</a></li>
+</ul></li>
+</ul></li>
+<li class="divider"></li>
+<li><a href="https://bookdown.org" target="_blank">Published with bookdown</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Case Studies</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="validation-and-comparison-of-covid-19-mortality-prediction-models-on-multi-source-data" class="section level2" number="5.1">
+<h2><span class="header-section-number">5.1</span> Validation and comparison of COVID-19 mortality prediction models on multi-source data</h2>
+<p><em>Authors: Michał Komorowski, Przemysław Olender, Piotr Sieńko, Konrad Welkier</em></p>
+<div id="abstract-5" class="section level3" number="5.1.1">
+<h3><span class="header-section-number">5.1.1</span> Abstract</h3>
+<p>The work of <span class="citation">(<a href="#ref-yan_et_al_2020" role="doc-biblioref"><strong>yan_et_al_2020?</strong></a>)</span> from the first months of the COVID-19 pandemic laid the foundations for further research in the area of machine learning models that predict patients’ chances of survival. It was done by introducing a simple decision tree that in the opinion of the inventors could potentially support the cause. Since that time a few papers have emerged that touch upon the same case in which other researchers tested this decision tree on their datasets. Their findings that the original model is not suitable for patients from other countries than China appeared interesting to us and hence in the following paper we present results of our work which aim was to build models on each of the considered datasets as well as on all of them combined in order to find an universal approach for classification of patients from various countries. After testing various models such as XGBoost, Logistic Regression, SVM and Tabnet we came up with the conclusion that there is no one model for all of the datasets that includes only at most 4 crucial variables.</p>
+</div>
+<div id="introduction-11" class="section level3" number="5.1.2">
+<h3><span class="header-section-number">5.1.2</span> Introduction</h3>
+<p>At the end of 2019, the novel coronavirus disease 2019 (COVID-19) pandemic broke out. In the next few months it quickly spread around the world. Daily cases were increasing exponentially. Although most of the cases involved mild symptoms, the healthcare system in many countries still became overloaded. Therefore, the physicians were in an urgent need of a quick system to predict how severe the state of a patient could get, especially if there is a risk of death or a need to be put at the ICU.</p>
+<p>A certain solution for this problem was using machine learning to create a mortality prediction model based on easily available biomarkers. One of the first models proposed in may 2020 by <span class="citation">(<a href="#ref-yan_et_al_2020" role="doc-biblioref"><strong>yan_et_al_2020?</strong></a>)</span> could predict mortality rates of the patients 10 days in advance with great accuracy. The article is considered the state-of-the-art in the COVID-19 machine learning.
+Some issues with this model appeared when it was used on data from different hospitals. When used on biomarkers from patients in France, Netherlands and the United States the model’s accuracy significantly dropped.</p>
+<p>In our article, we describe how the datasets differ, we analyze how <span class="citation">(<a href="#ref-yan_et_al_2020" role="doc-biblioref"><strong>yan_et_al_2020?</strong></a>)</span> model compares to newer model <span class="citation">(<a href="#ref-5-1-ZHENG2020100092" role="doc-biblioref">Zheng et al. 2020a</a>)</span> which evaluates hospitalization priority for COVID-19 patients by validating it on different datasets and propose new model which could yield great results on both datasets.</p>
+</div>
+<div id="data-description" class="section level3" number="5.1.3">
+<h3><span class="header-section-number">5.1.3</span> Data description</h3>
+<p>We have begun our work from analyzing article <span class="citation">(<a href="#ref-yan_et_al_2020" role="doc-biblioref"><strong>yan_et_al_2020?</strong></a>)</span>, authors have created a model based on blood samples collected form 375 patients from the Wuhan region in the first quarter of 2020. Data from another 110 patients were treated as an additional test set. Dataset contains 81 variables, including 74 describing the blood tests results, but not all tests were performed on each patient. Scientists finally created a model based on three variables: lactate dehydrogenase, lymphocytes and high-sensitivity C-reactive protein, these are going to be crucial also in our work.</p>
+<p>The article <span class="citation">(<a href="#ref-yan_et_al_2020" role="doc-biblioref"><strong>yan_et_al_2020?</strong></a>)</span> received several replies, scientists from the USA, France and the Netherlands validated the model on datasets from hospitals from their home countries. The results pointed to the problem of rashly predicting death for patients who eventually survived Covid-19 infection. They also claimed that the <span class="citation">(<a href="#ref-yan_et_al_2020" role="doc-biblioref"><strong>yan_et_al_2020?</strong></a>)</span> model learning from most recently performed measurements was not an appropriate tool to prioritize ICU admissions and should therefore use results from first tests.</p>
+<p>The datasets from corresponding articles contained 3 previously highlighted features, in datasets from <span class="citation">(<a href="#ref-5-2-france" role="doc-biblioref">Dupuis et al. 2021</a>)</span> and <span class="citation">(<a href="#ref-5-2-newyork" role="doc-biblioref">Barish et al. 2021</a>)</span> there are multiple test results and other useful features such as age, but information about other blood components is not included. The data from <span class="citation">(<a href="#ref-5-2-newyork" role="doc-biblioref">Barish et al. 2021</a>)</span> was especially helpful, the data was shared to us after consultation with one of the article’s authors. The data came from Northwell Health, New York State’s largest hospital network serving 11 million patients and contained 1038 records.</p>
+<table>
+<caption>Table 1: contains all most important information about each of datasets and shows which of them contains features needed to create models.</caption>
+<thead>
+<tr class="header">
+<th>Article</th>
+<th align="center">Records</th>
+<th align="center">Variables</th>
+<th align="center">Lactate Dehyd.</th>
+<th align="center">C-protein</th>
+<th align="center">Lymphocytes</th>
+<th align="center">Neutrophil</th>
+<th align="center">Age</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><span class="citation">(<a href="#ref-yan_et_al_2020" role="doc-biblioref"><strong>yan_et_al_2020?</strong></a>)</span></td>
+<td align="center">485</td>
+<td align="center">81</td>
+<td align="center">Yes</td>
+<td align="center">Yes</td>
+<td align="center">Yes</td>
+<td align="center">Yes</td>
+<td align="center">Yes</td>
+</tr>
+<tr class="even">
+<td><span class="citation">(<a href="#ref-5-2-newyork" role="doc-biblioref">Barish et al. 2021</a>)</span></td>
+<td align="center">1038</td>
+<td align="center">14</td>
+<td align="center">Yes</td>
+<td align="center">Yes</td>
+<td align="center">Yes</td>
+<td align="center">No</td>
+<td align="center">No</td>
+</tr>
+<tr class="odd">
+<td><span class="citation">(<a href="#ref-5-2-netherlands" role="doc-biblioref">Quanjel et al. 2021</a>)</span></td>
+<td align="center">305</td>
+<td align="center">15</td>
+<td align="center">Yes</td>
+<td align="center">Yes</td>
+<td align="center">Yes</td>
+<td align="center">No</td>
+<td align="center">Yes</td>
+</tr>
+<tr class="even">
+<td><span class="citation">(<a href="#ref-5-2-france" role="doc-biblioref">Dupuis et al. 2021</a>)</span></td>
+<td align="center">178</td>
+<td align="center">43</td>
+<td align="center">Yes</td>
+<td align="center">Yes</td>
+<td align="center">Yes</td>
+<td align="center">No</td>
+<td align="center">Yes</td>
+</tr>
+<tr class="odd">
+<td><span class="citation">(<a href="#ref-5-1-ZHENG2020100092" role="doc-biblioref">Zheng et al. 2020a</a>)</span></td>
+<td align="center">214</td>
+<td align="center">33</td>
+<td align="center">Yes</td>
+<td align="center">Yes</td>
+<td align="center">Yes</td>
+<td align="center">Yes</td>
+<td align="center">Yes</td>
+</tr>
+</tbody>
+</table>
+<p>Careful inspection of distributions of these key variables from various articles helps to understand problem with applying model form [china] on dataset from corresponding articles.</p>
+<p>Lactate dehydrogenase was the most important feature in model from <span class="citation">(<a href="#ref-yan_et_al_2020" role="doc-biblioref"><strong>yan_et_al_2020?</strong></a>)</span>, relying only on its value patients were supposed to be directed to the ICU. The chart shows that indeed distribution of sever cases is significantly shifted towards higer values in comparsion with non severe cases, but such a large difference does not occur in other datasets, patients requiring additional care usually have an increased lactate dehydrogenase, but not as much as patients from China. An interesting dependence ocuurs in the dataset from <span class="citation">(<a href="#ref-5-1-ZHENG2020100092" role="doc-biblioref">Zheng et al. 2020a</a>)</span>, a large part of the data also comes from China, there is a great distinction between the severely and slightly ill, but the overall lactate dehydrogenase levels are much lower. Additionally, slightly ill patients from Europe and the US have higher LDH levels than severely ill patients from China.</p>
+<div class="figure" style="text-align: center"><span id="fig:5-1-ldhDist"></span>
+<img src="images/5-1-ldhDist.png" alt="Comparison of lactate dehydrogenase amongst datasets" width="850" />
+<p class="caption">
+Figure 5.1: Comparison of lactate dehydrogenase amongst datasets
+</p>
+</div>
+<p>A similar situation occurs when it comes to high-sensitivity C-reactive protein (CRP), in the dataset from <span class="citation">(<a href="#ref-yan_et_al_2020" role="doc-biblioref"><strong>yan_et_al_2020?</strong></a>)</span> the distributions are clearly shifted among themselves, but similar dependency occurs only in the data from [new]. Patients suffering from the virus slightly and severely from other countries with have less varied level of CRP.</p>
+<div class="figure" style="text-align: center"><span id="fig:5-1-crpDist"></span>
+<img src="images/5-1-crpDist.png" alt="Comparison of high reactive C protein amongst datasets" width="850" />
+<p class="caption">
+Figure 5.2: Comparison of high reactive C protein amongst datasets
+</p>
+</div>
+<p>The same dependence occurs with lymphocytes, one additional fact about these distributions is that French do not have lower level of these cells as do patients from rest of the world.</p>
+<div class="figure" style="text-align: center"><span id="fig:5-1-lymDist"></span>
+<img src="images/5-1-lymDist.png" alt="Comparison of lymphocytes amongst datasets" width="850" />
+<p class="caption">
+Figure 5.3: Comparison of lymphocytes amongst datasets
+</p>
+</div>
+<p>Neutrofil was not used in [china] model, but it separates sever and non-severe cases in both datasets very well.</p>
+<div class="figure" style="text-align: center"><span id="fig:5-1-neuDist"></span>
+<img src="images/5-1-neuDist.png" alt="Comparison of neutrophil amongst datasets" width="850" />
+<p class="caption">
+Figure 5.4: Comparison of neutrophil amongst datasets
+</p>
+</div>
+<p>Age is also crucial feature in predicting virus severity, the young people get sick more mildly than the old ones.</p>
+<div class="figure" style="text-align: center"><span id="fig:5-1-ageDist"></span>
+<img src="images/5-1-ageDist.png" alt="Comparison of patients age amongst datasets" width="850" />
+<p class="caption">
+Figure 5.5: Comparison of patients age amongst datasets
+</p>
+</div>
+</div>
+<div id="comparison-of-the-models" class="section level3" number="5.1.4">
+<h3><span class="header-section-number">5.1.4</span> Comparison of the models</h3>
+<p>We have decided to validate two models proposed by <span class="citation">(<a href="#ref-yan_et_al_2020" role="doc-biblioref"><strong>yan_et_al_2020?</strong></a>)</span> and <span class="citation">(<a href="#ref-5-1-ZHENG2020100092" role="doc-biblioref">Zheng et al. 2020a</a>)</span>. The first one is a decision tree with 3 nodes and the second one is an XGboost model with 4 explanatory variables.</p>
+<p>To verify if the model proposed by Yan et al. is effective in predicting COVID-19 mortality amongst patients around the world, validation on external datasets was made. The decision tree was tested on combined data from American<span class="citation">(<a href="#ref-5-2-newyork" role="doc-biblioref">Barish et al. 2021</a>)</span>, French<span class="citation">(<a href="#ref-5-2-france" role="doc-biblioref">Dupuis et al. 2021</a>)</span> and Chinese<span class="citation">(<a href="#ref-yan_et_al_2020" role="doc-biblioref"><strong>yan_et_al_2020?</strong></a>)</span>, <span class="citation">(<a href="#ref-5-1-ZHENG2020100092" role="doc-biblioref">Zheng et al. 2020a</a>)</span> hospitals. The merged dataset has 1842 observations and 3 explanatory variables: lymphocyte, lactate dehydrogenase (denoted by LDH), and C-reactive protein (CRP). All these medical indicators have been previously studied as key factors in severity and mortality prediction<span class="citation">(<a href="#ref-5-1-symptoms" role="doc-biblioref">Cao et al. 2020</a>)</span>, <span class="citation">(<a href="#ref-5-1-Lymph" role="doc-biblioref">Zhao et al. 2020</a>)</span>. To compare Yan et al. decision tree with exemplary models, we created Logistic Regression, Support Vector Machine (SVM) and Tabnet model. Tabnet is a deep learning model for tabular data <span class="citation">(<a href="#ref-5-1-Tabnet" role="doc-biblioref">Arik and Pfister 2020</a>)</span>. It allows creating high performance and explainable classifier on numeric data. The merged dataset was splitted into a training table (80% of observations) and a test table (20%). Then, newly created models were trained on the training table and validated on the test table. Yan’s algorithm was tested on the same part of a merged dataset as other models. We have selected accuracy, precision, recall, ROC AUC and AUPRC as final score metrics.</p>
+<table>
+<caption>Table 1: Model scores on test table from merged dataset.</caption>
+<thead>
+<tr class="header">
+<th>Model</th>
+<th align="right">Accuracy</th>
+<th align="right">Recall</th>
+<th align="right">Precision</th>
+<th align="right">ROC-AUC</th>
+<th align="right">AUPRC</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Tree</td>
+<td align="right">0.674</td>
+<td align="right"><strong>0.908</strong></td>
+<td align="right">0.474</td>
+<td align="right">-</td>
+<td align="right">-</td>
+</tr>
+<tr class="even">
+<td>Logistic Regression</td>
+<td align="right">0.832</td>
+<td align="right">0.606</td>
+<td align="right">0.776</td>
+<td align="right">0.861</td>
+<td align="right">0.746</td>
+</tr>
+<tr class="odd">
+<td>Tabnet</td>
+<td align="right"><strong>0.840</strong></td>
+<td align="right">0.569</td>
+<td align="right"><strong>0.838</strong></td>
+<td align="right"><strong>0.913</strong></td>
+<td align="right"><strong>0.824</strong></td>
+</tr>
+<tr class="even">
+<td>SVM</td>
+<td align="right">0.777</td>
+<td align="right">0.596</td>
+<td align="right">0.631</td>
+<td align="right">0.843</td>
+<td align="right">0.699</td>
+</tr>
+</tbody>
+</table>
+<p>Although the decision tree achieved high recall score (0.908), its precision is unsatisfactory. Models trained on multinational data have distinctly higher accuracy and precision thus they are more suitable for medical triage. SVM Tabnet proved to be the most efficient algorithm, having AUC at 0.91 and AUPRC at 0.824. The SVM was the worst model out of the new ones, with AUC at level 0.843 and AUPRC at 0.699.</p>
+<div class="figure" style="text-align: center"><span id="fig:5-1-AUPRC1"></span>
+<img src="images/5-1-AUPRC1.png" alt="AUPRC results on test table from merged dataset. Tabnet scored significantly better than Logistic Regression and SVM." width="700" />
+<p class="caption">
+Figure 5.6: AUPRC results on test table from merged dataset. Tabnet scored significantly better than Logistic Regression and SVM.
+</p>
+</div>
+<p>Six months after the Yan et al’s paper had been published, another group of Chinese scientists released their article about machine learning models for COVID-19 patients <span class="citation">(<a href="#ref-5-1-ZHENG2020100092" role="doc-biblioref">Zheng et al. 2020a</a>)</span>. They examined several algorithms from which XGBoost performed most efficiently. Besides variables that had been used in the previous article, XGBoost proposed by Yichao Zheng et al. also needed information about the level of Neutrophil in each patient’s blood sample.
+Importantly, this model was originally designed to predict severity therefore it was expected to have high recall and low precision in mortality prediction task.</p>
+<p>Model validation was performed on the dataset from Yan et al’s article. To compare XGBoost performance, another Tabnet model was created. It was fitted to the same data as XGBoost and then validated on Yan et al’s dataset. Additionally, we decided to create two versions of each model. The first one with the Neutrophil variable (the same explanatory variables as proposed in the article) and the second one with Age instead of Neutrophil.</p>
+<table>
+<caption>Table 2: XGBoost and Tabnet scores on Yan et al’s dataset</caption>
+<thead>
+<tr class="header">
+<th>Model</th>
+<th align="right">Accuracy</th>
+<th align="right">Recall</th>
+<th align="right">Precision</th>
+<th align="right">ROC-AUC</th>
+<th align="right">AUPRC</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>XGBoost with N</td>
+<td align="right">0.573</td>
+<td align="right"><strong>0.994</strong></td>
+<td align="right">0.515</td>
+<td align="right">0.865</td>
+<td align="right">0.791</td>
+</tr>
+<tr class="even">
+<td>XGBoost with Age</td>
+<td align="right">0.746</td>
+<td align="right">0.975</td>
+<td align="right"><strong>0.646</strong></td>
+<td align="right"><strong>0.942</strong></td>
+<td align="right"><strong>0.918</strong></td>
+</tr>
+<tr class="odd">
+<td>Tabnet with N</td>
+<td align="right">0.538</td>
+<td align="right">0.976</td>
+<td align="right">0.432</td>
+<td align="right">0.868</td>
+<td align="right">0.787</td>
+</tr>
+<tr class="even">
+<td>Tabnet with Age</td>
+<td align="right"><strong>0.747</strong></td>
+<td align="right">0.984</td>
+<td align="right">0.588</td>
+<td align="right">0.941</td>
+<td align="right">0.891</td>
+</tr>
+</tbody>
+</table>
+<p>As expected, all models achieved very high recall. However, XGBoost from the article (with Neutrophil) had significantly worse performance than XGBoost with Age variable. A similar situation occurred with Tabnet models.
+Overall, XGBoost with the hyperparameters proposed by Zichao Zheng et al. but trained on data with Age column in the place of Neutrophil had best results with 0.942 AUC and 0.918 AUPRC.</p>
+<div class="figure" style="text-align: center"><span id="fig:5-1-AUPRC2"></span>
+<img src="images/5-1-AUPRC2.png" alt="AUPRC results on  Yan et al dataset. Models with Age variable are more effective in mortality prediction." width="700" />
+<p class="caption">
+Figure 5.7: AUPRC results on Yan et al dataset. Models with Age variable are more effective in mortality prediction.
+</p>
+</div>
+</div>
+<div id="conclusions-1" class="section level3" number="5.1.5">
+<h3><span class="header-section-number">5.1.5</span> Conclusions</h3>
+<p>Summing up, the first conclusion is that the original decision tree is not an algorithm that can be universally used to assess chances of survival of any patient around the world. The fact that the blood characteristics vary with ethnic groups is significant and therefore usage of some additional variables can improve the models’ predictive capabilities. This is not what the authors of <span class="citation">(<a href="#ref-yan_et_al_2020" role="doc-biblioref"><strong>yan_et_al_2020?</strong></a>)</span> expected but adding Age or Neutrophil variables to the set indeed boosted the performance. Hence, the intuitive windup would be that the best model is the XGBoost with Age variable since it gets high results according to multiple metrics but it is not that simple. For example its precision is significantly lower in comparison to the Tabnet model prepared on the merged datasets.</p>
+<p>Therefore, what should be learned from this paper is that none of the proposed models that were validated and compared by us should be used on other datasets than those on which they were trained.</p>
+
+</div>
+</div>
+<h3>References</h3>
+<div id="refs" class="references csl-bib-body hanging-indent" line-spacing="2">
+<div id="ref-5-1-Tabnet" class="csl-entry">
+Arik, S. O., &amp; Pfister, T. (2020). <span>TabNet: Attentive Interpretable Tabular Learning</span>. <em>AAAI Conference on Artificial Intelligence (AAAI)</em>. <a href="https://arxiv.org/abs/1908.07442">https://arxiv.org/abs/1908.07442</a>
+</div>
+<div id="ref-5-2-newyork" class="csl-entry">
+Barish, M., Bolourani, S., Lau, L. F., Shah, S., &amp; Zanos, T. P. (2021). <span class="nocase">External validation demonstrates limited clinical utility of the interpretable mortality prediction model for patients with COVID-19</span>. <em>Nature Machine Intelligence</em>, <em>3</em>(1), 25–27. <a href="https://doi.org/10.1038/s42256-020-00254-2">https://doi.org/10.1038/s42256-020-00254-2</a>
+</div>
+<div id="ref-5-1-symptoms" class="csl-entry">
+Cao, Y., Liu, X., Xiong, L., &amp; Cai, K. (2020). <span class="nocase">Imaging and clinical features of patients with 2019 novel coronavirus SARS-CoV-2: A systematic review and meta-analysis</span>. <em>Journal of Medical Virology</em>, <em>92</em>(9), 1449–1459. <a href="https://doi.org/10.1002/jmv.25822">https://doi.org/10.1002/jmv.25822</a>
+</div>
+<div id="ref-5-2-france" class="csl-entry">
+Dupuis, C., De Montmollin, E., Neuville, M., Mourvillier, B., Ruckly, S., &amp; Timsit, J. F. (2021). <span class="nocase">Limited applicability of a COVID-19 specific mortality prediction rule to the intensive care setting</span>. <em>Nature Machine Intelligence</em>, <em>3</em>(1), 20–22. <a href="https://doi.org/10.1038/s42256-020-00252-4">https://doi.org/10.1038/s42256-020-00252-4</a>
+</div>
+<div id="ref-5-2-netherlands" class="csl-entry">
+Quanjel, M. J. R., Holten, T. C. van, Gunst-van der Vliet, P. C., Wielaard, J., Karakaya, B., Söhne, M., et al. (2021). Replication of a mortality prediction model in dutch patients with COVID-19. <em>Nature Machine Intelligence</em>, <em>3</em>(1), 23–24. <a href="https://doi.org/10.1038/s42256-020-00253-3">https://doi.org/10.1038/s42256-020-00253-3</a>
+</div>
+<div id="ref-5-1-Lymph" class="csl-entry">
+Zhao, Q., Meng, M., Kumar, R., Wu, Y., Huang, J., Deng, Y., et al. (2020). <span class="nocase">Lymphopenia is associated with severe coronavirus disease 2019 (COVID-19) infections: A systemic review and meta-analysis</span>. <em>International Journal of Infectious Diseases</em>, <em>96</em>, 131–135. <a href="https://doi.org/10.1016/j.ijid.2020.04.086">https://doi.org/10.1016/j.ijid.2020.04.086</a>
+</div>
+<div id="ref-5-1-ZHENG2020100092" class="csl-entry">
+Zheng, Y., Zhu, Y., Ji, M., Wang, R., Liu, X., Zhang, M., et al. (2020a). <span class="nocase">A Learning-Based Model to Evaluate Hospitalization Priority in COVID-19 Pandemics</span>. <em>Patterns</em>, <em>1</em>(6), 100092. <a href="https://doi.org/10.1016/j.patter.2020.100092">https://doi.org/10.1016/j.patter.2020.100092</a>
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="machine-learning.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="one-model-to-fit-them-all-covid-19-survival-prediction-using-multinational-data.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook/js/app.min.js"></script>
+<script src="libs/gitbook/js/lunr.js"></script>
+<script src="libs/gitbook/js/clipboard.min.js"></script>
+<script src="libs/gitbook/js/plugin-search.js"></script>
+<script src="libs/gitbook/js/plugin-sharing.js"></script>
+<script src="libs/gitbook/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook/js/jquery.highlight.js"></script>
+<script src="libs/gitbook/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": true,
+"facebook": false,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"whatsapp": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": "https://github.com/mini-pw/2021L-WB-Book/edit/master/5-1-ml.Rmd",
+"text": "Edit"
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": ["book.pdf", "book.epub"],
+"toc": {
+"collapse": "section"
+}
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>

@@ -1,3 +1,4 @@
+
 ---
 bibliography: book.bib
 ---
@@ -5,7 +6,6 @@ bibliography: book.bib
 ## Transparent machine learning to support predicting COVID-19 infection risk based on chronic diseases
 
 *Authors: Dawid Przybyliński, Hubert Ruczyński, Kinga Ulasik*
-
 
 ### Abstract
 
@@ -20,7 +20,6 @@ All available models for predicting coronavirus mortality have numerous disadvan
 The proposed application bases its mortality prediction on the information about chronic diseases that the patient suffers from. In addition to the predicted mortality, it also provides a break down plot as an explanation of the mortality, SHAP visualization, to show impact of the most important parameters and also analysis of the mortality risk depending on age.
 By using the random forest model, we also ensure the explainability of the entire process. Thanks to this solution, our application is useful for both ordinary people and doctors.
 
-
 ### Flaws
 
 As a first step, we started analyzing one of the first articles [@5-3-chinese_et_al] on the development of predictive models to predict COVID-19 mortality in depth. The main disadvantages of the model presented in it were the very poor prediction of mortality in the case of testing on external data sets [@5-3-dutch_et_al], [@5-3-american_et_al] and the related allegation of not testing one's solution on external data [@5-3-american_et_al]. In addition, our team noticed a very large bias present in the original data, thanks to which even the simplest models achieved extremely high efficiency of over 90%.
@@ -33,7 +32,6 @@ Next, we used Principal Component Analysis to try to split the data using reduci
 
 
 While evaluating the models we mainly focused on precision score which defines what percentage of patients predicted to be in chosen class (survival and death in this case) really represents that class. If the precision score is low it is either dangerous for people's life or leads to overcrowding the hospitals.
-
 
 **Prediction using original parameters on external data**
 
@@ -65,7 +63,6 @@ Thanks to the authors of the paper [@5-3-american], we were given access to addi
 ```{r fig5, out.width="500", fig.align="center", echo=FALSE, fig.cap='Results received for external data'}
 knitr::include_graphics('images/5-3-new_data_performance_excel.png')
 ```
-
 
 Model performance has dropped significantly, the outcome is far from desired.
 
@@ -115,7 +112,6 @@ The last, and perhaps the least obvious disadvantage is that the data used for p
 **Summary**
 
 To sum up, the most desirable effect of our work turns out to be an explainable model with high-quality predictions, based on a large database. In addition, it should be based on easy-to-obtain information about a person's health and be understandable to both ordinary people and physicians. In search of research that would help us explore this branch of machine learning, we manage to find an article [@5-3-mexican_et_al], which provided us with both a comprehensive set of data, understandable to everyone, and a very rich information background.
-
 
 ### Transparent Machine Learning
 
