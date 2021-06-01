@@ -1,0 +1,5 @@
+## COVID-Net
+
+*Authors: Adam Frej, Piotr Marciniak, Piotr Piątyszek*
+
+### Introduction
