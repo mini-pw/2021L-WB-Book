@@ -3,3 +3,31 @@
 *Authors: Adam Frej, Piotr Marciniak, Piotr Piątyszek*
 
 ### Introduction
+
+### Data
+
+#### Unreachelable original data
+
+#### Our data
+
+### Original model
+
+#### Preprocessing
+
+### New models
+
+#### Smaller ones
+
+#### SegNet
+
+##### First try
+
+##### Metrics
+
+##### Pretrainig
+
+##### Transfer learning
+
+##### XAI
+
+### Summary
