@@ -79,7 +79,7 @@ Again, the most important variable is *population*, which correctly attempts to 
 
 The situation is quite different, however, if we check the view of the area in Google Maps (\ref@(fig:street_view_18563)). Here we can see a new, rich estate, full of villas and luxurious houses. If the area was similar 30 years ago, we can believe that it was indeed worth USD 475,000. Again, however, it is quite unusual for such a rich estate to be located in that kind of location, so we are absolutely not surprised that our model underestimated price here.
 
-```{r street_view_18563, out.width="700", fig.align="center", echo=FALSE, fig.cap='Street View for observation No. 15804'}
+```{r street_view_15804, out.width="700", fig.align="center", echo=FALSE, fig.cap='Street View for observation No. 15804'}
 knitr::include_graphics('images/1-2-street_view_15804.png')
 ```
 
