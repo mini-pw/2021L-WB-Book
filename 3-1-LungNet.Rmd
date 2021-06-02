@@ -3,3 +3,67 @@
 *Authors: Adam Frej, Piotr Marciniak, Piotr Piątyszek*
 
 ### Introduction
+Our goal is to recreate the results achived in the article: [Semantic Segmentation of Pathological Lung Tissue
+with Dilated Fully Convolutional Networks](https://github.com/intact-project/LungNet). Authors developed a deep purely convolutional neural network for the semantic segmentation of interstitial lung diseases. The proposed CNN takes as input a lung CT image of arbitrary size and outputs the corresponding label map. We want to recreate that CNN and achive as similar results as possible.\
+Iinterstital lung disease (ILD) is a group of more than 200 chronic lung disorders characterized by inflammation and scarring of the lung tissue that leads to respiratory failure. The diagnosis of ILD is mostly performed by radiologists and is usually based on the assessment of the different ILD pathologies in high resolution computed tomography (HRCT) thoracic scans. Early diagnosis is crucial for making treatment decisions, while misdiagnosis may lead to life-threatening complications. Pathological tissue is usually manifested as various textural patterns in the CT scan. The article proposes the use of a deep fullyconvolutional network for the problem of ILD pattern recognition that uses dilated convolutions and is trained in an end-to-end and semi-supervised manner.\
+On the image is presented a typical HRCT scan with annotations. The white border line denotes the lung field segmentation, the blue denotes healthy tissue, the purple micronodules and the red the honeycombing pattern.
+
+```{r, out.width="500", fig.align="center", echo=FALSE, fig.cap='Example of an annotated HRCT lung scan'}
+knitr::include_graphics('images/3-1-HRCT_scan.png')
+```
+
+### Data
+In order to recreate the article we needed annotated HRCT scans of lungs.
+
+#### Original data
+The authors of the article used a dataset of 172 sparsely annotated HRCT scans, each corresponding to a unique ILD or healthy subject. The dataset contains 109 cases from multimedia database of interstitial lung diseases by the Geneva University Hospital (HUG), along with 63 cases from Bern University Hospital - “Inselspital” (INSEL), as collected by the authors. Two experienced radiologists from INSEL annotated or reannotated ILD typical pathological patterns, as well as healthy tissue in both databases. A lung field segmentation mask was also provided for each case.\
+Artcile claims that the datasets are publicly available. However, we could not reach them. The HUG dataset required a copyright agreement signed by a person duly authorized by the institution (e.g., Department or Administrative Head or similar). We could not find any access to the INSEL datset.
+
+#### Our data
+Because of the issues with the original data we had to find new datasets.\
+The first one, [COVID19-DL](https://github.com/adnan-saood/COVID19-DL) contains lungs scans of COVID-19 patients. The dataset is designed for training deep learning models. It has 100 png images in greyscale, each in 256x256 resolution.\
+The second one, [The Lung Image Database Consortium (LIDC)](https://wiki.cancerimagingarchive.net/display/Public/LIDC-IDRI) consists of 1018 diagnostic and lung cancer screening thoracic computed tomography (CT) scans with marked-up annotated lesions. The dataset is a web-accessible international resource for development, training, and evaluation of computer-assisted diagnostic (CAD) methods for lung cancer detection and diagnosis. Four experienced thoracic radiologists independently reviewed each CT scan and marked lesions. The images are in dicom format, greyscale and 512x512 resolution.\
+The LIDC dataset is much better annotated and contains more cases. That is why we decided to use in training process of our models.
+
+### Original model
+
+#### Preprocessing
+
+### New models
+
+#### Smaller ones
+
+#### SegNet
+
+##### First try
+
+##### Metrics
+We used several metrics to evaluate our model.\
+The most important one is confusion matrix. It shows how accurate is the model. We can notice that it imporves a little over time but it is not significant. Most of predicted healthy area of the lungs is actually healthy. It is the main part of the scans. However, there are a lot of false positive cases. The model marks healthy parts of the lungs as lesioned. It finds most of the actual lesions but marks it together with a lot of healthy part.
+
+```{r, out.width="900", fig.align="center", echo=FALSE, fig.cap='Confusion matrix'}
+knitr::include_graphics('images/3-1-confusion_matrix.png')
+```
+
+Accuracy, precision, recall and specificity are basic ones. Accuracy is not very meaningfull because of the uneven distribution of the considered classes across the cases. Precision is very low, what is connected with confusion matrix. Model marks a lot of false positive cases. Recall is pretty high. Model finds most of the lesioned part of the lungs. Specificity is extremely high what is also connected with confusion matrix. Model finds almost all healthy lung tissue. In some metrics we can notice an improvment over time.
+
+```{r, out.width="600", fig.align="center", echo=FALSE}
+knitr::include_graphics('images/3-1-accuracy.png')
+knitr::include_graphics('images/3-1-precision.png')
+knitr::include_graphics('images/3-1-recall.png')
+knitr::include_graphics('images/3-1-specificity.png')
+```
+
+Intersection over Union metric is important in our case because we classify images. It says how accurately model marks lesions in lungs. It is calculated by dividing an intersection area of the actual lesions and the predictins over an union area of them. The metric is pretty high and improves over time. The reason why it is not close to 1 is the problem with false positives and low precision.
+
+```{r, out.width="600", fig.align="center", echo=FALSE}
+knitr::include_graphics('images/3-1-IoU.png')
+```
+
+##### Pretrainig
+
+##### Transfer learning
+
+##### XAI
+
+### Summary
