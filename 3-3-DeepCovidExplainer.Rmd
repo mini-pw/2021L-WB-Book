@@ -10,12 +10,24 @@ In our opinion, however, the end goal isn’t the most important part of the jou
 
 ### Related work
 
-W pracy http://export.arxiv.org/pdf/2003.09871 autorzy stosują sieć COVID-Net na tym samym zbiorze danych COVID-X. Porównują swoje wyniki z wynikami, które uzyksali na sieciach VGG-19 oraz ResNet-50. Różni się to od DeepCOVIDExplainer przede wszystkim tym, że w latter autorzy dokonali praktycznie ensemble trzech sieci, zaś w COVID-Net używają tylko tytułowej.
+DeepCovidExplainer [@3-3-DeepCOVIDExplainer] is the work of 6 researchers. This project involved training several neural networks: VGG, ResNet, DenseNet, based on the [COVIDx](https://github.com/lindawangg/COVID-Net/blob/master/docs/COVIDx.md) dataset to recognize whether a given image belongs to a healthy person, a COVID-19 patient, or a pneumonia patient.
 
-https://arxiv.org/pdf/2004.04582.pdf?fbclid=IwAR0zSSiGZCFk2JSRK97pL59mfbYvyMMkSJJudB4QIEjY96upknm8fEw2lio 
+The COVIDx dataset, consists of six smaller publicly available datasets:
 
-https://github.com/rezacsedu/DeepCOVIDExplainer <- podlinkowane w artykule repo
+1. Covid-chestxray-dataset [@3-3-cohen2020covidProspective]
+2. [COVID-chestxray-dataset](https://github.com/agchung/Figure1-COVID-chestxray-dataset): a public open dataset of chest X-ray and CT images of patients who are positive or suspected of COVID-19 or other viral and bacterial pneumonias (MERS, SARS, and ARDS.) Built to enhance models for COVID-19 detection (COVID-Net) and COVID-19 risk stratification (COVID-RiskNet):
+3. [Actualmed COVID-19 Chest X-ray Dataset Initiative](https://github.com/agchung/Actualmed-COVID-chestxray-dataset): also built to enhance models for COVID-19 detection (COVID-Net) and COVID-19 risk stratification (COVID-RiskNet)
+4. COVID-19 Radiography Database described in [@3-3-9144185] and in [@3-3-RAHMAN2021104319],
+5. [rsna-pneumonia-detection-challenge](https://www.kaggle.com/c/rsna-pneumonia-detection-challenge) dataset from kaggle competition;
+6. Medical Imaging Data Resource Center (MIDRC) - RSNA International COVID-19 Open Radiology Database (RICORD) Release 1c - Chest x-ray Covid+ (MIDRC-RICORD-1c) [@3-3-d22318dbf59248c99bd2b5bfe8944b03].
 
+The above dataset is used in many other works on deep neural networks. We will name a couple of them.
+
+In the paper [@3-3-Wang2020], the authors use COVID-Net. They compare their results (more than 90% Accuracy) with the results they obtained on the VGG-19 and ResNet-50 networks. The paper differs from DeepCovidExplainer mainly in that in the latter the authors practically ensemble three networks, while in COVID-Net they use only the titular one.
+
+The authors of the paper [@3-3-Ucar2020COVIDiagnosisNetDB] use SqueezeNet to create the model, which is fine-tuned using Bayesian optimization. The fine-tuned model has over 90% Accuracy. The work differs in the network used and the method of selecting optimal parameters.
+
+Each of the above mentioned works deals with the application of deep neural networks in classifying the health status of a patient based on CXR images of his lungs. However, as our authors say, the final goal is to create a tool to assist radiologists in diagnosing the condition, not to replace them.
 
 ### Our work 
 
