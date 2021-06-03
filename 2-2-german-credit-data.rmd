@@ -103,7 +103,7 @@ Once again, 'installment commitment', 'existing credits' and 'num dependents' fe
 
 #### Incorrect predictions
 
-Although the accuracy of our model is at satisfactory level, sometimes it is providing incorrect predictions. We decided to take a closer look and analyze the situations when our model misclassifies. For this purpose we explained the false positives and false negatives predictions with the local methods LIME and SHAP.
+Although the accuracy of our model is at satisfactory level, sometimes it is providing incorrect predictions. We decided to take a closer look and analyze the situations when our model misclassifies. For this purpose we explained the false positives and false negatives predictions with the local methods LIME and SHAP. LIME method approximates the model around a certain observation, creating a smaller, "local" explainable machine learning model (e.g. linear model) which in turn is used to explain the prediction. SHAP uses Shapley values from coalitional game theory, which are supposed show a fair distribution of a certain "payout" between players. In our case this "payout" is prediction, thus the "fairer" division of influence on the model prediction is understood as the best one.
 
 ##### False positive
 
@@ -145,7 +145,7 @@ A major shortcoming of local explanations is that they are just that - local. It
 #### Feature Importance
 
 
-First of all, we began with Feature Importance method [@2-2-biecek2021explanatory] which gives information on the importance of features in the model. The results of applying this method on our model can be seen in the figure below.  
+First of all, we began with Feature Importance method [@2-2-biecek2021explanatory] which gives information on the importance of features in the model. Importance is measured by resampling and permuting values of a certain variable, to simulate effect of its removal. The main intuition can be summarised in form of a question: "how much the model suffers if this feature is removed". The results of applying this method on our model can be seen in the figure below.  
 
 ```{r 2-2-feature_importance, out.width="700", fig.align="center", echo=FALSE, fig.cap='A plot of Feature Importance values for each variable for our model.'}
 knitr::include_graphics('images/2-2-featureimportance.png')
