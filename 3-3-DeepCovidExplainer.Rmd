@@ -1,14 +1,8 @@
----
-output:
-  html_document: default
-  pdf_document: default
----
-
 ## An Exploration of DeepCovidExplainer: Explainable COVID-19 Diagnosis from Chest X-rays
 
 *Authors: Kurowski Kacper, Mróz Zuzanna, Podsiad Aleksander*
 
-### Introduction and motivation
+### Introduction and motivation <!-- DONE -->
 
 To make no secret of it, the main motivation for our work was to pass the Research Workshop class. Our task was to try to reproduce the results of the DeepCovidExplainer project. It is a Deep Learning model based on deep convolutional neural networks for predicting disease (or lack thereof) from lung x-rays.
 
@@ -44,20 +38,20 @@ tensorflow-gpu            1.14.0 (optional)
 keras                     2.3.1
 h5py                      2.10.0
 weightwatcher             0.2.7
-matplotlib                newest
-scipy                     newest
-scikit-learn              newest     
-pandas                    newest
-pydicom                   newest
-ipython                   newest
-jupyter                   newest
-ipykernel                 newest
-opencv                    newest
-torch                     newest
-PIL                       newest
-xlrd                      newest
-openpyxl                  newest
-innvestigate              newest
+matplotlib                newest compatible
+scipy                     newest compatible
+scikit-learn              newest compatible     
+pandas                    newest compatible
+pydicom                   newest compatible
+ipython                   newest compatible
+jupyter                   newest compatible
+ipykernel                 newest compatible
+opencv                    newest compatible
+torch                     newest compatible
+PIL                       newest compatible
+xlrd                      newest compatible
+openpyxl                  newest compatible
+innvestigate              newest compatible
 
 2. Standalone installation 
 
@@ -81,7 +75,7 @@ After acquiring the dataset, it was time to attempt to train and test the prelim
 
 In VGG networks, the last three layers are dense layers, while the previous ones are convolutional layers, with a 3x3 filter, arranged in blocks of 2, 3 or 4. Each such convolutional block ends with max pooling. In all cases (except the last one, where the activation function is softmax,) the activation function used is ReLU.
 
-```{r VGG19, out.height="200", fig.align="center", echo=FALSE, fig.cap='VGG19 architecture'}
+```{r VGG19, out.width="550", fig.align="center", echo=FALSE, fig.cap='VGG19 architecture'}
 knitr::include_graphics('images/3-3-vgg19.jpg')
 ```
 
@@ -89,13 +83,13 @@ In the case of VGG, the convolutional blocks end in max pooling with stride=2, w
 
 ResNet addresses this problem; it solves it by creating convolutional blocks with an additional connection between the data after the block and that before. In this way, further convolutional blocks learn small changes that can improve the prediction.
 
-```{r ResNet18, out.height="200", fig.align="center", echo=FALSE, fig.cap='ResNet18 architecture'}
+```{r ResNet18, out.height="350", fig.align="center", echo=FALSE, fig.cap=''}
 knitr::include_graphics('images/3-3-resnet18.png')
 ```
 
 This idea is somewhat developed in DenseNet networks. In them, instead of convolutional blocks, we have dense blocks that end in convolution with ReLU and max pooling. This time the results of the dense block are transferred as additional information to the result of each subsequent block. In this way, no information is lost and the network learns to improve the results slightly in each subsequent block.
 
-```{r DenseNet161, out.height="200", fig.align="center", echo=FALSE, fig.cap='DenseNet161 architecture'}
+```{r DenseNet161, out.height="350", fig.align="center", echo=FALSE, fig.cap='DenseNet161 architecture'}
 knitr::include_graphics('images/3-3-densenet161.png')
 ```
 
@@ -122,7 +116,7 @@ removing annotations from the image using the inpaint function from OpenCV and u
 
 We have also dropped the part of the authors' code where they introduce the division between the right and left side of the image, as they did not use this later in the code and it does not seem necessary.
 
-```{r BeforeAfter, out.height="200", fig.align="center", echo=FALSE, fig.cap='Before and after preprocessing'}
+```{r BeforeAfter, out.height="300", fig.align="center", echo=FALSE, fig.cap='Before and after preprocessing'}
 knitr::include_graphics('images/3-3-preprocessing.png')
 ```
 
@@ -130,7 +124,7 @@ knitr::include_graphics('images/3-3-preprocessing.png')
 
 As we mentioned earlier, we focused on the VGG19 model, mainly because of the straightforward implementation and ease of modification of its architecture. We performed several experimental modifications and improvements that aimed to improve the performance of this model.
 
-```{r ConfMatrix, out.height="200", fig.align="center", echo=FALSE, fig.cap='Confusion matrix for base model '}
+```{r ConfMatrix, out.height="250", fig.align="center", echo=FALSE, fig.cap='Confusion matrix for base model '}
 knitr::include_graphics('images/3-3-confusion_matrix.png')
 ```
 
@@ -143,19 +137,19 @@ The last was to add another dense layer (256 neurons + Dropout 0.25 between the 
 Unfortunately, none of these changes resulted in improved prediction of the network. On the other hand, it's somewhat interesting to note that these changes didn't result in a significant worsening of the network prediction: the Accuracy still remains at 70-80%, the same as before the changes were made.
 
 
-```{r Smallchanges, out.height="200", fig.align="center", echo=FALSE, fig.cap='Confusion matrix for model with small changes'}
+```{r Smallchanges, out.height="250", fig.align="center", echo=FALSE, fig.cap='Confusion matrix for model with small changes'}
 knitr::include_graphics('images/3-3-small_changes.png')
 ```
 
 We also used 3 types of regularization: L1 regularization, L2 regularization, and mixed L1 and L2 regularization. In the case of mixed regularization, we obtained an improvement in the prediction of pneumonia, but this came at the expense of predicting both the absence of disease and the presence of COVID19. Unfortunately, it cannot be concluded that any of the regularizations improved network performance.
 
-```{r L1L2, out.height="200", fig.align="center", echo=FALSE, fig.cap='Confusion matrix for model with L1, model with L2 and model with both'}
+```{r L1L2, out.height="250", fig.align="center", echo=FALSE, fig.cap='Confusion matrix for model with L1, model with L2 and model with both'}
 knitr::include_graphics('images/3-3-cm_l1_l2_l1l2.png')
 ```
 
 We also tested the performance of VGG19 without the so far present Dropout 0.5 mechanism between dense layers, and as you might guess we only got worse results.
 
-```{r WihoutDropout, out.height="200", fig.align="center", echo=FALSE, fig.cap='Confusion matrix for model without dropout'}
+```{r WihoutDropout, out.height="250", fig.align="center", echo=FALSE, fig.cap='Confusion matrix for model without dropout'}
 knitr::include_graphics('images/3-3-cm_bez_dropout.png')
 ```
 
@@ -164,19 +158,19 @@ knitr::include_graphics('images/3-3-cm_bez_dropout.png')
 The idea behind creating the second output in our model was to see which dataset a particular image came from. To remind the reader, the dataset we are using is actually a mixture of several datasets.
 We tried adding an additional output three times. The first time, we decided to perform branching in the part of the VGG network composed of dense layers. The resulting output unfortunately turned out to be quite poor - first, the COVID-19 detection quality deteriorated, and second, too many images were misclassified as originating from the RSNA dataset.
 
-```{r CM1, out.height="200", fig.align="center", echo=FALSE, fig.cap='Confusion matrix for model with branching in dense layers'}
+```{r CM1, out.height="250", fig.align="center", echo=FALSE, fig.cap='Confusion matrix for model with branching in dense layers'}
 knitr::include_graphics('images/3-3-cm_output1.png')
 ```
 
 The lack of success with the first approach contributed to our second attempt - we separated the last three convolutional blocks and implemented the class weights mechanism. Unfortunately, this did not improve our results - this time all data were classified as coming from the sirm dataset.
 
-```{r CM2, out.height="200", fig.align="center", echo=FALSE, fig.cap='Confusion matrix for model with class weights mechanism'}
+```{r CM2, out.height="250", fig.align="center", echo=FALSE, fig.cap='Confusion matrix for model with class weights mechanism'}
 knitr::include_graphics('images/3-3-cm_output2.png')
 ```
 
 Finally, we decided to separate the network from the first convolutional block and dispensed with class weights. Similarly, this time all images were classified as coming from a single dataset.
 
-```{r CM3, out.height="200", fig.align="center", echo=FALSE, fig.cap='Confusion matrix for model with separated first convolutional block'}
+```{r CM3, out.height="250", fig.align="center", echo=FALSE, fig.cap='Confusion matrix for model with separated first convolutional block'}
 knitr::include_graphics('images/3-3-cm_output3.png')
 ```
 
@@ -185,13 +179,13 @@ These results can be seen as a lack of success on the one hand, and somewhat pos
 
 Let’s move on to our ensemble ideas. The first concept for the ensemble was to combine results from ResNet and VGG. Unfortunately, this idea did not give successful results, because ResNet classified all data as one class, which resulted in incorrect prediction of the whole ensemble.
 
-```{r Ensemble, out.height="200", fig.align="center", echo=FALSE, fig.cap='Ensemble of ResNet and VGG'}
+```{r Ensemble, out.height="250", fig.align="center", echo=FALSE, fig.cap='Ensemble of ResNet and VGG'}
 knitr::include_graphics('images/3-3-cm_enseble_resnet_vgg.png')
 ```
 
 For this reason, we opted for an ensemble composed of most of the decently performing VGG networks generated during the previous steps. The results obtained were definitely better than those of the previous ensemble idea, but still did not give an improvement over the baseline.
 
-```{r Ensemble2, out.height="200", fig.align="center", echo=FALSE, fig.cap='Ensemble of multiple VGG'}
+```{r Ensemble2, out.height="250", fig.align="center", echo=FALSE, fig.cap='Ensemble of multiple VGG'}
 knitr::include_graphics('images/3-3-cm_ensemble_vgg2.png')
 ```
 
@@ -200,14 +194,14 @@ knitr::include_graphics('images/3-3-cm_ensemble_vgg2.png')
 To augment the training data, we decided to train an image generator using the generative adversarial network (GAN) method. With this model we could perform pretraining on a large number of randomly generated lung images without the risk of overtraining.
 The results are quite satisfactory however, due to hardware limitations the generated lung images are not of very high quality.
 
-```{r GAN, out.height="200", fig.align="center", echo=FALSE, fig.cap='GAN generator results'}
+```{r GAN, out.height="300", fig.align="center", echo=FALSE, fig.cap='GAN generator results'}
 knitr::include_graphics('images/3-3-gan.png')
 ```
 
 We then tried to use pretraining on VGG19 using images from our dataset without labels. We chose not to use images generated from the GAN network because we were able to visually determine that the images were not of high enough quality for this task.
 We trained the convolutional layers using an unsupervised feature detection algorithm (autoencoder). After training the layers in this manner, we added an output layer and tuned the network using supervised learning (without unfreezing the convolutional layers due to the very high encoder accuracy - 99.99%). Unfortunately the results weren’t very satisfactory - the network placed far too much emphasis on the prediction of pneumonia and far too little on the prediction of normal lungs.
 
-```{r Transfer, out.height="200", fig.align="center", echo=FALSE, fig.cap='Transfer learning results'}
+```{r Transfer, out.height="250", fig.align="center", echo=FALSE, fig.cap='Transfer learning results'}
 knitr::include_graphics('images/3-3-cm_tf0.png')
 ```
 
@@ -217,7 +211,7 @@ Our auxiliary task was to identify whether a photo was of a man or a woman. In o
 
 Unfortunately, while the network's results on the aux task were quite satisfactory, the network's results on the output task were much worse - the network was unable to break out of the weights predicting two variables - moreover, it seems to even come close to predicting all values as one class.
 
-```{r Aux, out.height="200", fig.align="center", echo=FALSE, fig.cap='Auxilary task results'}
+```{r Aux, out.height="250", fig.align="center", echo=FALSE, fig.cap='Auxilary task results'}
 knitr::include_graphics('images/3-3-cm_tf3.png')
 ```
 
