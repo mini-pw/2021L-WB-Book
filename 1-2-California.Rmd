@@ -38,6 +38,52 @@ In an asset pricing approach **expected revenue** plays a key role. Here factors
 
 #### Data description
 
+For this project we used the *housing* dataset which we acquired from Kaggle repository. This is a modified version of dataset provided by StatLib. It has been extracted from 1990 US census. Each row represents a single house in California area and contains information about its location and details about bloc it is situated in. Our target variable for this regression task is *median_house_value*. We present the structure of said dataset in detail in the table below.
+
+```{r 1-2-data-table, fig.align="center", echo=FALSE, fig.cap='Housing data frame details'}
+knitr::include_graphics('images\1-2-data_table.png')
+```
+
+*Housing* consists of 20640 records and missing values appears only in *total_bedrooms* column. There are total of 207 rows with missing values in *total_bedrooms* field, which makes up for approximately 1% of all records. Our data will evolve over the course of next sections, however whenever we implement any changes to dataset we will clarify them fully.
+
+#### Exploratory Data Analysis
+
+In order to better understand data we were working with, we conducted exploratory data analysis, which mainly consisted of visualizations. The very first step of our EDA was figuring out if we have to deal with any missing values. As stated in *Data description* section, we have 207 rows with missing values in *total_bedrooms* field. We decided to impute these fields using median of *total_bedrooms* from all non-missing rows.
+
+```{r 1-2-missing-values, fig.align="center", echo=FALSE, fig.cap='housing.info() function output'}
+knitr::include_graphics('images\1-2-missing_values.png')
+```
+
+After that, we drew a target variable distribution plot. It proved invaluable, as it shown us that the target value had most likely been capped at \$500.000. Every house with price greater than $500.000 had been given a $500.001 price tag. As it was not possible to recreate actual price of these estates we decided to remove corresponding rows. This way, we ended up removing 965 rows from the original data frame.
+
+```{r 1-2-target-dist, fig.align="center", echo=FALSE, fig.cap='Target variable distribution'}
+knitr::include_graphics('images\1-2-target_dist.png')
+```
+
+Next we took a closer look at our only categorical variable, *ocean_proximity*. What we wanted to see is what are the 5 categories and how many records each of them contains. Simple diagram (Fig. 3) made us realize that  *ISLAND* category consists of only 5 rows. We made a decision to remove these rows. 
+
+```{r 1-2-ocean-proximity, fig.align="center", echo=FALSE, fig.cap='Ocean proximity categories'}
+knitr::include_graphics('images\1-2-ocean_proximity_categories.png')
+```
+
+Then, in order to discover correlations between different variables we constructed diagram in the form of matrix. It made us aware off high correlations between some of the factors, problems connected with this will be discussed more in details later on.
+
+```{r 1-2-correlation-matrix, fig.align="center", echo=FALSE, fig.cap='Correlation matrix'}
+knitr::include_graphics('images\1-2-correlation_matrix.png')
+```
+
+Finally we superimposed houses locations on California's map. On the first map we plotted all of the houses while on the second map we plotted only houses with *median_house_value* over $490.000. This allowed us to find two clusters of the most expensive estates around San Francisco and Los Angeles.
+
+```{r 1-2-map-all, fig.align="center", echo=FALSE, fig.cap='Map of all houses'}
+knitr::include_graphics('images\1-2-map_all.png')
+```
+```{r 1-2-map-expensive, fig.align="center", echo=FALSE, fig.cap='Map of houses worth more than $490.000'}
+knitr::include_graphics('images\1-2-map_expensive.png')
+```
+
+EDA turned out to be invaluable, it pointed out numerous interesting facts but also made us aware of some underlying problems with data frame such as missing values.
+It is also worth noting that our EDA consisted of more visualizations, however it felt more natural to skip those which did not provide any valuable insight.
+
 #### Data validity
 
 Data accessible to us sets the boundaries of our research. It contains characteristics of households in California at one, specific point in time, so incorporating global economic indicators makes no sense. Many desirable predictors, such as number of bathrooms in a household or the exact state of local infrastracture are simply not available. In this paper we focus on **accessibility** and **hedonic factors**.
