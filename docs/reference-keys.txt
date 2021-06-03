@@ -228,7 +228,8 @@ introduction-6
 covid-net
 introduction-7
 deep-learning-2
-what-does-it-mean-for-an-article-to-be-reproducible-analyzing-axondeepseg-as-an-example-of-a-reproducible-article
+what-makes-an-article-reproducible-comparison-of-the-fer-paper-and-axondeepseg
+abstract-5
 introduction-8
 why-is-reproducibility-important
 motivation
@@ -246,6 +247,7 @@ usage-instructions-with-examples
 accessible-prepared-data
 documentation-of-differences-between-the-code-and-the-article
 accessible-pretrained-models
+working-training-code
 conclusion-1
 ara-cnn---a-bayesian-deep-learning-model-intended-for-histopathological-image-classification.
 rethinking-the-u-net-architecture-for-multimodal-biomedical-image-segmentation
@@ -268,19 +270,19 @@ mnist
 adversarial-attacks-against-medical-deep-learning-systems
 machine-learning
 validation-and-comparison-of-covid-19-mortality-prediction-models-on-multi-source-data
-abstract-5
+abstract-6
 introduction-11
 data-description-1
 comparison-of-the-models
 conclusions-1
 one-model-to-fit-them-all-covid-19-survival-prediction-using-multinational-data
-abstract-6
+abstract-7
 introduction-12
 data-sources
 model-building
 summary-and-discussion
 transparent-machine-learning-to-support-predicting-covid-19-infection-risk-based-on-chronic-diseases
-abstract-7
+abstract-8
 introduction-13
 flaws
 improvements
@@ -288,7 +290,7 @@ transparent-machine-learning
 application
 conclusions-2
 comparison-of-neural-networks-and-tree-based-models-in-the-clinical-prediction-of-the-course-of-covid-19-illness
-abstract-8
+abstract-9
 introduction-14
 methods-2
 results-1
@@ -296,7 +298,7 @@ discussion-1
 source-code
 rashomonml
 topic
-abstract-9
+abstract-10
 literature-review
 results-2
 results-of-models-search
@@ -308,7 +310,7 @@ pdp-curve-for-atempc_min
 title-1
 literature-review-1
 rashomon-on-mimic---draft
-abstract-10
+abstract-11
 review-of-the-literature
 raw-results
 pca-dimension-reduction-in-hyper-parameters-space
@@ -321,7 +323,7 @@ metrics-change-versus-hyper-parameters-over-rashomon-set
 roshomon-sets-on-death-prediction-xgb-models-using-mimic-iii-database
 an-initial-literature-review
 roshomon-sets-of-in-hospital-mortality-prediction-random-forest-models
-abstract-11
+abstract-12
 related-work-2
 results-3
 number-of-models-in-rashomon-set---influence-on-auc
