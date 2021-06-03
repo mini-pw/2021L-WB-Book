@@ -4,11 +4,11 @@
 
 ### Abstract
 
-Reproducibility is a hot topic in present-day researches Especially in the field of data science and machine learning, the possibility of reusing the proposed solution by other scientists is essential as it proves its correctness and may become a starting point to further work. We introduce the article summarizing our attempts to reproduce BCDU-Net model used for lung segmentation from computer tomography images, proposed in @3-0-BCDUNet_segmentation. Moreover, we present our commitments to improve its performance, using techniques popular in the area of image processing. BCDU-Net turned out to be fully reproducible and highly optimized as only one of our attempts resulted in partly better performance. 
+Reproducibility is a hot topic in present-day researches Especially in the field of data science and machine learning, the possibility of reusing the proposed solution by other scientists is essential as it proves its correctness and may become a starting point to further work. We introduce the article summarizing our attempts to reproduce BCDU-Net model used for lung segmentation from computer tomography images, proposed in [@3-0-BCDUNet_segmentation]. Moreover, we present our commitments to improve its performance, using techniques popular in the area of image processing. BCDU-Net turned out to be fully reproducible and highly optimized as only one of our attempts resulted in partly better performance. 
 
 ### Introduction
 
-Being able to reproduce results presented in published papers is a significant part of the scientific process. It is important mainly because it allows other scientists to verify that the method produces consistant results. The main goal of our work was to reproduce the results of the BCDU-Net deep neural network [@3-2-bcdu] and to check if the source code provided with the paper was of sufficient quality so as to add our own modifications to the network. We focused on working with the version of the network which performed a lung segmentation task.
+Being able to reproduce results presented in published papers is a significant part of the scientific process. It is important mainly because it allows other scientists to verify that the method produces consistant results. The main goal of our work was to reproduce the results of the BCDU-Net deep neural network [@3-0-BCDUNet_segmentation] and to check if the source code provided with the paper was of sufficient quality so as to add our own modifications to the network. We focused on working with the version of the network which performed a lung segmentation task.
 
 The architecture of the BCDU network is based on U-Net [@3-2-unet] which takes its name from the shape of the model. Both, the original and the improved models consist of max-pooling layers, convolutional layers and up-convolutional layers, but what makes BCDU-Net stand out, is the usage of BConvLSTM cells. They allow easier flow of information between the first and last layers of the model, which in turn improves the performance.
 
@@ -156,7 +156,7 @@ We've also worked on the aspect of explainability. Although deep neural networks
 
 * _authors of the article declared that training was conducted with hyperparameters impossible for us to use_
 
-Our research based on @3-0-BCDUNet_segmentation led up to a success. The solution appeared to be fully reproducible even though some minimal errors in provided source code.
+Our research based on [@3-0-BCDUNet_segmentation] led up to a success. The solution appeared to be fully reproducible even though some minimal errors in provided source code.
 In the 'Further experiments' part we have described our contribution to the model development: proposed modifications of the architecture, adding regularization, conducting additional preprocessing of input images, learning with an auxiliary task, training with extended database using GAN and learning using dual output. Some of proposed modifications were evaluated using metrics dedicated to the problem of segmentation. The scores are presented in the table above.
 Unfortunately, modifications proposed by our team did not eventuate in improvement of the original performance, apart from the value of sensitivity after using histogram equalization, which proved high optimization of model proposed by Azad R. et al.
 However, we were limited by the resources we could have used for the project, so there is still a field to work continuation - trying to test and beat the model using better machines. 
