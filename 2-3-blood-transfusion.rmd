@@ -1,0 +1,144 @@
+## How to predict the probability of subsequent blood donations?
+
+*Authors: Maciej Chylak, Mateusz Grzyb, Dawid Janus (Warsaw University of Technology)*
+
+### Abstract
+
+placeholder
+
+### Introduction and motivation
+
+Interest in explainable artificial intelligence (XAI) has increased significantly in recent years. XAI facilitates humans to understand artificial intelligence (AI) solutions [@2-3-xai]. It contrasts with the concept of a black box where even its designers cannot explain why an AI model has arrived at a specific conclusion. The intense development of such methods has led to a wide choice of XAI tools that we have today [@2-3-landscape]. It includes the R package DALEX [@2-3-dalex], which is the foundation of this work.
+
+Our goal is to prepare and explain a model designed to predict the probability of subsequent blood donations based on a history of a patient's previous offerings. Careful use of XAI tools allows us to verify model correctness and discover phenomenons affecting blood donations that hide in the data. Obtained knowledge may have various implications, including improvement of planning and advertising of blood donation campaigns.
+
+### Related work
+
+placeholder
+
+### Data and model
+
+#### Original dataset
+
+The data which all the prepared models are based upon comes from the Blood Transfusion Service Center Data Set, which is available through OpenML website [@2-3-openml].
+
+The dataset consists of 748 observations (representing individual patients) described by 5 attributes:
+
+  * recency - months since last blood donation,
+  * frequency - total number of blood donations,
+  * monetary - total amount of donated blood in c.c.,
+  * time - months since first blood donation,
+  * donated - a binary variable representing whether he/she donated blood in March 2007.
+
+#### Data analysis
+
+Initial data analysis is a critical process allowing to discover patterns and check assumptions about the data. It is performed with the help of summary statistics and graphical data representations. 
+
+The short data analysis below is based on two visualizations representing distributions and correlations of variables.
+
+```{r 2-3-distributions, out.width='600', fig.align='center', echo=FALSE, fig.cap='Distributions of explanatory variables (histogram).'}
+knitr::include_graphics('images/2-3-distributions.png')
+```
+
+Based on the above figure \@ref(fig:2-3-distributions) an important insight can be made - distributions of Frequency and Monetary variables are identical (excluding support). It probably comes from the fact that during every donation the same amount of blood is drawn. The presence of both of these variables in the final model is pointless.
+
+```{r 2-3-correlations, out.width='600', fig.align='center', echo=FALSE, fig.cap='Correlations of explanatory variables (correlation matrix).'}
+knitr::include_graphics('images/2-3-correlations.png')
+```
+
+The above figure \@ref(fig:2-3-correlations) represents correlations of explanatory variables measured using robust Spearman's rank correlation coefficient. Apart from the already clear perfect correlation of Monetary and Frequency variables, a strong correlation of Time and Monetary/Frequency variables is visible. It probably comes from the fact that the minimal interval between subsequent donations is strictly controlled. Such dependence can negatively affect model performance and explanations. This potential problem is addressed during pre-processing of used data.
+
+#### Pre-processing
+
+Simple data pre-processing is conducted, mainly to reduce detected correlations of explanatory variables.
+
+Firstly, the variable Monetary is removed from the dataset. The information it carries duplicates information contained in the Frequency variable.
+
+Secondly, a derived variable is introduced instead of Time variable. It is called Intensity and is calculated as follows:
+
+$$\textrm{Intensity} = \frac{\textrm{Frequency}}{\textrm{Time}-\textrm{Recency}}$$
+
+The above equation results in values from range $[0.03125, 1.00000]$.
+
+The denominator can be interpreted as a time window bounding all the known donations of a given patient.
+
+Spearman's rank correlation coefficient of the new variable Intensity and the old variable Frequency is $-0.46$, which is lower compared to the previous $0.72$ value for the Time/Frequency combination.
+
+#### Final model
+
+According to the OpenML website Ranger implementation of Random Forests [2-3-ranger] is among the best performing classifiers for the considered task. All the tested models utilize this ML algorithm.
+
+Performance of the models is assessed through three measures - basic classification accuracy and more complex areas under the ROC [@2-3-roc-1] [@2-3-roc-2] / PR [@2-3-pr-1] [@2-3-pr-2] curves. The area under the PR curve is an especially adequate measure for unbalanced classification problems [@2-3-pr-3], which is the case here.
+
+Based on the described measures, the best model is chosen from models trained on the following explanatory variables subsets:
+
+* Recency, Time
+* Recency, Frequency,
+* Recency, Frequency, Time
+* Recency, Frequency, Intensity
+
+Models utilizing only two explanatory variables perform significantly worse. Out of the last two models, the model utilizing the Time variable is slightly worse than the model utilizing the Intensity variable.
+
+The accuracy of the last model is $0.85$, other performance measures describing it are presented graphically below.
+
+```{r 2-3-roc, out.width='600', fig.align='center', echo=FALSE, fig.cap='ROC curve and corresponding AUC for final model.'}
+knitr::include_graphics('images/2-3-roc.png')
+```
+
+ROC curve visible in the above figure \@ref(fig:2-3-roc) represents good model performance and AUC value of almost $0.92$ is definitely satisfactory.
+
+```{r 2-3-pr, out.width='600', fig.align='center', echo=FALSE, fig.cap='PR curve and corresponding AUC for final model.'}
+knitr::include_graphics('images/2-3-pr.png')
+```
+
+The baseline for the ROC AUC is always $0.5$, but it is not the case for the PR AUC. Here, the baseline AUC is equal to the proportion of positive observations in the data. In our case it is $\frac{178}{748}=0.238$. Due to the above, the PR AUC value of around $0.81$ visible in the figure \@ref(fig:2-3-pr) is also proof of high model precision.
+
+Summarizing the above model selection, the final model used in all the presented explanations is Ranger implementation of Random Forests utilizing the Recency, Frequency, and Intensity variables. Its performance measures are at least good, so the prepared explanations have a chance to be accurate.
+
+### Global explanations
+
+placeholder
+
+#### Permutation Feature Importance
+
+```{r 2-3-permutation, out.width='600', fig.align='center', echo=FALSE, fig.cap='Permutation Feature Importance for final model.'}
+knitr::include_graphics('images/2-3-permutation.png')
+```
+
+#### Partial Dependence Profile
+
+```{r 2-3-pdp, out.width='600', fig.align='center', echo=FALSE, fig.cap='Partial Dependence Profile for final model.'}
+knitr::include_graphics('images/2-3-pdp.png')
+```
+
+#### Accumulated Local Effect Profile
+
+```{r 2-3-ale, out.width='600', fig.align='center', echo=FALSE, fig.cap='Accumulated Local Effect Profile for final model.'}
+knitr::include_graphics('images/2-3-ale.png')
+```
+
+### Local explanations
+
+#### Ceteris Paribus Profiles
+
+```{r 2-3-ceteris1, out.width='600', fig.align='center', echo=FALSE, fig.cap='Ceteris Paribus Profile for observation number 342.'}
+knitr::include_graphics('images/2-3-ceteris1.png')
+```
+
+```{r 2-3-ceteris2, out.width='600', fig.align='center', echo=FALSE, fig.cap='Ceteris Paribus Profile for observation number 16.'}
+knitr::include_graphics('images/2-3-ceteris2.png')
+```
+
+#### Break Down Profiles
+
+```{r 2-3-break1, out.width='600', fig.align='center', echo=FALSE, fig.cap='Break Down Profile for observation number 4.'}
+knitr::include_graphics('images/2-3-break1.png')
+```
+
+```{r 2-3-break2, out.width='600', fig.align='center', echo=FALSE, fig.cap='Break Down Profile for observation number 109.'}
+knitr::include_graphics('images/2-3-break2.png')
+```
+
+### Conclusions and summary
+
+placeholder
