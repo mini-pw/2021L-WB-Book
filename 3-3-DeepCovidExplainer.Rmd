@@ -1,5 +1,5 @@
 ---
-output: rmarkdown::github_document
+output:
   pdf_document: default
   html_document: default
 ---
@@ -82,7 +82,7 @@ After acquiring the dataset, it was time to attempt to train and test the prelim
 In VGG networks, the last three layers are dense layers, while the previous ones are convolutional layers, with a 3x3 filter, arranged in blocks of 2, 3 or 4. Each such convolutional block ends with max pooling. In all cases (except the last one, where the activation function is softmax,) the activation function used is ReLU.
 
 ```{r VGG19, out.width="600", fig.align="center", echo=FALSE, fig.cap='VGG19 architecture'}
-knitr::include_graphics('images/3-3-vgg19.png')
+knitr::include_graphics('images/3-3-vgg19.jpg')
 ```
 
 In the case of VGG, the convolutional blocks end in max pooling with stride=2, which makes the first two dimensions of the data accepted by the next layer twice as small. After a few convolutional blocks, we no longer have the ability to do another stride, making it impossible for the next block to operate on the reduced dimension. The consequence of this problem is that as the number of convolutional layers increases, the prediction error becomes larger.
