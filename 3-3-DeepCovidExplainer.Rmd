@@ -233,7 +233,7 @@ Interestingly, all our models oscillated between 70-80% accuracy. In the end, it
 
 Despite the fact that we tried to follow as closely as possible the process described by the authors, we could not achieve results similar to those in the article, where VGG19 had results ranging between 85%-95%. This is not surprising, given that we are not experts in Deep Learning practices and had access neither to the actual version of the code used by the authors nor are we even sure if we used exactly the same dataset as they did.
 
-```{r Aut, out.height="200", fig.align="center", echo=FALSE, fig.cap='Original authors' results'}
+```{r Aut, out.height="200", fig.align="center", echo=FALSE, fig.cap='Original authors\' results'}
 knitr::include_graphics('images/3-3-authors_results.png')
 ```
 
