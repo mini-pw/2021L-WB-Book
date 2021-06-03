@@ -8,7 +8,7 @@ output:
 
 *Authors: Kurowski Kacper, Mróz Zuzanna, Podsiad Aleksander*
 
-### Introduction and motivation <!-- DONE -->
+### Introduction and motivation
 
 To make no secret of it, the main motivation for our work was to pass the Research Workshop class. Our task was to try to reproduce the results of the DeepCovidExplainer project. It is a Deep Learning model based on deep convolutional neural networks for predicting disease (or lack thereof) from lung x-rays.
 
