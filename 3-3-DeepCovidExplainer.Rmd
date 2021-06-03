@@ -10,7 +10,7 @@ In our opinion, however, the end goal isn’t the most important part of the jou
 
 ### Related work
 
-DeepCovidExplainer [@3-3-DeepCOVIDExplainer] is the work of 6 researchers. This project involved training several neural networks: VGG, ResNet, DenseNet, based on the [COVIDx](https://github.com/lindawangg/COVID-Net/blob/master/docs/COVIDx.md) dataset to recognize whether a given image belongs to a healthy person, a COVID-19 patient, or a pneumonia patient.
+DeepCovidExplainer [@3-0-DeepCOVIDExplainer] is the work of 6 researchers. This project involved training several neural networks: VGG, ResNet, DenseNet, based on the [COVIDx](https://github.com/lindawangg/COVID-Net/blob/master/docs/COVIDx.md) dataset to recognize whether a given image belongs to a healthy person, a COVID-19 patient, or a pneumonia patient.
 
 The COVIDx dataset, consists of six smaller publicly available datasets:
 
