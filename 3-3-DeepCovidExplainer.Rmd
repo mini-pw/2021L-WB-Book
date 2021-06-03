@@ -142,13 +142,6 @@ The second change was to add a new (sixth) convolutional block at the end of the
 The last was to add another dense layer (256 neurons + Dropout 0.25 between the first and second dense layer) in the classifier block.
 Unfortunately, none of these changes resulted in improved prediction of the network. On the other hand, it's somewhat interesting to note that these changes didn't result in a significant worsening of the network prediction: the Accuracy still remains at 70-80%, the same as before the changes were made.
 
-
-```{r Smallchanges, out.width="600", fig.align="center", echo=FALSE, fig.cap='Confusion matrix for model with small changes'}
-knitr::include_graphics('images/3-3-small_changes.png')
-```
-
-As the images we use to train the network must be in RGB format, we also trained each channel of the already loaded images separately using the Fast Fourier Transform. The results obtained were not an improvement over baseline, but they remain in the 70-80% accuracy range and thus are not a significant degradation of the model.
-
 ```{r Smallchanges, out.width="600", fig.align="center", echo=FALSE, fig.cap='Confusion matrix for model with small changes'}
 knitr::include_graphics('images/3-3-small_changes.png')
 ```
