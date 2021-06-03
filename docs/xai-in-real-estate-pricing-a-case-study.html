@@ -4,11 +4,11 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>6.4 Roshomon sets on death prediction XGB models using MIMIC-III database | Case Studies</title>
+  <title>1.2 XAI in real estate pricing: A case study | Case Studies</title>
   <meta name="description" content="Case studies in machine learning." />
   <meta name="generator" content="bookdown 0.22 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="6.4 Roshomon sets on death prediction XGB models using MIMIC-III database | Case Studies" />
+  <meta property="og:title" content="1.2 XAI in real estate pricing: A case study | Case Studies" />
   <meta property="og:type" content="book" />
   
   <meta property="og:image" content="/images/cover.png" />
@@ -16,7 +16,7 @@
   <meta name="github-repo" content="mini-pw/2021L-WB-Book" />
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="6.4 Roshomon sets on death prediction XGB models using MIMIC-III database | Case Studies" />
+  <meta name="twitter:title" content="1.2 XAI in real estate pricing: A case study | Case Studies" />
   
   <meta name="twitter:description" content="Case studies in machine learning." />
   <meta name="twitter:image" content="/images/cover.png" />
@@ -31,8 +31,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-<link rel="prev" href="rashomon-on-mimic-draft.html"/>
-<link rel="next" href="roshomon-sets-of-in-hospital-mortality-prediction-random-forest-models.html"/>
+<link rel="prev" href="xai1-explainable-cards.html"/>
+<link rel="next" href="xai-heart-disease.html"/>
 <script src="libs/header-attrs/header-attrs.js"></script>
 <script src="libs/jquery/jquery.min.js"></script>
 <link href="libs/gitbook/css/style.css" rel="stylesheet" />
@@ -305,31 +305,227 @@ div.csl-indent {
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="roshomon-sets-on-death-prediction-xgb-models-using-mimic-iii-database" class="section level2" number="6.4">
-<h2><span class="header-section-number">6.4</span> Roshomon sets on death prediction XGB models using MIMIC-III database</h2>
-<p><em>Authors: Ada Gąssowska, Elżbieta Jowik (Warsaw University of Techcnology)</em></p>
-<div id="an-initial-literature-review" class="section level3" number="6.4.1">
-<h3><span class="header-section-number">6.4.1</span> An initial literature review</h3>
-<p>As the Rashomon Effect is not a common concept, any references to the term in the literature are somewhat limited. The phenomenon is considered to occur when the same matter can be explained equally aptly in multitudinous ways. Hence the core of the name concept is the title of the Kurosawa’s movie from 1950 in which each character has different perspective on the same crime.</p>
-<p>In relation to Machine Learning the Rashomon Effect term was first used in <span class="citation">(<a href="#ref-6-0-breiman2001statistical" role="doc-biblioref">Breiman et al. 2001</a>)</span> to introduce a class of problems where many differing, accurate models exist to describe the same data i.e. to describe the case where there exist many models that are non-identical but almost-equally-accurate for a given issue. Breiman emphasized that the observation of many different accurate models on specific datasets is a common phenomenon. However, from 2001 on the topic has rarely been discussed.</p>
-<p>While doing research on different machine learning models, data was quite often not taken into consideration at all. As stated in the recent article <span class="citation">(<a href="#ref-6-0-rashomon-intro" role="doc-biblioref">Semenova et al. 2019</a>)</span> Rashomon Effect is directly linked to the topic of Explainable Machine Learning. According to the paper, large volume of data in the Rashomon set might imply the existence of multiple explainable model performing on the dataset equally accurately. The article aims to analyze the Rashomon effect on various datasets and attempt to formulate a statement regarding the information about the machine learning problem carried by the size of the Rashomon set.</p>
-<p>Another matter closely related to the Rashomon effect that needs to be addressed, is the variables importance analysis. This area of research is described in an <span class="citation">(<a href="#ref-6-0-rashomon-variable-importance" role="doc-biblioref">Fisher et al. 2019b</a>)</span> article. The publication emphasizes the existence the fields where Explainable Machine Learning (including Rashomon effect) is particularly important, as the non-explainable models may rely on undesirable variables. In an <span class="citation">(<a href="#ref-6-0-rashomon-variable-importance-cloud" role="doc-biblioref">Dong and Rudin 2020</a>)</span> paper, it is pointed out that only by comparing many models of similar performance the importance of a variable compared to other variables can be profoundly understood. The authors presented the concept of variable importance cloud and conducted the research showing that the variable importance may dramatically differ in approximately equally good models.</p>
+<div id="xai-in-real-estate-pricing-a-case-study" class="section level2" number="1.2">
+<h2><span class="header-section-number">1.2</span> XAI in real estate pricing: A case study</h2>
+<p><em>Authors: Sebastian Deręgowski, Maciej Gryszkiewicz, Paweł Morgen (Warsaw University of Technology)</em></p>
+<div id="abstract" class="section level3" number="1.2.1">
+<h3><span class="header-section-number">1.2.1</span> Abstract</h3>
+<p>Lorem ipsum</p>
+</div>
+<div id="introduction" class="section level3" number="1.2.2">
+<h3><span class="header-section-number">1.2.2</span> Introduction</h3>
+<p>Real estate plays a key role in past and present economy. In 2011 it was valued in total $25 trillion in the US only, $16 trillion of that figure comes from residential households. To compare, at the and of that year the capitalisation of US stock market was around $18 trillion. In its prices are interested both ordinary people, who treat real estate as basic good, and investors, who view the real estate as asset.</p>
+<p>The task of determining a relationship between dependent factors and final price is non-trivial and requires a vast, domain-specific knowledge. However, machine learning (ML) methods allow to surpass this requirement by determining the interaction in data themselves and leaving only the task of data selection and learning supervision to the human user.</p>
+<p>This comes with a cost, though: the most efficient ML models are of the so-called <em>black box</em> family and they are complex beyond human understastanding. If they are to be fair, trusted and fully usable, their decision process has to be brought closer to the human user.</p>
+<p>This article describes research performing a case study based on the actual US Census data from California from 1990. An ML model tasked with predicting real estate value is developed and then its decisions are made as clear as possible, using various XAI methods.</p>
+</div>
+<div id="related-work" class="section level3" number="1.2.3">
+<h3><span class="header-section-number">1.2.3</span> Related Work</h3>
+<div id="characteristic-of-real-estate-market" class="section level4" number="1.2.3.1">
+<h4><span class="header-section-number">1.2.3.1</span> Characteristic of real estate market</h4>
+<p>The real estate market is not a typical one, as is pointed out in the introduction of <span class="citation">(<a href="#ref-1-2-forecasting" role="doc-biblioref">Ghysels et al. 2013</a>)</span>. It is extremely heterogenous - goods offered vary between themselves in location, state and other physical attributes. It is also nonliquid, since transactions are costly and irreversible. This makes the task of forecasting a price of a given house particularly difficult. Instead, certain indicators of the price are predicted, the simplest one of them being the median house value.</p>
+</div>
+<div id="determinants-of-real-estate-value" class="section level4" number="1.2.3.2">
+<h4><span class="header-section-number">1.2.3.2</span> Determinants of real estate value</h4>
+<p>The factors influencing the real estate prices can be linked with four phenonena <span class="citation">(<a href="#ref-1-2-german_determinants" role="doc-biblioref">Belke and Keil 2017</a>)</span>:</p>
+<ul>
+<li>Future expected revenue,</li>
+<li>Accessibility,</li>
+<li>Hedonic factors,</li>
+<li>State of global and local economy.</li>
+</ul>
+<p>In an asset pricing approach <strong>expected revenue</strong> plays a key role. Here factors such as forecasted future rent, upkeep cost and taxes are taken into account. A second approach focuses on <strong>accessibility</strong>. It takes into account affordability and sustainability of house prices. It brings, among others, the montlhy income of potential owners into equation. <strong>Hedonic</strong> factors are object-specific and neighbourhood-specific characteristics, which contribute to the real estate value. Their examples are local population, housing density and infrastracture accessibility (such as public transportation, healthcare or education facilities). Finally, the state of global <strong>economy</strong> contributes to the price, and the state itself is measured by indicators like GDP, inflation rate, unemployment rate and construction activity.</p>
+</div>
+<div id="machine-learning-uses" class="section level4" number="1.2.3.3">
+<h4><span class="header-section-number">1.2.3.3</span> Machine Learning uses</h4>
+</div>
+</div>
+<div id="methodology" class="section level3" number="1.2.4">
+<h3><span class="header-section-number">1.2.4</span> Methodology</h3>
+<div id="data-description" class="section level4" number="1.2.4.1">
+<h4><span class="header-section-number">1.2.4.1</span> Data description</h4>
+</div>
+<div id="data-validity" class="section level4" number="1.2.4.2">
+<h4><span class="header-section-number">1.2.4.2</span> Data validity</h4>
+<p>Data accessible to us sets the boundaries of our research. It contains characteristics of households in California at one, specific point in time, so incorporating global economic indicators makes no sense. Many desirable predictors, such as number of bathrooms in a household or the exact state of local infrastracture are simply not available. In this paper we focus on <strong>accessibility</strong> and <strong>hedonic factors</strong>.</p>
+<p>The presence of exact location is vital to the credibility of this research. Factors connected with household location, which could have influence on final price, are numerous. Leaving some of them out could lead to selection bias present in the results of our work <span class="citation">(<a href="#ref-1-2-forecasting" role="doc-biblioref">Ghysels et al. 2013</a>)</span>. Thankfully, any factors connected with location - such as the local unemployment or state of infrastracture - are tied with geographical coordinates and are present in our data, although implicitly.</p>
+</div>
+<div id="model" class="section level4" number="1.2.4.3">
+<h4><span class="header-section-number">1.2.4.3</span> Model</h4>
+</div>
+</div>
+<div id="results" class="section level3" number="1.2.5">
+<h3><span class="header-section-number">1.2.5</span> Results</h3>
+<p>After successful training of the aformentioned model, we employed XAI methods of local and global explanation in order to get a firmer grasp over model’s decision process.</p>
+<div id="local-explanations" class="section level4" number="1.2.5.1">
+<h4><span class="header-section-number">1.2.5.1</span> Local explanations</h4>
+<p>At this stage of our work, we were particulary interested in observations that were somehow unusual or characteristic. In order to study them, we used prediction decomposition methods (LIME, Break Down, Shapley Values or Ceteris Paribus).</p>
+<div id="most-missed-predictions" class="section level5" number="1.2.5.1.1">
+<h5><span class="header-section-number">1.2.5.1.1</span> Most missed predictions</h5>
+<p>The first record that caught our attention was the one with the most inaccurate prediction. Observation No. 18563, as it is in question, was worth $450,000. Our model priced it at just $121,105. Let’s have a look at the Shapley Values plot for this observation (<a href="xai-in-real-estate-pricing-a-case-study.html#fig:shapley-values-18563">1.14</a>):</p>
+<div class="figure" style="text-align: center"><span id="fig:shapley-values-18563"></span>
+<img src="images/1-2-shapley_values_18563.png" alt="Shapley Values for observation No. 18563" width="700" />
+<p class="caption">
+Figure 1.14: Shapley Values for observation No. 18563
+</p>
+</div>
+<p>As we can see, it’s <em>population</em> variable that has the biggest impact on price in this case, it has increased the price of the flat by nearly $70,000. The significant impact of this variable turned out to be puzzling. Although it was not considered as a variable that does not have a significant impact on the predictions, still it was rarely seen that it was of key importance. Even more suprising was the fact that the variable <em>median_income</em>, which in most cases decided about the prices of an apartment almost by itself (with quite high efficiency), turned out to be quite grossly mistaken, pointing a negative contribution to the price.</p>
+<p>In order to explore it in more detail, we found the area where this flat is located with the help of <em>latitude</em> and <em>longitude</em> variables and the Google Maps service.</p>
+<div class="figure" style="text-align: center"><span id="fig:street-view-18563"></span>
+<img src="images/1-2-street_view_18563.png" alt="Street View for observation No. 18563" width="700" />
+<p class="caption">
+Figure 1.15: Street View for observation No. 18563
+</p>
+</div>
+<p>There are no interesting objects nearby and although the property itself is located near a state road, there is still nothing that would let us convince that this flat is worth its price, even, when taking the 30 years gap between the data collection time and present time into account. We are not suprised at all that our model made such a wrong prediction in this case, as we are unable to find any indications that this property is worth as much as $450,000.</p>
+<p>The second most misguided prediction (No. 15804) also significantly lowers the actual price of the flat ($147,083 to $475,000). If we have a look at a plot below (<a href="xai-in-real-estate-pricing-a-case-study.html#fig:shapley-values-15804">1.16</a>) we can note that it is quite similar to previous one.</p>
+<div class="figure" style="text-align: center"><span id="fig:shapley-values-15804"></span>
+<img src="images/1-2-shapley_values_15804.png" alt="Shapley Values for observation No. 15804" width="700" />
+<p class="caption">
+Figure 1.16: Shapley Values for observation No. 15804
+</p>
+</div>
+<p>Again, the most important variable is <em>population</em>, which correctly attempts to increase the price of the home. Again, the value of the flat is underestimated by tagging the property with the <code>INLAND</code> category. This time however the <code>median\_income</code> variable unexpectedly has very little impact on the prediction, although it incorrectly devalues the apartment price again.</p>
+<p>The situation is quite different, however, if we check the view of the area in Google Maps (<a href="xai-in-real-estate-pricing-a-case-study.html#fig:street-view-18563">1.15</a>). Here we can see a new, rich estate, full of villas and luxurious houses. If the area was similar 30 years ago, it could indeed be worth $475,000. Again, however, it is quite unusual for such a rich estate to be located in that kind of location, so we are absolutely not surprised that our model underestimated price here.</p>
+<div class="figure" style="text-align: center"><span id="fig:street-view-15804"></span>
+<img src="images/1-2-street_view_15804.png" alt="Street View for observation No. 15804" width="700" />
+<p class="caption">
+Figure 1.17: Street View for observation No. 15804
+</p>
+</div>
+<p>Next in line, we looked at the observation for which our model overestimates the real value of the apartment the most. Observation No. 5168, as it is in question, turned out to be located in Los Angeles, 10 minutes far from the beach, in a rather rich-looking housing estate. Considering this, it is not surprising that our model valued this property at $302,868 while it was really worth only $55,000.</p>
+<div class="figure" style="text-align: center"><span id="fig:street-view-5168"></span>
+<img src="images/1-2-street_view_5168.png" alt="Street View for observation No. 5168" width="700" />
+<p class="caption">
+Figure 1.18: Street View for observation No. 5168
+</p>
+</div>
+<div class="figure" style="text-align: center"><span id="fig:location-5168"></span>
+<img src="images/1-2-location_5168.png" alt="Location of observation No. 5168 in Los Angeles" width="700" />
+<p class="caption">
+Figure 1.19: Location of observation No. 5168 in Los Angeles
+</p>
+</div>
+<p>If we take a closer look at the Shapley Values decomposition plot for this prediction (<a href="xai-in-real-estate-pricing-a-case-study.html#fig:shapley-values-5168">1.20</a>), we can notice that this time the two most important variables turned out to be <em>latitude</em> and <em>londitude</em>, denoting the geographical coordinates of the flat.</p>
+<div class="figure" style="text-align: center"><span id="fig:shapley-values-5168"></span>
+<img src="images/1-2-shapley_values_5168.png" alt="Street View for observation No. 5168" width="700" />
+<p class="caption">
+Figure 1.20: Street View for observation No. 5168
+</p>
+</div>
+<p>As we can see, our model has learned that apartments located close to or in Los Angeles itself are usually worth much more than those outside of the city. Only a low value of the <em>median_income</em> variable could suggest that the apartment is not as expensive as it might seem (in fact, it is not expensive at all), but still there were more hints speaking for the fact that it is rather a luxurious property.</p>
+</div>
+<div id="same-area-different-price" class="section level5" number="1.2.5.1.2">
+<h5><span class="header-section-number">1.2.5.1.2</span> Same area, different price</h5>
+<p>At the end of our work on local explanations, we looked at two examples of houses, which, despite their proximity, turn out to be significantly different in terms of their price. Our focus is in the Los Angeles area, and our observations are the ones numbered 4526 and 4537 (<a href="xai-in-real-estate-pricing-a-case-study.html#fig:location-4526-4537">1.21</a>). To the nearest hundredths of a degree they are in the same place, this is the Korean district of Los Angeles, near one of UCLA campuses (figure below). Still the price difference is as high as $400,000.</p>
+<div class="figure" style="text-align: center"><span id="fig:location-4526-4537"></span>
+<img src="images/1-2-location_4526_4537.jpg" alt="Location of observation No. 4526 and 4537 in Los Angeles" width="700" />
+<p class="caption">
+Figure 1.21: Location of observation No. 4526 and 4537 in Los Angeles
+</p>
+</div>
+<p>Let’s have a look at the Break Down decompositions for these observations (<a href="xai-in-real-estate-pricing-a-case-study.html#fig:break-down-4537">1.22</a> and <a href="xai-in-real-estate-pricing-a-case-study.html#fig:break-down-4526">1.23</a>). The model - unfortunately - did not fully detect the difference between the households. The cheaper was overestimated ($205,000 instead of $75,000), and the more expensive was underestimated ($320,000 instead of $475,000). Nevertheless, we can observe how individual variables change the prediction. The key differences are the <em>households</em> and <em>rooms_per_household</em> variables. Interestingly, the model behaved differently for the <em>longitude</em> variable - its contribution is negative for the cheaper one, and positive for the more expensive one.</p>
+<div class="figure" style="text-align: center"><span id="fig:break-down-4537"></span>
+<img src="images/1-2-break_down_4537.png" alt="Break Down for observation No. 4537" width="700" />
+<p class="caption">
+Figure 1.22: Break Down for observation No. 4537
+</p>
+</div>
+<div class="figure" style="text-align: center"><span id="fig:break-down-4526"></span>
+<img src="images/1-2-break_down_4526.png" alt="Break Down for observation No. 4526" width="700" />
+<p class="caption">
+Figure 1.23: Break Down for observation No. 4526
+</p>
+</div>
+</div>
+</div>
+<div id="global-explanations-1" class="section level4" number="1.2.5.2">
+<h4><span class="header-section-number">1.2.5.2</span> Global explanations</h4>
+<p>At this stage, we worked on the analysis of the entire tests on a trained model. Global explanation methods (permutation significance, utility and partial dependency profile (PDP)) were used to study them.</p>
+</div>
+<div id="importance-of-variables" class="section level4" number="1.2.5.3">
+<h4><span class="header-section-number">1.2.5.3</span> Importance of variables</h4>
+<p>The permutational significance method was used to determine which variables actually contributed to the performance of the trained model (<a href="xai-in-real-estate-pricing-a-case-study.html#fig:importance">1.24</a>). We have observed that the most significant variable is <em>median_income</em>.</p>
+<div class="figure" style="text-align: center"><span id="fig:importance"></span>
+<img src="images/1-2-importance.png" alt="Variables importance" width="700" />
+<p class="caption">
+Figure 1.24: Variables importance
+</p>
+</div>
+<p><em>Real estate is about location, location, location.</em> One of our first interests was the influence of location on the value of an apartment. The PDP for the <em>longitude</em> and <em>latitude</em> variables is shown in the figure below (<a href="xai-in-real-estate-pricing-a-case-study.html#fig:lat-long-pdp">1.25</a>).</p>
+<div class="figure" style="text-align: center"><span id="fig:lat-long-pdp"></span>
+<img src="images/1-2-lat_long_pdp.png" alt="PDP for longitude and latitude variables" width="700" />
+<p class="caption">
+Figure 1.25: PDP for longitude and latitude variables
+</p>
+</div>
+<p>Properties to the west (shorter longitude) and south (lower latitude) are preferred. The first result is quite intuitive - to the west it is closer to the ocean, there are large agglomerations located there. The second is less expected - perhaps related to a warmer climate or better economic indicators.</p>
+<p>Let’s take a closer look at the dependencies (see: <a href="xai-in-real-estate-pricing-a-case-study.html#fig:latlong-map">1.26</a>).</p>
+<p>We see a large drop in the value around 122°20’W (San Francisco area), then similar values up to a slow decline from 118°20’W to 117°20’W (Los Angeles and San Diego).</p>
+<p>As for the width, the location of these cities is again very important - we see a decrease between 33°30’N and 34°30’N (San Diego, Los Angeles) and a huge decrease between 37°30’N and 38°N (San Fransisco).</p>
+<p>We can see that the places of declines in the charts can be translated into the location of large agglomerations, but this does not explain the trend. Local growth, and not global decline, would be expected.</p>
+<div class="figure" style="text-align: center"><span id="fig:latlong-map"></span>
+<img src="images/1-2-latlong_map.jpg" alt="Map of California" width="700" />
+<p class="caption">
+Figure 1.26: Map of California
+</p>
+</div>
+<p>Next in line we were interested in the most important variable for the model - <em>median_income</em>. Its influence on the model is shown in the figure below (<a href="xai-in-real-estate-pricing-a-case-study.html#fig:median-income-pdp">1.27</a>).</p>
+<div class="figure" style="text-align: center"><span id="fig:median-income-pdp"></span>
+<img src="images/1-2-median_income_pdp.png" alt="PDP for median_income variable" width="700" />
+<p class="caption">
+Figure 1.27: PDP for median_income variable
+</p>
+</div>
+<p>It was no suprise that residents’ earnings have a considerable impact on the price of an apartment. It is worth noting to what extent does the <em>median_income</em> variable influence the final result of the prediction. For the lowest-income households, the model will predict a property value of around $133,000, while for the most affluent households, the prediction will be around $353,000. So it is more than 2.5 times increase in the expected price. This is in line with what we found in recognising sognificance of every variable - <em>median_income</em> is one of the best variables in terms of house price differentiation.</p>
+<p>Moreover, the relationship is not completely linear - from a certain point, the increase in earnings does not translate into an increase in the price of the apartment.</p>
+<p>In the next step, we checked how other, less significant variables influence the model response (<a href="xai-in-real-estate-pricing-a-case-study.html#fig:rest-pdp">1.28</a>).</p>
+<p>The remaining continuous variables, i.e. <em>housing_median_age</em>, <em>total_bedrooms</em>, <em>population</em>, <em>households</em> and <em>rooms_per_household</em>, don’t have such a significant impact on the model performance. Although the graphs look very varied, pay attention to the values on the vertical axis. <em>population</em> variable has the largest range of values from all of them. It ranges from $177,000 to $226,000. As you can see, it is only about 50,000 spreads, its impact is nothing compared to the impact of variable locations or earnings.</p>
+<p>Nevertheless, we can learn some interesting dependencies on the basis of the plots.</p>
+<p>From the plot for <em>housing_median_age</em>, we can see the general trend that older properties tend to be a bit more expensive.</p>
+<p>The <em>total_bedrooms</em> plot shows that houses in blocks with a very low combined total of bedrooms are noticeably cheaper.</p>
+<p>The <em>population</em> variable distinguishes houses in households with a very low total population. These houses are usually more expensive. In turn, the <em>households</em> plot shows that a significantly low number of houses in the block reduces the predicted house price. This is in apparent opposition to the conclusions of the <em>population</em> variable. However, it should be noted that those considerations apply only when the values ​​of the remaining variables are the same. If the number of houses increases, the amount of space per capita decreases and the price goes down. On the other hand, when the number of households increases with a dedicated population, the amount of space per inhabitant increases and the price goes up.</p>
+<p><em>rooms_per_household</em> variable has a small impact on house prices, but a decline is noticeable for houses with a low average number of rooms.</p>
+<div class="figure" style="text-align: center"><span id="fig:rest-pdp"></span>
+<img src="images/1-2-rest_pdp.png" alt="PDP for other continuous variables" width="700" />
+<p class="caption">
+Figure 1.28: PDP for other continuous variables
+</p>
+</div>
+</div>
+<div id="doubts-about-household-and-population-variables" class="section level4" number="1.2.5.4">
+<h4><span class="header-section-number">1.2.5.4</span> Doubts about household and population variables</h4>
+<p>During the EDA, we found a correlation between <em>households</em> and <em>population</em> variables. This could have a negative impact on the interpretability of the PDP plotss and the meaningfulness of the information they convey. To verify that, we performed the following procedure:</p>
+<ul>
+<li>The <em>population</em> variable was divided into 5 intervals so that a similar number of observations fell into each interval,</li>
+<li>A PDP curve was determined for each interval,</li>
+<li>Differences between the determined curves were observed.
+ end {enumerate}</li>
+</ul>
+<p>The results of the verification in the figure below (<a href="xai-in-real-estate-pricing-a-case-study.html#fig:pop-vs-house">1.29</a>).</p>
+<div class="figure" style="text-align: center"><span id="fig:pop-vs-house"></span>
+<img src="images/1-2-pop_vs_house.png" alt="Importance of population variable wrt. household variable" width="700" />
+<p class="caption">
+Figure 1.29: Importance of population variable wrt. household variable
+</p>
+</div>
+<p>We observed a different appearance of profiles for large values of <em>households</em> than for small ones. Hence, we concluded that there are interactions between these variables in the model, so the conclusions presented in the previous section are valid.</p>
+<p>The observations confirm most of the intuitive assumptions - higher earnings and a larger area per person cause a higher price of a flat, the location near large urban agglomerations also has a great importance.</p>
+</div>
+</div>
+<div id="summary-and-conclusions" class="section level3" number="1.2.6">
+<h3><span class="header-section-number">1.2.6</span> Summary and conclusions</h3>
+<p>Over the course of this case study, after basic EDA and training of an exemplary ML model, various XAI methods were used to make the process of real estate pricing clearer. Local explanation of odd outcomes gave detailed reasons for which the model gave incorrect results. When compared with intuition and with actual photos of the households, it was clear, that these observations were unusual and the model did as expected. Global explanations allowed us to get a sense of the relationship between individual variables and the median house value. We conclude, that the methods employed made the decisions made more transparent and believe, that these methods have high potential of use in other fields.</p>
 
 </div>
 </div>
 <h3>References</h3>
 <div id="refs" class="references csl-bib-body hanging-indent" line-spacing="2">
-<div id="ref-6-0-breiman2001statistical" class="csl-entry">
-Breiman, L. et al. (2001). Statistical modeling: The two cultures (with comments and a rejoinder by the author). <em>Statistical science</em>, <em>16</em>(3), 199–231.
+<div id="ref-1-2-german_determinants" class="csl-entry">
+Belke, A., &amp; Keil, J. (2017). Fundamental determinants of real estate prices: A panel study of german regions, (731). Ruhr Economic Papers. <a href="https://doi.org/10.4419/86788851">https://doi.org/10.4419/86788851</a>
 </div>
-<div id="ref-6-0-rashomon-variable-importance-cloud" class="csl-entry">
-Dong, J., &amp; Rudin, C. (2020). Exploring the cloud of variable importance for the set of all good models. <em>Nature Machine Intelligence</em>, <em>2</em>(12), 810–824.
-</div>
-<div id="ref-6-0-rashomon-variable-importance" class="csl-entry">
-Fisher, A., Rudin, C., &amp; Dominici, F. (2019b). All models are wrong, but many are useful: Learning a variable’s importance by studying an entire class of prediction models simultaneously. <em>Journal of Machine Learning Research</em>, <em>20</em>(177), 1–81.
-</div>
-<div id="ref-6-0-rashomon-intro" class="csl-entry">
-Semenova, L., Rudin, C., &amp; Parr, R. (2019). A study in rashomon curves and volumes: A new perspective on generalization and model simplicity in machine learning. <em>arXiv preprint arXiv:1908.01755</em>.
+<div id="ref-1-2-forecasting" class="csl-entry">
+Ghysels, E., Plazzi, A., Valkanov, R., &amp; Torous, W. (2013). Chapter 9 - forecasting real estate prices, <em>2</em>, 509–580. https://doi.org/<a href="https://doi.org/10.1016/B978-0-444-53683-9.00009-8">https://doi.org/10.1016/B978-0-444-53683-9.00009-8</a>
 </div>
 </div>
             </section>
@@ -337,8 +533,8 @@ Semenova, L., Rudin, C., &amp; Parr, R. (2019). A study in rashomon curves and v
           </div>
         </div>
       </div>
-<a href="rashomon-on-mimic-draft.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="roshomon-sets-of-in-hospital-mortality-prediction-random-forest-models.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="xai1-explainable-cards.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="xai-heart-disease.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook/js/app.min.js"></script>
@@ -370,7 +566,7 @@ gitbook.start({
 "size": 2
 },
 "edit": {
-"link": "https://github.com/mini-pw/2021L-WB-Book/edit/master/6-4-mimic-roshomon.Rmd",
+"link": "https://github.com/mini-pw/2021L-WB-Book/edit/master/1-2-California.Rmd",
 "text": "Edit"
 },
 "history": {
