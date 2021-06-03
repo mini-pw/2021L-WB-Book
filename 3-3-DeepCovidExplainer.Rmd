@@ -1,5 +1,5 @@
 ---
-output: rmarkdawn::github_document
+output: rmarkdown::github_document
   pdf_document: default
   html_document: default
 ---
