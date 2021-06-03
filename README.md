@@ -20,7 +20,7 @@ Each Rmd file should start with the chapter title and the authors.
 ```
      ##  Name of section   
 
-        *Authors: Name Surname, Name Surname, Name Surname (Warsaw University of Techcnology)*
+        *Authors: Name Surname, Name Surname, Name Surname (Warsaw University of Technology)*
 ```
 
 ### How to name the images?
