@@ -106,13 +106,13 @@ Therefore, we decided to do a full-fledged preprocessing as recommended by the a
 
 Our preprocessing consisted of:
 
-resizing the image with anti-aliasing,
-histogram stretching (contrast enhancement),
-reducing noise with anisotropic diffusion,
-converting from RGB to greyscale format for better performance,
-creation of a mask using the threshold function from the OpenCV library (detection of the brightest spots in the photo),
-modifying (thickening) the mask using the dilate function from OpenCV (in order to be able to detect thin lines),
-removing annotations from the image using the inpaint function from OpenCV and using the already created mask.
+ * resizing the image with anti-aliasing,
+ * histogram stretching (contrast enhancement),
+ * reducing noise with anisotropic diffusion,
+ * converting from RGB to greyscale format for better performance,
+ * creation of a mask using the threshold function from the OpenCV library (detection of the brightest spots in the photo),
+ * modifying (thickening) the mask using the dilate function from OpenCV (in order to be able to detect thin lines),
+ * removing annotations from the image using the inpaint function from OpenCV and using the already created mask.
 
 We have also dropped the part of the authors' code where they introduce the division between the right and left side of the image, as they did not use this later in the code and it does not seem necessary.
 
