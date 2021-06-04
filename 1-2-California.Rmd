@@ -34,9 +34,63 @@ In an asset pricing approach **expected revenue** plays a key role. Here factors
 
 #### Machine Learning uses
 
+Machine learning has been used in numerous scientific papers regarding house prices prediction allowing us to take inspiration from some of them. One of these papers titled "Model Research on Forecast of Second-Hand House Price in Chengdu Based on XGBoost Algorithm" [@1-2-maciej1] presents problem very alike to ours. As the title implies authors are trying to predict prices of houses in China using machine learning algorithms and data that are similar to what we are dealing with in California-Housing data frame. For us, the main takeaway from said article were conclusions about XGBoost algorithm. First of all, authors point out that it is robust and to great extent immune to overfitting phenomena. They also perform comparison between three different models from which XGBoost is definitely the most effective. This article in approachable way shown us how powerful XGBoost is and pointed out the importance of hyperparameters tuning. 
+
+Often machine learning algorithms are paired with more complex neural networks. this allows for even better, more accurate predictions. One of the example of said practice can be "House Price Prediction Using Machine Learning and Neural Networks" paper [@1-2-maciej4]. In this article authors use output of three ML algorithms, namely Linear Regression, Forest Regression and Boosted Regression, as an input for neural network that makes the final prediction. Although the article lacks actual results and comparison to other models, it presented us with an interesting idea and convinced us that there is room for improvement after we have built enough knowledge of neural networks.
+
+Even more comprehensive and complex model is presented in "Deep Learning with XGBoost for Real Estate Appraisal" paper [@1-2-maciej3]. Apart from basic attributes such as size or number of bedrooms authors have incorporated ability for the model to process images of house to better estimate its price. Although their approach was much more sophisticated than ours it further reassured us that machine learning, and XGBoost model in particular, will be a superb tool for our task of predicting California's houses' prices.
+
+All in all machine learning models with application in regression tasks around houses' prices prediction appear in countless papers so we had vast possibilities in terms of drawing inspiration from others' work.
+
 ### Methodology
 
 #### Data description
+
+For this project we used the *housing* dataset which we acquired from Kaggle repository. This is a modified version of dataset provided by StatLib. It has been extracted from 1990 US census. Each row represents a single house in California area and contains information about its location and details about bloc it is situated in. Our target variable for this regression task is *median_house_value*. We present the structure of said dataset in detail in the table below.
+
+```{r 1-2-data-table, fig.align="center", echo=FALSE, fig.cap='Housing data frame details'}
+knitr::include_graphics('images/1-2-data_table.png')
+```
+
+*Housing* consists of 20640 records and missing values appears only in *total_bedrooms* column. There are total of 207 rows with missing values in *total_bedrooms* field, which makes up for approximately 1% of all records. Our data will evolve over the course of next sections, however whenever we implement any changes to dataset we will clarify them fully.
+
+#### Exploratory Data Analysis
+
+In order to better understand data we were working with, we conducted exploratory data analysis, which mainly consisted of visualizations. The very first step of our EDA was figuring out if we have to deal with any missing values. As stated in *Data description* section, we have 207 rows with missing values in *total_bedrooms* field. We decided to impute these fields using median of *total_bedrooms* from all non-missing rows.
+
+```{r 1-2-missing-values, fig.align="center", echo=FALSE, fig.cap='housing.info() function output'}
+knitr::include_graphics('images/1-2-missing_values.png')
+```
+
+After that, we drew a target variable distribution plot. It proved invaluable, as it shown us that the target value had most likely been capped at \$500.000. Every house with price greater than $500.000 had been given a $500.001 price tag. As it was not possible to recreate actual price of these estates we decided to remove corresponding rows. This way, we ended up removing 965 rows from the original data frame.
+
+```{r 1-2-target-dist, fig.align="center", echo=FALSE, fig.cap='Target variable distribution'}
+knitr::include_graphics('images/1-2-target_dist.png')
+```
+
+Next we took a closer look at our only categorical variable, *ocean_proximity*. What we wanted to see is what are the 5 categories and how many records each of them contains. Simple diagram (Fig. 3) made us realize that  *ISLAND* category consists of only 5 rows. We made a decision to remove these rows. 
+
+```{r 1-2-ocean-proximity, fig.align="center", echo=FALSE, fig.cap='Ocean proximity categories'}
+knitr::include_graphics('images/1-2-ocean_proximity_categories.png')
+```
+
+Then, in order to discover correlations between different variables we constructed diagram in the form of matrix. It made us aware off high correlations between some of the factors, problems connected with this will be discussed more in details later on.
+
+```{r 1-2-correlation-matrix, fig.align="center", echo=FALSE, fig.cap='Correlation matrix'}
+knitr::include_graphics('images/1-2-correlation_matrix.png')
+```
+
+Finally we superimposed houses locations on California's map. On the first map we plotted all of the houses while on the second map we plotted only houses with *median_house_value* over $490.000. This allowed us to find two clusters of the most expensive estates around San Francisco and Los Angeles.
+
+```{r 1-2-map-all, fig.align="center", echo=FALSE, fig.cap='Map of all houses'}
+knitr::include_graphics('images/1-2-map_all.png')
+```
+```{r 1-2-map-expensive, fig.align="center", echo=FALSE, fig.cap='Map of houses worth more than $490.000'}
+knitr::include_graphics('images/1-2-map_expensive.png')
+```
+
+EDA turned out to be invaluable, it pointed out numerous interesting facts but also made us aware of some underlying problems with data frame such as missing values.
+It is also worth noting that our EDA consisted of more visualizations, however it felt more natural to skip those which did not provide any valuable insight.
 
 #### Data validity
 
@@ -45,6 +99,8 @@ Data accessible to us sets the boundaries of our research. It contains character
 The presence of exact location is vital to the credibility of this research. Factors connected with household location, which could have influence on final price, are numerous. Leaving some of them out could lead to selection bias present in the results of our work [@1-2-forecasting]. Thankfully, any factors connected with location - such as the local unemployment or state of infrastracture - are tied with geographical coordinates and are present in our data, although implicitly.
 
 #### Model
+
+In order to choose our prediction tool we have prepared 6 different regression models. We decided to compare results of Linear Regression, Random Forest, Support Vector Regression (SVR), Gradient Boosting, Multilayer Perceptron (MLP) and finally XGBoost Regressor.  Each of these models had been individually tuned mainly using GridSearchCV. After models had been tuned we proceeded to comparing models in an effort to find the best one. We used root mean squared error (RMSE) as our main metric to sort models by their performance. Additionally, in order to maximize objectivity of this metric we used 5-fold cross-validation and calculated the average RMSE along with RMSE standard deviation. The achieved results are rather unambiguous as XGBoost is characterized by the lowest mean RMSE and the lowest standard deviation of RMSE. This was to be expected taking into consideration related works performed around similar problems. After taking into consideration RMSE results and explainability of the models we decided to use XGBoost as our primary prediction tool. The final values for its hyperparameters are: eta (learning rate) = 0.15, max_depth = 6, n_estimators = 150, gamma = 0, min_child_weight = 1 (any unmentioned parameter has been left with default value).
 
 ### Results
 
