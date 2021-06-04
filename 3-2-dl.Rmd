@@ -141,9 +141,8 @@ We've also worked on the aspect of explainability. Although deep neural networks
 ![GradCAM](images/3-2-xai.png)
 
 
-### Conclusion
+### Results and conclusions
 
-**Results**
 
 |                           | Accuracy  | Sensitivity | Specificity | ROC AUC     | Jaccard score | F1 score   |
 |---------------------------|-----------|-------------|-------------|-------------|---------------|------------|
