@@ -14,23 +14,23 @@ If the model is too complicated to explain, maybe we would be capable of explain
 
 Name Rashomon comes from an intriguing Japanese movie in which four people witness an incident from different vantage points. When they come to testify in court, they all report the same facts, but their stories of what happened are very different.    
 
-Rashomon sets are crucial in medical work, where the model not only has to be accurate but also give a good explanation of why certain variables are more important. An in-depth look at explainable machine learning techniques is provided in (prof Biecek book), and a detailed comparative study of different machine learning algorithms for several medical problems is described in (Predictive modelling)  
+Rashomon sets are crucial in medical work, where the model not only has to be accurate but also give a good explanation of why certain variables are more important. An in-depth look at explainable machine learning techniques is provided in [@EMA], and a detailed comparative study of different machine learning algorithms for several medical problems is described in [@6-0-tang2018predictive]. 
 
-For model comparison, we used Partial Dependency Plots, which show how variables affect the final prediction. In our research, we explored those plots and created methods enabling further comparison of PDP.  As a result, we developed a metric, which compares PDP curves and applied it to MIMIC-III data. 
+For model comparison, we used Partial Dependency Plots, which show how variables affect the final prediction. In our research, we explored those plots and created methods enabling further comparison of PDP. As a result, we developed a metric, which compares PDP curves and applied it to MIMIC-III data [@6-0-mimic]. 
 
 ### Literature review  
 
-In machine learning, Rashomon set is used to characterize a problem in which many different models offer accurate results describing the same data. The term was first used by Breiman (2001), who explains in his work the basics of Rashomon set on an example. In contrast, Semenova, Rudin, and Parr (2019) provide a much more in-depth and mathematical description. 
+In machine learning, Rashomon set is used to characterize a problem in which many different models offer accurate results describing the same data. The term was first used by [@6-0-breiman2001statistical], who explains in his work the basics of Rashomon set on an example. In contrast, [@6-0-rashomon-intro] provide a much more in-depth and mathematical description. 
 
-Another important topic related to Rashomon sets is analysing the feature importance of the model. Fisher, Rudin, and Dominici  (2019) suggested studying the maximum and minimum variable importance across all models included in the Rashomon set. This technique was called MCR (Model Class Reliance). Furthermore, Dong and Rudin (2020) presented a method to visualize the “cloud” of variable importance for models in the set, which could help us understand the Rashomon set and choose the one which gives the best interpretation. The last question stated in the article (Rudin et al. 2021) was about selecting a model from the Rashomon set. It might be a difficult task, especially when we lack good exploration tools. (Das et al. 2019) created a system called BEAMS that allows to choose the most critical features from linear regression models. Next, the program searches the hypothesis space to find a model which fits best to given constraints.  
+Another important topic related to Rashomon sets is analysing the feature importance of the model. [@6-0-rashomon-variable-importance] suggested studying the maximum and minimum variable importance across all models included in the Rashomon set. This technique was called MCR (Model Class Reliance). Furthermore, [@6-0-rashomon-variable-importance-cloud] presented a method to visualize the “cloud” of variable importance for models in the set, which could help us understand the Rashomon set and choose the one which gives the best interpretation. The last question stated in the article [@6-0-rudin-challenges] was about selecting a model from the Rashomon set. It might be a difficult task, especially when we lack good exploration tools. [@6-1-beams-system] created a system called BEAMS that allows to choose the most critical features from linear regression models. Next, the program searches the hypothesis space to find a model which fits best to given constraints.  
 
 ### Methodology 
 
-We started our research with data preprocessing. For this purpose, we used code provided by the authors of Predictive modelling in urgent care: a comparative study of machine learning approaches, with slight adjustments because the original code wasn’t working perfectly.   
+We started our research with data preprocessing. For this purpose, we used code provided by the authors of [@6-0-tang2018predictive], with slight adjustments because the original code did not work perfectly.   
 
 For initial predictions of mortality, a few different models were compared: XGBoost, SVM, Random Forest, and Logistic regression, from which XGBoost was selected for studies of Rashomon set, because of its satisfactory precision and pace at which model learned.  
 
-Afterwards, with the help of a random search technique, a set of models was created. The ranges of hyperparameters were selected according to the article Tunability: Importance of Hyperparameters of Machine Learning Algorithms. We learned 160 different models with 5-fold cross-validation and used the ROC AUC measure to estimate each model effectiveness. 
+Afterwards, with the help of a random search technique, a set of models was created. The ranges of hyperparameters were selected according to the article [@6-1-tunability]. We learned 160 different models with 5-fold cross-validation and used the ROC AUC measure to estimate each model effectiveness. 
 
 The creation of many models does not solve the problem of mortality prediction. The main task is to compare, analyse and choose the one, which describes the best reality. Partial Dependence Plots (PDP) are very often studied to do so. However, it is often hard to compare them all due to the number of models and features. This is why we introduce a new metric. It is an alternative to variable importance and is based on PDP curves.  
 
@@ -38,12 +38,7 @@ We based our calculations on the DALEX (cytowanie?) package, which we used to ge
 
 Our metric calculates, for a given model and feature, the sum of absolute values of distances between points on PDP curves of the base model (the best one according to random search) and the one for which we calculate distance. It is calculated according to the equation: 
 
- 
-
 This metric allows comparing how unique models are and how much do they differ from one another.  
-
- 
- 
 
 ### Results 
 
