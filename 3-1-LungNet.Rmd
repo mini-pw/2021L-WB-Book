@@ -3,8 +3,8 @@
 *Authors: Adam Frej, Piotr Marciniak, Piotr Piątyszek*
 
 ### Introduction
-Our goal is to recreate the results achived in the article: [Semantic Segmentation of Pathological Lung Tissue
-with Dilated Fully Convolutional Networks](https://github.com/intact-project/LungNet). Authors developed a deep purely convolutional neural network for the semantic segmentation of interstitial lung diseases. The proposed CNN takes as input a lung CT image of arbitrary size and outputs the corresponding label map. We want to recreate that CNN and achieve as similar results as possible.\
+Our goal is to recreate the results achieved in the article: Semantic Segmentation of Pathological Lung Tissue
+with Dilated Fully Convolutional Networks [@3-0-LungNet]. Authors developed a deep purely convolutional neural network for the semantic segmentation of interstitial lung diseases. The proposed CNN takes as input a lung CT image of arbitrary size and outputs the corresponding label map. We want to recreate that CNN and achieve as similar results as possible.\
 Interstitial lung disease (ILD) is a group of more than 200 chronic lung disorders characterized by inflammation and scarring of the lung tissue that leads to respiratory failure. The diagnosis of ILD is mostly performed by radiologists and is usually based on the assessment of the different ILD pathologies in high resolution computed tomography (HRCT) thoracic scans. Early diagnosis is crucial for making treatment decisions, while misdiagnosis may lead to life-threatening complications. Pathological tissue is usually manifested as various textural patterns in the CT scan. The article proposes the use of a deep fullyconvolutional network for the problem of ILD pattern recognition that uses dilated convolutions and is trained in an end-to-end and semi-supervised manner.\
 On the image is presented a typical HRCT scan with annotations. The white border line denotes the lung field segmentation, the blue denotes healthy tissue, the purple micronodules and the red the honeycombing pattern.
 
@@ -18,7 +18,7 @@ In order to recreate the article we needed annotated HRCT scans of lungs.
 #### Original data
 The authors of the article used a dataset of 172 sparsely annotated HRCT scans, each corresponding to a unique ILD or healthy subject. The dataset contains 109 cases from multimedia database of interstitial lung diseases by the Geneva University Hospital (HUG), along with 63 cases from Bern University Hospital - “Inselspital” (INSEL), as collected by the authors. Two experienced radiologists from INSEL annotated or reannotated ILD typical pathological patterns, as well as healthy tissue in both databases. A lung field segmentation mask was also provided for each case.\
 Article claims that the datasets are publicly available. However, we could not reach them. The HUG dataset required a copyright agreement signed by a person duly authorized by the institution (e.g., Department or Administrative Head or similar). We could not find any access to the INSEL dataset.
-In order to find datasets, which correspond to our theme, we looked for similar articles. One of them was an article [Computer-Aided Diagnosis of Pulmonary Fibrosis Using Deep Learning and CT Images](https://journals.lww.com/investigativeradiology/fulltext/2019/10000/computer_aided_diagnosis_of_pulmonary_fibrosis.2.aspx?__cf_chl_jschl_tk__=22496c461ea65bb414daead0fdca440f3b7e4fe1-1614789118-0-AbNy61sH62F1S0-i84BHA6kR-M9YhH1dBFpxR8nQfsFioS7xQRtB_kEvS6fza4ybfff0xvQwYqS_ECgwG13r08JdOlcBA4kKkiJP9RLRP2zHjU8ENwrCK_JED7NT66xGAOfEfXvEOpvQzs-03uz8EKGhNxStyoWdBJfProZv7jbl5d8mEZElWoDLkiX9JFTB8Cf8SWJXRUy_lS5eYBqV3Ufj69UI6P5XPEwA2VdLyjD3FqhtXvaOujWcfqa6uWImIX0JRMAsWj2J5aad-rWk_1Ev2L4dCfXa_MPsGmD45-NOMwa91lZLR1opuBoEJvo3LI0xOXJCrP0CJ7gvBOjfYg9ayUcAoHVb6R5ZiUW2LgMdiw5piFmAdU1mEXvGxUNjhajRqIjbR5DeA00oh4YaxwU9PQm4DhkKawn_LE05eDWYOcMqbWX22BlMqwtAyrFLGX2ziNOEv9OYkx7zSpgF3gnGHkbokGLl-sHAggiBAY0yN-7-lh8GdQPBqNlfFE1C7g&fbclid=IwAR1pqpeneRTQ0mkR2MVZYr1b-87R0TDU_CoyIcYPSo1QksAjTiXxxflcepg), which is about pulmonary fibrosis that belongs to ILD. This article uses multiple datasets, but no one is available online.
+In order to find datasets, which correspond to our theme, we looked for similar articles. One of them was an article Computer-Aided Diagnosis of Pulmonary Fibrosis Using Deep Learning and CT Images[@3-1-Similar], which is about pulmonary fibrosis that belongs to ILD. This article uses multiple datasets, but no one is available online.
 
 #### Our data
 Because of the issues with the original data we had to find new datasets.\
@@ -84,7 +84,7 @@ One of them was pretraining. We taught each block after another one to copy inpu
 ```{r, out.width="600", fig.align="center", echo=FALSE,fig.cap='Training of blocks'}
 knitr::include_graphics('images/3-1-pretraining_layers.png')
 ```
-After training of each layer we transfered weights to our modified SegNet. Then we frozen all layers of encoder and started training of decoder layers. Below we have a plot which shows the improvement of our model after pretraining. We accomplished about 0.98 weighted accuracy.
+After training of each layer we transfered weights to our modified SegNet. Then we frozen all layers of encoder and started training of decoder layers. Below we have a plot which shows the improvement of our model after training each layer of encoder. We accomplished about 0.98 weighted accuracy.
 
 ```{r, out.width="600", fig.align="center", echo=FALSE, fig.cap='After transfer learning'}
 knitr::include_graphics('images/3-1-pretrained.png')
