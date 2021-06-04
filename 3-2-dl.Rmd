@@ -4,7 +4,7 @@
 
 ### Abstract
 
-Reproducibility is a hot topic in present-day researches. Especially in the field of data science and machine learning, the possibility of reusing the proposed solution by other scientists is essential as it proves its correctness and may become a starting point to further work. We introduce the article summarizing our attempts to reproduce BCDU-Net model used for lung segmentation from computer tomography images, proposed in [@3-0-BCDUNet_segmentation]. Moreover, we present our commitments to improve its performance, using techniques popular in the area of image processing. BCDU-Net turned out to be fully reproducible and highly optimized as only one of our attempts resulted in partly better performance. 
+Reproducibility is a hot topic in present-day research. Especially in the field of data science and machine learning, the possibility of reusing the proposed solution by other scientists is essential as it proves its correctness and may become a starting point to further work. We introduce the article summarizing our attempts to reproduce BCDU-Net model used for lung segmentation from computer tomography images, proposed in [@3-0-BCDUNet_segmentation]. Moreover, we present our commitments to improve its performance, using techniques popular in the area of image processing. BCDU-Net turned out to be fully reproducible and highly optimized as only one of our attempts resulted in partly better performance. 
 
 ### Introduction
 
@@ -19,7 +19,7 @@ The architecture of the BCDU network is based on U-Net [@3-2-unet] which takes i
 The dataset used by the authors of the article was downloaded from [Kaggle](https://www.kaggle.com/kmader/finding-lungs-in-ct-data/data) and consists of eight files in NIfTI (Neuroimaging Informatics Technology Initiative) format. There are four 3D CT scans of human chest, the other four files are corresponding masks. Each photo consists of horizontal sections with the resolution 512x512.
 
 After unpacking those images, there were about 1200 horizontal images of lungs and corresponding masks.
-![Lungs with mask](images/3-2-dataset.png)
+![Lungs with masks](images/3-2-dataset.png "Lungs with masks")
 
 ##### Preprocessing
 
@@ -62,7 +62,7 @@ The results of proposed version were marginally worse as they fell by less than 
 The second chosen modification is more experimental. Inspired by another version of BCDU-Net, provided by authors in the source code, we removed one part of the network at the bottom of the schema. What is more, first layers after up-convolutional parts were quadrupled (each dimension was expanded by a factor of two). Parameters' initialization method was changed from original He normal method to Glorot normal.
 Unfortunately, this modification turned out to be a flop. The value of Jaccard score was over three times lower than originally (0.29). Produced masks did not cover the whole surface of the lungs.
 
-![First architecture modification](images/3-2-bcdunet_mod_02.png "First architecture modification")
+![Second architecture modification](images/3-2-bcdunet_mod_02.png "Second architecture modification")
 ![Examplary mask produced by model with modified architecture](images/3-2-pd2outputexample.png "Examplary mask produced by model with modified architecture")
 
 #### Regularization
@@ -154,7 +154,7 @@ We've also worked on the aspect of explainability. Although deep neural networks
 | auxiliary task            | 0.9933    | 0.9915      | 0.9937      | 0.9926      | 0.9660        | 0.9827     |
 
 
-* _authors of the article declared that training was conducted with hyperparameters impossible for us to use_
+\* _authors of the article declared that training was conducted with hyperparameters impossible for us to use_
 
 Our research based on [@3-0-BCDUNet_segmentation] led up to a success. The solution appeared to be fully reproducible despite some minimal errors in provided source code.
 In the 'Further experiments' part we have described our contribution to the model development: proposed modifications of the architecture, adding regularization, conducting additional preprocessing of input images, learning with an auxiliary task, training with extended database using GAN and learning using dual output. Some of proposed modifications were evaluated using metrics dedicated to the problem of segmentation. The scores are presented in the table above.
