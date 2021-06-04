@@ -24,7 +24,7 @@ In [@2-3-rel-3], the authors use unsupervised machine learning techniques to clu
 
 In [@2-3-rel-4], the authors use a different dataset but of a partly similar structure. They note that some religious periods like Fasting and Performing Hajj may negatively affect the number of donations.
 
-It is to say that none of the articles we found include explainable artificial intelligence methods. Therefore, the presented approach is novel and may potentially lead to a perspective undiscovered before.
+It is important to say that none of the articles we found include explainable artificial intelligence methods. Therefore, the presented approach is novel and may potentially lead to a perspective undiscovered before.
 
 ### Data and model
 
