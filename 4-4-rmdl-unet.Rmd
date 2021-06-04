@@ -1,4 +1,102 @@
 
-## Analyzing Reproducibility churns{#dl2-rmdl-unet}
+## The reproducibility analysis of articles covering RMDL and UNet++ architectures churns{#dl2-rmdl-unet}
 
 *Authors: Marceli Korbin, Szymon Szmajdziński, Paweł Wojciechowski (Warsaw University of Techcnology)*
+
+### Background
+
+ The main subjects of our report are reproducibility of scientific papers and a brief analysis of papers titled *RMDL: Random multimodel deep learning for classification* and *U-Net++: A Nested U-Net Architecture for Medical Image Segmentation*. Nowadays we are facing a reproducibility crisis. A vast part of scientific papers are hard, if possible, to reproduce. Therefore we are convinced it is important to talk about this issue, especially today.
+ 
+ Reproducibility is an ability to be recreated or copied. In other words, the main goal of reproducibility is to obtain as similar results as possible to those in a paper, by using a method described in this paper. As it turns out, it’s not that easy to achieve.
+ 
+ Reproducibility is an essential aspect of a scientific paper for several reasons. The first, and in our opinion the most important reason, is the insurance of correctness of the results. By just reading a paper we cannot be sure about accuracy of the results. There is always a chance of a mistake made by researcher. Moreover, machine learning models are usually at least partly random (dividing data into training and test sets, choosing default parameters). It is possible then that promising results are in some point a consequence of a coincidence. By reproducing the paper we increase the reliability of its results. 
+ 
+ The second advantage of reproducibility is transparency. There is a chance, albeit small, of manipulating data by a researcher to achieve better results. Reproducting a paper can ensure us that such an unethical incident has not taken place. 
+ 
+ Lastly, reproducing a paper can definitely help us better understand a subject. Through running a code by oneself, one can find some lines which are unclear to them and try to understand them.
+ 
+### Random Multimodel Deep Learning for Classification
+ The first article we discuss is *RMDL: Random multimodel deep learning for classification* [@4-1-rmdl], which expounds RMDL -- a voting ensemble technique which uses randomly generated deep neural networks with various architectures. The idea of such approach is to benefit from the advantages of each neural network architecture used. Therefore RMDL is versatile and suitable for various types of classification problems such as text, video or image classification. In the article, the model's text and image classification performance is presented on the examples of popular data sets: MNIST, CIFAR-10, WOS, Reuters, IMDB and 20newsgrou. 
+
+RMDL generates multiple neural network models based on three architectures: Multi-Layer Perceptron, Convolutional Neural Network and Recurrent Neural Network (more precisely, RNN with LSTM and GRU units). The number of generated Random Deep Learning models (RDL) is explicitly defined with a parameter. The number of layers and nodes for all of these RDL models are generated randomly and all the models are trained in parallel. 
+
+In text feature extractions, RMDL uses word embedding, TF-IDF and n-grams, while in text classification examples, word vectorization techniques (GloVe) are used. Every RDL has an output layer that uses softmax to determine the prediction of class. The final prediction from all of the RDL models is determined through the use of majority vote.
+
+During the optimization, RMDL uses stochastic gradient optimizers -- in examples present in the paper, RMSProp and Adam optimizer were used. Each generated RDL model can use different optimizers. Therefore, if several generated models do not provide a good fit, they can be ignored for the time of voting. Each of the used architectures, feature engineering techniques or optimizers are described briefly. Presented results show that RMDL performed better than baseline models for each exemplary data set. On Google Scholar this paper has 81 citations, which indicates mediocre relevance. Such a solution is neither commonly used nor quoted.
+
+#### Results
+Each of us conducted experiments to check if we would be able to obtain the same results as the ones present in the paper. First thing we noticed was that the process of training those models consumed a lot of time, therefore we decided to focus on some of the datasets. We chose IMBD, 20NewsGroup, two Web of Science datasets (WOS-5736, WOS-11967) and MNIST. Tables below show our results.
+
+|            |                |                       |                |                       |
+|:-----------|:--------------:|:---------------------:|:--------------:|:---------------------:|
+| Model size |      IMDB      |                       |  20NewsGroup   |                       |
+|            | Paper’s result | Reproduction’s result | Paper’s result | Reproduction’s result |
+| 3 RDLs     |     89.91      |         89.39         |     86.73      |         82.46         |
+| 9 RDLs     |     90.13      |         89.32         |     87.62      |         85.77         |
+| 15 RDLs    |     90.79      |         89.54         |     87.91      |         85.94         |
+
+Table 1: Accuracy for text datasets.
+
+|            |                |                       |                |                       |
+|:-----------|:--------------:|:---------------------:|:--------------:|:---------------------:|
+| Model size |    WOS-5736    |                       |   WOS-11967    |                       |
+|            | Paper’s result | Reproduction’s result | Paper’s result | Reproduction’s result |
+| 3 RDLs     |     90.86      |         87.10         |     87.39      |         78.15         |
+| 9 RDLs     |     92.60      |         91.02         |     90.65      |         84.88         |
+| 15 RDLs    |     92.66      |         89.98         |       \-       |          \-           |
+
+Table 2: Accuracy for Web of Science text datasets.
+
+| Model size | Papers’ result | Reproduction’s result |
+|:-----------|:--------------:|:---------------------:|
+| 3 RDLs     |      0.51      |         1.37          |
+| 9 RDLs     |      0.41      |         0.67          |
+
+Table 3: Loss for MNIST dataset.
+
+As we can see, in all experiments we obtained worse results than those in the paper. In most cases the difference is not substantial, although for 3RDLs for WOS-11967 it achieves 9.23 p.p. As the reasons thereof we assume randomness and, less definitely, differences in hardware. Nevertheless, accuracy of our models was still relatively high.
+
+Some problems occurred during our experiments. The first one and the hardest was the insufficient amount of processing power. At first RNN models were considerably difficult to train, since default parameters didn't allow for the use of GPU. In turn each epoch took several minutes for the model to be train. We managed to fix that issue by modifying parameters of RNNs models and eventually we could to train RNNs models in a reasonable amount of time.
+
+While we were trying to conduct experiments on Web of Science datasets, it turned out that the website, which was supposed to contain data available to download, did not exist anymore. We managed to find those data using other sources, download it and load manually. Another difficulty was insufficient RAM size, which prevented us from checking WOS-46985 results. The data was too large and the only output of our code covering this part consisted of error messages. 
+
+### A Nested U-Net Architecture for Medical Image Segmentation
+The second article to be analyzed is *UNet++: A Nested U-Net Architecture for Medical Image Segmentation* [@4-4-UNet], which presents an architecture based on  encoder-decoder networks and skip pathways between them, meant to reduce the distance between the components. Such a solution is claimed to simplify learning tasks in case of semantically similar feature maps of the decoder and encoder networks. The architecture is evaluated in medical image segmentation tasks, involving segmentation of lung nodule, cell nuclei, liver and colon polyp in images.
+
+UNet++ consists of an encoder and decoder, connected through dense convolutional blocks and skip pathways between them with additional layers. After data enters the encoder, a feature map is processed in a block, whose number of layers is dependent on the network level. The skip pathways in blocks are meant to shorten the distance between semantic levels of the feature maps in the encoder and decoder, improve gradient flow and make the overall optimization process easier. Another important feature of UNet++ is optional deep supervision, which works in either of two modes: accurate mode and fast mode. It serves to enable model pruning and is based on building full resolution feature maps at chosen semantic levels of the network.
+
+All the elements are illustrated on figures and described as means to an improvement of previously implemented U-Net and wide U-Net architectures. The three models are then compared in a series of experiments, which prove an outperformance of UNet++ over the other two architectures on each dataset.
+
+#### Problems 
+The second experiment brought us some problems as well; the first of them was the downloading of necessary data. Authors of the original article shared some links to datasets, however not all of them were public. In several cases a special permission was needed -- we sent some requests, but did not receive all the permissions.
+
+Eventually, we used three datasets in our experiements, which contain pictures of: Lungs, Nuclei and Polyp. Our next problem to overcome was data preprocessing. There were issues on the GitHub profile concerning preprocessing, on which the authors did not give any instructions. This made us decide to improvise. The Nuclei and Polyp datasets were the only ones we were able to preprocess, while the Lung dataset turned out too complicated for preparation. The problem with this dataset was its size, which prevented us from loading the whole set at once. Moreover, the photos therein were three-dimentional.
+
+After we have managed to preprecess data, we started to work on the code, which was not simple either. The authors were using the older versions of several libraries with many errors. At first we tried to modify authors' code to work on the newer versions of libraries. The procedure failed due to complexity of that task, yet we managed to overcome it by exchanging the newer versions in place of the older ones. We also had to figure out how to make use of GPU, which demanded us to install the correct versions of libraries. Despite GPU being enabled, the learning process still consumed a considerably high amount of time.
+
+#### Results 
+
+We were eventually ready to train our models and try to reconstruct the authors' results. The authors sugested two metrics to evaluate effectiveness of a model: 
+- Dice coefficient - overlap area multiply by two and divided by the total number of pixels in both photos;
+- Intersection over Union (IoU) - area of overlap divided by area of union.
+
+|        |                |                       |                |                       |
+|:-------|:--------------:|:---------------------:|:--------------:|:---------------------:|
+| Metric |     Nuclei     |                       |     Polyp      |                       |
+|        | Paper’s result | Reproduction’s result | Paper’s result | Reproduction’s result |
+| Iou    |     94.00      |         85.74         |     33.45      |         24.59         |
+| Dice   |     95.80      |         79.88         |       \-       |         34.27         |
+
+Table 4: Dice and IoU measures for Nuclei and Polyp datasets.
+
+Both metrics describe how similar the two pictures are. We conducted two experiements on the Nuclei and Polyp datasets. Results turned out to be fairly similar, in spite of all of the reproducted scores being lower. The highest difference occurred between dice coefficients on the Nuclei dataset. According to us, the source of these differences is an insufficient amount of the processing power. We were unable to set the same batch size or epochs number the authors did. In our opinion, optimizing those parameters would have improved our results. Despite the differences, we consider the results of the article to be reproducible. 
+
+### Conclusions 
+
+Reproduction may be considered as simply using a premade code, so it bears no difficulties. We assumed the same, however the whole process turned out to be much more complicated. During this procedure there is a high probability for several troubles to occur. These did happen to us with the datasets of both articles we worked with. We consider sharing datasets with code by authors as a good solution to the problem.
+
+Likewise, data preprocessing is problematic. In our opinion it is crucial to describe this process; otherwise the reproduction is more difficult, if possible at all. Another problem to have occured in both articles is processing power. Although it is not authors' fault, it remains very important during the reproduction of an article.
+
+Contacting an author might solve at least a part of these problems. The ability to ask about a specific method or to consult a line of code is a simple way of clarifying things. That said, authors seldom do that; there were many issues on Github concerning these articles, of which few were answered. 
+
+
