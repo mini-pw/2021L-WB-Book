@@ -32,14 +32,17 @@ The original model has 13 convolutional layers. In particular, each of the first
 
 #### Preprocessing
 
-As authors did not mention any preprocessing techniques, we tried to improve results of our neural network by two techniques.
+As authors did not mention any preprocessing techniques, we tried to improve results of their neural network by two techniques.
 One of them was an histogram equalization, which make pictures more readable for humans. Below we have a comparison of two pictures with histogram equalization and without. On the left side we have a plot of scans' histogram. 
 ```{r, out.width="600", fig.align="center", echo=FALSE, fig.cap='The comparision of scans'}
 knitr::include_graphics('images/3-1-histogram_pictures.png')
 ```
 Unfortunately, it did not improve results of our neural network.
-Another technique, which we used was cutting 
-
+Another technique which we used was cutting images to smaller parts. We did it because tumors are small part of whole pictures. By doing this, we increased the proportion of tumor to whole picture.
+Below we have plot showing comparison of preprocessing techniques.
+```{r, out.width="600", fig.align="center", echo=FALSE, fig.cap='The comparision of scans'}
+knitr::include_graphics('images/3-1-comparison_preprocessing.png')
+```
 
 ### New models
 To improve results on our datasets we used another architectures of neural networks.
