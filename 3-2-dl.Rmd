@@ -10,7 +10,7 @@ Reproducibility is a hot topic in present-day researches. Especially in the fiel
 
 Being able to reproduce results presented in published papers is a significant part of the scientific process. It is important mainly because it allows other scientists to verify that the method produces consistant results. The main goal of our work was to reproduce the results of the BCDU-Net deep neural network [@3-0-BCDUNet_segmentation] and to check if the source code provided with the paper was of sufficient quality so as to add our own modifications to the network. We focused on working with the version of the network which performed a lung segmentation task.
 
-The architecture of the BCDU network is based on U-Net [@3-2-unet] which takes its name from the shape of the model. Both, the original and the improved models consist of max-pooling layers, convolutional layers and up-convolutional layers, but what makes BCDU-Net stand out, is the usage of BConvLSTM cells. They allow easier flow of information between the first and last layers of the model, which in turn improves the performance.
+The architecture of the BCDU network is based on U-Net [@3-2-unet] which takes its name from the shape of the model. Both, the original and the improved models consist of max-pooling layers, convolutional layers and up-convolutional layers, but what makes BCDU-Net stand out, is the usage of BConvLSTM cells. They contribute to an easier flow of information between the first and last layers of the model, which in turn improves the performance.
 
 ![Original architecture of BCDU-Net](images/3-2-bcdunet.png)
 
@@ -59,7 +59,7 @@ The results of proposed version were marginally worse as they fell by less than 
 
 ![First architecture modification](images/3-2-bcdunet_marysia.png "First architecture modification")
 
-The second chosen modification is more experimental. Inspired by another version of BCDU-Net, provided by authors in the source code, we removed one part of the network at the bottom of the schema. What is more, first layers after up-convolutional parts were quadruplicated (each dimension was expanded two times). Parameters' initialization method was changed from original He normal method to Glorot normal.
+The second chosen modification is more experimental. Inspired by another version of BCDU-Net, provided by authors in the source code, we removed one part of the network at the bottom of the schema. What is more, first layers after up-convolutional parts were quadrupled (each dimension was expanded by a factor of two). Parameters' initialization method was changed from original He normal method to Glorot normal.
 Unfortunately, this modification turned out to be a flop. The value of Jaccard score was over three times lower than originally (0.29). Produced masks did not cover the whole surface of the lungs.
 
 ![First architecture modification](images/3-2-bcdunet_mod_02.png "First architecture modification")
@@ -132,7 +132,7 @@ In the image below you can see lung images, masks and their labels produced by t
 
 #### Tensorboard - supervising the training
 
-Tensorboard allows developers supervising the process of fitting and visualising the model. It is a visualization's toolkit offered for models implemented in tensorflow. As BCDU-Net meets this criterion, we decided to use it during the process of fitting the original model so we could modify the hiperparameters in a pinch. Fortunately, following the performance on validation dataset did not indicate neither overfitting nor any other worrying phenomena.
+Tensorboard allows developers supervising the process of fitting and visualising the model. It is a visualization's toolkit offered for models implemented in tensorflow. As BCDU-Net meets this criterion, we decided to use it during the process of fitting the original model so we could modify the hiperparameters in a pinch. Fortunately, checking the performance of the model on the validation dataset did not indicate overfitting or any other worrying phenomena.
 
 #### XAI - explaining the predictions
 
@@ -156,7 +156,7 @@ We've also worked on the aspect of explainability. Although deep neural networks
 
 * _authors of the article declared that training was conducted with hyperparameters impossible for us to use_
 
-Our research based on [@3-0-BCDUNet_segmentation] led up to a success. The solution appeared to be fully reproducible even though some minimal errors in provided source code.
+Our research based on [@3-0-BCDUNet_segmentation] led up to a success. The solution appeared to be fully reproducible despite some minimal errors in provided source code.
 In the 'Further experiments' part we have described our contribution to the model development: proposed modifications of the architecture, adding regularization, conducting additional preprocessing of input images, learning with an auxiliary task, training with extended database using GAN and learning using dual output. Some of proposed modifications were evaluated using metrics dedicated to the problem of segmentation. The scores are presented in the table above.
 Unfortunately, modifications proposed by our team did not eventuate in improvement of the original performance, apart from the value of sensitivity after using histogram equalization, which proved high optimization of model proposed by Azad R. et al.
 However, we were limited by the resources we could have used for the project, so there is still a field to work continuation - trying to test and beat the model using better machines. 
