@@ -34,6 +34,14 @@ In an asset pricing approach **expected revenue** plays a key role. Here factors
 
 #### Machine Learning uses
 
+Machine learning has been used in numerous scientific papers regarding house prices prediction allowing us to take inspiration from some of them. One of these papers titled "Model Research on Forecast of Second-Hand House Price in Chengdu Based on XGBoost Algorithm" [@1-2-maciej1] presents problem very alike to ours. As the title implies authors are trying to predict prices of houses in China using machine learning algorithms and data that are similar to what we are dealing with in California-Housing data frame. For us, the main takeaway from said article were conclusions about XGBoost algorithm. First of all, authors point out that it is robust and to great extent immune to overfitting phenomena. They also perform comparison between three different models from which XGBoost is definitely the most effective. This article in approachable way shown us how powerful XGBoost is and pointed out the importance of hyperparameters tuning. 
+
+Often machine learning algorithms are paired with more complex neural networks. this allows for even better, more accurate predictions. One of the example of said practice can be "House Price Prediction Using Machine Learning and Neural Networks" paper [@1-2-maciej4]. In this article authors use output of three ML algorithms, namely Linear Regression, Forest Regression and Boosted Regression, as an input for neural network that makes the final prediction. Although the article lacks actual results and comparison to other models, it presented us with an interesting idea and convinced us that there is room for improvement after we have built enough knowledge of neural networks.
+
+Even more comprehensive and complex model is presented in "Deep Learning with XGBoost for Real Estate Appraisal" paper [@1-2-maciej3]. Apart from basic attributes such as size or number of bedrooms authors have incorporated ability for the model to process images of house to better estimate its price. Although their approach was much more sophisticated than ours it further reassured us that machine learning, and XGBoost model in particular, will be a superb tool for our task of predicting California's houses' prices.
+
+All in all machine learning models with application in regression tasks around houses' prices prediction appear in countless papers so we had vast possibilities in terms of drawing inspiration from others' work.
+
 ### Methodology
 
 #### Data description
