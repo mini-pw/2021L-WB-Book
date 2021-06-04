@@ -28,8 +28,18 @@ The LIDC dataset is much better annotated and contains more cases. That is why w
 
 ### Original model
 
+The original model has 13 convolutional layers. In particular, each of the first ten layers has 32 kernels of size $3 \times 3$ and dilation rates $1 , 1,2, 3, 5, 8, 13, 21, 34, 55.$ The authors chose not to increase the dilation rates exponentially. The output of this layers is concatenated, which are passed through a dropout layer with a rate of $0.5$. The last three layers have $1 \times 1$ kernels with numbers filters set $128, 32$ respectively and finally $6$, which was originally the number of classes. In our case we set filter number in last layer $2$ and $3$ depending on dataset.
 
 #### Preprocessing
+
+As authors did not mention any preprocessing techniques, we tried to improve results of our neural network by two techniques.
+One of them was an histogram equalization, which make pictures more readable for humans. Below we have a comparison of two pictures with histogram equalization and without. On the left side we have a plot of scans' histogram. 
+```{r, out.width="600", fig.align="center", echo=FALSE, fig.cap='The comparision of scans'}
+knitr::include_graphics('images/3-1-histogram_pictures.png')
+```
+Unfortunately, it did not improve results of our neural network.
+Another technique, which we used was cutting 
+
 
 ### New models
 To improve results on our datasets we used another architectures of neural networks.
@@ -53,8 +63,8 @@ We used our modification of SegNet consisted of 8 convolutional blocks. We delet
 knitr::include_graphics('images/3-1-segnet-covid.png')
 knitr::include_graphics('images/3-1-segnet-lidc.png')
 ```
-
-### Metrics
+This model we evaluated later.
+##### Metrics
 We used several metrics to evaluate our model.\
 The most important one is confusion matrix. It shows how accurate is the model. We can notice that it improves a little over time but it is not significant. Most of predicted healthy area of the lungs is actually healthy. It is the main part of the scans. However, there are a lot of false positive cases. The model marks healthy parts of the lungs as lesion. It finds most of the actual lesions but marks it together with a lot of healthy part.
 
@@ -77,9 +87,9 @@ Intersection over Union metric is important in our case because we classify imag
 knitr::include_graphics('images/3-1-IoU.png')
 ```
 
-### Our tries to improve score
+##### Our tries to improve score
 We tried to improved results of our best model in various ways.
-#### Pretraining
+###### Pretraining
 One of them was pretraining. We taught each block after another one to copy input picture. In this way we wanted our model to discover more patterns from our input picture. At plots we can see results of training each convolutional block. We achieved about 200 MEA for all blocks, but with more blocks we scored better result.
 ```{r, out.width="600", fig.align="center", echo=FALSE,fig.cap='Training of blocks'}
 knitr::include_graphics('images/3-1-pretraining_layers.png')
@@ -90,8 +100,8 @@ After training of each layer we transfered weights to our modified SegNet. Then 
 knitr::include_graphics('images/3-1-pretrained.png')
 ```
 
-#### Transfer learning
+###### Transfer learning
 
-#### XAI
+###### XAI
 
 ### Summary
