@@ -39,6 +39,9 @@ fig:lime1
 fig:lime2
 fig:cp1
 fig:cp2
+tab:variables
+fig:lead-time
+tab:model-comparison
 fig:shap-false-positive
 fig:shap-false-negative
 fig:shap-false-predictions
@@ -47,11 +50,14 @@ fig:shap-best-positive
 fig:ceteris-paribus-sure
 fig:shap-negative-50
 fig:shap-positive-50
-fig:lime-positive-50
+tab:aspects
+fig:triplot-negative-50
+fig:triplot-positive-50
 fig:pvi-main-model
 fig:pvi-comparison
 fig:ale-country
 fig:ale-leadtime
+fig:ale-leadtime-30
 fig:ale-requests
 fig:ale-previous
 fig:ale-pdp

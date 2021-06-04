@@ -129,7 +129,7 @@ div.csl-indent {
 <li class="chapter" data-level="1.4.7" data-path="xai1-explainable-wine.html"><a href="xai1-explainable-wine.html#summary"><i class="fa fa-check"></i><b>1.4.7</b> Summary</a></li>
 <li class="chapter" data-level="1.4.8" data-path="xai1-explainable-wine.html"><a href="xai1-explainable-wine.html#conclusions"><i class="fa fa-check"></i><b>1.4.8</b> Conclusions</a></li>
 </ul></li>
-<li class="chapter" data-level="1.5" data-path="xai1-explainable-hotels.html"><a href="xai1-explainable-hotels.html"><i class="fa fa-check"></i><b>1.5</b> eXplaining predictions of booking cancelations</a>
+<li class="chapter" data-level="1.5" data-path="xai1-explainable-hotels.html"><a href="xai1-explainable-hotels.html"><i class="fa fa-check"></i><b>1.5</b> Explanatory approach to modeling the risk of hotel booking cancellations</a>
 <ul>
 <li class="chapter" data-level="1.5.1" data-path="xai1-explainable-hotels.html"><a href="xai1-explainable-hotels.html#introduction-2"><i class="fa fa-check"></i><b>1.5.1</b> Introduction</a></li>
 <li class="chapter" data-level="1.5.2" data-path="xai1-explainable-hotels.html"><a href="xai1-explainable-hotels.html#dataset_models"><i class="fa fa-check"></i><b>1.5.2</b> Dataset and models</a></li>
@@ -434,7 +434,7 @@ In our research, entitled ‘One model to predict them all,’ we focused on ans
 Figure 5.8: Variable importance for RandomForestClassifier
 </p>
 </div>
-<p>The variable importance here is measured with perturbations <span class="citation">(<a href="#ref-5-2-variableimportance" role="doc-biblioref">Fisher et al. 2019a</a>)</span>. The idea behind it is that we first measure the performance on the entire model. Secondly, we reorder elements of a column (variable), train model, and then measure performance again. The difference in performances is called drop-out loss and it depicts how important the variables are.</p>
+<p>The variable importance here is measured with perturbations <span class="citation">(<a href="#ref-5-2-variableimportance" role="doc-biblioref">Fisher et al. 2019b</a>)</span>. The idea behind it is that we first measure the performance on the entire model. Secondly, we reorder elements of a column (variable), train model, and then measure performance again. The difference in performances is called drop-out loss and it depicts how important the variables are.</p>
 <p>This information was not surprising, however, we also made a similar test that conveniently simplifies the model. We created a surrogate decision tree from the earlier classifier. The surrogate model is trained to approximate the predictions of a black box predictor <span class="citation">(<a href="#ref-5-2-iml" role="doc-biblioref">Molnar 2019</a>)</span>.</p>
 <div class="figure" style="text-align: center"><span id="fig:tree"></span>
 <img src="images/5-2-exp.png" alt="Surrogate model for RandomForestClassifier" width="700" />
@@ -450,7 +450,7 @@ Figure 5.9: Surrogate model for RandomForestClassifier
 Figure 5.10: Fairness check on XGBoost. The model has bias present in four metrics.
 </p>
 </div>
-<p>To make sure that the model did not overfit the data and gave steady predictions we also checked the fairness of the Histogram-based Gradient Boosting Classification Tree from the scikit-learn package <span class="citation">(<a href="#ref-5-2-scikit-learn" role="doc-biblioref">Pedregosa et al. 2011</a>)</span>. The bias was indeed lower but still significant. Therefore we also decided to use bias mitigation strategies. To do this, we firstly merged some subgroups for the algorithms to work better. We tried to make “fair classifiers” with two Python packages <code>fairtorch</code> and <code>fairlearn</code> <span class="citation">(<a href="#ref-5-2-fairlearn" role="doc-biblioref">Bird et al. 2020</a>)</span>. They are related to each other as the <code>fairtorch</code> implements the solutions from <code>fairlearn</code>. Using those in-processing algorithms (these are the kind of mitigation approaches that reduce the bias during model training) we obtained 2 additional models. One of them was a neural net and the other was the Histogram-based Gradient Boosting Classification Tree that was trained using the reductions approach. The amount of bias reduced by the neural net from <code>fairtorch</code> was not satisfying enough and therefore will not be shown here. However, the results from <code>fairlearn</code> were quite good.</p>
+<p>To make sure that the model did not overfit the data and gave steady predictions we also checked the fairness of the Histogram-based Gradient Boosting Classification Tree from the scikit-learn package <span class="citation">(<a href="#ref-5-2-scikit-learn" role="doc-biblioref">Pedregosa et al. 2011b</a>)</span>. The bias was indeed lower but still significant. Therefore we also decided to use bias mitigation strategies. To do this, we firstly merged some subgroups for the algorithms to work better. We tried to make “fair classifiers” with two Python packages <code>fairtorch</code> and <code>fairlearn</code> <span class="citation">(<a href="#ref-5-2-fairlearn" role="doc-biblioref">Bird et al. 2020</a>)</span>. They are related to each other as the <code>fairtorch</code> implements the solutions from <code>fairlearn</code>. Using those in-processing algorithms (these are the kind of mitigation approaches that reduce the bias during model training) we obtained 2 additional models. One of them was a neural net and the other was the Histogram-based Gradient Boosting Classification Tree that was trained using the reductions approach. The amount of bias reduced by the neural net from <code>fairtorch</code> was not satisfying enough and therefore will not be shown here. However, the results from <code>fairlearn</code> were quite good.</p>
 <div class="figure" style="text-align: center"><span id="fig:fairclassifier"></span>
 <img src="images/5-2-fairclassifier.png" alt="Fairness check on models before and after the reductions." width="700" />
 <p class="caption">
@@ -499,7 +499,7 @@ Corbett-Davies, S., Pierson, E., Feller, A., Goel, S., &amp; Huq, A. (2017). <sp
 Dwork, C., Hardt, M., Pitassi, T., Reingold, O., &amp; Zemel, R. (2012). Fairness through awareness. <em>ITCS</em>. <a href="https://doi.org/10.1145/2090236.2090255">https://doi.org/10.1145/2090236.2090255</a>
 </div>
 <div id="ref-5-2-variableimportance" class="csl-entry">
-Fisher, A., Rudin, C., &amp; Dominici, F. (2019a). <span class="nocase">All Models are Wrong, but Many are Useful: Learning a Variable’s Importance by Studying an Entire Class of Prediction Models Simultaneously</span>. <em>Journal of Machine Learning Research</em>, <em>20</em>(177), 1–81. <a href="http://jmlr.org/papers/v20/18-760.html">http://jmlr.org/papers/v20/18-760.html</a>
+Fisher, A., Rudin, C., &amp; Dominici, F. (2019b). <span class="nocase">All Models are Wrong, but Many are Useful: Learning a Variable’s Importance by Studying an Entire Class of Prediction Models Simultaneously</span>. <em>Journal of Machine Learning Research</em>, <em>20</em>(177), 1–81. <a href="http://jmlr.org/papers/v20/18-760.html">http://jmlr.org/papers/v20/18-760.html</a>
 </div>
 <div id="ref-5-2-tpr" class="csl-entry">
 Hardt, M., Price, E., Price, E., &amp; Srebro, N. (2016). <span class="nocase">Equality of Opportunity in Supervised Learning</span>. <em>NeurIPS</em>. <a href="https://papers.nips.cc/paper/2016/hash/9d2682367c3935defcb1f9e247a97c0d-Abstract.html">https://papers.nips.cc/paper/2016/hash/9d2682367c3935defcb1f9e247a97c0d-Abstract.html</a>
@@ -511,7 +511,7 @@ Kaushal, A., Altman, R., &amp; Langlotz, C. (2020). <span>Health Care AI Systems
 Molnar, C. (2019). <span class="nocase">Interpretable Machine Learning: A Guide for Making Black Box Models Explainable</span>. <a href="https://christophm.github.io/interpretable-ml-book">https://christophm.github.io/interpretable-ml-book</a>
 </div>
 <div id="ref-5-2-scikit-learn" class="csl-entry">
-Pedregosa, F., Varoquaux, G., Gramfort, A., Michel, V., Thirion, B., Grisel, O., et al. (2011). <span class="nocase">Scikit-learn: Machine Learning in Python</span>. <em>Journal of Machine Learning Research</em>, <em>12</em>, 2825–2830.
+Pedregosa, F., Varoquaux, G., Gramfort, A., Michel, V., Thirion, B., Grisel, O., et al. (2011b). <span class="nocase">Scikit-learn: Machine Learning in Python</span>. <em>Journal of Machine Learning Research</em>, <em>12</em>, 2825–2830.
 </div>
 <div id="ref-5-2-netherlands" class="csl-entry">
 Quanjel, M. J. R., Holten, T. C. van, Gunst-van der Vliet, P. C., Wielaard, J., Karakaya, B., Söhne, M., et al. (2021). Replication of a mortality prediction model in dutch patients with COVID-19. <em>Nature Machine Intelligence</em>, <em>3</em>(1), 23–24. <a href="https://doi.org/10.1038/s42256-020-00253-3">https://doi.org/10.1038/s42256-020-00253-3</a>

@@ -129,7 +129,7 @@ div.csl-indent {
 <li class="chapter" data-level="1.4.7" data-path="xai1-explainable-wine.html"><a href="xai1-explainable-wine.html#summary"><i class="fa fa-check"></i><b>1.4.7</b> Summary</a></li>
 <li class="chapter" data-level="1.4.8" data-path="xai1-explainable-wine.html"><a href="xai1-explainable-wine.html#conclusions"><i class="fa fa-check"></i><b>1.4.8</b> Conclusions</a></li>
 </ul></li>
-<li class="chapter" data-level="1.5" data-path="xai1-explainable-hotels.html"><a href="xai1-explainable-hotels.html"><i class="fa fa-check"></i><b>1.5</b> eXplaining predictions of booking cancelations</a>
+<li class="chapter" data-level="1.5" data-path="xai1-explainable-hotels.html"><a href="xai1-explainable-hotels.html"><i class="fa fa-check"></i><b>1.5</b> Explanatory approach to modeling the risk of hotel booking cancellations</a>
 <ul>
 <li class="chapter" data-level="1.5.1" data-path="xai1-explainable-hotels.html"><a href="xai1-explainable-hotels.html#introduction-2"><i class="fa fa-check"></i><b>1.5.1</b> Introduction</a></li>
 <li class="chapter" data-level="1.5.2" data-path="xai1-explainable-hotels.html"><a href="xai1-explainable-hotels.html#dataset_models"><i class="fa fa-check"></i><b>1.5.2</b> Dataset and models</a></li>
@@ -331,7 +331,7 @@ div.csl-indent {
 <h3><span class="header-section-number">6.5.2</span> Related work</h3>
 <p>Rashomon sets are sets of models performing extraordinarily well on a given task. In machine learning, this term was used for the very first time by Leo Breiman in his paper issued in 2001 <span class="citation">(<a href="#ref-6-0-breiman2001statistical" role="doc-biblioref">Breiman et al. 2001</a>)</span>. Just as the task could be any, like in our case predicting patient’s mortality, the use of given features in order to explain vary among many highly accurate models. Moreover, Leo Breiman also described this situation as the Rashomon Effect and explained details using exemplary models.</p>
 <p>Until recently, the Rashomon sets have been rarely a subject of scientific research. In 2019 <span class="citation">(<a href="#ref-6-0-rashomon-intro" role="doc-biblioref">Semenova et al. 2019</a>)</span> approached the issue creating mathematical and statistical definitions and notations regarding such sets of models. They described Rashomon sets as subspaces of the hypothesis space, that is subsets of models having comparable performance as the best model with respect to a loss function. In order to define well the problem, they introduced Rashomon ratio (fraction of models in rashomon set and all models from hypothesis space) and shattering coefficient - the maximum number of ways any n data points can be classified using functions from the hypothesis space.</p>
-<p>Another outstanding remark concerning Rashomon set was made when in 2019 <span class="citation">(<a href="#ref-6-0-rashomon-variable-importance" role="doc-biblioref">Fisher et al. 2019b</a>)</span> emphasized the analysis of features’ importance within Rashomon sets. The authors suggested Model Class Reliance - a new variable importance (VI) tool to study the the range of VI values across all highly accurate models - models included in rashomon sets. Later, <span class="citation">(<a href="#ref-6-0-rudin-challenges" role="doc-biblioref">Rudin et al. 2021</a>)</span> provided basic rules for interpretable machine learning and identified 10 technical challenge areas in interpretable machine learning. They emphasized the troubleshooting and easiness of using glass-box models today as well as their advantage over black-box models due to their inscrutable nature. In this article, Challenge number 9 involves understanding, exploring, and measuring the Rashomon set. The authors address questions about how to characterize and visualize rashomon sets, and finally, how to pick the best model out of rashomon set. The Variable Importance Clouds, introduced in <span class="citation">(<a href="#ref-6-0-rashomon-variable-importance-cloud" role="doc-biblioref">Dong and Rudin 2020</a>)</span>, are an excellent tool that one can use to address the above problems. Sush cloud maps every variable to its importance for every well-performing model.</p>
+<p>Another outstanding remark concerning Rashomon set was made when in 2019 <span class="citation">(<a href="#ref-6-0-rashomon-variable-importance" role="doc-biblioref">Fisher et al. 2019c</a>)</span> emphasized the analysis of features’ importance within Rashomon sets. The authors suggested Model Class Reliance - a new variable importance (VI) tool to study the the range of VI values across all highly accurate models - models included in rashomon sets. Later, <span class="citation">(<a href="#ref-6-0-rudin-challenges" role="doc-biblioref">Rudin et al. 2021</a>)</span> provided basic rules for interpretable machine learning and identified 10 technical challenge areas in interpretable machine learning. They emphasized the troubleshooting and easiness of using glass-box models today as well as their advantage over black-box models due to their inscrutable nature. In this article, Challenge number 9 involves understanding, exploring, and measuring the Rashomon set. The authors address questions about how to characterize and visualize rashomon sets, and finally, how to pick the best model out of rashomon set. The Variable Importance Clouds, introduced in <span class="citation">(<a href="#ref-6-0-rashomon-variable-importance-cloud" role="doc-biblioref">Dong and Rudin 2020</a>)</span>, are an excellent tool that one can use to address the above problems. Sush cloud maps every variable to its importance for every well-performing model.</p>
 <p>In our work, we choose and visualize the Rashomon sets built on a set of features as well as their subset. We address the problem of searching the most crucial predictive variables among those Rashomon sets and investigate the impact of choosing subsets of input features on the whole process of determining Rashomon sets and their characteristics.</p>
 </div>
 <div id="results-5" class="section level3" number="6.5.3">
@@ -392,10 +392,13 @@ Andriawan, Z. A., Purnama, S. R., Darmawan, A. S., Ricko, Wibowo, A., Sugiharto,
 Anthimopoulos, M., Christodoulidis, S., Ebner, L., Geiser, T., Christe, A., &amp; Mougiakakou, S. (2019). Semantic segmentation of pathological lung tissue with dilated fully convolutional networks. <em>IEEE Journal of Biomedical and Health Informatics</em>, <em>23</em>(2), 714–722. <a href="https://doi.org/10.1109/JBHI.2018.2818620">https://doi.org/10.1109/JBHI.2018.2818620</a>
 </div>
 <div class="csl-entry">
-Antonio, N., Almeida, A. de, &amp; Nunes, L. (2017). Predicting hotel booking cancellations to decrease uncertainty and increase revenue. <em>Tourism &amp; Management Studies</em>, <em>13</em>(2), 25–39. <a href="https://doi.org/10.18089/tms.2017.13203">https://doi.org/10.18089/tms.2017.13203</a>
+Antonio, N., de Almeida, A., &amp; Nunes, L. (2017). Predicting hotel booking cancellations to decrease uncertainty and increase revenue. <em>Tourism &amp; Management Studies</em>, <em>13</em>(2), 25–39. <a href="https://doi.org/10.18089/tms.2017.13203">https://doi.org/10.18089/tms.2017.13203</a>
 </div>
 <div class="csl-entry">
-Antonio, N., Almeida, A. de, &amp; Nunes, L. (2019). An automated machine learning based decision support system to predict hotel booking cancellations. <em>Data Science Journal</em>, <em>18</em>(1), 1–20. <a href="https://doi.org/10.5334/dsj-2019-032">https://doi.org/10.5334/dsj-2019-032</a>
+Antonio, N., de Almeida, A., &amp; Nunes, L. (2019a). An automated machine learning based decision support system to predict hotel booking cancellations. <em>Data Science Journal</em>, <em>18</em>(1), 1–20. <a href="https://doi.org/10.5334/dsj-2019-032">https://doi.org/10.5334/dsj-2019-032</a>
+</div>
+<div class="csl-entry">
+Antonio, N., de Almeida, A., &amp; Nunes, L. (2019b). Hotel booking demand datasets. <em>Data in Brief</em>, <em>22</em>, 41–49. <a href="https://doi.org/10.1016/j.dib.2018.11.126">https://doi.org/10.1016/j.dib.2018.11.126</a>
 </div>
 <div class="csl-entry">
 Apley, D. W., &amp; Zhu, J. (2020). <span class="nocase">Visualizing the effects of predictor variables in black box supervised learning models</span>. <em>Journal of the Royal Statistical Society Series B</em>, <em>82</em>(4), 1059–1086. <a href="https://doi.org/10.1111/rssb.12377">https://doi.org/10.1111/rssb.12377</a>
@@ -536,10 +539,13 @@ Fan, C., Cui, Z., &amp; Zhong, X. (2018). House prices prediction with machine l
 Fawcett, T. (2006). An introduction to ROC analysis. <em>Pattern Recognition Letters</em>, <em>27</em>(8), 861–874. https://doi.org/<a href="https://doi.org/10.1016/j.patrec.2005.10.010">https://doi.org/10.1016/j.patrec.2005.10.010</a>
 </div>
 <div class="csl-entry">
-Fisher, A., Rudin, C., &amp; Dominici, F. (2019a). <span class="nocase">All Models are Wrong, but Many are Useful: Learning a Variable’s Importance by Studying an Entire Class of Prediction Models Simultaneously</span>. <em>Journal of Machine Learning Research</em>, <em>20</em>(177), 1–81. <a href="http://jmlr.org/papers/v20/18-760.html">http://jmlr.org/papers/v20/18-760.html</a>
+Fisher, A., Rudin, C., &amp; Dominici, F. (2019a). All models are wrong, but many are useful: Learning a variable’s importance by studying an entire class of prediction models simultaneously. <em>Journal of Machine Learning Research</em>, <em>20</em>(177), 1–81. <a href="http://jmlr.org/papers/v20/18-760.html">http://jmlr.org/papers/v20/18-760.html</a>
 </div>
 <div class="csl-entry">
-Fisher, A., Rudin, C., &amp; Dominici, F. (2019b). All models are wrong, but many are useful: Learning a variable’s importance by studying an entire class of prediction models simultaneously. <em>Journal of Machine Learning Research</em>, <em>20</em>(177), 1–81.
+Fisher, A., Rudin, C., &amp; Dominici, F. (2019b). <span class="nocase">All Models are Wrong, but Many are Useful: Learning a Variable’s Importance by Studying an Entire Class of Prediction Models Simultaneously</span>. <em>Journal of Machine Learning Research</em>, <em>20</em>(177), 1–81. <a href="http://jmlr.org/papers/v20/18-760.html">http://jmlr.org/papers/v20/18-760.html</a>
+</div>
+<div class="csl-entry">
+Fisher, A., Rudin, C., &amp; Dominici, F. (2019c). All models are wrong, but many are useful: Learning a variable’s importance by studying an entire class of prediction models simultaneously. <em>Journal of Machine Learning Research</em>, <em>20</em>(177), 1–81.
 </div>
 <div class="csl-entry">
 Friedman, J. H. (2000). Greedy function approximation: A gradient boosting machine. <em>Annals of Statistics</em>, <em>29</em>, 1189–1232.
@@ -554,7 +560,16 @@ Géron, A. (2017). <em>Hands-on machine learning with scikit-learn and TensorFl
 Ghysels, E., Plazzi, A., Valkanov, R., &amp; Torous, W. (2013). Chapter 9 - forecasting real estate prices, <em>2</em>, 509–580. https://doi.org/<a href="https://doi.org/10.1016/B978-0-444-53683-9.00009-8">https://doi.org/10.1016/B978-0-444-53683-9.00009-8</a>
 </div>
 <div class="csl-entry">
+Glauner, P. (2021). An assessment of the AI regulation proposed by the european commission. <a href="https://arxiv.org/abs/2105.15133">https://arxiv.org/abs/2105.15133</a>
+</div>
+<div class="csl-entry">
 GOLDNER, M. C., ZAMORA, M. C., DI LEO LIRA, P., GIANNINOTO, H., &amp; BANDONI, A. (2009). EFFECT OF ETHANOL LEVEL IN THE PERCEPTION OF AROMA ATTRIBUTES AND THE DETECTION OF VOLATILE COMPOUNDS IN RED WINE. <em>Journal of sensory studies</em>, <em>24</em>(2), 243–257.
+</div>
+<div class="csl-entry">
+Goldstein, A., Kapelner, A., Bleich, J., &amp; Pitkin, E. (2014). Peeking inside the black box: Visualizing statistical learning with plots of individual conditional expectation.
+</div>
+<div class="csl-entry">
+Goodman, B., &amp; Flaxman, S. (2017). European union regulations on algorithmic decision-making and a <span>“right to explanation.”</span> <em>AI Magazine</em>, <em>38</em>(3), 50–57. <a href="https://doi.org/10.1609/aimag.v38i3.2741">https://doi.org/10.1609/aimag.v38i3.2741</a>
 </div>
 <div class="csl-entry">
 Gosiewska, A., &amp; Biecek, P. (2019). <span>Do Not Trust Additive Explanations</span>. <em>arXiv</em>. <a href="https://arxiv.org/abs/1903.11420v3">https://arxiv.org/abs/1903.11420v3</a>
@@ -629,7 +644,13 @@ Pace, R. K., &amp; Barry, R. (1997). Sparse spatial autoregressions. <em>Statist
 Park, B., &amp; Bae, J. (2015). <span class="nocase">Using machine learning algorithms for housing price prediction: The case of Fairfax County, Virginia housing data</span>. <em>Expert Systems with Applications</em>, <em>42</em>. <a href="https://doi.org/10.1016/j.eswa.2014.11.040">https://doi.org/10.1016/j.eswa.2014.11.040</a>
 </div>
 <div class="csl-entry">
-Pedregosa, F., Varoquaux, G., Gramfort, A., Michel, V., Thirion, B., Grisel, O., et al. (2011). <span class="nocase">Scikit-learn: Machine Learning in Python</span>. <em>Journal of Machine Learning Research</em>, <em>12</em>, 2825–2830.
+Pedregosa, F., Varoquaux, G., Gramfort, A., Michel, V., Thirion, B., Grisel, O., et al. (2011a). Scikit-learn: Machine learning in <span>P</span>ython. <em>Journal of Machine Learning Research</em>, <em>12</em>, 2825–2830.
+</div>
+<div class="csl-entry">
+Pedregosa, F., Varoquaux, G., Gramfort, A., Michel, V., Thirion, B., Grisel, O., et al. (2011b). <span class="nocase">Scikit-learn: Machine Learning in Python</span>. <em>Journal of Machine Learning Research</em>, <em>12</em>, 2825–2830.
+</div>
+<div class="csl-entry">
+Pekala, K., Woznica, K., &amp; Biecek, P. (2021). Triplot: Model agnostic measures and visualisations for variable importance in predictive models that take into account the hierarchical correlation structure. <em>CoRR</em>, <em>abs/2104.03403</em>. <a href="https://arxiv.org/abs/2104.03403">https://arxiv.org/abs/2104.03403</a>
 </div>
 <div class="csl-entry">
 Quanjel, M. J. R., Holten, T. C. van, Gunst-van der Vliet, P. C., Wielaard, J., Karakaya, B., Söhne, M., et al. (2021). Replication of a mortality prediction model in dutch patients with COVID-19. <em>Nature Machine Intelligence</em>, <em>3</em>(1), 23–24. <a href="https://doi.org/10.1038/s42256-020-00253-3">https://doi.org/10.1038/s42256-020-00253-3</a>
@@ -653,7 +674,10 @@ Rai, A. (2020). <span class="nocase">Explainable AI: from black box to glass box
 Riasi, A., Schwartz, Z., &amp; Chen, C.-C. (2019). A paradigm shift in revenue management? The new landscape of hotel cancellation policies. <em>Journal of Revenue and Pricing Management</em>, <em>18</em>(6), 434–440. <a href="https://doi.org/10.1057/s41272-019-00189-3">https://doi.org/10.1057/s41272-019-00189-3</a>
 </div>
 <div class="csl-entry">
-Ribeiro, M. T., Singh, S., &amp; Guestrin, C. (2016). <span class="nocase">"Why Should <span>I</span> Trust You?": Explaining the Predictions of Any Classifier</span>. In <em>Proceedings of the 22nd <span>ACM</span> <span>SIGKDD</span> international conference on knowledge discovery and data mining, san francisco, CA, USA, august 13-17, 2016</em> (pp. 1135–1144). <a href="https://doi.org/10.18653/v1/n16-3020">https://doi.org/10.18653/v1/n16-3020</a>
+Ribeiro, M. T., Singh, S., &amp; Guestrin, C. (2016a). "<span class="nocase">Why should I trust you</span>?": Explaining the predictions of any classifier. In <em>Proceedings of the 22nd <span>ACM</span> <span>SIGKDD</span> international conference on knowledge discovery and data mining, KDD san francisco, CA</em> (pp. 1135–1144). New York, NY: Association for Computing Machinery.
+</div>
+<div class="csl-entry">
+Ribeiro, M. T., Singh, S., &amp; Guestrin, C. (2016b). <span class="nocase">"Why Should <span>I</span> Trust You?": Explaining the Predictions of Any Classifier</span>. In <em>Proceedings of the 22nd <span>ACM</span> <span>SIGKDD</span> international conference on knowledge discovery and data mining, san francisco, CA, USA, august 13-17, 2016</em> (pp. 1135–1144). <a href="https://doi.org/10.18653/v1/n16-3020">https://doi.org/10.18653/v1/n16-3020</a>
 </div>
 <div class="csl-entry">
 Rudin, C., Chen, C., Chen, Z., Huang, H., Semenova, L., &amp; Zhong, C. (2021). Interpretable machine learning: Fundamental principles and 10 grand challenges. <em>arXiv preprint arXiv:2103.11251</em>.
@@ -668,7 +692,7 @@ Sánchez-Medina, A. J., &amp; C-Sánchez, E. (2020). Using machine learning and 
 Semenova, L., Rudin, C., &amp; Parr, R. (2019). A study in rashomon curves and volumes: A new perspective on generalization and model simplicity in machine learning. <em>arXiv preprint arXiv:1908.01755</em>.
 </div>
 <div class="csl-entry">
-Smith, S. J., Parsa, H. G., Bujisic, M., &amp; Rest, J.-P. van der. (2015). Hotel cancelation policies, distributive and procedural fairness, and consumer patronage: A study of the lodging industry. <em>Journal of Travel &amp; Tourism Marketing</em>, <em>32</em>, 886–906. <a href="https://doi.org/10.1080/10548408.2015.1063864">https://doi.org/10.1080/10548408.2015.1063864</a>
+Smith, S. J., Parsa, H. G., Bujisic, M., &amp; van der Rest, J.-P. (2015). Hotel cancelation policies, distributive and procedural fairness, and consumer patronage: A study of the lodging industry. <em>Journal of Travel &amp; Tourism Marketing</em>, <em>32</em>, 886–906. <a href="https://doi.org/10.1080/10548408.2015.1063864">https://doi.org/10.1080/10548408.2015.1063864</a>
 </div>
 <div class="csl-entry">
 Staniak, M., &amp; Biecek, P. (2018). Explanations of model predictions with live and breakDown packages.
@@ -766,7 +790,7 @@ Breiman, L. et al. (2001). Statistical modeling: The two cultures (with comments
 Dong, J., &amp; Rudin, C. (2020). Exploring the cloud of variable importance for the set of all good models. <em>Nature Machine Intelligence</em>, <em>2</em>(12), 810–824.
 </div>
 <div id="ref-6-0-rashomon-variable-importance" class="csl-entry">
-Fisher, A., Rudin, C., &amp; Dominici, F. (2019b). All models are wrong, but many are useful: Learning a variable’s importance by studying an entire class of prediction models simultaneously. <em>Journal of Machine Learning Research</em>, <em>20</em>(177), 1–81.
+Fisher, A., Rudin, C., &amp; Dominici, F. (2019c). All models are wrong, but many are useful: Learning a variable’s importance by studying an entire class of prediction models simultaneously. <em>Journal of Machine Learning Research</em>, <em>20</em>(177), 1–81.
 </div>
 <div id="ref-6-0-rudin-challenges" class="csl-entry">
 Rudin, C., Chen, C., Chen, Z., Huang, H., Semenova, L., &amp; Zhong, C. (2021). Interpretable machine learning: Fundamental principles and 10 grand challenges. <em>arXiv preprint arXiv:2103.11251</em>.
