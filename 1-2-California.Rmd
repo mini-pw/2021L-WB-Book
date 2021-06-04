@@ -4,7 +4,7 @@
 
 ### Abstract
 
-Lorem ipsum
+Real estate market is a very complex structure. In order to properly predict a price of a given property, many various factors need to be taken into account. This case study focuses on usage of explainable artificial intelligence (XAI) methods in making a prediction of California households’ prices. For this purpose, XGBoost regression model of supervised machine learning had been used and developed. In addition to high efficiency of predictions, many detailed factors had been studied and explained, such as high correlation between price and median income of household or impact of geographic location of given estate. The achieved results certainly contribute to a better understanding of the market.
 
 ### Introduction
 
