@@ -11,6 +11,13 @@ fig:pdp-chosen
 fig:ale-chosen
 fig:ale-pdp-chosen-xgb
 fig:ale-pdp-chosen-rf
+fig:1-2-data-table
+fig:1-2-missing-values
+fig:1-2-target-dist
+fig:1-2-ocean-proximity
+fig:1-2-correlation-matrix
+fig:1-2-map-all
+fig:1-2-map-expensive
 fig:shapley-values-18563
 fig:street-view-18563
 fig:shapley-values-15804
@@ -162,6 +169,7 @@ determinants-of-real-estate-value
 machine-learning-uses
 methodology
 data-description
+exploratory-data-analysis
 data-validity
 model
 results

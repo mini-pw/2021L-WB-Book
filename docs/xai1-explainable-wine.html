@@ -356,7 +356,7 @@ div.csl-indent {
 <div class="figure" style="text-align: center"><span id="fig:targetCounts"></span>
 <img src="images/1-4-01targetCounts.png" alt="Distribution of target before and after transformation" width="700" />
 <p class="caption">
-Figure 1.30: Distribution of target before and after transformation
+Figure 1.37: Distribution of target before and after transformation
 </p>
 </div>
 </div>
@@ -421,7 +421,7 @@ Figure 1.30: Distribution of target before and after transformation
 <div class="figure" style="text-align: center"><span id="fig:permutancexgb"></span>
 <img src="images/1-4-03permutance_xgb.png" alt="Permutation-based variable importance plot for tuned XGBoost model. In this case, size of the bar indicates the positive impact that a feature has on accuracy of the model" width="700" />
 <p class="caption">
-Figure 1.31: Permutation-based variable importance plot for tuned XGBoost model. In this case, size of the bar indicates the positive impact that a feature has on accuracy of the model
+Figure 1.38: Permutation-based variable importance plot for tuned XGBoost model. In this case, size of the bar indicates the positive impact that a feature has on accuracy of the model
 </p>
 </div>
 <p>Our starting point was rendering a permutation-based variable importance plot from <em>DALEX</em> package using our XGBoost model to examine which variables play the biggest role in model’s decision <span class="citation">(<a href="#ref-dalex" role="doc-biblioref">Baniecki et al. 2020a</a>)</span>. The goal of this method is to inspect which variables have positive impact on the accuracy of the prediction. Surprisingly, all of them seemed to provide information that benefited the accuracy of the model. This, combined with a relatively small size of our dataset, led us to decision not to exclude any variables in further proceedings. However, the importance of the variables varies greatly - alcohol and sulphates together overcome all other factors combined.</p>
@@ -431,7 +431,7 @@ Figure 1.31: Permutation-based variable importance plot for tuned XGBoost model.
 <div class="figure" style="text-align: center"><span id="fig:meanShapxgb"></span>
 <img src="images/1-4-04meanShap_xgb.png" alt="Mean absolute SHAP value for tuned XGBoost model. Size of the bar indicates how much a feature influences the prediction on average" width="700" />
 <p class="caption">
-Figure 1.32: Mean absolute SHAP value for tuned XGBoost model. Size of the bar indicates how much a feature influences the prediction on average
+Figure 1.39: Mean absolute SHAP value for tuned XGBoost model. Size of the bar indicates how much a feature influences the prediction on average
 </p>
 </div>
 <p>In order to gain a different perspective, we examined a plot of mean absolute SHAP values of our model <span class="citation">(<a href="#ref-xai1-shapleyvalues" role="doc-biblioref">Scott M. Lundberg and Lee 2017</a>)</span>. SHAP method is explained in chapter <a href="xai1-explainable-wine.html#break-down-and-shapley-additive-explanations-shap">Break Down and Shapley Additive Explanations (SHAP)</a>. Mean absoulte SHAP value can give us insight into which variables influence the predictions the most. Although this method differs significantly from the above-mentioned permutation-based variable importance, it provided us with a similar information on the hierarchy of importance of the variables - once again, alcohol seems to be the biggest factor, followed by sulphates. Analysing those plots encouraged us to take a closer look at the role that alcohol content plays on the prediction.</p>
@@ -441,7 +441,7 @@ Figure 1.32: Mean absolute SHAP value for tuned XGBoost model. Size of the bar i
 <div class="figure" style="text-align: center"><span id="fig:pdp"></span>
 <img src="images/1-4-11pdp.png" alt="Partial Dependence Plot for all models. Lines represent the average prediction by the model if all observations had a fixed value of a feature, in this case - alcohol content" width="700" />
 <p class="caption">
-Figure 1.33: Partial Dependence Plot for all models. Lines represent the average prediction by the model if all observations had a fixed value of a feature, in this case - alcohol content
+Figure 1.40: Partial Dependence Plot for all models. Lines represent the average prediction by the model if all observations had a fixed value of a feature, in this case - alcohol content
 </p>
 </div>
 <p>Next, we used Partial Dependence Plot from <em>DALEX</em> package <span class="citation">(<a href="#ref-dalex" role="doc-biblioref">Baniecki et al. 2020a</a>)</span> to examine an overall effect the alcohol content has on our predictions. PDP tells us what would the average prediction be, if all observations had a fixed value of certain variable. This time, we used all of our models. As expected, tree-based model (XGBoost, GradientBoosting and Random Forest) behave very similarly, while SVM stands out from the rest. However, the main trend is the same - generally, stronger wines are more likely to be good than the weaker ones. Most models reach their lows at just below 10% alcohol content and plateau around 12%.</p>
@@ -452,7 +452,7 @@ Figure 1.33: Partial Dependence Plot for all models. Lines represent the average
 <div class="figure" style="text-align: center"><span id="fig:ale"></span>
 <img src="images/1-4-10ale.png" alt="Accumulated Local Effects Plot for all models. Lines represent how predictions change in a small range around the value of a feature, in this case - alcohol content." width="700" />
 <p class="caption">
-Figure 1.34: Accumulated Local Effects Plot for all models. Lines represent how predictions change in a small range around the value of a feature, in this case - alcohol content.
+Figure 1.41: Accumulated Local Effects Plot for all models. Lines represent how predictions change in a small range around the value of a feature, in this case - alcohol content.
 </p>
 </div>
 <p>In order to take into account possible interactions concerning our variable, we generated an ALE plot using all of the models <span class="citation">(<a href="#ref-xai1-ale" role="doc-biblioref">Apley and Zhu 2020</a>)</span>. This methods shows us how model predictions change in a small “window” of the feature around certain value for data instances in that window. The results turned out to be quite similar to PDP. It makes sense, considering the fact that our dataset doesn’t contain many strongly corelated variables, and the one that is related the most to alcohol, the density, doesn’t have a very significant impact on the predictions made by the models. The most visible difference is probably the way SVM behaves for the biggest alcohol values - it doesn’t seem to differ as much from the other models as in the previous plot.</p>
@@ -462,27 +462,27 @@ Figure 1.34: Accumulated Local Effects Plot for all models. Lines represent how 
 <h3><span class="header-section-number">1.4.5</span> Local explanations</h3>
 <div id="break-down-and-shapley-additive-explanations-shap" class="section level4" number="1.4.5.1">
 <h4><span class="header-section-number">1.4.5.1</span> Break Down and Shapley Additive Explanations (SHAP)</h4>
-The first method that we have used for our local explanations is Shapley Additive Explanations (SHAP). It is based on another explanatory method called Break-Down, which similarly to SHAP is used to compute variables’ attribution to the model’s prediction <span class="citation">(<a href="#ref-xai1-breakdown" role="doc-biblioref">Staniak and Biecek 2018</a>)</span>. Break-Down method fixes values of variables in sequence and looks at changes in label value. Moreover, as we can see in figure Figure <a href="xai1-explainable-wine.html#fig:breakdownplot">1.35</a> this method is sensitive to the order of variables.
+The first method that we have used for our local explanations is Shapley Additive Explanations (SHAP). It is based on another explanatory method called Break-Down, which similarly to SHAP is used to compute variables’ attribution to the model’s prediction <span class="citation">(<a href="#ref-xai1-breakdown" role="doc-biblioref">Staniak and Biecek 2018</a>)</span>. Break-Down method fixes values of variables in sequence and looks at changes in label value. Moreover, as we can see in figure Figure <a href="xai1-explainable-wine.html#fig:breakdownplot">1.42</a> this method is sensitive to the order of variables.
 <div class="figure" style="text-align: center"><span id="fig:breakdownplot"></span>
 <img src="images/1-4-05breakdown.png" alt="BreakDown plots for one observation with different order of fixed variables. Size and color of bars indicates changes in model's predictions." width="700" />
 <p class="caption">
-Figure 1.35: BreakDown plots for one observation with different order of fixed variables. Size and color of bars indicates changes in model’s predictions.
+Figure 1.42: BreakDown plots for one observation with different order of fixed variables. Size and color of bars indicates changes in model’s predictions.
 </p>
 </div>
 All three presented plots describe the same observation with different sequences of examined variables. When critic acid was fixed as the first one, it lowered the prediction. However, the second plot presents a situation where critic acid was second fixed variable and its value showed a positive impact on rising wine’s rating. This dependency on order made it harder for us to conclude about specific wines. Fortunately
-Shapley Additive Explanations method (SHAP) resolves this issue by averaging results for different permutations of variables <span class="citation">(<a href="#ref-xai1-shapleyvalues" role="doc-biblioref">Scott M. Lundberg and Lee 2017</a>)</span>. As an example, you can see computed Shapley values for same observation in Figure <a href="xai1-explainable-wine.html#fig:shapplot97">1.36</a> .
+Shapley Additive Explanations method (SHAP) resolves this issue by averaging results for different permutations of variables <span class="citation">(<a href="#ref-xai1-shapleyvalues" role="doc-biblioref">Scott M. Lundberg and Lee 2017</a>)</span>. As an example, you can see computed Shapley values for same observation in Figure <a href="xai1-explainable-wine.html#fig:shapplot97">1.43</a> .
 <div class="figure" style="text-align: center"><span id="fig:shapplot97"></span>
 <img src="images/1-4-12shap1.png" alt="Plot of Shapley Values for good wine. Size and color of bars indicates mean change in model's prediction over different orders of fixed variable." width="700" />
 <p class="caption">
-Figure 1.36: Plot of Shapley Values for good wine. Size and color of bars indicates mean change in model’s prediction over different orders of fixed variable.
+Figure 1.43: Plot of Shapley Values for good wine. Size and color of bars indicates mean change in model’s prediction over different orders of fixed variable.
 </p>
 </div>
 Here our model was certain about assigning wine to good ones. Nearly all factors contributed to increasing wine’s rating. Not surprisingly, alcohol and sulphates had the biggest influence on the model’s prediction. Only free sulfur dioxide and pH had worsened the quality of wine, all of which, according to global explanations, are practically irrelevant variables to our model.
-On the contrary Figure <a href="xai1-explainable-wine.html#fig:shapplot19">1.37</a> presents an observation where all attributes except volatile acidity lowered the rating of our wine. From the values of particular variables, we can see that these wines are completely different, which explains model’s distant assessments. Furthermore, exact values that our model understands as beneficial for wine start to emerge. To get a closer look we will have to use new method described in the following section.
+On the contrary Figure <a href="xai1-explainable-wine.html#fig:shapplot19">1.44</a> presents an observation where all attributes except volatile acidity lowered the rating of our wine. From the values of particular variables, we can see that these wines are completely different, which explains model’s distant assessments. Furthermore, exact values that our model understands as beneficial for wine start to emerge. To get a closer look we will have to use new method described in the following section.
 <div class="figure" style="text-align: center"><span id="fig:shapplot19"></span>
 <img src="images/1-4-13shap2.png" alt="Plot of Shapley Values for bad wine." width="700" />
 <p class="caption">
-Figure 1.37: Plot of Shapley Values for bad wine.
+Figure 1.44: Plot of Shapley Values for bad wine.
 </p>
 </div>
 </div>
@@ -492,13 +492,13 @@ Figure 1.37: Plot of Shapley Values for bad wine.
 <div class="figure" style="text-align: center"><span id="fig:lime1"></span>
 <img src="images/1-4-06LIME1.png" alt=" Visualization of LIME method for wine incorrectly classified as bad. Left section represents prediction probability. Middle section displays importance of features and right section their exact values. Blue color indicates that variable is supporting class 0 (bad wine) and orange that variable is supporting class 1 (good wine)." width="700" />
 <p class="caption">
-Figure 1.38:  Visualization of LIME method for wine incorrectly classified as bad. Left section represents prediction probability. Middle section displays importance of features and right section their exact values. Blue color indicates that variable is supporting class 0 (bad wine) and orange that variable is supporting class 1 (good wine).
+Figure 1.45:  Visualization of LIME method for wine incorrectly classified as bad. Left section represents prediction probability. Middle section displays importance of features and right section their exact values. Blue color indicates that variable is supporting class 0 (bad wine) and orange that variable is supporting class 1 (good wine).
 </p>
 </div>
 <div class="figure" style="text-align: center"><span id="fig:lime2"></span>
 <img src="images/1-4-07LIME2.png" alt=" Visualization of LIME method for wine incorrectly classified as good." width="700" />
 <p class="caption">
-Figure 1.39:  Visualization of LIME method for wine incorrectly classified as good.
+Figure 1.46:  Visualization of LIME method for wine incorrectly classified as good.
 </p>
 </div>
 <p>However, in this case, alcohol does not always dominate, and the prediction result for the XGBoost model is indeed a component of many elements. However, it has to be considered that the <em>LIME</em> method in this case takes into account only certain automatically selected intervals, which, when combined, do not fully represent the essence of the algorithm.</p>
@@ -510,14 +510,14 @@ labeled as the bad one. We quietly assumed that it was due to low alcohol conten
 <div class="figure" style="text-align: center"><span id="fig:cp1"></span>
 <img src="images/1-4-08cp1.png" alt="Ceteris-paribus profile for all models. Lines represent how the models' predictions change over different alcohol contents while keeping other variables fixed. Dots represents actual value of alcohol content in examined misclassified wine." height="300" />
 <p class="caption">
-Figure 1.40: Ceteris-paribus profile for all models. Lines represent how the models’ predictions change over different alcohol contents while keeping other variables fixed. Dots represents actual value of alcohol content in examined misclassified wine.
+Figure 1.47: Ceteris-paribus profile for all models. Lines represent how the models’ predictions change over different alcohol contents while keeping other variables fixed. Dots represents actual value of alcohol content in examined misclassified wine.
 </p>
 </div>
-Indeed if our wine was less than a half percent stronger, the model would properly give it a higher rating. However, rising alcohol levels in not always an answer. For instance, very strong wine with 14.7% alcohol presented in Figure <a href="xai1-explainable-wine.html#fig:cp2">1.41</a> would benefit from a reduction of alcohol content.
+Indeed if our wine was less than a half percent stronger, the model would properly give it a higher rating. However, rising alcohol levels in not always an answer. For instance, very strong wine with 14.7% alcohol presented in Figure <a href="xai1-explainable-wine.html#fig:cp2">1.48</a> would benefit from a reduction of alcohol content.
 <div class="figure" style="text-align: center"><span id="fig:cp2"></span>
 <img src="images/1-4-09cp2.png" alt="Ceteris-paribus profile for alcohol content in a very strong wine." height="300" />
 <p class="caption">
-Figure 1.41: Ceteris-paribus profile for alcohol content in a very strong wine.
+Figure 1.48: Ceteris-paribus profile for alcohol content in a very strong wine.
 </p>
 </div>
 </div>
