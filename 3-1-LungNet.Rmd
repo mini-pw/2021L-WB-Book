@@ -4,8 +4,8 @@
 
 ### Introduction
 Our goal is to recreate the results achived in the article: [Semantic Segmentation of Pathological Lung Tissue
-with Dilated Fully Convolutional Networks](https://github.com/intact-project/LungNet). Authors developed a deep purely convolutional neural network for the semantic segmentation of interstitial lung diseases. The proposed CNN takes as input a lung CT image of arbitrary size and outputs the corresponding label map. We want to recreate that CNN and achive as similar results as possible.\
-Iinterstital lung disease (ILD) is a group of more than 200 chronic lung disorders characterized by inflammation and scarring of the lung tissue that leads to respiratory failure. The diagnosis of ILD is mostly performed by radiologists and is usually based on the assessment of the different ILD pathologies in high resolution computed tomography (HRCT) thoracic scans. Early diagnosis is crucial for making treatment decisions, while misdiagnosis may lead to life-threatening complications. Pathological tissue is usually manifested as various textural patterns in the CT scan. The article proposes the use of a deep fullyconvolutional network for the problem of ILD pattern recognition that uses dilated convolutions and is trained in an end-to-end and semi-supervised manner.\
+with Dilated Fully Convolutional Networks](https://github.com/intact-project/LungNet). Authors developed a deep purely convolutional neural network for the semantic segmentation of interstitial lung diseases. The proposed CNN takes as input a lung CT image of arbitrary size and outputs the corresponding label map. We want to recreate that CNN and achieve as similar results as possible.\
+Interstitial lung disease (ILD) is a group of more than 200 chronic lung disorders characterized by inflammation and scarring of the lung tissue that leads to respiratory failure. The diagnosis of ILD is mostly performed by radiologists and is usually based on the assessment of the different ILD pathologies in high resolution computed tomography (HRCT) thoracic scans. Early diagnosis is crucial for making treatment decisions, while misdiagnosis may lead to life-threatening complications. Pathological tissue is usually manifested as various textural patterns in the CT scan. The article proposes the use of a deep fullyconvolutional network for the problem of ILD pattern recognition that uses dilated convolutions and is trained in an end-to-end and semi-supervised manner.\
 On the image is presented a typical HRCT scan with annotations. The white border line denotes the lung field segmentation, the blue denotes healthy tissue, the purple micronodules and the red the honeycombing pattern.
 
 ```{r, out.width="500", fig.align="center", echo=FALSE, fig.cap='Example of an annotated HRCT lung scan'}
@@ -17,7 +17,8 @@ In order to recreate the article we needed annotated HRCT scans of lungs.
 
 #### Original data
 The authors of the article used a dataset of 172 sparsely annotated HRCT scans, each corresponding to a unique ILD or healthy subject. The dataset contains 109 cases from multimedia database of interstitial lung diseases by the Geneva University Hospital (HUG), along with 63 cases from Bern University Hospital - “Inselspital” (INSEL), as collected by the authors. Two experienced radiologists from INSEL annotated or reannotated ILD typical pathological patterns, as well as healthy tissue in both databases. A lung field segmentation mask was also provided for each case.\
-Artcile claims that the datasets are publicly available. However, we could not reach them. The HUG dataset required a copyright agreement signed by a person duly authorized by the institution (e.g., Department or Administrative Head or similar). We could not find any access to the INSEL datset.
+Article claims that the datasets are publicly available. However, we could not reach them. The HUG dataset required a copyright agreement signed by a person duly authorized by the institution (e.g., Department or Administrative Head or similar). We could not find any access to the INSEL dataset.
+In order to find datasets, which correspond to our theme, we looked for similar articles. One of them was an article [Computer-Aided Diagnosis of Pulmonary Fibrosis Using Deep Learning and CT Images](https://journals.lww.com/investigativeradiology/fulltext/2019/10000/computer_aided_diagnosis_of_pulmonary_fibrosis.2.aspx?__cf_chl_jschl_tk__=22496c461ea65bb414daead0fdca440f3b7e4fe1-1614789118-0-AbNy61sH62F1S0-i84BHA6kR-M9YhH1dBFpxR8nQfsFioS7xQRtB_kEvS6fza4ybfff0xvQwYqS_ECgwG13r08JdOlcBA4kKkiJP9RLRP2zHjU8ENwrCK_JED7NT66xGAOfEfXvEOpvQzs-03uz8EKGhNxStyoWdBJfProZv7jbl5d8mEZElWoDLkiX9JFTB8Cf8SWJXRUy_lS5eYBqV3Ufj69UI6P5XPEwA2VdLyjD3FqhtXvaOujWcfqa6uWImIX0JRMAsWj2J5aad-rWk_1Ev2L4dCfXa_MPsGmD45-NOMwa91lZLR1opuBoEJvo3LI0xOXJCrP0CJ7gvBOjfYg9ayUcAoHVb6R5ZiUW2LgMdiw5piFmAdU1mEXvGxUNjhajRqIjbR5DeA00oh4YaxwU9PQm4DhkKawn_LE05eDWYOcMqbWX22BlMqwtAyrFLGX2ziNOEv9OYkx7zSpgF3gnGHkbokGLl-sHAggiBAY0yN-7-lh8GdQPBqNlfFE1C7g&fbclid=IwAR1pqpeneRTQ0mkR2MVZYr1b-87R0TDU_CoyIcYPSo1QksAjTiXxxflcepg), which is about pulmonary fibrosis which belongs to ILD. This article uses multiple datasets, but no one is available online.
 
 #### Our data
 Because of the issues with the original data we had to find new datasets.\
@@ -27,25 +28,43 @@ The LIDC dataset is much better annotated and contains more cases. That is why w
 
 ### Original model
 
+```{r, out.width="900", fig.align="center", echo=FALSE, fig.cap='Original model on COVID dataset'}
+knitr::include_graphics('images/3-1-original_model_covid.png')
+```
+```{r, out.width="900", fig.align="center", echo=FALSE, fig.cap='Original model on LIDC dataset'}
+knitr::include_graphics('images/3-1-original_model_lidc.png')
+```
+
 #### Preprocessing
 
 ### New models
 
 #### Smaller ones
+This architecture was modification of proposed by authors. 
 
 #### SegNet
+Another architecture which inspired us was SegNet. It is a deep convolutional encoder-decoder architecture for image segmentation. Originally, it consisted of 10 convolutional blocks, where each block is made up of convolutional layer, batch normalization and as activation relu is used. Depending if block is in encoder or decoder, to block is added pooling layer or upsampling layer.
+```{r, out.width="900", fig.align="center", echo=FALSE, fig.cap='Original SegNet'}
+knitr::include_graphics('images/3-1-segnet-architecture.png')
+```
+
+We used our modification of SegNet consisted of 8 convolutional blocks. We deleted 2 middle blocks. It performed much better than original model proposed by authors of the article on both datasets. It achieved about 0.97 on LIDC dataset and 0.75 COVID dataset weighted accuracy over annotated area (metric proposed by authors of paper, which we are trying to reproduce). Below we have two plots showing, how much our score changed on validation set over epochs.
+```{r, out.width="600", fig.align="center", echo=FALSE, fig.cap='Original SegNet'}
+knitr::include_graphics('images/3-1-segnet-covid.png')
+knitr::include_graphics('images/3-1-segnet-lidc.png')
+```
 
 ##### First try
 
 ##### Metrics
 We used several metrics to evaluate our model.\
-The most important one is confusion matrix. It shows how accurate is the model. We can notice that it imporves a little over time but it is not significant. Most of predicted healthy area of the lungs is actually healthy. It is the main part of the scans. However, there are a lot of false positive cases. The model marks healthy parts of the lungs as lesioned. It finds most of the actual lesions but marks it together with a lot of healthy part.
+The most important one is confusion matrix. It shows how accurate is the model. We can notice that it improves a little over time but it is not significant. Most of predicted healthy area of the lungs is actually healthy. It is the main part of the scans. However, there are a lot of false positive cases. The model marks healthy parts of the lungs as lesion. It finds most of the actual lesions but marks it together with a lot of healthy part.
 
 ```{r, out.width="900", fig.align="center", echo=FALSE, fig.cap='Confusion matrix'}
 knitr::include_graphics('images/3-1-confusion_matrix.png')
 ```
 
-Accuracy, precision, recall and specificity are basic ones. Accuracy is not very meaningfull because of the uneven distribution of the considered classes across the cases. Precision is very low, what is connected with confusion matrix. Model marks a lot of false positive cases. Recall is pretty high. Model finds most of the lesioned part of the lungs. Specificity is extremely high what is also connected with confusion matrix. Model finds almost all healthy lung tissue. In some metrics we can notice an improvment over time.
+Accuracy, precision, recall and specificity are basic ones. Accuracy is not very meaningful because of the uneven distribution of the considered classes across the cases. Precision is very low, what is connected with confusion matrix. Model marks a lot of false positive cases. Recall is pretty high. Model finds most of the damaged part of the lungs. Specificity is extremely high what is also connected with confusion matrix. Model finds almost all healthy lung tissue. In some metrics we can notice an improvement over time.
 
 ```{r, out.width="600", fig.align="center", echo=FALSE}
 knitr::include_graphics('images/3-1-accuracy.png')
@@ -54,13 +73,13 @@ knitr::include_graphics('images/3-1-recall.png')
 knitr::include_graphics('images/3-1-specificity.png')
 ```
 
-Intersection over Union metric is important in our case because we classify images. It says how accurately model marks lesions in lungs. It is calculated by dividing an intersection area of the actual lesions and the predictins over an union area of them. The metric is pretty high and improves over time. The reason why it is not close to 1 is the problem with false positives and low precision.
+Intersection over Union metric is important in our case because we classify images. It says how accurately model marks lesions in lungs. It is calculated by dividing an intersection area of the actual lesions and the predictions over an union area of them. The metric is pretty high and improves over time. The reason why it is not close to 1 is the problem with false positives and low precision.
 
 ```{r, out.width="600", fig.align="center", echo=FALSE}
 knitr::include_graphics('images/3-1-IoU.png')
 ```
 
-##### Pretrainig
+##### Pretraining
 
 ##### Transfer learning
 
