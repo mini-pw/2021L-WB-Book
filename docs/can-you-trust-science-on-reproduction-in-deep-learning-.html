@@ -4,11 +4,11 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>6.1 Topic | Case Studies</title>
+  <title>4.5 Can you trust science? On Reproduction in Deep Learning. | Case Studies</title>
   <meta name="description" content="Case studies in machine learning." />
   <meta name="generator" content="bookdown 0.22 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="6.1 Topic | Case Studies" />
+  <meta property="og:title" content="4.5 Can you trust science? On Reproduction in Deep Learning. | Case Studies" />
   <meta property="og:type" content="book" />
   
   <meta property="og:image" content="/images/cover.png" />
@@ -16,7 +16,7 @@
   <meta name="github-repo" content="mini-pw/2021L-WB-Book" />
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="6.1 Topic | Case Studies" />
+  <meta name="twitter:title" content="4.5 Can you trust science? On Reproduction in Deep Learning. | Case Studies" />
   
   <meta name="twitter:description" content="Case studies in machine learning." />
   <meta name="twitter:image" content="/images/cover.png" />
@@ -31,8 +31,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-<link rel="prev" href="rashomonml.html"/>
-<link rel="next" href="title.html"/>
+<link rel="prev" href="dl2-rmdl-unet.html"/>
+<link rel="next" href="machine-learning.html"/>
 <script src="libs/header-attrs/header-attrs.js"></script>
 <script src="libs/jquery/jquery.min.js"></script>
 <link href="libs/gitbook/css/style.css" rel="stylesheet" />
@@ -316,73 +316,721 @@ div.csl-indent {
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="topic" class="section level2" number="6.1">
-<h2><span class="header-section-number">6.1</span> Topic</h2>
-<p><em>Authors: Adrian Stańdo, Maciej Pawlikowski, Mariusz Słapek (Warsaw University of Technology)</em></p>
-<div id="abstract-12" class="section level3" number="6.1.1">
-<h3><span class="header-section-number">6.1.1</span> Abstract</h3>
-<p>Technological advances were early adopted by healthcare with great benefits and developments. In many health-related realms machine learning is crucial such as: development of new medical procedures, the treatment of chronic diseases, the management of patient records and data. Explainable AI (XAI) gives invaluable tools in healthcare for understanding the models by humans.
-The aim of this article is to compare PDP profiles for a Rashomon set with a given metric. Following we use five different metrics of distance function and based on that we compare PDP curves.
-Additionally, the library in the Python language has been created, which automates this research. We have observed that the created models, which have similar scores, have different variable importances.
-In this paper these differences were measured and assessed to understand better the problem of predicting hospital mortality using data from MIMIC-III.</p>
+<div id="can-you-trust-science-on-reproduction-in-deep-learning." class="section level2" number="4.5">
+<h2><span class="header-section-number">4.5</span> Can you trust science? On Reproduction in Deep Learning.</h2>
+<p><em>Authors: Filip Chrzuszcz, Szymon Rećko, Mateusz Sperkowski (Warsaw University of Technology)</em></p>
+<div id="abstract-7" class="section level3" number="4.5.1">
+<h3><span class="header-section-number">4.5.1</span> Abstract</h3>
+<p>One of the most important aspects of machine learning scientific articles is reproducibility. Obtaining results similar to those from the paper, using the same codes and data sets, allows for verification and evaluation of the reliability of the research. In our work, we try to reproduce the results of two deep learning articles using the code and information provided by their authors. We will present the problems with reproduction that we encountered, their reasons and the action we had to take to solve them. The results of our experiments show that despite the lack of information or computational resources, it is possible to obtain sufficiently similar results to those presented in the articles.</p>
 </div>
-<div id="literature-review" class="section level3" number="6.1.2">
-<h3><span class="header-section-number">6.1.2</span> Literature review</h3>
-<p>Rashomon is a intriguing Japanese movie in which four people witness an incident from different vantage points. When they come to testify in court, they all report the same facts, but their stories of what happened are very different.
-In machine learning Rashomon set is used to characterise problem in which many different models offer accurate results describing the same data.
-However, not every accurate model gives a right conclusion as described in <span class="citation">(<a href="#ref-6-0-breiman2001statistical" role="doc-biblioref">Breiman et al. 2001</a>)</span>: <em>“If the model is a poor emulation of nature, the conclusion might be worng”</em>. Herein authors also explain basics of Rashomon sets on example. Much more in depth and mathematical description is provided in <span class="citation">(<a href="#ref-6-0-rashomon-intro" role="doc-biblioref">Semenova et al. 2019</a>)</span>.
-Another important topic related to Rashomon sets is analysing the feature importance of the model. It was described in this article <span class="citation">(<a href="#ref-6-0-rashomon-variable-importance" role="doc-biblioref">Fisher et al. 2019c</a>)</span>, where authors suggested to study the maximum and minimum of variable importance across all models included in the Rashomon set. This technique was called MCR (Model Class Reliance).
-Furthermore, <span class="citation">(<a href="#ref-6-0-rashomon-variable-importance-cloud" role="doc-biblioref">Dong and Rudin 2020</a>)</span> presented technique to visualise the “cloud” of variable importance for models in the set, which could help us understand the Rashomon set and choose the one which give the best interpretation. The last question stated in the article <span class="citation">(<a href="#ref-6-0-rudin-challenges" role="doc-biblioref">Rudin et al. 2021</a>)</span> was about choosing model from the Rashomon set. It might be a difficult task, especially when we lack good exploration tools.
-<span class="citation">(<a href="#ref-6-1-beams-system" role="doc-biblioref">Das et al. 2019</a>)</span> created a system called BEAMS that allows to choose the most important features. Next, the program searches the hypothesis space in order to find model which fits best to given constraints. Since this system works only with linear regression classifiers, <span class="citation">(<a href="#ref-6-0-rudin-challenges" role="doc-biblioref">Rudin et al. 2021</a>)</span> stated a question if it is possible to design a simmilar system which will search only models within the Rashomon set.</p>
+<div id="introduction-9" class="section level3" number="4.5.2">
+<h3><span class="header-section-number">4.5.2</span> Introduction</h3>
+<p>To increase the credibility of published scientific literature, researchers should increase the credibility and effectiveness of their research <span class="citation">(<a href="#ref-4-5-ReproducibleScience" role="doc-biblioref">Casadevall and Fang 2010</a>)</span>. Reproducibility in the field of deep learning is the feature of scientific research, which allows for independent repetition of the experiment and obtaining similar results using the code of the original creators of the experiment <span class="citation">(<a href="#ref-4-5-ReproducibilityInML" role="doc-biblioref">Pineau et al. 2020</a>)</span>. In order to increase it, articles should contain as much information as possible about datasets, models and their parameters that will help others to recreate it. This includes more researchers who will be able to continue their work in a given field. Unfortunately, often even a basic reproduction is not possible. The purpose of this article is to recreate two articles on Random Multimodel Deep Learning <span class="citation">(<a href="#ref-4-1-RMDL" role="doc-biblioref">Kowsari et al. 2018</a>)</span> and Adversarial attacks against medical deep learning systems <span class="citation">(<a href="#ref-4-5-AdversarialAttacks" role="doc-biblioref">Finlayson et al. 2018</a>)</span>, respectively, and to identify reproducibility problems occuring in them.</p>
 </div>
-<div id="results-4" class="section level3" number="6.1.3">
-<h3><span class="header-section-number">6.1.3</span> Results</h3>
-<div id="results-of-models-search" class="section level4" number="6.1.3.1">
-<h4><span class="header-section-number">6.1.3.1</span> Results of models search</h4>
-<p><img src="images/6-1-rashomon_ratio.png" /></p>
+<div id="methodology-2" class="section level3" number="4.5.3">
+<h3><span class="header-section-number">4.5.3</span> Methodology</h3>
+<p>In order to study the reproducibility of the original publications, we used the author codes publicly available on github. Each of the following subsections will address further important aspects of reproduction and, depending on the article, the numerous problems we encountered.</p>
+<div id="models" class="section level4" number="4.5.3.1">
+<h4><span class="header-section-number">4.5.3.1</span> Models</h4>
+<p>As Deep Learning evolves and extensive scientific research happens, many new architectures are constantly introduced such as published in 2017 Transformer Neural Network <span class="citation">(<a href="#ref-4-5-TNN_Attention" role="doc-biblioref">Vaswani et al. 2017</a>)</span>, which revolutonized Natural Language Processing (NLP) field of machine learning. Most common architectures include Deep Neural Networks, Recurrent Neural Networks and Convolutional Neural Networks (further as DNN, RNN, CNN respectively) <span class="citation">(<a href="#ref-An" role="doc-biblioref"><strong>An?</strong></a>)</span>,<span class="citation">(<a href="#ref-4-5-Deep_Medical_Overview" role="doc-biblioref">Suzuki 2017</a>)</span>.</p>
+<div id="rmdl" class="section level5" number="4.5.3.1.1">
+<h5><span class="header-section-number">4.5.3.1.1</span> RMDL</h5>
+<p>This paper introduces new approach to deep learning models. Authors propose an ensemble, named Random Multimodel Deep Learning (RMDL). It consists of many randomized deep learning models, refered to as Random Deep Learning (RDL). Only the extent of randomization is controlled by the hyperparameters. The resulting ensemble consists of units with different architecture, which according to authors leads to increased robustness of the model.</p>
+<p>Our reproduction covers the experiments on the classification tasks of images and text. The same or similar model can be expanded to many more fields of machine learning.</p>
+</div>
+<div id="adversarial-medicine" class="section level5" number="4.5.3.1.2">
+<h5><span class="header-section-number">4.5.3.1.2</span> Adversarial medicine</h5>
+<p>This research paper addresses the topic of influencing the performance of a machine learning model. Unlike the first RMDL project, where the topics the authors dealt with were quite broad, here we have a thorough consideration of one particular aspect. Namely, the authors talk about specific types of attacks on an already trained architecture for predicting whether a particular disease is present in a given medical image. Our reproduction dealt with training the models proposed by the authors and then attacking them with prepared scripts whose task was to flip the labels predicted by the model. Additionally, this had to be done in a way that was completely indistinguishable to the human eye, i.e., the images had to remain as similar to the original photo as possible.</p>
 </div>
 </div>
-<div id="best-models" class="section level3" number="6.1.4">
-<h3><span class="header-section-number">6.1.4</span> Best models</h3>
-<p><img src="images/6-1-results.png" /></p>
-<div id="boxplots-of-abs_sum-metric-for-the-best-models" class="section level4" number="6.1.4.1">
-<h4><span class="header-section-number">6.1.4.1</span> Boxplots of abs_sum metric for the best models</h4>
-<p><img src="images/6-1-boxplot_1.png" /></p>
+<div id="datasets" class="section level4" number="4.5.3.2">
+<h4><span class="header-section-number">4.5.3.2</span> Datasets</h4>
+<p>Most important part of supervised machine learning is the dataset. Data scientists spend majority of development time on data cleaning <span class="citation">(<a href="#ref-4-5-Data_Cleaning" role="doc-biblioref">Chu et al. 2016</a>)</span>. The basis for the reproduction of deep learning models is that the sets for training and testing come from the same dataset used by the models in the article. Even small differences in data sets can affect the results and the reliability of reproduction.</p>
+<div id="rmdl-1" class="section level5" number="4.5.3.2.1">
+<h5><span class="header-section-number">4.5.3.2.1</span> RMDL</h5>
+<p><span class="citation">(<a href="#ref-4-1-RMDL" role="doc-biblioref">Kowsari et al. 2018</a>)</span> in the original paper is used as a classification model. For comparison with the original results, this reproduction covers the same datasets as <span class="citation">(<a href="#ref-4-1-RMDL" role="doc-biblioref">Kowsari et al. 2018</a>)</span> did. All of the datasets used are well known pre-cleaned data, so that majority of preprocessing is already done.</p>
+<p>Reproduction attempts on 6 different text classification datasets were made. More specifically on: WOS-5736, WOS-11967, WOS-46985, which are datasets published <span class="citation">(<a href="#ref-4-5-WOS_Dataset" role="doc-biblioref">Kowsari et al. 2017</a>)</span> by authors of the original paper and they cover classification of scientific abstracts (Web Of Science). The number in the dataset name refers to the numver of documents in the corpora. Next NLP dataset is Reuters-21578 containing 10 788 documents on topics of bussines/economics from Reuters newswire service. Next two datasets were IMDB, for classification of movie reviews, and 20NewsGroup for topic classification of newsgroups posts. Respectively they contain 50 000 reviews and 19 997 news posts. Newsgroups can be interpreted as discussion groups.</p>
+<p>For image classifications two datasets were used. First one is MNIST containing 70 000 hand written greyscale digits in a 28x28x1 pixels format. The second one is CIFAR-10, which consist of 60 000 images of 10 classes with common objects such as airplane, automobile, cat. This dataset images are in format 32x32x3, which implies RGB photos.</p>
 </div>
-<div id="boxplots-of-abs_sum-metric-for-each-feature" class="section level4" number="6.1.4.2">
-<h4><span class="header-section-number">6.1.4.2</span> Boxplots of abs_sum metric for each feature</h4>
-<p><img src="images/6-1-boxplot_2_2.png" /></p>
+<div id="adversarial-medicine-1" class="section level5" number="4.5.3.2.2">
+<h5><span class="header-section-number">4.5.3.2.2</span> Adversarial medicine</h5>
+<p>The authors add 3 types of medical images to their models. These are lung, eyeball, and skin photos. These photos do or do not include pneumothorax, melanoma, and diabetic retinopathy depending on the class. A total of about 20,000 images are available to analyze the results provided. In order to train the model, additional data must be downloaded from open source sources to then use a ready-made script to train the model. The data for testing has been prepared by the authors and is available in a convenient downloadable form as tables in .npy format. The images are 224 by 224 pixels in color. It is worth noting that despite the fact that these images have been provided there are some problems with reproducing their display in the code, as there are often no images with the indices designated by the authors, which is a bit of a problem. Additionally, the scripts include relative paths, to the authors’ computers, which obviously cannot be easily reproduced, requiring additional work.</p>
 </div>
-<div id="pdp-curve-for-albumin_std" class="section level4" number="6.1.4.3">
-<h4><span class="header-section-number">6.1.4.3</span> PDP curve for albumin_std</h4>
-<p><img src="images/6-1-albumin_std_pdp.png" /></p>
 </div>
-<div id="pdp-curve-for-atempc_min" class="section level4" number="6.1.4.4">
-<h4><span class="header-section-number">6.1.4.4</span> PDP curve for atempc_min</h4>
-<p><img src="images/6-1-tempc_min_pdp.png" /></p>
+<div id="hyperparameters" class="section level4" number="4.5.3.3">
+<h4><span class="header-section-number">4.5.3.3</span> Hyperparameters</h4>
+<p>Hyperparameters can have a significant impact on the training and performance of a model, therefore they are an important component of the reproduction process of any article in which they occur.</p>
+<div id="rmdl-2" class="section level5" number="4.5.3.3.1">
+<h5><span class="header-section-number">4.5.3.3.1</span> RMDL</h5>
+<p>The original papers introduces randomization of hyperparameters in the elements of the ensemble, as a feature to increase robustness of the ensemble. In the code/library provided by authors on the github linked to the paper, hyperparamets differ from regular neural networks. Most important factors are the numbers of RDL’s used in the model. When refering to RDL’s in terms of numeric order, interpret them in an increasing order, starting from 1 first DNNs, then RNNs, and finally CNNs. Barely any information on original papers experiment is available. Therefore in the reproduction experiments, whenever possible, the used hyperparameters were the same as in the original author’s code. Although it is unsure whether the code provided is the one used to generate the article results, as such basic things as plots differ in the library provided by them. In the paper, randomization of the optimizor used in a RDL is proposed to improve robustness. Authors argue that if one optimizor doesn’t perform well on a certain dataset, other RDL’s will have different ones which may score higher. Despite that argument, this option is not used by the authors and therefore not used in the reproduction.</p>
+</div>
+<div id="adversarial-medicine-2" class="section level5" number="4.5.3.3.2">
+<h5><span class="header-section-number">4.5.3.3.2</span> Adversarial medicine</h5>
+<p>The scripts provided for training the models as well as for the attacks contain rigidly set hyperparameters, and the articles and code comments themselves lack any comments about changing them or adjusting them to fit the data.
+For the prediction of image labels, the well-known and widely available Resnet50 and InceptionResNet v2 models are used. As for the scripts intended for attacks on the model infrastructure, the number of comments contained therein allows only a guess as to what they can improve or worsen individual parameters. The situation is slightly better in the case of parameters responsible for training the network itself. There are available and quite well described parameters such as the rate of learning, or the size of the batch, on which the network is to learn. However, the article itself does not mention in any way to change the values of these parameters, so during our reproduction they remained at the same level.</p>
+</div>
+</div>
+<div id="evaluation" class="section level4" number="4.5.3.4">
+<h4><span class="header-section-number">4.5.3.4</span> Evaluation</h4>
+<p>Choosing proper evaluation metrics to the problem is a crucial point in classification tasks. Many different metrics were introduced to fit specific situations. For example, in testing for a contagious disease, Recall (1) might be more important than Accuracy (2).</p>
+<p><span class="math inline">\(Recall\)</span> = <span class="math inline">\(\frac{Number\;of\;Predicted\; Positives}{Number\;of\; True\; Positives}\)</span> <span class="math inline">\((1)\)</span></p>
+<div id="rmdl-3" class="section level5" number="4.5.3.4.1">
+<h5><span class="header-section-number">4.5.3.4.1</span> RMDL</h5>
+<p>In reproduction experiments, the same metrics as in the original paper were used. This way, the results achieved can be compared. For NLP tasks accuracy score (2) is used. For image classification tasks error rate (3) <span class="citation">(<a href="#ref-4-5-error_rate" role="doc-biblioref">Z.-H. Zhou and Feng 2017</a>)</span> is used.</p>
+<p><span class="math inline">\(Accuracy\)</span> = <span class="math inline">\(\frac{Number\;of\;Correct\; Predictions}{Number\;of\;Total\; Predictions}\)</span> <span class="math inline">\((2)\)</span></p>
+<p><span class="math inline">\(Error\)</span> <span class="math inline">\(Rate\)</span> = <span class="math inline">\(1-Accuracy\)</span> <span class="math inline">\((3)\)</span></p>
+</div>
+<div id="adversarial-medicine-3" class="section level5" number="4.5.3.4.2">
+<h5><span class="header-section-number">4.5.3.4.2</span> Adversarial medicine</h5>
+<p>On the reproduction of the second article, it is hard to talk about the metrics used by the authors, as most of the attacks took place on single images, where the probability of belonging to a particular class was analyzed. The only measure other than probability was the AUC value. This is the area under the ROC curve that results from comparing different True Positive Rate and False Negative Rate values over different thresholds. This measure is used to analyze the performance of the network on the authors’ basic unaltered images.</p>
+</div>
+</div>
+<div id="computational-environment" class="section level4" number="4.5.3.5">
+<h4><span class="header-section-number">4.5.3.5</span> Computational environment</h4>
+<p>Because of this, how computationaly exhaustive this task is, most of the research on deep learning is done with incomparably more resources than we could afford. <span class="citation">(<a href="#ref-4-5-Computational_Limitations" role="doc-biblioref">Thompson et al. 2020</a>)</span> Due to these constraints, we had to make concessions to get as many results as possible.</p>
+<div id="rmdl-4" class="section level5" number="4.5.3.5.1">
+<h5><span class="header-section-number">4.5.3.5.1</span> RMDL</h5>
+<p>In the case of RMDL, Google Colaboratory <span class="citation">(<a href="#ref-4-5-Google_Colab" role="doc-biblioref">Bisong 2019</a>)</span> was used for all experiments. Code was written in Python, using the library RMDL version 1.0.8, provided by the original papers authors. Our experiments resemble the examples for the datasets, provided by the authors, with some changes. Corrections in code to repair errors, manual download of data for WOS datasets were introduce to run the code. Additionaly due to limited resources in the Colaboratory (RAM and processing time), limits on some of the experiments were set, described further.</p>
+<p>Unfortunately on the IMDB and 20NewsGroup datasets, no significant results were achieved due to computational limits, even after seting rigorous limits on hyperparameters to decrease computational resources.</p>
+</div>
+<div id="adversarial-medicine-4" class="section level5" number="4.5.3.5.2">
+<h5><span class="header-section-number">4.5.3.5.2</span> Adversarial medicine</h5>
+<p>In terms of the equipment required, it was quite a burden to have to load all of the provided boards and photos into the computer memory. Due to their weight there were some problems with the stability of the code. The whole code can be run using the local Python environment. The attacks themselves were not too computationally complicated, although the training of the network was quite a complicated task due to the high computational requirements of this training. Additionally, small corrections in the code were necessary, although they were not too significant and usually resulted from different versions of packages, rather than carelessness of the authors.</p>
+</div>
+</div>
+</div>
+<div id="result" class="section level3" number="4.5.4">
+<h3><span class="header-section-number">4.5.4</span> Result</h3>
+<div id="reproduced-results" class="section level4" number="4.5.4.1">
+<h4><span class="header-section-number">4.5.4.1</span> Reproduced Results</h4>
+<p>While achieving slightly lower scores than the papers proposed, the reproductions support main claims of both original papers. The original results in comparison to the reproduced results can be found in Tables below. In case of <span class="citation">(<a href="#ref-4-1-RMDL" role="doc-biblioref">Kowsari et al. 2018</a>)</span>, tables show competing or higher accuracy scores than ‘state of the art’ baseline models in classification tasks on variety of datasets, as proposed by the paper. In case of <span class="citation">(<a href="#ref-4-5-AdversarialAttacks" role="doc-biblioref">Finlayson et al. 2018</a>)</span>, table shows that the attacks correctly change the classification of the model while being unrecognizable by the, untrained in this task, human eye.</p>
+</div>
+<div id="random-multimodel-deep-learning-for-classification-1" class="section level4" number="4.5.4.2">
+<h4><span class="header-section-number">4.5.4.2</span> Random Multimodel Deep Learning for Classification</h4>
+<p>The main result of the paper are achieved, as the networks score results either similar to the best of the baselines or higher than any of them. Comparison between these values isn’t straight-forward, as the models consist of different architectures. Randomization of hyperparameters in the units of ensemble is a crucial point, which according to the original paper, improves the robustness of the ensemble.</p>
+<p>In table below scores on the left (Paper) are taken directly from the original paper, while the scores on the right (Repr.) represent succesful attempts at reproducing the coresponding RMDL ensemble. Lacking scores (marked as three dashes) are discussed in section Methods. Only in WOS-5736 3 RDLs model, the exact same architecture as in the original paper is shown, consisting of 1 DNN, 1 RNN and 1 CNN. In every other reproduction model, half of RDLs were DNNs and half were CNNs, caused by computational limits. Only in Reuters 3 RDLs model the additional RDL was assigned to CNN, in every other model it was assigned to DNN.</p>
+<center>
+<style type="text/css">
+.tg  {border-collapse:collapse;border-spacing:0;}
+.tg td{border-color:black;border-style:solid;border-width:1px;font-family:Arial, sans-serif;font-size:14px;
+  overflow:hidden;padding:10px 5px;word-break:normal;}
+.tg th{border-color:black;border-style:solid;border-width:1px;font-family:Arial, sans-serif;font-size:14px;
+  font-weight:normal;overflow:hidden;padding:10px 5px;word-break:normal;}
+.tg .tg-c3ow{border-color:inherit;text-align:center;vertical-align:top}
+.tg .tg-0pky{border-color:inherit;text-align:left;vertical-align:top}
+</style>
+<table class="tg">
+<thead>
+<tr>
+<th class="tg-0pky" colspan="2" rowspan="2">
+</th>
+<th class="tg-c3ow" colspan="8">
+Dataset
+</th>
+</tr>
+<tr>
+<td class="tg-c3ow" colspan="2">
+WOS-5736
+</td>
+<td class="tg-c3ow" colspan="2">
+WOS-11967
+</td>
+<td class="tg-c3ow" colspan="2">
+WOS-46985
+</td>
+<td class="tg-c3ow" colspan="2">
+Reuters-21578
+</td>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tg-c3ow" colspan="2">
+Score Source<br>
+</td>
+<td class="tg-c3ow">
+Paper
+</td>
+<td class="tg-c3ow">
+Repr.
+</td>
+<td class="tg-c3ow">
+Paper
+</td>
+<td class="tg-c3ow">
+Repr.
+</td>
+<td class="tg-c3ow">
+Paper
+</td>
+<td class="tg-c3ow">
+Repr.
+</td>
+<td class="tg-c3ow">
+Paper
+</td>
+<td class="tg-c3ow">
+Repr.
+</td>
+</tr>
+<tr>
+<td class="tg-c3ow" rowspan="4">
+RMDL
+</td>
+<td class="tg-0pky">
+3 RDLs<br>
+</td>
+<td class="tg-0pky">
+90.86
+</td>
+<td class="tg-0pky">
+89.37
+</td>
+<td class="tg-0pky">
+87.39
+</td>
+<td class="tg-0pky">
+84.25
+</td>
+<td class="tg-0pky">
+78.39
+</td>
+<td class="tg-0pky">
+—
+</td>
+<td class="tg-0pky">
+89.10
+</td>
+<td class="tg-0pky">
+87.64
+</td>
+</tr>
+<tr>
+<td class="tg-0pky">
+9 RDLs
+</td>
+<td class="tg-0pky">
+92.60
+</td>
+<td class="tg-0pky">
+89.28
+</td>
+<td class="tg-0pky">
+90.65
+</td>
+<td class="tg-0pky">
+—
+</td>
+<td class="tg-0pky">
+81.92
+</td>
+<td class="tg-0pky">
+—
+</td>
+<td class="tg-0pky">
+90.36
+</td>
+<td class="tg-0pky">
+89.83
+</td>
+</tr>
+<tr>
+<td class="tg-0pky">
+15 RDLs
+</td>
+<td class="tg-0pky">
+92.66
+</td>
+<td class="tg-0pky">
+—
+</td>
+<td class="tg-0pky">
+91.01
+</td>
+<td class="tg-0pky">
+—
+</td>
+<td class="tg-0pky">
+81.86
+</td>
+<td class="tg-0pky">
+—
+</td>
+<td class="tg-0pky">
+89.91
+</td>
+<td class="tg-0pky">
+—
+</td>
+</tr>
+<tr>
+<td class="tg-0pky">
+30 RDLs
+</td>
+<td class="tg-0pky">
+93.57
+</td>
+<td class="tg-0pky">
+—
+</td>
+<td class="tg-0pky">
+91.59
+</td>
+<td class="tg-0pky">
+—
+</td>
+<td class="tg-0pky">
+82.42
+</td>
+<td class="tg-0pky">
+—
+</td>
+<td class="tg-0pky">
+90.69
+</td>
+<td class="tg-0pky">
+—
+</td>
+</tr>
+</tbody>
+</table>
+Table 1: RMDL reproduction accuracy scores in comparison to the paper, on four NLP datasets.
+</center>
+<p><br></p>
+<p>Figure 1 shows the comparison of accuracy score through epochs on the Reuters-21578 dataset. Taking into account the different scales on test plots, reproduction model closely resembles original model change trough epochs. In the ensemble architecture low scoring models (in this case RDL 3 and 5 in reproduction) still increase overall accuracy.</p>
+<table>
+<thead>
+<tr class="header">
+<th>Paper’s Plots</th>
+<th>Our Reproduction</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><img src="https://i.imgur.com/x79FakJ.png" width="425"/></td>
+<td><img src="https://i.imgur.com/dIJWX9w.png" width="425"/></td>
+</tr>
+<tr class="even">
+<td><img src="https://i.imgur.com/OBtIcfz.png" width="425"/></td>
+<td><img src="https://i.imgur.com/lHGu8Ul.png" width="425"/></td>
+</tr>
+</tbody>
+</table>
+<center>
+<p>Figure 1: Accuracy scores on the train and test sets for Reuters-21578 dataset.</p>
+In the papers plots, model consisted of 3 DNNs, 3 RNNs and 3 CNNs.
+In the reproduction, 5 DNNs and 4 CNNs.
+</center>
+<p><br></p>
+<p>As table below shows, the results achieved during reproduction attempts on the MNIST dataset are slightly worse than those presented in the article. Both the 3 RDLs and 9 RDLs models on this dataset have exactly the same architecture as those presented in the article. The difference in the results may be due to the fact that during reproduction the models were trained 100 epochs, which is 20 less than in the article.
+The results of the reproduction of the CIFAR-10 dataset presented in the table are significantly worse to the results presented by the authors. The reason for this is not the difference in architectures. Rather, we should look for it in the fact that due to the previously mentioned problems, training of models on this dataset has been reduced from 200 epochs to 100 epochs. However, as we’ll see on Figure 2, that is not the point.</p>
+<center>
+<style type="text/css">
+.tg  {border-collapse:collapse;border-spacing:0;}
+.tg td{border-color:black;border-style:solid;border-width:1px;font-family:Arial, sans-serif;font-size:14px;
+  overflow:hidden;padding:10px 5px;word-break:normal;}
+.tg th{border-color:black;border-style:solid;border-width:1px;font-family:Arial, sans-serif;font-size:14px;
+  font-weight:normal;overflow:hidden;padding:10px 5px;word-break:normal;}
+.tg .tg-9wq8{border-color:inherit;text-align:center;vertical-align:middle}
+.tg .tg-c3ow{border-color:inherit;text-align:center;vertical-align:top}
+.tg .tg-0pky{border-color:inherit;text-align:left;vertical-align:top}
+</style>
+<table class="tg">
+<thead>
+<tr>
+<th class="tg-0pky" colspan="2" rowspan="2">
+</th>
+<th class="tg-c3ow" colspan="4">
+Dataset
+</th>
+</tr>
+<tr>
+<td class="tg-c3ow" colspan="2">
+MNIST
+</td>
+<td class="tg-c3ow" colspan="2">
+CIFAR-10<br>
+</td>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tg-c3ow" colspan="2">
+Score Source<br>
+</td>
+<td class="tg-c3ow">
+Paper
+</td>
+<td class="tg-c3ow">
+Repr.
+</td>
+<td class="tg-c3ow">
+Paper
+</td>
+<td class="tg-c3ow">
+Repr.
+</td>
+</tr>
+<tr>
+<td class="tg-9wq8" rowspan="4">
+RMDL
+</td>
+<td class="tg-0pky">
+3 RDLs<br>
+</td>
+<td class="tg-0pky">
+0.51<br>
+</td>
+<td class="tg-0pky">
+0.55<br>
+</td>
+<td class="tg-0pky">
+9.89
+</td>
+<td class="tg-0pky">
+38.23
+</td>
+</tr>
+<tr>
+<td class="tg-0pky">
+9 RDLs
+</td>
+<td class="tg-0pky">
+0.41
+</td>
+<td class="tg-0pky">
+0.65
+</td>
+<td class="tg-0pky">
+9.1
+</td>
+<td class="tg-0pky">
+36.91
+</td>
+</tr>
+<tr>
+<td class="tg-0pky">
+15 RDLs
+</td>
+<td class="tg-0pky">
+0.21
+</td>
+<td class="tg-0pky">
+—
+</td>
+<td class="tg-0pky">
+8.74<br>
+</td>
+<td class="tg-0pky">
+—
+</td>
+</tr>
+<tr>
+<td class="tg-0pky">
+30 RDLs
+</td>
+<td class="tg-0pky">
+0.18
+</td>
+<td class="tg-0pky">
+—
+</td>
+<td class="tg-0pky">
+8.79
+</td>
+<td class="tg-0pky">
+—
+</td>
+</tr>
+</tbody>
+</table>
+Table 2: RMDL reproduction error rate in comparison to the papers result, on two image classfication datasets.
+</center>
+<p><br></p>
+<p>Figure 2 shows the comparison of loss through epochs on the CIFAR-10 dataset. Looking at the growing loss on the test set, while at the same time the loss on the training set was decreasing, it appears that most of the RDLs overfitted, which resulted in a deterioration of the final score.</p>
+<table>
+<thead>
+<tr class="header">
+<th>Paper’s Plots</th>
+<th>Our Reproduction</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><img src="https://i.imgur.com/0QiaTpB.png" width="425"/></td>
+<td><img src="https://i.imgur.com/MG3a9ar.png" width="425"/></td>
+</tr>
+<tr class="even">
+<td><img src="https://i.imgur.com/VbAd40L.png" width="425"/></td>
+<td><img src="https://i.imgur.com/v6bEsQ4.png" width="425"/></td>
+</tr>
+</tbody>
+</table>
+<center>
+<p>Figure 2: Error rate on the train and test sets for CIFAR-10 dataset.</p>
+In the papers plots, model consisted of 3 DNNs, 3 RNNs and 3 CNNs.
+In the reproduction, 4 DNNs, 3 RNNs and 2 CNNs.
+</center>
+</div>
+<div id="adversarial-medicine-5" class="section level4" number="4.5.4.3">
+<h4><span class="header-section-number">4.5.4.3</span> Adversarial medicine</h4>
+<p>Referring to the results achieved is not a simple matter. As we mentioned earlier, almost all available results both in the authors’ code and ours are in the form of probabilities of qualifying a particular image to a given class. So as far as we can talk about success in case of analyzing one particular photo, it is hard to talk about reproducing this result when using other photos. It is worth saying, that the model trained by us on basic data obtained similarly good results as the one used by authors.</p>
+<table>
+<thead>
+<tr class="header">
+<th>Paper’s Plots</th>
+<th>Our Reproduction</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><img src="https://i.imgur.com/d0jodTp.png" width="425"/></td>
+<td><img src="https://i.imgur.com/ykUleEN.png" width="425"/></td>
+</tr>
+</tbody>
+</table>
+<center>
+Figure 3: ROC curves on training sets.
+</center>
+<p><br></p>
+<p>As seen in Figure 3, we were able to achieve very similar results in training the initial networks as the authors. This shows that the script responsible for this part of the work was well prepared, and indeed, this part gave us relatively the least problems, compared to the other reproduction issues of this paper.</p>
+<center>
+<style type="text/css">
+.tg  {border-collapse:collapse;border-spacing:0;}
+.tg td{border-color:black;border-style:solid;border-width:1px;font-family:Arial, sans-serif;font-size:14px;
+  overflow:hidden;padding:10px 5px;word-break:normal;}
+.tg th{border-color:black;border-style:solid;border-width:1px;font-family:Arial, sans-serif;font-size:14px;
+  font-weight:normal;overflow:hidden;padding:10px 5px;word-break:normal;}
+.tg .tg-0pky{border-color:inherit;text-align:left;vertical-align:top}
+</style>
+<table class="tg">
+<thead>
+<tr>
+<th class="tg-0pky" rowspan="2">
+</th>
+<th class="tg-0pky" colspan="2">
+Pneumothorax
+</th>
+<th class="tg-0pky" colspan="2">
+Melanoma
+</th>
+<th class="tg-0pky" colspan="2">
+Retinopathy
+</th>
+</tr>
+<tr>
+<td class="tg-0pky">
+Paper
+</td>
+<td class="tg-0pky">
+Repr.
+</td>
+<td class="tg-0pky">
+Paper
+</td>
+<td class="tg-0pky">
+Repr.
+</td>
+<td class="tg-0pky">
+Paper
+</td>
+<td class="tg-0pky">
+Repr.
+</td>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tg-0pky">
+Before Attack
+</td>
+<td class="tg-0pky">
+0.997
+</td>
+<td class="tg-0pky">
+0.981
+</td>
+<td class="tg-0pky">
+0.99
+</td>
+<td class="tg-0pky">
+0.994
+</td>
+<td class="tg-0pky">
+0.994
+</td>
+<td class="tg-0pky">
+0.98
+</td>
+</tr>
+<tr>
+<td class="tg-0pky">
+After Attack
+</td>
+<td class="tg-0pky">
+8e-11
+</td>
+<td class="tg-0pky">
+2e-11
+</td>
+<td class="tg-0pky">
+1e-11
+</td>
+<td class="tg-0pky">
+2e-11
+</td>
+<td class="tg-0pky">
+3e-12
+</td>
+<td class="tg-0pky">
+2e-10
+</td>
+</tr>
+</tbody>
+</table>
+Table 3: Adversarial Attack on lung photo
+</center>
+<p><br></p>
+<p>The table above lists the probabilities of adequately evaluating a photograph containing a pneumothorax. The results vary minimally, however, a very important fact, namely the reversal of the prediction of the data by the model was achieved by us, which is a great success. Similar results were achieved for the other two diseases, which indicates that these attacks are relatively well performed.</p>
+<center>
+<img src="https://i.imgur.com/jXgiNGj.png" width="425"/> | <img src="https://i.imgur.com/N5Hu9yk.png" width="425" />
+| <img src="https://i.imgur.com/5u602aw.png" width="425" />
+</center>
+<center>
+Figure 3: Images of pneumothorax and noise which distracts model.
+</center>
+<p><br></p>
+<p>In the images shown above, you can see exactly the idea of the whole article. The first and second images are not different to the human eye, and the algorithm considers them completely different and gives different predictions for them on whether the lungs have pneumothorax or not. In the third image you can see the noise that causes this prediction swap.</p>
+<p>The authors prepared two types of attacks on the developed predictions. The first one named PGD attack takes advantage of the possibility to access the model weights and performs, so to speak, the reverse process to model learning, i.e., it tries to increase the error as much as possible. With this part of the project we had no problem, because the code was prepared without any problem. Attacks were firing without any problems, and all the images were displaying correctly. The second approach named Patch attack was to introduce noise into the learning process by changing the weights using the process of maximizing the probability of returning an incorrect label provided the noise was introduced to a particular pixel. In the case of these attacks, the problem was that the repository was inadequately prepared by the authors, as some images and labels were missing, making it very difficult to replicate exactly what was described in the paper. Some images were able to be displayed correctly, but some were not.</p>
+<center>
+<style type="text/css">
+.tg  {border-collapse:collapse;border-spacing:0;}
+.tg td{border-color:black;border-style:solid;border-width:1px;font-family:Arial, sans-serif;font-size:14px;
+  overflow:hidden;padding:10px 5px;word-break:normal;}
+.tg th{border-color:black;border-style:solid;border-width:1px;font-family:Arial, sans-serif;font-size:14px;
+  font-weight:normal;overflow:hidden;padding:10px 5px;word-break:normal;}
+.tg .tg-0pky{border-color:inherit;text-align:left;vertical-align:top}
+</style>
+<table class="tg">
+<thead>
+<tr>
+<th class="tg-0pky" colspan="2">
+Accuracy Patch Attack
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tg-0pky">
+Paper
+</td>
+<td class="tg-0pky">
+Repr.
+</td>
+</tr>
+<tr>
+<td class="tg-0pky">
+0.00
+</td>
+<td class="tg-0pky">
+0.125
+</td>
+</tr>
+</tbody>
+</table>
+Table 4: Accuracy of Second Attack on 8 samples of lung photos
+</center>
+<p><br></p>
+<center>
+<style type="text/css">
+.tg  {border-collapse:collapse;border-spacing:0;}
+.tg td{border-color:black;border-style:solid;border-width:1px;font-family:Arial, sans-serif;font-size:14px;
+  overflow:hidden;padding:10px 5px;word-break:normal;}
+.tg th{border-color:black;border-style:solid;border-width:1px;font-family:Arial, sans-serif;font-size:14px;
+  font-weight:normal;overflow:hidden;padding:10px 5px;word-break:normal;}
+.tg .tg-0pky{border-color:inherit;text-align:left;vertical-align:top}
+</style>
+<table class="tg">
+<thead>
+<tr>
+<th class="tg-0pky" colspan="2">
+AUC Patch Attack
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tg-0pky">
+Paper
+</td>
+<td class="tg-0pky">
+Repr.
+</td>
+</tr>
+<tr>
+<td class="tg-0pky">
+0.00
+</td>
+<td class="tg-0pky">
+0.00
+</td>
+</tr>
+</tbody>
+</table>
+Table 5: AUC of Second Attack on 8 samples of lung photos
+</center>
+<p><br></p>
+<p>As can be seen in tables above, despite the problems previously described, we were able to reproduce attacks on the label predicate infrastructure. The AUC and accuracy metrics are at low levels, exactly the same as the case presented in the authors’ code.</p>
+</div>
+</div>
+<div id="discussion" class="section level3" number="4.5.5">
+<h3><span class="header-section-number">4.5.5</span> Discussion</h3>
+<div id="what-was-easy" class="section level4" number="4.5.5.1">
+<h4><span class="header-section-number">4.5.5.1</span> What was easy?</h4>
+<p>To summarize our work, we can certainly say that it was easy to reproduce simple models, especially if they were correctly prepared by the authors. In both the RMDL and Adversarial Medicnie projects, there happened to be networks or attacks that did not need any changes in the code and worked practically immediately. In the case of both articles, communication with the authors was not necessary for the code to work, however, based on the fact that the authors of both projects regularly respond to issues on Github, we can conclude that it is not a problem.</p>
+</div>
+<div id="what-was-hard" class="section level4" number="4.5.5.2">
+<h4><span class="header-section-number">4.5.5.2</span> What was hard?</h4>
+<p>Unfortunately, things were not as easy as we would have liked. In the case of the first article, a significant problem was the lack of adequate computer resources, which at extreme moments made it impossible to work with the entire project, and thus to verify the results provided by the authors. In the second project it was also not possible to completely verify the thesis of the authors, however in this case it was connected with not completely well prepared repository, where all the files were not available. However, the code itself worked without problems, and there were no computer problems here either.</p>
 
 </div>
 </div>
 </div>
+<!-- </div> -->
 <h3>References</h3>
 <div id="refs" class="references csl-bib-body hanging-indent" line-spacing="2">
-<div id="ref-6-0-breiman2001statistical" class="csl-entry">
-Breiman, L. et al. (2001). Statistical modeling: The two cultures (with comments and a rejoinder by the author). <em>Statistical science</em>, <em>16</em>(3), 199–231.
+<div id="ref-4-5-Google_Colab" class="csl-entry">
+Bisong, E. (2019). Google colaboratory. In <em>Building machine learning and deep learning models on google cloud platform</em> (pp. 59–64). Springer.
 </div>
-<div id="ref-6-1-beams-system" class="csl-entry">
-Das, S., Cashman, D., Chang, R., &amp; Endert, A. (2019). BEAMES: Interactive multimodel steering, selection, and inspection for regression tasks. <em>IEEE Computer Graphics and Applications</em>, <em>39</em>(5), 20–32. <a href="https://doi.org/10.1109/MCG.2019.2922592">https://doi.org/10.1109/MCG.2019.2922592</a>
+<div id="ref-4-5-ReproducibleScience" class="csl-entry">
+Casadevall, A., &amp; Fang, F. C. (2010). Reproducible science. <em>Infection and Immunity</em>, <em>78</em>(12), 4972–4975. <a href="https://doi.org/10.1128/IAI.00908-10">https://doi.org/10.1128/IAI.00908-10</a>
 </div>
-<div id="ref-6-0-rashomon-variable-importance-cloud" class="csl-entry">
-Dong, J., &amp; Rudin, C. (2020). Exploring the cloud of variable importance for the set of all good models. <em>Nature Machine Intelligence</em>, <em>2</em>(12), 810–824.
+<div id="ref-4-5-Data_Cleaning" class="csl-entry">
+Chu, X., Ilyas, I. F., Krishnan, S., &amp; Wang, J. (2016). Data cleaning: Overview and emerging challenges. In <em>Proceedings of the 2016 international conference on management of data</em> (pp. 2201–2206).
 </div>
-<div id="ref-6-0-rashomon-variable-importance" class="csl-entry">
-Fisher, A., Rudin, C., &amp; Dominici, F. (2019c). All models are wrong, but many are useful: Learning a variable’s importance by studying an entire class of prediction models simultaneously. <em>Journal of Machine Learning Research</em>, <em>20</em>(177), 1–81.
+<div id="ref-4-5-AdversarialAttacks" class="csl-entry">
+Finlayson, S. G., Chung, H. W., Kohane, I. S., &amp; Beam, A. L. (2018). Adversarial attacks against medical deep learning systems. <em>arXiv preprint arXiv:1804.05296</em>.
 </div>
-<div id="ref-6-0-rudin-challenges" class="csl-entry">
-Rudin, C., Chen, C., Chen, Z., Huang, H., Semenova, L., &amp; Zhong, C. (2021). Interpretable machine learning: Fundamental principles and 10 grand challenges. <em>arXiv preprint arXiv:2103.11251</em>.
+<div id="ref-4-5-WOS_Dataset" class="csl-entry">
+Kowsari, K., Brown, D. E., Heidarysafa, M., Jafari Meimandi, K., Gerber, M. S. and, &amp; Barnes, L. E. (2017). HDLTex: Hierarchical deep learning for text classification. In <em>Machine learning and applications (ICMLA), 2017 16th IEEE international conference on</em>. IEEE.
 </div>
-<div id="ref-6-0-rashomon-intro" class="csl-entry">
-Semenova, L., Rudin, C., &amp; Parr, R. (2019). A study in rashomon curves and volumes: A new perspective on generalization and model simplicity in machine learning. <em>arXiv preprint arXiv:1908.01755</em>.
+<div id="ref-4-1-RMDL" class="csl-entry">
+Kowsari, K., Heidarysafa, M., Brown, D. E., Meimandi, K. J., &amp; Barnes, L. E. (2018). Rmdl: Random multimodel deep learning for classification. In <em>Proceedings of the 2nd international conference on information system and data mining</em> (pp. 19–28).
+</div>
+<div id="ref-4-5-ReproducibilityInML" class="csl-entry">
+Pineau, J., Vincent-Lamarre, P., Sinha, K., Larivière, V., Beygelzimer, A., d’Alché-Buc, F., et al. (2020). Improving reproducibility in machine learning research <span>(A</span> report from the NeurIPS 2019 reproducibility program). <em>CoRR</em>, <em>abs/2003.12206</em>. <a href="https://arxiv.org/abs/2003.12206">https://arxiv.org/abs/2003.12206</a>
+</div>
+<div id="ref-4-5-Deep_Medical_Overview" class="csl-entry">
+Suzuki, K. (2017). Overview of deep learning in medical imaging. <em>Radiological physics and technology</em>, <em>10</em>(3), 257–273.
+</div>
+<div id="ref-4-5-Computational_Limitations" class="csl-entry">
+Thompson, N. C., Greenewald, K., Lee, K., &amp; Manso, G. F. (2020). The computational limits of deep learning. <em>arXiv preprint arXiv:2007.05558</em>.
+</div>
+<div id="ref-4-5-TNN_Attention" class="csl-entry">
+Vaswani, A., Shazeer, N., Parmar, N., Uszkoreit, J., Jones, L., Gomez, A. N., et al. (2017). Attention is all you need. <em>arXiv preprint arXiv:1706.03762</em>.
+</div>
+<div id="ref-4-5-error_rate" class="csl-entry">
+Zhou, Z.-H., &amp; Feng, J. (2017). Deep forest: Towards an alternative to deep neural networks. <em>CoRR</em>, <em>abs/1702.08835</em>. <a href="http://arxiv.org/abs/1702.08835">http://arxiv.org/abs/1702.08835</a>
 </div>
 </div>
             </section>
@@ -390,8 +1038,8 @@ Semenova, L., Rudin, C., &amp; Parr, R. (2019). A study in rashomon curves and v
           </div>
         </div>
       </div>
-<a href="rashomonml.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="title.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="dl2-rmdl-unet.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="machine-learning.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook/js/app.min.js"></script>
@@ -423,7 +1071,7 @@ gitbook.start({
 "size": 2
 },
 "edit": {
-"link": "https://github.com/mini-pw/2021L-WB-Book/edit/master/6-1-MIMIC.Rmd",
+"link": "https://github.com/mini-pw/2021L-WB-Book/edit/master/4-5-RMDLAdv.Rmd",
 "text": "Edit"
 },
 "history": {
