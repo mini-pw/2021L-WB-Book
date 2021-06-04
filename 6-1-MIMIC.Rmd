@@ -1,47 +1,75 @@
-## Topic
+## How to compare many good machine learning models? 
 
 *Authors: Adrian Stańdo, Maciej Pawlikowski, Mariusz Słapek (Warsaw University of Technology)*
 
-### Abstract
+### Abstract 
 
-Technological advances were early adopted by healthcare with great benefits and developments. In many health-related realms machine learning is crucial such as: development of new medical procedures, the treatment of chronic diseases, the management of patient records and data. Explainable AI (XAI) gives invaluable tools in healthcare for understanding the models by humans. 
-The aim of this article is to compare PDP profiles for a Rashomon set with a given metric. Following we use five different metrics of distance function and based on that we compare PDP curves. 
-Additionally, the library in the Python language has been created, which automates this research. We have observed that the created models, which have similar scores, have different variable importances.
-In this paper these differences were measured and assessed to understand better the problem of predicting hospital mortality using data from MIMIC-III.
+Technological advances were early adopted by healthcare with great benefits and developments. In many health-related realms, machine learning is crucial, such as developing new medical procedures, treating chronic diseases, the management of patient records and data. For each problem, many models can be created, which have similar scores, but different importance of variables. Explainable AI (XAI) gives invaluable tools in healthcare for understanding the models by humans. One of the most common techniques is PDP, which we use to compare models from Rashomon set. It was built on models predicting the mortality of patients on data from the MIMIC-III database. Following, we create a metric and based on that we compare PDP curves.  Additionally, the library in the Python language has been created, which automates this research.   
 
+### Introduction 
 
-### Literature review
+Extracting all information from data used in predictive problems by hand is almost unobtainable because of the rapid data volume growth. This is why tools like machine learning are needed to find hidden patterns and process data. However, sometimes finding a pattern is not enough to understand how such a model works. For example, to explain to bank client why he/she did not get the mortgage or why doctors suspect a particular patient can have a tumour.   
 
-Rashomon is a intriguing Japanese movie in which four people witness an incident from different vantage points. When they come to testify in court, they all report the same facts, but their stories of what happened are very different.
-In machine learning Rashomon set is used to characterise problem in which many different models offer accurate results describing the same data.
-However, not every accurate model gives a right conclusion as described in [@6-0-breiman2001statistical]: *"If the model is a poor emulation of nature, the conclusion might be worng"*. Herein authors also explain basics of Rashomon sets on example. Much more in depth and mathematical description is provided in [@6-0-rashomon-intro].
-Another important topic related to Rashomon sets is analysing the feature importance of the model. It was described in this article [@6-0-rashomon-variable-importance], where authors suggested to study the maximum and minimum of variable importance across all models included in the Rashomon set. This technique was called MCR (Model Class Reliance). 
-Furthermore, [@6-0-rashomon-variable-importance-cloud] presented technique to visualise the "cloud" of variable importance for models in the set, which could help us understand the Rashomon set and choose the one which give the best interpretation. The last question stated in the article [@6-0-rudin-challenges] was about choosing model from the Rashomon set. It might be a difficult task, especially when we lack good exploration tools. 
-[@6-1-beams-system] created a system called BEAMS that allows to choose the most important features. Next, the program searches the hypothesis space in order to find model which fits best to given constraints. Since this system works only with linear regression classifiers, [@6-0-rudin-challenges] stated a question if it is possible to design a simmilar system which will search only models within the Rashomon set.
+If the model is too complicated to explain, maybe we would be capable of explaining another one, and in the end, we achieve a set of models - Rashomon set. 
 
-### Results
+Name Rashomon comes from an intriguing Japanese movie in which four people witness an incident from different vantage points. When they come to testify in court, they all report the same facts, but their stories of what happened are very different.    
 
-#### Results of models search
+Rashomon sets are crucial in medical work, where the model not only has to be accurate but also give a good explanation of why certain variables are more important. An in-depth look at explainable machine learning techniques is provided in (prof Biecek book), and a detailed comparative study of different machine learning algorithms for several medical problems is described in (Predictive modelling)  
 
-![](images/6-1-rashomon_ratio.png)
+For model comparison, we used Partial Dependency Plots, which show how variables affect the final prediction. In our research, we explored those plots and created methods enabling further comparison of PDP.  As a result, we developed a metric, which compares PDP curves and applied it to MIMIC-III data. 
 
-### Best models
+### Literature review  
 
-![](images/6-1-results.png)
+In machine learning, Rashomon set is used to characterize a problem in which many different models offer accurate results describing the same data. The term was first used by Breiman (2001), who explains in his work the basics of Rashomon set on an example. In contrast, Semenova, Rudin, and Parr (2019) provide a much more in-depth and mathematical description. 
 
-#### Boxplots of abs_sum metric for the best models
+Another important topic related to Rashomon sets is analysing the feature importance of the model. Fisher, Rudin, and Dominici  (2019) suggested studying the maximum and minimum variable importance across all models included in the Rashomon set. This technique was called MCR (Model Class Reliance). Furthermore, Dong and Rudin (2020) presented a method to visualize the “cloud” of variable importance for models in the set, which could help us understand the Rashomon set and choose the one which gives the best interpretation. The last question stated in the article (Rudin et al. 2021) was about selecting a model from the Rashomon set. It might be a difficult task, especially when we lack good exploration tools. (Das et al. 2019) created a system called BEAMS that allows to choose the most critical features from linear regression models. Next, the program searches the hypothesis space to find a model which fits best to given constraints.  
 
-![](images/6-1-boxplot_1.png)
+### Methodology 
 
-#### Boxplots of abs_sum metric for each feature
+We started our research with data preprocessing. For this purpose, we used code provided by the authors of Predictive modelling in urgent care: a comparative study of machine learning approaches, with slight adjustments because the original code wasn’t working perfectly.   
 
-![](images/6-1-boxplot_2_2.png)
+For initial predictions of mortality, a few different models were compared: XGBoost, SVM, Random Forest, and Logistic regression, from which XGBoost was selected for studies of Rashomon set, because of its satisfactory precision and pace at which model learned.  
 
-#### PDP curve for albumin_std
+Afterwards, with the help of a random search technique, a set of models was created. The ranges of hyperparameters were selected according to the article Tunability: Importance of Hyperparameters of Machine Learning Algorithms. We learned 160 different models with 5-fold cross-validation and used the ROC AUC measure to estimate each model effectiveness. 
 
-![](images/6-1-albumin_std_pdp.png)
+The creation of many models does not solve the problem of mortality prediction. The main task is to compare, analyse and choose the one, which describes the best reality. Partial Dependence Plots (PDP) are very often studied to do so. However, it is often hard to compare them all due to the number of models and features. This is why we introduce a new metric. It is an alternative to variable importance and is based on PDP curves.  
 
-#### PDP curve for atempc_min
+We based our calculations on the DALEX (cytowanie?) package, which we used to generate PDP curves for our models. Using the methods provided in this package, we retrieved the numerical values used in creating the plots. 
 
-![](images/6-1-tempc_min_pdp.png)
+Our metric calculates, for a given model and feature, the sum of absolute values of distances between points on PDP curves of the base model (the best one according to random search) and the one for which we calculate distance. It is calculated according to the equation: 
+
+ 
+
+This metric allows comparing how unique models are and how much do they differ from one another.  
+
+ 
+ 
+
+### Results 
+
+Before deep score analysis, it is worth introducing the Rashomon ratio. It is defined as the ratio of the number of models with the result above point u to the number of all models. Figure 1 shows the Rashomon Ratio as a function of the threshold point. 
+
+![Figure 1](images/6-1-rashomon_ratio.png)
+
+The top ten models were selected for further analysis. It turned out that the range of their results is $(0.861 - 0.865)$. All of them have a very similar score, and it is impossible to decide which one is the best or, maybe, all of them are equally good.  
+
+However, we can derive some interesting conclusions using our metric described in the previous chapter. The model with the highest mean test score (by ROC AUC metric) was chosen as a base model. The distribution of our metric value for each model is presented in Figure 2. 
+
+![Figure 2](images/6-1-boxplot_1.png)
+
+Model5 seems to closest to the base since its median and lower quartile is near 0. On the other hand, model1 is the furthest as it has high median and high-value outliers. Furthermore, each model seems to be different and there is no clear relationship that the better the result, the closer the model is to the base model according to our metric.  
+
+![Figure 3](images/6-1-boxplot_2_2.png)
+
+Figure 3 presents the distribution of metric value for a few features (ten with the highest and ten with the lowest difference between maximum and minimum value). Two features (albumin_std and tempc_mean) are the ones that vary most among the models: they have high median and high IQR. Figure 4 and figure 5 presents PDP curves for these features. 
+ 
+![Figure 4](images/6-1-pdp_curves.jpg)
+
+The straight lines on the right side of PDP curves result from a small number of records with high values. Nevertheless, each model interpreted these extreme values a little bit differently, and the PDP curve of the base model is at the top. Furthermore, the PDP curves of model1 and model2 for tempc_mean are significantly lower in the range (0.2, 0.8) than the others. 
+
+### Summary and conclusions 
+
+We created models which give similar performances but take different factors into consideration to predict the final class. A tool to automate this process has been created in Python programming language and is available on GitHub: https://github.com/adrianstando/RashomonSetAnalyser  
+
+Presented results can be used to choose the best model for a given problem. Sometimes it is not the best one that is the most useful, but the one we can explain and validate with expert knowledge. For example, in our leading problem, the knowledge of doctors would be helpful to determine whether the high values of the previously discussed variables are important or not. If so, the base_model would be the best option; if not, model1 (green) should be considered, or experts should look into other features. 
 
