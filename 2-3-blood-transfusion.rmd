@@ -4,23 +4,23 @@
 
 ### Abstract
 
-Blood donated for transfusions saves millions of lives every year. Reliable prediction of a patient's blood donation intention is valuable information for the medical community. This work focuses on studying such predictive models through methods of explainable artificial intelligence (XAI). We consider a model based on the Random Forests algorithm and a dataset containing information about patients' blood donation history. Through prudent data pre-processing, model preparation, and the use of global and local explanations of the model, we exhibit how strongly and in what way various features affect the model's prediction. During our analysis, we also uncover meaningful patterns hidden in the data itself. Among other conclusions, we show that a short time since the patient's last donation is crucial for positive prediction and that donation burnout is a probable effect in this field. We believe that the presented results are valuable for this matter of life and death subject.
+Blood donated for transfusions saves millions of lives every year. Reliable prediction of a patient's blood donation intention is valuable information for the medical community. This work focuses on studying machine learning predictive models for such tasks through methods of explainable artificial intelligence (XAI). We consider a model based on the Random Forests algorithm and a dataset containing information about patients' blood donation history. Through prudent data pre-processing, model preparation, and the use of global and local explanations of the model, we exhibit how strongly and in what way various features affect the model's prediction. During our analysis, we also uncover meaningful patterns hidden in the data itself. Among other conclusions, we show that a short time since the patient's last donation is crucial for positive prediction and that donation burnout is a probable effect affecting donors. We believe that the presented results are valuable for this matter of life and death subject.
 
 ### Introduction and motivation
 
 Interest in explainable artificial intelligence (XAI) has increased significantly in recent years. XAI facilitates humans to understand artificial intelligence solutions [@2-3-xai]. It contrasts with a concept of the black box, where even its designers cannot explain why an AI model has arrived at a specific conclusion. The intense development of such methods has led to the wide choice of XAI tools that we have today [@2-3-landscape]. It includes the R package DALEX [@2-3-dalex], which is the foundation of this work.
 
-Our goal is to prepare and explain a model designed to predict the probability of subsequent blood donations based on a history of a patient's previous offerings. Careful use of XAI tools allows us to verify model correctness and discover phenomenons affecting blood donations that hide in the data. Obtained knowledge may have various implications, especially an improvement of planning and advertising of blood donation campaigns.
+Our goal is to prepare and explain a model designed to predict the probability of subsequent blood donations based on a history of a patient's previous offerings. Careful use of XAI tools allows us to verify model correctness and discover phenomena affecting blood donations that hide in the data. Obtained knowledge may have various implications, especially better prediction of future blood supply and an improvement of planning and advertising of blood donation campaigns.
 
 ### Related work
 
-The prediction of an intention of a blood donation seems to be an important issue, as there are multiple articles available that try to tackle it while making use of machine learning methods and often the same dataset that was also used during this work. A few of them are presented shortly below.
+The prediction of an intention of a blood donation seems to be an important issue, as there are multiple articles available that try to tackle it while making use of machine learning methods and often the same dataset that is also used during this work. A few of them are presented shortly below.
 
 In [@2-3-rel-1], the authors test Multilayer Perceptrons and Support Vector Machines in combination with Principal Component Analysis as a solution to the mentioned issue. Their models achieve good results, and some ways of further improvement are proposed.
 
-In [@2-3-rel-2], the authors study models created in the JustNN environment. They propose a model with an outstanding test subset performance of 99.31 %. They identify the Recency, Time, and Frequency variables (described precisely in the following section of this article) to be the most important factors.
-
 In [@2-3-rel-3], the authors use unsupervised machine learning techniques to cluster the data before building predictive models and check whether the performance is significantly improved when using such an approach. They found out that a Support Vector Machines model based on data clustered into four distinct groups with the K-Means algorithm achieved the best sensitivity of 98.4 %.
+
+In [@2-3-rel-2], the authors study models created in the JustNN environment. They propose a model with an outstanding test subset accuracy of 99.31 %. They identify the Recency, Time, and Frequency variables (described precisely in the following section of this article) to be the most important factors.
 
 In [@2-3-rel-4], the authors use a different dataset but of a partly similar structure. They note that some religious periods like Fasting and Performing Hajj may negatively affect the number of donations.
 
@@ -220,12 +220,12 @@ When compared to the previous explanation, this plot is a perfect example of how
 
 ### Conclusions and summary
 
-After data analysis and pre-processing, model preparation and selection, preparation and analysis of global and local model explanations, the short answer to the title question - "How to predict the probability of subsequent blood donations?" - is as follows:
+After data analysis and pre-processing, model preparation and selection, preparation and investigation of global and local model explanations, the short answer to the title question - "How to predict the probability of subsequent blood donations?" - is as follows:
 
 The most important factor is whether the patient under consideration is active - when her/his last donation took place more than six months ago, the subsequent donation probability falls drastically, and other factors lose their importance.
 
-But when the Recency is low, other factors become decisive. Bigger number of past donations is almost always considered positive for the prediction, and higher values of proposed Intensity feature are favorable only until a certain threshold (around 0.55), when a phenomenon of a burnout probably becomes relevant.
+But when the Recency is low, other factors become decisive. A bigger number of past donations is almost always considered positive for the prediction, and higher values of the proposed Intensity feature are favorable only until a certain threshold (around 0.55) when a phenomenon of burnout probably becomes relevant.
 
-We believe that the purpose of our work has been fulfilled. We took care to prepare a precise model based on meaningful data to avoid any uncertainty of the obtained model explanations. The same conclusions came up multiple times during the analysis of different explanations, which reassures their correctness. Some of the discovered phenomena are visible not only in the explanations but also in the data itself.
+We believe that the purpose of our work has been fulfilled. We took care to prepare a precise model based on meaningful data to limit the uncertainty of the obtained model explanations. The same conclusions came up multiple times during the analysis of different explanations, which reassures their correctness. Some of the discovered phenomena are visible not only in the explanations but also in the data itself.
 
 Over the years, XAI has become a powerful tool that can produce numerous meaningful insights about the considered model and the data itself. With that said, it is best used with caution, as any statistical tool can yield false conclusions when its assumptions are not carefully checked.
