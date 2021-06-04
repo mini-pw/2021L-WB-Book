@@ -34,7 +34,7 @@ Afterwards, with the help of a random search technique, a set of models was crea
 
 The creation of many models does not solve the problem of mortality prediction. The main task is to compare, analyse and choose the one, which describes the best reality. Partial Dependence Plots (PDP) are very often studied to do so. However, it is often hard to compare them all due to the number of models and features. This is why we introduce a new metric. It is an alternative to variable importance and is based on PDP curves.  
 
-We based our calculations on the DALEX (cytowanie?) package, which we used to generate PDP curves for our models. Using the methods provided in this package, we retrieved the numerical values used in creating the plots. 
+We based our calculations on the dalex [@dalex] package, which we used to generate PDP curves for our models. Using the methods provided in this package, we retrieved the numerical values used in creating the plots. 
 
 Our metric calculates, for a given model and feature, the sum of absolute values of distances between points on PDP curves of the base model (the best one according to random search) and the one for which we calculate distance. It is calculated according to the equation: 
 
