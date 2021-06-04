@@ -100,6 +100,8 @@ The presence of exact location is vital to the credibility of this research. Fac
 
 #### Model
 
+In order to choose our prediction tool we have prepared 6 different regression models. We decided to compare results of Linear Regression, Random Forest, Support Vector Regression (SVR), Gradient Boosting, Multilayer Perceptron (MLP) and finally XGBoost Regressor.  Each of these models had been individually tuned mainly using GridSearchCV. After models had been tuned we proceeded to comparing models in an effort to find the best one. We used root mean squared error (RMSE) as our main metric to sort models by their performance. Additionally, in order to maximize objectivity of this metric we used 5-fold cross-validation and calculated the average RMSE along with RMSE standard deviation. The achieved results are rather unambiguous as XGBoost is characterized by the lowest mean RMSE and the lowest standard deviation of RMSE. This was to be expected taking into consideration related works performed around similar problems. After taking into consideration RMSE results and explainability of the models we decided to use XGBoost as our primary prediction tool. The final values for its hyperparameters are: eta (learning rate) = 0.15, max_depth = 6, n_estimators = 150, gamma = 0, min_child_weight = 1 (any unmentioned parameter has been left with default value).
+
 ### Results
 
 After successful training of the aformentioned model, we employed XAI methods of local and global explanation in order to get a firmer grasp over model's decision process.
