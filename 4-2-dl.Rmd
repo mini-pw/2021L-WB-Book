@@ -1,7 +1,5 @@
-## ARA: accurate, reliable and active histopathological image classifcation framework with Bayesian deep learning
-
+## Can you classify histopathological data at home? Reproducing the ARA-CNN model's data and performance.
 *Authors: Jan Gąska, Jakub Lis, Wojciech Szczypek*  
-*Article's Authors: Łukasz Rączkowski, Marcin Możejko, JoannaZambonelli Ewa Szczurek*
 
 ### 1. Abstract
 
