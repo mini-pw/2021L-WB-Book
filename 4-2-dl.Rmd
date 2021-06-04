@@ -1,4 +1,5 @@
 ## Can you classify histopathological data at home? Reproducing the ARA-CNN model's data and performance.
+
 *Authors: Jan Gąska, Jakub Lis, Wojciech Szczypek*  
 
 ### Abstract
