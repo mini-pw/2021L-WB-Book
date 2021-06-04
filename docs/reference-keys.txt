@@ -277,7 +277,7 @@ pdp-1
 global-explanations-conclusions
 conclusion
 deep-learning-1
-covid-net
+lungnet
 introduction-5
 data
 original-data
@@ -328,7 +328,7 @@ final-results
 conclusions-and-summary-1
 erscovid
 introduction-7
-covid-net-1
+covid-net
 introduction-8
 deep-learning-2
 what-makes-an-article-reproducible-comparison-of-the-fer-paper-and-axondeepseg

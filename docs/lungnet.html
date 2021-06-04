@@ -4,11 +4,11 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>1.4 Red wine mystery: using explainable AI to inspect factors behind wine quality | Case Studies</title>
+  <title>3.1 LungNet | Case Studies</title>
   <meta name="description" content="Case studies in machine learning." />
   <meta name="generator" content="bookdown 0.22 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="1.4 Red wine mystery: using explainable AI to inspect factors behind wine quality | Case Studies" />
+  <meta property="og:title" content="3.1 LungNet | Case Studies" />
   <meta property="og:type" content="book" />
   
   <meta property="og:image" content="/images/cover.png" />
@@ -16,7 +16,7 @@
   <meta name="github-repo" content="mini-pw/2021L-WB-Book" />
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="1.4 Red wine mystery: using explainable AI to inspect factors behind wine quality | Case Studies" />
+  <meta name="twitter:title" content="3.1 LungNet | Case Studies" />
   
   <meta name="twitter:description" content="Case studies in machine learning." />
   <meta name="twitter:image" content="/images/cover.png" />
@@ -31,8 +31,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-<link rel="prev" href="xai-heart-disease.html"/>
-<link rel="next" href="xai1-explainable-hotels.html"/>
+<link rel="prev" href="deep-learning-1.html"/>
+<link rel="next" href="on-the-reproducibility-of-the-bcdu-net-model.html"/>
 <script src="libs/header-attrs/header-attrs.js"></script>
 <script src="libs/jquery/jquery.min.js"></script>
 <link href="libs/gitbook/css/style.css" rel="stylesheet" />
@@ -337,257 +337,166 @@ div.csl-indent {
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="xai1-explainable-wine" class="section level2" number="1.4">
-<h2><span class="header-section-number">1.4</span> Red wine mystery: using explainable AI to inspect factors behind wine quality</h2>
-<p><em>Authors: Jakub Kosterna, Bartosz Siński, Jan Smoleń (Warsaw University of Technology)</em></p>
-<div id="abstract-1" class="section level3" number="1.4.1">
-<h3><span class="header-section-number">1.4.1</span> Abstract</h3>
-<p>Wine is one of the most widespread and culturally significant drinks in the world. However, the factors determining its quality remain a mystery to the absolute majority of people. There are many variables contributing to the final effect and it seems unclear which ones are crucial in making some wines better than the others. In this paper, we have looked at this issue from a fresh perspective using Red Wine Quality from Kaggle community dataset. Much to our initial surprise, despite the fact that a dozen or so chemical factors were taken into account, there is one that stands out and seems to be the main predictor of the drink’s quality - it is alcohol. The study used four black box models interpreted through modern methods of explainable artificial intelligence to explore the subject.</p>
-</div>
-<div id="introduction-and-motivation" class="section level3" number="1.4.2">
-<h3><span class="header-section-number">1.4.2</span> Introduction and Motivation</h3>
-<p>Term ‘glass box models’ refers to interpretable machine learning models - user can explicitly see how they work, and follow the steps from inputs to outputs. The situation is completely different in the case of the very advanced black box models. The goal of explainable machine learning is to allow a human user to inspect the factors behind results given by the model <span class="citation">(<a href="#ref-dalex" role="doc-biblioref">Baniecki et al. 2020a</a>)</span>.</p>
-<p>There are numerous projects on the Internet that look at the Red Wine Quality dataset from different perspectives. However, due to the nuanced nature of the problem, many of them don’t allow us to draw any constructive conclusions concerning the impact that various physicochemical properties have on the quality of wine. Our goal was to implement XAI solutions in terms of the analysis of the above-mentioned dataset and to confront results with previous research and literature on the subject.</p>
-<p>In this study, we will be taking a look at all the variables included in our dataset, while paying some special attention to one that seems to be standing out the most - the alcohol content. It is also the one that is the most recognizable to an average consumer and, in contrast to other physicochemical properties, is easily found on every wine label.</p>
-<p>While analysing the results, we have to keep in mind the obvious limitations associated with the subject. Not only is the perception of the quality of wine an inherently subjective property, but it is also affected by factors not included in the data, such as the color of the wine or the temperature in which the drink was served.</p>
-</div>
-<div id="methodology-1" class="section level3" number="1.4.3">
-<h3><span class="header-section-number">1.4.3</span> Methodology</h3>
-<div id="dataset" class="section level4" number="1.4.3.1">
-<h4><span class="header-section-number">1.4.3.1</span> Dataset</h4>
-<p>The original collection contains 1 600 observations, each representing one Portuguese Vinho Verde of the red variety. It is a proper to analyze and respected set, as evidenced by its verification, multiple use, as well as a very high rating of “usability” of 8.8 on the website. It consists of eleven predictors:</p>
-<ul>
-<li><em>fixed acidity</em> - most acids involved with wine or fixed or nonvolatile (do not evaporate readily)</li>
-<li><em>volatile acidity</em> - the amount of acetic acid in wine, which at too high of levels can lead to an unpleasant, vinegar taste</li>
-<li><em>citric acid</em> - found in small quantities, citric acid can add ‘freshness’ and flavor to wines</li>
-<li><em>residual sugar</em> - the amount of sugar remaining after fermentation stops, it’s rare to find wines with less than 1 gram/liter and wines with greater than 45 grams/liter are considered sweet</li>
-<li><em>chlorides</em> - the amount of salt in the wine</li>
-<li><em>free sulfur dioxide</em> - the free form of SO2 exists in equilibrium between molecular SO2 (as a dissolved gas) and bisulfite ion</li>
-<li><em>total sulfur dioxide</em> - amount of free and bound forms of S02</li>
-<li><em>density</em> - the density of water is close to that of water depending on the percent alcohol and sugar content</li>
-<li><em>pH</em> - describes how acidic or basic a wine is on a scale from 0 (very acidic) to 14 (very basic)</li>
-<li><em>sulphates</em> - a wine additive which can contribute to sulfur dioxide gas (S02) levels, wich acts as an antimicrobial and antioxidant</li>
-<li><em>alcohol</em> - alcohol by volume percentage</li>
-</ul>
-<p>The decision variable was originally <em>quality</em> - the median rating of an assembly of minimum 3 experts, who made their classification on a scale from 0 to 10. Due to the capabilities of the analyzed XAI tools, our team decided to make it a binary classification problem, assigning the wines rated &lt;= 5 value 0, and others - value 1. It resulted in an intuitive “bad / good” wine classification, which gave us 855 “good” and 744 “bad” wines.</p>
-<div class="figure" style="text-align: center"><span id="fig:targetCounts"></span>
-<img src="images/1-4-01targetCounts.png" alt="Distribution of target before and after transformation" width="700" />
+<div id="lungnet" class="section level2" number="3.1">
+<h2><span class="header-section-number">3.1</span> LungNet</h2>
+<p><em>Authors: Adam Frej, Piotr Marciniak, Piotr Piątyszek</em></p>
+<div id="introduction-5" class="section level3" number="3.1.1">
+<h3><span class="header-section-number">3.1.1</span> Introduction</h3>
+<p>Our goal is to recreate the results achieved in the article: Semantic Segmentation of Pathological Lung Tissue
+with Dilated Fully Convolutional Networks <span class="citation">(<a href="#ref-3-0-LungNet" role="doc-biblioref">Anthimopoulos et al. 2019</a>)</span>. Authors developed a deep purely convolutional neural network for the semantic segmentation of interstitial lung diseases. The proposed CNN takes as input a lung CT image of arbitrary size and outputs the corresponding label map. We want to recreate that CNN and achieve as similar results as possible.<br />
+Interstitial lung disease (ILD) is a group of more than 200 chronic lung disorders characterized by inflammation and scarring of the lung tissue that leads to respiratory failure. The diagnosis of ILD is mostly performed by radiologists and is usually based on the assessment of the different ILD pathologies in high resolution computed tomography (HRCT) thoracic scans. Early diagnosis is crucial for making treatment decisions, while misdiagnosis may lead to life-threatening complications. Pathological tissue is usually manifested as various textural patterns in the CT scan. The article proposes the use of a deep fully convolutional network for the problem of ILD pattern recognition that uses dilated convolutions and is trained in an end-to-end and semi-supervised manner.<br />
+On the image is presented a typical HRCT scan with annotations. The white border line denotes the lung field segmentation, the blue denotes healthy tissue, the purple micronodules and the red the honeycombing pattern.</p>
+<div class="figure" style="text-align: center"><span id="fig:unnamed-chunk-2"></span>
+<img src="images/3-1-HRCT_scan.png" alt="Example of an annotated HRCT lung scan" width="500" />
 <p class="caption">
-Figure 1.37: Distribution of target before and after transformation
+Figure 3.1: Example of an annotated HRCT lung scan
 </p>
 </div>
 </div>
-<div id="machine-learning-algorithms-used" class="section level4" number="1.4.3.2">
-<h4><span class="header-section-number">1.4.3.2</span> Machine learning algorithms used</h4>
-<p>In order to look at the nature of this data, four well-known algorithms have been trained from data divided into: 1199 observations for the training set and 400 for the test set.</p>
-<ol style="list-style-type: decimal">
-<li><p><strong>XGBoost</strong> (<em>gbm</em>) - powerful modern method based on <em>AdaBoost</em> and gradient boosting, imported from <em>xgboost</em> package, with tuned hyperparameters using the randomized search method from <em>sklearn</em> package, with the best values obtained: <em>min_child_weight</em> - 1, <em>max_depth</em> - 12, <em>learning_rate</em> - 0.05, <em>gamma</em> - 0.2 and <em>colsample_bytree</em> - 0.7</p></li>
-<li><p><strong>Support Vector Machine</strong> (<em>svm</em>) - algorithm, in which we plot each data item as a point in n-dimensional space (where n is number of features) with the value of each feature being the value of a particular coordinate. Then, we perform classification by finding the hyper-plane that differentiates the two classes very well; imported from <em>sklearn</em> package, with tuned hyperparameters using the grid search method from <em>sklearn</em> package, with the best values obteined: <em>C</em> - 10000, <em>gamma</em> - 0.0001 and <em>kernel</em> - rbf</p></li>
-<li><p><strong>Random Forest</strong> (<em>rfm</em>) - method building multiple decision trees and merges them together to get a more accurate and stable prediction; imported from <em>sklearn</em> package, with tuned hyperparameters using the randomized search method from <em>sklearn</em> package<sup>4</sup>, with the best values obtained: <em>n_estimators</em> - 2000, <em>min_samples_split</em> - 2, <em>min_samples_leaf</em> - 2, <em>max_features</em> - auto, <em>max_depth</em> - 100 and <em>bootstrap</em> - True</p></li>
-<li><p><strong>Gradient Boosting</strong> (<em>xgm</em>) - a type of machine learning boosting. It relies on the intuition that the best possible next model, when combined with previous models, minimizes the overall prediction error; imported from <em>sklearn</em> package, with tuned hyperparameters using the grid search method from <em>sklearn</em> package, with the best values obteined: <em>learning_rate</em> - 0.1, <em>max_depth</em> - 7 and <em>n_estimators</em> - 50</p></li>
-</ol>
-<p>All methods have been implemented in Python with random states set to 42. The choice of these methods was made on the basis of their popularity, diversity and practicality, taking into account the essence of the problem under consideration.</p>
-<p>After checking the operation of the models on the test set, the following quality measures were obtained:</p>
-<table>
-<thead>
-<tr class="header">
-<th><strong>algorithm</strong></th>
-<th><strong>accuracy</strong></th>
-<th><strong>precision</strong></th>
-<th><strong>recall</strong></th>
-<th><strong>ROC AUC</strong></th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td><strong>XGBoost</strong></td>
-<td>0.8050</td>
-<td>0.806306</td>
-<td>0.836449</td>
-<td>0.802633</td>
-</tr>
-<tr class="even">
-<td><strong>Support Vector Machine</strong></td>
-<td>0.7475</td>
-<td>0.798942</td>
-<td>0.705607</td>
-<td>0.750653</td>
-</tr>
-<tr class="odd">
-<td><strong>Random Forest</strong></td>
-<td>0.7850</td>
-<td>0.801887</td>
-<td>0.794393</td>
-<td>0.784293</td>
-</tr>
-<tr class="even">
-<td><strong>Gradient Boosting</strong></td>
-<td>0.8075</td>
-<td>0.818605</td>
-<td>0.822430</td>
-<td>0.806376</td>
-</tr>
-</tbody>
-</table>
+<div id="data" class="section level3" number="3.1.2">
+<h3><span class="header-section-number">3.1.2</span> Data</h3>
+<p>In order to recreate the article we needed already annotated HRCT scans of lungs.</p>
+<div id="original-data" class="section level4" number="3.1.2.1">
+<h4><span class="header-section-number">3.1.2.1</span> Original data</h4>
+<p>The authors of the article used a dataset of 172 sparsely annotated HRCT scans, each corresponding to a unique ILD or healthy subject. The dataset contains 109 cases from multimedia database of interstitial lung diseases by the Geneva University Hospital (HUG), along with 63 cases from Bern University Hospital - “Inselspital” (INSEL), as collected by the authors. Two experienced radiologists from INSEL annotated or reannotated ILD typical pathological patterns, as well as healthy tissue in both databases. A lung field segmentation mask was also provided for each case.<br />
+Article claims that the datasets are publicly available. However, we could not reach them. The HUG dataset required a copyright agreement signed by a person duly authorized by the institution (e.g., Department or Administrative Head or similar). We could not find any access to the INSEL dataset.
+In order to find datasets, which correspond to our theme, we looked for similar articles. One of them was an article Computer-Aided Diagnosis of Pulmonary Fibrosis Using Deep Learning and CT Images <span class="citation">(<a href="#ref-3-1-Similar" role="doc-biblioref">Christe 2019</a>)</span>, which is about pulmonary fibrosis that belongs to ILD. This article uses multiple datasets, but none of them is available online.</p>
+</div>
+<div id="our-data" class="section level4" number="3.1.2.2">
+<h4><span class="header-section-number">3.1.2.2</span> Our data</h4>
+<p>Because of the issues with the original data we had to find new datasets.<br />
+The first one, <a href="https://github.com/adnan-saood/COVID19-DL">COVID19-DL</a> contains lungs scans of COVID-19 patients. The dataset is designed for training deep learning models. It has 100 png images in grayscale, each in <span class="math inline">\(256 \times 256\)</span> resolution.<br />
+The second one, <a href="https://wiki.cancerimagingarchive.net/display/Public/LIDC-IDRI">The Lung Image Database Consortium (LIDC)</a> consists of 1018 diagnostic and lung cancer screening thoracic computed tomography (CT) scans with marked-up annotated lesions. The dataset is a web-accessible international resource for development, training, and evaluation of computer-assisted diagnostic (CAD) methods for lung cancer detection and diagnosis. Four experienced thoracic radiologists independently reviewed each CT scan and marked lesions. The images are in dicom format, grayscale and <span class="math inline">\(512 \times 512\)</span> resolution.<br />
+The LIDC dataset is much better annotated and contains more cases. That is why we decided to use it in training process of our models.</p>
 </div>
 </div>
-<div id="global-explanations-2" class="section level3" number="1.4.4">
-<h3><span class="header-section-number">1.4.4</span> Global explanations</h3>
-<div id="permutation-based-variable-importance" class="section level4" number="1.4.4.1">
-<h4><span class="header-section-number">1.4.4.1</span> Permutation-based variable importance</h4>
-<div class="figure" style="text-align: center"><span id="fig:permutancexgb"></span>
-<img src="images/1-4-03permutance_xgb.png" alt="Permutation-based variable importance plot for tuned XGBoost model. In this case, size of the bar indicates the positive impact that a feature has on accuracy of the model" width="700" />
+<div id="original-model" class="section level3" number="3.1.3">
+<h3><span class="header-section-number">3.1.3</span> Original model</h3>
+<p>The original model has 13 convolutional layers. In particular, each of the first ten layers has 32 kernels of size <span class="math inline">\(3 \times 3\)</span> and dilation rates <span class="math inline">\(1, 1, 2, 3, 5, 8, 13, 21, 34, 55\)</span>. The authors chose not to increase the dilation rates exponentially. The outputs of these layers are concatenated, which are passed through a dropout layer with a rate of <span class="math inline">\(0.5\)</span>. The last three layers have <span class="math inline">\(1 \times 1\)</span> kernels with numbers of filters set to <span class="math inline">\(128, 32, 6\)</span>. The number of last- layer filters depended on number of classes. In our case we set them to <span class="math inline">\(2\)</span> and <span class="math inline">\(3\)</span> depending on dataset.</p>
+<div id="preprocessing" class="section level4" number="3.1.3.1">
+<h4><span class="header-section-number">3.1.3.1</span> Preprocessing</h4>
+<p>As authors did not mention any preprocessing techniques that had been used. We tried to improve results of their neural network by two techniques which we introduced by ourselves.
+One of them was a histogram equalization, which makes images more readable for humans. Below we have a comparison of two pictures with a histogram equalization and without. On the left side we have histograms of the scans.</p>
+<div class="figure" style="text-align: center"><span id="fig:unnamed-chunk-3"></span>
+<img src="images/3-1-histogram_pictures.png" alt="The comparision of scans" width="600" />
 <p class="caption">
-Figure 1.38: Permutation-based variable importance plot for tuned XGBoost model. In this case, size of the bar indicates the positive impact that a feature has on accuracy of the model
+Figure 3.2: The comparision of scans
 </p>
 </div>
-<p>Our starting point was rendering a permutation-based variable importance plot from <em>DALEX</em> package using our XGBoost model to examine which variables play the biggest role in model’s decision <span class="citation">(<a href="#ref-dalex" role="doc-biblioref">Baniecki et al. 2020a</a>)</span>. The goal of this method is to inspect which variables have positive impact on the accuracy of the prediction. Surprisingly, all of them seemed to provide information that benefited the accuracy of the model. This, combined with a relatively small size of our dataset, led us to decision not to exclude any variables in further proceedings. However, the importance of the variables varies greatly - alcohol and sulphates together overcome all other factors combined.</p>
-</div>
-<div id="mean-absolute-shap-value" class="section level4" number="1.4.4.2">
-<h4><span class="header-section-number">1.4.4.2</span> Mean absolute SHAP value</h4>
-<div class="figure" style="text-align: center"><span id="fig:meanShapxgb"></span>
-<img src="images/1-4-04meanShap_xgb.png" alt="Mean absolute SHAP value for tuned XGBoost model. Size of the bar indicates how much a feature influences the prediction on average" width="700" />
+<p>Unfortunately, it did not improve results of our neural network.
+Another technique which we used was cutting images to smaller parts. We did it because a tumor is a small part of the whole image. By doing this, we increased the proportion of a tumor to the whole picture.
+Below we have a plot showing the comparison of preprocessing techniques.</p>
+<div class="figure" style="text-align: center"><span id="fig:unnamed-chunk-4"></span>
+<img src="images/3-1-comparison_preprocessing.png" alt="The comparision of scans" width="600" />
 <p class="caption">
-Figure 1.39: Mean absolute SHAP value for tuned XGBoost model. Size of the bar indicates how much a feature influences the prediction on average
-</p>
-</div>
-<p>In order to gain a different perspective, we examined a plot of mean absolute SHAP values of our model <span class="citation">(<a href="#ref-xai1-shapleyvalues" role="doc-biblioref">Scott M. Lundberg and Lee 2017</a>)</span>. SHAP method is explained in chapter <a href="xai1-explainable-wine.html#break-down-and-shapley-additive-explanations-shap">Break Down and Shapley Additive Explanations (SHAP)</a>. Mean absoulte SHAP value can give us insight into which variables influence the predictions the most. Although this method differs significantly from the above-mentioned permutation-based variable importance, it provided us with a similar information on the hierarchy of importance of the variables - once again, alcohol seems to be the biggest factor, followed by sulphates. Analysing those plots encouraged us to take a closer look at the role that alcohol content plays on the prediction.</p>
-</div>
-<div id="pdp" class="section level4" number="1.4.4.3">
-<h4><span class="header-section-number">1.4.4.3</span> PDP</h4>
-<div class="figure" style="text-align: center"><span id="fig:pdp"></span>
-<img src="images/1-4-11pdp.png" alt="Partial Dependence Plot for all models. Lines represent the average prediction by the model if all observations had a fixed value of a feature, in this case - alcohol content" width="700" />
-<p class="caption">
-Figure 1.40: Partial Dependence Plot for all models. Lines represent the average prediction by the model if all observations had a fixed value of a feature, in this case - alcohol content
-</p>
-</div>
-<p>Next, we used Partial Dependence Plot from <em>DALEX</em> package <span class="citation">(<a href="#ref-dalex" role="doc-biblioref">Baniecki et al. 2020a</a>)</span> to examine an overall effect the alcohol content has on our predictions. PDP tells us what would the average prediction be, if all observations had a fixed value of certain variable. This time, we used all of our models. As expected, tree-based model (XGBoost, GradientBoosting and Random Forest) behave very similarly, while SVM stands out from the rest. However, the main trend is the same - generally, stronger wines are more likely to be good than the weaker ones. Most models reach their lows at just below 10% alcohol content and plateau around 12%.</p>
-<p>We have to keep in mind that our data contains only one wine that exceeds 14% alcohol content, which may explain the flat line after that mark for tree-based models. It should be noted that this strongest wine was actually ranked as not good. The fact that the line representing SVM model keeps increasing in value throughout the whole range may indicate that this model is more prone to outliers and doesn’t capture complex interactions as well as other models. It coincides with our prior knowledge of the models and the accuracy scores they achieved.</p>
-</div>
-<div id="ale" class="section level4" number="1.4.4.4">
-<h4><span class="header-section-number">1.4.4.4</span> ALE</h4>
-<div class="figure" style="text-align: center"><span id="fig:ale"></span>
-<img src="images/1-4-10ale.png" alt="Accumulated Local Effects Plot for all models. Lines represent how predictions change in a small range around the value of a feature, in this case - alcohol content." width="700" />
-<p class="caption">
-Figure 1.41: Accumulated Local Effects Plot for all models. Lines represent how predictions change in a small range around the value of a feature, in this case - alcohol content.
-</p>
-</div>
-<p>In order to take into account possible interactions concerning our variable, we generated an ALE plot using all of the models <span class="citation">(<a href="#ref-xai1-ale" role="doc-biblioref">Apley and Zhu 2020</a>)</span>. This methods shows us how model predictions change in a small “window” of the feature around certain value for data instances in that window. The results turned out to be quite similar to PDP. It makes sense, considering the fact that our dataset doesn’t contain many strongly corelated variables, and the one that is related the most to alcohol, the density, doesn’t have a very significant impact on the predictions made by the models. The most visible difference is probably the way SVM behaves for the biggest alcohol values - it doesn’t seem to differ as much from the other models as in the previous plot.</p>
-</div>
-</div>
-<div id="local-explanations-1" class="section level3" number="1.4.5">
-<h3><span class="header-section-number">1.4.5</span> Local explanations</h3>
-<div id="break-down-and-shapley-additive-explanations-shap" class="section level4" number="1.4.5.1">
-<h4><span class="header-section-number">1.4.5.1</span> Break Down and Shapley Additive Explanations (SHAP)</h4>
-The first method that we have used for our local explanations is Shapley Additive Explanations (SHAP). It is based on another explanatory method called Break-Down, which similarly to SHAP is used to compute variables’ attribution to the model’s prediction <span class="citation">(<a href="#ref-xai1-breakdown" role="doc-biblioref">Staniak and Biecek 2018</a>)</span>. Break-Down method fixes values of variables in sequence and looks at changes in label value. Moreover, as we can see in figure Figure <a href="xai1-explainable-wine.html#fig:breakdownplot">1.42</a> this method is sensitive to the order of variables.
-<div class="figure" style="text-align: center"><span id="fig:breakdownplot"></span>
-<img src="images/1-4-05breakdown.png" alt="BreakDown plots for one observation with different order of fixed variables. Size and color of bars indicates changes in model's predictions." width="700" />
-<p class="caption">
-Figure 1.42: BreakDown plots for one observation with different order of fixed variables. Size and color of bars indicates changes in model’s predictions.
-</p>
-</div>
-All three presented plots describe the same observation with different sequences of examined variables. When critic acid was fixed as the first one, it lowered the prediction. However, the second plot presents a situation where critic acid was second fixed variable and its value showed a positive impact on rising wine’s rating. This dependency on order made it harder for us to conclude about specific wines. Fortunately
-Shapley Additive Explanations method (SHAP) resolves this issue by averaging results for different permutations of variables <span class="citation">(<a href="#ref-xai1-shapleyvalues" role="doc-biblioref">Scott M. Lundberg and Lee 2017</a>)</span>. As an example, you can see computed Shapley values for same observation in Figure <a href="xai1-explainable-wine.html#fig:shapplot97">1.43</a> .
-<div class="figure" style="text-align: center"><span id="fig:shapplot97"></span>
-<img src="images/1-4-12shap1.png" alt="Plot of Shapley Values for good wine. Size and color of bars indicates mean change in model's prediction over different orders of fixed variable." width="700" />
-<p class="caption">
-Figure 1.43: Plot of Shapley Values for good wine. Size and color of bars indicates mean change in model’s prediction over different orders of fixed variable.
-</p>
-</div>
-Here our model was certain about assigning wine to good ones. Nearly all factors contributed to increasing wine’s rating. Not surprisingly, alcohol and sulphates had the biggest influence on the model’s prediction. Only free sulfur dioxide and pH had worsened the quality of wine, all of which, according to global explanations, are practically irrelevant variables to our model.
-On the contrary Figure <a href="xai1-explainable-wine.html#fig:shapplot19">1.44</a> presents an observation where all attributes except volatile acidity lowered the rating of our wine. From the values of particular variables, we can see that these wines are completely different, which explains model’s distant assessments. Furthermore, exact values that our model understands as beneficial for wine start to emerge. To get a closer look we will have to use new method described in the following section.
-<div class="figure" style="text-align: center"><span id="fig:shapplot19"></span>
-<img src="images/1-4-13shap2.png" alt="Plot of Shapley Values for bad wine." width="700" />
-<p class="caption">
-Figure 1.44: Plot of Shapley Values for bad wine.
-</p>
-</div>
-</div>
-<div id="lime" class="section level4" number="1.4.5.2">
-<h4><span class="header-section-number">1.4.5.2</span> LIME</h4>
-<p>In order to look at the explainability of individual predictions, the LIME method from <em>DALEX</em> package was used <span class="citation">(<a href="#ref-dalex" role="doc-biblioref">Baniecki et al. 2020a</a>)</span>. When looking at individual visualizations, it is easy to see that extreme alcohol values have the greatest impact on the prediction value. This is clearly visible on the example of incorrectly classified observations - in a significant number of cases it is the non-standard value of alcohol that largely determines the incorrect prediction. The situation is well illustrated by visualizations generated on the basis of two observations which all of our models misclassified.</p>
-<div class="figure" style="text-align: center"><span id="fig:lime1"></span>
-<img src="images/1-4-06LIME1.png" alt=" Visualization of LIME method for wine incorrectly classified as bad. Left section represents prediction probability. Middle section displays importance of features and right section their exact values. Blue color indicates that variable is supporting class 0 (bad wine) and orange that variable is supporting class 1 (good wine)." width="700" />
-<p class="caption">
-Figure 1.45:  Visualization of LIME method for wine incorrectly classified as bad. Left section represents prediction probability. Middle section displays importance of features and right section their exact values. Blue color indicates that variable is supporting class 0 (bad wine) and orange that variable is supporting class 1 (good wine).
-</p>
-</div>
-<div class="figure" style="text-align: center"><span id="fig:lime2"></span>
-<img src="images/1-4-07LIME2.png" alt=" Visualization of LIME method for wine incorrectly classified as good." width="700" />
-<p class="caption">
-Figure 1.46:  Visualization of LIME method for wine incorrectly classified as good.
-</p>
-</div>
-<p>However, in this case, alcohol does not always dominate, and the prediction result for the XGBoost model is indeed a component of many elements. However, it has to be considered that the <em>LIME</em> method in this case takes into account only certain automatically selected intervals, which, when combined, do not fully represent the essence of the algorithm.</p>
-</div>
-<div id="ceteris-paribus" class="section level4" number="1.4.5.3">
-<h4><span class="header-section-number">1.4.5.3</span> Ceteris Paribus</h4>
-<p>Analyzing results from LIME brought to light yet another issue. Is it possible to change wine’s rating by altering the alcohol content? Answers to this question were provided by a method called Ceteris Paribus. “Ceteris paribus” is a Latin phrase meaning “other things held constant” which accurately describes the main concept of method. Ceteris Paribus illustrates the response of a model to changing a single variable while fixing the values of others. As an example, we will use observation from the previous section which our model incorrectly
-labeled as the bad one. We quietly assumed that it was due to low alcohol content, but now we can verify our thesis.</p>
-<div class="figure" style="text-align: center"><span id="fig:cp1"></span>
-<img src="images/1-4-08cp1.png" alt="Ceteris-paribus profile for all models. Lines represent how the models' predictions change over different alcohol contents while keeping other variables fixed. Dots represents actual value of alcohol content in examined misclassified wine." height="300" />
-<p class="caption">
-Figure 1.47: Ceteris-paribus profile for all models. Lines represent how the models’ predictions change over different alcohol contents while keeping other variables fixed. Dots represents actual value of alcohol content in examined misclassified wine.
-</p>
-</div>
-Indeed if our wine was less than a half percent stronger, the model would properly give it a higher rating. However, rising alcohol levels in not always an answer. For instance, very strong wine with 14.7% alcohol presented in Figure <a href="xai1-explainable-wine.html#fig:cp2">1.48</a> would benefit from a reduction of alcohol content.
-<div class="figure" style="text-align: center"><span id="fig:cp2"></span>
-<img src="images/1-4-09cp2.png" alt="Ceteris-paribus profile for alcohol content in a very strong wine." height="300" />
-<p class="caption">
-Figure 1.48: Ceteris-paribus profile for alcohol content in a very strong wine.
+Figure 3.3: The comparision of scans
 </p>
 </div>
 </div>
 </div>
-<div id="confrontation-with-science" class="section level3" number="1.4.6">
-<h3><span class="header-section-number">1.4.6</span> Confrontation with science</h3>
-<p>The subject of the quality of wines in relation to their alcohol content has been studied many times before by other scientists and enologists. The topic was covered, among others, on a post on <em>Cult wines</em> blog <span class="citation">(<a href="#ref-1-4-wines-blog" role="doc-biblioref">England 2019</a>)</span>. In 2019, the author pointed that “It is true that alcohol in wine tends to draw out more intense, bold flavours, so the higher the alcohol level, the fuller the body.” Certainly, the phenomenon is also confirmed by the popular fact of preferences of esteemed former wine critic Robert Parker, who was well known for awarding higher scores to higher alcohol wines. On the other hand, lower alcohol wines tend to offer greater balance and pair better with foods. Hence, too much content is also not an advantage in terms of quality.</p>
-<p>The phenomenon was also examined by the newspaper the Seattle Times, which published an article in 2003 entitled <em>Does a higher alcohol content mean it’s a better drinking wine?</em> <span class="citation">(<a href="#ref-1-4-wines-seattle" role="doc-biblioref">Gregutt 2003</a>)</span>. The expert emphasizes that higher alcohol is an indication of better ripeness at harvest and fermentation to complete or near-complete dryness. With time, the wines are also getting stronger, which is the result of better vineyard practices, letting the grapes get more “hang time” and more efficient yeasts, which definitely has a positive effect on the quality. Here, however, the argument for not too high alcohol content is also emphasized, due to the fact that wines with more than 15 percent are almost never ageworthy. The high alcohol throws the balance off and is often accompanied by too much oak and too much tannin. These wines are also hard to drink, as they do not match well with most foods.</p>
-<p>It is also worth comparing an article from the <em>Decanter</em> website <span class="citation">(<a href="#ref-1-4-wines-decanter" role="doc-biblioref">Jefford 2010</a>)</span> with the results of our study. As a person well acquainted with the subject, the expert considers the alcohol threshold of a good wine, coming to a conclusion consistent with the results of our calculations.</p>
-<p>Professional research was conducted in 2015. A group of Portugese experts conducted a thorough research, the result of which was the article <em>From Sugar of Grape to Alcohol of Wine: Sensorial Impact of Alcohol in Wine</em> <span class="citation">(<a href="#ref-1-4-wines-jordao" role="doc-biblioref">Jordão et al. 2015</a>)</span>. They indicated in it that the quality of grapes, as well as wine quality, flavor, stability, and sensorial characteristics depends on the content and composition of several different groups of compounds from grapes. One of these groups of compounds are sugars and consequently the alcohol content quantified in wines after alcoholic fermentation. During grape berry ripening, sucrose transported from the leaves is accumulated in the berry vacuoles as glucose and fructose resulting in a fuller taste of a final wine.</p>
-<p>The idea of a threshold of an alcohol content, beyond which wines lose their quality, is a common theme in literature dedicated to the topic. There is evidence suggesting that wines that have more than 14.5% of alcohol start to come off as herbaceous instead of fruity <span class="citation">(<a href="#ref-1-4-wines-goldner" role="doc-biblioref">GOLDNER et al. 2009</a>)</span>. The research states that the sensory perception of the aroma
-changed dramatically with the level of ethanol content in the wine, but the change isn’t consistent among all chemical compounds.</p>
-<p>Another very interesting topic is the idea of reducing the alcohol content in wine after initial production process <span class="citation">(<a href="#ref-1-4-wines-jordao" role="doc-biblioref">Jordão et al. 2015</a>)</span>. Motivation behind such actions is to try to keep all the good aromas and qualities associated with stronger wines, while simultaneously lowering excessive alcohol which causes bitter or sour tastes. Such attempts ended in mixed results, but evidence suggests that it may be possible to lower alcohol content by one percentage point without losing many aromas.</p>
+<div id="new-models" class="section level3" number="3.1.4">
+<h3><span class="header-section-number">3.1.4</span> New models</h3>
+<p>To improve results on our datasets we used another architectures of neural networks.</p>
+<div id="smaller-ones" class="section level4" number="3.1.4.1">
+<h4><span class="header-section-number">3.1.4.1</span> Smaller ones</h4>
+<p>This architecture was a modification of the one proposed by the authors. We added a convolutional layer and a batch normalization to a convolution block and decreased the number of convolution blocks to 5. As a result, we did not achieve any noticeable changes in our metric. The model was not learning throughout epochs.</p>
+<div class="figure" style="text-align: center"><span id="fig:unnamed-chunk-5-1"></span>
+<img src="images/3-1-smaller_ones_covid.png" alt="The results of smaller architecture" width="600" />
+<p class="caption">
+Figure 3.4: The results of smaller architecture
+</p>
 </div>
-<div id="summary" class="section level3" number="1.4.7">
-<h3><span class="header-section-number">1.4.7</span> Summary</h3>
-<p>The analysis of the results of modern methods of explainable artificial intelligence showed a relatively unambiguous conclusion - taking into account the proven data set of popular wines assessed by experts, the alcohol content definitely has a large impact on the average rating of wines. Despite taking into account many different chemical factors, as well as the variety of black box models and the differences between individual observations, alcohol is a factor that stands out from other predictors. This result is evidenced not only by the high correlation and simple conclusions from the visualizations, but also by the results of the algorithms explaining the results of the models used. However, the methodology has produced less obvious conclusions - although higher alcohol content is associated with higher alcohol quality (at least in a pseudo-objective sense), there is a threshold at which this property reverses. These considerations are the result of measuring not only one or two approaches, but a total of research based on as many as seven methods. It is a good argument to appreciate both them and modern solutions of explainable artificial intelligence. Indeed, the results of information and mathematical analysis are also consistent with what we can observe in nature - the effects of the calculations made are consistent with previous research related to the topic, and not necessarily based on methods related to the field of data science.</p>
+<div class="figure" style="text-align: center"><span id="fig:unnamed-chunk-5-2"></span>
+<img src="images/3-1-smaller_ones_lidc.png" alt="The results of smaller architecture" width="600" />
+<p class="caption">
+Figure 3.5: The results of smaller architecture
+</p>
 </div>
-<div id="conclusions" class="section level3" number="1.4.8">
-<h3><span class="header-section-number">1.4.8</span> Conclusions</h3>
-<p>The experiment is undoubtedly successful and with a high degree of certainty confirms two facts: firstly, the quality of the wines is dependent on their higher alcohol content, but up to a certain threshold and secondly, modern methods of explainable artificial intelligence provides us valuable results that bring new valuable information about the black box models, which at the same time are consistent with the nature of the data sets on which they were made. Different approaches provide us with various useful information and it is difficult to indicate better or worse solutions - the seven methods mentioned complement each other in their own way, but each allows us to look at the problem of analysis from a different perspective.</p>
-<p>Leaving aside our succesful implementation of XAI solutions, one must bear in mind, that the results of the experiment need to be put in a certain perspective. It must be remembered that the world of wines is a very diverse one. For example, artificially fortified wines like port wine or sherry should be considered separately. The discussed data set concerns only a certain group of wines and we don’t know enoguh about the experts or conditions of the tastings to call the data entirely representative. Therefore, we should remain cautious when drawing any far-reaching conclusions. Nevertheless, the conducted research approximates the idea of the overall effect of alcohol on the quality of wine and confirms previous research by experts from a biochemical point of view.</p>
+</div>
+<div id="segnet" class="section level4" number="3.1.4.2">
+<h4><span class="header-section-number">3.1.4.2</span> SegNet</h4>
+Another architecture which inspired us was the SegNet. It is a deep convolutional encoder-decoder architecture for image segmentation. Originally, it consisted of 10 convolutional blocks, where each block is made up of a convolutional layer, a batch normalization and as an activation relu is used. Depending if a block is in an encoder or a decoder, a pooling layer or a upsampling layer is added to the block.
+<div class="figure" style="text-align: center"><span id="fig:unnamed-chunk-6"></span>
+<img src="images/3-1-segnet-architecture.png" alt="Original SegNet" width="900" />
+<p class="caption">
+Figure 3.6: Original SegNet
+</p>
+</div>
+We used our modification of SegNet consisted of 8 convolutional blocks. We deleted 2 middle blocks. It performed much better than the original model proposed by authors of the article on both datasets. It achieved about <span class="math inline">\(0.97\)</span> weighted accuracy over annotated area (the metric proposed by the authors of the paper, which we are trying to reproduce) on the LIDC dataset and <span class="math inline">\(0.75\)</span> accuracy on the COVID dataset. Below we have two plots showing, how much our score on the validation set changed throughout epochs.
+<div class="figure" style="text-align: center"><span id="fig:unnamed-chunk-7-1"></span>
+<img src="images/3-1-segnet-covid.png" alt="The results of modified SegNet" width="600" />
+<p class="caption">
+Figure 3.7: The results of modified SegNet
+</p>
+</div>
+<div class="figure" style="text-align: center"><span id="fig:unnamed-chunk-7-2"></span>
+<img src="images/3-1-segnet-lidc.png" alt="The results of modified SegNet" width="600" />
+<p class="caption">
+Figure 3.8: The results of modified SegNet
+</p>
+</div>
+<p>This model we evaluated later.</p>
+<div id="metrics" class="section level5" number="3.1.4.2.1">
+<h5><span class="header-section-number">3.1.4.2.1</span> Metrics</h5>
+<p>We used several metrics to evaluate our model.
+The most important one is the confusion matrix. It shows how accurate is the model. We can notice that it improves a little over time but it is not significant. Most of predicted healthy area of the lungs is actually healthy. It is the main part of the scans. However, there are a lot of false positive cases. The model marks healthy parts of the lungs as lesion. It finds most of the actual lesions but marks it together with a lot of healthy part.</p>
+<div class="figure" style="text-align: center"><span id="fig:unnamed-chunk-8"></span>
+<img src="images/3-1-confusion_matrix.png" alt="Confusion matrix" width="900" />
+<p class="caption">
+Figure 3.9: Confusion matrix
+</p>
+</div>
+<p>Accuracy, precision, recall and specificity are basic ones. Accuracy is not very meaningful because of the uneven distribution of the considered classes across the cases. Precision is very low that is connected with the confusion matrix. The model marks a lot of false positive cases. Recall is pretty high. The model finds most of the damaged part of the lungs. Specificity is extremely high that is also connected with the confusion matrix. The model finds almost all healthy lung tissue. In some metrics we can notice an improvement throughout epochs.</p>
+<p><img src="images/3-1-accuracy.png" width="600" style="display: block; margin: auto;" /><img src="images/3-1-precision.png" width="600" style="display: block; margin: auto;" /><img src="images/3-1-recall.png" width="600" style="display: block; margin: auto;" /><img src="images/3-1-specificity.png" width="600" style="display: block; margin: auto;" /></p>
+<p>Intersection over Union is an important metric in our case because we segment images. It says how accurately model marks lesions in lungs. It is calculated by dividing an area of the intersection of the actual and the predicted lesions by an area of the union of them. The metric is pretty high and improves over time. The reason why it is not close to 1 is the problem with false positives and low precision.</p>
+<p><img src="images/3-1-IoU.png" width="600" style="display: block; margin: auto;" /></p>
+</div>
+<div id="our-attempts-to-improve-scores" class="section level5" number="3.1.4.2.2">
+<h5><span class="header-section-number">3.1.4.2.2</span> Our attempts to improve scores</h5>
+<p>We tried to improve results of our best model in various ways.</p>
+<div id="pretraining" class="section level6" number="3.1.4.2.2.1">
+<h6><span class="header-section-number">3.1.4.2.2.1</span> Pretraining</h6>
+<p>One of them was pretraining. We taught block after block to copy the input pictures. In this way we wanted our model to discover more patterns from our input picture. At the plots we can see the results of training each convolutional block. We achieved about 200 MEA for all blocks, but with more blocks we scored better result.</p>
+<div class="figure" style="text-align: center"><span id="fig:unnamed-chunk-11"></span>
+<img src="images/3-1-pretraining_layers.png" alt="Training of blocks" width="600" />
+<p class="caption">
+Figure 3.10: Training of blocks
+</p>
+</div>
+<p>After training of each layer we transferred weights to our modified SegNet. Then we frozen all layers of encoder and started training of decoder layers. Below we have a plot which shows the improvement of our model after training each layer of the encoder. We accomplished about <span class="math inline">\(0.98\)</span> weighted accuracy.</p>
+<div class="figure" style="text-align: center"><span id="fig:unnamed-chunk-12"></span>
+<img src="images/3-1-pretrained.png" alt="After transfer learning" width="600" />
+<p class="caption">
+Figure 3.11: After transfer learning
+</p>
+</div>
+</div>
+<div id="learning-with-an-auxiliary-task" class="section level6" number="3.1.4.2.2.2">
+<h6><span class="header-section-number">3.1.4.2.2.2</span> Learning with an auxiliary task</h6>
+<p>Our auxiliary task was generating a lung scan 3 millimeters further based on an input scan. We expected that our network would learn a better feature extraction for both tasks. Next we frozen first 11 layers, changed the last layer to softmax and we tried to learn our model on the proper task. Unfortunately, that model achieved worse performance and did not learn faster than the pure model.</p>
+<div class="figure" style="text-align: center"><span id="fig:unnamed-chunk-13"></span>
+<img src="images/3-1-auxiliary_task.png" alt="Performance of network with auxiliary task" width="600" />
+<p class="caption">
+Figure 3.12: Performance of network with auxiliary task
+</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div id="summary-1" class="section level3" number="3.1.5">
+<h3><span class="header-section-number">3.1.5</span> Summary</h3>
+<p>To sum up, our modified neural network achieved good scores. However, the whole project stopped to remind the original article. Article turned out to be irreproducible. Due to the fact that we had to change input data and model.</p>
 
 </div>
 </div>
 <h3>References</h3>
 <div id="refs" class="references csl-bib-body hanging-indent" line-spacing="2">
-<div id="ref-xai1-ale" class="csl-entry">
-Apley, D. W., &amp; Zhu, J. (2020). <span class="nocase">Visualizing the effects of predictor variables in black box supervised learning models</span>. <em>Journal of the Royal Statistical Society Series B</em>, <em>82</em>(4), 1059–1086. <a href="https://doi.org/10.1111/rssb.12377">https://doi.org/10.1111/rssb.12377</a>
+<div id="ref-3-0-LungNet" class="csl-entry">
+Anthimopoulos, M., Christodoulidis, S., Ebner, L., Geiser, T., Christe, A., &amp; Mougiakakou, S. (2019). Semantic segmentation of pathological lung tissue with dilated fully convolutional networks. <em>IEEE Journal of Biomedical and Health Informatics</em>, <em>23</em>(2), 714–722. <a href="https://doi.org/10.1109/JBHI.2018.2818620">https://doi.org/10.1109/JBHI.2018.2818620</a>
 </div>
-<div id="ref-dalex" class="csl-entry">
-Baniecki, H., Kretowicz, W., Piatyszek, P., Wisniewski, J., &amp; Biecek, P. (2020a). <span class="nocase">dalex: Responsible Machine Learning with Interactive Explainability and Fairness in Python</span>. <em>arXiv:2012.14406</em>. <a href="https://arxiv.org/abs/2012.14406">https://arxiv.org/abs/2012.14406</a>
-</div>
-<div id="ref-1-4-wines-blog" class="csl-entry">
-England, R. (2019). Wine’s alcohol levels explained. <a href="https://www.wineinvestment.com/wine-blog/2019/05/wines-alcohol-levels-explained?fbclid=IwAR3xpQITEQZrQUPPaEt7-DbFHmvHE559-iVuLsgS6dDinOeWrl04MZiglbM">https://www.wineinvestment.com/wine-blog/2019/05/wines-alcohol-levels-explained?fbclid=IwAR3xpQITEQZrQUPPaEt7-DbFHmvHE559-iVuLsgS6dDinOeWrl04MZiglbM</a>.
-</div>
-<div id="ref-1-4-wines-goldner" class="csl-entry">
-GOLDNER, M. C., ZAMORA, M. C., DI LEO LIRA, P., GIANNINOTO, H., &amp; BANDONI, A. (2009). EFFECT OF ETHANOL LEVEL IN THE PERCEPTION OF AROMA ATTRIBUTES AND THE DETECTION OF VOLATILE COMPOUNDS IN RED WINE. <em>Journal of sensory studies</em>, <em>24</em>(2), 243–257.
-</div>
-<div id="ref-1-4-wines-seattle" class="csl-entry">
-Gregutt, P. (2003). Does a higher alcohol content mean it’s a better drinking wine? <em>The Seattle Times</em>. <a href="https://archive.seattletimes.com/archive/?date=20031008&amp;slug=wineqanda08&amp;fbclid=IwAR3lBlpdwUCUWjWKaH4Px21b9fJQwBT0aMTa8bNWCbx4ipo4otWzvR9_mTc">https://archive.seattletimes.com/archive/?date=20031008&amp;slug=wineqanda08&amp;fbclid=IwAR3lBlpdwUCUWjWKaH4Px21b9fJQwBT0aMTa8bNWCbx4ipo4otWzvR9_mTc</a>
-</div>
-<div id="ref-1-4-wines-decanter" class="csl-entry">
-Jefford, A. (2010). Alcohol levels: The balancing act. <a href="https://www.decanter.com/features/alcohol-levels-the-balancing-act-246426/?fbclid=IwAR0bsIWug6-7l77rxb01Va8P1F_hVkaUTacNtlF-V-wRXb1HA3rJXpl74Pw">https://www.decanter.com/features/alcohol-levels-the-balancing-act-246426/?fbclid=IwAR0bsIWug6-7l77rxb01Va8P1F_hVkaUTacNtlF-V-wRXb1HA3rJXpl74Pw</a>.
-</div>
-<div id="ref-1-4-wines-jordao" class="csl-entry">
-Jordão, A. M., Vilela, A., &amp; Cosme, F. (2015). From sugar of grape to alcohol of wine: Sensorial impact of alcohol in wine. <em>Beverages</em>, <em>1</em>(4), 292–310. <a href="https://doi.org/10.3390/beverages1040292">https://doi.org/10.3390/beverages1040292</a>
-</div>
-<div id="ref-xai1-shapleyvalues" class="csl-entry">
-Lundberg, Scott M., &amp; Lee, S.-I. (2017). A unified approach to interpreting model predictions. In I. Guyon, U. V. Luxburg, S. Bengio, H. Wallach, R. Fergus, S. Vishwanathan, &amp; R. Garnett (Eds.), <em>Advances in neural information processing systems 30</em> (pp. 4765–4774). Montreal: Curran Associates. <a href="http://papers.nips.cc/paper/7062-a-unified-approach-to-interpreting-model-predictions.pdf">http://papers.nips.cc/paper/7062-a-unified-approach-to-interpreting-model-predictions.pdf</a>
-</div>
-<div id="ref-xai1-breakdown" class="csl-entry">
-Staniak, M., &amp; Biecek, P. (2018). Explanations of model predictions with live and breakDown packages.
+<div id="ref-3-1-Similar" class="csl-entry">
+Christe, A. A. M. D., Andreas MD∗; Peters. (2019). Computer-aided diagnosis of pulmonary fibrosis using deep learning and CT images. <em>Investigative Radiology</em>, <em>54</em>, 627–632. <a href="https://doi.org/10.1097/RLI.0000000000000574">https://doi.org/10.1097/RLI.0000000000000574</a>
 </div>
 </div>
             </section>
@@ -595,8 +504,8 @@ Staniak, M., &amp; Biecek, P. (2018). Explanations of model predictions with liv
           </div>
         </div>
       </div>
-<a href="xai-heart-disease.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="xai1-explainable-hotels.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="deep-learning-1.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="on-the-reproducibility-of-the-bcdu-net-model.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook/js/app.min.js"></script>
@@ -628,7 +537,7 @@ gitbook.start({
 "size": 2
 },
 "edit": {
-"link": "https://github.com/mini-pw/2021L-WB-Book/edit/master/1-4-wines.Rmd",
+"link": "https://github.com/mini-pw/2021L-WB-Book/edit/master/3-1-LungNet.Rmd",
 "text": "Edit"
 },
 "history": {
