@@ -63,9 +63,8 @@ It is high time we commenced forth to the main parts of our analysis, the result
 #### Requirements  
 
 The requirements were officially provided under this [link](https://github.com/animgoeth/ARA-CNN/blob/master/requirements.txt)  by the authors on their project’s github. The first potential problem that explicitly caught our attention were the long outdated versions of packages, e.g pandas on version 0.23.1, or tensorflow on 1.12.0, nonetheless it was understandable due to the rapid nature of packages development in the computer science environment, especially in the case of Python.
-Unfortunately, with given requirements, the provided code faces critical issues, not allowing it to properly execute, forcing us into the inquiry, that has resulted in reconsideration of few packages.
-Namely in order for code to execute, we :  
-* changed the tensorflow version from 1.12.0 to 1.13.1
+Unfortunately, with given requirements, the provided code faces critical issues, not allowing it to properly execute, forcing us into the inquiry, which has resulted in reconsideration of few packages.
+For code to execute, we changed the tensorflow version from 1.12.0 to 1.13.1.
 
 This simple update allowed the code to properly function. Unfortunately there was little information provided by the authors, nor on the github page, nor in the article, about potential issues regarding the version, and only could we resolve the version incompatibility by examining the error structure and peeking deeper into the code, which consumed a part of our research.
 
