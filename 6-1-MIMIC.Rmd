@@ -35,7 +35,7 @@ Furthermore, [@6-0-rashomon-variable-importance-cloud] presented technique to vi
 
 #### Boxplots of abs_sum metric for each feature
 
-![](images/6-1-boxplot_2.png)
+![](images/6-1-boxplot_2_2.png)
 
 #### PDP curve for albumin_std
 
