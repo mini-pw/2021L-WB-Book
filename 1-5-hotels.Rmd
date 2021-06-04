@@ -2,6 +2,9 @@
 
 *Authors: Mateusz Krzyziński, Anna Urbala, Artur Żółkowski (Warsaw University of Technology)*
 
+### Abstract 
+Booking cancellations are a key aspect of hotel revenue management. Therefore, in order to better manage the reservation system and apply appropriate cancellation policies, decision support systems based on machine learning models are used. However, behavior of the described and introduced models has not been studied so far and they have not been tested in terms of the causes of their predictions. To fill this gap, we used explainable Artificial Intelligence methods to investigate predictive models based on booking data, both on a global level and for decisions related to individual customers. The purpose of our study is also to provide new insights into the factors that influence cancellation behavior.
+
 ### Introduction
 One of the biggest problems and challenges facing the hospitality industry is the significant number of canceled reservations. Common reasons for cancellations include a sudden deterioration in health, accidents, bad weather conditions, schedule conflicts, or unexpected responsibilities [@1-5-hotels-modelling-cancellation-behaviour]. Interestingly, a noticeable group consists of customers who, after making a reservation, are still looking for new, better offers, and even make many reservations at the same time to be able to choose the most advantageous one [@1-5-hotels-predicting-to-decrease-uncertainty-increase-revenue].
 
