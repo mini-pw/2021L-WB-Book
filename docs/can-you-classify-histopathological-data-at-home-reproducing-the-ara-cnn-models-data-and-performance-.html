@@ -1,0 +1,637 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>4.2 Can you classify histopathological data at home? Reproducing the ARA-CNN model’s data and performance. | Case Studies</title>
+  <meta name="description" content="Case studies in machine learning." />
+  <meta name="generator" content="bookdown 0.22 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="4.2 Can you classify histopathological data at home? Reproducing the ARA-CNN model’s data and performance. | Case Studies" />
+  <meta property="og:type" content="book" />
+  
+  <meta property="og:image" content="/images/cover.png" />
+  <meta property="og:description" content="Case studies in machine learning." />
+  <meta name="github-repo" content="mini-pw/2021L-WB-Book" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="4.2 Can you classify histopathological data at home? Reproducing the ARA-CNN model’s data and performance. | Case Studies" />
+  
+  <meta name="twitter:description" content="Case studies in machine learning." />
+  <meta name="twitter:image" content="/images/cover.png" />
+
+<meta name="author" content="Faculty of Mathematics and Information Science, Warsaw University of Technology" />
+
+
+<meta name="date" content="2021-06-05" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="what-makes-an-article-reproducible-comparison-of-the-fer-paper-and-axondeepseg.html"/>
+<link rel="next" href="rethinking-the-u-net-architecture-for-multimodal-biomedical-image-segmentation.html"/>
+<script src="libs/header-attrs/header-attrs.js"></script>
+<script src="libs/jquery/jquery.min.js"></script>
+<link href="libs/gitbook/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+
+<link href="libs/anchor-sections/anchor-sections.css" rel="stylesheet" />
+<script src="libs/anchor-sections/anchor-sections.js"></script>
+<script src="libs/kePrint/kePrint.js"></script>
+<link href="libs/lightable/lightable.css" rel="stylesheet" />
+
+
+
+<style type="text/css">
+/* Used with Pandoc 2.11+ new --citeproc when CSL is used */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+}
+.hanging div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}
+</style>
+
+<link rel="stylesheet" href="css/style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./"><h3>Case Studies</h3></a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Preface</a>
+<ul>
+<li class="chapter" data-level="" data-path="technical-setup.html"><a href="technical-setup.html"><i class="fa fa-check"></i>Technical Setup</a></li>
+</ul></li>
+<li class="chapter" data-level="1" data-path="explainable-artificial-intelligence-1.html"><a href="explainable-artificial-intelligence-1.html"><i class="fa fa-check"></i><b>1</b> Explainable Artificial Intelligence 1</a>
+<ul>
+<li class="chapter" data-level="1.1" data-path="xai1-explainable-cards.html"><a href="xai1-explainable-cards.html"><i class="fa fa-check"></i><b>1.1</b> Explaining Credit Card Customers churns</a>
+<ul>
+<li class="chapter" data-level="1.1.1" data-path="xai1-explainable-cards.html"><a href="xai1-explainable-cards.html#introduction-and-motivation"><i class="fa fa-check"></i><b>1.1.1</b> Introduction and Motivation</a></li>
+<li class="chapter" data-level="1.1.2" data-path="xai1-explainable-cards.html"><a href="xai1-explainable-cards.html#methodology"><i class="fa fa-check"></i><b>1.1.2</b> Methodology</a></li>
+<li class="chapter" data-level="1.1.3" data-path="xai1-explainable-cards.html"><a href="xai1-explainable-cards.html#local-explanations"><i class="fa fa-check"></i><b>1.1.3</b> Local explanations</a></li>
+<li class="chapter" data-level="1.1.4" data-path="xai1-explainable-cards.html"><a href="xai1-explainable-cards.html#global-explanations"><i class="fa fa-check"></i><b>1.1.4</b> Global explanations</a></li>
+<li class="chapter" data-level="1.1.5" data-path="xai1-explainable-cards.html"><a href="xai1-explainable-cards.html#summary"><i class="fa fa-check"></i><b>1.1.5</b> Summary</a></li>
+</ul></li>
+<li class="chapter" data-level="1.2" data-path="xai-in-real-estate-pricing-a-case-study.html"><a href="xai-in-real-estate-pricing-a-case-study.html"><i class="fa fa-check"></i><b>1.2</b> XAI in real estate pricing: A case study</a>
+<ul>
+<li class="chapter" data-level="1.2.1" data-path="xai-in-real-estate-pricing-a-case-study.html"><a href="xai-in-real-estate-pricing-a-case-study.html#abstract"><i class="fa fa-check"></i><b>1.2.1</b> Abstract</a></li>
+<li class="chapter" data-level="1.2.2" data-path="xai-in-real-estate-pricing-a-case-study.html"><a href="xai-in-real-estate-pricing-a-case-study.html#introduction"><i class="fa fa-check"></i><b>1.2.2</b> Introduction</a></li>
+<li class="chapter" data-level="1.2.3" data-path="xai-in-real-estate-pricing-a-case-study.html"><a href="xai-in-real-estate-pricing-a-case-study.html#related-work"><i class="fa fa-check"></i><b>1.2.3</b> Related Work</a></li>
+<li class="chapter" data-level="1.2.4" data-path="xai-in-real-estate-pricing-a-case-study.html"><a href="xai-in-real-estate-pricing-a-case-study.html#methodology-1"><i class="fa fa-check"></i><b>1.2.4</b> Methodology</a></li>
+<li class="chapter" data-level="1.2.5" data-path="xai-in-real-estate-pricing-a-case-study.html"><a href="xai-in-real-estate-pricing-a-case-study.html#results"><i class="fa fa-check"></i><b>1.2.5</b> Results</a></li>
+<li class="chapter" data-level="1.2.6" data-path="xai-in-real-estate-pricing-a-case-study.html"><a href="xai-in-real-estate-pricing-a-case-study.html#summary-and-conclusions"><i class="fa fa-check"></i><b>1.2.6</b> Summary and conclusions</a></li>
+</ul></li>
+<li class="chapter" data-level="1.3" data-path="coronary-artery-disease-is-it-worth-trusting-ml-when-it-comes-to-our-health.html"><a href="coronary-artery-disease-is-it-worth-trusting-ml-when-it-comes-to-our-health.html"><i class="fa fa-check"></i><b>1.3</b> Coronary artery disease: Is it worth trusting ML when it comes to our health?</a>
+<ul>
+<li class="chapter" data-level="1.3.1" data-path="coronary-artery-disease-is-it-worth-trusting-ml-when-it-comes-to-our-health.html"><a href="coronary-artery-disease-is-it-worth-trusting-ml-when-it-comes-to-our-health.html#abstract-1"><i class="fa fa-check"></i><b>1.3.1</b> Abstract</a></li>
+<li class="chapter" data-level="1.3.2" data-path="coronary-artery-disease-is-it-worth-trusting-ml-when-it-comes-to-our-health.html"><a href="coronary-artery-disease-is-it-worth-trusting-ml-when-it-comes-to-our-health.html#introduction-and-motivation-1"><i class="fa fa-check"></i><b>1.3.2</b> Introduction and Motivation</a></li>
+<li class="chapter" data-level="1.3.3" data-path="coronary-artery-disease-is-it-worth-trusting-ml-when-it-comes-to-our-health.html"><a href="coronary-artery-disease-is-it-worth-trusting-ml-when-it-comes-to-our-health.html#related-work-1"><i class="fa fa-check"></i><b>1.3.3</b> Related Work</a></li>
+<li class="chapter" data-level="1.3.4" data-path="coronary-artery-disease-is-it-worth-trusting-ml-when-it-comes-to-our-health.html"><a href="coronary-artery-disease-is-it-worth-trusting-ml-when-it-comes-to-our-health.html#methodology-2"><i class="fa fa-check"></i><b>1.3.4</b> Methodology</a></li>
+<li class="chapter" data-level="1.3.5" data-path="coronary-artery-disease-is-it-worth-trusting-ml-when-it-comes-to-our-health.html"><a href="coronary-artery-disease-is-it-worth-trusting-ml-when-it-comes-to-our-health.html#results-1"><i class="fa fa-check"></i><b>1.3.5</b> Results</a></li>
+<li class="chapter" data-level="1.3.6" data-path="coronary-artery-disease-is-it-worth-trusting-ml-when-it-comes-to-our-health.html"><a href="coronary-artery-disease-is-it-worth-trusting-ml-when-it-comes-to-our-health.html#summary-and-conclusions-1"><i class="fa fa-check"></i><b>1.3.6</b> Summary and conclusions</a></li>
+</ul></li>
+<li class="chapter" data-level="1.4" data-path="xai1-explainable-wine.html"><a href="xai1-explainable-wine.html"><i class="fa fa-check"></i><b>1.4</b> Red wine mystery: using explainable AI to inspect factors behind wine quality</a>
+<ul>
+<li class="chapter" data-level="1.4.1" data-path="xai1-explainable-wine.html"><a href="xai1-explainable-wine.html#abstract-2"><i class="fa fa-check"></i><b>1.4.1</b> Abstract</a></li>
+<li class="chapter" data-level="1.4.2" data-path="xai1-explainable-wine.html"><a href="xai1-explainable-wine.html#introduction-and-motivation-2"><i class="fa fa-check"></i><b>1.4.2</b> Introduction and Motivation</a></li>
+<li class="chapter" data-level="1.4.3" data-path="xai1-explainable-wine.html"><a href="xai1-explainable-wine.html#methodology-3"><i class="fa fa-check"></i><b>1.4.3</b> Methodology</a></li>
+<li class="chapter" data-level="1.4.4" data-path="xai1-explainable-wine.html"><a href="xai1-explainable-wine.html#global-explanations-3"><i class="fa fa-check"></i><b>1.4.4</b> Global explanations</a></li>
+<li class="chapter" data-level="1.4.5" data-path="xai1-explainable-wine.html"><a href="xai1-explainable-wine.html#local-explanations-3"><i class="fa fa-check"></i><b>1.4.5</b> Local explanations</a></li>
+<li class="chapter" data-level="1.4.6" data-path="xai1-explainable-wine.html"><a href="xai1-explainable-wine.html#confrontation-with-science"><i class="fa fa-check"></i><b>1.4.6</b> Confrontation with science</a></li>
+<li class="chapter" data-level="1.4.7" data-path="xai1-explainable-wine.html"><a href="xai1-explainable-wine.html#summary-1"><i class="fa fa-check"></i><b>1.4.7</b> Summary</a></li>
+<li class="chapter" data-level="1.4.8" data-path="xai1-explainable-wine.html"><a href="xai1-explainable-wine.html#conclusions"><i class="fa fa-check"></i><b>1.4.8</b> Conclusions</a></li>
+</ul></li>
+<li class="chapter" data-level="1.5" data-path="xai1-explainable-hotels.html"><a href="xai1-explainable-hotels.html"><i class="fa fa-check"></i><b>1.5</b> Explanatory approach to modeling the risk of hotel booking cancellations</a>
+<ul>
+<li class="chapter" data-level="1.5.1" data-path="xai1-explainable-hotels.html"><a href="xai1-explainable-hotels.html#abstract-3"><i class="fa fa-check"></i><b>1.5.1</b> Abstract</a></li>
+<li class="chapter" data-level="1.5.2" data-path="xai1-explainable-hotels.html"><a href="xai1-explainable-hotels.html#introduction-1"><i class="fa fa-check"></i><b>1.5.2</b> Introduction</a></li>
+<li class="chapter" data-level="1.5.3" data-path="xai1-explainable-hotels.html"><a href="xai1-explainable-hotels.html#dataset_models"><i class="fa fa-check"></i><b>1.5.3</b> Dataset and models</a></li>
+<li class="chapter" data-level="1.5.4" data-path="xai1-explainable-hotels.html"><a href="xai1-explainable-hotels.html#local"><i class="fa fa-check"></i><b>1.5.4</b> Local explanations</a></li>
+<li class="chapter" data-level="1.5.5" data-path="xai1-explainable-hotels.html"><a href="xai1-explainable-hotels.html#global-explanations-4"><i class="fa fa-check"></i><b>1.5.5</b> Global explanations</a></li>
+<li class="chapter" data-level="1.5.6" data-path="xai1-explainable-hotels.html"><a href="xai1-explainable-hotels.html#summary-and-conclusions-2"><i class="fa fa-check"></i><b>1.5.6</b> Summary and conclusions</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="explainable-artificial-intelligence-2.html"><a href="explainable-artificial-intelligence-2.html"><i class="fa fa-check"></i><b>2</b> Explainable Artificial Intelligence 2</a>
+<ul>
+<li class="chapter" data-level="2.1" data-path="xai1-explainable-german-credits.html"><a href="xai1-explainable-german-credits.html"><i class="fa fa-check"></i><b>2.1</b> Classifying people as good or bad credit risks</a>
+<ul>
+<li class="chapter" data-level="2.1.1" data-path="xai1-explainable-german-credits.html"><a href="xai1-explainable-german-credits.html#introduction-2"><i class="fa fa-check"></i><b>2.1.1</b> Introduction</a></li>
+<li class="chapter" data-level="2.1.2" data-path="xai1-explainable-german-credits.html"><a href="xai1-explainable-german-credits.html#dataset-and-models"><i class="fa fa-check"></i><b>2.1.2</b> Dataset and models</a></li>
+<li class="chapter" data-level="2.1.3" data-path="xai1-explainable-german-credits.html"><a href="xai1-explainable-german-credits.html#local-explanations-4"><i class="fa fa-check"></i><b>2.1.3</b> Local explanations</a></li>
+<li class="chapter" data-level="2.1.4" data-path="xai1-explainable-german-credits.html"><a href="xai1-explainable-german-credits.html#global-explanations-5"><i class="fa fa-check"></i><b>2.1.4</b> Global explanations</a></li>
+<li class="chapter" data-level="2.1.5" data-path="xai1-explainable-german-credits.html"><a href="xai1-explainable-german-credits.html#summary-and-conclusions-3"><i class="fa fa-check"></i><b>2.1.5</b> Summary and conclusions</a></li>
+</ul></li>
+<li class="chapter" data-level="2.2" data-path="how-to-predict-the-probability-of-subsequent-blood-donations.html"><a href="how-to-predict-the-probability-of-subsequent-blood-donations.html"><i class="fa fa-check"></i><b>2.2</b> How to predict the probability of subsequent blood donations?</a>
+<ul>
+<li class="chapter" data-level="2.2.1" data-path="how-to-predict-the-probability-of-subsequent-blood-donations.html"><a href="how-to-predict-the-probability-of-subsequent-blood-donations.html#abstract-4"><i class="fa fa-check"></i><b>2.2.1</b> Abstract</a></li>
+<li class="chapter" data-level="2.2.2" data-path="how-to-predict-the-probability-of-subsequent-blood-donations.html"><a href="how-to-predict-the-probability-of-subsequent-blood-donations.html#introduction-and-motivation-3"><i class="fa fa-check"></i><b>2.2.2</b> Introduction and motivation</a></li>
+<li class="chapter" data-level="2.2.3" data-path="how-to-predict-the-probability-of-subsequent-blood-donations.html"><a href="how-to-predict-the-probability-of-subsequent-blood-donations.html#related-work-2"><i class="fa fa-check"></i><b>2.2.3</b> Related work</a></li>
+<li class="chapter" data-level="2.2.4" data-path="how-to-predict-the-probability-of-subsequent-blood-donations.html"><a href="how-to-predict-the-probability-of-subsequent-blood-donations.html#data-and-model"><i class="fa fa-check"></i><b>2.2.4</b> Data and model</a></li>
+<li class="chapter" data-level="2.2.5" data-path="how-to-predict-the-probability-of-subsequent-blood-donations.html"><a href="how-to-predict-the-probability-of-subsequent-blood-donations.html#global-explanations-6"><i class="fa fa-check"></i><b>2.2.5</b> Global explanations</a></li>
+<li class="chapter" data-level="2.2.6" data-path="how-to-predict-the-probability-of-subsequent-blood-donations.html"><a href="how-to-predict-the-probability-of-subsequent-blood-donations.html#local-explanations-5"><i class="fa fa-check"></i><b>2.2.6</b> Local explanations</a></li>
+<li class="chapter" data-level="2.2.7" data-path="how-to-predict-the-probability-of-subsequent-blood-donations.html"><a href="how-to-predict-the-probability-of-subsequent-blood-donations.html#conclusions-and-summary"><i class="fa fa-check"></i><b>2.2.7</b> Conclusions and summary</a></li>
+</ul></li>
+<li class="chapter" data-level="2.3" data-path="how-the-price-of-the-house-is-influenced-by-neighborhood-xai-methods-for-interpretation-the-black-box-model.html"><a href="how-the-price-of-the-house-is-influenced-by-neighborhood-xai-methods-for-interpretation-the-black-box-model.html"><i class="fa fa-check"></i><b>2.3</b> How the price of the house is influenced by neighborhood? XAI methods for interpretation the black box model</a>
+<ul>
+<li class="chapter" data-level="2.3.1" data-path="how-the-price-of-the-house-is-influenced-by-neighborhood-xai-methods-for-interpretation-the-black-box-model.html"><a href="how-the-price-of-the-house-is-influenced-by-neighborhood-xai-methods-for-interpretation-the-black-box-model.html#abstract-5"><i class="fa fa-check"></i><b>2.3.1</b> Abstract</a></li>
+<li class="chapter" data-level="2.3.2" data-path="how-the-price-of-the-house-is-influenced-by-neighborhood-xai-methods-for-interpretation-the-black-box-model.html"><a href="how-the-price-of-the-house-is-influenced-by-neighborhood-xai-methods-for-interpretation-the-black-box-model.html#introduction-3"><i class="fa fa-check"></i><b>2.3.2</b> Introduction</a></li>
+<li class="chapter" data-level="2.3.3" data-path="how-the-price-of-the-house-is-influenced-by-neighborhood-xai-methods-for-interpretation-the-black-box-model.html"><a href="how-the-price-of-the-house-is-influenced-by-neighborhood-xai-methods-for-interpretation-the-black-box-model.html#literature"><i class="fa fa-check"></i><b>2.3.3</b> Literature</a></li>
+<li class="chapter" data-level="2.3.4" data-path="how-the-price-of-the-house-is-influenced-by-neighborhood-xai-methods-for-interpretation-the-black-box-model.html"><a href="how-the-price-of-the-house-is-influenced-by-neighborhood-xai-methods-for-interpretation-the-black-box-model.html#local-explanations-6"><i class="fa fa-check"></i><b>2.3.4</b> Local explanations</a></li>
+<li class="chapter" data-level="2.3.5" data-path="how-the-price-of-the-house-is-influenced-by-neighborhood-xai-methods-for-interpretation-the-black-box-model.html"><a href="how-the-price-of-the-house-is-influenced-by-neighborhood-xai-methods-for-interpretation-the-black-box-model.html#global-explanations-7"><i class="fa fa-check"></i><b>2.3.5</b> Global explanations</a></li>
+<li class="chapter" data-level="2.3.6" data-path="how-the-price-of-the-house-is-influenced-by-neighborhood-xai-methods-for-interpretation-the-black-box-model.html"><a href="how-the-price-of-the-house-is-influenced-by-neighborhood-xai-methods-for-interpretation-the-black-box-model.html#conclusion"><i class="fa fa-check"></i><b>2.3.6</b> Conclusion</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="deep-learning-1.html"><a href="deep-learning-1.html"><i class="fa fa-check"></i><b>3</b> Deep Learning 1</a>
+<ul>
+<li class="chapter" data-level="3.1" data-path="lungnet.html"><a href="lungnet.html"><i class="fa fa-check"></i><b>3.1</b> LungNet</a>
+<ul>
+<li class="chapter" data-level="3.1.1" data-path="lungnet.html"><a href="lungnet.html#introduction-4"><i class="fa fa-check"></i><b>3.1.1</b> Introduction</a></li>
+<li class="chapter" data-level="3.1.2" data-path="lungnet.html"><a href="lungnet.html#data"><i class="fa fa-check"></i><b>3.1.2</b> Data</a></li>
+<li class="chapter" data-level="3.1.3" data-path="lungnet.html"><a href="lungnet.html#original-model"><i class="fa fa-check"></i><b>3.1.3</b> Original model</a></li>
+<li class="chapter" data-level="3.1.4" data-path="lungnet.html"><a href="lungnet.html#new-models"><i class="fa fa-check"></i><b>3.1.4</b> New models</a></li>
+<li class="chapter" data-level="3.1.5" data-path="lungnet.html"><a href="lungnet.html#summary-2"><i class="fa fa-check"></i><b>3.1.5</b> Summary</a></li>
+</ul></li>
+<li class="chapter" data-level="3.2" data-path="on-the-reproducibility-of-the-bcdu-net-model.html"><a href="on-the-reproducibility-of-the-bcdu-net-model.html"><i class="fa fa-check"></i><b>3.2</b> On the reproducibility of the BCDU-Net model</a>
+<ul>
+<li class="chapter" data-level="3.2.1" data-path="on-the-reproducibility-of-the-bcdu-net-model.html"><a href="on-the-reproducibility-of-the-bcdu-net-model.html#abstract-6"><i class="fa fa-check"></i><b>3.2.1</b> Abstract</a></li>
+<li class="chapter" data-level="3.2.2" data-path="on-the-reproducibility-of-the-bcdu-net-model.html"><a href="on-the-reproducibility-of-the-bcdu-net-model.html#introduction-5"><i class="fa fa-check"></i><b>3.2.2</b> Introduction</a></li>
+<li class="chapter" data-level="3.2.3" data-path="on-the-reproducibility-of-the-bcdu-net-model.html"><a href="on-the-reproducibility-of-the-bcdu-net-model.html#reproduction-of-the-results"><i class="fa fa-check"></i><b>3.2.3</b> Reproduction of the results</a></li>
+<li class="chapter" data-level="3.2.4" data-path="on-the-reproducibility-of-the-bcdu-net-model.html"><a href="on-the-reproducibility-of-the-bcdu-net-model.html#further-experiments"><i class="fa fa-check"></i><b>3.2.4</b> Further experiments</a></li>
+<li class="chapter" data-level="3.2.5" data-path="on-the-reproducibility-of-the-bcdu-net-model.html"><a href="on-the-reproducibility-of-the-bcdu-net-model.html#other-tools-applied-to-the-model"><i class="fa fa-check"></i><b>3.2.5</b> Other tools applied to the model</a></li>
+<li class="chapter" data-level="3.2.6" data-path="on-the-reproducibility-of-the-bcdu-net-model.html"><a href="on-the-reproducibility-of-the-bcdu-net-model.html#results-and-conclusions"><i class="fa fa-check"></i><b>3.2.6</b> Results and conclusions</a></li>
+</ul></li>
+<li class="chapter" data-level="3.3" data-path="an-exploration-of-deepcovidexplainer-explainable-covid-19-diagnosis-from-chest-x-rays.html"><a href="an-exploration-of-deepcovidexplainer-explainable-covid-19-diagnosis-from-chest-x-rays.html"><i class="fa fa-check"></i><b>3.3</b> An Exploration of DeepCovidExplainer: Explainable COVID-19 Diagnosis from Chest X-rays</a>
+<ul>
+<li class="chapter" data-level="3.3.1" data-path="an-exploration-of-deepcovidexplainer-explainable-covid-19-diagnosis-from-chest-x-rays.html"><a href="an-exploration-of-deepcovidexplainer-explainable-covid-19-diagnosis-from-chest-x-rays.html#introduction-and-motivation-4"><i class="fa fa-check"></i><b>3.3.1</b> Introduction and motivation <!-- DONE --></a></li>
+<li class="chapter" data-level="3.3.2" data-path="an-exploration-of-deepcovidexplainer-explainable-covid-19-diagnosis-from-chest-x-rays.html"><a href="an-exploration-of-deepcovidexplainer-explainable-covid-19-diagnosis-from-chest-x-rays.html#related-work-3"><i class="fa fa-check"></i><b>3.3.2</b> Related work</a></li>
+<li class="chapter" data-level="3.3.3" data-path="an-exploration-of-deepcovidexplainer-explainable-covid-19-diagnosis-from-chest-x-rays.html"><a href="an-exploration-of-deepcovidexplainer-explainable-covid-19-diagnosis-from-chest-x-rays.html#our-work"><i class="fa fa-check"></i><b>3.3.3</b> Our work</a></li>
+<li class="chapter" data-level="3.3.4" data-path="an-exploration-of-deepcovidexplainer-explainable-covid-19-diagnosis-from-chest-x-rays.html"><a href="an-exploration-of-deepcovidexplainer-explainable-covid-19-diagnosis-from-chest-x-rays.html#conclusions-and-summary-1"><i class="fa fa-check"></i><b>3.3.4</b> Conclusions and summary</a></li>
+</ul></li>
+<li class="chapter" data-level="3.4" data-path="erscovid.html"><a href="erscovid.html"><i class="fa fa-check"></i><b>3.4</b> ERSCovid</a>
+<ul>
+<li class="chapter" data-level="3.4.1" data-path="erscovid.html"><a href="erscovid.html#introduction-6"><i class="fa fa-check"></i><b>3.4.1</b> Introduction</a></li>
+</ul></li>
+<li class="chapter" data-level="3.5" data-path="covid-net.html"><a href="covid-net.html"><i class="fa fa-check"></i><b>3.5</b> COVID-Net</a>
+<ul>
+<li class="chapter" data-level="3.5.1" data-path="covid-net.html"><a href="covid-net.html#introduction-7"><i class="fa fa-check"></i><b>3.5.1</b> Introduction</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="deep-learning-2.html"><a href="deep-learning-2.html"><i class="fa fa-check"></i><b>4</b> Deep Learning 2</a>
+<ul>
+<li class="chapter" data-level="4.1" data-path="what-makes-an-article-reproducible-comparison-of-the-fer-paper-and-axondeepseg.html"><a href="what-makes-an-article-reproducible-comparison-of-the-fer-paper-and-axondeepseg.html"><i class="fa fa-check"></i><b>4.1</b> What makes an article reproducible? Comparison of the FER+ paper and AxonDeepSeg</a>
+<ul>
+<li class="chapter" data-level="4.1.1" data-path="what-makes-an-article-reproducible-comparison-of-the-fer-paper-and-axondeepseg.html"><a href="what-makes-an-article-reproducible-comparison-of-the-fer-paper-and-axondeepseg.html#abstract-7"><i class="fa fa-check"></i><b>4.1.1</b> Abstract</a></li>
+<li class="chapter" data-level="4.1.2" data-path="what-makes-an-article-reproducible-comparison-of-the-fer-paper-and-axondeepseg.html"><a href="what-makes-an-article-reproducible-comparison-of-the-fer-paper-and-axondeepseg.html#introduction-8"><i class="fa fa-check"></i><b>4.1.2</b> Introduction</a></li>
+<li class="chapter" data-level="4.1.3" data-path="what-makes-an-article-reproducible-comparison-of-the-fer-paper-and-axondeepseg.html"><a href="what-makes-an-article-reproducible-comparison-of-the-fer-paper-and-axondeepseg.html#analyzing-the-ferplus-paper"><i class="fa fa-check"></i><b>4.1.3</b> Analyzing the FERPlus paper</a></li>
+<li class="chapter" data-level="4.1.4" data-path="what-makes-an-article-reproducible-comparison-of-the-fer-paper-and-axondeepseg.html"><a href="what-makes-an-article-reproducible-comparison-of-the-fer-paper-and-axondeepseg.html#reproducibility-analysis"><i class="fa fa-check"></i><b>4.1.4</b> Reproducibility analysis</a></li>
+<li class="chapter" data-level="4.1.5" data-path="what-makes-an-article-reproducible-comparison-of-the-fer-paper-and-axondeepseg.html"><a href="what-makes-an-article-reproducible-comparison-of-the-fer-paper-and-axondeepseg.html#analyzing-the-axondeepseg-paper"><i class="fa fa-check"></i><b>4.1.5</b> Analyzing the AxonDeepSeg paper</a></li>
+<li class="chapter" data-level="4.1.6" data-path="what-makes-an-article-reproducible-comparison-of-the-fer-paper-and-axondeepseg.html"><a href="what-makes-an-article-reproducible-comparison-of-the-fer-paper-and-axondeepseg.html#reproducibility-analysis-1"><i class="fa fa-check"></i><b>4.1.6</b> Reproducibility analysis</a></li>
+<li class="chapter" data-level="4.1.7" data-path="what-makes-an-article-reproducible-comparison-of-the-fer-paper-and-axondeepseg.html"><a href="what-makes-an-article-reproducible-comparison-of-the-fer-paper-and-axondeepseg.html#conclusion-1"><i class="fa fa-check"></i><b>4.1.7</b> Conclusion</a></li>
+</ul></li>
+<li class="chapter" data-level="4.2" data-path="can-you-classify-histopathological-data-at-home-reproducing-the-ara-cnn-models-data-and-performance-.html"><a href="can-you-classify-histopathological-data-at-home-reproducing-the-ara-cnn-models-data-and-performance-.html"><i class="fa fa-check"></i><b>4.2</b> Can you classify histopathological data at home? Reproducing the ARA-CNN model’s data and performance.</a>
+<ul>
+<li class="chapter" data-level="4.2.1" data-path="can-you-classify-histopathological-data-at-home-reproducing-the-ara-cnn-models-data-and-performance-.html"><a href="can-you-classify-histopathological-data-at-home-reproducing-the-ara-cnn-models-data-and-performance-.html#abstract-8"><i class="fa fa-check"></i><b>4.2.1</b> Abstract</a></li>
+<li class="chapter" data-level="4.2.2" data-path="can-you-classify-histopathological-data-at-home-reproducing-the-ara-cnn-models-data-and-performance-.html"><a href="can-you-classify-histopathological-data-at-home-reproducing-the-ara-cnn-models-data-and-performance-.html#introduction-9"><i class="fa fa-check"></i><b>4.2.2</b> Introduction</a></li>
+<li class="chapter" data-level="4.2.3" data-path="can-you-classify-histopathological-data-at-home-reproducing-the-ara-cnn-models-data-and-performance-.html"><a href="can-you-classify-histopathological-data-at-home-reproducing-the-ara-cnn-models-data-and-performance-.html#definition"><i class="fa fa-check"></i><b>4.2.3</b> Definition</a></li>
+<li class="chapter" data-level="4.2.4" data-path="can-you-classify-histopathological-data-at-home-reproducing-the-ara-cnn-models-data-and-performance-.html"><a href="can-you-classify-histopathological-data-at-home-reproducing-the-ara-cnn-models-data-and-performance-.html#methodology-4"><i class="fa fa-check"></i><b>4.2.4</b> Methodology</a></li>
+<li class="chapter" data-level="4.2.5" data-path="can-you-classify-histopathological-data-at-home-reproducing-the-ara-cnn-models-data-and-performance-.html"><a href="can-you-classify-histopathological-data-at-home-reproducing-the-ara-cnn-models-data-and-performance-.html#results-2"><i class="fa fa-check"></i><b>4.2.5</b> Results</a></li>
+<li class="chapter" data-level="4.2.6" data-path="can-you-classify-histopathological-data-at-home-reproducing-the-ara-cnn-models-data-and-performance-.html"><a href="can-you-classify-histopathological-data-at-home-reproducing-the-ara-cnn-models-data-and-performance-.html#summary-and-conclusions-4"><i class="fa fa-check"></i><b>4.2.6</b> Summary and conclusions</a></li>
+</ul></li>
+<li class="chapter" data-level="4.3" data-path="rethinking-the-u-net-architecture-for-multimodal-biomedical-image-segmentation.html"><a href="rethinking-the-u-net-architecture-for-multimodal-biomedical-image-segmentation.html"><i class="fa fa-check"></i><b>4.3</b> Rethinking the U-Net architecture for multimodal biomedical image segmentation</a>
+<ul>
+<li class="chapter" data-level="4.3.1" data-path="rethinking-the-u-net-architecture-for-multimodal-biomedical-image-segmentation.html"><a href="rethinking-the-u-net-architecture-for-multimodal-biomedical-image-segmentation.html#abstrac"><i class="fa fa-check"></i><b>4.3.1</b> Abstrac</a></li>
+<li class="chapter" data-level="4.3.2" data-path="rethinking-the-u-net-architecture-for-multimodal-biomedical-image-segmentation.html"><a href="rethinking-the-u-net-architecture-for-multimodal-biomedical-image-segmentation.html#what-reproducibility-is"><i class="fa fa-check"></i><b>4.3.2</b> What Reproducibility Is?</a></li>
+<li class="chapter" data-level="4.3.3" data-path="rethinking-the-u-net-architecture-for-multimodal-biomedical-image-segmentation.html"><a href="rethinking-the-u-net-architecture-for-multimodal-biomedical-image-segmentation.html#first-article-an-improvement-of-data-classification-using-random-multimodel-deep-learning-rmdl"><i class="fa fa-check"></i><b>4.3.3</b> First article (An Improvement of Data Classification Using Random Multimodel Deep Learning (RMDL) )</a></li>
+<li class="chapter" data-level="4.3.4" data-path="rethinking-the-u-net-architecture-for-multimodal-biomedical-image-segmentation.html"><a href="rethinking-the-u-net-architecture-for-multimodal-biomedical-image-segmentation.html#second-article-multiresunet-rethinking-the-u-net-architecture-for-multimodal-biomedical-image-segmentation"><i class="fa fa-check"></i><b>4.3.4</b> Second article (MultiResUNet : Rethinking the U-Net architecture for multimodal biomedical image segmentation)</a></li>
+<li class="chapter" data-level="4.3.5" data-path="rethinking-the-u-net-architecture-for-multimodal-biomedical-image-segmentation.html"><a href="rethinking-the-u-net-architecture-for-multimodal-biomedical-image-segmentation.html#conclusion-2"><i class="fa fa-check"></i><b>4.3.5</b> Conclusion</a></li>
+</ul></li>
+<li class="chapter" data-level="4.4" data-path="dl2-rmdl-unet.html"><a href="dl2-rmdl-unet.html"><i class="fa fa-check"></i><b>4.4</b> The reproducibility analysis of articles covering RMDL and UNet++ architectures churns</a>
+<ul>
+<li class="chapter" data-level="4.4.1" data-path="dl2-rmdl-unet.html"><a href="dl2-rmdl-unet.html#background"><i class="fa fa-check"></i><b>4.4.1</b> Background</a></li>
+<li class="chapter" data-level="4.4.2" data-path="dl2-rmdl-unet.html"><a href="dl2-rmdl-unet.html#random-multimodel-deep-learning-for-classification"><i class="fa fa-check"></i><b>4.4.2</b> Random Multimodel Deep Learning for Classification</a></li>
+<li class="chapter" data-level="4.4.3" data-path="dl2-rmdl-unet.html"><a href="dl2-rmdl-unet.html#a-nested-u-net-architecture-for-medical-image-segmentation"><i class="fa fa-check"></i><b>4.4.3</b> A Nested U-Net Architecture for Medical Image Segmentation</a></li>
+<li class="chapter" data-level="4.4.4" data-path="dl2-rmdl-unet.html"><a href="dl2-rmdl-unet.html#conclusions-1"><i class="fa fa-check"></i><b>4.4.4</b> Conclusions</a></li>
+</ul></li>
+<li class="chapter" data-level="4.5" data-path="can-you-trust-science-on-reproduction-in-deep-learning-.html"><a href="can-you-trust-science-on-reproduction-in-deep-learning-.html"><i class="fa fa-check"></i><b>4.5</b> Can you trust science? On Reproduction in Deep Learning.</a>
+<ul>
+<li class="chapter" data-level="4.5.1" data-path="can-you-trust-science-on-reproduction-in-deep-learning-.html"><a href="can-you-trust-science-on-reproduction-in-deep-learning-.html#abstract-9"><i class="fa fa-check"></i><b>4.5.1</b> Abstract</a></li>
+<li class="chapter" data-level="4.5.2" data-path="can-you-trust-science-on-reproduction-in-deep-learning-.html"><a href="can-you-trust-science-on-reproduction-in-deep-learning-.html#introduction-11"><i class="fa fa-check"></i><b>4.5.2</b> Introduction</a></li>
+<li class="chapter" data-level="4.5.3" data-path="can-you-trust-science-on-reproduction-in-deep-learning-.html"><a href="can-you-trust-science-on-reproduction-in-deep-learning-.html#methodology-5"><i class="fa fa-check"></i><b>4.5.3</b> Methodology</a></li>
+<li class="chapter" data-level="4.5.4" data-path="can-you-trust-science-on-reproduction-in-deep-learning-.html"><a href="can-you-trust-science-on-reproduction-in-deep-learning-.html#result"><i class="fa fa-check"></i><b>4.5.4</b> Result</a></li>
+<li class="chapter" data-level="4.5.5" data-path="can-you-trust-science-on-reproduction-in-deep-learning-.html"><a href="can-you-trust-science-on-reproduction-in-deep-learning-.html#discussion"><i class="fa fa-check"></i><b>4.5.5</b> Discussion</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="machine-learning-1.html"><a href="machine-learning-1.html"><i class="fa fa-check"></i><b>5</b> Machine Learning</a>
+<ul>
+<li class="chapter" data-level="5.1" data-path="validation-and-comparison-of-covid-19-mortality-prediction-models-on-multi-source-data.html"><a href="validation-and-comparison-of-covid-19-mortality-prediction-models-on-multi-source-data.html"><i class="fa fa-check"></i><b>5.1</b> Validation and comparison of COVID-19 mortality prediction models on multi-source data</a>
+<ul>
+<li class="chapter" data-level="5.1.1" data-path="validation-and-comparison-of-covid-19-mortality-prediction-models-on-multi-source-data.html"><a href="validation-and-comparison-of-covid-19-mortality-prediction-models-on-multi-source-data.html#abstract-10"><i class="fa fa-check"></i><b>5.1.1</b> Abstract</a></li>
+<li class="chapter" data-level="5.1.2" data-path="validation-and-comparison-of-covid-19-mortality-prediction-models-on-multi-source-data.html"><a href="validation-and-comparison-of-covid-19-mortality-prediction-models-on-multi-source-data.html#introduction-12"><i class="fa fa-check"></i><b>5.1.2</b> Introduction</a></li>
+<li class="chapter" data-level="5.1.3" data-path="validation-and-comparison-of-covid-19-mortality-prediction-models-on-multi-source-data.html"><a href="validation-and-comparison-of-covid-19-mortality-prediction-models-on-multi-source-data.html#data-description-1"><i class="fa fa-check"></i><b>5.1.3</b> Data description</a></li>
+<li class="chapter" data-level="5.1.4" data-path="validation-and-comparison-of-covid-19-mortality-prediction-models-on-multi-source-data.html"><a href="validation-and-comparison-of-covid-19-mortality-prediction-models-on-multi-source-data.html#comparison-of-the-models"><i class="fa fa-check"></i><b>5.1.4</b> Comparison of the models</a></li>
+<li class="chapter" data-level="5.1.5" data-path="validation-and-comparison-of-covid-19-mortality-prediction-models-on-multi-source-data.html"><a href="validation-and-comparison-of-covid-19-mortality-prediction-models-on-multi-source-data.html#conclusions-2"><i class="fa fa-check"></i><b>5.1.5</b> Conclusions</a></li>
+</ul></li>
+<li class="chapter" data-level="5.2" data-path="one-model-to-fit-them-all-covid-19-survival-prediction-using-multinational-data.html"><a href="one-model-to-fit-them-all-covid-19-survival-prediction-using-multinational-data.html"><i class="fa fa-check"></i><b>5.2</b> One model to fit them all: COVID-19 survival prediction using multinational data</a>
+<ul>
+<li class="chapter" data-level="5.2.1" data-path="one-model-to-fit-them-all-covid-19-survival-prediction-using-multinational-data.html"><a href="one-model-to-fit-them-all-covid-19-survival-prediction-using-multinational-data.html#abstract-11"><i class="fa fa-check"></i><b>5.2.1</b> Abstract</a></li>
+<li class="chapter" data-level="5.2.2" data-path="one-model-to-fit-them-all-covid-19-survival-prediction-using-multinational-data.html"><a href="one-model-to-fit-them-all-covid-19-survival-prediction-using-multinational-data.html#introduction-13"><i class="fa fa-check"></i><b>5.2.2</b> Introduction</a></li>
+<li class="chapter" data-level="5.2.3" data-path="one-model-to-fit-them-all-covid-19-survival-prediction-using-multinational-data.html"><a href="one-model-to-fit-them-all-covid-19-survival-prediction-using-multinational-data.html#data-sources"><i class="fa fa-check"></i><b>5.2.3</b> Data sources</a></li>
+<li class="chapter" data-level="5.2.4" data-path="one-model-to-fit-them-all-covid-19-survival-prediction-using-multinational-data.html"><a href="one-model-to-fit-them-all-covid-19-survival-prediction-using-multinational-data.html#model-building"><i class="fa fa-check"></i><b>5.2.4</b> Model building</a></li>
+<li class="chapter" data-level="5.2.5" data-path="one-model-to-fit-them-all-covid-19-survival-prediction-using-multinational-data.html"><a href="one-model-to-fit-them-all-covid-19-survival-prediction-using-multinational-data.html#discussion-1"><i class="fa fa-check"></i><b>5.2.5</b> Discussion</a></li>
+<li class="chapter" data-level="5.2.6" data-path="one-model-to-fit-them-all-covid-19-survival-prediction-using-multinational-data.html"><a href="one-model-to-fit-them-all-covid-19-survival-prediction-using-multinational-data.html#summary-4"><i class="fa fa-check"></i><b>5.2.6</b> Summary</a></li>
+</ul></li>
+<li class="chapter" data-level="5.3" data-path="transparent-machine-learning-to-support-predicting-covid-19-infection-risk-based-on-chronic-diseases.html"><a href="transparent-machine-learning-to-support-predicting-covid-19-infection-risk-based-on-chronic-diseases.html"><i class="fa fa-check"></i><b>5.3</b> Transparent machine learning to support predicting COVID-19 infection risk based on chronic diseases</a>
+<ul>
+<li class="chapter" data-level="5.3.1" data-path="transparent-machine-learning-to-support-predicting-covid-19-infection-risk-based-on-chronic-diseases.html"><a href="transparent-machine-learning-to-support-predicting-covid-19-infection-risk-based-on-chronic-diseases.html#abstract-12"><i class="fa fa-check"></i><b>5.3.1</b> Abstract</a></li>
+<li class="chapter" data-level="5.3.2" data-path="transparent-machine-learning-to-support-predicting-covid-19-infection-risk-based-on-chronic-diseases.html"><a href="transparent-machine-learning-to-support-predicting-covid-19-infection-risk-based-on-chronic-diseases.html#introduction-14"><i class="fa fa-check"></i><b>5.3.2</b> Introduction</a></li>
+<li class="chapter" data-level="5.3.3" data-path="transparent-machine-learning-to-support-predicting-covid-19-infection-risk-based-on-chronic-diseases.html"><a href="transparent-machine-learning-to-support-predicting-covid-19-infection-risk-based-on-chronic-diseases.html#flaws"><i class="fa fa-check"></i><b>5.3.3</b> Flaws</a></li>
+<li class="chapter" data-level="5.3.4" data-path="transparent-machine-learning-to-support-predicting-covid-19-infection-risk-based-on-chronic-diseases.html"><a href="transparent-machine-learning-to-support-predicting-covid-19-infection-risk-based-on-chronic-diseases.html#improvements"><i class="fa fa-check"></i><b>5.3.4</b> Improvements</a></li>
+<li class="chapter" data-level="5.3.5" data-path="transparent-machine-learning-to-support-predicting-covid-19-infection-risk-based-on-chronic-diseases.html"><a href="transparent-machine-learning-to-support-predicting-covid-19-infection-risk-based-on-chronic-diseases.html#transparent-machine-learning"><i class="fa fa-check"></i><b>5.3.5</b> Transparent Machine Learning</a></li>
+<li class="chapter" data-level="5.3.6" data-path="transparent-machine-learning-to-support-predicting-covid-19-infection-risk-based-on-chronic-diseases.html"><a href="transparent-machine-learning-to-support-predicting-covid-19-infection-risk-based-on-chronic-diseases.html#application"><i class="fa fa-check"></i><b>5.3.6</b> Application</a></li>
+<li class="chapter" data-level="5.3.7" data-path="transparent-machine-learning-to-support-predicting-covid-19-infection-risk-based-on-chronic-diseases.html"><a href="transparent-machine-learning-to-support-predicting-covid-19-infection-risk-based-on-chronic-diseases.html#conclusions-3"><i class="fa fa-check"></i><b>5.3.7</b> Conclusions</a></li>
+</ul></li>
+<li class="chapter" data-level="5.4" data-path="comparison-of-neural-networks-and-tree-based-models-in-the-clinical-prediction-of-the-course-of-covid-19-illness.html"><a href="comparison-of-neural-networks-and-tree-based-models-in-the-clinical-prediction-of-the-course-of-covid-19-illness.html"><i class="fa fa-check"></i><b>5.4</b> Comparison of neural networks and tree-based models in the clinical prediction of the course of COVID-19 illness</a>
+<ul>
+<li class="chapter" data-level="5.4.1" data-path="comparison-of-neural-networks-and-tree-based-models-in-the-clinical-prediction-of-the-course-of-covid-19-illness.html"><a href="comparison-of-neural-networks-and-tree-based-models-in-the-clinical-prediction-of-the-course-of-covid-19-illness.html#abstract-13"><i class="fa fa-check"></i><b>5.4.1</b> Abstract</a></li>
+<li class="chapter" data-level="5.4.2" data-path="comparison-of-neural-networks-and-tree-based-models-in-the-clinical-prediction-of-the-course-of-covid-19-illness.html"><a href="comparison-of-neural-networks-and-tree-based-models-in-the-clinical-prediction-of-the-course-of-covid-19-illness.html#introduction-15"><i class="fa fa-check"></i><b>5.4.2</b> Introduction</a></li>
+<li class="chapter" data-level="5.4.3" data-path="comparison-of-neural-networks-and-tree-based-models-in-the-clinical-prediction-of-the-course-of-covid-19-illness.html"><a href="comparison-of-neural-networks-and-tree-based-models-in-the-clinical-prediction-of-the-course-of-covid-19-illness.html#methods-1"><i class="fa fa-check"></i><b>5.4.3</b> Methods</a></li>
+<li class="chapter" data-level="5.4.4" data-path="comparison-of-neural-networks-and-tree-based-models-in-the-clinical-prediction-of-the-course-of-covid-19-illness.html"><a href="comparison-of-neural-networks-and-tree-based-models-in-the-clinical-prediction-of-the-course-of-covid-19-illness.html#results-6"><i class="fa fa-check"></i><b>5.4.4</b> Results</a></li>
+<li class="chapter" data-level="5.4.5" data-path="comparison-of-neural-networks-and-tree-based-models-in-the-clinical-prediction-of-the-course-of-covid-19-illness.html"><a href="comparison-of-neural-networks-and-tree-based-models-in-the-clinical-prediction-of-the-course-of-covid-19-illness.html#discussion-2"><i class="fa fa-check"></i><b>5.4.5</b> Discussion</a></li>
+<li class="chapter" data-level="5.4.6" data-path="comparison-of-neural-networks-and-tree-based-models-in-the-clinical-prediction-of-the-course-of-covid-19-illness.html"><a href="comparison-of-neural-networks-and-tree-based-models-in-the-clinical-prediction-of-the-course-of-covid-19-illness.html#source-code"><i class="fa fa-check"></i><b>5.4.6</b> Source code</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="rashomonml.html"><a href="rashomonml.html"><i class="fa fa-check"></i><b>6</b> RashomonML</a>
+<ul>
+<li class="chapter" data-level="6.1" data-path="topic.html"><a href="topic.html"><i class="fa fa-check"></i><b>6.1</b> Topic</a>
+<ul>
+<li class="chapter" data-level="6.1.1" data-path="topic.html"><a href="topic.html#abstract-14"><i class="fa fa-check"></i><b>6.1.1</b> Abstract</a></li>
+<li class="chapter" data-level="6.1.2" data-path="topic.html"><a href="topic.html#literature-review"><i class="fa fa-check"></i><b>6.1.2</b> Literature review</a></li>
+<li class="chapter" data-level="6.1.3" data-path="topic.html"><a href="topic.html#results-7"><i class="fa fa-check"></i><b>6.1.3</b> Results</a></li>
+<li class="chapter" data-level="6.1.4" data-path="topic.html"><a href="topic.html#best-models"><i class="fa fa-check"></i><b>6.1.4</b> Best models</a></li>
+</ul></li>
+<li class="chapter" data-level="6.2" data-path="title.html"><a href="title.html"><i class="fa fa-check"></i><b>6.2</b> Title</a>
+<ul>
+<li class="chapter" data-level="6.2.1" data-path="title.html"><a href="title.html#literature-review-1"><i class="fa fa-check"></i><b>6.2.1</b> Literature review</a></li>
+</ul></li>
+<li class="chapter" data-level="6.3" data-path="rashomon-ml-with-addition-of-dimensional-reduction.html"><a href="rashomon-ml-with-addition-of-dimensional-reduction.html"><i class="fa fa-check"></i><b>6.3</b> Rashomon ML with addition of dimensional reduction</a>
+<ul>
+<li class="chapter" data-level="6.3.1" data-path="rashomon-ml-with-addition-of-dimensional-reduction.html"><a href="rashomon-ml-with-addition-of-dimensional-reduction.html#abstract-15"><i class="fa fa-check"></i><b>6.3.1</b> Abstract</a></li>
+<li class="chapter" data-level="6.3.2" data-path="rashomon-ml-with-addition-of-dimensional-reduction.html"><a href="rashomon-ml-with-addition-of-dimensional-reduction.html#introduction-and-related-works"><i class="fa fa-check"></i><b>6.3.2</b> Introduction and related works</a></li>
+<li class="chapter" data-level="6.3.3" data-path="rashomon-ml-with-addition-of-dimensional-reduction.html"><a href="rashomon-ml-with-addition-of-dimensional-reduction.html#methodology-6"><i class="fa fa-check"></i><b>6.3.3</b> Methodology</a></li>
+<li class="chapter" data-level="6.3.4" data-path="rashomon-ml-with-addition-of-dimensional-reduction.html"><a href="rashomon-ml-with-addition-of-dimensional-reduction.html#results-8"><i class="fa fa-check"></i><b>6.3.4</b> Results</a></li>
+<li class="chapter" data-level="6.3.5" data-path="rashomon-ml-with-addition-of-dimensional-reduction.html"><a href="rashomon-ml-with-addition-of-dimensional-reduction.html#summary-and-conclusions-5"><i class="fa fa-check"></i><b>6.3.5</b> Summary and conclusions</a></li>
+</ul></li>
+<li class="chapter" data-level="6.4" data-path="roshomon-sets-on-death-prediction-xgb-models-using-mimic-iii-database.html"><a href="roshomon-sets-on-death-prediction-xgb-models-using-mimic-iii-database.html"><i class="fa fa-check"></i><b>6.4</b> Roshomon sets on death prediction XGB models using MIMIC-III database</a>
+<ul>
+<li class="chapter" data-level="6.4.1" data-path="roshomon-sets-on-death-prediction-xgb-models-using-mimic-iii-database.html"><a href="roshomon-sets-on-death-prediction-xgb-models-using-mimic-iii-database.html#an-initial-literature-review"><i class="fa fa-check"></i><b>6.4.1</b> An initial literature review</a></li>
+</ul></li>
+<li class="chapter" data-level="6.5" data-path="rashomon-sets-of-in-hospital-mortality-prediction-random-forest-models.html"><a href="rashomon-sets-of-in-hospital-mortality-prediction-random-forest-models.html"><i class="fa fa-check"></i><b>6.5</b> Rashomon sets of in-hospital mortality prediction random forest models</a>
+<ul>
+<li class="chapter" data-level="6.5.1" data-path="rashomon-sets-of-in-hospital-mortality-prediction-random-forest-models.html"><a href="rashomon-sets-of-in-hospital-mortality-prediction-random-forest-models.html#abstract-16"><i class="fa fa-check"></i><b>6.5.1</b> Abstract</a></li>
+<li class="chapter" data-level="6.5.2" data-path="rashomon-sets-of-in-hospital-mortality-prediction-random-forest-models.html"><a href="rashomon-sets-of-in-hospital-mortality-prediction-random-forest-models.html#introduction-16"><i class="fa fa-check"></i><b>6.5.2</b> Introduction</a></li>
+<li class="chapter" data-level="6.5.3" data-path="rashomon-sets-of-in-hospital-mortality-prediction-random-forest-models.html"><a href="rashomon-sets-of-in-hospital-mortality-prediction-random-forest-models.html#related-work-4"><i class="fa fa-check"></i><b>6.5.3</b> Related work</a></li>
+<li class="chapter" data-level="6.5.4" data-path="rashomon-sets-of-in-hospital-mortality-prediction-random-forest-models.html"><a href="rashomon-sets-of-in-hospital-mortality-prediction-random-forest-models.html#mimic-iii-dataset"><i class="fa fa-check"></i><b>6.5.4</b> MIMIC-III Dataset</a></li>
+<li class="chapter" data-level="6.5.5" data-path="rashomon-sets-of-in-hospital-mortality-prediction-random-forest-models.html"><a href="rashomon-sets-of-in-hospital-mortality-prediction-random-forest-models.html#rashomon-sets"><i class="fa fa-check"></i><b>6.5.5</b> Rashomon Sets</a></li>
+<li class="chapter" data-level="6.5.6" data-path="rashomon-sets-of-in-hospital-mortality-prediction-random-forest-models.html"><a href="rashomon-sets-of-in-hospital-mortality-prediction-random-forest-models.html#results-9"><i class="fa fa-check"></i><b>6.5.6</b> Results</a></li>
+<li class="chapter" data-level="6.5.7" data-path="rashomon-sets-of-in-hospital-mortality-prediction-random-forest-models.html"><a href="rashomon-sets-of-in-hospital-mortality-prediction-random-forest-models.html#conclusion-3"><i class="fa fa-check"></i><b>6.5.7</b> Conclusion</a></li>
+</ul></li>
+</ul></li>
+<li class="divider"></li>
+<li><a href="https://bookdown.org" target="_blank">Published with bookdown</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Case Studies</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="can-you-classify-histopathological-data-at-home-reproducing-the-ara-cnn-models-data-and-performance." class="section level2" number="4.2">
+<h2><span class="header-section-number">4.2</span> Can you classify histopathological data at home? Reproducing the ARA-CNN model’s data and performance.</h2>
+<p><em>Authors: Jan Gąska, Jakub Lis, Wojciech Szczypek</em></p>
+<div id="abstract-8" class="section level3" number="4.2.1">
+<h3><span class="header-section-number">4.2.1</span> Abstract</h3>
+<p>The idea of reproducibility of scientific researches is crucial especially in the area of data science. It has become more important along with the development of methods and algorithms used in machine learning as they are more and more complex and complicated. This issue concerns users of all types: students, scientists, developers. Moreover, attaching code used in a paper helps readers to focus on the real content rather than sophisticated explanations and descriptions included in the article. It is also valuable because the users can use the code as examples of using the package.</p>
+<p>When it comes to Deep Learning the problem of reproducibility is much more disturbing than anywhere else. There are so many factors that are random-dependent in DL algorithms, that it is crucial to provide some kind of tool, which would enable us to deal with differences between results presented in the article and our own chunks of code. This being said, it can be easily observed that reproducibility could be beneficial for both authors of the scientific articles and other researchers who would like to retrace the article’s workflow.</p>
+</div>
+<div id="introduction-9" class="section level3" number="4.2.2">
+<h3><span class="header-section-number">4.2.2</span> Introduction</h3>
+<p>Recent developments in the field of Machine Learning, and especially, Deep Learning have provided many specialists with a powerful tool regarding their occupation, research, and, in general, development. However, the medical field has been affected, positively, to the largest extent among these professions, with the deep learning algorithms, statistics, and machine learning, supporting the medical field and contributing to its automatization. Nonetheless, due to its delicate and crucial nature, which is the better good of the human life, precision, thoroughness are required, thus it necessitates a precise model, able to differentiate between alike types of recognition problem and telling the uncertainty of its conclusions; in sum, reliability and almost perfect accuracy are critical metrics if comes to developing our model, overwise an error may cause fatal consequences.</p>
+<p>In our case, our described model ARA<span class="citation">(<a href="#ref-4-2-ara" role="doc-biblioref">Łukasz Rączkowski 2019</a>)</span> implements classification methods to histopathological cancer images. Model’s functionality was almost entirely based on Convolutional Neural Networks (CNN’s), using the Bayesian approach, as it is common in classifying images, as a form of implementing the medical vision and classifying eight different types of cancer. The model is set to counter bias, high variance in data answers, and low accuracy on new, unseen data by the model, which is affected by the difficulties in training the data, thus several methods had to be implemented to balance out the data set’s non-balanced structure, as well as to prevent overfitting that often causes problems in alike models.</p>
+<p>The used data set for training contains 5000 images with ascribed labels of types of colorectal cancer, photos were cut in order to focus on the tissue itself, rather than on the neighboring tissues. Namely, the data set used is called Kather et al. With authors claiming almost over 90% of accuracy to their model, we have tried on recreating the steps and authors recommendations in their procedures, nonetheless throughout our effort we have remained unbiased by the results.</p>
+</div>
+<div id="definition" class="section level3" number="4.2.3">
+<h3><span class="header-section-number">4.2.3</span> Definition</h3>
+<p>Reproducibility as a problem has been addressed by scientists of various fields of studies. The exact definition also differs among areas of studies. For instance, Patrick Vandewalle in 2009 suggested a definition of reproducible research work: “A research work is called reproducible if all information relevant to the work, including, but not limited to, text, data, and code, is made available, such that an independent researcher can reproduce the results” <span class="citation">(<a href="#ref-4-2-vandewalle2009reproducible" role="doc-biblioref">Vandewalle et al. 2009</a>)</span>. On the other hand, Association for Computing Machinery <span class="citation">(<a href="#ref-4-2-ACMBadging2018" role="doc-biblioref">Computing Machinery 2018</a>)</span> divides the problem into three tasks as follows:<br></p>
+<ul>
+<li><p><strong>Repeatability</strong> (Same team, same experimental setup):<br>
+The measurement can be obtained with stated precision by the same team using the same measurement procedure, the same measuring system, under the same operating conditions, in the same location on multiple trials. For computational experiments, this means that a researcher can reliably repeat her own computation.</p></li>
+<li><p><strong>Replicability</strong> (Different team, same experimental setup):<br>
+The measurement can be obtained with stated precision by a different team using the same measurement procedure, the same measuring system, under the same operating conditions, in the same or a different location on multiple trials. For computational experiments, this means that an independent group can obtain the same result using the author’s own artifacts.</p></li>
+<li><p><strong>Reproducibility</strong> (Different team, different experimental setup):<br>
+The measurement can be obtained with stated precision by a different team, a different measuring system, in a different location on multiple trials. For computational experiments, this means that an independent group can obtain the same result using artifacts that they develop completely independently.
+<br></p></li>
+</ul>
+</div>
+<div id="methodology-4" class="section level3" number="4.2.4">
+<h3><span class="header-section-number">4.2.4</span> Methodology</h3>
+<p>We considered two scientific papers: <em> RMDL: Random Multimodel Deep Learning for Classification </em> and <em> ARA: accurate, reliable, and active histopathological image classification framework with Bayesian deep learning </em> plenty of papers from many issues of both of the articles were supplied with GitHub repository, thus we were given supplementary material to check whether the issues raised in the articles are reproducible. <br></p>
+<p>As we faced the problem of measuring reproducibility we discussed many ways of grading its level. One of the ideas was to create a unified measure of value that would calculate the ratio of plots we managed to reproduce. However, we quickly noticed that this approach is not appropriate as sometimes it is not fair to mark articles by the same fixed criteria. There are some additional plots, and reproducing them is not as important in the terms of reproducing the whole article as if it was with more crucial plots. <br></p>
+<p>These are the reasons why we did not decide to use a binary (1 - reproducible article, 0 - not reproducible article) as a final mark for the articles. When we were investigating the articles in terms of reproducibility we noticed that the problems we were facing could be grouped into a few categories. Thus we proposed 6 different issue categories which our research team faced during the attempt to reproducing the results presented in a scientific paper:</p>
+<ul>
+<li><p><strong>Requirements</strong><br>
+The code used in the article requires additional libraries and packages to be installed. We assessed whether a list of the requirements was available (e.g. it was provided in the GitHub repository). Moreover, we have taken into account the versions of the packages and whether the dependencies issues were resolved well.</p></li>
+<li><p><strong>Resources</strong><br>
+DL algorithms are time and resource-consuming. Sometimes it is impossible to reproduce results on an ordinary personal computer. We found this issue quite crucial for people who would like to reproduce the results in the article.</p></li>
+<li><p><strong>Randomness problems</strong><br>
+Some functionalities are based on randomness. Sometimes even changing the seed may change the results and make it difficult to draw correct conclusions.</p></li>
+<li><p><strong>No access to source codes</strong> <br>
+Some results shown in an article could not be reproduced because the codes had not been available on the Github repository or it was not explained explicitly how to use them properly.</p></li>
+<li><p><strong>Results</strong><br>
+Last but not least our aim was to reproduce the results provided in the article. Through series of experiments, we wanted to achieve identical or at least similar results as those presented in the article.</p></li>
+</ul>
+<p>Such classification helped us highlight to what extent were the articles reproducible in the terms of each category.</p>
+</div>
+<div id="results-2" class="section level3" number="4.2.5">
+<h3><span class="header-section-number">4.2.5</span> Results</h3>
+<p>It is high time we commenced forth to the main parts of our analysis, the results. In them we will have an insight into the previously mentioned categories, using them as our metric for the final verdict of the reproducibility problem, describing our procedures while progressing through the steps. Further in the document, we will summarize the results on a perspicuous chart.</p>
+<div id="requirements" class="section level4" number="4.2.5.1">
+<h4><span class="header-section-number">4.2.5.1</span> Requirements</h4>
+<p>The requirements were officially provided under this <a href="https://github.com/animgoeth/ARA-CNN/blob/master/requirements.txt">link</a> by the authors on their project’s github. The first potential problem that explicitly caught our attention were the long outdated versions of packages, e.g pandas on version 0.23.1, or tensorflow on 1.12.0, nonetheless it was understandable due to the rapid nature of packages development in the computer science environment, especially in the case of Python.
+Unfortunately, with given requirements, the provided code faces critical issues, not allowing it to properly execute, forcing us into the inquiry, which has resulted in reconsideration of few packages.
+For code to execute, we changed the tensorflow version from 1.12.0 to 1.13.1.</p>
+<p>This simple update allowed the code to properly function. Unfortunately there was little information provided by the authors, nor on the github page, nor in the article, about potential issues regarding the version, and only could we resolve the version incompatibility by examining the error structure and peeking deeper into the code, which consumed a part of our research.</p>
+</div>
+<div id="resources" class="section level4" number="4.2.5.2">
+<h4><span class="header-section-number">4.2.5.2</span> Resources</h4>
+<p>In general case of resources, they can be divided into the computational cost and time cost.<br />
+Because nor the article, nor the github provided the information about neither of aforementioned costs, there was little to compere, nonetheless (to be precise, the article mentions in general terms the lower costs of time of their model, but gives no benchmark nor any reference). So we had to come up with our own metric determining the reproducibility in that case, in our own subjective terms.<br />
+We concluded that the algorithm had to be able to be run by an average user with an average computational power within an reasonable time (in our case maximum 8 hours).<br />
+In the terms of the aforementioned terms, having used the google Collaboratory with on the gpu, the total amount of time necessary to reflect the authors indications was about 2 hours, hence very reasonable time as for advanced CNN network for having run 100 epochs for every label in the learning procedure.
+So in this case, there were little problems, and as the authors claimed, their model is superb if comes to time cost, hence it is easy to retrieve results.</p>
+</div>
+<div id="randomness-problems" class="section level4" number="4.2.5.3">
+<h4><span class="header-section-number">4.2.5.3</span> Randomness problems</h4>
+<p>In general, model had little important parameters that would change its functionality, so if it comes to randomness they were only based only on the concept of neural networks and its randomly initialized principal values. Besides this fact, the model was highly deterministic, user could not turn in the parameter that would change its functionality.<br />
+Also the instructions provided by the github, precisely, step by step, explained how the authors retrieved the results, used the code. In the terms of randomness, the model is unambiguous, clear.</p>
+</div>
+<div id="no-access-to-source-codes" class="section level4" number="4.2.5.4">
+<h4><span class="header-section-number">4.2.5.4</span> No access to source codes</h4>
+<p>Without deepening too much into the detail, all the source code was provided in the main repository and there were no problems of this kind of nature.<br />
+However, the returned results were in a form of a long string of data, in its raw form. The authors didn’t supply with method of visualizing the data, that was used in the article in form of graphs.<br />
+The ambiguous answer eventually was found <a href="https://github.com/animgoeth/ARA-CNN/issues/9">here</a> in the issues on the github, nonetheless we had to still come up with a way of mimicking the original visualization for the clarity and unifying the layout.
+Eventually the graphs that we will present, will be crafted from our made code.</p>
+</div>
+<div id="results-3" class="section level4" number="4.2.5.5">
+<h4><span class="header-section-number">4.2.5.5</span> Results</h4>
+<p>The main part and the most crucial of our whole investigation. Having successfully run the program and retrieved the results came the time to compare our results with the articles’. The article provided its readers with few visualizations of the data and a comparison table. In this section we will have a closer look at each of them, comparing each one and providing a brief verdict.</p>
+<p><strong>ROC score</strong><br />
+Our results analysis will start with the AUC curve and performance for the multiclass classification. Before any conclusions, let’s see the original results:<br />
+<img src="images/4-2-ROC-original.png" alt="Original ROC" /><br />
+And our visualization from the data we retrieved:<br />
+<img src="images/4-2-ROC-results.png" alt="Results ROC" /><br />
+In the case of acquiring the AUC data, we were almost fully successful in reproducing the article’s data. Our results are slightly worse than the article’s, nevertheless, the overall score is shown in the parentheses mark almost full success if comes to the score. Even the largest error is lesser than 2% of the relative value. Having said that, we are sure to confirm the results in this case. The average AUC for the original case was 0.995, and in our 0.990, hence the relative error is around 0.5%.<br />
+<strong>Precision-recall curve</strong><br />
+As in the previous example, first, we will supply you with the original graph:
+<img src="images/4-2-precission-recall-original.png" alt="Original Precission-Recall" /><br />
+And now with our results:<br />
+<img src="images/4-2-precission-recall-results.png" alt="Results Precission-Recall" /><br />
+In this case, there were more issues than in the ROC curve. The overall scores were more grievously worse than in the original, nonetheless, the trends in the outputs stayed the same; here for the tumor types of Stroma, Complex and Debris the score was significantly worse in both original and the reproduction, indicating the model keeps its trends, functionality. In this given case the average AUC score for the original data was 0.972 and in our case 0.852. Despite the more noticeable discrepancies, the overall output remained on a decent level, hence making it reproducible.</p>
+<p>Lastly, we present the accuracy table. First the data from the article.</p>
+<table style="width:100%;">
+<colgroup>
+<col width="11%" />
+<col width="18%" />
+<col width="14%" />
+<col width="11%" />
+<col width="11%" />
+<col width="11%" />
+<col width="11%" />
+<col width="11%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>Method</th>
+<th align="center">Method Type</th>
+<th align="right">Problem Type</th>
+<th>Max. reported 10-fold ACC</th>
+<th>Max. reported 5-fold ACC</th>
+<th>Max. reported 2-fold ACC</th>
+<th>10-fold AUC</th>
+<th>5-fold AUC</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>ARA-CNN</td>
+<td align="center">CNN</td>
+<td align="right">Binary</td>
+<td>99.11 ± 0.97%</td>
+<td>98.88 ± 0.52%</td>
+<td>98.88</td>
+<td>0.998</td>
+<td>0.999</td>
+</tr>
+<tr class="even">
+<td>ARA-CNN</td>
+<td align="center">CNN</td>
+<td align="right">Multiclass</td>
+<td>92.44 ± 0.81%</td>
+<td>92.24 ± 0.82%</td>
+<td>88.92 ± 1.95%</td>
+<td>0.995</td>
+<td>0.995</td>
+</tr>
+</tbody>
+</table>
+<p>Compared with our results:</p>
+<table style="width:100%;">
+<colgroup>
+<col width="11%" />
+<col width="18%" />
+<col width="14%" />
+<col width="11%" />
+<col width="11%" />
+<col width="11%" />
+<col width="11%" />
+<col width="11%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>Method</th>
+<th align="center">Method Type</th>
+<th align="right">Problem Type</th>
+<th>Max. reported 10-fold ACC</th>
+<th>Max. reported 5-fold ACC</th>
+<th>Max. reported 2-fold ACC</th>
+<th>10-fold AUC</th>
+<th>5-fold AUC</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>ARA-CNN</td>
+<td align="center">CNN</td>
+<td align="right">Binary</td>
+<td>0.90 ± 0.67%</td>
+<td>89.52 ± 0.25%</td>
+<td>0.87</td>
+<td>0.92</td>
+<td>0.95</td>
+</tr>
+<tr class="even">
+<td>ARA-CNN</td>
+<td align="center">CNN</td>
+<td align="right">Multiclass</td>
+<td>0.8616 ± 0.81%</td>
+<td>84.15 ± 0.42%</td>
+<td>83.23 ± 2.55%</td>
+<td>0.90</td>
+<td>0.92</td>
+</tr>
+</tbody>
+</table>
+<p>It is visible that they are not perfectly matched, nonetheless were close, and kept the same pattern of scores as in the original one, hence it is safe to assume success in this part of results reproduction.</p>
+</div>
+</div>
+<div id="summary-and-conclusions-4" class="section level3" number="4.2.6">
+<h3><span class="header-section-number">4.2.6</span> Summary and conclusions</h3>
+<p>With the results having been presented, we are able to give a final verdict on whether the article was reproducible. All mentioned issues were not insurmountable, the article in each separate category can be rated high or at least satisfactory. After examining reproducibility, we have identified the most important aspects that the article we worked on should have contained. Primarily, we faced the lack of code used to create the plots in the article. Authors should ensure easy access to all user codes. Secondly, a random seed should be provided for each randomized task. In our case, because of the similarity of the achieved results, it was not a big issue, but with many problems, it can be crucial. Moreover, another limitation was the hardware and time. We believe, that good practice should be use datasets and parameters that can be used by the average person without special hardware. However, it is obvious that in most cases this cannot be provided, but then such articles may be very difficult to reproduce. Coming back to the article we worked with, we are satisfied with the results obtained and we hope that all authors of future articles will care for reproducibility at least as much as the authors of the mentioned article.</p>
+
+</div>
+</div>
+<h3>References</h3>
+<div id="refs" class="references csl-bib-body hanging-indent" line-spacing="2">
+<div id="ref-4-2-ACMBadging2018" class="csl-entry">
+Computing Machinery, A. for. (2018). Artifact review and badging. <a href="https://www.acm.org/publications/policies/artifact-review badging">https://www.acm.org/publications/policies/artifact-review badging</a>
+</div>
+<div id="ref-4-2-ara" class="csl-entry">
+Łukasz Rączkowski, J. Z., Marcin Możejko. (2019). ARA: Accurate, reliable and active histopathological image classification framework with bayesian deep learning. <em>Springer Nature</em>, <em>14</em>, 1–11. <a href="https://doi.org/10.1038/s41598-019-50587-1">https://doi.org/10.1038/s41598-019-50587-1</a>
+</div>
+<div id="ref-4-2-vandewalle2009reproducible" class="csl-entry">
+Vandewalle, P., Kovacevic, J., &amp; Vetterli, M. (2009). Reproducible research in signal processing. <em>IEEE Signal Processing Magazine</em>, <em>26</em>(3), 37–47.
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="what-makes-an-article-reproducible-comparison-of-the-fer-paper-and-axondeepseg.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="rethinking-the-u-net-architecture-for-multimodal-biomedical-image-segmentation.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook/js/app.min.js"></script>
+<script src="libs/gitbook/js/lunr.js"></script>
+<script src="libs/gitbook/js/clipboard.min.js"></script>
+<script src="libs/gitbook/js/plugin-search.js"></script>
+<script src="libs/gitbook/js/plugin-sharing.js"></script>
+<script src="libs/gitbook/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook/js/jquery.highlight.js"></script>
+<script src="libs/gitbook/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": true,
+"facebook": false,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"whatsapp": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": "https://github.com/mini-pw/2021L-WB-Book/edit/master/4-2-dl.Rmd",
+"text": "Edit"
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": ["book.pdf", "book.epub"],
+"toc": {
+"collapse": "section"
+}
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>
