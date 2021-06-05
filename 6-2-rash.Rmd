@@ -57,3 +57,6 @@ knitr::include_graphics('images/6-2-pdp-trends.png')
 ```{r pdp-sodium, fig.align="center", echo=FALSE, fig.cap='Clearly visible sodium levels with lowest predictions are actualy normal blood sodium levels.'} 
 knitr::include_graphics('images/6-2-pdp-sodium.png')
 ``` 
+
+### Summary
+Our research clearly shows how easy models can pick up real-life dependencies. This is not surprising, what can be considered surprising is a fact that models very close mimicked professional medical rules. When they wouldn't train exactly to do this. This level of accuracy was achieved as a by-product of training models to do something slightly different. This can be used to extract information about features not so details analyzed like medical data. Where we can treat model prediction changes as a source of information about certain features.
