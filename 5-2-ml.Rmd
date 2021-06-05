@@ -64,7 +64,7 @@ Our next step was to explore the ways to measure the effect of training on the d
  
 
  
-```{r var-imp, out.width="700", fig.align="center", echo=FALSE, fig.cap='Variable importance for the RandomForestClassifier model trained on a dataset that contains information about the origin of data. Notice that the drop-out loss for the “from_china” variable is rather high when compared with others.}
+```{r var-imp, out.width="700", fig.align="center", echo=FALSE, fig.cap='Variable importance for the RandomForestClassifier model trained on a dataset that contains information about the origin of data. Notice that the drop-out loss for the “from_china” variable is rather high when compared with others.'}
 knitr::include_graphics('images/5-2-var_imp.png')
 ```
  
