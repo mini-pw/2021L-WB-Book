@@ -8,7 +8,7 @@ Technological advances were early adopted by healthcare with great benefits and 
 
 ### Introduction 
 
-Extracting all information from data used in predictive problems by hand is almost unobtainable because of the rapid data volume growth. This is why tools like machine learning are needed to find hidden patterns and process data. However, sometimes finding a pattern is not enough to understand how such a model works. For example, to explain to bank client why he/she did not get the mortgage or why doctors suspect a particular patient can have a tumour.   
+Extracting all information from data, used in predictive problems, by hand is almost unobtainable because of the rapid data volume growth. This is why tools like machine learning are needed to find hidden patterns and process data. However, sometimes finding a pattern is not enough to understand how such a model works. For example, to explain to bank client why he/she did not get the mortgage or why doctors suspect a particular patient can have a tumour.   
 
 If the model is too complicated to explain, maybe we would be capable of explaining another one, and in the end, we achieve a set of models - Rashomon set. 
 
