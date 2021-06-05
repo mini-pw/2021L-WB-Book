@@ -40,7 +40,7 @@ We will deliver our analysis on the data about resignation from using the credit
 
 The target variable in the set is `Attrition_Flag`, which determines whether the customer did close its Credit Cards service. 16% of customers in Dataset decided to stop using their Cards. The other 84% will continue to be the bank's customers.
 
-```{r targetCounts, out.width="700", fig.align="center", echo=FALSE, fig.cap="Numbers of customers who decided to closed their Credit Cards service"}
+```{r 1-1-targetCounts, out.width="700", fig.align="center", echo=FALSE, fig.cap="Numbers of customers who decided to closed their Credit Cards service"}
 
 knitr::include_graphics('images/1-1-target-count.png')
 ```
