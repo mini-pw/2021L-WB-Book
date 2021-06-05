@@ -1,0 +1,1701 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>6.5 Rashomon sets of in-hospital mortality prediction random forest models | Case Studies</title>
+  <meta name="description" content="Case studies in machine learning." />
+  <meta name="generator" content="bookdown 0.22 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="6.5 Rashomon sets of in-hospital mortality prediction random forest models | Case Studies" />
+  <meta property="og:type" content="book" />
+  
+  <meta property="og:image" content="/images/cover.png" />
+  <meta property="og:description" content="Case studies in machine learning." />
+  <meta name="github-repo" content="mini-pw/2021L-WB-Book" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="6.5 Rashomon sets of in-hospital mortality prediction random forest models | Case Studies" />
+  
+  <meta name="twitter:description" content="Case studies in machine learning." />
+  <meta name="twitter:image" content="/images/cover.png" />
+
+<meta name="author" content="Faculty of Mathematics and Information Science, Warsaw University of Technology" />
+
+
+<meta name="date" content="2021-06-05" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="roshomon-sets-on-death-prediction-xgb-models-using-mimic-iii-database.html"/>
+
+<script src="libs/header-attrs/header-attrs.js"></script>
+<script src="libs/jquery/jquery.min.js"></script>
+<link href="libs/gitbook/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+
+<link href="libs/anchor-sections/anchor-sections.css" rel="stylesheet" />
+<script src="libs/anchor-sections/anchor-sections.js"></script>
+<script src="libs/kePrint/kePrint.js"></script>
+<link href="libs/lightable/lightable.css" rel="stylesheet" />
+
+
+
+<style type="text/css">
+/* Used with Pandoc 2.11+ new --citeproc when CSL is used */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+}
+.hanging div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}
+</style>
+
+<link rel="stylesheet" href="css/style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./"><h3>Case Studies</h3></a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Preface</a>
+<ul>
+<li class="chapter" data-level="" data-path="technical-setup.html"><a href="technical-setup.html"><i class="fa fa-check"></i>Technical Setup</a></li>
+</ul></li>
+<li class="chapter" data-level="1" data-path="explainable-artificial-intelligence-1.html"><a href="explainable-artificial-intelligence-1.html"><i class="fa fa-check"></i><b>1</b> Explainable Artificial Intelligence 1</a>
+<ul>
+<li class="chapter" data-level="1.1" data-path="xai1-explainable-cards.html"><a href="xai1-explainable-cards.html"><i class="fa fa-check"></i><b>1.1</b> Explaining Credit Card Customers churns</a>
+<ul>
+<li class="chapter" data-level="1.1.1" data-path="xai1-explainable-cards.html"><a href="xai1-explainable-cards.html#introduction-and-motivation"><i class="fa fa-check"></i><b>1.1.1</b> Introduction and Motivation</a></li>
+<li class="chapter" data-level="1.1.2" data-path="xai1-explainable-cards.html"><a href="xai1-explainable-cards.html#methodology"><i class="fa fa-check"></i><b>1.1.2</b> Methodology</a></li>
+<li class="chapter" data-level="1.1.3" data-path="xai1-explainable-cards.html"><a href="xai1-explainable-cards.html#local-explanations"><i class="fa fa-check"></i><b>1.1.3</b> Local explanations</a></li>
+<li class="chapter" data-level="1.1.4" data-path="xai1-explainable-cards.html"><a href="xai1-explainable-cards.html#global-explanations"><i class="fa fa-check"></i><b>1.1.4</b> Global explanations</a></li>
+<li class="chapter" data-level="1.1.5" data-path="xai1-explainable-cards.html"><a href="xai1-explainable-cards.html#summary"><i class="fa fa-check"></i><b>1.1.5</b> Summary</a></li>
+</ul></li>
+<li class="chapter" data-level="1.2" data-path="xai-in-real-estate-pricing-a-case-study.html"><a href="xai-in-real-estate-pricing-a-case-study.html"><i class="fa fa-check"></i><b>1.2</b> XAI in real estate pricing: A case study</a>
+<ul>
+<li class="chapter" data-level="1.2.1" data-path="xai-in-real-estate-pricing-a-case-study.html"><a href="xai-in-real-estate-pricing-a-case-study.html#abstract"><i class="fa fa-check"></i><b>1.2.1</b> Abstract</a></li>
+<li class="chapter" data-level="1.2.2" data-path="xai-in-real-estate-pricing-a-case-study.html"><a href="xai-in-real-estate-pricing-a-case-study.html#introduction"><i class="fa fa-check"></i><b>1.2.2</b> Introduction</a></li>
+<li class="chapter" data-level="1.2.3" data-path="xai-in-real-estate-pricing-a-case-study.html"><a href="xai-in-real-estate-pricing-a-case-study.html#related-work"><i class="fa fa-check"></i><b>1.2.3</b> Related Work</a></li>
+<li class="chapter" data-level="1.2.4" data-path="xai-in-real-estate-pricing-a-case-study.html"><a href="xai-in-real-estate-pricing-a-case-study.html#methodology-1"><i class="fa fa-check"></i><b>1.2.4</b> Methodology</a></li>
+<li class="chapter" data-level="1.2.5" data-path="xai-in-real-estate-pricing-a-case-study.html"><a href="xai-in-real-estate-pricing-a-case-study.html#results"><i class="fa fa-check"></i><b>1.2.5</b> Results</a></li>
+<li class="chapter" data-level="1.2.6" data-path="xai-in-real-estate-pricing-a-case-study.html"><a href="xai-in-real-estate-pricing-a-case-study.html#summary-and-conclusions"><i class="fa fa-check"></i><b>1.2.6</b> Summary and conclusions</a></li>
+</ul></li>
+<li class="chapter" data-level="1.3" data-path="coronary-artery-disease-is-it-worth-trusting-ml-when-it-comes-to-our-health.html"><a href="coronary-artery-disease-is-it-worth-trusting-ml-when-it-comes-to-our-health.html"><i class="fa fa-check"></i><b>1.3</b> Coronary artery disease: Is it worth trusting ML when it comes to our health?</a>
+<ul>
+<li class="chapter" data-level="1.3.1" data-path="coronary-artery-disease-is-it-worth-trusting-ml-when-it-comes-to-our-health.html"><a href="coronary-artery-disease-is-it-worth-trusting-ml-when-it-comes-to-our-health.html#abstract-1"><i class="fa fa-check"></i><b>1.3.1</b> Abstract</a></li>
+<li class="chapter" data-level="1.3.2" data-path="coronary-artery-disease-is-it-worth-trusting-ml-when-it-comes-to-our-health.html"><a href="coronary-artery-disease-is-it-worth-trusting-ml-when-it-comes-to-our-health.html#introduction-and-motivation-1"><i class="fa fa-check"></i><b>1.3.2</b> Introduction and Motivation</a></li>
+<li class="chapter" data-level="1.3.3" data-path="coronary-artery-disease-is-it-worth-trusting-ml-when-it-comes-to-our-health.html"><a href="coronary-artery-disease-is-it-worth-trusting-ml-when-it-comes-to-our-health.html#related-work-1"><i class="fa fa-check"></i><b>1.3.3</b> Related Work</a></li>
+<li class="chapter" data-level="1.3.4" data-path="coronary-artery-disease-is-it-worth-trusting-ml-when-it-comes-to-our-health.html"><a href="coronary-artery-disease-is-it-worth-trusting-ml-when-it-comes-to-our-health.html#methodology-2"><i class="fa fa-check"></i><b>1.3.4</b> Methodology</a></li>
+<li class="chapter" data-level="1.3.5" data-path="coronary-artery-disease-is-it-worth-trusting-ml-when-it-comes-to-our-health.html"><a href="coronary-artery-disease-is-it-worth-trusting-ml-when-it-comes-to-our-health.html#results-1"><i class="fa fa-check"></i><b>1.3.5</b> Results</a></li>
+<li class="chapter" data-level="1.3.6" data-path="coronary-artery-disease-is-it-worth-trusting-ml-when-it-comes-to-our-health.html"><a href="coronary-artery-disease-is-it-worth-trusting-ml-when-it-comes-to-our-health.html#summary-and-conclusions-1"><i class="fa fa-check"></i><b>1.3.6</b> Summary and conclusions</a></li>
+</ul></li>
+<li class="chapter" data-level="1.4" data-path="xai1-explainable-wine.html"><a href="xai1-explainable-wine.html"><i class="fa fa-check"></i><b>1.4</b> Red wine mystery: using explainable AI to inspect factors behind wine quality</a>
+<ul>
+<li class="chapter" data-level="1.4.1" data-path="xai1-explainable-wine.html"><a href="xai1-explainable-wine.html#abstract-2"><i class="fa fa-check"></i><b>1.4.1</b> Abstract</a></li>
+<li class="chapter" data-level="1.4.2" data-path="xai1-explainable-wine.html"><a href="xai1-explainable-wine.html#introduction-and-motivation-2"><i class="fa fa-check"></i><b>1.4.2</b> Introduction and Motivation</a></li>
+<li class="chapter" data-level="1.4.3" data-path="xai1-explainable-wine.html"><a href="xai1-explainable-wine.html#methodology-3"><i class="fa fa-check"></i><b>1.4.3</b> Methodology</a></li>
+<li class="chapter" data-level="1.4.4" data-path="xai1-explainable-wine.html"><a href="xai1-explainable-wine.html#global-explanations-3"><i class="fa fa-check"></i><b>1.4.4</b> Global explanations</a></li>
+<li class="chapter" data-level="1.4.5" data-path="xai1-explainable-wine.html"><a href="xai1-explainable-wine.html#local-explanations-3"><i class="fa fa-check"></i><b>1.4.5</b> Local explanations</a></li>
+<li class="chapter" data-level="1.4.6" data-path="xai1-explainable-wine.html"><a href="xai1-explainable-wine.html#confrontation-with-science"><i class="fa fa-check"></i><b>1.4.6</b> Confrontation with science</a></li>
+<li class="chapter" data-level="1.4.7" data-path="xai1-explainable-wine.html"><a href="xai1-explainable-wine.html#summary-1"><i class="fa fa-check"></i><b>1.4.7</b> Summary</a></li>
+<li class="chapter" data-level="1.4.8" data-path="xai1-explainable-wine.html"><a href="xai1-explainable-wine.html#conclusions"><i class="fa fa-check"></i><b>1.4.8</b> Conclusions</a></li>
+</ul></li>
+<li class="chapter" data-level="1.5" data-path="xai1-explainable-hotels.html"><a href="xai1-explainable-hotels.html"><i class="fa fa-check"></i><b>1.5</b> Explanatory approach to modeling the risk of hotel booking cancellations</a>
+<ul>
+<li class="chapter" data-level="1.5.1" data-path="xai1-explainable-hotels.html"><a href="xai1-explainable-hotels.html#abstract-3"><i class="fa fa-check"></i><b>1.5.1</b> Abstract</a></li>
+<li class="chapter" data-level="1.5.2" data-path="xai1-explainable-hotels.html"><a href="xai1-explainable-hotels.html#introduction-1"><i class="fa fa-check"></i><b>1.5.2</b> Introduction</a></li>
+<li class="chapter" data-level="1.5.3" data-path="xai1-explainable-hotels.html"><a href="xai1-explainable-hotels.html#dataset_models"><i class="fa fa-check"></i><b>1.5.3</b> Dataset and models</a></li>
+<li class="chapter" data-level="1.5.4" data-path="xai1-explainable-hotels.html"><a href="xai1-explainable-hotels.html#local"><i class="fa fa-check"></i><b>1.5.4</b> Local explanations</a></li>
+<li class="chapter" data-level="1.5.5" data-path="xai1-explainable-hotels.html"><a href="xai1-explainable-hotels.html#global-explanations-4"><i class="fa fa-check"></i><b>1.5.5</b> Global explanations</a></li>
+<li class="chapter" data-level="1.5.6" data-path="xai1-explainable-hotels.html"><a href="xai1-explainable-hotels.html#summary-and-conclusions-2"><i class="fa fa-check"></i><b>1.5.6</b> Summary and conclusions</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="explainable-artificial-intelligence-2.html"><a href="explainable-artificial-intelligence-2.html"><i class="fa fa-check"></i><b>2</b> Explainable Artificial Intelligence 2</a>
+<ul>
+<li class="chapter" data-level="2.1" data-path="xai1-explainable-german-credits.html"><a href="xai1-explainable-german-credits.html"><i class="fa fa-check"></i><b>2.1</b> Classifying people as good or bad credit risks</a>
+<ul>
+<li class="chapter" data-level="2.1.1" data-path="xai1-explainable-german-credits.html"><a href="xai1-explainable-german-credits.html#introduction-2"><i class="fa fa-check"></i><b>2.1.1</b> Introduction</a></li>
+<li class="chapter" data-level="2.1.2" data-path="xai1-explainable-german-credits.html"><a href="xai1-explainable-german-credits.html#dataset-and-models"><i class="fa fa-check"></i><b>2.1.2</b> Dataset and models</a></li>
+<li class="chapter" data-level="2.1.3" data-path="xai1-explainable-german-credits.html"><a href="xai1-explainable-german-credits.html#local-explanations-4"><i class="fa fa-check"></i><b>2.1.3</b> Local explanations</a></li>
+<li class="chapter" data-level="2.1.4" data-path="xai1-explainable-german-credits.html"><a href="xai1-explainable-german-credits.html#global-explanations-5"><i class="fa fa-check"></i><b>2.1.4</b> Global explanations</a></li>
+<li class="chapter" data-level="2.1.5" data-path="xai1-explainable-german-credits.html"><a href="xai1-explainable-german-credits.html#summary-and-conclusions-3"><i class="fa fa-check"></i><b>2.1.5</b> Summary and conclusions</a></li>
+</ul></li>
+<li class="chapter" data-level="2.2" data-path="how-to-predict-the-probability-of-subsequent-blood-donations.html"><a href="how-to-predict-the-probability-of-subsequent-blood-donations.html"><i class="fa fa-check"></i><b>2.2</b> How to predict the probability of subsequent blood donations?</a>
+<ul>
+<li class="chapter" data-level="2.2.1" data-path="how-to-predict-the-probability-of-subsequent-blood-donations.html"><a href="how-to-predict-the-probability-of-subsequent-blood-donations.html#abstract-4"><i class="fa fa-check"></i><b>2.2.1</b> Abstract</a></li>
+<li class="chapter" data-level="2.2.2" data-path="how-to-predict-the-probability-of-subsequent-blood-donations.html"><a href="how-to-predict-the-probability-of-subsequent-blood-donations.html#introduction-and-motivation-3"><i class="fa fa-check"></i><b>2.2.2</b> Introduction and motivation</a></li>
+<li class="chapter" data-level="2.2.3" data-path="how-to-predict-the-probability-of-subsequent-blood-donations.html"><a href="how-to-predict-the-probability-of-subsequent-blood-donations.html#related-work-2"><i class="fa fa-check"></i><b>2.2.3</b> Related work</a></li>
+<li class="chapter" data-level="2.2.4" data-path="how-to-predict-the-probability-of-subsequent-blood-donations.html"><a href="how-to-predict-the-probability-of-subsequent-blood-donations.html#data-and-model"><i class="fa fa-check"></i><b>2.2.4</b> Data and model</a></li>
+<li class="chapter" data-level="2.2.5" data-path="how-to-predict-the-probability-of-subsequent-blood-donations.html"><a href="how-to-predict-the-probability-of-subsequent-blood-donations.html#global-explanations-6"><i class="fa fa-check"></i><b>2.2.5</b> Global explanations</a></li>
+<li class="chapter" data-level="2.2.6" data-path="how-to-predict-the-probability-of-subsequent-blood-donations.html"><a href="how-to-predict-the-probability-of-subsequent-blood-donations.html#local-explanations-5"><i class="fa fa-check"></i><b>2.2.6</b> Local explanations</a></li>
+<li class="chapter" data-level="2.2.7" data-path="how-to-predict-the-probability-of-subsequent-blood-donations.html"><a href="how-to-predict-the-probability-of-subsequent-blood-donations.html#conclusions-and-summary"><i class="fa fa-check"></i><b>2.2.7</b> Conclusions and summary</a></li>
+</ul></li>
+<li class="chapter" data-level="2.3" data-path="how-the-price-of-the-house-is-influenced-by-neighborhood-xai-methods-for-interpretation-the-black-box-model.html"><a href="how-the-price-of-the-house-is-influenced-by-neighborhood-xai-methods-for-interpretation-the-black-box-model.html"><i class="fa fa-check"></i><b>2.3</b> How the price of the house is influenced by neighborhood? XAI methods for interpretation the black box model</a>
+<ul>
+<li class="chapter" data-level="2.3.1" data-path="how-the-price-of-the-house-is-influenced-by-neighborhood-xai-methods-for-interpretation-the-black-box-model.html"><a href="how-the-price-of-the-house-is-influenced-by-neighborhood-xai-methods-for-interpretation-the-black-box-model.html#abstract-5"><i class="fa fa-check"></i><b>2.3.1</b> Abstract</a></li>
+<li class="chapter" data-level="2.3.2" data-path="how-the-price-of-the-house-is-influenced-by-neighborhood-xai-methods-for-interpretation-the-black-box-model.html"><a href="how-the-price-of-the-house-is-influenced-by-neighborhood-xai-methods-for-interpretation-the-black-box-model.html#introduction-3"><i class="fa fa-check"></i><b>2.3.2</b> Introduction</a></li>
+<li class="chapter" data-level="2.3.3" data-path="how-the-price-of-the-house-is-influenced-by-neighborhood-xai-methods-for-interpretation-the-black-box-model.html"><a href="how-the-price-of-the-house-is-influenced-by-neighborhood-xai-methods-for-interpretation-the-black-box-model.html#literature"><i class="fa fa-check"></i><b>2.3.3</b> Literature</a></li>
+<li class="chapter" data-level="2.3.4" data-path="how-the-price-of-the-house-is-influenced-by-neighborhood-xai-methods-for-interpretation-the-black-box-model.html"><a href="how-the-price-of-the-house-is-influenced-by-neighborhood-xai-methods-for-interpretation-the-black-box-model.html#local-explanations-6"><i class="fa fa-check"></i><b>2.3.4</b> Local explanations</a></li>
+<li class="chapter" data-level="2.3.5" data-path="how-the-price-of-the-house-is-influenced-by-neighborhood-xai-methods-for-interpretation-the-black-box-model.html"><a href="how-the-price-of-the-house-is-influenced-by-neighborhood-xai-methods-for-interpretation-the-black-box-model.html#global-explanations-7"><i class="fa fa-check"></i><b>2.3.5</b> Global explanations</a></li>
+<li class="chapter" data-level="2.3.6" data-path="how-the-price-of-the-house-is-influenced-by-neighborhood-xai-methods-for-interpretation-the-black-box-model.html"><a href="how-the-price-of-the-house-is-influenced-by-neighborhood-xai-methods-for-interpretation-the-black-box-model.html#conclusion"><i class="fa fa-check"></i><b>2.3.6</b> Conclusion</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="deep-learning-1.html"><a href="deep-learning-1.html"><i class="fa fa-check"></i><b>3</b> Deep Learning 1</a>
+<ul>
+<li class="chapter" data-level="3.1" data-path="lungnet.html"><a href="lungnet.html"><i class="fa fa-check"></i><b>3.1</b> LungNet</a>
+<ul>
+<li class="chapter" data-level="3.1.1" data-path="lungnet.html"><a href="lungnet.html#introduction-4"><i class="fa fa-check"></i><b>3.1.1</b> Introduction</a></li>
+<li class="chapter" data-level="3.1.2" data-path="lungnet.html"><a href="lungnet.html#data"><i class="fa fa-check"></i><b>3.1.2</b> Data</a></li>
+<li class="chapter" data-level="3.1.3" data-path="lungnet.html"><a href="lungnet.html#original-model"><i class="fa fa-check"></i><b>3.1.3</b> Original model</a></li>
+<li class="chapter" data-level="3.1.4" data-path="lungnet.html"><a href="lungnet.html#new-models"><i class="fa fa-check"></i><b>3.1.4</b> New models</a></li>
+<li class="chapter" data-level="3.1.5" data-path="lungnet.html"><a href="lungnet.html#summary-2"><i class="fa fa-check"></i><b>3.1.5</b> Summary</a></li>
+</ul></li>
+<li class="chapter" data-level="3.2" data-path="on-the-reproducibility-of-the-bcdu-net-model.html"><a href="on-the-reproducibility-of-the-bcdu-net-model.html"><i class="fa fa-check"></i><b>3.2</b> On the reproducibility of the BCDU-Net model</a>
+<ul>
+<li class="chapter" data-level="3.2.1" data-path="on-the-reproducibility-of-the-bcdu-net-model.html"><a href="on-the-reproducibility-of-the-bcdu-net-model.html#abstract-6"><i class="fa fa-check"></i><b>3.2.1</b> Abstract</a></li>
+<li class="chapter" data-level="3.2.2" data-path="on-the-reproducibility-of-the-bcdu-net-model.html"><a href="on-the-reproducibility-of-the-bcdu-net-model.html#introduction-5"><i class="fa fa-check"></i><b>3.2.2</b> Introduction</a></li>
+<li class="chapter" data-level="3.2.3" data-path="on-the-reproducibility-of-the-bcdu-net-model.html"><a href="on-the-reproducibility-of-the-bcdu-net-model.html#reproduction-of-the-results"><i class="fa fa-check"></i><b>3.2.3</b> Reproduction of the results</a></li>
+<li class="chapter" data-level="3.2.4" data-path="on-the-reproducibility-of-the-bcdu-net-model.html"><a href="on-the-reproducibility-of-the-bcdu-net-model.html#further-experiments"><i class="fa fa-check"></i><b>3.2.4</b> Further experiments</a></li>
+<li class="chapter" data-level="3.2.5" data-path="on-the-reproducibility-of-the-bcdu-net-model.html"><a href="on-the-reproducibility-of-the-bcdu-net-model.html#other-tools-applied-to-the-model"><i class="fa fa-check"></i><b>3.2.5</b> Other tools applied to the model</a></li>
+<li class="chapter" data-level="3.2.6" data-path="on-the-reproducibility-of-the-bcdu-net-model.html"><a href="on-the-reproducibility-of-the-bcdu-net-model.html#results-and-conclusions"><i class="fa fa-check"></i><b>3.2.6</b> Results and conclusions</a></li>
+</ul></li>
+<li class="chapter" data-level="3.3" data-path="an-exploration-of-deepcovidexplainer-explainable-covid-19-diagnosis-from-chest-x-rays.html"><a href="an-exploration-of-deepcovidexplainer-explainable-covid-19-diagnosis-from-chest-x-rays.html"><i class="fa fa-check"></i><b>3.3</b> An Exploration of DeepCovidExplainer: Explainable COVID-19 Diagnosis from Chest X-rays</a>
+<ul>
+<li class="chapter" data-level="3.3.1" data-path="an-exploration-of-deepcovidexplainer-explainable-covid-19-diagnosis-from-chest-x-rays.html"><a href="an-exploration-of-deepcovidexplainer-explainable-covid-19-diagnosis-from-chest-x-rays.html#introduction-and-motivation-4"><i class="fa fa-check"></i><b>3.3.1</b> Introduction and motivation <!-- DONE --></a></li>
+<li class="chapter" data-level="3.3.2" data-path="an-exploration-of-deepcovidexplainer-explainable-covid-19-diagnosis-from-chest-x-rays.html"><a href="an-exploration-of-deepcovidexplainer-explainable-covid-19-diagnosis-from-chest-x-rays.html#related-work-3"><i class="fa fa-check"></i><b>3.3.2</b> Related work</a></li>
+<li class="chapter" data-level="3.3.3" data-path="an-exploration-of-deepcovidexplainer-explainable-covid-19-diagnosis-from-chest-x-rays.html"><a href="an-exploration-of-deepcovidexplainer-explainable-covid-19-diagnosis-from-chest-x-rays.html#our-work"><i class="fa fa-check"></i><b>3.3.3</b> Our work</a></li>
+<li class="chapter" data-level="3.3.4" data-path="an-exploration-of-deepcovidexplainer-explainable-covid-19-diagnosis-from-chest-x-rays.html"><a href="an-exploration-of-deepcovidexplainer-explainable-covid-19-diagnosis-from-chest-x-rays.html#conclusions-and-summary-1"><i class="fa fa-check"></i><b>3.3.4</b> Conclusions and summary</a></li>
+</ul></li>
+<li class="chapter" data-level="3.4" data-path="erscovid.html"><a href="erscovid.html"><i class="fa fa-check"></i><b>3.4</b> ERSCovid</a>
+<ul>
+<li class="chapter" data-level="3.4.1" data-path="erscovid.html"><a href="erscovid.html#introduction-6"><i class="fa fa-check"></i><b>3.4.1</b> Introduction</a></li>
+</ul></li>
+<li class="chapter" data-level="3.5" data-path="covid-net.html"><a href="covid-net.html"><i class="fa fa-check"></i><b>3.5</b> COVID-Net</a>
+<ul>
+<li class="chapter" data-level="3.5.1" data-path="covid-net.html"><a href="covid-net.html#introduction-7"><i class="fa fa-check"></i><b>3.5.1</b> Introduction</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="deep-learning-2.html"><a href="deep-learning-2.html"><i class="fa fa-check"></i><b>4</b> Deep Learning 2</a>
+<ul>
+<li class="chapter" data-level="4.1" data-path="what-makes-an-article-reproducible-comparison-of-the-fer-paper-and-axondeepseg.html"><a href="what-makes-an-article-reproducible-comparison-of-the-fer-paper-and-axondeepseg.html"><i class="fa fa-check"></i><b>4.1</b> What makes an article reproducible? Comparison of the FER+ paper and AxonDeepSeg</a>
+<ul>
+<li class="chapter" data-level="4.1.1" data-path="what-makes-an-article-reproducible-comparison-of-the-fer-paper-and-axondeepseg.html"><a href="what-makes-an-article-reproducible-comparison-of-the-fer-paper-and-axondeepseg.html#abstract-7"><i class="fa fa-check"></i><b>4.1.1</b> Abstract</a></li>
+<li class="chapter" data-level="4.1.2" data-path="what-makes-an-article-reproducible-comparison-of-the-fer-paper-and-axondeepseg.html"><a href="what-makes-an-article-reproducible-comparison-of-the-fer-paper-and-axondeepseg.html#introduction-8"><i class="fa fa-check"></i><b>4.1.2</b> Introduction</a></li>
+<li class="chapter" data-level="4.1.3" data-path="what-makes-an-article-reproducible-comparison-of-the-fer-paper-and-axondeepseg.html"><a href="what-makes-an-article-reproducible-comparison-of-the-fer-paper-and-axondeepseg.html#analyzing-the-ferplus-paper"><i class="fa fa-check"></i><b>4.1.3</b> Analyzing the FERPlus paper</a></li>
+<li class="chapter" data-level="4.1.4" data-path="what-makes-an-article-reproducible-comparison-of-the-fer-paper-and-axondeepseg.html"><a href="what-makes-an-article-reproducible-comparison-of-the-fer-paper-and-axondeepseg.html#reproducibility-analysis"><i class="fa fa-check"></i><b>4.1.4</b> Reproducibility analysis</a></li>
+<li class="chapter" data-level="4.1.5" data-path="what-makes-an-article-reproducible-comparison-of-the-fer-paper-and-axondeepseg.html"><a href="what-makes-an-article-reproducible-comparison-of-the-fer-paper-and-axondeepseg.html#analyzing-the-axondeepseg-paper"><i class="fa fa-check"></i><b>4.1.5</b> Analyzing the AxonDeepSeg paper</a></li>
+<li class="chapter" data-level="4.1.6" data-path="what-makes-an-article-reproducible-comparison-of-the-fer-paper-and-axondeepseg.html"><a href="what-makes-an-article-reproducible-comparison-of-the-fer-paper-and-axondeepseg.html#reproducibility-analysis-1"><i class="fa fa-check"></i><b>4.1.6</b> Reproducibility analysis</a></li>
+<li class="chapter" data-level="4.1.7" data-path="what-makes-an-article-reproducible-comparison-of-the-fer-paper-and-axondeepseg.html"><a href="what-makes-an-article-reproducible-comparison-of-the-fer-paper-and-axondeepseg.html#conclusion-1"><i class="fa fa-check"></i><b>4.1.7</b> Conclusion</a></li>
+</ul></li>
+<li class="chapter" data-level="4.2" data-path="can-you-classify-histopathological-data-at-home-reproducing-the-ara-cnn-models-data-and-performance-.html"><a href="can-you-classify-histopathological-data-at-home-reproducing-the-ara-cnn-models-data-and-performance-.html"><i class="fa fa-check"></i><b>4.2</b> Can you classify histopathological data at home? Reproducing the ARA-CNN model’s data and performance.</a>
+<ul>
+<li class="chapter" data-level="4.2.1" data-path="can-you-classify-histopathological-data-at-home-reproducing-the-ara-cnn-models-data-and-performance-.html"><a href="can-you-classify-histopathological-data-at-home-reproducing-the-ara-cnn-models-data-and-performance-.html#abstract-8"><i class="fa fa-check"></i><b>4.2.1</b> Abstract</a></li>
+<li class="chapter" data-level="4.2.2" data-path="can-you-classify-histopathological-data-at-home-reproducing-the-ara-cnn-models-data-and-performance-.html"><a href="can-you-classify-histopathological-data-at-home-reproducing-the-ara-cnn-models-data-and-performance-.html#introduction-9"><i class="fa fa-check"></i><b>4.2.2</b> Introduction</a></li>
+<li class="chapter" data-level="4.2.3" data-path="can-you-classify-histopathological-data-at-home-reproducing-the-ara-cnn-models-data-and-performance-.html"><a href="can-you-classify-histopathological-data-at-home-reproducing-the-ara-cnn-models-data-and-performance-.html#definition"><i class="fa fa-check"></i><b>4.2.3</b> Definition</a></li>
+<li class="chapter" data-level="4.2.4" data-path="can-you-classify-histopathological-data-at-home-reproducing-the-ara-cnn-models-data-and-performance-.html"><a href="can-you-classify-histopathological-data-at-home-reproducing-the-ara-cnn-models-data-and-performance-.html#methodology-4"><i class="fa fa-check"></i><b>4.2.4</b> Methodology</a></li>
+<li class="chapter" data-level="4.2.5" data-path="can-you-classify-histopathological-data-at-home-reproducing-the-ara-cnn-models-data-and-performance-.html"><a href="can-you-classify-histopathological-data-at-home-reproducing-the-ara-cnn-models-data-and-performance-.html#results-2"><i class="fa fa-check"></i><b>4.2.5</b> Results</a></li>
+<li class="chapter" data-level="4.2.6" data-path="can-you-classify-histopathological-data-at-home-reproducing-the-ara-cnn-models-data-and-performance-.html"><a href="can-you-classify-histopathological-data-at-home-reproducing-the-ara-cnn-models-data-and-performance-.html#summary-and-conclusions-4"><i class="fa fa-check"></i><b>4.2.6</b> Summary and conclusions</a></li>
+</ul></li>
+<li class="chapter" data-level="4.3" data-path="rethinking-the-u-net-architecture-for-multimodal-biomedical-image-segmentation.html"><a href="rethinking-the-u-net-architecture-for-multimodal-biomedical-image-segmentation.html"><i class="fa fa-check"></i><b>4.3</b> Rethinking the U-Net architecture for multimodal biomedical image segmentation</a>
+<ul>
+<li class="chapter" data-level="4.3.1" data-path="rethinking-the-u-net-architecture-for-multimodal-biomedical-image-segmentation.html"><a href="rethinking-the-u-net-architecture-for-multimodal-biomedical-image-segmentation.html#abstrac"><i class="fa fa-check"></i><b>4.3.1</b> Abstrac</a></li>
+<li class="chapter" data-level="4.3.2" data-path="rethinking-the-u-net-architecture-for-multimodal-biomedical-image-segmentation.html"><a href="rethinking-the-u-net-architecture-for-multimodal-biomedical-image-segmentation.html#what-reproducibility-is"><i class="fa fa-check"></i><b>4.3.2</b> What Reproducibility Is?</a></li>
+<li class="chapter" data-level="4.3.3" data-path="rethinking-the-u-net-architecture-for-multimodal-biomedical-image-segmentation.html"><a href="rethinking-the-u-net-architecture-for-multimodal-biomedical-image-segmentation.html#first-article-an-improvement-of-data-classification-using-random-multimodel-deep-learning-rmdl"><i class="fa fa-check"></i><b>4.3.3</b> First article (An Improvement of Data Classification Using Random Multimodel Deep Learning (RMDL) )</a></li>
+<li class="chapter" data-level="4.3.4" data-path="rethinking-the-u-net-architecture-for-multimodal-biomedical-image-segmentation.html"><a href="rethinking-the-u-net-architecture-for-multimodal-biomedical-image-segmentation.html#second-article-multiresunet-rethinking-the-u-net-architecture-for-multimodal-biomedical-image-segmentation"><i class="fa fa-check"></i><b>4.3.4</b> Second article (MultiResUNet : Rethinking the U-Net architecture for multimodal biomedical image segmentation)</a></li>
+<li class="chapter" data-level="4.3.5" data-path="rethinking-the-u-net-architecture-for-multimodal-biomedical-image-segmentation.html"><a href="rethinking-the-u-net-architecture-for-multimodal-biomedical-image-segmentation.html#conclusion-2"><i class="fa fa-check"></i><b>4.3.5</b> Conclusion</a></li>
+</ul></li>
+<li class="chapter" data-level="4.4" data-path="dl2-rmdl-unet.html"><a href="dl2-rmdl-unet.html"><i class="fa fa-check"></i><b>4.4</b> The reproducibility analysis of articles covering RMDL and UNet++ architectures churns</a>
+<ul>
+<li class="chapter" data-level="4.4.1" data-path="dl2-rmdl-unet.html"><a href="dl2-rmdl-unet.html#background"><i class="fa fa-check"></i><b>4.4.1</b> Background</a></li>
+<li class="chapter" data-level="4.4.2" data-path="dl2-rmdl-unet.html"><a href="dl2-rmdl-unet.html#random-multimodel-deep-learning-for-classification"><i class="fa fa-check"></i><b>4.4.2</b> Random Multimodel Deep Learning for Classification</a></li>
+<li class="chapter" data-level="4.4.3" data-path="dl2-rmdl-unet.html"><a href="dl2-rmdl-unet.html#a-nested-u-net-architecture-for-medical-image-segmentation"><i class="fa fa-check"></i><b>4.4.3</b> A Nested U-Net Architecture for Medical Image Segmentation</a></li>
+<li class="chapter" data-level="4.4.4" data-path="dl2-rmdl-unet.html"><a href="dl2-rmdl-unet.html#conclusions-1"><i class="fa fa-check"></i><b>4.4.4</b> Conclusions</a></li>
+</ul></li>
+<li class="chapter" data-level="4.5" data-path="can-you-trust-science-on-reproduction-in-deep-learning-.html"><a href="can-you-trust-science-on-reproduction-in-deep-learning-.html"><i class="fa fa-check"></i><b>4.5</b> Can you trust science? On Reproduction in Deep Learning.</a>
+<ul>
+<li class="chapter" data-level="4.5.1" data-path="can-you-trust-science-on-reproduction-in-deep-learning-.html"><a href="can-you-trust-science-on-reproduction-in-deep-learning-.html#abstract-9"><i class="fa fa-check"></i><b>4.5.1</b> Abstract</a></li>
+<li class="chapter" data-level="4.5.2" data-path="can-you-trust-science-on-reproduction-in-deep-learning-.html"><a href="can-you-trust-science-on-reproduction-in-deep-learning-.html#introduction-11"><i class="fa fa-check"></i><b>4.5.2</b> Introduction</a></li>
+<li class="chapter" data-level="4.5.3" data-path="can-you-trust-science-on-reproduction-in-deep-learning-.html"><a href="can-you-trust-science-on-reproduction-in-deep-learning-.html#methodology-5"><i class="fa fa-check"></i><b>4.5.3</b> Methodology</a></li>
+<li class="chapter" data-level="4.5.4" data-path="can-you-trust-science-on-reproduction-in-deep-learning-.html"><a href="can-you-trust-science-on-reproduction-in-deep-learning-.html#result"><i class="fa fa-check"></i><b>4.5.4</b> Result</a></li>
+<li class="chapter" data-level="4.5.5" data-path="can-you-trust-science-on-reproduction-in-deep-learning-.html"><a href="can-you-trust-science-on-reproduction-in-deep-learning-.html#discussion"><i class="fa fa-check"></i><b>4.5.5</b> Discussion</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="machine-learning-1.html"><a href="machine-learning-1.html"><i class="fa fa-check"></i><b>5</b> Machine Learning</a>
+<ul>
+<li class="chapter" data-level="5.1" data-path="validation-and-comparison-of-covid-19-mortality-prediction-models-on-multi-source-data.html"><a href="validation-and-comparison-of-covid-19-mortality-prediction-models-on-multi-source-data.html"><i class="fa fa-check"></i><b>5.1</b> Validation and comparison of COVID-19 mortality prediction models on multi-source data</a>
+<ul>
+<li class="chapter" data-level="5.1.1" data-path="validation-and-comparison-of-covid-19-mortality-prediction-models-on-multi-source-data.html"><a href="validation-and-comparison-of-covid-19-mortality-prediction-models-on-multi-source-data.html#abstract-10"><i class="fa fa-check"></i><b>5.1.1</b> Abstract</a></li>
+<li class="chapter" data-level="5.1.2" data-path="validation-and-comparison-of-covid-19-mortality-prediction-models-on-multi-source-data.html"><a href="validation-and-comparison-of-covid-19-mortality-prediction-models-on-multi-source-data.html#introduction-12"><i class="fa fa-check"></i><b>5.1.2</b> Introduction</a></li>
+<li class="chapter" data-level="5.1.3" data-path="validation-and-comparison-of-covid-19-mortality-prediction-models-on-multi-source-data.html"><a href="validation-and-comparison-of-covid-19-mortality-prediction-models-on-multi-source-data.html#data-description-1"><i class="fa fa-check"></i><b>5.1.3</b> Data description</a></li>
+<li class="chapter" data-level="5.1.4" data-path="validation-and-comparison-of-covid-19-mortality-prediction-models-on-multi-source-data.html"><a href="validation-and-comparison-of-covid-19-mortality-prediction-models-on-multi-source-data.html#comparison-of-the-models"><i class="fa fa-check"></i><b>5.1.4</b> Comparison of the models</a></li>
+<li class="chapter" data-level="5.1.5" data-path="validation-and-comparison-of-covid-19-mortality-prediction-models-on-multi-source-data.html"><a href="validation-and-comparison-of-covid-19-mortality-prediction-models-on-multi-source-data.html#conclusions-2"><i class="fa fa-check"></i><b>5.1.5</b> Conclusions</a></li>
+</ul></li>
+<li class="chapter" data-level="5.2" data-path="one-model-to-fit-them-all-covid-19-survival-prediction-using-multinational-data.html"><a href="one-model-to-fit-them-all-covid-19-survival-prediction-using-multinational-data.html"><i class="fa fa-check"></i><b>5.2</b> One model to fit them all: COVID-19 survival prediction using multinational data</a>
+<ul>
+<li class="chapter" data-level="5.2.1" data-path="one-model-to-fit-them-all-covid-19-survival-prediction-using-multinational-data.html"><a href="one-model-to-fit-them-all-covid-19-survival-prediction-using-multinational-data.html#abstract-11"><i class="fa fa-check"></i><b>5.2.1</b> Abstract</a></li>
+<li class="chapter" data-level="5.2.2" data-path="one-model-to-fit-them-all-covid-19-survival-prediction-using-multinational-data.html"><a href="one-model-to-fit-them-all-covid-19-survival-prediction-using-multinational-data.html#introduction-13"><i class="fa fa-check"></i><b>5.2.2</b> Introduction</a></li>
+<li class="chapter" data-level="5.2.3" data-path="one-model-to-fit-them-all-covid-19-survival-prediction-using-multinational-data.html"><a href="one-model-to-fit-them-all-covid-19-survival-prediction-using-multinational-data.html#data-sources"><i class="fa fa-check"></i><b>5.2.3</b> Data sources</a></li>
+<li class="chapter" data-level="5.2.4" data-path="one-model-to-fit-them-all-covid-19-survival-prediction-using-multinational-data.html"><a href="one-model-to-fit-them-all-covid-19-survival-prediction-using-multinational-data.html#model-building"><i class="fa fa-check"></i><b>5.2.4</b> Model building</a></li>
+<li class="chapter" data-level="5.2.5" data-path="one-model-to-fit-them-all-covid-19-survival-prediction-using-multinational-data.html"><a href="one-model-to-fit-them-all-covid-19-survival-prediction-using-multinational-data.html#discussion-1"><i class="fa fa-check"></i><b>5.2.5</b> Discussion</a></li>
+<li class="chapter" data-level="5.2.6" data-path="one-model-to-fit-them-all-covid-19-survival-prediction-using-multinational-data.html"><a href="one-model-to-fit-them-all-covid-19-survival-prediction-using-multinational-data.html#summary-4"><i class="fa fa-check"></i><b>5.2.6</b> Summary</a></li>
+</ul></li>
+<li class="chapter" data-level="5.3" data-path="transparent-machine-learning-to-support-predicting-covid-19-infection-risk-based-on-chronic-diseases.html"><a href="transparent-machine-learning-to-support-predicting-covid-19-infection-risk-based-on-chronic-diseases.html"><i class="fa fa-check"></i><b>5.3</b> Transparent machine learning to support predicting COVID-19 infection risk based on chronic diseases</a>
+<ul>
+<li class="chapter" data-level="5.3.1" data-path="transparent-machine-learning-to-support-predicting-covid-19-infection-risk-based-on-chronic-diseases.html"><a href="transparent-machine-learning-to-support-predicting-covid-19-infection-risk-based-on-chronic-diseases.html#abstract-12"><i class="fa fa-check"></i><b>5.3.1</b> Abstract</a></li>
+<li class="chapter" data-level="5.3.2" data-path="transparent-machine-learning-to-support-predicting-covid-19-infection-risk-based-on-chronic-diseases.html"><a href="transparent-machine-learning-to-support-predicting-covid-19-infection-risk-based-on-chronic-diseases.html#introduction-14"><i class="fa fa-check"></i><b>5.3.2</b> Introduction</a></li>
+<li class="chapter" data-level="5.3.3" data-path="transparent-machine-learning-to-support-predicting-covid-19-infection-risk-based-on-chronic-diseases.html"><a href="transparent-machine-learning-to-support-predicting-covid-19-infection-risk-based-on-chronic-diseases.html#flaws"><i class="fa fa-check"></i><b>5.3.3</b> Flaws</a></li>
+<li class="chapter" data-level="5.3.4" data-path="transparent-machine-learning-to-support-predicting-covid-19-infection-risk-based-on-chronic-diseases.html"><a href="transparent-machine-learning-to-support-predicting-covid-19-infection-risk-based-on-chronic-diseases.html#improvements"><i class="fa fa-check"></i><b>5.3.4</b> Improvements</a></li>
+<li class="chapter" data-level="5.3.5" data-path="transparent-machine-learning-to-support-predicting-covid-19-infection-risk-based-on-chronic-diseases.html"><a href="transparent-machine-learning-to-support-predicting-covid-19-infection-risk-based-on-chronic-diseases.html#transparent-machine-learning"><i class="fa fa-check"></i><b>5.3.5</b> Transparent Machine Learning</a></li>
+<li class="chapter" data-level="5.3.6" data-path="transparent-machine-learning-to-support-predicting-covid-19-infection-risk-based-on-chronic-diseases.html"><a href="transparent-machine-learning-to-support-predicting-covid-19-infection-risk-based-on-chronic-diseases.html#application"><i class="fa fa-check"></i><b>5.3.6</b> Application</a></li>
+<li class="chapter" data-level="5.3.7" data-path="transparent-machine-learning-to-support-predicting-covid-19-infection-risk-based-on-chronic-diseases.html"><a href="transparent-machine-learning-to-support-predicting-covid-19-infection-risk-based-on-chronic-diseases.html#conclusions-3"><i class="fa fa-check"></i><b>5.3.7</b> Conclusions</a></li>
+</ul></li>
+<li class="chapter" data-level="5.4" data-path="comparison-of-neural-networks-and-tree-based-models-in-the-clinical-prediction-of-the-course-of-covid-19-illness.html"><a href="comparison-of-neural-networks-and-tree-based-models-in-the-clinical-prediction-of-the-course-of-covid-19-illness.html"><i class="fa fa-check"></i><b>5.4</b> Comparison of neural networks and tree-based models in the clinical prediction of the course of COVID-19 illness</a>
+<ul>
+<li class="chapter" data-level="5.4.1" data-path="comparison-of-neural-networks-and-tree-based-models-in-the-clinical-prediction-of-the-course-of-covid-19-illness.html"><a href="comparison-of-neural-networks-and-tree-based-models-in-the-clinical-prediction-of-the-course-of-covid-19-illness.html#abstract-13"><i class="fa fa-check"></i><b>5.4.1</b> Abstract</a></li>
+<li class="chapter" data-level="5.4.2" data-path="comparison-of-neural-networks-and-tree-based-models-in-the-clinical-prediction-of-the-course-of-covid-19-illness.html"><a href="comparison-of-neural-networks-and-tree-based-models-in-the-clinical-prediction-of-the-course-of-covid-19-illness.html#introduction-15"><i class="fa fa-check"></i><b>5.4.2</b> Introduction</a></li>
+<li class="chapter" data-level="5.4.3" data-path="comparison-of-neural-networks-and-tree-based-models-in-the-clinical-prediction-of-the-course-of-covid-19-illness.html"><a href="comparison-of-neural-networks-and-tree-based-models-in-the-clinical-prediction-of-the-course-of-covid-19-illness.html#methods-1"><i class="fa fa-check"></i><b>5.4.3</b> Methods</a></li>
+<li class="chapter" data-level="5.4.4" data-path="comparison-of-neural-networks-and-tree-based-models-in-the-clinical-prediction-of-the-course-of-covid-19-illness.html"><a href="comparison-of-neural-networks-and-tree-based-models-in-the-clinical-prediction-of-the-course-of-covid-19-illness.html#results-6"><i class="fa fa-check"></i><b>5.4.4</b> Results</a></li>
+<li class="chapter" data-level="5.4.5" data-path="comparison-of-neural-networks-and-tree-based-models-in-the-clinical-prediction-of-the-course-of-covid-19-illness.html"><a href="comparison-of-neural-networks-and-tree-based-models-in-the-clinical-prediction-of-the-course-of-covid-19-illness.html#discussion-2"><i class="fa fa-check"></i><b>5.4.5</b> Discussion</a></li>
+<li class="chapter" data-level="5.4.6" data-path="comparison-of-neural-networks-and-tree-based-models-in-the-clinical-prediction-of-the-course-of-covid-19-illness.html"><a href="comparison-of-neural-networks-and-tree-based-models-in-the-clinical-prediction-of-the-course-of-covid-19-illness.html#source-code"><i class="fa fa-check"></i><b>5.4.6</b> Source code</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="rashomonml.html"><a href="rashomonml.html"><i class="fa fa-check"></i><b>6</b> RashomonML</a>
+<ul>
+<li class="chapter" data-level="6.1" data-path="topic.html"><a href="topic.html"><i class="fa fa-check"></i><b>6.1</b> Topic</a>
+<ul>
+<li class="chapter" data-level="6.1.1" data-path="topic.html"><a href="topic.html#abstract-14"><i class="fa fa-check"></i><b>6.1.1</b> Abstract</a></li>
+<li class="chapter" data-level="6.1.2" data-path="topic.html"><a href="topic.html#literature-review"><i class="fa fa-check"></i><b>6.1.2</b> Literature review</a></li>
+<li class="chapter" data-level="6.1.3" data-path="topic.html"><a href="topic.html#results-7"><i class="fa fa-check"></i><b>6.1.3</b> Results</a></li>
+<li class="chapter" data-level="6.1.4" data-path="topic.html"><a href="topic.html#best-models"><i class="fa fa-check"></i><b>6.1.4</b> Best models</a></li>
+</ul></li>
+<li class="chapter" data-level="6.2" data-path="title.html"><a href="title.html"><i class="fa fa-check"></i><b>6.2</b> Title</a>
+<ul>
+<li class="chapter" data-level="6.2.1" data-path="title.html"><a href="title.html#literature-review-1"><i class="fa fa-check"></i><b>6.2.1</b> Literature review</a></li>
+</ul></li>
+<li class="chapter" data-level="6.3" data-path="rashomon-ml-with-addition-of-dimensional-reduction.html"><a href="rashomon-ml-with-addition-of-dimensional-reduction.html"><i class="fa fa-check"></i><b>6.3</b> Rashomon ML with addition of dimensional reduction</a>
+<ul>
+<li class="chapter" data-level="6.3.1" data-path="rashomon-ml-with-addition-of-dimensional-reduction.html"><a href="rashomon-ml-with-addition-of-dimensional-reduction.html#abstract-15"><i class="fa fa-check"></i><b>6.3.1</b> Abstract</a></li>
+<li class="chapter" data-level="6.3.2" data-path="rashomon-ml-with-addition-of-dimensional-reduction.html"><a href="rashomon-ml-with-addition-of-dimensional-reduction.html#introduction-and-related-works"><i class="fa fa-check"></i><b>6.3.2</b> Introduction and related works</a></li>
+<li class="chapter" data-level="6.3.3" data-path="rashomon-ml-with-addition-of-dimensional-reduction.html"><a href="rashomon-ml-with-addition-of-dimensional-reduction.html#methodology-6"><i class="fa fa-check"></i><b>6.3.3</b> Methodology</a></li>
+<li class="chapter" data-level="6.3.4" data-path="rashomon-ml-with-addition-of-dimensional-reduction.html"><a href="rashomon-ml-with-addition-of-dimensional-reduction.html#results-8"><i class="fa fa-check"></i><b>6.3.4</b> Results</a></li>
+<li class="chapter" data-level="6.3.5" data-path="rashomon-ml-with-addition-of-dimensional-reduction.html"><a href="rashomon-ml-with-addition-of-dimensional-reduction.html#summary-and-conclusions-5"><i class="fa fa-check"></i><b>6.3.5</b> Summary and conclusions</a></li>
+</ul></li>
+<li class="chapter" data-level="6.4" data-path="roshomon-sets-on-death-prediction-xgb-models-using-mimic-iii-database.html"><a href="roshomon-sets-on-death-prediction-xgb-models-using-mimic-iii-database.html"><i class="fa fa-check"></i><b>6.4</b> Roshomon sets on death prediction XGB models using MIMIC-III database</a>
+<ul>
+<li class="chapter" data-level="6.4.1" data-path="roshomon-sets-on-death-prediction-xgb-models-using-mimic-iii-database.html"><a href="roshomon-sets-on-death-prediction-xgb-models-using-mimic-iii-database.html#an-initial-literature-review"><i class="fa fa-check"></i><b>6.4.1</b> An initial literature review</a></li>
+</ul></li>
+<li class="chapter" data-level="6.5" data-path="rashomon-sets-of-in-hospital-mortality-prediction-random-forest-models.html"><a href="rashomon-sets-of-in-hospital-mortality-prediction-random-forest-models.html"><i class="fa fa-check"></i><b>6.5</b> Rashomon sets of in-hospital mortality prediction random forest models</a>
+<ul>
+<li class="chapter" data-level="6.5.1" data-path="rashomon-sets-of-in-hospital-mortality-prediction-random-forest-models.html"><a href="rashomon-sets-of-in-hospital-mortality-prediction-random-forest-models.html#abstract-16"><i class="fa fa-check"></i><b>6.5.1</b> Abstract</a></li>
+<li class="chapter" data-level="6.5.2" data-path="rashomon-sets-of-in-hospital-mortality-prediction-random-forest-models.html"><a href="rashomon-sets-of-in-hospital-mortality-prediction-random-forest-models.html#introduction-16"><i class="fa fa-check"></i><b>6.5.2</b> Introduction</a></li>
+<li class="chapter" data-level="6.5.3" data-path="rashomon-sets-of-in-hospital-mortality-prediction-random-forest-models.html"><a href="rashomon-sets-of-in-hospital-mortality-prediction-random-forest-models.html#related-work-4"><i class="fa fa-check"></i><b>6.5.3</b> Related work</a></li>
+<li class="chapter" data-level="6.5.4" data-path="rashomon-sets-of-in-hospital-mortality-prediction-random-forest-models.html"><a href="rashomon-sets-of-in-hospital-mortality-prediction-random-forest-models.html#mimic-iii-dataset"><i class="fa fa-check"></i><b>6.5.4</b> MIMIC-III Dataset</a></li>
+<li class="chapter" data-level="6.5.5" data-path="rashomon-sets-of-in-hospital-mortality-prediction-random-forest-models.html"><a href="rashomon-sets-of-in-hospital-mortality-prediction-random-forest-models.html#rashomon-sets"><i class="fa fa-check"></i><b>6.5.5</b> Rashomon Sets</a></li>
+<li class="chapter" data-level="6.5.6" data-path="rashomon-sets-of-in-hospital-mortality-prediction-random-forest-models.html"><a href="rashomon-sets-of-in-hospital-mortality-prediction-random-forest-models.html#results-9"><i class="fa fa-check"></i><b>6.5.6</b> Results</a></li>
+<li class="chapter" data-level="6.5.7" data-path="rashomon-sets-of-in-hospital-mortality-prediction-random-forest-models.html"><a href="rashomon-sets-of-in-hospital-mortality-prediction-random-forest-models.html#conclusion-3"><i class="fa fa-check"></i><b>6.5.7</b> Conclusion</a></li>
+</ul></li>
+</ul></li>
+<li class="divider"></li>
+<li><a href="https://bookdown.org" target="_blank">Published with bookdown</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Case Studies</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="rashomon-sets-of-in-hospital-mortality-prediction-random-forest-models" class="section level2" number="6.5">
+<h2><span class="header-section-number">6.5</span> Rashomon sets of in-hospital mortality prediction random forest models</h2>
+<p><em>Authors: Jeugeniusz Winiczenko, Mikolaj Malec, Patryk Wrona (Warsaw University of Techcnology)</em></p>
+<div id="abstract-16" class="section level3" number="6.5.1">
+<h3><span class="header-section-number">6.5.1</span> Abstract</h3>
+<p>The concept of the Rashomon set is gaining more and more popularity in the machine learning world. However, the most efficient ways of building and analyzing such sets are yet to be discovered. The main aim of this study was to develop several approaches to creating Rashomon sets, examining their characteristics, and using them for further predictions. In this article, the results of Rashomon sets obtained from the group of random forest classifiers trained for in-hospital mortality prediction task on physiological time-series and medical histories from the Medical Information Mart for Intensive Care (MIMIC-III) are presented.</p>
+</div>
+<div id="introduction-16" class="section level3" number="6.5.2">
+<h3><span class="header-section-number">6.5.2</span> Introduction</h3>
+<p>The main goals of this study were to check if
+* Rashomon sets can be better at predictions than single best models,
+* the way of obtaining predictions from Rashomon set has any impact on their performance,* Rashomon sets that consist of different models performs better than those with high performance but similar models.</p>
+<p>In this study, Rashomon set concept with top performance or the top most different random forest classifiers was used. These classifiers were trained for the in-hospital mortality prediction tasks on two datasets: the first one containing only physiological time-series and the second one containing both physiological time-series and medical histories. Both datasets were created from preprocessed data from the MIMIC-III database.</p>
+<p>To apply the created Rashomon sets for predicting, several techniques such as mean, median, weighted mean, etc. of votes of classifiers in each set were used. For sets’ prediction assessment area under the receiver operating characteristic curve(AUC) was used.
+One of the main goals of this study was also to check if Rashomon sets that are formed from different models perform better than those where models were similar. Different models were defined as those which have quite different sets of important variables. Different models which pay attention to different features were thought to be better at predicting just as the team of experts where each knows a different field would be. To verify this aspect, analysis of feature importance plots for each model from each Rashomon set were conducted, and models with different important features were united into sets.</p>
+<p>Furthermore, for better accommodation with the article, its structure is provided:</p>
+<ol style="list-style-type: decimal">
+<li><p>Abstract</p></li>
+<li><p>Introduction</p></li>
+<li><p>Related Work</p></li>
+<li><p>MIMIC-III dataset - contains a description of both training datasets and their origin</p></li>
+<li><p>Rashomon sets - contains a description of performance results of best models, voting Rashomon sets and methods of voting</p></li>
+<li><p>Results - contains a summary of the most interesting results of this study</p></li>
+<li><p>Conclusion.</p></li>
+</ol>
+</div>
+<div id="related-work-4" class="section level3" number="6.5.3">
+<h3><span class="header-section-number">6.5.3</span> Related work</h3>
+<p>Until recently, the Rashomon sets have been rarely a subject of scientific research. In 2019 <span class="citation">(<a href="#ref-6-0-rashomon-intro" role="doc-biblioref">Semenova et al. 2019</a>)</span> approached the issue of creating mathematical and statistical definitions and notations regarding such sets of models. They described Rashomon sets as subspaces of the hypothesis space, that is subsets of models having comparable performance as the best model concerning a loss function. Rashomon sets are sets of models performing extraordinarily well on a given task, and in machine learning, this term was used for the very first time in <span class="citation">(<a href="#ref-6-0-breiman2001statistical" role="doc-biblioref">Breiman et al. 2001</a>)</span>. Just as the task could be any, like predicting patient mortality in <span class="citation">(<a href="#ref-6-0-tang2018predictive" role="doc-biblioref">Tang et al. 2018</a>)</span>, the use of given features to explain vary among many highly accurate models. Moreover, studying the linear regression model, Leo Breiman described this situation as the Rashomon Effect.</p>
+<p>Another emphasis on analyzing Rashomon sets and the importance of their features were made in <span class="citation">(<a href="#ref-6-0-rashomon-variable-importance" role="doc-biblioref">Fisher et al. 2019c</a>)</span>. The authors suggested the Model Class Reliance - new variable importance (VI) tool to study the range of VI values across all highly accurate models - models included in Rashomon sets. Later, <span class="citation">(<a href="#ref-6-0-rudin-challenges" role="doc-biblioref">Rudin et al. 2021</a>)</span> provided basic rules for interpretable machine learning and identified 10 technical challenge areas in interpretable machine learning. They emphasized the troubleshooting and easiness of using glass-box models today as well as their advantage over black-box models due to their inscrutable nature. In this article, Challenge number 9 involves understanding, exploring, and measuring the Rashomon set. The authors address questions about how to characterize and visualize Rashomon sets, and finally, how to pick the best model out of the Rashomon set.</p>
+<p>In our work, we use variable importance plots from DALEX R Package to interpret the impact of each variable on the medical model output. We also use several voting systems to determine if the mutual voting of some subspace of models could outperform the best models. Furthermore, we address the problem of searching the most crucial predictive variables among those Rashomon sets and investigate the impact of choosing subsets of input features on the whole process of determining Rashomon sets and their characteristics.</p>
+</div>
+<div id="mimic-iii-dataset" class="section level3" number="6.5.4">
+<h3><span class="header-section-number">6.5.4</span> MIMIC-III Dataset</h3>
+<p>MIMIC III Clinical Database is a large database comprising de-identified health-related data associated with tens of patients who stayed in critical care units of the Beth Israel Deaconess Medical Center between 2001 and 2012. This database consists of 26 tables issued from different measurements during patients’ stays in the hospital. The preprocessing of these tables was conducted just like in <span class="citation">(<a href="#ref-6-0-tang2018predictive" role="doc-biblioref">Tang et al. 2018</a>)</span>.</p>
+<div id="x48-variable-set" class="section level4" number="6.5.4.1">
+<h4><span class="header-section-number">6.5.4.1</span> X48 Variable Set</h4>
+<p>This set consisted of 27616 observations having 76 predictive variables in total. It was created from the icu_stay.csv file and is in fact a preprocessed raw MIMIC table according to the reproduced article. It contains averaged statistics of 48-hour patients’ measurements (heart rate etc.). For each measurement maximal value, averaged value, minimum value, and standard deviation are denoted as separate variables.</p>
+</div>
+<div id="w48-variable-set" class="section level4" number="6.5.4.2">
+<h4><span class="header-section-number">6.5.4.2</span> W48 Variable Set</h4>
+<p>This set consisted of 27616 observations having 276 predictive variables in total and was created from icu_stay.csv and d_icd_diagnoses.csv files and was in fact a preprocessed raw MIMIC tables according to the reproduced article. Just like X48, it contains averaged statistics of 48-hour patients’ measurements (heart rate, etc.) but is also combined with diagnosis histories. It is the combination of the X48 variable set and w2v embedding of medical events of all ICD-9 group codes.</p>
+</div>
+</div>
+<div id="rashomon-sets" class="section level3" number="6.5.5">
+<h3><span class="header-section-number">6.5.5</span> Rashomon Sets</h3>
+<p>Rashomon sets are sets of machine learning models performing especially well in the task of predicting in-hospital mortality. They can be chosen using a given criterion or metric. In this work, Rashomon sets were created using the Area Under ROC Curve metric, but also by finding the most different treating of predicting variables. The first Rashomon set was named ‘best AUC models’ and the second Rashomon set was called ‘experts’ because of their expertise on different predictors.</p>
+<p>To find such best models, 100 models were trained for each dataset using 3-fold cross-validation. Each time the validation set consisted of 20% of full data and the testing set was made of 10% of full data. We tried to verify how AUC changes depending on the amount of training data and the number of models included in a Rashomon set to find the most optimal number of models in such a set. The training was performed on 1%, 5%, 10%, 30%, and 70% of observations in the dataset. Furthermore, from the mentioned 100 models, 6 models with the highest AUC value were the best AUC models and 6 models with the most different variable importance were chosen for the ‘experts’ set. With these pairs of 6 models for 2 datasets(4 model sets in total) variable importance plots were checked to compare how it changes across different variable sets(X48 and W48) and different approaches of choosing the Rashomon set(best AUC or most different variable importance). We give the hyperparameters of these models in the next paragraphs.</p>
+<div id="sets-of-best-auc-models" class="section level4" number="6.5.5.1">
+<h4><span class="header-section-number">6.5.5.1</span> Sets of best AUC models</h4>
+<p>6 models in rashomon sets built according to the AUC value. Hiperparameters of these models were found among best 20 models from 3-fold cross-validation and are given:
+For X48 Variable Set:</p>
+<table>
+<caption>
+<span id="tab:unnamed-chunk-15">Table 6.1: </span>Hiperparameters for best AUC models of X48 dataset
+</caption>
+<thead>
+<tr>
+<th style="text-align:right;">
+param_n_estimators
+</th>
+<th style="text-align:right;">
+param_min_samples_split
+</th>
+<th style="text-align:right;">
+param_min_samples_leaf
+</th>
+<th style="text-align:left;">
+param_max_features
+</th>
+<th style="text-align:right;">
+param_max_depth
+</th>
+<th style="text-align:left;">
+param_bootstrap
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:right;">
+1400
+</td>
+<td style="text-align:right;">
+2
+</td>
+<td style="text-align:right;">
+4
+</td>
+<td style="text-align:left;">
+sqrt
+</td>
+<td style="text-align:right;">
+80
+</td>
+<td style="text-align:left;">
+FALSE
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+2000
+</td>
+<td style="text-align:right;">
+5
+</td>
+<td style="text-align:right;">
+4
+</td>
+<td style="text-align:left;">
+sqrt
+</td>
+<td style="text-align:right;">
+NaN
+</td>
+<td style="text-align:left;">
+FALSE
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+1200
+</td>
+<td style="text-align:right;">
+2
+</td>
+<td style="text-align:right;">
+4
+</td>
+<td style="text-align:left;">
+sqrt
+</td>
+<td style="text-align:right;">
+70
+</td>
+<td style="text-align:left;">
+FALSE
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+600
+</td>
+<td style="text-align:right;">
+2
+</td>
+<td style="text-align:right;">
+4
+</td>
+<td style="text-align:left;">
+sqrt
+</td>
+<td style="text-align:right;">
+30
+</td>
+<td style="text-align:left;">
+FALSE
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+1200
+</td>
+<td style="text-align:right;">
+10
+</td>
+<td style="text-align:right;">
+4
+</td>
+<td style="text-align:left;">
+sqrt
+</td>
+<td style="text-align:right;">
+20
+</td>
+<td style="text-align:left;">
+FALSE
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+800
+</td>
+<td style="text-align:right;">
+5
+</td>
+<td style="text-align:right;">
+4
+</td>
+<td style="text-align:left;">
+sqrt
+</td>
+<td style="text-align:right;">
+30
+</td>
+<td style="text-align:left;">
+FALSE
+</td>
+</tr>
+</tbody>
+</table>
+<p>For W48 Variable Set:</p>
+<table>
+<caption>
+<span id="tab:unnamed-chunk-16">Table 6.2: </span>Hiperparameters for best AUC models of W48 dataset
+</caption>
+<thead>
+<tr>
+<th style="text-align:right;">
+param_n_estimators
+</th>
+<th style="text-align:right;">
+param_min_samples_split
+</th>
+<th style="text-align:right;">
+param_min_samples_leaf
+</th>
+<th style="text-align:left;">
+param_max_features
+</th>
+<th style="text-align:right;">
+param_max_depth
+</th>
+<th style="text-align:left;">
+param_bootstrap
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:right;">
+1800
+</td>
+<td style="text-align:right;">
+2
+</td>
+<td style="text-align:right;">
+2
+</td>
+<td style="text-align:left;">
+sqrt
+</td>
+<td style="text-align:right;">
+60
+</td>
+<td style="text-align:left;">
+FALSE
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+1600
+</td>
+<td style="text-align:right;">
+2
+</td>
+<td style="text-align:right;">
+4
+</td>
+<td style="text-align:left;">
+sqrt
+</td>
+<td style="text-align:right;">
+110
+</td>
+<td style="text-align:left;">
+FALSE
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+1600
+</td>
+<td style="text-align:right;">
+10
+</td>
+<td style="text-align:right;">
+4
+</td>
+<td style="text-align:left;">
+sqrt
+</td>
+<td style="text-align:right;">
+40
+</td>
+<td style="text-align:left;">
+FALSE
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+600
+</td>
+<td style="text-align:right;">
+10
+</td>
+<td style="text-align:right;">
+4
+</td>
+<td style="text-align:left;">
+sqrt
+</td>
+<td style="text-align:right;">
+90
+</td>
+<td style="text-align:left;">
+FALSE
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+1200
+</td>
+<td style="text-align:right;">
+10
+</td>
+<td style="text-align:right;">
+2
+</td>
+<td style="text-align:left;">
+sqrt
+</td>
+<td style="text-align:right;">
+70
+</td>
+<td style="text-align:left;">
+FALSE
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+800
+</td>
+<td style="text-align:right;">
+2
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:left;">
+sqrt
+</td>
+<td style="text-align:right;">
+20
+</td>
+<td style="text-align:left;">
+FALSE
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div id="sets-of-experts" class="section level4" number="6.5.5.2">
+<h4><span class="header-section-number">6.5.5.2</span> Sets of experts</h4>
+<p>6 rashomon sets built according to the most different important variables so that each of them treasure other sets of predictors. Hiperparameters of these models were found among best 20 models from 3-fold cross-validation and are given:</p>
+<p>For X48 Variable Set:</p>
+<table>
+<caption>
+<span id="tab:unnamed-chunk-17">Table 6.3: </span>Hiperparameters for expert models of X48 dataset
+</caption>
+<thead>
+<tr>
+<th style="text-align:right;">
+param_n_estimators
+</th>
+<th style="text-align:right;">
+param_min_samples_split
+</th>
+<th style="text-align:right;">
+param_min_samples_leaf
+</th>
+<th style="text-align:left;">
+param_max_features
+</th>
+<th style="text-align:right;">
+param_max_depth
+</th>
+<th style="text-align:left;">
+param_bootstrap
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:right;">
+1400
+</td>
+<td style="text-align:right;">
+2
+</td>
+<td style="text-align:right;">
+4
+</td>
+<td style="text-align:left;">
+sqrt
+</td>
+<td style="text-align:right;">
+80
+</td>
+<td style="text-align:left;">
+FALSE
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+1400
+</td>
+<td style="text-align:right;">
+5
+</td>
+<td style="text-align:right;">
+2
+</td>
+<td style="text-align:left;">
+sqrt
+</td>
+<td style="text-align:right;">
+NaN
+</td>
+<td style="text-align:left;">
+FALSE
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+600
+</td>
+<td style="text-align:right;">
+2
+</td>
+<td style="text-align:right;">
+2
+</td>
+<td style="text-align:left;">
+sqrt
+</td>
+<td style="text-align:right;">
+110
+</td>
+<td style="text-align:left;">
+FALSE
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+800
+</td>
+<td style="text-align:right;">
+2
+</td>
+<td style="text-align:right;">
+2
+</td>
+<td style="text-align:left;">
+sqrt
+</td>
+<td style="text-align:right;">
+50
+</td>
+<td style="text-align:left;">
+FALSE
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+800
+</td>
+<td style="text-align:right;">
+10
+</td>
+<td style="text-align:right;">
+2
+</td>
+<td style="text-align:left;">
+sqrt
+</td>
+<td style="text-align:right;">
+30
+</td>
+<td style="text-align:left;">
+FALSE
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+1000
+</td>
+<td style="text-align:right;">
+5
+</td>
+<td style="text-align:right;">
+2
+</td>
+<td style="text-align:left;">
+sqrt
+</td>
+<td style="text-align:right;">
+100
+</td>
+<td style="text-align:left;">
+FALSE
+</td>
+</tr>
+</tbody>
+</table>
+<p>For W48 Variable Set:</p>
+<table>
+<caption>
+<span id="tab:unnamed-chunk-18">Table 6.4: </span>Hiperparameters for expert models of W48 dataset
+</caption>
+<thead>
+<tr>
+<th style="text-align:right;">
+param_n_estimators
+</th>
+<th style="text-align:right;">
+param_min_samples_split
+</th>
+<th style="text-align:right;">
+param_min_samples_leaf
+</th>
+<th style="text-align:left;">
+param_max_features
+</th>
+<th style="text-align:right;">
+param_max_depth
+</th>
+<th style="text-align:left;">
+param_bootstrap
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:right;">
+1800
+</td>
+<td style="text-align:right;">
+2
+</td>
+<td style="text-align:right;">
+2
+</td>
+<td style="text-align:left;">
+sqrt
+</td>
+<td style="text-align:right;">
+60
+</td>
+<td style="text-align:left;">
+FALSE
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+1600
+</td>
+<td style="text-align:right;">
+2
+</td>
+<td style="text-align:right;">
+4
+</td>
+<td style="text-align:left;">
+sqrt
+</td>
+<td style="text-align:right;">
+110
+</td>
+<td style="text-align:left;">
+FALSE
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+400
+</td>
+<td style="text-align:right;">
+10
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:left;">
+sqrt
+</td>
+<td style="text-align:right;">
+60
+</td>
+<td style="text-align:left;">
+FALSE
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+200
+</td>
+<td style="text-align:right;">
+10
+</td>
+<td style="text-align:right;">
+2
+</td>
+<td style="text-align:left;">
+sqrt
+</td>
+<td style="text-align:right;">
+50
+</td>
+<td style="text-align:left;">
+TRUE
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+2000
+</td>
+<td style="text-align:right;">
+5
+</td>
+<td style="text-align:right;">
+2
+</td>
+<td style="text-align:left;">
+sqrt
+</td>
+<td style="text-align:right;">
+10
+</td>
+<td style="text-align:left;">
+TRUE
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+200
+</td>
+<td style="text-align:right;">
+5
+</td>
+<td style="text-align:right;">
+2
+</td>
+<td style="text-align:left;">
+sqrt
+</td>
+<td style="text-align:right;">
+10
+</td>
+<td style="text-align:left;">
+TRUE
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div id="methods-of-voting" class="section level4" number="6.5.5.3">
+<h4><span class="header-section-number">6.5.5.3</span> Methods of voting</h4>
+<p>As an experiment, we used 7 methods of voting in each Rashomon set. We wanted to find out if there is any significant difference between them.
+Methods of voting were as follows:</p>
+<ol style="list-style-type: decimal">
+<li><p>mean predictions of models</p></li>
+<li><p>median predictions of models</p></li>
+<li><p>mean predictions of models with weights equal to the score of the model</p></li>
+<li><p>mean predictions of models with weights equal to the score of the model transformed into the interval [0,1]</p></li>
+<li><p>mean predictions of models with weights equal to the score of the model transformed into the interval [1,2]</p></li>
+<li><p>mean predictions of models with weights equal to the rank of the model transformed into the interval [0,1], with 1 being the weight of the best model</p></li>
+<li><p>mean predictions of models with weights equal to the rank of the model transformed into the interval [1,2], with 2 being the weight of the best model</p></li>
+</ol>
+<p>Our results showed that all voting mechanisms behaved more or less likewise, with simple mean and median being in our best method to create a prediction for the group. It is also worth noticing that transforming score or rank to the interval [0,1] doesn’t take into account the worst models, so they are not the best way for efficient voting.</p>
+</div>
+</div>
+<div id="results-9" class="section level3" number="6.5.6">
+<h3><span class="header-section-number">6.5.6</span> Results</h3>
+<div id="number-of-models-in-rashomon-set---influence-on-auc" class="section level4" number="6.5.6.1">
+<h4><span class="header-section-number">6.5.6.1</span> Number of models in Rashomon set - influence on AUC</h4>
+<p>Below are presented the results of the top performance model sets for different cardinalities of those sets.</p>
+<p><img src="images/6-5-n_of_models_influence_on_auc_X48.png" /></p>
+<p><img src="images/6-5-n_of_models_influence_on_auc_W48.png" /></p>
+<p>As one may notice there are no significant differences in AUC values between different cardinalities of the Rashomon sets and datasets on which models were trained. The best number of models that one can deduce from this figure is in the range from 5 to 10 models in a Rashomon set. As we mentioned earlier all voting strategies performed more or less the same.</p>
+</div>
+<div id="variable-importance-plotsin-this-section-the-analysis-of-feature-importance-plots-is-performed." class="section level4" number="6.5.6.2">
+<h4><span class="header-section-number">6.5.6.2</span> Variable Importance PlotsIn this section, the analysis of feature importance plots is performed.</h4>
+<div id="best-auc-rashomon-sets" class="section level5" number="6.5.6.2.1">
+<h5><span class="header-section-number">6.5.6.2.1</span> Best AUC Rashomon Sets</h5>
+<p>Below feature importance plots for 6 models with the highest AUC are presented.</p>
+<p>For X48 dataset:</p>
+<p><img src="images/6-5-vi_auc_X48.png" /></p>
+<p>There is no noticeable difference between important features for the X48 dataset.</p>
+<p>For W48 dataset:</p>
+<p><img src="images/6-5-vi_auc_W48.png" /></p>
+<p>Of course, there is a noticeable difference between the most important variables across models trained on different datasets, even among variables comprised solely in the X48 dataset( having numbers up to 76). Interestingly, variable 46(mean_inr) has lost its’ dominance in the W48 dataset.</p>
+</div>
+<div id="experts-rashomon-sets" class="section level5" number="6.5.6.2.2">
+<h5><span class="header-section-number">6.5.6.2.2</span> Experts Rashomon Sets</h5>
+<p>Below are presented feature importance plots for models with possibly most different important features.</p>
+<p><img src="images/6-5-vi_experts_X48.png" /></p>
+<p><img src="images/6-5-vi_experts_W48.png" /></p>
+<p>The top 2 or 3 important features usually remain the same across models trained on the same dataset. All expert models emphasize the influence of X48 variables. Moreover, in 3 cases (out of 6 models) variables being less important than the 46(mean_inr) variable now gained importance. These variables are 27(model 2) and 56(model 4 &amp; model 5).</p>
+</div>
+</div>
+<div id="voting-in-mortality-prediction" class="section level4" number="6.5.6.3">
+<h4><span class="header-section-number">6.5.6.3</span> Voting in mortality prediction</h4>
+<p>Below results of Rashomon experts sets for different voting strategies are presented.</p>
+<p><img src="images/6-5-expert_set_res_X48.png" /></p>
+<p><img src="images/6-5-expert_set_res_W48.png" /></p>
+<p>Sets that were created from models trained on the W48 dataset demonstrate significantly better AUC values than those trained on the X48 dataset. Unfortunately, expert sets did not show any better results than sets of top AUC models (denoted as a vertical line in these plots).</p>
+</div>
+</div>
+<div id="conclusion-3" class="section level3" number="6.5.7">
+<h3><span class="header-section-number">6.5.7</span> Conclusion</h3>
+<p>In this article 2 different ways of creating Rashomon sets were discussed:</p>
+<ul>
+<li>choose first n of top performance models</li>
+<li>choose first n of most different models.</li>
+</ul>
+<p>In addition to that, several voting strategies of creating Rashomon sets for further predictions were tried out. During this whole work, the set of most important features of MIMIC-III for the mortality prediction task was discovered, which also may be useful for further researches or could give rise to new medical conclusions.</p>
+<p>Summing the results of all experiments up, one can conclude that Rashomon expert sets are worth the attention of researchers even though in this study they have slightly underperformed top performance model sets. Because of this result, we suggest there also be no bigger difference in the performance of voting strategies that were presented, and this may be the point to inventing and testing new strategies by further researchers. Furthermore, adding new variables to a model, just like adding new variables to the X48 variable set, may cause the old variables to lower their importance on the output of models among the Rashomon sets.</p>
+
+<div id="refs" class="references csl-bib-body hanging-indent" line-spacing="2">
+<div class="csl-entry">
+Abadi, M., Agarwal, A., Barham, P., Brevdo, E., Chen, Z., Citro, C., et al., et al. (2015). <span class="nocase">TensorFlow: Large-Scale Machine Learning on Heterogeneous Systems</span>. <em>USENIX conference on Operating Systems Design and Implementation</em>. <a href="https://dl.acm.org/doi/10.5555/3026877.3026899">https://dl.acm.org/doi/10.5555/3026877.3026899</a>
+</div>
+<div class="csl-entry">
+Ahmad, M. W., Mourshed, M., &amp; Rezgui, Y. (2017). <span class="nocase">Trees vs Neurons: Comparison between random forest and ANN for high-resolution prediction of building energy consumption</span>. <em>Energy and Buildings</em>, <em>147</em>, 77--89. <a href="https://doi.org/10.1016/j.enbuild.2017.04.038">https://doi.org/10.1016/j.enbuild.2017.04.038</a>
+</div>
+<div class="csl-entry">
+Aivodji, U., Arai, H., Fortineau, O., Gambs, S., Hara, S., &amp; Tapp, A. (2019). Fairwashing: The risk of rationalization. In K. Chaudhuri &amp; R. Salakhutdinov (Eds.), <em>Proceedings of the 36th international conference on machine learning</em> (Vol. 97, pp. 161–170). PMLR.<a href=" http://proceedings.mlr.press/v97/aivodji19a.html "> http://proceedings.mlr.press/v97/aivodji19a.html</a>
+</div>
+<div class="csl-entry">
+Andriawan, Z. A., Purnama, S. R., Darmawan, A. S., Ricko, Wibowo, A., Sugiharto, A., &amp; Wijayanto, F. (2020). Prediction of hotel booking cancellation using CRISP-DM. In <em>2020 4th international conference on informatics and computational sciences (ICICoS)</em> (pp. 1–6). <a href="https://doi.org/10.1109/ICICoS51170.2020.9299011">https://doi.org/10.1109/ICICoS51170.2020.9299011</a>
+</div>
+<div class="csl-entry">
+Anthimopoulos, M., Christodoulidis, S., Ebner, L., Geiser, T., Christe, A., &amp; Mougiakakou, S. (2019). Semantic segmentation of pathological lung tissue with dilated fully convolutional networks. <em>IEEE Journal of Biomedical and Health Informatics</em>, <em>23</em>(2), 714–722. <a href="https://doi.org/10.1109/JBHI.2018.2818620">https://doi.org/10.1109/JBHI.2018.2818620</a>
+</div>
+<div class="csl-entry">
+Antonio, N., de Almeida, A., &amp; Nunes, L. (2017). Predicting hotel booking cancellations to decrease uncertainty and increase revenue. <em>Tourism &amp; Management Studies</em>, <em>13</em>(2), 25–39. <a href="https://doi.org/10.18089/tms.2017.13203">https://doi.org/10.18089/tms.2017.13203</a>
+</div>
+<div class="csl-entry">
+Antonio, N., de Almeida, A., &amp; Nunes, L. (2019a). An automated machine learning based decision support system to predict hotel booking cancellations. <em>Data Science Journal</em>, <em>18</em>(1), 1–20. <a href="https://doi.org/10.5334/dsj-2019-032">https://doi.org/10.5334/dsj-2019-032</a>
+</div>
+<div class="csl-entry">
+Antonio, N., de Almeida, A., &amp; Nunes, L. (2019b). Hotel booking demand datasets. <em>Data in Brief</em>, <em>22</em>, 41–49. <a href="https://doi.org/10.1016/j.dib.2018.11.126">https://doi.org/10.1016/j.dib.2018.11.126</a>
+</div>
+<div class="csl-entry">
+Apley, D. W., &amp; Zhu, J. (2020). <span class="nocase">Visualizing the effects of predictor variables in black box supervised learning models</span>. <em>Journal of the Royal Statistical Society Series B</em>, <em>82</em>(4), 1059–1086. <a href="https://doi.org/10.1111/rssb.12377">https://doi.org/10.1111/rssb.12377</a>
+</div>
+<div class="csl-entry">
+Arik, S. O., &amp; Pfister, T. (2021). <span>TabNet: Attentive Interpretable Tabular Learning</span>. <em>AAAI Conference on Artificial Intelligence (AAAI)</em>. <a href="https://arxiv.org/abs/1908.07442">https://arxiv.org/abs/1908.07442</a>
+</div>
+<div class="csl-entry">
+Arsad, P. M., Buniyamin, N., &amp; Manan, J. A. (2013). <span class="nocase">Prediction of engineering students’ academic performance using Artificial Neural Network and Linear Regression: A comparison</span>. <em>ICEED</em>. <a href="https://doi.org/10.1109/iceed.2013.6908300">https://doi.org/10.1109/iceed.2013.6908300</a>
+</div>
+<div class="csl-entry">
+Asadi-Aghbolaghi, M., Azad, R., Fathy, M., &amp; Escalera, S. (2020). Multi-level context gating of embedded collective knowledge for medical image segmentation. <a href="https://arxiv.org/abs/2003.05056">https://arxiv.org/abs/2003.05056</a>
+</div>
+<div class="csl-entry">
+Azad, R., Asadi-Aghbolaghi, M., Fathy, M., &amp; Escalera, S. (2019). Bi-directional ConvLSTM u-net with densley connected convolutions. In <em>2019 IEEE/CVF international conference on computer vision workshop (ICCVW)</em> (pp. 406–415). <a href="https://doi.org/10.1109/ICCVW.2019.00052">https://doi.org/10.1109/ICCVW.2019.00052</a>
+</div>
+<div class="csl-entry">
+Baker, M. (2016). Reproducibility crisis. <em>Nature</em>, <em>533</em>(26), 353–66.
+</div>
+<div class="csl-entry">
+Baniecki, H., Kretowicz, W., Piatyszek, P., Wisniewski, J., &amp; Biecek, P. (2020a). <span class="nocase">dalex: Responsible Machine Learning with Interactive Explainability and Fairness in Python</span>. <em>arXiv:2012.14406</em>. <a href="https://arxiv.org/abs/2012.14406">https://arxiv.org/abs/2012.14406</a>
+</div>
+<div class="csl-entry">
+Baniecki, H., Kretowicz, W., Piatyszek, P., Wisniewski, J., &amp; Biecek, P. (2020b). <span class="nocase">dalex: Responsible Machine Learning with Interactive Explainability and Fairness in Python</span>. <em>arXiv:2012.14406</em>. <a href="https://arxiv.org/abs/2012.14406">https://arxiv.org/abs/2012.14406</a>
+</div>
+<div class="csl-entry">
+Barda, N., Riesel, D., Akriv, A., Levy, J., Finkel, U., Yona, G., et al. (2020). <span class="nocase">Developing a COVID-19 mortality risk prediction model when individual-level data are not available</span>. <em>Nature Communications</em>, <em>11</em>. <a href="https://doi.org/10.1038/s41467-020-18297-9">https://doi.org/10.1038/s41467-020-18297-9</a>
+</div>
+<div class="csl-entry">
+Barish, M., Bolourani, S., Lau, L. F., Shah, S., &amp; Zanos, T. P. (2020). <span class="nocase">External validation demonstrates limited clinical utility of the interpretable mortality prediction model for patients with COVID-19</span>. <em>Nature Machine Intelligence</em>, <em>3</em>, 25–27. <a href="https://doi.org/10.1038/s42256-020-00254-2">https://doi.org/10.1038/s42256-020-00254-2</a>
+</div>
+<div class="csl-entry">
+Barish, M., Bolourani, S., Lau, L. F., Shah, S., &amp; Zanos, T. P. (2021). <span class="nocase">External validation demonstrates limited clinical utility of the interpretable mortality prediction model for patients with COVID-19</span>. <em>Nature Machine Intelligence</em>, <em>3</em>(1), 25–27. <a href="https://doi.org/10.1038/s42256-020-00254-2">https://doi.org/10.1038/s42256-020-00254-2</a>
+</div>
+<div class="csl-entry">
+Barredo Arrieta, A., Díaz-Rodríguez, N., Del Ser, J., Bennetot, A., Tabik, S., Barbado, A., et al. (2020c). <span class="nocase">Explainable Artificial Intelligence (XAI): Concepts, taxonomies, opportunities and challenges toward responsible AI</span>. <em>Information Fusion</em>, <em>58</em>, 82–115. <a href="https://doi.org/10.1016/j.inffus.2019.12.012">https://doi.org/10.1016/j.inffus.2019.12.012</a>
+</div>
+<div class="csl-entry">
+Barredo Arrieta, A., Díaz-Rodríguez, N., Del Ser, J., Bennetot, A., Tabik, S., Barbado, A., et al. (2020b). Explainable artificial intelligence (XAI): Concepts, taxonomies, opportunities and challenges toward responsible AI. <em>Information Fusion</em>, <em>58</em>, 82–115. <a href="http://www.sciencedirect.com/science/article/pii/S1566253519308103">http://www.sciencedirect.com/science/article/pii/S1566253519308103</a>
+</div>
+<div class="csl-entry">
+Barredo Arrieta, A., Díaz-Rodríguez, N., Del Ser, J., Bennetot, A., Tabik, S., Barbado, A., et al. (2020a). Explainable artificial intelligence (XAI): Concepts, taxonomies, opportunities and challenges toward responsible AI. <em>Information Fusion</em>, <em>58</em>, 82–115. <a href="http://www.sciencedirect.com/science/article/pii/S1566253519308103">http://www.sciencedirect.com/science/article/pii/S1566253519308103</a>
+</div>
+<div class="csl-entry">
+Barsoum, E., Zhang, C., Ferrer, C. C., &amp; Zhang, Z. (2016). Training deep networks for facial expression recognition with crowd-sourced label distribution. In <em>Proceedings of the 18th ACM international conference on multimodal interaction</em> (pp. 279–283). New York, NY, USA: Association for Computing Machinery. <a href="https://doi.org/10.1145/2993148.2993165">https://doi.org/10.1145/2993148.2993165</a>
+</div>
+<div class="csl-entry">
+Belke, A., &amp; Keil, J. (2017). Fundamental determinants of real estate prices: A panel study of german regions, (731). Ruhr Economic Papers. <a href="https://doi.org/10.4419/86788851">https://doi.org/10.4419/86788851</a>
+</div>
+<div class="csl-entry">
+Bello-Chavolla, O. Y., Bahena-López, J. P., Antonio-Villa, N. E., Vargas-Vázquez, A., González-Díaz, A., Márquez-Salinas, A., et al. (2020). <span class="nocase">Predicting Mortality Due to SARS-CoV-2: A Mechanistic Score Relating Obesity and Diabetes to COVID-19 Outcomes in Mexico</span>. <em>The Journal of Clinical Endocrinology &amp; Metabolism</em>, <em>105</em>, 2752--2761. <a href="https://doi.org/10.1210/clinem/dgaa346">https://doi.org/10.1210/clinem/dgaa346</a>
+</div>
+<div class="csl-entry">
+Berk, R., Heidari, H., Jabbari, S., Kearns, M., &amp; Roth, A. (2017). <span class="nocase">Fairness in Criminal Justice Risk Assessments: The State of the Art</span>. <em>Sociological Methods &amp; Research</em>. <a href="https://doi.org/10.1177/0049124118782533">https://doi.org/10.1177/0049124118782533</a>
+</div>
+<div class="csl-entry">
+Biecek, P. (2018b). <span class="nocase">DALEX: Explainers for Complex Predictive Models in R</span>. <em>Journal of Machine Learning Research</em>, <em>19</em>(84), 1–5. <a href="https://jmlr.org/papers/v19/18-416.html">https://jmlr.org/papers/v19/18-416.html</a>
+</div>
+<div class="csl-entry">
+Biecek, P. (2018a). <span class="nocase">DALEX: Explainers for Complex Predictive Models in R</span>. <em>Journal of Machine Learning Research</em>, <em>19</em>(84), 1–5. <a href="http://jmlr.org/papers/v19/18-416.html">http://jmlr.org/papers/v19/18-416.html</a>
+</div>
+<div class="csl-entry">
+Biecek, P., &amp; Burzykowski, T. (2021). <em><span>Explanatory Model Analysis</span></em>. Chapman; Hall/CRC, New York. <a href="https://pbiecek.github.io/ema/">https://pbiecek.github.io/ema/</a>
+</div>
+<div class="csl-entry">
+Bird, S., Dudík, M., Edgar, R., Horn, B., Lutz, R., Milan, V., et al. (2020). <em><span class="nocase">Fairlearn: A toolkit for assessing and improving fairness in AI</span></em> (No. MSR-TR-2020-32). Microsoft. <a href="https://www.microsoft.com/en-us/research/publication/fairlearn-a-toolkit-for-assessing-and-improving-fairness-in-ai/">https://www.microsoft.com/en-us/research/publication/fairlearn-a-toolkit-for-assessing-and-improving-fairness-in-ai/</a>
+</div>
+<div class="csl-entry">
+Bisong, E. (2019). Google colaboratory. In <em>Building machine learning and deep learning models on google cloud platform</em> (pp. 59–64). Springer.
+</div>
+<div class="csl-entry">
+Bradley, A. P. (1997). The use of the area under the ROC curve in the evaluation of machine learning algorithms. <em>Pattern Recogn.</em>, <em>30</em>(7), 1145–1159. <a href="https://doi.org/10.1016/S0031-3203(96)00142-2">https://doi.org/10.1016/S0031-3203(96)00142-2</a>
+</div>
+<div class="csl-entry">
+Breiman, L. (1999). Random forests. <em>UC Berkeley TR567</em>.
+</div>
+<div class="csl-entry">
+Breiman, L. et al. (2001). Statistical modeling: The two cultures (with comments and a rejoinder by the author). <em>Statistical science</em>, <em>16</em>(3), 199–231.
+</div>
+<div class="csl-entry">
+Can, A. (1990). The measurement of neighborhood dynamics in urban house prices. <em>Economic Geography</em>, <em>66</em>(3), 254–272. <a href="https://doi.org/10.2307/143400">https://doi.org/10.2307/143400</a>
+</div>
+<div class="csl-entry">
+Cao, Y., Liu, X., Xiong, L., &amp; Cai, K. (2020). <span class="nocase">Imaging and clinical features of patients with 2019 novel coronavirus SARS-CoV-2: A systematic review and meta-analysis</span>. <em>Journal of Medical Virology</em>, <em>92</em>(9), 1449–1459. <a href="https://doi.org/10.1002/jmv.25822">https://doi.org/10.1002/jmv.25822</a>
+</div>
+<div class="csl-entry">
+Casadevall, A., &amp; Fang, F. C. (2010). Reproducible science. <em>Infection and Immunity</em>, <em>78</em>(12), 4972–4975. <a href="https://doi.org/10.1128/IAI.00908-10">https://doi.org/10.1128/IAI.00908-10</a>
+</div>
+<div class="csl-entry">
+Chen, T., &amp; Guestrin, C. (2016). <span>XGBoost: A Scalable Tree Boosting System</span>. <em>KDD</em>. https://doi.org/<a href="https://doi.org/10.1145/2939672.2939785">https://doi.org/10.1145/2939672.2939785</a>
+</div>
+<div class="csl-entry">
+Chollet, F. (2017). <em>Deep learning with python</em>. Manning.
+</div>
+<div class="csl-entry">
+Chouldechova, A. (2016). <span class="nocase">Fair Prediction with Disparate Impact: A Study of Bias in Recidivism Prediction Instruments</span>. <em>Big Data</em>, <em>5</em>. <a href="https://doi.org/10.1089/big.2016.0047">https://doi.org/10.1089/big.2016.0047</a>
+</div>
+<div class="csl-entry">
+Chowdhury, M. E. H., Rahman, T., Khandakar, A., Mazhar, R., Kadir, M. A., Mahbub, Z. B., et al. (2020). Can AI help in screening viral and COVID-19 pneumonia? <em>IEEE Access</em>, <em>8</em>, 132665–132676. <a href="https://doi.org/10.1109/ACCESS.2020.3010287">https://doi.org/10.1109/ACCESS.2020.3010287</a>
+</div>
+<div class="csl-entry">
+Christe, A. A. M. D., Andreas MD∗; Peters. (2019). Computer-aided diagnosis of pulmonary fibrosis using deep learning and CT images. <em>Investigative Radiology</em>, <em>54</em>, 627–632. <a href="https://doi.org/10.1097/RLI.0000000000000574">https://doi.org/10.1097/RLI.0000000000000574</a>
+</div>
+<div class="csl-entry">
+Chu, X., Ilyas, I. F., Krishnan, S., &amp; Wang, J. (2016). Data cleaning: Overview and emerging challenges. In <em>Proceedings of the 2016 international conference on management of data</em> (pp. 2201–2206).
+</div>
+<div class="csl-entry">
+Clark, K., Vendt, B., Smith, K., Freymann, J., Kirby, J., Koppel, P., et al. (2013). The cancer imaging archive (TCIA): Maintaining and operating a public information repository. <em>Journal of Digital Imaging</em>, <em>26</em>(6), 1045–1057. <a href="https://doi.org/10.1007/s10278-013-9622-7">https://doi.org/10.1007/s10278-013-9622-7</a>
+</div>
+<div class="csl-entry">
+Code of Federal Regulations. (1978). SECTION 4D, UNIFORM GUIDELINES ON EMPLOYEE SELECTION PROCEDURES (1978). <a href="https://www.govinfo.gov/content/pkg/CFR-2014-title29-vol4/xml/CFR-2014-title29-vol4-part1607.xml">https://www.govinfo.gov/content/pkg/CFR-2014-title29-vol4/xml/CFR-2014-title29-vol4-part1607.xml</a>
+</div>
+<div class="csl-entry">
+Cohen, J. P., Morrison, P., Dao, L., Roth, K., Duong, T. Q., &amp; Ghassemi, M. (2020). COVID-19 image data collection: Prospective predictions are the future. <em>arXiv 2006.11988</em>. <a href="https://github.com/ieee8023/covid-chestxray-dataset">https://github.com/ieee8023/covid-chestxray-dataset</a>
+</div>
+<div class="csl-entry">
+Computing Machinery, A. for. (2018). Artifact review and badging. <a href="https://www.acm.org/publications/policies/artifact-review badging">https://www.acm.org/publications/policies/artifact-review badging</a>
+</div>
+<div class="csl-entry">
+Conway, J. (2018, January). <em><span class="nocase">Artificial Intelligence and Machine Learning : Current Applications in Real Estate</span></em> (PhD thesis). Retrieved from <a href="https://dspace.mit.edu/bitstream/handle/1721.1/120609/1088413444-MIT.pdf">https://dspace.mit.edu/bitstream/handle/1721.1/120609/1088413444-MIT.pdf</a>
+</div>
+<div class="csl-entry">
+Corbett-Davies, S., Pierson, E., Feller, A., Goel, S., &amp; Huq, A. (2017). <span class="nocase">Algorithmic Decision Making and the Cost of Fairness</span>. <a href="https://doi.org/10.1145/3097983.3098095">https://doi.org/10.1145/3097983.3098095</a>
+</div>
+<div class="csl-entry">
+Das, S., Cashman, D., Chang, R., &amp; Endert, A. (2019). BEAMES: Interactive multimodel steering, selection, and inspection for regression tasks. <em>IEEE Computer Graphics and Applications</em>, <em>39</em>(5), 20–32. <a href="https://doi.org/10.1109/MCG.2019.2922592">https://doi.org/10.1109/MCG.2019.2922592</a>
+</div>
+<div class="csl-entry">
+Davis, J., &amp; Goadrich, M. (2006). The relationship between precision-recall and ROC curves. In <em>Proceedings of the 23rd international conference on machine learning</em> (pp. 233–240). New York, NY, USA: Association for Computing Machinery. <a href="https://doi.org/10.1145/1143844.1143874">https://doi.org/10.1145/1143844.1143874</a>
+</div>
+<div class="csl-entry">
+Detrano, R., Janosi, A., Steinbrunn, W., Pfisterer, M., Schmid, J.-J., Sandhu, S., et al. (1989). International application of a new probability algorithm for the diagnosis of coronary artery disease. <em>The American Journal of Cardiology</em>, <em>64</em>(5), 304–310. <a href="https://doi.org/10.1016/0002-9149(89)90524-9">https://doi.org/10.1016/0002-9149(89)90524-9</a>
+</div>
+<div class="csl-entry">
+Detrano, R., Yiannikas, J., Salcedo, E. E., Rincon, G., Go, R. T., Williams, G., &amp; Leatherman, J. (1984). Bayesian probability analysis: A prospective demonstration of its clinical utility in diagnosing coronary disease. <em>Circulation</em>, <em>69</em>(3), 541—547. <a href="https://doi.org/10.1161/01.CIR.69.3.541">https://doi.org/10.1161/01.CIR.69.3.541</a>
+</div>
+<div class="csl-entry">
+Dong, J., &amp; Rudin, C. (2020). Exploring the cloud of variable importance for the set of all good models. <em>Nature Machine Intelligence</em>, <em>2</em>(12), 810–824.
+</div>
+<div class="csl-entry">
+Du, X., Cai, Y., Wang, S., &amp; Zhang, L. (2016). Overview of deep learning. In <em>2016 31st youth academic annual conference of chinese association of automation (YAC)</em> (pp. 159–164). IEEE.
+</div>
+<div class="csl-entry">
+Dua, D., &amp; Graff, C. (2017). <span>UCI</span> machine learning repository. <a href="http://archive.ics.uci.edu/ml">http://archive.ics.uci.edu/ml</a>
+</div>
+<div class="csl-entry">
+Dubin, R. A. (1998). Predicting house prices using multiple listings data. <em>The Journal of Real Estate Finance and Economics</em>. <a href="https://doi.org/10.1023/A:1007751112669">https://doi.org/10.1023/A:1007751112669</a>
+</div>
+<div class="csl-entry">
+Dupuis, C., De Montmollin, E., Neuville, M., Mourvillier, B., Ruckly, S., &amp; Timsit, J. F. (2021). <span class="nocase">Limited applicability of a COVID-19 specific mortality prediction rule to the intensive care setting</span>. <em>Nature Machine Intelligence</em>, <em>3</em>(1), 20–22. <a href="https://doi.org/10.1038/s42256-020-00252-4">https://doi.org/10.1038/s42256-020-00252-4</a>
+</div>
+<div class="csl-entry">
+Dwork, C., Hardt, M., Pitassi, T., Reingold, O., &amp; Zemel, R. (2012). Fairness through awareness. <em>ITCS</em>. <a href="https://doi.org/10.1145/2090236.2090255">https://doi.org/10.1145/2090236.2090255</a>
+</div>
+<div class="csl-entry">
+England, R. (2019). Wine’s alcohol levels explained. <a href="https://www.wineinvestment.com/wine-blog/2019/05/wines-alcohol-levels-explained?fbclid=IwAR3xpQITEQZrQUPPaEt7-DbFHmvHE559-iVuLsgS6dDinOeWrl04MZiglbM">https://www.wineinvestment.com/wine-blog/2019/05/wines-alcohol-levels-explained?fbclid=IwAR3xpQITEQZrQUPPaEt7-DbFHmvHE559-iVuLsgS6dDinOeWrl04MZiglbM</a>.
+</div>
+<div class="csl-entry">
+Falk, M., &amp; Vieru, M. (2018). Modelling the cancellation behaviour of hotel guests. <em>International Journal of Contemporary Hospitality Management</em>, <em>30</em>(10), 3100–3116. <a href="https://doi.org/10.1108/ijchm-08-2017-0509">https://doi.org/10.1108/ijchm-08-2017-0509</a>
+</div>
+<div class="csl-entry">
+Fan, C., Cui, Z., &amp; Zhong, X. (2018). House prices prediction with machine learning algorithms. In <em>Proceedings of the 2018 10th international conference on machine learning and computing</em> (pp. 6–10). New York, NY, USA: Association for Computing Machinery. <a href="https://doi.org/10.1145/3195106.3195133">https://doi.org/10.1145/3195106.3195133</a>
+</div>
+<div class="csl-entry">
+Fawcett, T. (2006). An introduction to ROC analysis. <em>Pattern Recognition Letters</em>, <em>27</em>(8), 861–874. https://doi.org/<a href="https://doi.org/10.1016/j.patrec.2005.10.010">https://doi.org/10.1016/j.patrec.2005.10.010</a>
+</div>
+<div class="csl-entry">
+Finlayson, S. G., Chung, H. W., Kohane, I. S., &amp; Beam, A. L. (2018). Adversarial attacks against medical deep learning systems. <em>arXiv preprint arXiv:1804.05296</em>.
+</div>
+<div class="csl-entry">
+Fisher, A., Rudin, C., &amp; Dominici, F. (2019a). All models are wrong, but many are useful: Learning a variable’s importance by studying an entire class of prediction models simultaneously. <em>Journal of Machine Learning Research</em>, <em>20</em>(177), 1–81. <a href="http://jmlr.org/papers/v20/18-760.html">http://jmlr.org/papers/v20/18-760.html</a>
+</div>
+<div class="csl-entry">
+Fisher, A., Rudin, C., &amp; Dominici, F. (2019b). <span class="nocase">All Models are Wrong, but Many are Useful: Learning a Variable’s Importance by Studying an Entire Class of Prediction Models Simultaneously</span>. <em>Journal of Machine Learning Research</em>, <em>20</em>(177), 1–81. <a href="http://jmlr.org/papers/v20/18-760.html">http://jmlr.org/papers/v20/18-760.html</a>
+</div>
+<div class="csl-entry">
+Fisher, A., Rudin, C., &amp; Dominici, F. (2019c). All models are wrong, but many are useful: Learning a variable’s importance by studying an entire class of prediction models simultaneously. <em>Journal of Machine Learning Research</em>, <em>20</em>(177), 1–81.
+</div>
+<div class="csl-entry">
+Friedman, J. H. (2000). Greedy function approximation: A gradient boosting machine. <em>Annals of Statistics</em>, <em>29</em>, 1189–1232.
+</div>
+<div class="csl-entry">
+Ge, X., Runeson, G., &amp; Lam, K. C. (2021). Forecasting hong kong housing prices: An artificial neural network approach.
+</div>
+<div class="csl-entry">
+Genders, T. S. S., Steyerberg, E. W., Alkadhi, H., Leschka, S., Desbiolles, L., Nieman, K., et al. (2011). A clinical prediction rule for the diagnosis of coronary artery disease: Validation, updating, and extension. <em>European Heart Journal</em>, <em>32</em>(11), 1316–1330. <a href="https://doi.org/10.1093/eurheartj/ehr014">https://doi.org/10.1093/eurheartj/ehr014</a>
+</div>
+<div class="csl-entry">
+Géron, A. (2017). <em>Hands-on machine learning with scikit-learn and TensorFlow : Concepts, tools, and techniques to build intelligent systems</em>. O’Reilly Media.
+</div>
+<div class="csl-entry">
+Ghysels, E., Plazzi, A., Valkanov, R., &amp; Torous, W. (2013). Chapter 9 - forecasting real estate prices, <em>2</em>, 509–580. https://doi.org/<a href="https://doi.org/10.1016/B978-0-444-53683-9.00009-8">https://doi.org/10.1016/B978-0-444-53683-9.00009-8</a>
+</div>
+<div class="csl-entry">
+Glauner, P. (2021). An assessment of the AI regulation proposed by the european commission. <a href="https://arxiv.org/abs/2105.15133">https://arxiv.org/abs/2105.15133</a>
+</div>
+<div class="csl-entry">
+GOLDNER, M. C., ZAMORA, M. C., DI LEO LIRA, P., GIANNINOTO, H., &amp; BANDONI, A. (2009). EFFECT OF ETHANOL LEVEL IN THE PERCEPTION OF AROMA ATTRIBUTES AND THE DETECTION OF VOLATILE COMPOUNDS IN RED WINE. <em>Journal of sensory studies</em>, <em>24</em>(2), 243–257.
+</div>
+<div class="csl-entry">
+Goldstein, A., Kapelner, A., Bleich, J., &amp; Pitkin, E. (2014). Peeking inside the black box: Visualizing statistical learning with plots of individual conditional expectation.
+</div>
+<div class="csl-entry">
+Goodman, B., &amp; Flaxman, S. (2017). European union regulations on algorithmic decision-making and a <span>“right to explanation.”</span> <em>AI Magazine</em>, <em>38</em>(3), 50–57. <a href="https://doi.org/10.1609/aimag.v38i3.2741">https://doi.org/10.1609/aimag.v38i3.2741</a>
+</div>
+<div class="csl-entry">
+Gosiewska, A., &amp; Biecek, P. (2019). <span>Do Not Trust Additive Explanations</span>. <em>arXiv</em>. <a href="https://arxiv.org/abs/1903.11420v3">https://arxiv.org/abs/1903.11420v3</a>
+</div>
+<div class="csl-entry">
+Goyal, S. (2020, November). Credit card customers. <em>Kaggle</em>. <a href="https://www.kaggle.com/sakshigoyal7/credit-card-customers">https://www.kaggle.com/sakshigoyal7/credit-card-customers</a>
+</div>
+<div class="csl-entry">
+Gregutt, P. (2003). Does a higher alcohol content mean it’s a better drinking wine? <em>The Seattle Times</em>. <a href="https://archive.seattletimes.com/archive/?date=20031008&amp;slug=wineqanda08&amp;fbclid=IwAR3lBlpdwUCUWjWKaH4Px21b9fJQwBT0aMTa8bNWCbx4ipo4otWzvR9_mTc">https://archive.seattletimes.com/archive/?date=20031008&amp;slug=wineqanda08&amp;fbclid=IwAR3lBlpdwUCUWjWKaH4Px21b9fJQwBT0aMTa8bNWCbx4ipo4otWzvR9_mTc</a>
+</div>
+<div class="csl-entry">
+Hanley, J. A. (2014). <span>Receiver Operating Characteristic (ROC) Curves</span>. <em>Wiley StatsRef: Statistics Reference Online</em>. <a href="https://doi.org/10.1002/9781118445112.stat05255">https://doi.org/10.1002/9781118445112.stat05255</a>
+</div>
+<div class="csl-entry">
+Hardt, M., Price, E., Price, E., &amp; Srebro, N. (2016). <span class="nocase">Equality of Opportunity in Supervised Learning</span>. <em>NeurIPS</em>. <a href="https://papers.nips.cc/paper/2016/hash/9d2682367c3935defcb1f9e247a97c0d-Abstract.html">https://papers.nips.cc/paper/2016/hash/9d2682367c3935defcb1f9e247a97c0d-Abstract.html</a>
+</div>
+<div class="csl-entry">
+Heyman, A., &amp; Sommervoll, D. (2019). House prices and relative location. <em>Cities</em>, <em>95</em>, 102373. <a href="https://doi.org/10.1016/j.cities.2019.06.004">https://doi.org/10.1016/j.cities.2019.06.004</a>
+</div>
+<div class="csl-entry">
+Holzinger, A. (2016). Interactive machine learning for health informatics: When do we need the human-in-the-loop? <em>Brain Informatics</em>, <em>3</em>, 119–131. <a href="https://doi.org/10.1007/s40708-016-0042-6">https://doi.org/10.1007/s40708-016-0042-6</a>
+</div>
+<div class="csl-entry">
+Holzinger, A. (2021). Explainable AI and multi-modal causability in medicine. <em>i-com</em>, <em>19</em>(3), 171–179. <a href="https://doi.org/10.1515/icom-2020-0024">https://doi.org/10.1515/icom-2020-0024</a>
+</div>
+<div class="csl-entry">
+Holzinger, A., Biemann, C., Pattichis, C., &amp; Kell, D. (2017). What do we need to build explainable AI systems for the medical domain?
+</div>
+<div class="csl-entry">
+Holzinger, A., Langs, G., Denk, H., Zatloukal, K., &amp; Müller, H. (2019). Causability and explainabilty of artificial intelligence in medicine. <em>Wiley Interdisciplinary Reviews: Data Mining and Knowledge Discovery</em>, <em>9</em>. <a href="https://doi.org/10.1002/widm.131">https://doi.org/10.1002/widm.131</a>
+</div>
+<div class="csl-entry">
+Jefford, A. (2010). Alcohol levels: The balancing act. <a href="https://www.decanter.com/features/alcohol-levels-the-balancing-act-246426/?fbclid=IwAR0bsIWug6-7l77rxb01Va8P1F_hVkaUTacNtlF-V-wRXb1HA3rJXpl74Pw">https://www.decanter.com/features/alcohol-levels-the-balancing-act-246426/?fbclid=IwAR0bsIWug6-7l77rxb01Va8P1F_hVkaUTacNtlF-V-wRXb1HA3rJXpl74Pw</a>.
+</div>
+<div class="csl-entry">
+Johnson, A. E., Pollard, T. J., Shen, L., Li-Wei, H. L., Feng, M., Ghassemi, M., et al. (2016). MIMIC-III, a freely accessible critical care database. <em>Scientific data</em>, <em>3</em>(1), 1–9.
+</div>
+<div class="csl-entry">
+Jordão, A. M., Vilela, A., &amp; Cosme, F. (2015). From sugar of grape to alcohol of wine: Sensorial impact of alcohol in wine. <em>Beverages</em>, <em>1</em>(4), 292–310. <a href="https://doi.org/10.3390/beverages1040292">https://doi.org/10.3390/beverages1040292</a>
+</div>
+<div class="csl-entry">
+Kaladharan, S., Vishvanathan, S., Gopalakrishnan, E. A., &amp; Kp, S. (2020). Explainable artificial intelligence for heart rate variability in ECG signal. <em>Healthcare Technology Letters</em>, <em>7</em>, 146–154. <a href="https://doi.org/10.1049/htl.2020.0033">https://doi.org/10.1049/htl.2020.0033</a>
+</div>
+<div class="csl-entry">
+Karim, M. R., Döhmen, T., Rebholz-Schuhmann, D., Decker, S., Cochez, M., &amp; Beyan, O. (2020). DeepCOVIDExplainer: Explainable COVID-19 diagnosis from chest x-ray images. IEEE. <a href="https://doi.org/10.1109/BIBM49941.2020.9313304">https://doi.org/10.1109/BIBM49941.2020.9313304</a>
+</div>
+<div class="csl-entry">
+Kaushal, A., Altman, R., &amp; Langlotz, C. (2020). <span>Health Care AI Systems Are Biased</span>. <em>Scientific American</em>. <a href="https://www.scientificamerican.com/article/health-care-ai-systems-are-biased">https://www.scientificamerican.com/article/health-care-ai-systems-are-biased</a>
+</div>
+<div class="csl-entry">
+Khedkar, S., Subramanian, V., Shinde, G., &amp; Gandhi, P. (2019). Explainable AI in healthcare. <em>SSRN Electronic Journal</em>. <a href="https://doi.org/10.2139/ssrn.3367686">https://doi.org/10.2139/ssrn.3367686</a>
+</div>
+<div class="csl-entry">
+Kieseberg, P., Schantl, J., Fruehwirt, P., Weippl, E., &amp; Holzinger, A. (2015). Witnesses for the doctor in the loop, <em>9250</em>, 369–378. <a href="https://doi.org/10.1007/978-3-319-23344-4_36">https://doi.org/10.1007/978-3-319-23344-4_36</a>
+</div>
+<div class="csl-entry">
+Klambauer, G., Unterthiner, T., Mayr, A., &amp; Hochreiter, S. (2017). <span>Self-Normalizing Neural Networks</span>. <em>arXiv:1706.02515</em>. <a href="https://arxiv.org/abs/1706.02515">https://arxiv.org/abs/1706.02515</a>
+</div>
+<div class="csl-entry">
+Komisarczyk, Konrad and Maksymiuk, Szymon and Koźmiński, Paweł and Biecek, Przemysław. (2020). <span class="nocase">treeshap: Fast SHAP values computation for ensemble models</span>. <em>R package</em>. <a href="https://github.com/ModelOriented/treeshap">https://github.com/ModelOriented/treeshap</a>
+</div>
+<div class="csl-entry">
+Kowsari, K., Brown, D. E., Heidarysafa, M., Jafari Meimandi, K., Gerber, M. S. and, &amp; Barnes, L. E. (2017). HDLTex: Hierarchical deep learning for text classification. In <em>Machine learning and applications (ICMLA), 2017 16th IEEE international conference on</em>. IEEE.
+</div>
+<div class="csl-entry">
+Kowsari, K., Heidarysafa, M., Brown, D. E., Meimandi, K. J., &amp; Barnes, L. E. (2018). Rmdl: Random multimodel deep learning for classification. In <em>Proceedings of the 2nd international conference on information system and data mining</em> (pp. 19–28).
+</div>
+<div class="csl-entry">
+Krittanawong, C., Zhang, H., Wang, Z., Aydar, M., &amp; Kitai, T. (2017). Artificial intelligence in precision cardiovascular medicine. <em>Journal of the American College of Cardiology</em>, <em>69</em>(21), 2657–2664. <a href="https://doi.org/10.1016/j.jacc.2017.03.571">https://doi.org/10.1016/j.jacc.2017.03.571</a>
+</div>
+<div class="csl-entry">
+Law, S. (2017). Defining street-based local area and measuring its effect on house price using a hedonic price approach: The case study of metropolitan london. <em>Cities</em>, <em>60</em>, 166–179. <a href="https://doi.org/10.1016/j.cities.2016.08.008">https://doi.org/10.1016/j.cities.2016.08.008</a>
+</div>
+<div class="csl-entry">
+Li, X., Ge, P., Zhu, J., Li, H., Graham, J., Singer, A., et al. (2020). <span class="nocase">Deep learning prediction of likelihood of ICU admission and mortality in COVID-19 patients using clinical variables</span>. <em>PeerJ</em>, <em>8</em>. <a href="https://peerj.com/articles/10337/">https://peerj.com/articles/10337/</a>
+</div>
+<div class="csl-entry">
+Liu, C., Gao, C., Xia, X., Lo, D., Grundy, J., &amp; Yang, X. (2020). On the replicability and reproducibility of deep learning in software engineering. <a href="https://arxiv.org/abs/2006.14244">https://arxiv.org/abs/2006.14244</a>
+</div>
+<div class="csl-entry">
+Loyola-González, O. (2019). Black-box vs. White-box: Understanding their advantages and weaknesses from a practical point of view. <em>IEEE Access</em>, <em>7</em>, 154096–154113. <a href="https://doi.org/10.1109/ACCESS.2019.2949286">https://doi.org/10.1109/ACCESS.2019.2949286</a>
+</div>
+<div class="csl-entry">
+Łukasz Rączkowski, J. Z., Marcin Możejko. (2019). ARA: Accurate, reliable and active histopathological image classification framework with bayesian deep learning. <em>Springer Nature</em>, <em>14</em>, 1–11. <a href="https://doi.org/10.1038/s41598-019-50587-1">https://doi.org/10.1038/s41598-019-50587-1</a>
+</div>
+<div class="csl-entry">
+Lundberg, Scott M., Erion, G. G., &amp; Lee, S.-I. (2019). <span class="nocase">Consistent Individualized Feature Attribution for Tree Ensembles</span>. <em>ICML Workshop</em>. <a href="https://arxiv.org/abs/1802.03888">https://arxiv.org/abs/1802.03888</a>
+</div>
+<div class="csl-entry">
+Lundberg, Scott M., &amp; Lee, S.-I. (2017). A unified approach to interpreting model predictions. In I. Guyon, U. V. Luxburg, S. Bengio, H. Wallach, R. Fergus, S. Vishwanathan, &amp; R. Garnett (Eds.), <em>Advances in neural information processing systems 30</em> (pp. 4765–4774). Montreal: Curran Associates. <a href="http://papers.nips.cc/paper/7062-a-unified-approach-to-interpreting-model-predictions.pdf">http://papers.nips.cc/paper/7062-a-unified-approach-to-interpreting-model-predictions.pdf</a>
+</div>
+<div class="csl-entry">
+Ma, X., Ng, M., Xu, S., Xu, Z., Qiu, H., Liu, Y., et al. (2020). <span class="nocase">Development and validation of prognosis model of mortality risk in patients with COVID-19</span>. <em>Epidemiology and Infection</em>, <em>148</em>. <a href="http://doi.org/10.1017/S0950268820001727">http://doi.org/10.1017/S0950268820001727</a>
+</div>
+<div class="csl-entry">
+Maksymiuk, S., Gosiewska, A., &amp; Biecek, P. (2020). Landscape of r packages for eXplainable artificial intelligence. <em>arXiv</em>. <a href="https://arxiv.org/abs/2009.13248">https://arxiv.org/abs/2009.13248</a>
+</div>
+<div class="csl-entry">
+Maksymiuk, S., Gosiewska, A., &amp; Biecek, P. (2021). Landscape of r packages for eXplainable artificial intelligence. <a href="https://arxiv.org/abs/2009.13248">https://arxiv.org/abs/2009.13248</a>
+</div>
+<div class="csl-entry">
+Mendez, D., Graziotin, D., Wagner, S., &amp; Seibold, H. (2020). Open science in software engineering. <em>Contemporary Empirical Methods in Software Engineering</em>, 477–501. <a href="https://doi.org/10.1007/978-3-030-32489-6_17">https://doi.org/10.1007/978-3-030-32489-6_17</a>
+</div>
+<div class="csl-entry">
+Meyer, D., Dimitriadou, E., Hornik, K., Weingessel, A., Leisch, F., Chang, C.-C., &amp; Lin, C.-C. (2021). <span class="nocase">e1071: Misc Functions of the Department of Statistics, Probability Theory Group</span>. <em>R package</em>. <a href="https://CRAN.R-project.org/package=e1071">https://CRAN.R-project.org/package=e1071</a>
+</div>
+<div class="csl-entry">
+Mikolov, T., Sutskever, I., Chen, K., Corrado, G., &amp; Dean, J. (2013). Distributed representations of words and phrases and their compositionality. <em>CoRR</em>, <em>abs/1310.4546</em>. <a href="http://arxiv.org/abs/1310.4546">http://arxiv.org/abs/1310.4546</a>
+</div>
+<div class="csl-entry">
+Molnar, C. (2019). <span class="nocase">Interpretable Machine Learning: A Guide for Making Black Box Models Explainable</span>. <a href="https://christophm.github.io/interpretable-ml-book">https://christophm.github.io/interpretable-ml-book</a>
+</div>
+<div class="csl-entry">
+Neff, T., Payer, C., Stern, D., &amp; Urschler, M. (2017). Generative adversarial network based synthesis for supervised medical image segmentation. In <em>Proc. OAGM and ARW joint workshop</em>.
+</div>
+<div class="csl-entry">
+Oktay, O., Schlemper, J., Folgoc, L. L., Lee, M., Heinrich, M., Misawa, K., et al., et al. (2018). Attention u-net: Learning where to look for the pancreas. <em>arXiv preprint arXiv:1804.03999</em>.
+</div>
+<div class="csl-entry">
+Pace, R. K., &amp; Barry, R. (1997). Sparse spatial autoregressions. <em>Statistics &amp; Probability Letters</em>, <em>33</em>(3), 291–297.
+</div>
+<div class="csl-entry">
+Park, B., &amp; Bae, J. (2015). <span class="nocase">Using machine learning algorithms for housing price prediction: The case of Fairfax County, Virginia housing data</span>. <em>Expert Systems with Applications</em>, <em>42</em>. <a href="https://doi.org/10.1016/j.eswa.2014.11.040">https://doi.org/10.1016/j.eswa.2014.11.040</a>
+</div>
+<div class="csl-entry">
+Pedregosa, F., Varoquaux, G., Gramfort, A., Michel, V., Thirion, B., Grisel, O., et al. (2011a). Scikit-learn: Machine learning in <span>P</span>ython. <em>Journal of Machine Learning Research</em>, <em>12</em>, 2825–2830.
+</div>
+<div class="csl-entry">
+Pedregosa, F., Varoquaux, G., Gramfort, A., Michel, V., Thirion, B., Grisel, O., et al. (2011b). <span class="nocase">Scikit-learn: Machine Learning in Python</span>. <em>Journal of Machine Learning Research</em>, <em>12</em>, 2825–2830.
+</div>
+<div class="csl-entry">
+Pedregosa, Fabian, Varoquaux, G., Gramfort, A., Michel, V., Thirion, B., Grisel, O., et al. (2011). Scikit-learn: Machine learning in <span>P</span>ython. <em>Journal of Machine Learning Research</em>, <em>12</em>, 2825–2830.
+</div>
+<div class="csl-entry">
+Pekala, K., Woznica, K., &amp; Biecek, P. (2021). Triplot: Model agnostic measures and visualisations for variable importance in predictive models that take into account the hierarchical correlation structure. <em>CoRR</em>, <em>abs/2104.03403</em>. <a href="https://arxiv.org/abs/2104.03403">https://arxiv.org/abs/2104.03403</a>
+</div>
+<div class="csl-entry">
+Peng, Z., Huang, Q., &amp; Han, Y. (2019). Model research on forecast of second-hand house price in chengdu based on XGboost algorithm, 168–172. <a href="https://doi.org/10.1109/ICAIT.2019.8935894">https://doi.org/10.1109/ICAIT.2019.8935894</a>
+</div>
+<div class="csl-entry">
+Pineau, J., Vincent-Lamarre, P., Sinha, K., Larivière, V., Beygelzimer, A., d’Alché-Buc, F., et al. (2020). Improving reproducibility in machine learning research <span>(A</span> report from the NeurIPS 2019 reproducibility program). <em>CoRR</em>, <em>abs/2003.12206</em>. <a href="https://arxiv.org/abs/2003.12206">https://arxiv.org/abs/2003.12206</a>
+</div>
+<div class="csl-entry">
+Probst, P., Boulesteix, A.-L., &amp; Bischl, B. (2019). Tunability: Importance of hyperparameters of machine learning algorithms. <em>Journal of Machine Learning Research</em>, <em>20</em>(53), 1–32. <a href="http://jmlr.org/papers/v20/18-444.html">http://jmlr.org/papers/v20/18-444.html</a>
+</div>
+<div class="csl-entry">
+Quanjel, M. J. R., Holten, T. C. van, Gunst-van der Vliet, P. C., Wielaard, J., Karakaya, B., Söhne, M., et al. (2021). Replication of a mortality prediction model in dutch patients with COVID-19. <em>Nature Machine Intelligence</em>, <em>3</em>(1), 23–24. <a href="https://doi.org/10.1038/s42256-020-00253-3">https://doi.org/10.1038/s42256-020-00253-3</a>
+</div>
+<div class="csl-entry">
+Quanjel, M. J. R., Holten, T. C. van, Vliet, P. C. G. der, Wielaard, J., Karakaya, B., Söhne, M., et al. (2021). <span class="nocase">Replication of a mortality prediction model in Dutch patients with COVID-19</span>. <em>Nature Machine Intelligence</em>, <em>3</em>, 23–24. <a href="https://doi.org/10.1038/s42256-020-00253-3">https://doi.org/10.1038/s42256-020-00253-3</a>
+</div>
+<div class="csl-entry">
+R Core Team. (2018). <em>R: A language and environment for statistical computing</em>. Vienna, Austria: R Foundation for Statistical Computing. <a href="https://www.R-project.org/">https://www.R-project.org/</a>
+</div>
+<div class="csl-entry">
+Raghavan, V., Bollmann, P., &amp; Jung, G. S. (1989). A critical investigation of recall and precision as measures of retrieval system performance. <em>ACM Trans. Inf. Syst.</em>, <em>7</em>(3), 205–229. <a href="https://doi.org/10.1145/65943.65945">https://doi.org/10.1145/65943.65945</a>
+</div>
+<div class="csl-entry">
+Rahman, T., Khandakar, A., Qiblawey, Y., Tahir, A., Kiranyaz, S., Abul Kashem, S. B., et al. (2021). Exploring the effect of image enhancement techniques on COVID-19 detection using chest x-ray images. <em>Computers in Biology and Medicine</em>, <em>132</em>, 104319. https://doi.org/<a href="https://doi.org/10.1016/j.compbiomed.2021.104319">https://doi.org/10.1016/j.compbiomed.2021.104319</a>
+</div>
+<div class="csl-entry">
+Rai, A. (2020). <span class="nocase">Explainable AI: from black box to glass box</span>. <em>Journal of the Academy of Marketing Science</em>, <em>48</em>, 137–141. <a href="https://link.springer.com/article/10.1007/s11747-019-00710-5">https://link.springer.com/article/10.1007/s11747-019-00710-5</a>
+</div>
+<div class="csl-entry">
+Riasi, A., Schwartz, Z., &amp; Chen, C.-C. (2019). A paradigm shift in revenue management? The new landscape of hotel cancellation policies. <em>Journal of Revenue and Pricing Management</em>, <em>18</em>(6), 434–440. <a href="https://doi.org/10.1057/s41272-019-00189-3">https://doi.org/10.1057/s41272-019-00189-3</a>
+</div>
+<div class="csl-entry">
+Ribeiro, M. T., Singh, S., &amp; Guestrin, C. (2016a). "<span class="nocase">Why should I trust you</span>?": Explaining the predictions of any classifier. In <em>Proceedings of the 22nd <span>ACM</span> <span>SIGKDD</span> international conference on knowledge discovery and data mining, KDD san francisco, CA</em> (pp. 1135–1144). New York, NY: Association for Computing Machinery.
+</div>
+<div class="csl-entry">
+Ribeiro, M. T., Singh, S., &amp; Guestrin, C. (2016b). <span class="nocase">"Why Should <span>I</span> Trust You?": Explaining the Predictions of Any Classifier</span>. In <em>Proceedings of the 22nd <span>ACM</span> <span>SIGKDD</span> international conference on knowledge discovery and data mining, san francisco, CA, USA, august 13-17, 2016</em> (pp. 1135–1144). <a href="https://doi.org/10.18653/v1/n16-3020">https://doi.org/10.18653/v1/n16-3020</a>
+</div>
+<div class="csl-entry">
+Ruder, S. (2017). An overview of multi-task learning in deep neural networks. <a href="https://arxiv.org/abs/1706.05098">https://arxiv.org/abs/1706.05098</a>
+</div>
+<div class="csl-entry">
+Rudin, C. (2019). Stop explaining black box machine learning models for high stakes decisions and use interpretable models instead. <em>Nature Machine Intelligence</em>, <em>1</em>, 206–215. <a href="https://doi.org/10.1038/s42256-019-0048">https://doi.org/10.1038/s42256-019-0048</a>
+</div>
+<div class="csl-entry">
+Rudin, C., Chen, C., Chen, Z., Huang, H., Semenova, L., &amp; Zhong, C. (2021). Interpretable machine learning: Fundamental principles and 10 grand challenges. <em>arXiv preprint arXiv:2103.11251</em>.
+</div>
+<div class="csl-entry">
+Saarela, M., &amp; Jauhiainen, S. (2021). Comparison of feature importance measures as explanations for classification models. <em>SN Applied Sciences</em>, <em>3</em>(2). <a href="https://doi.org/10.1007/s42452-021-04148-9">https://doi.org/10.1007/s42452-021-04148-9</a>
+</div>
+<div class="csl-entry">
+Saito, T., &amp; Rehmsmeier, M. (2015). The precision-recall plot is more informative than the ROC plot when evaluating binary classifiers on imbalanced datasets. <em>Plos One</em>, <em>10</em>(3). <a href="https://doi.org/10.1371/journal.pone.0118432">https://doi.org/10.1371/journal.pone.0118432</a>
+</div>
+<div class="csl-entry">
+Sánchez-Medina, A. J., &amp; C-Sánchez, E. (2020). Using machine learning and big data for efficient forecasting of hotel booking cancellations. <em>International Journal of Hospitality Management</em>, <em>89</em>, 102546. <a href="https://doi.org/10.1016/j.ijhm.2020.102546">https://doi.org/10.1016/j.ijhm.2020.102546</a>
+</div>
+<div class="csl-entry">
+Sandfort, V., Yan, K., Pickhardt, P. J., &amp; Summers, R. M. (2019). Data augmentation using generative adversarial networks (CycleGAN) to improve generalizability in CT segmentation tasks. <em>Scientific reports</em>, <em>9</em>(1), 1–9.
+</div>
+<div class="csl-entry">
+Semenova, L., Rudin, C., &amp; Parr, R. (2019). A study in rashomon curves and volumes: A new perspective on generalization and model simplicity in machine learning. <em>arXiv preprint arXiv:1908.01755</em>.
+</div>
+<div class="csl-entry">
+Smith, S. J., Parsa, H. G., Bujisic, M., &amp; van der Rest, J.-P. (2015). Hotel cancelation policies, distributive and procedural fairness, and consumer patronage: A study of the lodging industry. <em>Journal of Travel &amp; Tourism Marketing</em>, <em>32</em>, 886–906. <a href="https://doi.org/10.1080/10548408.2015.1063864">https://doi.org/10.1080/10548408.2015.1063864</a>
+</div>
+<div class="csl-entry">
+Staniak, M., &amp; Biecek, P. (2018). Explanations of model predictions with live and breakDown packages.
+</div>
+<div class="csl-entry">
+Suzuki, K. (2017). Overview of deep learning in medical imaging. <em>Radiological physics and technology</em>, <em>10</em>(3), 257–273.
+</div>
+<div class="csl-entry">
+Tang, F., Xiao, C., Wang, F., &amp; Zhou, J. (2018). Predictive modeling in urgent care: A comparative study of machine learning approaches. <em>Jamia Open</em>, <em>1</em>(1), 87–98.
+</div>
+<div class="csl-entry">
+Tatman, R., VanderPlas, J., &amp; Dane, S. (2018). A practical taxonomy of reproducibility for machine learning research.
+</div>
+<div class="csl-entry">
+Thompson, N. C., Greenewald, K., Lee, K., &amp; Manso, G. F. (2020). The computational limits of deep learning. <em>arXiv preprint arXiv:2007.05558</em>.
+</div>
+<div class="csl-entry">
+Tonekaboni, S., Joshi, S., McCradden, M. D., &amp; Goldenberg, A. (2019). <span class="nocase">What Clinicians Want: Contextualizing Explainable Machine Learning for Clinical End Use</span>. <em>Machine Learning for Healthcare</em>. <a href="http://proceedings.mlr.press/v106/tonekaboni19a.html">http://proceedings.mlr.press/v106/tonekaboni19a.html</a>
+</div>
+<div class="csl-entry">
+Ucar, F., &amp; Korkmaz, D. (2020). COVIDiagnosis-net: Deep bayes-SqueezeNet based diagnosis of the coronavirus disease 2019 (COVID-19) from x-ray images. <em>Medical Hypotheses</em>, <em>140</em>, 109761–109761.
+</div>
+<div class="csl-entry">
+Vandewalle, P., Kovacevic, J., &amp; Vetterli, M. (2009). Reproducible research in signal processing. <em>IEEE Signal Processing Magazine</em>, <em>26</em>(3), 37–47.
+</div>
+<div class="csl-entry">
+Vanschoren, J., Rijn, J. N. van, Bischl, B., &amp; Torgo, L. (2013). OpenML: Networked science in machine learning. <em>SIGKDD Explorations</em>, <em>15</em>(2), 49–60. <a href="https://doi.org/10.1145/2641190.2641198">https://doi.org/10.1145/2641190.2641198</a>
+</div>
+<div class="csl-entry">
+Varma, A., Sarma, A., Doshi, S., &amp; Nair, R. (2018). House price prediction using machine learning and neural networks, 1936–1939. <a href="https://doi.org/10.1109/ICICCT.2018.8473231">https://doi.org/10.1109/ICICCT.2018.8473231</a>
+</div>
+<div class="csl-entry">
+Vaswani, A., Shazeer, N., Parmar, N., Uszkoreit, J., Jones, L., Gomez, A. N., et al. (2017). Attention is all you need. <em>arXiv preprint arXiv:1706.03762</em>.
+</div>
+<div class="csl-entry">
+Wang, J., Li, M., Hu, Y., &amp; Zhu, Y. (2009). <span class="nocase">Comparison of hospital charge prediction models for gastric cancer patients: neural network vs. decision tree models</span>. <em>BMC Health Services Research</em>, <em>9</em>(1). <a href="https://doi.org/10.1186/1472-6963-9-161">https://doi.org/10.1186/1472-6963-9-161</a>
+</div>
+<div class="csl-entry">
+Wang, L., Lin, Z. Q., &amp; Wong, A. (2020a). COVID-net: A tailored deep convolutional neural network design for detection of COVID-19 cases from chest x-ray images. <em>Scientific Reports</em>, <em>10</em>(1), 19549. <a href="https://doi.org/10.1038/s41598-020-76550-z">https://doi.org/10.1038/s41598-020-76550-z</a>
+</div>
+<div class="csl-entry">
+Wang, L., Lin, Z. Q., &amp; Wong, A. (2020b). COVID-net: A tailored deep convolutional neural network design for detection of COVID-19 cases from chest x-ray images. <em>Scientific Reports</em>, <em>10</em>(1), 19549. <a href="https://doi.org/10.1038/s41598-020-76550-z">https://doi.org/10.1038/s41598-020-76550-z</a>
+</div>
+<div class="csl-entry">
+Wang, R., Wang, X., &amp; Inouye, D. I. (2021). <span>Shapley Explanation Networks</span>. <em>ICLR</em>. <a href="https://openreview.net/forum?id=vsU0efpivw">https://openreview.net/forum?id=vsU0efpivw</a>
+</div>
+<div class="csl-entry">
+Wang, S., Zha, Y., Li, W., Wu, Q., Li, X., Niu, M., et al. (2020). A fully automatic deep learning system for COVID-19 diagnostic and prognostic analysis. <em>European Respiratory Journal</em>, <em>56</em>(2). <a href="https://doi.org/10.1183/13993003.00775-2020">https://doi.org/10.1183/13993003.00775-2020</a>
+</div>
+<div class="csl-entry">
+Wiens, J., Guttag, J., &amp; Horvitz, E. (2014). <span class="nocase">A study in transfer learning: leveraging data from multiple hospitals to enhance hospital-specific predictions</span>. <em>Journal of the American Medical Informatics Association</em>, <em>21</em>(4), 699–706. <a href="https://doi.org/10.1136/amiajnl-2013-002162">https://doi.org/10.1136/amiajnl-2013-002162</a>
+</div>
+<div class="csl-entry">
+Wright, M. N., &amp; Ziegler, A. (2016). <span>XGBoost: A Scalable Tree Boosting System</span>. <em>SIGKDD International Conference on Knowledge Discovery and Data Mining</em>. <a href="https://doi.org/10.1145/2939672.2939785">https://doi.org/10.1145/2939672.2939785</a>
+</div>
+<div class="csl-entry">
+Wright, M. N., &amp; Ziegler, A. (2017). <span class="nocase">ranger: A Fast Implementation of Random Forests for High Dimensional Data in C++ and R</span>. <em>Journal of Statistical Software</em>, <em>77</em>(1), 1–17. <a href="https://doi.org/10.18637/jss.v077.i01">https://doi.org/10.18637/jss.v077.i01</a>
+</div>
+<div class="csl-entry">
+WUoT. (2020). ML case studies: Reproducibility of scientific papers. <a href="https://mini-pw.github.io/2020L-WB-Book/reproducibility.html">https://mini-pw.github.io/2020L-WB-Book/reproducibility.html</a>
+</div>
+<div class="csl-entry">
+XGBoost: <span>A</span> scalable tree boosting system. (2016). <em>CoRR</em>, <em>abs/1603.02754</em>. <a href="http://arxiv.org/abs/1603.02754">http://arxiv.org/abs/1603.02754</a>
+</div>
+<div class="csl-entry">
+Yan, L., Zhang, H.-T., Goncalves, J., Xiao, Y., Wang, M., Guo, Y., et al. (2020a). <span class="nocase">An interpretable mortality prediction model for COVID-19 patients</span>. <em>Nature Machine Intelligence</em>, <em>2</em>(5), 283–288. <a href="https://doi.org/10.1038/s42256-020-0180-7">https://doi.org/10.1038/s42256-020-0180-7</a>
+</div>
+<div class="csl-entry">
+Yan, L., Zhang, H.-T., Goncalves, J., Xiao, Y., Wang, M., Guo, Y., et al. (2020b). <span class="nocase">An interpretable mortality prediction model for COVID-19 patients</span>. <em>Nature Machine Intelligence</em>, <em>2</em>(5), 283--288. <a href="https://www.nature.com/articles/s42256-020-0180-7">https://www.nature.com/articles/s42256-020-0180-7</a>
+</div>
+<div class="csl-entry">
+Yan, L., Zhang, H.-T., Goncalves, J., Xiao, Y., Wang, M., Guo, Y., et al. (2020c). <span class="nocase">An interpretable mortality prediction model for COVID-19 patients</span>. <em>Nature Machine Intelligence</em>, <em>2</em>(5), 283--288. <a href="https://www.nature.com/articles/s42256-020-0180-7">https://www.nature.com/articles/s42256-020-0180-7</a>
+</div>
+<div class="csl-entry">
+Yildiz, B., Hung, H., Krijthe, J. H., Liem, C. C. S., Loog, M., Migut, G., et al. (2021). ReproducedPapers.org: Openly teaching and structuring machine learning reproducibility. In B. Kerautret, M. Colom, A. Krähenbühl, D. Lopresti, P. Monasse, &amp; H. Talbot (Eds.), <em>Reproducible research in pattern recognition</em> (pp. 3–11). Cham: Springer International Publishing.
+</div>
+<div class="csl-entry">
+Zaimi Aldo, W. M., Herman, V., Antonsanti, P.-L., Perone, C. S., &amp; Cohen-Adad, J. (2018). AxonDeepSeg: Automatic axon and myelin segmentation from microscopy data using convolutional neural networks. <em>Scientific Reports</em>, <em>8</em>(1), 3816. <a href="https://doi.org/10.1038/s41598-018-22181-4">https://doi.org/10.1038/s41598-018-22181-4</a>
+</div>
+<div class="csl-entry">
+Zhao, Q., Meng, M., Kumar, R., Wu, Y., Huang, J., Deng, Y., et al. (2020). <span class="nocase">Lymphopenia is associated with severe coronavirus disease 2019 (COVID-19) infections: A systemic review and meta-analysis</span>. <em>International Journal of Infectious Diseases</em>, <em>96</em>, 131–135. <a href="https://doi.org/10.1016/j.ijid.2020.04.086">https://doi.org/10.1016/j.ijid.2020.04.086</a>
+</div>
+<div class="csl-entry">
+Zhao, Y., Chetty, G., &amp; Tran, D. (2019). Deep learning with XGBoost for real estate appraisal, 1396–1401. <a href="https://doi.org/10.1109/SSCI44817.2019.9002790">https://doi.org/10.1109/SSCI44817.2019.9002790</a>
+</div>
+<div class="csl-entry">
+Zheng, Y., Zhu, Y., Ji, M., Wang, R., Liu, X., Zhang, M., et al. (2020a). <span class="nocase">A Learning-Based Model to Evaluate Hospitalization Priority in COVID-19 Pandemics</span>. <em>Patterns</em>, <em>1</em>(6), 100092. <a href="https://doi.org/10.1016/j.patter.2020.100092">https://doi.org/10.1016/j.patter.2020.100092</a>
+</div>
+<div class="csl-entry">
+Zheng, Y., Zhu, Y., Ji, M., Wang, R., Liu, X., Zhang, M., et al. (2020b). <span class="nocase">A Learning-Based Model to Evaluate Hospitalization Priority in COVID-19 Pandemics</span>. <em>Patterns</em>, <em>1</em>(9), 100173. <a href="https://doi.org/10.1016/j.patter.2020.100173">https://doi.org/10.1016/j.patter.2020.100173</a>
+</div>
+<div class="csl-entry">
+Zhou, Z.-H., &amp; Feng, J. (2017). Deep forest: Towards an alternative to deep neural networks. <em>CoRR</em>, <em>abs/1702.08835</em>. <a href="http://arxiv.org/abs/1702.08835">http://arxiv.org/abs/1702.08835</a>
+</div>
+<div class="csl-entry">
+Zhou, Z., Siddiquee, M. M. R., Tajbakhsh, N., &amp; Liang, J. (2019). UNet++: Redesigning skip connections to exploit multiscale features in image segmentation. <em>IEEE Transactions on Medical Imaging</em>.
+</div>
+</div>
+</div>
+</div>
+<!-- </div> -->
+
+
+
+
+
+
+<h3>References</h3>
+<div id="refs" class="references csl-bib-body hanging-indent" line-spacing="2">
+<div id="ref-6-0-breiman2001statistical" class="csl-entry">
+Breiman, L. et al. (2001). Statistical modeling: The two cultures (with comments and a rejoinder by the author). <em>Statistical science</em>, <em>16</em>(3), 199–231.
+</div>
+<div id="ref-6-0-rashomon-variable-importance" class="csl-entry">
+Fisher, A., Rudin, C., &amp; Dominici, F. (2019c). All models are wrong, but many are useful: Learning a variable’s importance by studying an entire class of prediction models simultaneously. <em>Journal of Machine Learning Research</em>, <em>20</em>(177), 1–81.
+</div>
+<div id="ref-6-0-rudin-challenges" class="csl-entry">
+Rudin, C., Chen, C., Chen, Z., Huang, H., Semenova, L., &amp; Zhong, C. (2021). Interpretable machine learning: Fundamental principles and 10 grand challenges. <em>arXiv preprint arXiv:2103.11251</em>.
+</div>
+<div id="ref-6-0-rashomon-intro" class="csl-entry">
+Semenova, L., Rudin, C., &amp; Parr, R. (2019). A study in rashomon curves and volumes: A new perspective on generalization and model simplicity in machine learning. <em>arXiv preprint arXiv:1908.01755</em>.
+</div>
+<div id="ref-6-0-tang2018predictive" class="csl-entry">
+Tang, F., Xiao, C., Wang, F., &amp; Zhou, J. (2018). Predictive modeling in urgent care: A comparative study of machine learning approaches. <em>Jamia Open</em>, <em>1</em>(1), 87–98.
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="roshomon-sets-on-death-prediction-xgb-models-using-mimic-iii-database.html" class="navigation navigation-prev navigation-unique" aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+
+    </div>
+  </div>
+<script src="libs/gitbook/js/app.min.js"></script>
+<script src="libs/gitbook/js/lunr.js"></script>
+<script src="libs/gitbook/js/clipboard.min.js"></script>
+<script src="libs/gitbook/js/plugin-search.js"></script>
+<script src="libs/gitbook/js/plugin-sharing.js"></script>
+<script src="libs/gitbook/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook/js/jquery.highlight.js"></script>
+<script src="libs/gitbook/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": true,
+"facebook": false,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"whatsapp": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": "https://github.com/mini-pw/2021L-WB-Book/edit/master/6-5-rashōmon.Rmd",
+"text": "Edit"
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": ["book.pdf", "book.epub"],
+"toc": {
+"collapse": "section"
+}
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>

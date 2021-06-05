@@ -1,0 +1,855 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>1.3 Coronary artery disease: Is it worth trusting ML when it comes to our health? | Case Studies</title>
+  <meta name="description" content="Case studies in machine learning." />
+  <meta name="generator" content="bookdown 0.22 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="1.3 Coronary artery disease: Is it worth trusting ML when it comes to our health? | Case Studies" />
+  <meta property="og:type" content="book" />
+  
+  <meta property="og:image" content="/images/cover.png" />
+  <meta property="og:description" content="Case studies in machine learning." />
+  <meta name="github-repo" content="mini-pw/2021L-WB-Book" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="1.3 Coronary artery disease: Is it worth trusting ML when it comes to our health? | Case Studies" />
+  
+  <meta name="twitter:description" content="Case studies in machine learning." />
+  <meta name="twitter:image" content="/images/cover.png" />
+
+<meta name="author" content="Faculty of Mathematics and Information Science, Warsaw University of Technology" />
+
+
+<meta name="date" content="2021-06-05" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="xai-in-real-estate-pricing-a-case-study.html"/>
+<link rel="next" href="xai1-explainable-wine.html"/>
+<script src="libs/header-attrs/header-attrs.js"></script>
+<script src="libs/jquery/jquery.min.js"></script>
+<link href="libs/gitbook/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+
+<link href="libs/anchor-sections/anchor-sections.css" rel="stylesheet" />
+<script src="libs/anchor-sections/anchor-sections.js"></script>
+<script src="libs/kePrint/kePrint.js"></script>
+<link href="libs/lightable/lightable.css" rel="stylesheet" />
+
+
+
+<style type="text/css">
+/* Used with Pandoc 2.11+ new --citeproc when CSL is used */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+}
+.hanging div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}
+</style>
+
+<link rel="stylesheet" href="css/style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./"><h3>Case Studies</h3></a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Preface</a>
+<ul>
+<li class="chapter" data-level="" data-path="technical-setup.html"><a href="technical-setup.html"><i class="fa fa-check"></i>Technical Setup</a></li>
+</ul></li>
+<li class="chapter" data-level="1" data-path="explainable-artificial-intelligence-1.html"><a href="explainable-artificial-intelligence-1.html"><i class="fa fa-check"></i><b>1</b> Explainable Artificial Intelligence 1</a>
+<ul>
+<li class="chapter" data-level="1.1" data-path="xai1-explainable-cards.html"><a href="xai1-explainable-cards.html"><i class="fa fa-check"></i><b>1.1</b> Explaining Credit Card Customers churns</a>
+<ul>
+<li class="chapter" data-level="1.1.1" data-path="xai1-explainable-cards.html"><a href="xai1-explainable-cards.html#introduction-and-motivation"><i class="fa fa-check"></i><b>1.1.1</b> Introduction and Motivation</a></li>
+<li class="chapter" data-level="1.1.2" data-path="xai1-explainable-cards.html"><a href="xai1-explainable-cards.html#methodology"><i class="fa fa-check"></i><b>1.1.2</b> Methodology</a></li>
+<li class="chapter" data-level="1.1.3" data-path="xai1-explainable-cards.html"><a href="xai1-explainable-cards.html#local-explanations"><i class="fa fa-check"></i><b>1.1.3</b> Local explanations</a></li>
+<li class="chapter" data-level="1.1.4" data-path="xai1-explainable-cards.html"><a href="xai1-explainable-cards.html#global-explanations"><i class="fa fa-check"></i><b>1.1.4</b> Global explanations</a></li>
+<li class="chapter" data-level="1.1.5" data-path="xai1-explainable-cards.html"><a href="xai1-explainable-cards.html#summary"><i class="fa fa-check"></i><b>1.1.5</b> Summary</a></li>
+</ul></li>
+<li class="chapter" data-level="1.2" data-path="xai-in-real-estate-pricing-a-case-study.html"><a href="xai-in-real-estate-pricing-a-case-study.html"><i class="fa fa-check"></i><b>1.2</b> XAI in real estate pricing: A case study</a>
+<ul>
+<li class="chapter" data-level="1.2.1" data-path="xai-in-real-estate-pricing-a-case-study.html"><a href="xai-in-real-estate-pricing-a-case-study.html#abstract"><i class="fa fa-check"></i><b>1.2.1</b> Abstract</a></li>
+<li class="chapter" data-level="1.2.2" data-path="xai-in-real-estate-pricing-a-case-study.html"><a href="xai-in-real-estate-pricing-a-case-study.html#introduction"><i class="fa fa-check"></i><b>1.2.2</b> Introduction</a></li>
+<li class="chapter" data-level="1.2.3" data-path="xai-in-real-estate-pricing-a-case-study.html"><a href="xai-in-real-estate-pricing-a-case-study.html#related-work"><i class="fa fa-check"></i><b>1.2.3</b> Related Work</a></li>
+<li class="chapter" data-level="1.2.4" data-path="xai-in-real-estate-pricing-a-case-study.html"><a href="xai-in-real-estate-pricing-a-case-study.html#methodology-1"><i class="fa fa-check"></i><b>1.2.4</b> Methodology</a></li>
+<li class="chapter" data-level="1.2.5" data-path="xai-in-real-estate-pricing-a-case-study.html"><a href="xai-in-real-estate-pricing-a-case-study.html#results"><i class="fa fa-check"></i><b>1.2.5</b> Results</a></li>
+<li class="chapter" data-level="1.2.6" data-path="xai-in-real-estate-pricing-a-case-study.html"><a href="xai-in-real-estate-pricing-a-case-study.html#summary-and-conclusions"><i class="fa fa-check"></i><b>1.2.6</b> Summary and conclusions</a></li>
+</ul></li>
+<li class="chapter" data-level="1.3" data-path="coronary-artery-disease-is-it-worth-trusting-ml-when-it-comes-to-our-health.html"><a href="coronary-artery-disease-is-it-worth-trusting-ml-when-it-comes-to-our-health.html"><i class="fa fa-check"></i><b>1.3</b> Coronary artery disease: Is it worth trusting ML when it comes to our health?</a>
+<ul>
+<li class="chapter" data-level="1.3.1" data-path="coronary-artery-disease-is-it-worth-trusting-ml-when-it-comes-to-our-health.html"><a href="coronary-artery-disease-is-it-worth-trusting-ml-when-it-comes-to-our-health.html#abstract-1"><i class="fa fa-check"></i><b>1.3.1</b> Abstract</a></li>
+<li class="chapter" data-level="1.3.2" data-path="coronary-artery-disease-is-it-worth-trusting-ml-when-it-comes-to-our-health.html"><a href="coronary-artery-disease-is-it-worth-trusting-ml-when-it-comes-to-our-health.html#introduction-and-motivation-1"><i class="fa fa-check"></i><b>1.3.2</b> Introduction and Motivation</a></li>
+<li class="chapter" data-level="1.3.3" data-path="coronary-artery-disease-is-it-worth-trusting-ml-when-it-comes-to-our-health.html"><a href="coronary-artery-disease-is-it-worth-trusting-ml-when-it-comes-to-our-health.html#related-work-1"><i class="fa fa-check"></i><b>1.3.3</b> Related Work</a></li>
+<li class="chapter" data-level="1.3.4" data-path="coronary-artery-disease-is-it-worth-trusting-ml-when-it-comes-to-our-health.html"><a href="coronary-artery-disease-is-it-worth-trusting-ml-when-it-comes-to-our-health.html#methodology-2"><i class="fa fa-check"></i><b>1.3.4</b> Methodology</a></li>
+<li class="chapter" data-level="1.3.5" data-path="coronary-artery-disease-is-it-worth-trusting-ml-when-it-comes-to-our-health.html"><a href="coronary-artery-disease-is-it-worth-trusting-ml-when-it-comes-to-our-health.html#results-1"><i class="fa fa-check"></i><b>1.3.5</b> Results</a></li>
+<li class="chapter" data-level="1.3.6" data-path="coronary-artery-disease-is-it-worth-trusting-ml-when-it-comes-to-our-health.html"><a href="coronary-artery-disease-is-it-worth-trusting-ml-when-it-comes-to-our-health.html#summary-and-conclusions-1"><i class="fa fa-check"></i><b>1.3.6</b> Summary and conclusions</a></li>
+</ul></li>
+<li class="chapter" data-level="1.4" data-path="xai1-explainable-wine.html"><a href="xai1-explainable-wine.html"><i class="fa fa-check"></i><b>1.4</b> Red wine mystery: using explainable AI to inspect factors behind wine quality</a>
+<ul>
+<li class="chapter" data-level="1.4.1" data-path="xai1-explainable-wine.html"><a href="xai1-explainable-wine.html#abstract-2"><i class="fa fa-check"></i><b>1.4.1</b> Abstract</a></li>
+<li class="chapter" data-level="1.4.2" data-path="xai1-explainable-wine.html"><a href="xai1-explainable-wine.html#introduction-and-motivation-2"><i class="fa fa-check"></i><b>1.4.2</b> Introduction and Motivation</a></li>
+<li class="chapter" data-level="1.4.3" data-path="xai1-explainable-wine.html"><a href="xai1-explainable-wine.html#methodology-3"><i class="fa fa-check"></i><b>1.4.3</b> Methodology</a></li>
+<li class="chapter" data-level="1.4.4" data-path="xai1-explainable-wine.html"><a href="xai1-explainable-wine.html#global-explanations-3"><i class="fa fa-check"></i><b>1.4.4</b> Global explanations</a></li>
+<li class="chapter" data-level="1.4.5" data-path="xai1-explainable-wine.html"><a href="xai1-explainable-wine.html#local-explanations-3"><i class="fa fa-check"></i><b>1.4.5</b> Local explanations</a></li>
+<li class="chapter" data-level="1.4.6" data-path="xai1-explainable-wine.html"><a href="xai1-explainable-wine.html#confrontation-with-science"><i class="fa fa-check"></i><b>1.4.6</b> Confrontation with science</a></li>
+<li class="chapter" data-level="1.4.7" data-path="xai1-explainable-wine.html"><a href="xai1-explainable-wine.html#summary-1"><i class="fa fa-check"></i><b>1.4.7</b> Summary</a></li>
+<li class="chapter" data-level="1.4.8" data-path="xai1-explainable-wine.html"><a href="xai1-explainable-wine.html#conclusions"><i class="fa fa-check"></i><b>1.4.8</b> Conclusions</a></li>
+</ul></li>
+<li class="chapter" data-level="1.5" data-path="xai1-explainable-hotels.html"><a href="xai1-explainable-hotels.html"><i class="fa fa-check"></i><b>1.5</b> Explanatory approach to modeling the risk of hotel booking cancellations</a>
+<ul>
+<li class="chapter" data-level="1.5.1" data-path="xai1-explainable-hotels.html"><a href="xai1-explainable-hotels.html#abstract-3"><i class="fa fa-check"></i><b>1.5.1</b> Abstract</a></li>
+<li class="chapter" data-level="1.5.2" data-path="xai1-explainable-hotels.html"><a href="xai1-explainable-hotels.html#introduction-1"><i class="fa fa-check"></i><b>1.5.2</b> Introduction</a></li>
+<li class="chapter" data-level="1.5.3" data-path="xai1-explainable-hotels.html"><a href="xai1-explainable-hotels.html#dataset_models"><i class="fa fa-check"></i><b>1.5.3</b> Dataset and models</a></li>
+<li class="chapter" data-level="1.5.4" data-path="xai1-explainable-hotels.html"><a href="xai1-explainable-hotels.html#local"><i class="fa fa-check"></i><b>1.5.4</b> Local explanations</a></li>
+<li class="chapter" data-level="1.5.5" data-path="xai1-explainable-hotels.html"><a href="xai1-explainable-hotels.html#global-explanations-4"><i class="fa fa-check"></i><b>1.5.5</b> Global explanations</a></li>
+<li class="chapter" data-level="1.5.6" data-path="xai1-explainable-hotels.html"><a href="xai1-explainable-hotels.html#summary-and-conclusions-2"><i class="fa fa-check"></i><b>1.5.6</b> Summary and conclusions</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="explainable-artificial-intelligence-2.html"><a href="explainable-artificial-intelligence-2.html"><i class="fa fa-check"></i><b>2</b> Explainable Artificial Intelligence 2</a>
+<ul>
+<li class="chapter" data-level="2.1" data-path="xai1-explainable-german-credits.html"><a href="xai1-explainable-german-credits.html"><i class="fa fa-check"></i><b>2.1</b> Classifying people as good or bad credit risks</a>
+<ul>
+<li class="chapter" data-level="2.1.1" data-path="xai1-explainable-german-credits.html"><a href="xai1-explainable-german-credits.html#introduction-2"><i class="fa fa-check"></i><b>2.1.1</b> Introduction</a></li>
+<li class="chapter" data-level="2.1.2" data-path="xai1-explainable-german-credits.html"><a href="xai1-explainable-german-credits.html#dataset-and-models"><i class="fa fa-check"></i><b>2.1.2</b> Dataset and models</a></li>
+<li class="chapter" data-level="2.1.3" data-path="xai1-explainable-german-credits.html"><a href="xai1-explainable-german-credits.html#local-explanations-4"><i class="fa fa-check"></i><b>2.1.3</b> Local explanations</a></li>
+<li class="chapter" data-level="2.1.4" data-path="xai1-explainable-german-credits.html"><a href="xai1-explainable-german-credits.html#global-explanations-5"><i class="fa fa-check"></i><b>2.1.4</b> Global explanations</a></li>
+<li class="chapter" data-level="2.1.5" data-path="xai1-explainable-german-credits.html"><a href="xai1-explainable-german-credits.html#summary-and-conclusions-3"><i class="fa fa-check"></i><b>2.1.5</b> Summary and conclusions</a></li>
+</ul></li>
+<li class="chapter" data-level="2.2" data-path="how-to-predict-the-probability-of-subsequent-blood-donations.html"><a href="how-to-predict-the-probability-of-subsequent-blood-donations.html"><i class="fa fa-check"></i><b>2.2</b> How to predict the probability of subsequent blood donations?</a>
+<ul>
+<li class="chapter" data-level="2.2.1" data-path="how-to-predict-the-probability-of-subsequent-blood-donations.html"><a href="how-to-predict-the-probability-of-subsequent-blood-donations.html#abstract-4"><i class="fa fa-check"></i><b>2.2.1</b> Abstract</a></li>
+<li class="chapter" data-level="2.2.2" data-path="how-to-predict-the-probability-of-subsequent-blood-donations.html"><a href="how-to-predict-the-probability-of-subsequent-blood-donations.html#introduction-and-motivation-3"><i class="fa fa-check"></i><b>2.2.2</b> Introduction and motivation</a></li>
+<li class="chapter" data-level="2.2.3" data-path="how-to-predict-the-probability-of-subsequent-blood-donations.html"><a href="how-to-predict-the-probability-of-subsequent-blood-donations.html#related-work-2"><i class="fa fa-check"></i><b>2.2.3</b> Related work</a></li>
+<li class="chapter" data-level="2.2.4" data-path="how-to-predict-the-probability-of-subsequent-blood-donations.html"><a href="how-to-predict-the-probability-of-subsequent-blood-donations.html#data-and-model"><i class="fa fa-check"></i><b>2.2.4</b> Data and model</a></li>
+<li class="chapter" data-level="2.2.5" data-path="how-to-predict-the-probability-of-subsequent-blood-donations.html"><a href="how-to-predict-the-probability-of-subsequent-blood-donations.html#global-explanations-6"><i class="fa fa-check"></i><b>2.2.5</b> Global explanations</a></li>
+<li class="chapter" data-level="2.2.6" data-path="how-to-predict-the-probability-of-subsequent-blood-donations.html"><a href="how-to-predict-the-probability-of-subsequent-blood-donations.html#local-explanations-5"><i class="fa fa-check"></i><b>2.2.6</b> Local explanations</a></li>
+<li class="chapter" data-level="2.2.7" data-path="how-to-predict-the-probability-of-subsequent-blood-donations.html"><a href="how-to-predict-the-probability-of-subsequent-blood-donations.html#conclusions-and-summary"><i class="fa fa-check"></i><b>2.2.7</b> Conclusions and summary</a></li>
+</ul></li>
+<li class="chapter" data-level="2.3" data-path="how-the-price-of-the-house-is-influenced-by-neighborhood-xai-methods-for-interpretation-the-black-box-model.html"><a href="how-the-price-of-the-house-is-influenced-by-neighborhood-xai-methods-for-interpretation-the-black-box-model.html"><i class="fa fa-check"></i><b>2.3</b> How the price of the house is influenced by neighborhood? XAI methods for interpretation the black box model</a>
+<ul>
+<li class="chapter" data-level="2.3.1" data-path="how-the-price-of-the-house-is-influenced-by-neighborhood-xai-methods-for-interpretation-the-black-box-model.html"><a href="how-the-price-of-the-house-is-influenced-by-neighborhood-xai-methods-for-interpretation-the-black-box-model.html#abstract-5"><i class="fa fa-check"></i><b>2.3.1</b> Abstract</a></li>
+<li class="chapter" data-level="2.3.2" data-path="how-the-price-of-the-house-is-influenced-by-neighborhood-xai-methods-for-interpretation-the-black-box-model.html"><a href="how-the-price-of-the-house-is-influenced-by-neighborhood-xai-methods-for-interpretation-the-black-box-model.html#introduction-3"><i class="fa fa-check"></i><b>2.3.2</b> Introduction</a></li>
+<li class="chapter" data-level="2.3.3" data-path="how-the-price-of-the-house-is-influenced-by-neighborhood-xai-methods-for-interpretation-the-black-box-model.html"><a href="how-the-price-of-the-house-is-influenced-by-neighborhood-xai-methods-for-interpretation-the-black-box-model.html#literature"><i class="fa fa-check"></i><b>2.3.3</b> Literature</a></li>
+<li class="chapter" data-level="2.3.4" data-path="how-the-price-of-the-house-is-influenced-by-neighborhood-xai-methods-for-interpretation-the-black-box-model.html"><a href="how-the-price-of-the-house-is-influenced-by-neighborhood-xai-methods-for-interpretation-the-black-box-model.html#local-explanations-6"><i class="fa fa-check"></i><b>2.3.4</b> Local explanations</a></li>
+<li class="chapter" data-level="2.3.5" data-path="how-the-price-of-the-house-is-influenced-by-neighborhood-xai-methods-for-interpretation-the-black-box-model.html"><a href="how-the-price-of-the-house-is-influenced-by-neighborhood-xai-methods-for-interpretation-the-black-box-model.html#global-explanations-7"><i class="fa fa-check"></i><b>2.3.5</b> Global explanations</a></li>
+<li class="chapter" data-level="2.3.6" data-path="how-the-price-of-the-house-is-influenced-by-neighborhood-xai-methods-for-interpretation-the-black-box-model.html"><a href="how-the-price-of-the-house-is-influenced-by-neighborhood-xai-methods-for-interpretation-the-black-box-model.html#conclusion"><i class="fa fa-check"></i><b>2.3.6</b> Conclusion</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="deep-learning-1.html"><a href="deep-learning-1.html"><i class="fa fa-check"></i><b>3</b> Deep Learning 1</a>
+<ul>
+<li class="chapter" data-level="3.1" data-path="lungnet.html"><a href="lungnet.html"><i class="fa fa-check"></i><b>3.1</b> LungNet</a>
+<ul>
+<li class="chapter" data-level="3.1.1" data-path="lungnet.html"><a href="lungnet.html#introduction-4"><i class="fa fa-check"></i><b>3.1.1</b> Introduction</a></li>
+<li class="chapter" data-level="3.1.2" data-path="lungnet.html"><a href="lungnet.html#data"><i class="fa fa-check"></i><b>3.1.2</b> Data</a></li>
+<li class="chapter" data-level="3.1.3" data-path="lungnet.html"><a href="lungnet.html#original-model"><i class="fa fa-check"></i><b>3.1.3</b> Original model</a></li>
+<li class="chapter" data-level="3.1.4" data-path="lungnet.html"><a href="lungnet.html#new-models"><i class="fa fa-check"></i><b>3.1.4</b> New models</a></li>
+<li class="chapter" data-level="3.1.5" data-path="lungnet.html"><a href="lungnet.html#summary-2"><i class="fa fa-check"></i><b>3.1.5</b> Summary</a></li>
+</ul></li>
+<li class="chapter" data-level="3.2" data-path="on-the-reproducibility-of-the-bcdu-net-model.html"><a href="on-the-reproducibility-of-the-bcdu-net-model.html"><i class="fa fa-check"></i><b>3.2</b> On the reproducibility of the BCDU-Net model</a>
+<ul>
+<li class="chapter" data-level="3.2.1" data-path="on-the-reproducibility-of-the-bcdu-net-model.html"><a href="on-the-reproducibility-of-the-bcdu-net-model.html#abstract-6"><i class="fa fa-check"></i><b>3.2.1</b> Abstract</a></li>
+<li class="chapter" data-level="3.2.2" data-path="on-the-reproducibility-of-the-bcdu-net-model.html"><a href="on-the-reproducibility-of-the-bcdu-net-model.html#introduction-5"><i class="fa fa-check"></i><b>3.2.2</b> Introduction</a></li>
+<li class="chapter" data-level="3.2.3" data-path="on-the-reproducibility-of-the-bcdu-net-model.html"><a href="on-the-reproducibility-of-the-bcdu-net-model.html#reproduction-of-the-results"><i class="fa fa-check"></i><b>3.2.3</b> Reproduction of the results</a></li>
+<li class="chapter" data-level="3.2.4" data-path="on-the-reproducibility-of-the-bcdu-net-model.html"><a href="on-the-reproducibility-of-the-bcdu-net-model.html#further-experiments"><i class="fa fa-check"></i><b>3.2.4</b> Further experiments</a></li>
+<li class="chapter" data-level="3.2.5" data-path="on-the-reproducibility-of-the-bcdu-net-model.html"><a href="on-the-reproducibility-of-the-bcdu-net-model.html#other-tools-applied-to-the-model"><i class="fa fa-check"></i><b>3.2.5</b> Other tools applied to the model</a></li>
+<li class="chapter" data-level="3.2.6" data-path="on-the-reproducibility-of-the-bcdu-net-model.html"><a href="on-the-reproducibility-of-the-bcdu-net-model.html#results-and-conclusions"><i class="fa fa-check"></i><b>3.2.6</b> Results and conclusions</a></li>
+</ul></li>
+<li class="chapter" data-level="3.3" data-path="an-exploration-of-deepcovidexplainer-explainable-covid-19-diagnosis-from-chest-x-rays.html"><a href="an-exploration-of-deepcovidexplainer-explainable-covid-19-diagnosis-from-chest-x-rays.html"><i class="fa fa-check"></i><b>3.3</b> An Exploration of DeepCovidExplainer: Explainable COVID-19 Diagnosis from Chest X-rays</a>
+<ul>
+<li class="chapter" data-level="3.3.1" data-path="an-exploration-of-deepcovidexplainer-explainable-covid-19-diagnosis-from-chest-x-rays.html"><a href="an-exploration-of-deepcovidexplainer-explainable-covid-19-diagnosis-from-chest-x-rays.html#introduction-and-motivation-4"><i class="fa fa-check"></i><b>3.3.1</b> Introduction and motivation <!-- DONE --></a></li>
+<li class="chapter" data-level="3.3.2" data-path="an-exploration-of-deepcovidexplainer-explainable-covid-19-diagnosis-from-chest-x-rays.html"><a href="an-exploration-of-deepcovidexplainer-explainable-covid-19-diagnosis-from-chest-x-rays.html#related-work-3"><i class="fa fa-check"></i><b>3.3.2</b> Related work</a></li>
+<li class="chapter" data-level="3.3.3" data-path="an-exploration-of-deepcovidexplainer-explainable-covid-19-diagnosis-from-chest-x-rays.html"><a href="an-exploration-of-deepcovidexplainer-explainable-covid-19-diagnosis-from-chest-x-rays.html#our-work"><i class="fa fa-check"></i><b>3.3.3</b> Our work</a></li>
+<li class="chapter" data-level="3.3.4" data-path="an-exploration-of-deepcovidexplainer-explainable-covid-19-diagnosis-from-chest-x-rays.html"><a href="an-exploration-of-deepcovidexplainer-explainable-covid-19-diagnosis-from-chest-x-rays.html#conclusions-and-summary-1"><i class="fa fa-check"></i><b>3.3.4</b> Conclusions and summary</a></li>
+</ul></li>
+<li class="chapter" data-level="3.4" data-path="erscovid.html"><a href="erscovid.html"><i class="fa fa-check"></i><b>3.4</b> ERSCovid</a>
+<ul>
+<li class="chapter" data-level="3.4.1" data-path="erscovid.html"><a href="erscovid.html#introduction-6"><i class="fa fa-check"></i><b>3.4.1</b> Introduction</a></li>
+</ul></li>
+<li class="chapter" data-level="3.5" data-path="covid-net.html"><a href="covid-net.html"><i class="fa fa-check"></i><b>3.5</b> COVID-Net</a>
+<ul>
+<li class="chapter" data-level="3.5.1" data-path="covid-net.html"><a href="covid-net.html#introduction-7"><i class="fa fa-check"></i><b>3.5.1</b> Introduction</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="deep-learning-2.html"><a href="deep-learning-2.html"><i class="fa fa-check"></i><b>4</b> Deep Learning 2</a>
+<ul>
+<li class="chapter" data-level="4.1" data-path="what-makes-an-article-reproducible-comparison-of-the-fer-paper-and-axondeepseg.html"><a href="what-makes-an-article-reproducible-comparison-of-the-fer-paper-and-axondeepseg.html"><i class="fa fa-check"></i><b>4.1</b> What makes an article reproducible? Comparison of the FER+ paper and AxonDeepSeg</a>
+<ul>
+<li class="chapter" data-level="4.1.1" data-path="what-makes-an-article-reproducible-comparison-of-the-fer-paper-and-axondeepseg.html"><a href="what-makes-an-article-reproducible-comparison-of-the-fer-paper-and-axondeepseg.html#abstract-7"><i class="fa fa-check"></i><b>4.1.1</b> Abstract</a></li>
+<li class="chapter" data-level="4.1.2" data-path="what-makes-an-article-reproducible-comparison-of-the-fer-paper-and-axondeepseg.html"><a href="what-makes-an-article-reproducible-comparison-of-the-fer-paper-and-axondeepseg.html#introduction-8"><i class="fa fa-check"></i><b>4.1.2</b> Introduction</a></li>
+<li class="chapter" data-level="4.1.3" data-path="what-makes-an-article-reproducible-comparison-of-the-fer-paper-and-axondeepseg.html"><a href="what-makes-an-article-reproducible-comparison-of-the-fer-paper-and-axondeepseg.html#analyzing-the-ferplus-paper"><i class="fa fa-check"></i><b>4.1.3</b> Analyzing the FERPlus paper</a></li>
+<li class="chapter" data-level="4.1.4" data-path="what-makes-an-article-reproducible-comparison-of-the-fer-paper-and-axondeepseg.html"><a href="what-makes-an-article-reproducible-comparison-of-the-fer-paper-and-axondeepseg.html#reproducibility-analysis"><i class="fa fa-check"></i><b>4.1.4</b> Reproducibility analysis</a></li>
+<li class="chapter" data-level="4.1.5" data-path="what-makes-an-article-reproducible-comparison-of-the-fer-paper-and-axondeepseg.html"><a href="what-makes-an-article-reproducible-comparison-of-the-fer-paper-and-axondeepseg.html#analyzing-the-axondeepseg-paper"><i class="fa fa-check"></i><b>4.1.5</b> Analyzing the AxonDeepSeg paper</a></li>
+<li class="chapter" data-level="4.1.6" data-path="what-makes-an-article-reproducible-comparison-of-the-fer-paper-and-axondeepseg.html"><a href="what-makes-an-article-reproducible-comparison-of-the-fer-paper-and-axondeepseg.html#reproducibility-analysis-1"><i class="fa fa-check"></i><b>4.1.6</b> Reproducibility analysis</a></li>
+<li class="chapter" data-level="4.1.7" data-path="what-makes-an-article-reproducible-comparison-of-the-fer-paper-and-axondeepseg.html"><a href="what-makes-an-article-reproducible-comparison-of-the-fer-paper-and-axondeepseg.html#conclusion-1"><i class="fa fa-check"></i><b>4.1.7</b> Conclusion</a></li>
+</ul></li>
+<li class="chapter" data-level="4.2" data-path="can-you-classify-histopathological-data-at-home-reproducing-the-ara-cnn-models-data-and-performance-.html"><a href="can-you-classify-histopathological-data-at-home-reproducing-the-ara-cnn-models-data-and-performance-.html"><i class="fa fa-check"></i><b>4.2</b> Can you classify histopathological data at home? Reproducing the ARA-CNN model’s data and performance.</a>
+<ul>
+<li class="chapter" data-level="4.2.1" data-path="can-you-classify-histopathological-data-at-home-reproducing-the-ara-cnn-models-data-and-performance-.html"><a href="can-you-classify-histopathological-data-at-home-reproducing-the-ara-cnn-models-data-and-performance-.html#abstract-8"><i class="fa fa-check"></i><b>4.2.1</b> Abstract</a></li>
+<li class="chapter" data-level="4.2.2" data-path="can-you-classify-histopathological-data-at-home-reproducing-the-ara-cnn-models-data-and-performance-.html"><a href="can-you-classify-histopathological-data-at-home-reproducing-the-ara-cnn-models-data-and-performance-.html#introduction-9"><i class="fa fa-check"></i><b>4.2.2</b> Introduction</a></li>
+<li class="chapter" data-level="4.2.3" data-path="can-you-classify-histopathological-data-at-home-reproducing-the-ara-cnn-models-data-and-performance-.html"><a href="can-you-classify-histopathological-data-at-home-reproducing-the-ara-cnn-models-data-and-performance-.html#definition"><i class="fa fa-check"></i><b>4.2.3</b> Definition</a></li>
+<li class="chapter" data-level="4.2.4" data-path="can-you-classify-histopathological-data-at-home-reproducing-the-ara-cnn-models-data-and-performance-.html"><a href="can-you-classify-histopathological-data-at-home-reproducing-the-ara-cnn-models-data-and-performance-.html#methodology-4"><i class="fa fa-check"></i><b>4.2.4</b> Methodology</a></li>
+<li class="chapter" data-level="4.2.5" data-path="can-you-classify-histopathological-data-at-home-reproducing-the-ara-cnn-models-data-and-performance-.html"><a href="can-you-classify-histopathological-data-at-home-reproducing-the-ara-cnn-models-data-and-performance-.html#results-2"><i class="fa fa-check"></i><b>4.2.5</b> Results</a></li>
+<li class="chapter" data-level="4.2.6" data-path="can-you-classify-histopathological-data-at-home-reproducing-the-ara-cnn-models-data-and-performance-.html"><a href="can-you-classify-histopathological-data-at-home-reproducing-the-ara-cnn-models-data-and-performance-.html#summary-and-conclusions-4"><i class="fa fa-check"></i><b>4.2.6</b> Summary and conclusions</a></li>
+</ul></li>
+<li class="chapter" data-level="4.3" data-path="rethinking-the-u-net-architecture-for-multimodal-biomedical-image-segmentation.html"><a href="rethinking-the-u-net-architecture-for-multimodal-biomedical-image-segmentation.html"><i class="fa fa-check"></i><b>4.3</b> Rethinking the U-Net architecture for multimodal biomedical image segmentation</a>
+<ul>
+<li class="chapter" data-level="4.3.1" data-path="rethinking-the-u-net-architecture-for-multimodal-biomedical-image-segmentation.html"><a href="rethinking-the-u-net-architecture-for-multimodal-biomedical-image-segmentation.html#abstrac"><i class="fa fa-check"></i><b>4.3.1</b> Abstrac</a></li>
+<li class="chapter" data-level="4.3.2" data-path="rethinking-the-u-net-architecture-for-multimodal-biomedical-image-segmentation.html"><a href="rethinking-the-u-net-architecture-for-multimodal-biomedical-image-segmentation.html#what-reproducibility-is"><i class="fa fa-check"></i><b>4.3.2</b> What Reproducibility Is?</a></li>
+<li class="chapter" data-level="4.3.3" data-path="rethinking-the-u-net-architecture-for-multimodal-biomedical-image-segmentation.html"><a href="rethinking-the-u-net-architecture-for-multimodal-biomedical-image-segmentation.html#first-article-an-improvement-of-data-classification-using-random-multimodel-deep-learning-rmdl"><i class="fa fa-check"></i><b>4.3.3</b> First article (An Improvement of Data Classification Using Random Multimodel Deep Learning (RMDL) )</a></li>
+<li class="chapter" data-level="4.3.4" data-path="rethinking-the-u-net-architecture-for-multimodal-biomedical-image-segmentation.html"><a href="rethinking-the-u-net-architecture-for-multimodal-biomedical-image-segmentation.html#second-article-multiresunet-rethinking-the-u-net-architecture-for-multimodal-biomedical-image-segmentation"><i class="fa fa-check"></i><b>4.3.4</b> Second article (MultiResUNet : Rethinking the U-Net architecture for multimodal biomedical image segmentation)</a></li>
+<li class="chapter" data-level="4.3.5" data-path="rethinking-the-u-net-architecture-for-multimodal-biomedical-image-segmentation.html"><a href="rethinking-the-u-net-architecture-for-multimodal-biomedical-image-segmentation.html#conclusion-2"><i class="fa fa-check"></i><b>4.3.5</b> Conclusion</a></li>
+</ul></li>
+<li class="chapter" data-level="4.4" data-path="dl2-rmdl-unet.html"><a href="dl2-rmdl-unet.html"><i class="fa fa-check"></i><b>4.4</b> The reproducibility analysis of articles covering RMDL and UNet++ architectures churns</a>
+<ul>
+<li class="chapter" data-level="4.4.1" data-path="dl2-rmdl-unet.html"><a href="dl2-rmdl-unet.html#background"><i class="fa fa-check"></i><b>4.4.1</b> Background</a></li>
+<li class="chapter" data-level="4.4.2" data-path="dl2-rmdl-unet.html"><a href="dl2-rmdl-unet.html#random-multimodel-deep-learning-for-classification"><i class="fa fa-check"></i><b>4.4.2</b> Random Multimodel Deep Learning for Classification</a></li>
+<li class="chapter" data-level="4.4.3" data-path="dl2-rmdl-unet.html"><a href="dl2-rmdl-unet.html#a-nested-u-net-architecture-for-medical-image-segmentation"><i class="fa fa-check"></i><b>4.4.3</b> A Nested U-Net Architecture for Medical Image Segmentation</a></li>
+<li class="chapter" data-level="4.4.4" data-path="dl2-rmdl-unet.html"><a href="dl2-rmdl-unet.html#conclusions-1"><i class="fa fa-check"></i><b>4.4.4</b> Conclusions</a></li>
+</ul></li>
+<li class="chapter" data-level="4.5" data-path="can-you-trust-science-on-reproduction-in-deep-learning-.html"><a href="can-you-trust-science-on-reproduction-in-deep-learning-.html"><i class="fa fa-check"></i><b>4.5</b> Can you trust science? On Reproduction in Deep Learning.</a>
+<ul>
+<li class="chapter" data-level="4.5.1" data-path="can-you-trust-science-on-reproduction-in-deep-learning-.html"><a href="can-you-trust-science-on-reproduction-in-deep-learning-.html#abstract-9"><i class="fa fa-check"></i><b>4.5.1</b> Abstract</a></li>
+<li class="chapter" data-level="4.5.2" data-path="can-you-trust-science-on-reproduction-in-deep-learning-.html"><a href="can-you-trust-science-on-reproduction-in-deep-learning-.html#introduction-11"><i class="fa fa-check"></i><b>4.5.2</b> Introduction</a></li>
+<li class="chapter" data-level="4.5.3" data-path="can-you-trust-science-on-reproduction-in-deep-learning-.html"><a href="can-you-trust-science-on-reproduction-in-deep-learning-.html#methodology-5"><i class="fa fa-check"></i><b>4.5.3</b> Methodology</a></li>
+<li class="chapter" data-level="4.5.4" data-path="can-you-trust-science-on-reproduction-in-deep-learning-.html"><a href="can-you-trust-science-on-reproduction-in-deep-learning-.html#result"><i class="fa fa-check"></i><b>4.5.4</b> Result</a></li>
+<li class="chapter" data-level="4.5.5" data-path="can-you-trust-science-on-reproduction-in-deep-learning-.html"><a href="can-you-trust-science-on-reproduction-in-deep-learning-.html#discussion"><i class="fa fa-check"></i><b>4.5.5</b> Discussion</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="machine-learning-1.html"><a href="machine-learning-1.html"><i class="fa fa-check"></i><b>5</b> Machine Learning</a>
+<ul>
+<li class="chapter" data-level="5.1" data-path="validation-and-comparison-of-covid-19-mortality-prediction-models-on-multi-source-data.html"><a href="validation-and-comparison-of-covid-19-mortality-prediction-models-on-multi-source-data.html"><i class="fa fa-check"></i><b>5.1</b> Validation and comparison of COVID-19 mortality prediction models on multi-source data</a>
+<ul>
+<li class="chapter" data-level="5.1.1" data-path="validation-and-comparison-of-covid-19-mortality-prediction-models-on-multi-source-data.html"><a href="validation-and-comparison-of-covid-19-mortality-prediction-models-on-multi-source-data.html#abstract-10"><i class="fa fa-check"></i><b>5.1.1</b> Abstract</a></li>
+<li class="chapter" data-level="5.1.2" data-path="validation-and-comparison-of-covid-19-mortality-prediction-models-on-multi-source-data.html"><a href="validation-and-comparison-of-covid-19-mortality-prediction-models-on-multi-source-data.html#introduction-12"><i class="fa fa-check"></i><b>5.1.2</b> Introduction</a></li>
+<li class="chapter" data-level="5.1.3" data-path="validation-and-comparison-of-covid-19-mortality-prediction-models-on-multi-source-data.html"><a href="validation-and-comparison-of-covid-19-mortality-prediction-models-on-multi-source-data.html#data-description-1"><i class="fa fa-check"></i><b>5.1.3</b> Data description</a></li>
+<li class="chapter" data-level="5.1.4" data-path="validation-and-comparison-of-covid-19-mortality-prediction-models-on-multi-source-data.html"><a href="validation-and-comparison-of-covid-19-mortality-prediction-models-on-multi-source-data.html#comparison-of-the-models"><i class="fa fa-check"></i><b>5.1.4</b> Comparison of the models</a></li>
+<li class="chapter" data-level="5.1.5" data-path="validation-and-comparison-of-covid-19-mortality-prediction-models-on-multi-source-data.html"><a href="validation-and-comparison-of-covid-19-mortality-prediction-models-on-multi-source-data.html#conclusions-2"><i class="fa fa-check"></i><b>5.1.5</b> Conclusions</a></li>
+</ul></li>
+<li class="chapter" data-level="5.2" data-path="one-model-to-fit-them-all-covid-19-survival-prediction-using-multinational-data.html"><a href="one-model-to-fit-them-all-covid-19-survival-prediction-using-multinational-data.html"><i class="fa fa-check"></i><b>5.2</b> One model to fit them all: COVID-19 survival prediction using multinational data</a>
+<ul>
+<li class="chapter" data-level="5.2.1" data-path="one-model-to-fit-them-all-covid-19-survival-prediction-using-multinational-data.html"><a href="one-model-to-fit-them-all-covid-19-survival-prediction-using-multinational-data.html#abstract-11"><i class="fa fa-check"></i><b>5.2.1</b> Abstract</a></li>
+<li class="chapter" data-level="5.2.2" data-path="one-model-to-fit-them-all-covid-19-survival-prediction-using-multinational-data.html"><a href="one-model-to-fit-them-all-covid-19-survival-prediction-using-multinational-data.html#introduction-13"><i class="fa fa-check"></i><b>5.2.2</b> Introduction</a></li>
+<li class="chapter" data-level="5.2.3" data-path="one-model-to-fit-them-all-covid-19-survival-prediction-using-multinational-data.html"><a href="one-model-to-fit-them-all-covid-19-survival-prediction-using-multinational-data.html#data-sources"><i class="fa fa-check"></i><b>5.2.3</b> Data sources</a></li>
+<li class="chapter" data-level="5.2.4" data-path="one-model-to-fit-them-all-covid-19-survival-prediction-using-multinational-data.html"><a href="one-model-to-fit-them-all-covid-19-survival-prediction-using-multinational-data.html#model-building"><i class="fa fa-check"></i><b>5.2.4</b> Model building</a></li>
+<li class="chapter" data-level="5.2.5" data-path="one-model-to-fit-them-all-covid-19-survival-prediction-using-multinational-data.html"><a href="one-model-to-fit-them-all-covid-19-survival-prediction-using-multinational-data.html#discussion-1"><i class="fa fa-check"></i><b>5.2.5</b> Discussion</a></li>
+<li class="chapter" data-level="5.2.6" data-path="one-model-to-fit-them-all-covid-19-survival-prediction-using-multinational-data.html"><a href="one-model-to-fit-them-all-covid-19-survival-prediction-using-multinational-data.html#summary-4"><i class="fa fa-check"></i><b>5.2.6</b> Summary</a></li>
+</ul></li>
+<li class="chapter" data-level="5.3" data-path="transparent-machine-learning-to-support-predicting-covid-19-infection-risk-based-on-chronic-diseases.html"><a href="transparent-machine-learning-to-support-predicting-covid-19-infection-risk-based-on-chronic-diseases.html"><i class="fa fa-check"></i><b>5.3</b> Transparent machine learning to support predicting COVID-19 infection risk based on chronic diseases</a>
+<ul>
+<li class="chapter" data-level="5.3.1" data-path="transparent-machine-learning-to-support-predicting-covid-19-infection-risk-based-on-chronic-diseases.html"><a href="transparent-machine-learning-to-support-predicting-covid-19-infection-risk-based-on-chronic-diseases.html#abstract-12"><i class="fa fa-check"></i><b>5.3.1</b> Abstract</a></li>
+<li class="chapter" data-level="5.3.2" data-path="transparent-machine-learning-to-support-predicting-covid-19-infection-risk-based-on-chronic-diseases.html"><a href="transparent-machine-learning-to-support-predicting-covid-19-infection-risk-based-on-chronic-diseases.html#introduction-14"><i class="fa fa-check"></i><b>5.3.2</b> Introduction</a></li>
+<li class="chapter" data-level="5.3.3" data-path="transparent-machine-learning-to-support-predicting-covid-19-infection-risk-based-on-chronic-diseases.html"><a href="transparent-machine-learning-to-support-predicting-covid-19-infection-risk-based-on-chronic-diseases.html#flaws"><i class="fa fa-check"></i><b>5.3.3</b> Flaws</a></li>
+<li class="chapter" data-level="5.3.4" data-path="transparent-machine-learning-to-support-predicting-covid-19-infection-risk-based-on-chronic-diseases.html"><a href="transparent-machine-learning-to-support-predicting-covid-19-infection-risk-based-on-chronic-diseases.html#improvements"><i class="fa fa-check"></i><b>5.3.4</b> Improvements</a></li>
+<li class="chapter" data-level="5.3.5" data-path="transparent-machine-learning-to-support-predicting-covid-19-infection-risk-based-on-chronic-diseases.html"><a href="transparent-machine-learning-to-support-predicting-covid-19-infection-risk-based-on-chronic-diseases.html#transparent-machine-learning"><i class="fa fa-check"></i><b>5.3.5</b> Transparent Machine Learning</a></li>
+<li class="chapter" data-level="5.3.6" data-path="transparent-machine-learning-to-support-predicting-covid-19-infection-risk-based-on-chronic-diseases.html"><a href="transparent-machine-learning-to-support-predicting-covid-19-infection-risk-based-on-chronic-diseases.html#application"><i class="fa fa-check"></i><b>5.3.6</b> Application</a></li>
+<li class="chapter" data-level="5.3.7" data-path="transparent-machine-learning-to-support-predicting-covid-19-infection-risk-based-on-chronic-diseases.html"><a href="transparent-machine-learning-to-support-predicting-covid-19-infection-risk-based-on-chronic-diseases.html#conclusions-3"><i class="fa fa-check"></i><b>5.3.7</b> Conclusions</a></li>
+</ul></li>
+<li class="chapter" data-level="5.4" data-path="comparison-of-neural-networks-and-tree-based-models-in-the-clinical-prediction-of-the-course-of-covid-19-illness.html"><a href="comparison-of-neural-networks-and-tree-based-models-in-the-clinical-prediction-of-the-course-of-covid-19-illness.html"><i class="fa fa-check"></i><b>5.4</b> Comparison of neural networks and tree-based models in the clinical prediction of the course of COVID-19 illness</a>
+<ul>
+<li class="chapter" data-level="5.4.1" data-path="comparison-of-neural-networks-and-tree-based-models-in-the-clinical-prediction-of-the-course-of-covid-19-illness.html"><a href="comparison-of-neural-networks-and-tree-based-models-in-the-clinical-prediction-of-the-course-of-covid-19-illness.html#abstract-13"><i class="fa fa-check"></i><b>5.4.1</b> Abstract</a></li>
+<li class="chapter" data-level="5.4.2" data-path="comparison-of-neural-networks-and-tree-based-models-in-the-clinical-prediction-of-the-course-of-covid-19-illness.html"><a href="comparison-of-neural-networks-and-tree-based-models-in-the-clinical-prediction-of-the-course-of-covid-19-illness.html#introduction-15"><i class="fa fa-check"></i><b>5.4.2</b> Introduction</a></li>
+<li class="chapter" data-level="5.4.3" data-path="comparison-of-neural-networks-and-tree-based-models-in-the-clinical-prediction-of-the-course-of-covid-19-illness.html"><a href="comparison-of-neural-networks-and-tree-based-models-in-the-clinical-prediction-of-the-course-of-covid-19-illness.html#methods-1"><i class="fa fa-check"></i><b>5.4.3</b> Methods</a></li>
+<li class="chapter" data-level="5.4.4" data-path="comparison-of-neural-networks-and-tree-based-models-in-the-clinical-prediction-of-the-course-of-covid-19-illness.html"><a href="comparison-of-neural-networks-and-tree-based-models-in-the-clinical-prediction-of-the-course-of-covid-19-illness.html#results-6"><i class="fa fa-check"></i><b>5.4.4</b> Results</a></li>
+<li class="chapter" data-level="5.4.5" data-path="comparison-of-neural-networks-and-tree-based-models-in-the-clinical-prediction-of-the-course-of-covid-19-illness.html"><a href="comparison-of-neural-networks-and-tree-based-models-in-the-clinical-prediction-of-the-course-of-covid-19-illness.html#discussion-2"><i class="fa fa-check"></i><b>5.4.5</b> Discussion</a></li>
+<li class="chapter" data-level="5.4.6" data-path="comparison-of-neural-networks-and-tree-based-models-in-the-clinical-prediction-of-the-course-of-covid-19-illness.html"><a href="comparison-of-neural-networks-and-tree-based-models-in-the-clinical-prediction-of-the-course-of-covid-19-illness.html#source-code"><i class="fa fa-check"></i><b>5.4.6</b> Source code</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="rashomonml.html"><a href="rashomonml.html"><i class="fa fa-check"></i><b>6</b> RashomonML</a>
+<ul>
+<li class="chapter" data-level="6.1" data-path="topic.html"><a href="topic.html"><i class="fa fa-check"></i><b>6.1</b> Topic</a>
+<ul>
+<li class="chapter" data-level="6.1.1" data-path="topic.html"><a href="topic.html#abstract-14"><i class="fa fa-check"></i><b>6.1.1</b> Abstract</a></li>
+<li class="chapter" data-level="6.1.2" data-path="topic.html"><a href="topic.html#literature-review"><i class="fa fa-check"></i><b>6.1.2</b> Literature review</a></li>
+<li class="chapter" data-level="6.1.3" data-path="topic.html"><a href="topic.html#results-7"><i class="fa fa-check"></i><b>6.1.3</b> Results</a></li>
+<li class="chapter" data-level="6.1.4" data-path="topic.html"><a href="topic.html#best-models"><i class="fa fa-check"></i><b>6.1.4</b> Best models</a></li>
+</ul></li>
+<li class="chapter" data-level="6.2" data-path="title.html"><a href="title.html"><i class="fa fa-check"></i><b>6.2</b> Title</a>
+<ul>
+<li class="chapter" data-level="6.2.1" data-path="title.html"><a href="title.html#literature-review-1"><i class="fa fa-check"></i><b>6.2.1</b> Literature review</a></li>
+</ul></li>
+<li class="chapter" data-level="6.3" data-path="rashomon-ml-with-addition-of-dimensional-reduction.html"><a href="rashomon-ml-with-addition-of-dimensional-reduction.html"><i class="fa fa-check"></i><b>6.3</b> Rashomon ML with addition of dimensional reduction</a>
+<ul>
+<li class="chapter" data-level="6.3.1" data-path="rashomon-ml-with-addition-of-dimensional-reduction.html"><a href="rashomon-ml-with-addition-of-dimensional-reduction.html#abstract-15"><i class="fa fa-check"></i><b>6.3.1</b> Abstract</a></li>
+<li class="chapter" data-level="6.3.2" data-path="rashomon-ml-with-addition-of-dimensional-reduction.html"><a href="rashomon-ml-with-addition-of-dimensional-reduction.html#introduction-and-related-works"><i class="fa fa-check"></i><b>6.3.2</b> Introduction and related works</a></li>
+<li class="chapter" data-level="6.3.3" data-path="rashomon-ml-with-addition-of-dimensional-reduction.html"><a href="rashomon-ml-with-addition-of-dimensional-reduction.html#methodology-6"><i class="fa fa-check"></i><b>6.3.3</b> Methodology</a></li>
+<li class="chapter" data-level="6.3.4" data-path="rashomon-ml-with-addition-of-dimensional-reduction.html"><a href="rashomon-ml-with-addition-of-dimensional-reduction.html#results-8"><i class="fa fa-check"></i><b>6.3.4</b> Results</a></li>
+<li class="chapter" data-level="6.3.5" data-path="rashomon-ml-with-addition-of-dimensional-reduction.html"><a href="rashomon-ml-with-addition-of-dimensional-reduction.html#summary-and-conclusions-5"><i class="fa fa-check"></i><b>6.3.5</b> Summary and conclusions</a></li>
+</ul></li>
+<li class="chapter" data-level="6.4" data-path="roshomon-sets-on-death-prediction-xgb-models-using-mimic-iii-database.html"><a href="roshomon-sets-on-death-prediction-xgb-models-using-mimic-iii-database.html"><i class="fa fa-check"></i><b>6.4</b> Roshomon sets on death prediction XGB models using MIMIC-III database</a>
+<ul>
+<li class="chapter" data-level="6.4.1" data-path="roshomon-sets-on-death-prediction-xgb-models-using-mimic-iii-database.html"><a href="roshomon-sets-on-death-prediction-xgb-models-using-mimic-iii-database.html#an-initial-literature-review"><i class="fa fa-check"></i><b>6.4.1</b> An initial literature review</a></li>
+</ul></li>
+<li class="chapter" data-level="6.5" data-path="rashomon-sets-of-in-hospital-mortality-prediction-random-forest-models.html"><a href="rashomon-sets-of-in-hospital-mortality-prediction-random-forest-models.html"><i class="fa fa-check"></i><b>6.5</b> Rashomon sets of in-hospital mortality prediction random forest models</a>
+<ul>
+<li class="chapter" data-level="6.5.1" data-path="rashomon-sets-of-in-hospital-mortality-prediction-random-forest-models.html"><a href="rashomon-sets-of-in-hospital-mortality-prediction-random-forest-models.html#abstract-16"><i class="fa fa-check"></i><b>6.5.1</b> Abstract</a></li>
+<li class="chapter" data-level="6.5.2" data-path="rashomon-sets-of-in-hospital-mortality-prediction-random-forest-models.html"><a href="rashomon-sets-of-in-hospital-mortality-prediction-random-forest-models.html#introduction-16"><i class="fa fa-check"></i><b>6.5.2</b> Introduction</a></li>
+<li class="chapter" data-level="6.5.3" data-path="rashomon-sets-of-in-hospital-mortality-prediction-random-forest-models.html"><a href="rashomon-sets-of-in-hospital-mortality-prediction-random-forest-models.html#related-work-4"><i class="fa fa-check"></i><b>6.5.3</b> Related work</a></li>
+<li class="chapter" data-level="6.5.4" data-path="rashomon-sets-of-in-hospital-mortality-prediction-random-forest-models.html"><a href="rashomon-sets-of-in-hospital-mortality-prediction-random-forest-models.html#mimic-iii-dataset"><i class="fa fa-check"></i><b>6.5.4</b> MIMIC-III Dataset</a></li>
+<li class="chapter" data-level="6.5.5" data-path="rashomon-sets-of-in-hospital-mortality-prediction-random-forest-models.html"><a href="rashomon-sets-of-in-hospital-mortality-prediction-random-forest-models.html#rashomon-sets"><i class="fa fa-check"></i><b>6.5.5</b> Rashomon Sets</a></li>
+<li class="chapter" data-level="6.5.6" data-path="rashomon-sets-of-in-hospital-mortality-prediction-random-forest-models.html"><a href="rashomon-sets-of-in-hospital-mortality-prediction-random-forest-models.html#results-9"><i class="fa fa-check"></i><b>6.5.6</b> Results</a></li>
+<li class="chapter" data-level="6.5.7" data-path="rashomon-sets-of-in-hospital-mortality-prediction-random-forest-models.html"><a href="rashomon-sets-of-in-hospital-mortality-prediction-random-forest-models.html#conclusion-3"><i class="fa fa-check"></i><b>6.5.7</b> Conclusion</a></li>
+</ul></li>
+</ul></li>
+<li class="divider"></li>
+<li><a href="https://bookdown.org" target="_blank">Published with bookdown</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Case Studies</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="coronary-artery-disease-is-it-worth-trusting-ml-when-it-comes-to-our-health" class="section level2" number="1.3">
+<h2><span class="header-section-number">1.3</span> Coronary artery disease: Is it worth trusting ML when it comes to our health?</h2>
+<p><em>Authors: Paulina Przybyłek, Renata Rólkiewicz, Patryk Słowakiewicz (Warsaw University of Technology)</em></p>
+<div id="abstract-1" class="section level3" number="1.3.1">
+<h3><span class="header-section-number">1.3.1</span> Abstract</h3>
+<p>Coronary artery disease is a dangerous heart sickness and the number of people suffering from it is significant around the world. In medicine research this disease, artificial intelligence are used more and more often. We decided to create a machine learning model which gonna try to predict the danger of coronary artery disease base on the results of few medical examinations. An important part of this paper is an attempt to explain predictions made by the model, using explainable artificial intelligence methods, and compare it with the medical approach. We will try to answer the question of whether it is worth trusting classification algorithms when making a diagnosis, or maybe in this case only doctors opinion has to be used?</p>
+</div>
+<div id="introduction-and-motivation-1" class="section level3" number="1.3.2">
+<h3><span class="header-section-number">1.3.2</span> Introduction and Motivation</h3>
+<p>The heart is an organ on which the life and proper functioning of all other organs depend. For this reason, everyone should keep their heart healthy. However, it is not easy as we are not always aware of the impact of our actions on future health. How many times have we heard or witnessed a heart attack from someone close to us? Coronary artery disease (CAD) is very often behind the infarction. CAD, also known as ischemic heart disease - is a disease syndrome characterized by insufficient blood supply (and thus insufficient oxygen supply) to the heart, caused by a significant narrowing of the coronary arteries that nourish the heart muscle. CAD is the most common cardiovascular disease in developed countries, and heart attacks and sudden cardiac death are the most common causes of death. In Poland, it affects over one and a half million people and is the cause of about 20% of all deaths. Hence, it is important to detect this disease in a patient early and implement appropriate treatment before it is too late.<br />
+More and more often when looking for a solution, we reach to artificial intelligence (AI) and machine learning (ML). Although in medicine AI has been used for decades, it still raises many doubts and is often criticized because of the lack of trustworthiness and questionable quality of the results. In medicine, human experts must be able to retrace the decision-making process of the machine. This is why it is crucial for models to be transparent, interpretable, and explainable. Unfortunately, successful models are often black-box ones. Explaining them is not so easy, but this is what explainable artificial intelligence (XAI) was made for.<br />
+Building a model to predict coronary artery disease based on test results and medical history to be used to detect this disease in new patients could reduce the number of serious medical complications. However, trusting such a model completely in terms of health and even life is unconvincing. After all, you must put your life in the hands of the machine. The purpose of this article is to check to what extent and whether it is worth trusting ML algorithms when making a diagnosis of suffering from CAD. To answer this, we used XAI methods to understand models built on a set of patients with or without CAD. We checked the relationships between data science and the medical approach and saw which approach is better.</p>
+</div>
+<div id="related-work-1" class="section level3" number="1.3.3">
+<h3><span class="header-section-number">1.3.3</span> Related Work</h3>
+<p>Usage of AI in medicine and the importance of XAI methods are widely researched. Countless approaches, methods, models, or measures are considered and are discussed ways how to build explainable AI systems for the medical domain <span class="citation">(<a href="#ref-1-3-xai-medicine" role="doc-biblioref">Holzinger et al. 2017</a>)</span>. In medicine designing an algorithm that can automatically learn without any human impact is impossible. The integration of the knowledge of a domain expert can often be indispensable. That is why interactive machine learning (iML), human-in-the-loop approach <span class="citation">(<a href="#ref-1-3-xai-iML1" role="doc-biblioref">Holzinger 2016</a>)</span> and the extension of that - doctor-in-the-loop <span class="citation">(<a href="#ref-1-3-xai-iML2" role="doc-biblioref">Kieseberg et al. 2015</a>)</span> are considered.<br />
+However, most research still focuses on classic ML solutions like supervised learning. One of the fields in medicine in which machine learning is frequently used in cardiology. AI is being increasingly applied in cardiovascular medicine for identifying new genotypes and phenotypes, enabling cost-effectiveness, and importantly, risk stratification <span class="citation">(<a href="#ref-1-3-xai-cardiology" role="doc-biblioref">Krittanawong et al. 2017</a>)</span>. Often those are deep learning models that are difficult to interpret, so XAI methods are needed <span class="citation">(<a href="#ref-1-3-xai-carxai1" role="doc-biblioref">Khedkar et al. 2019</a>)</span> <span class="citation">(<a href="#ref-1-3-xai-carxai2" role="doc-biblioref">Kaladharan et al. 2020</a>)</span>. On the other hand, using black-box models and XAI methods in high-stakes decisions like those in medicine have also opponents that prefer design models that are inherently interpretable <span class="citation">(<a href="#ref-1-3-xai-opponent" role="doc-biblioref">Rudin 2019</a>)</span>. There are also approaches that believe that XAI is not enough and to reach the next level in explainable medicine we need causability that encompasses measurements for the quality of explanations <span class="citation">(<a href="#ref-1-3-xai-causability1" role="doc-biblioref">Holzinger et al. 2019</a>)</span> <span class="citation">(<a href="#ref-1-3-xai-causability2" role="doc-biblioref">Holzinger 2021</a>)</span>. The variety and abundance of articles in the field of usage AI in medicine confirm our belief that this is a current and needed topic.</p>
+</div>
+<div id="methodology-2" class="section level3" number="1.3.4">
+<h3><span class="header-section-number">1.3.4</span> Methodology</h3>
+<p>In our article, we analyze a dataset about CAD with XAI methods. We use global and local explanations and describe results using our ML and medical knowledge. This section of the article contains information about the dataset, data preparation for an experiment, ML algorithms, and using XAI methods. Also, at the end of the section, the workflow of our experiment is briefly presented.</p>
+<hr />
+<div id="dataset-1" class="section level4" number="1.3.4.1">
+<h4><span class="header-section-number">1.3.4.1</span> <em>Dataset</em></h4>
+<p>In the experiment, we used a heart disease dataset from UC Irvine Machine Learning Repository <span class="citation">(<a href="#ref-1-3-uci" role="doc-biblioref">Dua and Graff 2017</a>)</span>. The dataset was originated in 1988 and designed for the classification task <span class="citation">(<a href="#ref-1-3-detrano" role="doc-biblioref">Detrano et al. 1989</a>)</span>. It contains information about 303 of the patients from Cleveland hospital and 14 attributes describing theirs. Details of this data collections are described by <span class="citation"><a href="#ref-1-3-detrano2" role="doc-biblioref">Detrano et al.</a> (<a href="#ref-1-3-detrano2" role="doc-biblioref">1984</a>)</span>. These attributes are both categorical and numeric, and the “goal” field refers to the presence of heart disease in the patient.</p>
+<p>Before we made our explanations, we discussed the attributes of this dataset with the cardiologist and prepared a description of them to better understand our data. The information about these attributes are given below:</p>
+<ul>
+<li><strong>age</strong> - patient’s age in years</li>
+<li><strong>sex</strong> - gender of the patient:
+<ul>
+<li>male</li>
+<li>female</li>
+</ul></li>
+<li><strong>cp</strong> - chest pain type:
+<ul>
+<li>typical angina - pain indicating CAD</li>
+<li>atypical angina</li>
+<li>non-anginal pain</li>
+<li>asymptomatic - no pain</li>
+</ul></li>
+<li><strong>trestbps</strong> - resting blood pressure (in mm Hg on admission to the hospital)</li>
+<li><strong>chol</strong> - serum cholestoral in mg/dl</li>
+<li><strong>fbs</strong> - fasting blood sugar &gt; 120 mg/dl:
+<ul>
+<li>true - diabetes</li>
+<li>false</li>
+</ul></li>
+<li><strong>restecg</strong> - resting electrocardiographic results:
+<ul>
+<li>normal</li>
+<li>having ST-T wave abnormality (T wave inversions and/or ST elevation or depression of &gt; 0.05 mV) - changes indicating ischemia of the heart muscle (repolarization period)</li>
+<li>showing probable or definite left ventricular hypertrophy by Estes’ criteria - possible hypertrophy of the heart muscle</li>
+</ul></li>
+<li><strong>thalach</strong> - maximum heart rate achieved during exercise testing</li>
+<li><strong>exang</strong> - exercise-induced angina:
+<ul>
+<li>yes</li>
+<li>no</li>
+</ul></li>
+<li><strong>oldpeak</strong> - ST depression induced by exercise relative to rest</li>
+<li><strong>slope</strong> - the slope of the peak exercise ST segment:
+<ul>
+<li>upsloping</li>
+<li>flat</li>
+<li>downsloping</li>
+</ul></li>
+<li><strong>ca</strong> - calcification, number of major vessels (0-3) colored by flourosopy</li>
+<li><strong>thal</strong> - MPS, myocardial perfusion scintigraphy using thallium 201, two tests - rest and exercise:
+<ul>
+<li>normal</li>
+<li>fixed defect - permanent defect, present in both images (irreversible change, e.g., post-infarction scar)</li>
+<li>reversable defect - post-exercise loss with the redistribution, only in the exercise image, reversible ischemia (risk of ischemic heart disease)</li>
+</ul></li>
+<li><strong>target</strong> - the goal of this dataset (the predicted attribute), diagnosis of heart disease (angiographic disease status):
+<ul>
+<li>&lt; 50% diameter narrowing - patient with CAD</li>
+<li>&gt; 50% diameter narrowing - patient without CAD, but he can have another heart disease</li>
+</ul></li>
+</ul>
+<p>The cardiologist paid special attention to some variables and their influence on the incidence of coronary artery disease. These variables include <em>cp</em>, <em>thal</em>, <em>ca</em>, <em>oldpeak</em>, <em>age</em>, and <em>sex</em>. In medicine, typical angina (<em>cp</em>), fixed defect (<em>thal</em>), high <em>ca</em> and <em>oldpeak</em> values, being male, and having a certain age make the patient more likely to suffer from coronary heart disease. Additionally, doctors use a pre-test probability of CAD (PTP) <span class="citation">(<a href="#ref-1-3-ptp" role="doc-biblioref">Genders et al. 2011</a>)</span> to estimate the likelihood of coronary heart disease based on the patient’s age, sex, and chest pain type. If PTP is &lt;15%, coronary artery disease is unlikely, if &gt;85% certain. There is no point in performing diagnostics in these ranges. The group between 15-65% may have a non-invasive test for CAD diagnosis, and the 65-84% group should have a functional diagnosis performed. The PTP table used by cardiologists was presented in Figure <a href="coronary-artery-disease-is-it-worth-trusting-ml-when-it-comes-to-our-health.html#fig:1-3-ptp-test">1.48</a>.</p>
+<div class="figure" style="text-align: center"><span id="fig:1-3-ptp-test"></span>
+<img src="images/1-3-ptp.png" alt="Clinical pre-test probabilities in patients with stable chest pain symptomps" width="600" />
+<p class="caption">
+Figure 1.48: Clinical pre-test probabilities in patients with stable chest pain symptomps
+</p>
+</div>
+<p>When analyzing the dataset, we noticed that some variables had distributions that quite clearly separate healthy and sick patients. The variables that caught our most attention were also mentioned by the cardiologist as factors influencing the presence or absence of coronary artery disease. Figure <a href="coronary-artery-disease-is-it-worth-trusting-ml-when-it-comes-to-our-health.html#fig:1-3-distributions">1.49</a> shows the distributions of the variables <em>ca</em>, <em>oldpeak</em>, <em>thal</em>, <em>cp</em>, <em>age</em>, and <em>sex</em>. The legend specifies which color corresponds to patients with and without CAD.</p>
+<div class="figure" style="text-align: center"><span id="fig:1-3-distributions"></span>
+<img src="images/1-3-dist.png" alt="Clinical pre-test probabilities in patients with stable chest pain symptomps" width="800" />
+<p class="caption">
+Figure 1.49: Clinical pre-test probabilities in patients with stable chest pain symptomps
+</p>
+</div>
+<p>The dependencies described by the cardiologist were shown on the plots - namely, for higher <em>ca</em> or <em>oldpeak</em> values or fixed defect (<em>thal</em>) or typical angina pain in the chest or age of around 60 or having male sex, the probability of CAD increases. At the time of this analysis, it was puzzling for us whether the explanations of the model and the data would capture this.</p>
+</div>
+<div id="preparation-of-the-dataset-for-an-experiment" class="section level4" number="1.3.4.2">
+<h4><span class="header-section-number">1.3.4.2</span> <em>Preparation of the dataset for an experiment</em></h4>
+<p>Before modeling, we properly prepared the dataset. The original set contained five target categories, which had to be divided respectively - CAD (values 1,2,3,4) and no CAD (value 0). Categorical attributes that had only two values were coded as 0 and 1, while if they had it more, we used one-hot encoding to encode them.</p>
+<p>Some of the data had missing values. For every such case, we imputed the missing values with a mode.</p>
+<p>After consulting with a cardiologist, we decided to change the one attribute because we think it contained errors after being processed before it was uploaded to the UCI website. We swapped the values in the <em>cp</em> variable between typical angina and asymptotic. In addition, we combined the categories denoting heart problems in <em>restecg</em> due to the low number of occurrences of one of the categories.</p>
+</div>
+<div id="classification-algorithms" class="section level4" number="1.3.4.3">
+<h4><span class="header-section-number">1.3.4.3</span> <em>Classification algorithms</em></h4>
+<p>As part of the search for the optimal model, we tested many different algorithms using hyperparameter tuning. All models were based on classifiers from the sklearn <span class="citation">(<a href="#ref-1-3-sklearn" role="doc-biblioref">Fabian Pedregosa et al. 2011</a>)</span> package, with the accuracy being the summary metric that was used to select the optimal model. We chose accuracy because it measures how a good model is incorrectly predicting both positive and negative cases. Ultimately, we selected four models that gave the best results on the test dataset. Selected classification algorithms are both glass-boxes and black-boxes, which allowed us to compare the XAI approach to different types of models. They are listed below.</p>
+<ol style="list-style-type: decimal">
+<li>Random Forest - very flexible, robust, and popular algorithm, with no assumptions about data. Multiple classification trees trained on bagged data. Selected hyperparameters in the model: max_depth=7, min_samples_split=20, n_estimators=1000.</li>
+<li>C-Support Vector Classification (SVC) - nonparametric clustering algorithm that does not make any assumption on the number or shape of the clusters in the data. Selected hyperparameters in the model: C=0.5, probability=True.</li>
+<li>k-Nearest Neighbors (KNN) - assumes that similar observations are close to each other in feature space, assumes a very local impact of features. Selected hyperparameters in the model: n_neighbors=17.</li>
+<li>Naive Bayes - nonlinear model with the assumption that all features are independent of each other. In the model, all hyperparameters were a default.</li>
+</ol>
+<p>In the case of SVC and KNN, the data from the dataset was standardized. For reproducible results, a seed equal to one was set (the random_state hyperparameter).</p>
+<p>On selected trained models, we used three other metrics besides accuracy to measures the quality of models: precision, recall, and area under the ROC curve. Precision quantifies the number of positive class predictions that belong to the positive class, while recall (also known as sensitivity) quantifies the number of positive class predictions made out of all positive examples in the dataset. The area under ROC curve (AUC) measures the area under a plot of sensitivity against specificity (measures the proportion of negatives that are correctly identified). The results of these measures on the test dataset are given in Table <a href="coronary-artery-disease-is-it-worth-trusting-ml-when-it-comes-to-our-health.html#tab:1-3-measure">1.1</a>.</p>
+<table class="table" style="margin-left: auto; margin-right: auto;">
+<caption>
+<span id="tab:1-3-measure">Table 1.1: </span>The results of measures on the test dataset for all classification algorithms
+</caption>
+<thead>
+<tr>
+<th style="text-align:left;">
+Model name
+</th>
+<th style="text-align:right;">
+Accuracy
+</th>
+<th style="text-align:right;">
+Precision
+</th>
+<th style="text-align:right;">
+Recall
+</th>
+<th style="text-align:right;">
+AUC
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+Random Forest
+</td>
+<td style="text-align:right;">
+0.918
+</td>
+<td style="text-align:right;">
+0.897
+</td>
+<td style="text-align:right;">
+0.929
+</td>
+<td style="text-align:right;">
+0.919
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+SVC
+</td>
+<td style="text-align:right;">
+0.902
+</td>
+<td style="text-align:right;">
+0.893
+</td>
+<td style="text-align:right;">
+0.893
+</td>
+<td style="text-align:right;">
+0.901
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+KNN
+</td>
+<td style="text-align:right;">
+0.869
+</td>
+<td style="text-align:right;">
+0.917
+</td>
+<td style="text-align:right;">
+0.786
+</td>
+<td style="text-align:right;">
+0.863
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Naive Bayes
+</td>
+<td style="text-align:right;">
+0.869
+</td>
+<td style="text-align:right;">
+0.857
+</td>
+<td style="text-align:right;">
+0.857
+</td>
+<td style="text-align:right;">
+0.868
+</td>
+</tr>
+</tbody>
+</table>
+<p>The results achieved by the models are good. The glass-box models achieved higher values everywhere. They will be good examples to compare the explanations on the black-box models, which also have high scores on the test dataset.</p>
+</div>
+<div id="explainable-artificial-intelligence" class="section level4" number="1.3.4.4">
+<h4><span class="header-section-number">1.3.4.4</span> <em>eXplainable Artificial Intelligence</em></h4>
+<p>We used local and global explanations to check the model predictions. For a good understanding of the data, we looked at consider entire models first and then single predictions. All of the XAI methods we used are from the dalex <span class="citation">(<a href="#ref-dalex" role="doc-biblioref">Baniecki et al. 2020a</a>)</span> package.</p>
+<p>Global explanations methods that we used:</p>
+<ol style="list-style-type: decimal">
+<li>Permutation-based variable-importance <span class="citation">(<a href="#ref-xai1-vip" role="doc-biblioref">Fisher et al. 2019a</a>)</span>.</li>
+<li>Partial Dependence Profiles (PDP) <span class="citation">(<a href="#ref-xai1-pdp" role="doc-biblioref">Friedman 2000</a>)</span>.</li>
+<li>Aggregated Profiles (ALE) <span class="citation">(<a href="#ref-xai1-ale" role="doc-biblioref">Apley and Zhu 2020</a>)</span>.</li>
+</ol>
+<p>And local explanations methods:</p>
+<ol style="list-style-type: decimal">
+<li>Break Down <span class="citation">(<a href="#ref-xai1-breakdown" role="doc-biblioref">Staniak and Biecek 2018</a>)</span>.</li>
+<li>Shapley values <span class="citation">(<a href="#ref-xai1-shapleyvalues" role="doc-biblioref">Scott M. Lundberg and Lee 2017</a>)</span>.</li>
+<li>Local Interpretable Model-agnostic Explanations (LIME) <span class="citation">(<a href="#ref-xai1-lime" role="doc-biblioref">Ribeiro et al. 2016a</a>)</span>.</li>
+<li>Ceteris Paribus Profiles (CP) <span class="citation">(<a href="#ref-xai1-ice" role="doc-biblioref">Goldstein et al. 2014</a>)</span>.</li>
+</ol>
+<p>For reproducible results, a seed equal to zero was set (the random_state hyperparameter).</p>
+</div>
+<div id="experiment" class="section level4" number="1.3.4.5">
+<h4><span class="header-section-number">1.3.4.5</span> <em>Experiment</em></h4>
+<p>To sum up, in the experiment we used 4 different classification algorithms and 7 different XAI methods to understand the predictions on the dataset. Random Forest was adopted as the main algorithm and other models were used to compare the XAI results. We decided so because we wanted to take the black-box model for the XAI so that the use of explanations would make sense. We rejected the SVC model because it gives a disproportionately high probability of disease at the extremes of some values.</p>
+<p>The procedure followed to understanding data and models with explanations methods was as follows:</p>
+<ol style="list-style-type: decimal">
+<li>We have coded and processed the variables as described in the <strong>“Preparation of the dataset for an experiment”</strong> section.</li>
+<li>The dataset was divided into train and test subsets with a split ratio of 80/20. A seed equal to zero was set.</li>
+<li>We imputed values separately in train and test datasets.</li>
+<li>All imputed train and test datasets were used in four classification algorithms. The classifiers were built using a transformed train dataset. And measures of their quality were checked using a test dataset.</li>
+<li>We used learned models and a train dataset to apply the XAI methods.</li>
+</ol>
+<p>Then we described the explanations, trying to back them up with medical knowledge to have a benchmark against the results obtained.</p>
+</div>
+</div>
+<div id="results-1" class="section level3" number="1.3.5">
+<h3><span class="header-section-number">1.3.5</span> Results</h3>
+<p>Our motivation in using explanation methods was to understand which variables influence our model prediction the most and how they change along with the values of each variable.<br />
+Our model is expected to predict CAD disease. It is crucial to comprehend the model’s decisions. What’s more, we would like our model to detect the same dependencies as doctors use to diagnose CAD.</p>
+<hr />
+<div id="global-explanations-2" class="section level4" number="1.3.5.1">
+<h4><span class="header-section-number">1.3.5.1</span> <em>Global explanations</em></h4>
+<p>Global explanation methods gave us the overall view into the logic of our models, the importance of variables, and how they influence predictions.</p>
+<p>The first global method we used, was Permutation-based variable importance (presented in Figure <a href="coronary-artery-disease-is-it-worth-trusting-ml-when-it-comes-to-our-health.html#fig:1-3-pvi">1.50</a>) which works by permuting values of a particular variable and counting how much does the prediction change. We expected models to get high score on variables which are known as important for doctors.</p>
+<div class="figure" style="text-align: center"><span id="fig:1-3-pvi"></span>
+<img src="images/1-3-pvi.png" alt="Permutation-based variable importance" width="800" />
+<p class="caption">
+Figure 1.50: Permutation-based variable importance
+</p>
+</div>
+<p>On the top of the list, we got <em>thal</em> what is not surprising because this medical examination is widely used by cardiologists. Conducting this test is prescribed in serious cases to ensure the doctor in his concerns about patient health.
+Also, <em>ca</em> is one of the most important and the case is similar to <em>thal</em> variable.</p>
+<p>The third is <em>cp</em> which is chest pain and it is classified during interview. With <em>age</em> and <em>sex</em> is used to estimate CAD possibility and choose a futher treatment plan (as mentioned in Figure <a href="coronary-artery-disease-is-it-worth-trusting-ml-when-it-comes-to-our-health.html#fig:1-3-ptp-test">1.48</a>).</p>
+<p>We have taught few models so now we going to show the differences in Variable Importance between them for each variable, to depict why the random forest is in our opinion the best.</p>
+<div class="figure" style="text-align: center"><span id="fig:1-3-pvi3m"></span>
+<img src="images/1-3-pvi3m.png" alt="Comparation of permutation-based variable importance for 3 models" width="800" />
+<p class="caption">
+Figure 1.51: Comparation of permutation-based variable importance for 3 models
+</p>
+</div>
+<p>It is important that this method not only showing importance but also how stable the model is what means the resistance of a model for bias in data. Even if for <em>ca</em> each model has a high score but for different variables Random Forest got is significantly smaller. In Figure <a href="coronary-artery-disease-is-it-worth-trusting-ml-when-it-comes-to-our-health.html#fig:1-3-pvi3m">1.51</a> in contrast to KNN and SVC which have high and almost the same values for each, Random Forest lower importance score for variables we do not find so important.</p>
+<p>To understand better, how these variables change prediction, depends on the value of each one we used Partial Dependence Profiles which changing value of a particular variable and count predictions for each observation and then taking the mean of it so we can see how different values of variable change prediction outcome.</p>
+<p>In Figure <a href="coronary-artery-disease-is-it-worth-trusting-ml-when-it-comes-to-our-health.html#fig:1-3-cpp">1.52</a>, grey lines represent Ceteris Paribus Profiles of each observation but this is wider discussed in Local explanations.</p>
+<div class="figure" style="text-align: center"><span id="fig:1-3-cpp"></span>
+<img src="images/1-3-cpp.png" alt="Ceteris Paribus Profiles for chosen variables" width="800" />
+<p class="caption">
+Figure 1.52: Ceteris Paribus Profiles for chosen variables
+</p>
+</div>
+<p>Looking at the <em>age</em> we can see growth at the age of 55, this is correct with intuition and medical’s statements. Pay attention to a slight jump in the age of 45. It is a reflection of the age when increase probability of getting heart disease according to PTP.<br />
+As we see for <em>sex</em>, being a male highly increases predictions. Good that our model finds this dependence. It is also one of the main factors taken into account by doctors in using PTP, mentioned before. Also looking at the gray lines we cannot spot a single one that goes down while changing to male. That is means that is true for every patient.<br />
+Variable <em>ca</em> is one of the most important according to the previous XAI method. So thanks to that plot we see that having at least one calcification rapidly increases the prediction of the model and having more only ensures the model in the diagnosis.<br />
+<em>oldpeak</em> as a deviation from normal, follow the rule the bigger the worse. For the right limit values, it becomes a straight line probably because further growth does not influence CAD more since is really big already. Also there is no much number of records having such big values.<br />
+For the <em>thal</em> we chose to show an indicator of normal results of this medical examination. Thanks to that we can see if the patient has <em>thal_n</em> (normal) that is mean he does not have any other type which would be a sign of CAD.<br />
+Pay attention to <em>cp_ta</em> (typical angina) because it is one of the main variables considered by doctors. Also for our model, it is meaningful.</p>
+<div class="figure" style="text-align: center"><span id="fig:1-3-cpca"></span>
+<img src="images/1-3-cpca.png" alt="Ceteris Paribus Profiles devided into *ca* values." width="800" />
+<p class="caption">
+Figure 1.53: Ceteris Paribus Profiles devided into <em>ca</em> values.
+</p>
+</div>
+<p>Using the same technique we will get deeper into relations <em>age</em> and <em>oldpeak</em> with <em>ca</em> because it is one of the most important variables. In Figure <a href="coronary-artery-disease-is-it-worth-trusting-ml-when-it-comes-to-our-health.html#fig:1-3-cpca">1.53</a>, we see Partial Dependence Profiles in the division for values of <em>ca</em>. The biggest differences are visible between having at least one calcification and not having it at all. In the <em>age</em> plot three top lines are almost the same shape. We can spot on all three of them that prediction is rising in the age of 45, the same age does not increase prediction for observations <em>ca</em> equal 0.<br />
+In the second plot, we see how the value of prediction changes based on <em>oldpeak</em> values and <em>ca</em> values. If a patient is already in the high-risk group by having <em>ca</em> at least equal to one then even a slight aberrance of <em>oldpeak</em> (less than one) will rapidly increase the value of prediction. Meantime when <em>ca</em> is equal to 0, <em>oldpeak</em> has to reach much higher values to have a vivid influence on prediction (greater than 1.5).</p>
+<p>The last global method we used was ALE which works as CP Profiles but in addition, allows to spot dependencies between variables. We used it to check and compare all four models. This gonna give us a piece of information about differences and relationships between models.</p>
+<div class="figure" style="text-align: center"><span id="fig:1-3-ale4m"></span>
+<img src="images/1-3-ale4m.png" alt="Ceteris Paribus Profiles devided into *ca* values." width="800" />
+<p class="caption">
+Figure 1.54: Ceteris Paribus Profiles devided into <em>ca</em> values.
+</p>
+</div>
+<p>In Figure <a href="coronary-artery-disease-is-it-worth-trusting-ml-when-it-comes-to-our-health.html#fig:1-3-ale4m">1.54</a>, looking at the <em>age</em> plot we see that Naive Bayes has a similar trend as Random Forest. Other models underestimate <em>age</em>.<br />
+For <em>ca</em> we see why Random Forest was the best choice. Since all other models tried to suit straight lines into values 0 and 3 they underestimate values equal to 1 and 2. It is not what we would expect, since we know that difference between 0 and 1 is the most important.<br />
+<em>thalach</em> as well as <em>oldpeak</em> have a more or less similar trend in each model. Interesting output is Naive Bayes’s prediction for high values. We can assume it is because of the small number of such big values.</p>
+</div>
+<div id="local-explanations-2" class="section level4" number="1.3.5.2">
+<h4><span class="header-section-number">1.3.5.2</span> <em>Local explanations</em></h4>
+<p>In global explanations, we have to remember that obtained values are often averaged. Sometimes, especially in medical cases, it is crucial to take a look at individual observations to catch interesting dependencies and draw conclusions. That is why the next step in examining our model was predict-level explanations.</p>
+<p>At first, we used Break Down, Shapley values, and LIME methods that show the decomposition of model prediction by particular variables to see which attributes had the greatest impact on model decisions. We examined the cases the model had no doubts about (both where predictions were correct and incorrect) and borderline cases. In Figure <a href="coronary-artery-disease-is-it-worth-trusting-ml-when-it-comes-to-our-health.html#fig:1-3-shap-sure-cor">1.55</a> and Figure <a href="coronary-artery-disease-is-it-worth-trusting-ml-when-it-comes-to-our-health.html#fig:1-3-shap-sure-incor">1.56</a> were presented Shapley values for respectively correct CAD classification and incorrect noCAD classification predictions.</p>
+<div class="figure" style="text-align: center"><span id="fig:1-3-shap-sure-cor"></span>
+<img src="images/1-3-shap-sure-cor.png" alt="Shapley values for observation that model had no doubt about - correct CAD classification" width="800" />
+<p class="caption">
+Figure 1.55: Shapley values for observation that model had no doubt about - correct CAD classification
+</p>
+</div>
+<div class="figure" style="text-align: center"><span id="fig:1-3-shap-sure-incor"></span>
+<img src="images/1-3-shap-sure-incor.png" alt="Shapley values for observation that model had no doubt about - incorrect noCAD classification" width="800" />
+<p class="caption">
+Figure 1.56: Shapley values for observation that model had no doubt about - incorrect noCAD classification
+</p>
+</div>
+<p>In most cases where the model was sure about prediction regardless of whether the prediction was correct or not, on top were <em>ca</em>,<em>thal</em>,<em>cp</em>, and <em>oldpeak</em>. Those are the variables that also in global explanations were frequently highlighted, so we recognized them as very good CAD indicators.<br />
+Like the doctor, our model classified patients based on their symptoms. Some of them got wrong, but probably the cardiologist would have made the same decision as well. A sick person, but with no symptoms is almost impossible to be diagnosed. Similarly, a healthy person with CAD symptoms will be considered sick and have further medical examinations.</p>
+<div class="figure" style="text-align: center"><span id="fig:1-3-shap-borderline"></span>
+<img src="images/1-3-shap-borderline.png" alt="Shapley values and LIME for borderline case" width="800" />
+<p class="caption">
+Figure 1.57: Shapley values and LIME for borderline case
+</p>
+</div>
+<div class="figure" style="text-align: center"><span id="fig:1-3-lime-borderline"></span>
+<img src="images/1-3-lime-borderline.png" alt="Shapley values and LIME for borderline case" width="800" />
+<p class="caption">
+Figure 1.58: Shapley values and LIME for borderline case
+</p>
+</div>
+<p>Borderline case was presented by using two methods - Shapley values in Figure <a href="coronary-artery-disease-is-it-worth-trusting-ml-when-it-comes-to-our-health.html#fig:1-3-shap-borderline">1.57</a> and LIME in Figure <a href="coronary-artery-disease-is-it-worth-trusting-ml-when-it-comes-to-our-health.html#fig:1-3-lime-borderline">1.58</a>. For such observations, it turned out that usually half of the variables that were mentioned before as indicators (<em>ca</em>, <em>cp</em>, <em>thal</em> and <em>oldpeak</em>) had values indicative of CAD, and the other half not. That is why the prediction results were uncertain. By comparison to the previous cases, more often we could notice the greater influence of the other seemingly less important variables.</p>
+<p>Next, we used Ceteris Paribus Profiles to some what-if analyses. By changing the values of one explanatory variable we examined how would the model’s predictions change.</p>
+<div class="figure" style="text-align: center"><span id="fig:1-3-cp"></span>
+<img src="images/1-3-cp.png" alt="Ceteris Paribus Profile for case with strong prediction and borderline observation" width="800" />
+<p class="caption">
+Figure 1.59: Ceteris Paribus Profile for case with strong prediction and borderline observation
+</p>
+</div>
+<p>For observations that contained strong indications of disease, a change in the value of one attribute had less impact on prediction than for healthy patients or borderline cases. With <em>age</em>, the risk of CAD increases. The more symptoms of the disease a given patient has, the smaller spike is usually observed on the chart (the blue line is almost flat, the green one clearly increases). The similar conclusions we can draw for <em>ca</em> - greater variance is observed for smaller prediction values. The presence of at least one calcified vessel significantly affects the prediction.</p>
+<p>We also analyzed CP profiles coupled with LIME to get a better understanding of changes in CP predictions. In Figure <a href="coronary-artery-disease-is-it-worth-trusting-ml-when-it-comes-to-our-health.html#fig:1-3-lime-borderline">1.58</a> was presented mentioned plots for two observations.</p>
+<div class="figure" style="text-align: center"><span id="fig:1-3-cp-lime"></span>
+<img src="images/1-3-cp-lime.png" alt="Ceteris Paribus Profile and LIME for two borderline observations" width="800" />
+<p class="caption">
+Figure 1.60: Ceteris Paribus Profile and LIME for two borderline observations
+</p>
+</div>
+<p>In the shown example we have two patients - they are both the same age, the predictions are also very similar (about 50%). For green, the main factors influencing the prediction result are typical angina and <em>exang</em>, for blue - the presence of a reversed defect and high <em>oldpeak</em>. The significant difference in the CP chart is because the variable that has the greatest influence on the prediction of the green patient - chest pain - becomes dangerous only with age. Hence, if the patient was 10 years younger, but her other symptoms were the same, the risk of the disease would be reduced by 10 percentage points. By analyzing these charts individually, we would not be able to catch this dependence.</p>
+</div>
+</div>
+<div id="summary-and-conclusions-1" class="section level3" number="1.3.6">
+<h3><span class="header-section-number">1.3.6</span> Summary and conclusions</h3>
+<p>To sum up we created the model which can, with great accuracy, predict Coronary artery disease from given results of medical examinations listed in the <strong>“Dataset”</strong>. To achieve it, we deeply analyzed data searching for relationships between variables and target. Knowing that we were able to present the first hypothesis and validate them with the cardiologist. The review we got, made us reconsider the meaning of variables and our working hypothesis. So mistakes spotted in data were fixed thanks to that. After that, we started to create many models. Using tuning algorithms we chose the best hyperparameters for a few of them and then compared them using more metrics. Having in mind our other goal (get know XAI methods in use) we had to choose the best black-box model. As we mentioned, our other goal was to learn about tools for explanation machine learning and then by using them explain if the model is suitable for our problem. Not only we did it but also by comparing it with medical knowledge we could reveal the importance of some variables in the occurrence of CAD disease. Using global methods allowed us to check if the model fining important variables we have known as important then by studying PD profiles we saw the patterns the model recognize. Being aware of the limitation of the model we decided to check particular patients and how the model acts trying to predict their sickness. In that matter, we could check what makes our model imperfect. We found out that some of the cases would be problematic not only for our model as also for human specialists. This problem is sadly unsolvable.<br />
+Medical interpretation is similar to the data science approach and it indicates the importance of the same variables like <em>cp</em>, <em>thal</em>, <em>age</em>, and <em>ca</em>. Let’s keep in mind that the model doesn’t replace specialists and some unusual cases may appear, which the model will not solve. We assume that the model might be an advisor for doctors rather than a final diagnosis.</p>
+
+</div>
+</div>
+<h3>References</h3>
+<div id="refs" class="references csl-bib-body hanging-indent" line-spacing="2">
+<div id="ref-xai1-ale" class="csl-entry">
+Apley, D. W., &amp; Zhu, J. (2020). <span class="nocase">Visualizing the effects of predictor variables in black box supervised learning models</span>. <em>Journal of the Royal Statistical Society Series B</em>, <em>82</em>(4), 1059–1086. <a href="https://doi.org/10.1111/rssb.12377">https://doi.org/10.1111/rssb.12377</a>
+</div>
+<div id="ref-dalex" class="csl-entry">
+Baniecki, H., Kretowicz, W., Piatyszek, P., Wisniewski, J., &amp; Biecek, P. (2020a). <span class="nocase">dalex: Responsible Machine Learning with Interactive Explainability and Fairness in Python</span>. <em>arXiv:2012.14406</em>. <a href="https://arxiv.org/abs/2012.14406">https://arxiv.org/abs/2012.14406</a>
+</div>
+<div id="ref-1-3-detrano" class="csl-entry">
+Detrano, R., Janosi, A., Steinbrunn, W., Pfisterer, M., Schmid, J.-J., Sandhu, S., et al. (1989). International application of a new probability algorithm for the diagnosis of coronary artery disease. <em>The American Journal of Cardiology</em>, <em>64</em>(5), 304–310. <a href="https://doi.org/10.1016/0002-9149(89)90524-9">https://doi.org/10.1016/0002-9149(89)90524-9</a>
+</div>
+<div id="ref-1-3-detrano2" class="csl-entry">
+Detrano, R., Yiannikas, J., Salcedo, E. E., Rincon, G., Go, R. T., Williams, G., &amp; Leatherman, J. (1984). Bayesian probability analysis: A prospective demonstration of its clinical utility in diagnosing coronary disease. <em>Circulation</em>, <em>69</em>(3), 541—547. <a href="https://doi.org/10.1161/01.CIR.69.3.541">https://doi.org/10.1161/01.CIR.69.3.541</a>
+</div>
+<div id="ref-1-3-uci" class="csl-entry">
+Dua, D., &amp; Graff, C. (2017). <span>UCI</span> machine learning repository. <a href="http://archive.ics.uci.edu/ml">http://archive.ics.uci.edu/ml</a>
+</div>
+<div id="ref-xai1-vip" class="csl-entry">
+Fisher, A., Rudin, C., &amp; Dominici, F. (2019a). All models are wrong, but many are useful: Learning a variable’s importance by studying an entire class of prediction models simultaneously. <em>Journal of Machine Learning Research</em>, <em>20</em>(177), 1–81. <a href="http://jmlr.org/papers/v20/18-760.html">http://jmlr.org/papers/v20/18-760.html</a>
+</div>
+<div id="ref-xai1-pdp" class="csl-entry">
+Friedman, J. H. (2000). Greedy function approximation: A gradient boosting machine. <em>Annals of Statistics</em>, <em>29</em>, 1189–1232.
+</div>
+<div id="ref-1-3-ptp" class="csl-entry">
+Genders, T. S. S., Steyerberg, E. W., Alkadhi, H., Leschka, S., Desbiolles, L., Nieman, K., et al. (2011). A clinical prediction rule for the diagnosis of coronary artery disease: Validation, updating, and extension. <em>European Heart Journal</em>, <em>32</em>(11), 1316–1330. <a href="https://doi.org/10.1093/eurheartj/ehr014">https://doi.org/10.1093/eurheartj/ehr014</a>
+</div>
+<div id="ref-xai1-ice" class="csl-entry">
+Goldstein, A., Kapelner, A., Bleich, J., &amp; Pitkin, E. (2014). Peeking inside the black box: Visualizing statistical learning with plots of individual conditional expectation.
+</div>
+<div id="ref-1-3-xai-iML1" class="csl-entry">
+Holzinger, A. (2016). Interactive machine learning for health informatics: When do we need the human-in-the-loop? <em>Brain Informatics</em>, <em>3</em>, 119–131. <a href="https://doi.org/10.1007/s40708-016-0042-6">https://doi.org/10.1007/s40708-016-0042-6</a>
+</div>
+<div id="ref-1-3-xai-causability2" class="csl-entry">
+Holzinger, A. (2021). Explainable AI and multi-modal causability in medicine. <em>i-com</em>, <em>19</em>(3), 171–179. <a href="https://doi.org/10.1515/icom-2020-0024">https://doi.org/10.1515/icom-2020-0024</a>
+</div>
+<div id="ref-1-3-xai-medicine" class="csl-entry">
+Holzinger, A., Biemann, C., Pattichis, C., &amp; Kell, D. (2017). What do we need to build explainable AI systems for the medical domain?
+</div>
+<div id="ref-1-3-xai-causability1" class="csl-entry">
+Holzinger, A., Langs, G., Denk, H., Zatloukal, K., &amp; Müller, H. (2019). Causability and explainabilty of artificial intelligence in medicine. <em>Wiley Interdisciplinary Reviews: Data Mining and Knowledge Discovery</em>, <em>9</em>. <a href="https://doi.org/10.1002/widm.131">https://doi.org/10.1002/widm.131</a>
+</div>
+<div id="ref-1-3-xai-carxai2" class="csl-entry">
+Kaladharan, S., Vishvanathan, S., Gopalakrishnan, E. A., &amp; Kp, S. (2020). Explainable artificial intelligence for heart rate variability in ECG signal. <em>Healthcare Technology Letters</em>, <em>7</em>, 146–154. <a href="https://doi.org/10.1049/htl.2020.0033">https://doi.org/10.1049/htl.2020.0033</a>
+</div>
+<div id="ref-1-3-xai-carxai1" class="csl-entry">
+Khedkar, S., Subramanian, V., Shinde, G., &amp; Gandhi, P. (2019). Explainable AI in healthcare. <em>SSRN Electronic Journal</em>. <a href="https://doi.org/10.2139/ssrn.3367686">https://doi.org/10.2139/ssrn.3367686</a>
+</div>
+<div id="ref-1-3-xai-iML2" class="csl-entry">
+Kieseberg, P., Schantl, J., Fruehwirt, P., Weippl, E., &amp; Holzinger, A. (2015). Witnesses for the doctor in the loop, <em>9250</em>, 369–378. <a href="https://doi.org/10.1007/978-3-319-23344-4_36">https://doi.org/10.1007/978-3-319-23344-4_36</a>
+</div>
+<div id="ref-1-3-xai-cardiology" class="csl-entry">
+Krittanawong, C., Zhang, H., Wang, Z., Aydar, M., &amp; Kitai, T. (2017). Artificial intelligence in precision cardiovascular medicine. <em>Journal of the American College of Cardiology</em>, <em>69</em>(21), 2657–2664. <a href="https://doi.org/10.1016/j.jacc.2017.03.571">https://doi.org/10.1016/j.jacc.2017.03.571</a>
+</div>
+<div id="ref-xai1-shapleyvalues" class="csl-entry">
+Lundberg, Scott M., &amp; Lee, S.-I. (2017). A unified approach to interpreting model predictions. In I. Guyon, U. V. Luxburg, S. Bengio, H. Wallach, R. Fergus, S. Vishwanathan, &amp; R. Garnett (Eds.), <em>Advances in neural information processing systems 30</em> (pp. 4765–4774). Montreal: Curran Associates. <a href="http://papers.nips.cc/paper/7062-a-unified-approach-to-interpreting-model-predictions.pdf">http://papers.nips.cc/paper/7062-a-unified-approach-to-interpreting-model-predictions.pdf</a>
+</div>
+<div id="ref-1-3-sklearn" class="csl-entry">
+Pedregosa, Fabian, Varoquaux, G., Gramfort, A., Michel, V., Thirion, B., Grisel, O., et al. (2011). Scikit-learn: Machine learning in <span>P</span>ython. <em>Journal of Machine Learning Research</em>, <em>12</em>, 2825–2830.
+</div>
+<div id="ref-xai1-lime" class="csl-entry">
+Ribeiro, M. T., Singh, S., &amp; Guestrin, C. (2016a). "<span class="nocase">Why should I trust you</span>?": Explaining the predictions of any classifier. In <em>Proceedings of the 22nd <span>ACM</span> <span>SIGKDD</span> international conference on knowledge discovery and data mining, KDD san francisco, CA</em> (pp. 1135–1144). New York, NY: Association for Computing Machinery.
+</div>
+<div id="ref-1-3-xai-opponent" class="csl-entry">
+Rudin, C. (2019). Stop explaining black box machine learning models for high stakes decisions and use interpretable models instead. <em>Nature Machine Intelligence</em>, <em>1</em>, 206–215. <a href="https://doi.org/10.1038/s42256-019-0048">https://doi.org/10.1038/s42256-019-0048</a>
+</div>
+<div id="ref-xai1-breakdown" class="csl-entry">
+Staniak, M., &amp; Biecek, P. (2018). Explanations of model predictions with live and breakDown packages.
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="xai-in-real-estate-pricing-a-case-study.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="xai1-explainable-wine.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook/js/app.min.js"></script>
+<script src="libs/gitbook/js/lunr.js"></script>
+<script src="libs/gitbook/js/clipboard.min.js"></script>
+<script src="libs/gitbook/js/plugin-search.js"></script>
+<script src="libs/gitbook/js/plugin-sharing.js"></script>
+<script src="libs/gitbook/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook/js/jquery.highlight.js"></script>
+<script src="libs/gitbook/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": true,
+"facebook": false,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"whatsapp": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": "https://github.com/mini-pw/2021L-WB-Book/edit/master/1-3-heart.Rmd",
+"text": "Edit"
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": ["book.pdf", "book.epub"],
+"toc": {
+"collapse": "section"
+}
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>
