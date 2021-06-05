@@ -38,6 +38,18 @@ We based our calculations on the dalex [@dalex] package, which we used to genera
 
 Our metric calculates, for a given model and feature, the sum of absolute values of distances between points on PDP curves of the base model (the best one according to random search) and the one for which we calculate distance. It is calculated according to the equation: 
 
+$$ d_{F_{k}, n}(M_{base}, M_{i}) = \sum_{j=0}^{n} |PDP_{M_{base}, F_{k}}(x_{j}) - PDP_{M_{i}, F_{k}}(x_{j})| $$
+
+where:
+
+$M_{base}$ - base model,
+
+$M_{i}$ - model for which metric is calculated,
+
+$F_{k}$ - feature,
+
+$n$ - number of intermediate points.
+
 This metric allows comparing how unique models are and how much do they differ from one another.  
 
 ### Results 
