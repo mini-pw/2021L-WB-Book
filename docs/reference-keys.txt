@@ -482,7 +482,8 @@ abstract-11
 introduction-13
 data-sources
 model-building
-summary-and-discussion
+discussion-1
+summary-4
 transparent-machine-learning-to-support-predicting-covid-19-infection-risk-based-on-chronic-diseases
 abstract-12
 introduction-14
@@ -496,7 +497,7 @@ abstract-13
 introduction-15
 methods-1
 results-6
-discussion-1
+discussion-2
 source-code
 rashomonml
 topic
