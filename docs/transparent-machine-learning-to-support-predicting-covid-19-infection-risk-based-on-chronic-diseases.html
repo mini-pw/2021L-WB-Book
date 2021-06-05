@@ -361,13 +361,14 @@ div.csl-indent {
 <div id="abstract-12" class="section level3" number="5.3.1">
 <h3><span class="header-section-number">5.3.1</span> Abstract</h3>
 <p>The moment the COVID-19 outbreak in 2019 occurred, people started using machine learning in order to help in managing the situation. Our work is a build up to research described in <span class="citation">(<a href="#ref-5-3-chinese_et_al" role="doc-biblioref">Yan et al. 2020b</a>)</span> and in <span class="citation">(<a href="#ref-5-3-mexican_et_al" role="doc-biblioref">Bello-Chavolla et al. 2020</a>)</span> articles. We improve and create new models predicting COVID-19 mortality based on blood parameters and analyze original models presented in the articles. We train a prediction model calculating risk of getting infected with the virus depending only on person’s sex, age and chronic diseases and created an application which calculates the COVID-19 mortality risk based on input data and explains the model with visualizations. Considering accuracy of the model, calculations based only on chronic diseases may not achieve best results but we propose a transparent machine learning approach which doesn’t need any additional medical information, is explainable and easy to understand and requires only data that everyone has access to.</p>
+<p>Our application is available at URL: <a href="https://hubertr21.shinyapps.io/Explainable_COVID19_Mortality_Predictor/" class="uri">https://hubertr21.shinyapps.io/Explainable_COVID19_Mortality_Predictor/</a></p>
 </div>
 <div id="introduction-14" class="section level3" number="5.3.2">
 <h3><span class="header-section-number">5.3.2</span> Introduction</h3>
 <p>The COVID-19 pandemic is currently one of the world’s biggest problem, affecting not only everyone’s private lives, but also other areas of human activity, including research. In the scientific field, this is a specific issue that scientists are still able to approach this problem in completely different ways, because no distinctive and right path has yet been established. It is in the combination of these three aspects that we see an opportunity to deepen the current understanding of the pandemic and create a useful tool for predicting mortality from the disease.</p>
-<p>All available models for predicting coronavirus mortality have numerous disadvantages, which include predictions based on small data sets, the use of medical information unavailable to the average person, unexplained models or their low effectiveness. In order to provide additional knowledge for each of us, we present a solution that eliminates all these drawbacks, to a greater or lesser extent.</p>
+<p>All available models for predicting coronavirus mortality have numerous disadvantages, which include predictions based on small data sets, the use of medical information unavailable to the average person, unexplained models or their low effectiveness. Besides using data from mentioned articles (<span class="citation">(<a href="#ref-5-3-chinese_et_al" role="doc-biblioref">Yan et al. 2020b</a>)</span>, <span class="citation">(<a href="#ref-5-3-mexican_et_al" role="doc-biblioref">Bello-Chavolla et al. 2020</a>)</span>) we also explore data used in creation of an article <span class="citation">(<a href="#ref-5-3-american_et_al" role="doc-biblioref">Barish et al. 2020</a>)</span>. In order to provide additional knowledge for each of us, we present an application that eliminates all these drawbacks, to a greater or lesser extent. Our solution is the most beneficial for various XAI stakeholders, as described in article <span class="citation">(<a href="#ref-5-3-XAI_et_al" role="doc-biblioref">Barredo Arrieta et al. 2020c</a>)</span>. Explanations such as SHAP (SHapley Additive exPlanations) or break down profiles are used.</p>
 <p>The proposed application bases its mortality prediction on the information about chronic diseases that the patient suffers from. In addition to the predicted mortality, it also provides a break down plot as an explanation of the mortality, SHAP visualization, to show impact of the most important parameters and also analysis of the mortality risk depending on age.
-By using the random forest model, we also ensure the explainability of the entire process. Thanks to this solution, our application is useful for both ordinary people and doctors.</p>
+By using the random forest model, created using ranger R package (<span class="citation">(<a href="#ref-5-3-ranger" role="doc-biblioref">Wright and Ziegler 2017</a>)</span>), we also ensure the explainability of the entire process. Thanks to this solution, our application is useful for both ordinary people and doctors.</p>
 </div>
 <div id="flaws" class="section level3" number="5.3.3">
 <h3><span class="header-section-number">5.3.3</span> Flaws</h3>
@@ -381,77 +382,77 @@ By using the random forest model, we also ensure the explainability of the entir
 <p><strong>Prediction using original parameters on external data</strong></p>
 <p>First, we decided to use the broader pandemic knowledge that the authors of the original article did not have to improve the model on its default data. Inspired by a newer article <span class="citation">(<a href="#ref-5-3-mortality_risk_prediction" role="doc-biblioref">Barda et al. 2020</a>)</span>, we decided to test how the selection of variables improved according to the latest knowledge will affect the predictions of the predictive models. For the suggested parameters: age, C-reactive protein, chloride, albumin, lymphocyte count and LDH, we created a correlation map to select the most important of them.</p>
 <div class="figure" style="text-align: center"><span id="fig:5-3-fig1"></span>
-<img src="images/5-3-Correlation.png" alt="Correlation heatmap" width="1000" />
+<img src="images/5-3-Correlation.png" alt="Heatmap showing correlation between the variables in the original dataset. The more intensive the color is, the more variables are correlated" width="1000" />
 <p class="caption">
-Figure 5.12: Correlation heatmap
+Figure 5.12: Heatmap showing correlation between the variables in the original dataset. The more intensive the color is, the more variables are correlated
 </p>
 </div>
-<p>Figure <a href="transparent-machine-learning-to-support-predicting-covid-19-infection-risk-based-on-chronic-diseases.html#fig:5-3-fig1">5.12</a> shows that among the most important features there are age, albumin, LDH and C protein, which we used in our models. After training and testing the GradientBoostingClassifier and AdaBoostClassifier models on slightly reduced data (the original test set had to be replaced by the test and validation set), we obtain cross-validation precision at the level of 0.979 and 0.958 and the following reports <a href="transparent-machine-learning-to-support-predicting-covid-19-infection-risk-based-on-chronic-diseases.html#fig:5-3-fig2">5.13</a>, <a href="transparent-machine-learning-to-support-predicting-covid-19-infection-risk-based-on-chronic-diseases.html#fig:5-3-fig3">5.14</a>. Moreover we present confusion matrix from original model <a href="transparent-machine-learning-to-support-predicting-covid-19-infection-risk-based-on-chronic-diseases.html#fig:5-3-fig4">5.15</a>.</p>
+<p>Figure <a href="transparent-machine-learning-to-support-predicting-covid-19-infection-risk-based-on-chronic-diseases.html#fig:5-3-fig1">5.12</a> shows that among the most important features there are age, albumin, LDH and C protein, which we used in our models. After training and testing the GradientBoostingClassifier and AdaBoostClassifier models on slightly reduced data (the original test set had to be replaced by the test and validation set), we obtain cross-validation precision at the level of 0.979 and 0.958 and the following reports(Figure <a href="transparent-machine-learning-to-support-predicting-covid-19-infection-risk-based-on-chronic-diseases.html#fig:5-3-fig2">5.13</a> and Figure <a href="transparent-machine-learning-to-support-predicting-covid-19-infection-risk-based-on-chronic-diseases.html#fig:5-3-fig3">5.14</a>). Moreover we present confusion matrix from original model (Figure <a href="transparent-machine-learning-to-support-predicting-covid-19-infection-risk-based-on-chronic-diseases.html#fig:5-3-fig4">5.15</a>).</p>
 <div class="figure" style="text-align: center"><span id="fig:5-3-fig2"></span>
-<img src="images/5-3-confmatGradientexcel.png" alt="Confusion matrix for GradientBoosting" width="500" />
+<img src="images/5-3-confmatGradientexcel.png" alt="Confusion matrix showing accuracy, precision, recall and other scores for evaluating a classification for the GradientBoosting model" width="500" />
 <p class="caption">
-Figure 5.13: Confusion matrix for GradientBoosting
+Figure 5.13: Confusion matrix showing accuracy, precision, recall and other scores for evaluating a classification for the GradientBoosting model
 </p>
 </div>
 <div class="figure" style="text-align: center"><span id="fig:5-3-fig3"></span>
-<img src="images/5-3-confmatAdaexcel.png" alt="Confusion matrix for AdaBoosting" width="500" />
+<img src="images/5-3-confmatAdaexcel.png" alt="Confusion matrix showing accuracy, precision, recall and other scores for evaluating a classification for the AdaBoosting model" width="500" />
 <p class="caption">
-Figure 5.14: Confusion matrix for AdaBoosting
+Figure 5.14: Confusion matrix showing accuracy, precision, recall and other scores for evaluating a classification for the AdaBoosting model
 </p>
 </div>
 <div class="figure" style="text-align: center"><span id="fig:5-3-fig4"></span>
-<img src="images/5-3-original_confusion_matrix.png" alt="Confusion matrix for original model" width="500" />
+<img src="images/5-3-original_confusion_matrix.png" alt="Confusion matrix showing accuracy, precision, recall and other scores for evaluating a classification for the original model" width="500" />
 <p class="caption">
-Figure 5.15: Confusion matrix for original model
+Figure 5.15: Confusion matrix showing accuracy, precision, recall and other scores for evaluating a classification for the original model
 </p>
 </div>
-<p>The above results confirm the improvement in the quality of the original model <a href="transparent-machine-learning-to-support-predicting-covid-19-infection-risk-based-on-chronic-diseases.html#fig:5-3-fig4">5.15</a>, whose precision score for death is only 0.81 and cross-validation stands around 0.97.</p>
-<p>Thanks to the authors of the paper <span class="citation">(<a href="#ref-5-3-american" role="doc-biblioref"><strong>5-3-american?</strong></a>)</span>, we were given access to additional data with features coincident with those we already had. Data set contained over 1000 observations and only fourteen features that were selected by owners to fit as good model as possible. In order to test previous model (AdaBoost), we used it to predict the outcome for those thousand patients, receiving following results <a href="transparent-machine-learning-to-support-predicting-covid-19-infection-risk-based-on-chronic-diseases.html#fig:5-3-fig5">5.16</a>.</p>
+<p>The above results confirm the improvement in the quality of the original model (Figure <a href="transparent-machine-learning-to-support-predicting-covid-19-infection-risk-based-on-chronic-diseases.html#fig:5-3-fig4">5.15</a>), whose precision score for death is only 0.81 and cross-validation stands around 0.97.</p>
+<p>Thanks to the authors of the paper <span class="citation">(<a href="#ref-5-3-american_et_al" role="doc-biblioref">Barish et al. 2020</a>)</span>, we were given access to additional data with features coincident with those we already had. Data set contained over 1000 observations and only fourteen features that were selected by owners to fit as good model as possible. In order to test previous model (AdaBoost), we used it to predict the outcome for those thousand patients, receiving following results (Figure <a href="transparent-machine-learning-to-support-predicting-covid-19-infection-risk-based-on-chronic-diseases.html#fig:5-3-fig5">5.16</a>).</p>
 <div class="figure" style="text-align: center"><span id="fig:5-3-fig5"></span>
-<img src="images/5-3-new_data_performance_excel.png" alt="Results received for external data" width="500" />
+<img src="images/5-3-new_data_performance_excel.png" alt="Confusion matrix showing accuracy, precision, recall and other scores for evaluating a classification for the original model tested on external data" width="500" />
 <p class="caption">
-Figure 5.16: Results received for external data
+Figure 5.16: Confusion matrix showing accuracy, precision, recall and other scores for evaluating a classification for the original model tested on external data
 </p>
 </div>
 <p>Model performance has dropped significantly, the outcome is far from desired.</p>
 <p><strong>PCA</strong></p>
-<p>In order to analyze data further, we performed Principal Component Analysis. For visualization’s simplification we considered only first two, most substantial components. Obtained two-dimensional plot is shown on Figure 8. Explained variance ratios were: 0.226 (for the first component) and 0.063 for the second component), which results in total explained variance ratio of 0.289 for both components together. Taking absolute values of the scores of each feature from the first component might be also used for feature selection. Those with the highest magnitudes were: <code>Prothrombin activity</code>, <code>Lactate dehydrogenase</code>, <code>albumin</code>, <code>Urea</code>, <code>neutrophils(%)</code>, <code>(%)lymphocyte</code>. Some of the features are those, that we have already known are important, such as <code>albumin</code>, <code>(\%)lymphocyte</code> or <code>Lactate dehydrogenase</code>, but <code>age</code> was around the middle, not among the top ones.</p>
+<p>In order to analyze data further, we performed Principal Component Analysis. For visualization’s simplification we considered only first two, most substantial components. Obtained two-dimensional plot is shown on Figure <a href="transparent-machine-learning-to-support-predicting-covid-19-infection-risk-based-on-chronic-diseases.html#fig:5-3-fig8">5.19</a>. Explained variance ratios were: 22.6% (for the first component) and 0.063 for the second component), which results in total explained variance ratio of 28.9% for both components together. Taking absolute values of the scores of each feature from the first component might be also used for feature selection. Those with the highest magnitudes were: <code>Prothrombin activity</code>, <code>Lactate dehydrogenase</code>, <code>albumin</code>, <code>Urea</code>, <code>neutrophils(%)</code>, <code>(%)lymphocyte</code>. Some of the features are those, that we have already known are important, such as <code>albumin</code>, <code>(%)lymphocyte</code> or <code>Lactate dehydrogenase</code>, but <code>age</code> was around the middle, not among the top ones.</p>
+<p>The most noticeable fact is that our two classes are almost separable with just a single line. Even without any sort of complex machine learning or other algorithms, it’s possible and not complicated to fit a line that divides cases ended in death from cases followed by patient’s recovery. As an example, same visualization with additional function <span class="math inline">\(y=2.5x+2.5\)</span>, created without any sort of optimization techniques, is presented on Figure<a href="transparent-machine-learning-to-support-predicting-covid-19-infection-risk-based-on-chronic-diseases.html#fig:5-3-fig7">5.18</a>.</p>
 <div class="figure" style="text-align: center"><span id="fig:5-3-fig6"></span>
-<img src="images/5-3-pca1.png" alt="Principal Component Analysis" width="500" />
+<img src="images/5-3-pca1.png" alt="Vizulized results of Principal Component Analysis used to reduce dimensions of the original dataset. Red colored points represent people who survived after being infected with COVID-19, green colored points represent people who passed away because of the virus." width="500" />
 <p class="caption">
-Figure 5.17: Principal Component Analysis
+Figure 5.17: Vizulized results of Principal Component Analysis used to reduce dimensions of the original dataset. Red colored points represent people who survived after being infected with COVID-19, green colored points represent people who passed away because of the virus.
 </p>
 </div>
-<p>The most noticeable fact is that our two classes are almost separable with just a single line. Even without any sort of complex machine learning or other algorithms, it’s possible and not complicated to fit a line that divides cases ended in death from cases followed by patient’s recovery. As an example, same visualization with additional function <span class="math inline">\(y=2.5x+2.5\)</span>, created without any sort of optimization techniques, is presented below.</p>
 <div class="figure" style="text-align: center"><span id="fig:5-3-fig7"></span>
-<img src="images/5-3-pca2.png" alt="Principal Component Analysis with line separator" width="500" />
+<img src="images/5-3-pca2.png" alt="Vizulized results of Principal Component Analysis  with line separator used to reduce dimensions of the original dataset and to divide observations into classes. Red colored points represent people who survived after being infected with COVID-19, green colored points represent people who passed away because of the virus." width="500" />
 <p class="caption">
-Figure 5.18: Principal Component Analysis with line separator
+Figure 5.18: Vizulized results of Principal Component Analysis with line separator used to reduce dimensions of the original dataset and to divide observations into classes. Red colored points represent people who survived after being infected with COVID-19, green colored points represent people who passed away because of the virus.
 </p>
 </div>
 <p>Such division achieves (train) accuracy of 0.94, which is almost as good as results received by machine learning algorithms described in the paper, what might encourage to consider given data not authoritative.</p>
 <p><strong>Data distribution analysis</strong></p>
-<p>We analyzed the distribution of percentage of Lymphocytes, Lactate dehydrogenase and High sensitivity C-reactive protein by creating histograms for the original and the new data.</p>
+<p>We analyzed the distribution of percentage of lymphocytes, lactate dehydrogenase and high sensitivity C-reactive protein by creating histograms for the original and the new data.</p>
 <div class="figure" style="text-align: center"><span id="fig:5-3-fig8"></span>
-<img src="images/5-3-hist1.png" alt="Original Data distribution" width="750" />
+<img src="images/5-3-hist1.png" alt="Distribution of percentage of lymphocytes, lactate dehydrogenase and high sensitivity C-reactive protein for the original dataset" width="750" />
 <p class="caption">
-Figure 5.19: Original Data distribution
+Figure 5.19: Distribution of percentage of lymphocytes, lactate dehydrogenase and high sensitivity C-reactive protein for the original dataset
 </p>
 </div>
 <div class="figure" style="text-align: center"><span id="fig:5-3-fig9"></span>
-<img src="images/5-3-hist2.png" alt="New Data distribution" width="750" />
+<img src="images/5-3-hist2.png" alt="Distribution of percentage of lymphocytes, lactate dehydrogenase and high sensitivity C-reactive protein for the new dataset" width="750" />
 <p class="caption">
-Figure 5.20: New Data distribution
+Figure 5.20: Distribution of percentage of lymphocytes, lactate dehydrogenase and high sensitivity C-reactive protein for the new dataset
 </p>
 </div>
 <p>We noticed that all variables are strongly left skewed which is unfavorable for the model because more reliable predictions are made if the predictors and the target variable are normally distributed. Trying to make our model better, we applied square root transformation. Then we trained a new model on them (also using Ada Boost Classifier) and we tested it on the new data:</p>
 <div class="figure" style="text-align: center"><span id="fig:5-3-fig10"></span>
-<img src="images/5-3-skeweddataresults_excel.png" alt="Skewed data results" width="500" />
+<img src="images/5-3-skeweddataresults_excel.png" alt="Confusion matrix showing accuracy, precision, recall and other scores for evaluating a classification for the AdaBoostClassfier model tested and trained on original (highly lef skewed) data afer applying square root transformation." width="500" />
 <p class="caption">
-Figure 5.21: Skewed data results
+Figure 5.21: Confusion matrix showing accuracy, precision, recall and other scores for evaluating a classification for the AdaBoostClassfier model tested and trained on original (highly lef skewed) data afer applying square root transformation.
 </p>
 </div>
-<p>From figure <a href="transparent-machine-learning-to-support-predicting-covid-19-infection-risk-based-on-chronic-diseases.html#fig:5-3-fig10">5.21</a> we can see that the model generally improved (the accuracy is higher) and it perform slightly better.</p>
+<p>From Figure <a href="transparent-machine-learning-to-support-predicting-covid-19-infection-risk-based-on-chronic-diseases.html#fig:5-3-fig10">5.21</a> we can see that the model generally improved (the accuracy is higher) and it performs slightly better.</p>
 <p><strong>General drawbacks</strong></p>
 <p>In addition to the aforementioned bias, our models can still be accused of learning on very small data sets not exceeding even 1000 observations, which still affects the uncertainty related to the effectiveness of the presented proposals.
 Moreover, the most promising model, developed on an external data set, unfortunately did not show sufficiently high efficiency to be useful in medical applications.
@@ -464,11 +465,11 @@ The last, and perhaps the least obvious disadvantage is that the data used for p
 <h3><span class="header-section-number">5.3.5</span> Transparent Machine Learning</h3>
 <p>While working in machine learning one can often encounter an issue called the black-box problem <span class="citation">(<a href="#ref-5-3-black_box" role="doc-biblioref">Rai 2020</a>)</span>. It occurs when a model is complex, unexplainable and not transparent. Explainability solves this problem by “unpacking the black-box” which is essential in building trust in the model. That is why we want to create an explainable model which could be useful to every person which doesn’t need any additional medical information and easy to understand and requires only data that everyone has access to. We used explainers from <span class="citation">(<a href="#ref-5-3-DALEX" role="doc-biblioref">Biecek 2018b</a>)</span>, package for explainable Machine Learning, to create visualizations, that allow user to understand where the results come from and because of that, they are more transparent and clear.</p>
 <p><strong>Model</strong></p>
-<p>To create the model we use random forest from <span class="citation">(<a href="#ref-5-3-ranger" role="doc-biblioref">Wright and Ziegler 2017</a>)</span> package constructing a multitude of decision trees which are one of the most transparent and easy to explain models, even for people not familiar with machine learning concepts. Moreover, we tuned and tested XGBoost (<span class="citation">(<a href="#ref-5-3-xgboost" role="doc-biblioref">Wright and Ziegler 2016</a>)</span> and Support Vector Machines from <span class="citation">(<a href="#ref-5-3-svm" role="doc-biblioref">Meyer et al. 2021</a>)</span> package to maximize AUC measure. Ranger performs best with AUC of 0.92, XGboost turns out to be slightly worse with AUC of 0.87. Support Vector Machines achieve the worst results - AUC around 0.78 (figure <a href="transparent-machine-learning-to-support-predicting-covid-19-infection-risk-based-on-chronic-diseases.html#fig:5-3-fig11">5.22</a>).</p>
+<p>To create the model we use random forest from <span class="citation">(<a href="#ref-5-3-ranger" role="doc-biblioref">Wright and Ziegler 2017</a>)</span> package constructing a multitude of decision trees which are one of the most transparent and easy to explain models, even for people not familiar with machine learning concepts. Moreover, we tuned and tested XGBoost (<span class="citation">(<a href="#ref-5-3-xgboost" role="doc-biblioref">Wright and Ziegler 2016</a>)</span>) and Support Vector Machines from <span class="citation">(<a href="#ref-5-3-svm" role="doc-biblioref">Meyer et al. 2021</a>)</span> package to maximize AUC measure. Ranger performs best with AUC of 0.92, XGboost turns out to be slightly worse with AUC of 0.87. Support Vector Machines achieve the worst results - AUC around 0.78 (Figure <a href="transparent-machine-learning-to-support-predicting-covid-19-infection-risk-based-on-chronic-diseases.html#fig:5-3-fig11">5.22</a>).</p>
 <div class="figure" style="text-align: center"><span id="fig:5-3-fig11"></span>
-<img src="images/5-3-auc.png" alt="AUC for considered models" width="500" />
+<img src="images/5-3-auc.png" alt="Area Under (AUC) the Receiver Operating Characteristics (ROC) curve for considered models. It serves the purpose of comparing classificators - the bigger the AUC, the better the model." width="500" />
 <p class="caption">
-Figure 5.22: AUC for considered models
+Figure 5.22: Area Under (AUC) the Receiver Operating Characteristics (ROC) curve for considered models. It serves the purpose of comparing classificators - the bigger the AUC, the better the model.
 </p>
 </div>
 <p><strong>Data</strong></p>
@@ -477,36 +478,36 @@ It consists of 150,000 records from Mexican hospitals, of which over 50,000 are 
 </div>
 <div id="application" class="section level3" number="5.3.6">
 <h3><span class="header-section-number">5.3.6</span> Application</h3>
-<p>In order to achieve our goal we create an easy application, in which one can choose his or hers chronic diseases, sex, age and it calculates the COVID-19 mortality risk for particular infected person. Additionally, in the bookmarks there are presented plots about the model. The first one <a href="transparent-machine-learning-to-support-predicting-covid-19-infection-risk-based-on-chronic-diseases.html#fig:5-3-fig12">5.23</a> is a Break Down plot which shows how the contributions attributed to individual explanatory variables change the mean models prediction. Despite printing out the risk it also enables its user an easy option to understand the outcome. Another one <a href="transparent-machine-learning-to-support-predicting-covid-19-infection-risk-based-on-chronic-diseases.html#fig:5-3-fig13">5.24</a> is Ceteris Paribus profile which examines the influence of an explanatory variable (which is <code>age</code> in this case) by assuming that the values of all other variables do not change. This visualization is very useful for doctors to properly distinguish a higher risk groups. The last one <a href="transparent-machine-learning-to-support-predicting-covid-19-infection-risk-based-on-chronic-diseases.html#fig:5-3-fig14">5.25</a> is a SHAP plot, it calculates the importance of a feature by comparing what a model predicts with and without the feature.</p>
-<p>Our application is avaiable here: <a href="https://hubertr21.shinyapps.io/Explainable_COVID19_Mortality_Predictor/" class="uri">https://hubertr21.shinyapps.io/Explainable_COVID19_Mortality_Predictor/</a></p>
+<p>In order to achieve our goal we create an easy application, in which one can choose his or hers chronic diseases, sex, age and it calculates the COVID-19 mortality risk for particular infected person. Additionally, in the bookmarks there are presented plots about the model. The first one (Figure <a href="transparent-machine-learning-to-support-predicting-covid-19-infection-risk-based-on-chronic-diseases.html#fig:5-3-fig12">5.23</a>) is a break down plot which shows how the contributions attributed to individual explanatory variables change the mean models prediction. Despite printing out the risk it also enables its user an easy option to understand the outcome. Another one (Figure <a href="transparent-machine-learning-to-support-predicting-covid-19-infection-risk-based-on-chronic-diseases.html#fig:5-3-fig13">5.24</a>) is Ceteris Paribus profile which examines the influence of an explanatory variable (which is <code>age</code> in this case) by assuming that the values of all other variables do not change. This visualization is very useful for doctors to properly distinguish a higher risk groups. The last one (Figure <a href="transparent-machine-learning-to-support-predicting-covid-19-infection-risk-based-on-chronic-diseases.html#fig:5-3-fig14">5.25</a>) is a SHAP plot, it calculates the importance of a feature by comparing what a model predicts with and without the feature.</p>
+<p>Our application is available at the URL: <a href="https://hubertr21.shinyapps.io/Explainable_COVID19_Mortality_Predictor/" class="uri">https://hubertr21.shinyapps.io/Explainable_COVID19_Mortality_Predictor/</a></p>
 <div class="figure" style="text-align: center"><span id="fig:5-3-fig12"></span>
-<img src="images/5-3-mortalBreakdown.png" alt="Mortality Breakdown profile" width="750" />
+<img src="images/5-3-mortalBreakdown.png" alt="Break down profile, showing how particular features affect final death risk for one individual patient." width="750" />
 <p class="caption">
-Figure 5.23: Mortality Breakdown profile
+Figure 5.23: Break down profile, showing how particular features affect final death risk for one individual patient.
 </p>
 </div>
 <div class="figure" style="text-align: center"><span id="fig:5-3-fig13"></span>
-<img src="images/5-3-mortalParibus.png" alt="Mortality Ceteris Paribus profile" width="750" />
+<img src="images/5-3-mortalParibus.png" alt="Ceteris Paribus, showing how death risk changes with age, while keeping other features (chronic deseases) the same." width="750" />
 <p class="caption">
-Figure 5.24: Mortality Ceteris Paribus profile
+Figure 5.24: Ceteris Paribus, showing how death risk changes with age, while keeping other features (chronic deseases) the same.
 </p>
 </div>
 <div class="figure" style="text-align: center"><span id="fig:5-3-fig14"></span>
-<img src="images/5-3-mortalSHAP.png" alt="Mortality SHAP profile" width="750" />
+<img src="images/5-3-mortalSHAP.png" alt="SHAP profile, plot that visualises Shapley values for particular features." width="750" />
 <p class="caption">
-Figure 5.25: Mortality SHAP profile
+Figure 5.25: SHAP profile, plot that visualises Shapley values for particular features.
 </p>
 </div>
 </div>
 <div id="conclusions-3" class="section level3" number="5.3.7">
 <h3><span class="header-section-number">5.3.7</span> Conclusions</h3>
 <div class="figure" style="text-align: center"><span id="fig:5-3-fig15"></span>
-<img src="images/5-3-XAI_stakeholders.jpg" alt="XAI stakeholders from [@5-3-XAI_et_al]" width="750" />
+<img src="images/5-3-XAI_stakeholders.jpg" alt="XAI stakeholders picture from article [@5-3-XAI_et_al]." width="750" />
 <p class="caption">
-Figure 5.26: XAI stakeholders from <span class="citation">(<a href="#ref-5-3-XAI_et_al" role="doc-biblioref">Barredo Arrieta et al. 2020c</a>)</span>
+Figure 5.26: XAI stakeholders picture from article <span class="citation">(<a href="#ref-5-3-XAI_et_al" role="doc-biblioref">Barredo Arrieta et al. 2020c</a>)</span>.
 </p>
 </div>
-<p>Thanks to the developed application, various XAI stakeholders, as presented in <span class="citation">(<a href="#ref-5-3-XAI_et_al" role="doc-biblioref">Barredo Arrieta et al. 2020c</a>)</span> - <a href="transparent-machine-learning-to-support-predicting-covid-19-infection-risk-based-on-chronic-diseases.html#fig:5-3-fig15">5.26</a>, may have easier access to transparent and explainable model that estimates mortality risk in case of being infected by COVID-19. Our application allows people to see which diseases are contributing the most to the outcome, without the need of doctor’s examination, such as any blood properties and other information, that can only be gathered by a specialist are not necessary. Only by selecting diseases that one suffers from, reliable prediction can be obtained quickly and without leaving home.</p>
+<p>Thanks to the developed application, various XAI stakeholders, as presented in <span class="citation">(<a href="#ref-5-3-XAI_et_al" role="doc-biblioref">Barredo Arrieta et al. 2020c</a>)</span> - Figure <a href="transparent-machine-learning-to-support-predicting-covid-19-infection-risk-based-on-chronic-diseases.html#fig:5-3-fig15">5.26</a>, may have easier access to transparent and explainable model that estimates mortality risk in case of being infected by COVID-19. Our application allows the afflicted to see which diseases are contributing the most to their outcome, without the need of doctor’s examination, such as any blood properties and other information, that can only be gathered by a specialist. Only by selecting diseases that one suffers from, reliable prediction can be obtained quickly and without leaving home. Domain experts, such as medical doctors might use it for more complex patient examination or to improve their understanding and knowledge of the disease. Model’s predictions can be used by politicians to determine what people might need faster medical treatment. Moreover, data scientist may use it for extending their skills or as an inspiration to examine the problem in a different way and improve the existing solutions.</p>
 
 </div>
 </div>

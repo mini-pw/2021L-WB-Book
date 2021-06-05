@@ -382,10 +382,10 @@ In our research we are focusing on answering the question if creation of the mod
 <div id="model-building" class="section level3" number="5.2.4">
 <h3><span class="header-section-number">5.2.4</span> Model building</h3>
 <p>First, a model performing very well on training data can perform poorly on new samples coming from a different location. Such observations can be classified as out-of-distribution and models can become unpredictable in this setting. It can become really dangerous especially for patients. In many different areas of research there are efforts to detect such samples for example in <span class="citation">(<a href="#ref-5-2-ood" role="doc-biblioref"><strong>5-2-ood?</strong></a>)</span>.</p>
-<p>There are also some fairness concerns. As authors of <span class="citation">(<a href="#ref-5-2-ml-ethics" role="doc-biblioref"><strong>5-2-ml-ethics?</strong></a>)</span> mentioned, machine learning practitioners in medicine should be committed to fairness. Data sources should reflect the population and it is necessary that they contain enough members of all demographics. The source of bias in machine learning models can be traced to dozens of factors (<span class="citation">(<a href="#ref-5-2-bias-sources" role="doc-biblioref"><strong>5-2-bias-sources?</strong></a>)</span>).</p>
+<p>There are also some fairness concerns. As authors of <span class="citation"><a href="#ref-5-2-ml-ethics" role="doc-biblioref">Vayena E</a> (<a href="#ref-5-2-ml-ethics" role="doc-biblioref">2018</a>)</span> mentioned, machine learning practitioners in medicine should be committed to fairness. Data sources should reflect the population and it is necessary that they contain enough members of all demographics. The source of bias in machine learning models can be traced to dozens of factors (<span class="citation">(<a href="#ref-5-2-bias-sources" role="doc-biblioref"><strong>5-2-bias-sources?</strong></a>)</span>).</p>
 <p>In our case, we found that the model presented by <span class="citation"><a href="#ref-5-2-china" role="doc-biblioref">Yan et al.</a> (<a href="#ref-5-2-china" role="doc-biblioref">2020a</a>)</span> is not portable and does perform poorly on data from New York and the Netherlands.</p>
 <p>As we can see in Figure <a href="one-model-to-fit-them-all-covid-19-survival-prediction-using-multinational-data.html#fig:var-imp">5.8</a> models trained on such a dataset tend to include the source of data as an important feature. That means the model is biased for some or all sources of data to give better predictions. Simultaneously it fails to achieve scores as good as models dedicated for each country. Unfortunately, such models have low scores in different performance metrics and are worse than a model created specifically for a given source of data.</p>
-<p>As an example, we used lazypredict by <span class="citation">(<a href="#ref-5-2-lazypredict" role="doc-biblioref"><strong>5-2-lazypredict?</strong></a>)</span> twice to compare scores of various models trained on data from all 3 sources: the first run was on data without the column containing the source of data and a second run was on data containing all columns. The top 3 models from both runs are presented in the tables below (results are sorted by ROC AUC).</p>
+<p>As an example, we used lazypredict by <span class="citation"><a href="#ref-5-2-lazypredict" role="doc-biblioref">Pandala</a> (<a href="#ref-5-2-lazypredict" role="doc-biblioref">2019</a>)</span> twice to compare scores of various models trained on data from all 3 sources: the first run was on data without the column containing the source of data and a second run was on data containing all columns. The top 3 models from both runs are presented in the tables below (results are sorted by ROC AUC).</p>
 <table>
 <caption>Table 1: Scores from the lazypredict for the top 3 classifiers sorted by “ROC AUC” trained on data from 3 sources excluding the column containing information about the source of data</caption>
 <thead>
@@ -588,11 +588,17 @@ Kaushal, A., Altman, R., &amp; Langlotz, C. (2020). <span>Health Care AI Systems
 <div id="ref-5-2-iml" class="csl-entry">
 Molnar, C. (2019). <span class="nocase">Interpretable Machine Learning: A Guide for Making Black Box Models Explainable</span>. <a href="https://christophm.github.io/interpretable-ml-book">https://christophm.github.io/interpretable-ml-book</a>
 </div>
+<div id="ref-5-2-lazypredict" class="csl-entry">
+Pandala, S. R. (2019). <span>Lazy Predict</span>. <em>Python package</em>. <a href="https://github.com/shankarpandala/lazypredict">https://github.com/shankarpandala/lazypredict</a>
+</div>
 <div id="ref-5-2-scikit-learn" class="csl-entry">
 Pedregosa, F., Varoquaux, G., Gramfort, A., Michel, V., Thirion, B., Grisel, O., et al. (2011b). <span class="nocase">Scikit-learn: Machine Learning in Python</span>. <em>Journal of Machine Learning Research</em>, <em>12</em>, 2825–2830.
 </div>
 <div id="ref-5-2-netherlands" class="csl-entry">
 Quanjel, M. J. R., Holten, T. C. van, Gunst-van der Vliet, P. C., Wielaard, J., Karakaya, B., Söhne, M., et al. (2021). Replication of a mortality prediction model in dutch patients with COVID-19. <em>Nature Machine Intelligence</em>, <em>3</em>(1), 23–24. <a href="https://doi.org/10.1038/s42256-020-00253-3">https://doi.org/10.1038/s42256-020-00253-3</a>
+</div>
+<div id="ref-5-2-ml-ethics" class="csl-entry">
+Vayena E, C. I., Blasimme A. (2018). <span class="nocase">Machine learning in medicine: Addressing ethical challenges</span>. <em>PLOT Medicine</em>, <em>15</em>(11), 1–4. <a href="https://doi.org/10.1371/journal.pmed.1002689">https://doi.org/10.1371/journal.pmed.1002689</a>
 </div>
 <div id="ref-5-2-multiple-data" class="csl-entry">
 Wiens, J., Guttag, J., &amp; Horvitz, E. (2014). <span class="nocase">A study in transfer learning: leveraging data from multiple hospitals to enhance hospital-specific predictions</span>. <em>Journal of the American Medical Informatics Association</em>, <em>21</em>(4), 699–706. <a href="https://doi.org/10.1136/amiajnl-2013-002162">https://doi.org/10.1136/amiajnl-2013-002162</a>
