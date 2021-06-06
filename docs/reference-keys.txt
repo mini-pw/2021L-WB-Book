@@ -176,7 +176,7 @@ fig:5-1-ldhDist
 fig:5-1-crpDist
 fig:5-1-lymDist
 fig:5-1-neuDist
-fig:5-1-ageDist
+fig:5-1-neuAge
 fig:5-1-AUPRC1
 fig:5-1-AUPRC2
 fig:var-imp
@@ -527,7 +527,7 @@ abstract-12
 introduction-13
 data-description-1
 comparison-of-the-models
-conclusions-2
+conclusion-4
 one-model-to-fit-them-all-covid-19-survival-prediction-using-multinational-data
 abstract-13
 introduction-14
@@ -542,7 +542,7 @@ flaws
 improvements
 transparent-machine-learning
 application
-conclusions-3
+conclusions-2
 comparison-of-neural-networks-and-tree-based-models-in-the-clinical-prediction-of-the-course-of-covid-19-illness
 abstract-15
 introduction-16
@@ -590,4 +590,4 @@ variable-importance-plotsin-this-section-the-analysis-of-feature-importance-plot
 best-auc-rashomon-sets
 experts-rashomon-sets
 voting-in-mortality-prediction
-conclusion-4
+conclusion-5
