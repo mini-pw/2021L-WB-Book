@@ -4,23 +4,23 @@
 
 
 ### Abstract
-The introduction of a simple decision tree that predict patients’ chances of survival by [@yan_et_al_2020] in the first months of the COVID-19 pandemic laid the foundations for further research in the area of machine learning models to classify COVID-19 patients. Since then a few researchers have validated this decision tree on their datasets and found out that the proposed model is not suitable for patients from other countries than China. It appeared interesting to us and hence in the following paper we present results of our work which aim was to build models on the datasets from China, USA, France, the Netherlands and once again from China as well as on all of them combined in order to find an universal approach for classification of patients from various countries. After testing multiple models such as XGBoost, Logistic Regression, SVM and Tabnet we came up with a conclusion that there is no one model for all of the datasets that is created only from a few most important variables. For all of the approaches these variables included lactate dehydrogenase, lymphocytes and high-sensitivity C-reactive protein collected from the patients’ blood samples. In case of the Chinese data additional variables were age of the patients and their neutrophil.
+The introduction of a simple decision tree that predict patients’ chances of survival by [@5-1-yan-et-al] in the first months of the COVID-19 pandemic laid the foundations for further research in the area of machine learning models to classify COVID-19 patients. Since then a few researchers have validated this decision tree on their datasets and found out that the proposed model is not suitable for patients from other countries than China. It appeared interesting to us and hence in the following paper we present results of our work which aim was to build models on the datasets from China, USA, France, the Netherlands and once again from China as well as on all of them combined in order to find an universal approach for classification of patients from various countries. After testing multiple models such as XGBoost, Logistic Regression, SVM and Tabnet we came up with a conclusion that there is no one model for all of the datasets that is created only from a few most important variables. For all of the approaches these variables included lactate dehydrogenase, lymphocytes and high-sensitivity C-reactive protein collected from the patients’ blood samples. In case of the Chinese data additional variables were age of the patients and their neutrophil.
 
 
 ### Introduction
 
 At the end of 2019, the novel coronavirus disease 2019 (COVID-19) pandemic broke out. In the next few months it quickly spread around the world. Daily cases were increasing exponentially. Although  most of the cases involved mild symptoms, the healthcare system in many countries still became overloaded. Therefore, the physicians were in an urgent need of a quick system to predict how severe the state of a patient could get, especially if there is a risk of death or a need to be put at the ICU.
 
-A certain solution for this problem was using machine learning to create a mortality prediction model based on easily available biomarkers. One of the first models proposed in may 2020 by @yan_et_al_2020 could predict mortality rates of the patients 10 days in advance with great accuracy. The article is considered the state-of-the-art in the COVID-19 machine learning.
+A certain solution for this problem was using machine learning to create a mortality prediction model based on easily available biomarkers. One of the first models proposed in may 2020 by @5-1-yan-et-al could predict mortality rates of the patients 10 days in advance with great accuracy. The article is considered the state-of-the-art in the COVID-19 machine learning.
 Some issues with this model appeared when it was used on data from different hospitals. When used on biomarkers from patients in France, Netherlands and the United States the model’s accuracy significantly dropped.
 
-In our article, we describe how the datasets differ, we analyze how @yan_et_al_2020 model compares to newer model @5-1-ZHENG2020100092 which evaluates hospitalization priority for COVID-19 patients by validating it on different datasets and propose new model which could yield great results on both datasets.
+In our article, we describe how the datasets differ, we analyze how @5-1-yan-et-al model compares to newer model @5-1-ZHENG2020100092 which evaluates hospitalization priority for COVID-19 patients by validating it on different datasets and propose new model which could yield great results on both datasets.
 
 ### Data description
 
-We have begun our work from analyzing the  article [@yan_et_al_2020], authors have created a model based on blood samples collected form 375 patients from the Wuhan region in the first quarter of 2020. Data from another 110 patients were treated as an additional test set. The dataset contains 81 variables, including 74 describing the blood tests results, but not all tests were performed on each patient. Scientists create a model based on three variables: lactate dehydrogenase, lymphocytes and high-sensitivity C-reactive protein, these are going to be crucial also in our work.
+We have begun our work from analyzing the  article [@5-1-yan-et-al], authors have created a model based on blood samples collected form 375 patients from the Wuhan region in the first quarter of 2020. Data from another 110 patients were treated as an additional test set. The dataset contains 81 variables, including 74 describing the blood tests results, but not all tests were performed on each patient. Scientists create a model based on three variables: lactate dehydrogenase, lymphocytes and high-sensitivity C-reactive protein, these are going to be crucial also in our work.
 
-The article [@yan_et_al_2020] received several replies, scientists from the USA, France and the Netherlands validated the model on datasets from hospitals from their home countries. The results point to the problem of rashly predicting death for patients who eventually survive Covid-19 infection. They also claim that the @yan_et_al_2020 model learning from most recently performed measurements is not an appropriate tool to prioritize ICU admissions and should therefore use results from first tests.
+The article [@5-1-yan-et-al] received several replies, scientists from the USA, France and the Netherlands validated the model on datasets from hospitals from their home countries. The results point to the problem of rashly predicting death for patients who eventually survive Covid-19 infection. They also claim that the @5-1-yan-et-al model learning from most recently performed measurements is not an appropriate tool to prioritize ICU admissions and should therefore use results from first tests.
 
 The datasets from corresponding articles contained 3 previously highlighted features, in the datasets from [@5-2-france] and [@5-2-newyork] there are multiple test results and other useful features such as age, but information about other blood components is not included. The data from [@5-2-newyork] was especially helpful because of it's size, it contains informations about 1038 patients.
 
@@ -28,23 +28,23 @@ Table 1: Description of the considered datasets and their dimensions. We highlig
 
 | Article              | Rows    | Variables | Lactate Dehyd.|C-protein | Lymph.| Neutrophil | Age |
 |----------------------|--------:|----------:|--------------:|---------:|------:|-----------:|----:|
-|[@yan_et_al_2020]     |485      |81         |Yes            |Yes       |Yes    |Yes         | Yes |
+|[@5-1-yan-et-al]     |485      |81         |Yes            |Yes       |Yes    |Yes         | Yes |
 |[@5-2-newyork]        |1038     |14         |Yes            |Yes       |Yes    |No          | No  |
 |[@5-2-netherlands]    |305      |15         |Yes            |Yes       |Yes    |No          | Yes |
 |[@5-2-france]         |178      |43         |Yes            |Yes       |Yes    |No          | Yes |
 |[@5-1-ZHENG2020100092]|214      |33         |Yes            |Yes       |Yes    |Yes         | Yes |
 
-Careful inspection of distributions of these key variables from various articles helps to understand problem with applying model form [@yan_et_al_2020] on dataset from corresponding articles.
+Careful inspection of distributions of these key variables from various articles helps to understand problem with applying model form [@5-1-yan-et-al] on dataset from corresponding articles.
 
-Lactate dehydrogenase was the most important feature in model from [@yan_et_al_2020], relying only on its value patients were supposed to be directed to the ICU. The chart shows that indeed distribution of sever cases is significantly shifted towards higer values in comparsion with non severe cases, but such a large difference does not occur in other datasets, patients requiring additional care usually have an increased lactate dehydrogenase, but not as much as patients from China. An interesting dependence ocuurs in the dataset from [@5-1-ZHENG2020100092], a large part of the data also comes from China, there is a great distinction between the severely and slightly ill, but the overall lactate dehydrogenase levels are much lower. Additionally, slightly ill patients from Europe and the US have higher LDH levels than severely ill patients from China.
+Lactate dehydrogenase was the most important feature in model from [@5-1-yan-et-al], relying only on its value patients were supposed to be directed to the ICU. The chart shows that indeed distribution of sever cases is significantly shifted towards higer values in comparsion with non severe cases, but such a large difference does not occur in other datasets, patients requiring additional care usually have an increased lactate dehydrogenase, but not as much as patients from China. An interesting dependence ocuurs in the dataset from [@5-1-ZHENG2020100092], a large part of the data also comes from China, there is a great distinction between the severely and slightly ill, but the overall lactate dehydrogenase levels are much lower. Additionally, slightly ill patients from Europe and the US have higher LDH levels than severely ill patients from China.
 
 ```{r 5-1-ldhDist, out.width="850", fig.align="center", echo=FALSE, fig.cap='Comparison of lactate dehydrogenase amongst datasets, best separation occurs in patients form China.'}
 knitr::include_graphics('images/5-1-ldhDist.png')
 ```
 
-A similar situation occurs when it comes to high-sensitivity C-reactive protein, in the dataset from [@yan_et_al_2020] the distributions are clearly shifted among themselves, but similar dependency occurs only in the data from [@5-1-ZHENG2020100092]. Patients suffering from the virus slightly and severely from other countries with have less varied level of CRP.
+A similar situation occurs when it comes to high-sensitivity C-reactive protein, in the dataset from [@5-1-yan-et-al] the distributions are clearly shifted among themselves, but similar dependency occurs only in the data from [@5-1-ZHENG2020100092]. Patients suffering from the virus slightly and severely from other countries with have less varied level of CRP.
 
-```{r 5-1-crpDist, out.width="850", fig.align="center", echo=FALSE, fig.cap='Comparison of high reactive C protein amongst datasets, again best separations occurs in dataset from [@yan_et_al_2020].'}
+```{r 5-1-crpDist, out.width="850", fig.align="center", echo=FALSE, fig.cap='Comparison of high reactive C protein amongst datasets, again best separations occurs in dataset from [@5-1-yan-et-al].'}
 knitr::include_graphics('images/5-1-crpDist.png')
 ```
 
@@ -56,9 +56,9 @@ The same dependence occurs with lymphocytes, one additional fact about these dis
 knitr::include_graphics('images/5-1-lymDist.png')
 ```
 
-Neutrofil was not used in [@yan_et_al_2020] model, but it separates sever and non-severe cases in both datasets very well.
+Neutrofil was not used in [@5-1-yan-et-al] model, but it separates sever and non-severe cases in both datasets very well.
 
-```{r 5-1-neuDist, out.width="850", fig.align="center", echo=FALSE, fig.cap='Comparison of neutrophil amongst datasets, it was not used in [@yan_et_al_2020] but it separates sever and non severe cases really well.'}
+```{r 5-1-neuDist, out.width="850", fig.align="center", echo=FALSE, fig.cap='Comparison of neutrophil amongst datasets, it was not used in [@5-1-yan-et-al] but it separates sever and non severe cases really well.'}
 knitr::include_graphics('images/5-1-neuDist.png')
 ```
 
@@ -71,9 +71,9 @@ knitr::include_graphics('images/5-1-ageDist.png')
 
 ### Comparison of the models
 
-We have decided to validate two models proposed by @yan_et_al_2020 and @5-1-ZHENG2020100092. The first one is a decision tree with 3 nodes and the second one is an XGboost model with 4 explanatory variables. 
+We have decided to validate two models proposed by @5-1-yan-et-al and @5-1-ZHENG2020100092. The first one is a decision tree with 3 nodes and the second one is an XGboost model with 4 explanatory variables. 
 
-To verify if the model proposed by Yan et al. is effective in predicting COVID-19 mortality amongst patients around the world, validation on external datasets was made. The decision tree was tested on combined data from American[@5-2-newyork], French[@5-2-france] and Chinese[@yan_et_al_2020], [@5-1-ZHENG2020100092] hospitals. The merged dataset has 1842 observations and 3 explanatory variables: lymphocyte, lactate dehydrogenase (denoted by LDH), and C-reactive protein (CRP). All these medical indicators have been previously studied as key factors in severity and mortality prediction[@5-1-symptoms], [@5-1-Lymph]. To compare Yan's decision tree with exemplary models, we created Logistic Regression and Support Vector Machine (SVM) by using scikit-learn machine learning package [@5-1-Scikit]. Additionaly we also employed Tabnet, a deep learning model for tabular data [@5-1-Tabnet]. It allows creating high performance and explainable classifier on numeric data. The merged dataset was splitted into a training table (80% of observations) and a test table (20%). Then, newly created models were trained on the training table and validated on the test table. Yan's algorithm was tested on the same part of a merged dataset as other models. We have selected accuracy, precision, recall, ROC AUC and AUPRC [@5-1-AUPRC] as final score metrics. 
+To verify if the model proposed by Yan et al. is effective in predicting COVID-19 mortality amongst patients around the world, validation on external datasets was made. The decision tree was tested on combined data from American[@5-2-newyork], French[@5-2-france] and Chinese[@5-1-yan-et-al], [@5-1-ZHENG2020100092] hospitals. The merged dataset has 1842 observations and 3 explanatory variables: lymphocyte, lactate dehydrogenase (denoted by LDH), and C-reactive protein (CRP). All these medical indicators have been previously studied as key factors in severity and mortality prediction[@5-1-symptoms], [@5-1-Lymph]. To compare Yan's decision tree with exemplary models, we created Logistic Regression and Support Vector Machine (SVM) by using scikit-learn machine learning package [@5-1-Scikit]. Additionaly we also employed Tabnet, a deep learning model for tabular data [@5-1-Tabnet]. It allows creating high performance and explainable classifier on numeric data. The merged dataset was splitted into a training table (80% of observations) and a test table (20%). Then, newly created models were trained on the training table and validated on the test table. Yan's algorithm was tested on the same part of a merged dataset as other models. We have selected accuracy, precision, recall, ROC AUC and AUPRC [@5-1-AUPRC] as final score metrics. 
 
 Table: Table 2: Model scores on the test table from the merged dataset.
 
@@ -112,7 +112,7 @@ knitr::include_graphics('images/5-1-AUPRC2.png')
 ```
 ### Conclusion
 
-The first conclusion which we draw from our work is that the original decision tree is not an algorithm that can be universally used to assess chances of survival of any patient around the world. The fact that the blood characteristics vary with ethnic groups is significant and therefore usage of some additional variables can improve the models’ predictive capabilities. This is not what the authors of [@yan_et_al_2020] expected but adding Age or Neutrophil variables to the set indeed boosted the performance. Hence, the intuitive windup would be that the best model is the XGBoost with Age variable since it gets high results according to multiple metrics but it is not that simple. For example its precision is significantly lower in comparison to the Tabnet model prepared on the merged datasets.
+The first conclusion which we draw from our work is that the original decision tree is not an algorithm that can be universally used to assess chances of survival of any patient around the world. The fact that the blood characteristics vary with ethnic groups is significant and therefore usage of some additional variables can improve the models’ predictive capabilities. This is not what the authors of [@5-1-yan-et-al] expected but adding Age or Neutrophil variables to the set indeed boosted the performance. Hence, the intuitive windup would be that the best model is the XGBoost with Age variable since it gets high results according to multiple metrics but it is not that simple. For example its precision is significantly lower in comparison to the Tabnet model prepared on the merged datasets.
 
 Therefore, in the final words of this paper we highlight that none of the proposed models that were validated and compared by us should be used on other datasets than those on which they were trained. The whole process of model preparation for medical use should be performed in each region or at least country or group of countries separately.
 
