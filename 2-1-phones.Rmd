@@ -1,0 +1,156 @@
+## Does brand has an impact on smartphone prices? {#xai2-phones}
+
+*Authors: Agata Kaczmarek, Agata Makarewicz, Jacek Wiśniewski (Warsaw University of Technology)*
+
+### Abstract
+
+*Mobile phone became indispensable item in our daily life. From a simple device enabling contacting other people, it developed into a tool facilitating web browsing, gaming, creating/playing multimedia and much more. Therefore, the choice of phone is an important decision, but given the wide variety of models available nowadays, it is sometimes hard to choose the best one and also easy to overpay.
+In this thesis, we analyze the phone market to investigate whether the prices of the phones depend only on their technical parameters, or some of them have an artificially higher price regarding the possessed functionalities. Research is conducted on the `phones` dataset, provided by the lecturer, containing prices and features of different phones. As a regressor, Random Forest from package `ranger` was chosen. 
+Given the type of the model (blackbox i.e. non-interpretable), we use Explainable Artificial Intelligence (XAI) methods, for both local and global explanations, to interpret its predictions and get to know which features influence them the most, and lower/raise the price of the phone.*
+
+### Introduction and Motivation
+
+Mobile phones, since their coming onto the market, have gradually entered people everyday life. According to GSMA, almost 70% of the world's population has one. This market has gained significant popularity in 2007, with the introduction of Apple's iPhone. It revolutionized the industry by offering features such as a touch screen interface and a virtual keyboard. The smartphone market has been steadily developing and growing since then, both in size, as well as in models and suppliers. Smartphone, due to its mobility and computer abilities, has become a source of entertainment, a communication tool, a search engine and so much more.
+
+Suppliers constantly outdo each other introducing new improvements, better cameras or batteries, to attract customers. One could wonder which of them (or whether all of them) cause the price increase. Another question is, whether the price depends on the manufacturer - are there certain producers whose phones are more expensive, no matter the parameters? The task of determining a relationship between a smartphone's features, brand, and the price is surely non-trivial.
+
+In such a problem, machine learning can be useful. Machine learning algorithms step into more and more areas of our life. We use them in risk analysis, medical diagnosis or credit approval, so why could they not be used in phones pricing? In general, we can distinguish two types of models: glass-box, which steps can be followed from inputs to outputs, and black-box, which do not have a readable way of determining predictions. In many cases, such as the one considered in this article, simple interpretable models are not capable of dealing with our problem satisfyingly, so we turn to more complex, non-transparent ones, which grant us higher accuracy, but lower understanding, and therefore, lower trust. Explainable Artificial Intelligence (XAI) addresses this problem. It is a set of tools to help you understand and interpret predictions made by your machine learning models. With it, one can debug and improve model performance, and help others understand models' behaviour.
+
+In the article below, we deal with the problem of creating an explainable regressor for mobile phones prices. We build a black-box model and then use XAI methods to find out which features and brands contribute mostly to the final price.
+
+### Related work
+
+Ha Ngoc Anh [@2-1-phones-smartphone] shows changes in the mobile industry and competition between various smartphone companies and brands. There are also papers, which use Machine Learning tools to answer the question of predicting prices by various models and neural networks. Ibrahim M. Nasser et.al. [@2-1-phones-ann] proves the point in predicting smartphone prices with the use of neural networks. And Ritika Singh [@2-1-phones-eda] examines the importance of various features in predicting smartphone prices.
+
+In this article Explainable Artificial Intelligence methods were used to address the problem. They were described by Przemysław Biecek et.al. in "Explanatory Model Analysis" book [@EMA], with local methods as Break-down, Shapley and Ceteris-Paribus; and global as Partial-dependence profiles being explained there. Also, more explanations about XAI are to be found in articles about LIME [@xai1-lime] and ALE [@xai1-ale] plots.
+
+
+### Methodology
+
+**Data description**
+
+Research was carried out on the *phones* dataset provided by the lecturer i. e. data frame with prices and technical parameters of 414 phones. It contains ten explanatory variables and one target variable (`price`), therefore we deal with regression task. The sample of the data is presented below (\@ref(fig:2-1-sample-data)).
+
+```{r 2-1-sample-data, fig.align="center", fig.cap='Sample of the data',out.width="100%", echo=FALSE}
+knitr::include_graphics('images/2-1-sample-data.png')
+```
+
+**Exploratory Data Analysis and data preprocessing**
+
+At the beginning of our research we conducted Exploratory Data Analysis to get better understanding of the data we deal with. We mainly focused on the target variable and its distribution versus explanatory ones to identify potential influential features for our prediction. Below we present some results important for further work (\@ref(fig:2-1-mean-price)).
+
+```{r 2-1-mean-price, fig.align="center", fig.cap='10 brands with the highest mean price of the phone',out.width="100%", echo=FALSE}
+knitr::include_graphics('images/2-1-eda-mean-price.png')
+```
+
+Analyzing brands by the mean price of the phones produced, there can be identified a distinct leader, which is an Apple company. On average, a phone from it costs more than 3500 zlotys. In the top 10 brands, we can also see common ones such as Samsung or Huawei.
+
+```{r 2-1-violin, fig.align="center", fig.cap='Phone price distribution for 4 most common brands',out.width="100%", echo=FALSE}
+knitr::include_graphics('images/2-1-eda-violin-plot.jpg')
+```
+
+On the plot above (\@ref(fig:2-1-violin)) we can identify some outliers in terms of price, especially a phone made by Samsung company, which costs 9000 zlotys. Concerning the Xiaomi brand, we can observe that despite being a popular choice, the price of a single phone is relatively low - no phones are exceeding 4000 zlotys. As for the Apple products, conclusions from the plot above are confirmed.
+
+```{r 2-1-corr, fig.align="center", fig.cap='Correlation matrix',out.width="100%", echo=FALSE}
+knitr::include_graphics('images/2-1-correlation-matrix.png')
+```
+
+Based on the partially presented EDA, we needed to conduct simple data preprocessing before modeling. Following steps were executed:
+
+* ***handling missing values:*** Two features containing missing values were identified; both related to camera parameters (`back_camera_mpix`, `front_camera_mpix`). Those values turned out to be meaningful, as they mean that given mobile phone has no camera (back or front). Given that information, NAs were imputed with a constant value - 0.
+* ***removing outliers:*** Based on features distribution, some extreme values were identified in the dataset's explanatory variables (`back_camera_mpix`, `front_camera_mpix`, `battery_mAh`, `flash_gb`, `price`), which would weaken the model's performance. Therefore they were removed.
+* ***dealing with unimportant and correlated features:*** The variable `name` has been omitted, because it was practically unique in the dataset and naturally connected to the `brand` feature. Moreover, `height_px` and `width_px` were deleted due to their strong correlation with the `diag` feature (and with each other) (\@ref(fig:2-1-corr)); this feature was considered as a sufficient determinant of the phone's dimensions.
+
+**Models**
+
+Next step after EDA was creating prediction models. To compare results and find the best model for mentioned data, there were created 3 models: ranger, xgboost and svm. Every model used cross validation during trainning. Svm and xgboost models cannot be trained using character variables so variable `brand` needed to be target encoded in these cases. There were used two measures to compare models results: root mean square error (rmse) and mean absolute error (mae). The results are presented in the table below ( \@ref(fig:2-1-models)).
+
+```{r 2-1-models, fig.align="center", fig.cap='Correlation matrix',out.width="100%", echo=FALSE}
+knitr::include_graphics('images/2-1-model-compare.png')
+```
+
+The presented results point, that the ranger model is the best choice. This model was used in further analysis.
+
+### Results
+
+Ranger model results have been analyzed using Explainable Artificial Inteligence methods. Following paragraphs present local and global explainations.
+
+**Local explainations**
+
+In the first step of our XAI, the focus was on instance level explanations - analysis of single predictions and how each feature influences their values. Break down, SHAP, Lime and Ceteris Paribus profiles were used to show dependencies and draw conclusions. The drawback of those methods is that for each observation results can differ greatly. That is why they cannot be used to assume general ideas for a whole data set. Therefore below we present only the most interesting observations found during the research. They were grouped into pairs to show how identical parameters, but different brands can lead to totally different prices or vice versa.
+
+* First example
+
+```{r 2-1-first-example, fig.align="center", fig.cap='First example',out.width="100%", echo=FALSE}
+knitr::include_graphics('images/2-1-first-example.png')
+```
+
+```{r 2-1-breakdown-plot20, fig.align="center", fig.cap='Breakdown profile for observation 20',out.width="100%", echo=FALSE}
+knitr::include_graphics('images/2-1-breakdown_20_n.png')
+```
+
+```{r 2-1-breakdown-plot246, fig.align="center", fig.cap='Breakdown profile for observation 246',out.width="100%", echo=FALSE}
+knitr::include_graphics('images/2-1-breakdown_246_n.png')
+```
+
+Shown above two observations (\@ref(fig:2-1-first-example)) vary three features - *ram_gb*, *brand* and *diag*. It is visible on these two Breakdown charts (\@ref(fig:2-1-breakdown-plot20), \@ref(fig:2-1-breakdown-plot246)) that Samsung has a bigger diagonal, but less RAM GB and according to the model is more expensive by 200. However, this difference in reality is higher, Samsung is more expensive by 700. There are also differences in the impact of features - in first *batter_mAh* has a positive impact and in the second negative. In the first case for model the most important were *ram_gb*, *diag* and *brand* (in this order), in second *ram_gb*, *brand* and *front_camera_px*. The question is, whether in reality *brand* does not have bigger impact on price than shown here? 
+
+* Second example
+
+```{r 2-1-second-example, fig.align="center", fig.cap='Second example',out.width="100%", echo=FALSE}
+knitr::include_graphics('images/2-1-second-example.png')
+```
+
+```{r 2-1-lime-plot-40, fig.align="center", fig.cap='A plot of results of LIME method for 40 observation',out.width="100%", echo=FALSE}
+knitr::include_graphics('images/2-1-lime-40_n.png')
+```
+
+```{r 2-1-lime-plot-319, fig.align="center", fig.cap='A plot of results of LIME method for 319 observation',out.width="100%", echo=FALSE}
+knitr::include_graphics('images/2-1-lime-319_n.png')
+```
+
+On LIME plots (\@ref(fig:2-1-lime-plot-40), \@ref(fig:2-1-lime-plot-319)) two phones, which have similar values in many features (\@ref(fig:2-1-second-example)), in two (*battery_mAh* and *diag*) second phone (\@ref(fig:2-1-lime-plot-319)) has better values than first one (\@ref(fig:2-1-lime-plot-40)). Even though the price of the first phone is three times higher according to our model. The only difference not mentioned above between them is a brand - the first one is iPhone. That seems to be a conclusion consistent with reality.
+
+* Third example
+
+```{r 2-1-third-example, fig.align="center", fig.cap='Third example',out.width="100%", echo=FALSE}
+knitr::include_graphics('images/2-1-third-example.png')
+```
+
+```{r 2-1-ceteris, fig.align="center", fig.cap='Ceteris Paribus profile',out.width="100%", echo=FALSE}
+knitr::include_graphics('images/2-1-ceteris-paribus_n.jpg')
+```
+
+Ceteris Paribus profile (\@ref(fig:2-1-ceteris)) shows different influence of some features concerning two mobile phones (\@ref(fig:2-1-third-example)). The biggest contrast we can observe in case of *battery_mAh*, which lowers the price significantly in case of OPPO phone, and increases when it comes to Apple one, leading to the same prediction for both if the value exceeds 5000 mAh. It is quite surprising because in case of the first one such battery parameters should lead to a bigger price. Another difference which can be observed in *front_camera_mpix* influence - whereas above ~ 15 Mpix we reach similar price, for smaller values it causes prediction's increase for Apple, and steady value for OPPO (for both peaks around 10 Mpix value). Once more those impacts are unexpected because OPPO phone has a much better front camera. 
+
+**Global explainations**
+
+In the second step of our XAI analysis, we focused on dataset level explanations - analysis of all predictions together and how each feature affects their average value. We use Feature Importance and Partial Dependence Profile to show dependencies and draw conclusions. The advantage of those methods, in comparison to local profiles, is the fact that those explanations are true in general for our data; whereas for each observation results can differ greatly.
+
+```{r 2-1-feat-importance, fig.align="center", fig.cap='Feature importance',out.width="100%", echo=FALSE}
+knitr::include_graphics('images/2-1-feature-importance.png')
+```
+
+Feature importance plot (\@ref(fig:2-1-feat-importance)) presents which variable has the most significant impact on prediction result. According to this plot, the most important variables for the ranger model were `ram_gb`, `flash_gb` and `brand`. Two of them are memory parameters which are arguably the most important phone's technical parameters. The third variable describes the phone's brand name, which is not a technical parameter.
+
+
+```{r 2-1-pdp, fig.align="center", fig.cap='Partial Dependence Profile (PDP) for numeric variables',out.width="100%", echo=FALSE}
+knitr::include_graphics('images/2-1-pdp.png')
+```
+
+Partial Dependence Profile (\@ref(fig:2-1-pdp)) presents global dependencies between variables and target. The plot confirms observation from the previous plot, presenting a strong dependency between memory parameters and price. On the `front camera mpix` plot, there is an unnatural behaviour near 10-12 mpx, suggesting that phones with these specific parameters are the most expensive. After some research, it appeared that phones with these parameters are mostly made by expensive brands like Samsung and Apple. This leads to the conclusion, that in this case, the brand name was the variable that impacted price, not `front camera mpix`.
+
+
+```{r 2-1-pdp-brand, fig.align="center", fig.cap='Partial Dependence Profile (PDP) for brand variable',out.width="100%", echo=FALSE}
+knitr::include_graphics('images/2-1-pdp-brand.png')
+```
+
+Partial Dependence Profile (\@ref(fig:2-1-pdp-brand)) looks slightly different for brand variable because it is a character variable. Surprisingly, this plot presents a weak brand name impact on price, unlike previous plots. Brands that increase the price are Apple, Archos, and CAT, but only one of those brands (Apple) is a big phone company.
+
+### Summary and conclusion
+
+To summarize, according to all explanations shown above, there are several conclusions, which can be drawn. The biggest impact on the predicted price for the model had `brand`, `ram_gb` and `flash_gb`. The most expensive brands as Samsung and Apple have biased prices, they are higher than predicted by the model. What is important to highlight is that these conclusions were made for this specific data set, which had only eleven features at the beginning. This may mean, that for bigger data set, with more features, the results could be slightly different. Such sets can be the subject of further research.
+
+
+
+
