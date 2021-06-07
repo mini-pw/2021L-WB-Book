@@ -30,7 +30,7 @@ We started our research with data preprocessing. For this purpose, we used code 
 
 For initial predictions of mortality, a few different models were compared: XGBoost, SVM, Random Forest, and Logistic regression, from which XGBoost was selected for studies of Rashomon set, because of its satisfactory precision and pace at which model learned.  
 
-Afterwards, with the help of a random search technique, a set of models was created. The ranges of hyperparameters were selected according to the article @6-1-tunability. We learned 160 different models with 5-fold cross-validation and used the ROC AUC measure to estimate each model effectiveness. 
+Afterwards, with the help of a random search technique, a set of models was created. The ranges of hyperparameters were selected according to the article @6-3-tunability. We learned 160 different models with 5-fold cross-validation and used the ROC AUC measure to estimate each model effectiveness. 
 
 The creation of many models does not solve the problem of mortality prediction. The main task is to compare, analyse and choose the one, which describes the best reality. Partial Dependence Plots (PDP) are very often studied to do so. However, it is often hard to compare them all due to the number of models and features. This is why we introduce a new metric. It is an alternative to variable importance and is based on PDP curves.  
 
