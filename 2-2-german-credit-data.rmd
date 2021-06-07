@@ -24,7 +24,7 @@ During entire analysis, we'll be operating on publicly available data set contai
 Data set provider, basing on academic research,  have chosen certain variables to describe each borrower. Some of them are presented in the Table \@ref(tab:variables). That combination of numerical and qualitative variables proved to carry certain importance/influence on probability of paying back borrowed assets. 
 
 
-```{r variables, echo=FALSE}
+```{r echo=FALSE}
 Statistic <- c('checking_status', 'duration', 'credit_history', 'purpose', 'credit_amount', 'savings_status', 'age')
 Description <- c('Status of existing checking account (qualitative)', 'Credit duration in months (numerical)', 'Credit history (qualitative)', 'Purpose (qualitative)', 'Purpose (qualitative)', 'Savings account/bonds (qualitative)', 'Age in years (numerical)')
 
