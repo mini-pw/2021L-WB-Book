@@ -2,4 +2,124 @@
 
 *Authors: Bartlomiej Eljasiak, Tomasz Krupinski, Dominik Pawlak*
 
-### Introduction
+### Abstract
+In the sections below we take a close look at the ERSCovid model that was proposed in [article](https://doi.org/10.1101/2020.03.24.20042317) from March 2020. We present some of our steps in unsuccessful reproduction of said model and further explain the problems with it, our limitations and currently unresolved bottlenecks in training a 3D CNN.
+
+### Problem
+The aim of the original article was to create an automatic system that would make it easier to diagnose patients with COVID-19 lung disease. At the time of creating this article it was still very new and important topic, thus creating symilar system was of the highest priorities and potentially could influence many lives. Authors combined two deep learinig (DL) models which were used to first process the lung computed tomography scans  (CT scans) and then basing on those processed files predict if the given person illness was due to COVID-19 virus or other types of pneumonia. We focused on the already ill people because in the beginning of 2020 it was necessary to show difinitive symptoms of pneumonia in order to get screening for COVID-19, so our normal type of patient switches from healty to already ill.
+
+### ERSCovid workflow
+
+<!---
+problemy
+
+2 niedostępne zbiory danych
+niedziałający kod
+powiększenie segmentów płóc w niesprecyzowany sposób
+słabo opisany proces uczenia wstępnego
+Nie opisany sposób skalowania skanów z rozmiaru 512x512x? na 240x360x48.
+"A fully automatic DL System" nie jest w ogóle automatyczny (ale to już na boku)
+
+--->
+
+
+Authors presented 2 separate DL models which combined into some script or pipeline should in theory create a fully automated system. However, networks aren't connected and require extra 3D-scan processing in between, thus making the whole proces tedious and requiring advanced technical knowledge. To further explain those statements one should look closely at the proposed two networks.
+
+#### Lung segmentation
+
+Typical CT scan will be of size 512x512xZ, where Z corresponds to the depth of the scan i.e. first numbers show top slices of the lungs, and last ones the part at the bottom. Whereas resolution 512x512 is well established standard of single CT image, their number (Z) varies a lot. From about 30 up to 150. This causes some problem in the proposed system, but they will be discussed later.
+CT scans show insides of the body, therefore a lot of unimportant information is contained within those images, this creates a sort of noise for neural network and makes the learining process significantly harder. Ideally we would only want to keep the data about lungs, because all predictive variables are contained within them. This is exactly what the first DL model does. It is called DenseNet121-FPN and authors did not create it, they only used it to preprocess the data. It takes sigle CT scan and outputs a mask with Z-2 number of layers. Why Z-2 and not Z or Z minus the number of layers without lungs? We honestly don't know. This mask shows area in the oryginal picture where the lungs are located. What's interesting, the value corresponding to lung presence in not binary, but a float, so authors use a threshold to determine which values mark the positive lung pressence.
+
+
+#### Transforming the data for second network
+
+At this point we only have original scan of size 512x512xZ and a mask 512x512xZ-2, but our second NN uses data of fixed size 240x360x48 for classifing patients. So how do they transfor this data? They do not tell. This makes reproduction of their steps a lot harder, because they do not use mask as is, they enlarge the area it contains in order to include tissue of the lungs in the output. How much tissue, by what padding did they add? Again, they do not include this information neither in article, in supplementary materials nor in code. What we did at this point was simple we just used the mask as is and scaled the scans using nearest-neighbor interpolation to the correct size. This step should not be repeted due to the fact that a lot of information can be lost here, but other areas of reproduction failed in even more spectacular way, so we never returned here to improve on this.
+
+
+#### Classifing patients
+
+After all the previous steps the proposed DL 3D Convolutional Neural Network (CNN) can be used. It's inputs are 240x360x48 CT scans of mostly lung area. The output of this network is a float number which can be associated with the certainty that provided lungs are from COVID-19 virus infected patient, whereas 1 indicates 100% assurance of such case and 0 corresponds to 100% assurance that patient has other type of pneumonia. Normally at this point there would be a detailed description of training process, loss function and usage of variaus special structures (e.g. dropout layers). Authors did mention few things about this step in supplementary materials, but not much other than learinig rate of Stochastic Gradient Descent and regularization term. Nothing was said about improving the accuracy, fighting overfitting, or in general importance and impact of every step they took. We are just left with information that this network works with AUC of
+
+
+
+### Data
+
+#### Original data
+
+The data the authors used was medical information (CT scans) from patients in seven different cities in China. Of course, these scans were obtained with the consent of the patients. In total, the authors write that they had 4106 scans with lung cancer and EFGR gene mutation information which they used to perform COVID-19Net pre-training for lung features. To train specifically for COVID-19 detection, they used 709 CT scans from Wuhan city and Henan. Validation data were generated from the other cities, of which there are four in total.
+
+COVID-19 scans had to meet the following requirements:
+
+* RT-PCR confirmed COVID-19
+* lab-confirmed other types of pneumonia before Dec. 2019
+* have non-contrast enhanced chest CT at diagnosis time
+
+And CT-EGFR dataset had to meet the following criteria:
+* epidermal growth factor receptor (EGFR) gene sequencing was obtained
+* non-contrast enhanced chest CT data obtained within 4 weeks before EGFR gene sequencing.
+
+
+<img src="https://www.medrxiv.org/content/medrxiv/early/2020/03/26/2020.03.24.20042317/F1.large.jpg">
+
+
+Unfortunately, the datasets used by the authors were not posted nor could we find them. Had we had them, we could have checked the reproducibility of the results in more detail.
+
+
+#### Our data
+
+In order to be able to start checking reproducibility at all, we first had to find some data related to COVID-19. So we found four different collections available on the Internet:
+
+* [120](https://wiki.cancerimagingarchive.net/pages/viewpage.action?pageId=80969771#80969771171ba531fc374829b21d3647e95f532c)
+* [120](https://wiki.cancerimagingarchive.net/pages/viewpage.action?pageId=80969742#80969742bcab02c187174a288dbcbf95d26179e8)
+* [256](https://wiki.cancerimagingarchive.net/pages/viewpage.action?pageId=70226443#70226443171ba531fc374829b21d3647e95f532c)
+* [377](https://github.com/mr7495/COVID-CTset)
+
+However, we decided to use only the last collection, from which we took 377 lung scans. There are 15589 CT scans belonging to 95 Covid-19, and 48260 CT scans of 282 normal people from Negin medical center that is located at Sari, Iran. Those radiology images were in 16-bit grayscale DICOM format with 512x512 pixels resolution, but to preserve patient's anonymity this dataset authors converted them to TIFF format, which holds the same 16-bit grayscale data.
+
+
+### Training
+
+
+The authors unfortunately did not provide the code related to network training. We therefore had to write our own code. As this project was our first contact with convolutional neural networks and with libraries related to neural networks in general, it is possible that this was not the optimal code.
+First, we wrote a simple training that was designed to simply work. Since one person on our team had an RTX series card, we were able to use Nvidia CUDA which helped train the network much faster. Unfortunately, due to other limitations such as RAM, we had to change our approach and decided to write a workout that would run on Google Collab, where we would be able to use the GPU available there. This allowed us to train a little faster. Unfortunately, despite these efforts, we still did not manage to write the code nor obtain the technical solutions that would enable us to train the network to satisfactory results.
+
+
+### Changes to original model
+
+Part of work that we had to do unconditionally was to test two predefined modifications to our network. Dropout and normalization are popular techniques, which are very useful in fighting overfitting or in other words improving generalization of a model. The problem was that our model behaved mostly random e.g. in the last epochs it jumped from 0.6 AUC to 0.83 in the next, and right after back to 0.7. This is the defult behavior of our network, so it was hard to tell what it exactly does but we definitevely were not at the point where we would fight overfitting. Nevertheless we did test those modifications.
+
+#### Dropout
+
+This was something that for sure was missing from the original model. Adding a dropout with rate 0.7 after convolutional blocks that authors used seemed to reduce the variance of jumps between epochs, but it also reduced AUC by about 15%, the question still stands could we get better results on training data with in on fully trained model, but due to the lack of it we were not able to answer it.
+
+#### Normalization
+
+This technique was already used by the autors of the article, but with almost none explanation for the used rate of 5 * 1e-4. We used bigger numbers of 1e-2 and 1e-3 and got drastically worse reuslts, dropping by roughly 0.35 AUC. As this is an important parameter while training neural network, we would love to test a variety of them on trained network. But again, at this point we were not fighting overfitting, and our current problems were not caused by wrong regularization parameter so, we moved on to the next things.
+
+
+#### Regularization
+
+We tried to improve the results with the usage of regularization. We decided to introduce L1 and L2 regularization. Unfortunately neither of them worked well. Still the results are far from being better than random. However, there might be possible explanation to this problem. We worked with small dataset, containing only around 50 times less scans than the original dataset.
+
+
+#### Auxiliary training
+The authors used pre-train to teach the network lung features. To achieve that, they used large CT-EGFR dataset (4106 patients). The aim of this process was to teach network to predict EGFR gene mutation. The figure has dense connection, which means that each convolutional layer is connected to all of its previous convolutional layers inside the same dense block.
+
+#### Creating new scans with GANs
+
+One of the main struggles was lack of usable data, so naturally we looked for a way to overcome this problem. There is a technique of creating new, unseen data that utilizes Generative Adversarial Networks, which could prove very useful in this case. This section should not be focused on deep explanation of what GAN exactly is, but not to leave some people in blind, here is a short description. In summary the typical GAN consists of two networks which are trained simultaneously. Goal of first (generator) is to create an image from randomly generated noise, and the second (discriminator) tries to tell which images were generated and which are real. This is because while training each generated image is given to the descriminator in pair with the real one, but with no information which is which. While training generator improves itself when discriminator correctly indicates which image was generated and discriminator learns when it makes mistakes while picking the generated image. This approach can be very efficient and is widely used in generating 2d images. Our plan was to start from rather basic and light version in GAN, inspect results and improve our structure on them. Sadly creating even simple generative network of size even 240x360x48
+proves to be computationally heavy. We were not able to train it locally due to it's memory requirements, so we had to rest upon online GPUs of Google Colab. All seemd to work fine, but training our small basic 3D GAN on our small dataset of 377 CT scans for 20 epochs was said to take around 10h, this would still be doable if not for limitations of google colab, which quickly shut our access to resources down, which not only literally killed our all hopes for training this GAN, but for few days made it impossible for most of our team to train even the original 3D CNN, due to the fact, that original network was also to large for us to run it locally. But it was not a complete failure. Training process was halted roughly after 5 hours, and we were able to inspect what it did create at the last epoch. Image shows 24'th of 48 layers. In our opinion this is a little bit offensive.
+
+![](images/3-4-gan_lung.png)
+
+So we were not able to test even the very simple GAN, which honestly would propably perform badly. If we used a more appropiate, larger dataset and more complex structure, training would propably last couple of months or years. This is not really suprising, due to the fact that recent state-of-the-art fully 3D GAN was creating models of size 32x32x32, and they used cluster of TITANs GPUs.
+
+
+
+
+
+
+### Summary
+
+While working on this project we have taken a deep dive into a world of neural networks. Despite the fact, that we didn't manage to introduce any improvements to the given problem, we are satisfied with the results of our work. We learned about convolutional neural networks and how versatile tool they might be. The  article above shows up to date real-life use case of using CNN in medicine. We were able to reproduce, modify and understand network from said article, which gave as an uncanny insight into doing our own research. We would love to tackle this problem again in the future.
+
