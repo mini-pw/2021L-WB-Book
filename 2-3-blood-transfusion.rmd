@@ -4,27 +4,21 @@
 
 ### Abstract
 
-Blood donated for transfusions saves millions of lives every year. Reliable prediction of a patient's blood donation intention is valuable information for the medical community. This work focuses on studying machine learning predictive models for such tasks through methods of explainable artificial intelligence (XAI). We consider a model based on the Random Forests algorithm and a dataset containing information about patients' blood donation history. Through prudent data pre-processing, model preparation, and the use of global and local explanations of the model, we exhibit how strongly and in what way various features affect the model's prediction. During our analysis, we also uncover meaningful patterns hidden in the data itself. Among other conclusions, we show that a short time since the patient's last donation is crucial for positive prediction and that donation burnout is a probable effect affecting donors. We believe that the presented results are valuable for this matter of life and death subject.
+Blood donated for transfusions saves millions of lives every year. Reliable prediction of a patient's blood donation willingness is valuable knowledge for the medical community. Because of that, a better understanding of the described problem is desirable. This work aims to achieve that by focusing on studying machine learning (ML) predictive models for such tasks through methods of explainable artificial intelligence (XAI). We consider an ML model based on a dataset containing information about patients' blood donation history. Through prudent data pre-processing, model preparation, and the use of various XAI tools, we exhibit how strongly and in what way various features affect the model's prediction. During our analysis, we uncover meaningful phenomena and patterns hidden in the data itself.
 
 ### Introduction and motivation
 
-Interest in explainable artificial intelligence (XAI) has increased significantly in recent years. XAI facilitates humans to understand artificial intelligence solutions [@2-3-xai]. It contrasts with a concept of the black box, where even its designers cannot explain why an AI model has arrived at a specific conclusion. The intense development of such methods has led to the wide choice of XAI tools that we have today [@2-3-landscape]. It includes the R package DALEX [@2-3-dalex], which is the foundation of this work.
+Machine learning (ML) is a part of artificial intelligence that studies computer algorithms, which improve automatically through experience based on provided data. Nowadays, ML algorithms are commonly used for diverse tasks in many fields, including medicine. One of such applications is a reliable prediction of a patient's blood donation willingness. It provides valuable knowledge for the medical community, allowing for better future blood supply estimation and an improvement of planning and advertising of blood donation campaigns.
 
-Our goal is to prepare and explain a model designed to predict the probability of subsequent blood donations based on a history of a patient's previous offerings. Careful use of XAI tools allows us to verify model correctness and discover phenomena affecting blood donations that hide in the data. Obtained knowledge may have various implications, especially better prediction of future blood supply and an improvement of planning and advertising of blood donation campaigns.
+ML algorithms learn to make predictions or decisions without being explicitly programmed to do so. It is both a blessing and a curse because, in the case of many models (often called black boxes for the following reason), even its designers cannot explain why such an AI solution has arrived at a specific conclusion. Here, methods of explainable artificial intelligence (XAI) come to the rescue. XAI facilitates humans to understand various artificial intelligence solutions [@2-3-xai]. Interest in XAI has increased significantly in recent years, and the intense development of such methods has led to the wide choice of XAI tools that we have today [@2-3-landscape]. It includes the R package DALEX [@2-3-dalex], which is the foundation of this work.
+
+Our goal is to prepare and explain a model designed to predict the probability of subsequent blood donations based on a history of a patient's previous offerings. Careful use of XAI tools allows us to verify model correctness and discover phenomena and patterns hidden in the data. Through this, we aim to both improve understanding of the considered problem and find new ways of creating better prediction methods.
 
 ### Related work
 
-The prediction of an intention of a blood donation seems to be an important issue, as there are multiple articles available that try to tackle it while making use of machine learning methods and often the same dataset that is also used during this work. A few of them are presented shortly below.
+Multiple articles about solving the problem of reliable blood donation intention prediction can be found, which shows how important this issue is. Authors of these papers often use machine learning methods with the same dataset, which is also used during this work.
 
-In [@2-3-rel-1], the authors test Multilayer Perceptrons and Support Vector Machines in combination with Principal Component Analysis as a solution to the mentioned issue. Their models achieve good results, and some ways of further improvement are proposed.
-
-In [@2-3-rel-3], the authors use unsupervised machine learning techniques to cluster the data before building predictive models and check whether the performance is significantly improved when using such an approach. They found out that a Support Vector Machines model based on data clustered into four distinct groups with the K-Means algorithm achieved the best sensitivity of 98.4 %.
-
-In [@2-3-rel-2], the authors study models created in the JustNN environment. They propose a model with an outstanding test subset accuracy of 99.31 %. They identify the Recency, Time, and Frequency variables (described precisely in the following section of this article) to be the most important factors.
-
-In [@2-3-rel-4], the authors use a different dataset but of a partly similar structure. They note that some religious periods like Fasting and Performing Hajj may negatively affect the number of donations.
-
-It is important to say that none of the articles we found include explainable artificial intelligence methods. Therefore, the presented approach is novel and may potentially lead to a perspective undiscovered before.
+In [@2-3-rel-1], the authors test Multilayer Perceptrons and Support Vector Machines in combination with Principal Component Analysis as a solution to the mentioned problem. Their models achieve good results, and some ways of further improvement are proposed. Even better results are achieved in [@2-3-rel-2] and [@2-3-rel-3]. The first describes models created in the JustNN environment with test subset accuracy as high as 99.31 %. In the second one, unsupervised machine learning techniques are used to cluster the data before building predictive models and check whether the performance is significantly improved when using such an approach. It is shown that a Support Vector Machines model based on data clustered into four distinct groups with the K-Means algorithm achieved the best sensitivity of 98.4 %. The authors of [@2-3-rel-4] use a different dataset but of a partly similar structure. They note that some religious periods like Fasting and Performing Hajj may negatively affect the number of donations. It is important to say that none of the mentioned articles include explainable artificial intelligence methods. Therefore, the approach presented in this work is novel and may potentially lead to a perspective undiscovered before.
 
 ### Data and model
 
@@ -46,13 +40,13 @@ Initial data analysis is a critical process allowing to discover patterns and ch
 
 The short data analysis below is based on two visualizations representing distributions and correlations of variables.
 
-```{r 2-3-distributions, out.width='600', fig.align='center', echo=FALSE, fig.cap='Distributions of explanatory variables (histogram)'}
+```{r 2-3-distributions, out.width='2400', fig.align='center', echo=FALSE, fig.cap='Distributions of explanatory variables (histogram)'}
 knitr::include_graphics('images/2-3-distributions.png')
 ```
 
 Based on the above figure \@ref(fig:2-3-distributions), an important insight can be made - distributions of Frequency and Monetary variables are identical (excluding support). It probably comes from the fact that during every donation the same amount of blood is drawn. The presence of both of these variables in the final model is pointless.
 
-```{r 2-3-correlations, out.width='600', fig.align='center', echo=FALSE, fig.cap='Correlations of explanatory variables (correlation matrix)'}
+```{r 2-3-correlations, out.width='2400', fig.align='center', echo=FALSE, fig.cap='Correlations of explanatory variables (correlation matrix)'}
 knitr::include_graphics('images/2-3-correlations.png')
 ```
 
@@ -74,7 +68,7 @@ The denominator can be interpreted as a time window bounding all the known donat
 
 Spearman's rank correlation coefficient of the new variable Intensity and the old variable Frequency is -0.46, which is better compared to the previous 0.72 value for the Time and Frequency combination.
 
-#### Final model
+#### Model preparation
 
 According to the OpenML website, Ranger implementation of Random Forests [@2-3-ranger] is among the best performing classifiers for the considered task. All the tested models utilize this machine learning algorithm.
 
@@ -91,13 +85,13 @@ The first two models, utilizing only two explanatory variables, perform signific
 
 The accuracy of the last model is 0.85, other performance measures describing it are presented graphically below.
 
-```{r 2-3-roc, out.width='600', fig.align='center', echo=FALSE, fig.cap='ROC curve and corresponding AUC for the final model'}
+```{r 2-3-roc, out.width='2400', fig.align='center', echo=FALSE, fig.cap='ROC curve and corresponding AUC for the final model'}
 knitr::include_graphics('images/2-3-roc.png')
 ```
 
 ROC curve visible in the above figure \@ref(fig:2-3-roc) represents good model performance and the AUC value of almost 0.92 is satisfactory.
 
-```{r 2-3-pr, out.width='600', fig.align='center', echo=FALSE, fig.cap='PR curve and corresponding AUC for the final model'}
+```{r 2-3-pr, out.width='2400', fig.align='center', echo=FALSE, fig.cap='PR curve and corresponding AUC for the final model'}
 knitr::include_graphics('images/2-3-pr.png')
 ```
 
@@ -107,7 +101,7 @@ Summarizing the above model selection, the final model used for all the presente
 
 ### Global explanations
 
-Global explanations are used to discover how individual explanatory variables affect an average model prediction on the level of the whole dataset. Here, one can learn how strong is the influence of a given variable or how its particular values shape the overall model response.
+Global explanations [@2-3-xai] are used to discover how individual explanatory variables affect an average model prediction on the level of the whole dataset. Here, one can learn how strong is the influence of a given variable or how its particular values shape the overall model response.
 
 In the case of large numbers of observations, global explanations can be prepared using only a representative fraction of them to save calculations time. Dataset presented in this work can be considered of modest size, and therefore all observations are always used.
 
@@ -115,7 +109,7 @@ In the case of large numbers of observations, global explanations can be prepare
 
 Permutation Feature Importance [@2-3-pfi] is a method of assessing how strongly a given variable affects the overall model prediction. The idea behind it is to measure a change in the model's performance when it is not allowed to utilize a selected feature. Removal of variables from the model is realized through multiple random permutations of them.
 
-```{r 2-3-permutation, out.width='600', fig.align='center', echo=FALSE, fig.cap='Permutation Feature Importance Profile'}
+```{r 2-3-permutation, out.width='2400', fig.align='center', echo=FALSE, fig.cap='Permutation Feature Importance Profile'}
 knitr::include_graphics('images/2-3-permutation.png')
 ```
 
@@ -127,11 +121,11 @@ The significance of the Recency variable is also well visible later on, especial
 
 Partial Dependence Profile [@2-3-pdp-1] [@2-3-pdp-2] allows users to see how the expected model prediction behaves as a function of a given explanatory variable. It is realized through averaging (basic arithmetic mean) of multiple Ceteris-Paribus Profiles, a method described shortly in the Local Explanations section.
 
-```{r 2-3-pdp, out.width='600', fig.align='center', echo=FALSE, fig.cap='Partial Dependence Profile'}
+```{r 2-3-pdp, out.width='2400', fig.align='center', echo=FALSE, fig.cap='Partial Dependence Profile'}
 knitr::include_graphics('images/2-3-pdp.png')
 ```
 
-First of all, curves presented in the figure above \@ref(fig:2-3-pdp) are visibly ragged. It is mostly caused by the selection of the machine learning algorithm - Random Forests contain many if-then rules that can change the final prediction value rapidly, even under small explanatory variable change. Therefore, it is best to look at the overall shape of yielded curves and ignore fine uneven details.
+First of all, curves presented in the figure above \@ref(fig:2-3-pdp) are visibly ragged. It is mostly caused by the selection of the machine learning algorithm - Random Forests contain many if-then rules that can change the final prediction value rapidly, even under small explanatory variable change. Another reason might be model overfitting, but because explaining the model is the primary goal, it is not a problem here, even if relevant. Therefore, it is best to look at the overall shape of yielded curves and ignore fine uneven details.
 
 Visible shapes are largely in line with the intuition - higher Frequency and Intensity values lead to higher average prediction (probability of subsequent blood donation to recall), whereas the impact of Recency is inverse - the lower the value, the higher the prediction.
 
@@ -154,7 +148,7 @@ A probable hypothesis is that above a certain Intensity threshold there is an in
 
 The method presented in the previous subsection - Partial Dependence Profile, can be misleading if explanatory variables are strongly correlated, which to some extent is still the case here, even after the pre-processing. Accumulated Local Effect Profile [@2-3-ale] is another method used to explain a variable's effect on the prediction, which is designed to address the mentioned issue.
 
-```{r 2-3-ale, out.width='600', fig.align='center', echo=FALSE, fig.cap='Accumulated Local Effect Profile'}
+```{r 2-3-ale, out.width='2400', fig.align='center', echo=FALSE, fig.cap='Accumulated Local Effect Profile'}
 knitr::include_graphics('images/2-3-ale.png')
 ```
 
@@ -162,7 +156,7 @@ Although this method addresses the very problem the used data has, no significan
 
 ### Local explanations
 
-Local explanations are relevant on a level of a single observation. They aid in understanding how strongly and in what way explanatory variables contribute to the model's prediction when considering a single instance of data. It is a visible contrast when compared to the previously presented global explanations.
+Local explanations [@2-3-xai] are relevant on a level of a single observation. They aid in understanding how strongly and in what way explanatory variables contribute to the model's prediction when considering a single instance of data. It is a visible contrast when compared to the previously presented global explanations.
 
 #### Ceteris Paribus Profiles
 
@@ -170,7 +164,7 @@ Local explanations are relevant on a level of a single observation. They aid in 
 
 This tool is also known as Individual Conditional Expectations [@2-3-ice].
 
-```{r 2-3-ceteris1, out.width='600', fig.align='center', echo=FALSE, fig.cap='Ceteris Paribus Profile for observation number 342'}
+```{r 2-3-ceteris1, out.width='2400', fig.align='center', echo=FALSE, fig.cap='Ceteris Paribus Profile for observation number 342'}
 knitr::include_graphics('images/2-3-ceteris1.png')
 ```
 
@@ -182,7 +176,7 @@ As the rightmost plot shows, the model's prediction could be improved significan
 
 Also, this local explanation complements the previously presented Permutation Feature Importance well - explanatory variable Recency is the most important one because it can negate the effect of positive values of both the other variables.
 
-```{r 2-3-ceteris2, out.width='600', fig.align='center', echo=FALSE, fig.cap='Ceteris Paribus Profile for observation number 16'}
+```{r 2-3-ceteris2, out.width='2400', fig.align='center', echo=FALSE, fig.cap='Ceteris Paribus Profile for observation number 16'}
 knitr::include_graphics('images/2-3-ceteris2.png')
 ```
 
@@ -196,7 +190,7 @@ What is interesting here is that the Intensity variable value is nearly perfect.
 
 The last method presented aims to answer probably the most elementary question that can be asked when trying to explain the model's behavior - what is the contribution of particular variables to the prediction for a single observation? Break Down Profile [@2-3-break] does it by evaluating changes in the mean model's prediction when the values of consecutive variables are being fixed.
 
-```{r 2-3-break1, out.width='600', fig.align='center', echo=FALSE, fig.cap='Break Down Profile for observation number 4'}
+```{r 2-3-break1, out.width='2400', fig.align='center', echo=FALSE, fig.cap='Break Down Profile for observation number 4'}
 knitr::include_graphics('images/2-3-break1.png')
 ```
 
@@ -206,7 +200,7 @@ It is worth noting that the model's prediction for this observation is correct (
 
 The plot shows, the contributions of variables are all positive and well balanced as the values themselves. The result is not surprising but creates a good reference point for the following explanation.
 
-```{r 2-3-break2, out.width='600', fig.align='center', echo=FALSE, fig.cap='Break Down Profile for observation number 109.'}
+```{r 2-3-break2, out.width='2400', fig.align='center', echo=FALSE, fig.cap='Break Down Profile for observation number 109.'}
 knitr::include_graphics('images/2-3-break2.png')
 ```
 
@@ -220,12 +214,6 @@ When compared to the previous explanation, this plot is a perfect example of how
 
 ### Conclusions and summary
 
-After data analysis and pre-processing, model preparation and selection, preparation and investigation of global and local model explanations, the short answer to the title question - "How to predict the probability of subsequent blood donations?" - is as follows:
+The goal of this work has been achieved and the short answer to the title question - "How to predict the probability of subsequent blood donations?" - is as follows. The most important factor is whether the patient under consideration is active - when her/his last donation took place more than six months ago, the subsequent donation probability falls drastically, and other factors lose their importance. But when the Recency is low, other factors become decisive. A bigger number of past donations is almost always considered positive for the prediction, and higher values of the proposed Intensity feature are favorable only until a certain threshold (around 0.55) when a phenomenon of burnout probably becomes relevant.
 
-The most important factor is whether the patient under consideration is active - when her/his last donation took place more than six months ago, the subsequent donation probability falls drastically, and other factors lose their importance.
-
-But when the Recency is low, other factors become decisive. A bigger number of past donations is almost always considered positive for the prediction, and higher values of the proposed Intensity feature are favorable only until a certain threshold (around 0.55) when a phenomenon of burnout probably becomes relevant.
-
-We believe that the purpose of our work has been fulfilled. We took care to prepare a precise model based on meaningful data to limit the uncertainty of the obtained model explanations. The same conclusions came up multiple times during the analysis of different explanations, which reassures their correctness. Some of the discovered phenomena are visible not only in the explanations but also in the data itself.
-
-Over the years, XAI has become a powerful tool that can produce numerous meaningful insights about the considered model and the data itself. With that said, it is best used with caution, as any statistical tool can yield false conclusions when its assumptions are not carefully checked.
+Over the years, XAI has become a powerful tool that can produce numerous meaningful insights about the considered model and the data itself. With that said, it is best used with caution, as any statistical tool can yield false conclusions when its assumptions are not carefully checked. We believe that the purpose of our work has been fulfilled. We took care to prepare a precise model based on meaningful data to limit the uncertainty of the obtained model explanations. The same conclusions came up multiple times during the analysis of different explanations, which reassures their correctness. Some of the discovered phenomena are visible not only in the explanations but also in the data itself.
