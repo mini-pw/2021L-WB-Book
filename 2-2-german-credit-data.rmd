@@ -20,7 +20,6 @@ This cannot be accepted while building systems supporting banks or hospitals.
 In the article below, we are facing the problem of creating explainable classifier for German bank credit score [@2-2-yu2010comparative; @2-2-religia2020south]. We will build black-box model and then employ XAI methods in order for us to understand which features and statistics tend to outbalance model's decision towards good or bad borrower classification.
 
 
-=======
 ### Dataset and models
 
 During entire analysis, we'll be operating on publicly available data set containing information about German borrowers. Input was collected and processed by Professor Dr. Hans Hofmann from [University of Hamburg](https://www.uni-hamburg.de/en.html) and is available [here](https://archive.ics.uci.edu/ml/datasets/statlog+(german+credit+data)).
@@ -66,7 +65,7 @@ knitr::include_graphics('images/2-2-bd-different-impact.png')
 
 Consequently, we used SHAP method to analyze the first observation (see Figure \@ref(fig:2-2-shap)) and compare results with the Break-Down method. The results of this can be seen in the figure below. *Duration* and *checking status* remain the two most important variables, while *age* grows in importance. 8 of the top 10 variables remain the same, with around the same influences. The major difference being absence of information on *existing credits* and *residence since*, have been replaced with *credit amount* and *purpose*. This method offers new information, primarily about the variation of influence of each variable. One can notice that *age* is the most varied (since it can affect the prediction both positively and negatively), which again would correspond to the "common sense" intuition (as with *duration*, the *credit amount* and *checking status*). The opposite occurs with *credit history*, *purpose*, *property magnitude* and *length of employment*, where variation remains lower compared to influence. Changes, in order of importance are rather small, only the *installment commitment* moves by more than 3 places (from number 5 to number 10). The rest is swapping of *checking status* and *duration*, fall of *property magnitude* by 2 places, *employment* by 1 place and rise of *age* by 2 places. It should be noted that all these changes occur similar or very similar absolute influence values in break-down method. One can judge that importance of variables is a trait that can remain consistent between various explanation methods.
 
-```{r 2-2-shap, out.width="700", fig.align="center", echo=FALSE, fig.cap='A plot of results of SHAP method for $1^{st}$ observation.'}
+```{r 2-2-shap, out.width="700", fig.align="center", echo=FALSE, fig.cap='A plot of results of SHAP method for $1^{st}$ observation. One can note the variance in the age variable. With our "common sense" intuition one could imagine that an old person could either be "good" or "bad" credit taker.'}
 knitr::include_graphics('images/2-2-shap.png')
 ```
 
@@ -74,7 +73,7 @@ knitr::include_graphics('images/2-2-shap.png')
 
 Our model classifies clients in binary terms as good and bad potential borrowers but the certainty of its predictions is not always the same. We decided to analyze the cases in which it has no doubts which group to assign a given client to. For this purpose, we used the Cateris Paribus method which checks how the prediction for a given observation would change for different values of one variable while the others remain constant.
 
-```{r 2-2-cp21, out.width="700", fig.align="center", echo=FALSE, fig.cap='A plot of results of CP method for $21^{st}$ observation.'}
+```{r 2-2-cp21, out.width="700", fig.align="center", echo=FALSE, fig.cap='A plot of results of CP method for $21^{st}$ observation. Lines represent change in prediction according to change of a certain variable under the assumption that others would remain the same. One can observe that Duration, credit_amount and age have much more impact than the others. The unique shape for age variable appears, starting with low predictions for younger credit takers, going up with age and flattening near 30 until very old age (70+). Higher credit amount and longer duration decrease probability of being classified as a "good" credit taker".'}
 knitr::include_graphics('images/2-2-cp21.png')
 ```
 
@@ -83,7 +82,7 @@ Looking at the Cateris Paribus plot for an observation that the model classified
 The explanations also once again confirm our intuition - the high certainty of the model as to the classification of the customer as a good borrower was motivated by logical arguments - 
 a relatively low loan amount, short loan duration and the average age of the borrower.
 
-```{r 2-2-cp64, out.width="700", fig.align="center", echo=FALSE, fig.cap='A plot of results of CP method for $64^{th}$ observation.'}
+```{r 2-2-cp64, out.width="700", fig.align="center", echo=FALSE, fig.cap='A plot of results of CP method for $64^{th}$ observation. Again, difference in importance between duration, credit amount, age and other variables can be noted. This time shape of age subplot lacks the old age decrease, but otherwise remains the same. Dependency between duration and credit amount seen in previous figure remains here as well.'}
 knitr::include_graphics('images/2-2-cp64.png')
 ```
 
@@ -138,7 +137,7 @@ A major shortcoming of local explanations is that they are just that - local. It
 
 First of all, we began with Feature Importance method [@2-2-biecek2021explanatory] which gives information on the importance of features in the model. Importance is measured by resampling and permuting values of a certain variable, to simulate effect of its removal. The main intuition can be summarised in form of a question: "how much the model suffers if this feature is removed". The results of applying this method on our model can be seen in the Figure \@ref(fig:2-2-feature-importance).  
 
-```{r 2-2-feature-importance, out.width="700", fig.align="center", echo=FALSE, fig.cap='A plot of Feature Importance values for each variable for our model.'}
+```{r 2-2-feature-importance, out.width="700", fig.align="center", echo=FALSE, fig.cap='A plot of Feature Importance values for each variable for our model. The exponential shape of importance can be noted. Checking status, duration, credit amount and age are among the most important variables.'}
 knitr::include_graphics('images/2-2-featureimportance.png')
 ```
 
@@ -154,7 +153,7 @@ If we assume that the model is correct, then we can also draw conclusions regard
 
 The feature importance method seems to be very helpful in exploring the model, but it also has some drawbacks. One is that it does not perform well on correlated variables - permutating only one dependent variable while the other remains constant is not the best solution. In the case of our data set this problem also occurs - for example, the duration of the loan is strongly correlated with its amount. For this reason, we decided to use the triplot package [@2-2-pekala2021triplot] which enables the analysis of grouped variables. We divided the features of our data into 3 categories - those relating to the loan (e.g. *credit amount* and *duration*), the client's account (e.g. *checking* and *savings status*) and the borrower himsefl (e.g. *age* and *employment*). Then we explained the contribution of the whole groups of variables (see Figure \@ref(fig:2-2-triplot)).
 
-```{r 2-2-triplot, out.width="700", fig.align="center", echo=FALSE, fig.cap='triplot for grouped variables.'}
+```{r 2-2-triplot, out.width="700", fig.align="center", echo=FALSE, fig.cap='A plot representing importance of grouped variables. Credit - credit amount and duration, personal - age, employment and rating - checking status and savings status. The most important factor remains the credit itself.'}
 knitr::include_graphics('images/2-2-triplot.png')
 ```
 
@@ -166,7 +165,7 @@ In order to better understand the influence of specific variables on the model p
 
 ##### Checking status {-}
 
-```{r 2-2-pdp-checking-status, out.width="700", fig.align="center", echo=FALSE, fig.cap='PDP plot for checking status variable.'}
+```{r 2-2-pdp-checking-status, out.width="700", fig.align="center", echo=FALSE, fig.cap='PDP plot for checking status variable, showing average probability of being classified as a "good" credit taker for each value.'}
 knitr::include_graphics('images/2-2-pdp-checking-status.png')
 ```
 
@@ -174,7 +173,7 @@ As we can see in the Figure \@ref(fig:2-2-pdp-checking-status) a customer with a
 
 ##### Duration {-}
 
-```{r 2-2-pdp-duration, out.width="700", fig.align="center", echo=FALSE, fig.cap='PDP plot for duration variable.'}
+```{r 2-2-pdp-duration, out.width="700", fig.align="center", echo=FALSE, fig.cap='PDP plot for duration variable, showing average probability of being classified as a "good" credit taker for duration variable.'}
 knitr::include_graphics('images/2-2-pdp-duration.png')
 ```
 
@@ -182,7 +181,7 @@ The variable *duration* plot (Figure \@ref(fig:2-2-pdp-duration)) leads us to si
 
 ##### Credit amount {-}
 
-```{r 2-2-pdp-credit-amount, out.width="700", fig.align="center", echo=FALSE, fig.cap='PDP plot for credit amount variable.'}
+```{r 2-2-pdp-credit-amount, out.width="700", fig.align="center", echo=FALSE, fig.cap='PDP plot for credit amount variable, showing average probability of being classified as a "good" credit taker for credit amount variable.''}
 knitr::include_graphics('images/2-2-pdp-credit-amount.png')
 ```
 
@@ -190,7 +189,7 @@ The plot of *credit amount* (Figure \@ref(fig:2-2-pdp-credit-amount)) is somewha
 
 ##### Age {-}
 
-```{r 2-2-pdp-age, out.width="700", fig.align="center", echo=FALSE, fig.cap='PDP plot for age variable.'}
+```{r 2-2-pdp-age, out.width="700", fig.align="center", echo=FALSE, fig.cap='PDP plot for age variable, showing average probability of being classified as a "good" credit taker for age variable.'}
 knitr::include_graphics('images/2-2-pdp-age.png')
 ```
 
