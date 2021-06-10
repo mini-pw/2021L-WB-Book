@@ -1,4 +1,4 @@
-## Classifying people as good or bad credit risks {#xai1-explainable-german-credits} {-}
+## Classifying people as good or bad credit risks {#xai1-explainable-german-credits} 
 
 *Authors: Paweł Fijałkowski, Paulina Jaszczuk, Jakub Szypuła (Warsaw University of Technology)*
 
@@ -6,31 +6,31 @@
 
 Computer science researchers currently face a significant conflict of interest between responsible data processing and effective and quickly-developed business oriented solutions. This study aims to construct and explain machine-learning model in order to prove importance of Explainable Artificial Intelligence. During analysis we will be using both local and global explanations with the purpose of building interpretable glass-box credit score classifier. Foundation of our analysis will be based on data concerning german credit borrowers. Variety of statistics provided about each client (e.g checking status or credit history) will pose considerable noise-canceling problem in our explanations. Due to the large number of employed tools and their inevitable bias, researchers will aggregate resulting metrics in order to obtain clearest understanding of model's contributions. Each case-study will also include summarization for non-technical business representative. The result will layout heuristics of feature important order as well as our explanation and logic behind the outcome.
 
-### Introduction {-}
+### Introduction 
 
 In 1980s first ever PC was introduced to the public. Since then, rapid technological progress in computer-science lead to enormous demand for implementing and developing previously theoretical studies to suit capable of remembering and performing extensive calculations machines [@2-2-campbell2018computer]. By combining academic effort with pragmatical, engineer approach, humanity succeeded in building complex infrastructure that is able to solve pretty much any problem we have ever faced [@2-2-siler2013computers; @2-2-quandt1983computational].
 
 We found ourselves in the point, where machine-learning algorithms make sensitive and in many cases opinion-based decisions, based on numerical and statistical analysis [@2-2-deo2015machine; @2-2-mattern2010ict; @2-2-yoo2010computing]. It may seem harmless on the first glance, but do we really "trust" these models when it comes to predicting lung cancer? Or granting us a credit? In many cases, we do not and we should not.
 
-This is where XAI or Explainable Artificial Intelligence [@2-2-gunning2019xai; @2-2-adadi2018peeking; @2-2-arrieta2020explainable] kicks in. It is a branch of AI, which results can be clearly understand and interpreted by experts in a given field (in order to e.g. comply with regulations or improve model user experience). XAI, using multiple complementary tools, turns black-box (meaning, very hard to interpret and understand even by specialist) ML models into white-box predictable solutions. Why is it important? Mainly for two reasons. First one is, we feel safer knowing what is going under the hood. We cannot simply "believe" outputted answer without digging into specifics on what grounds it was constructed. It gives us sense of security and provides a way of detecting possible miscalculations. Second reason is, these models, due to their mathematical construction (often minimizing value of loss function) in many cases proved to tend towards biases. 
+This is where XAI or Explainable Artificial Intelligence [@2-2-gunning2019xai; @2-2-adadi2018peeking; @2-2-arrieta2020explainable] kicks in. It is a branch of AI, which results can be clearly understand and interpreted by experts in a given field (in order to e.g. comply with regulations or improve model user experience). XAI, using multiple complementary tools, turns black-box (meaning, very hard to interpret and understand even by specialist) ML models into glass-box predictable solutions. Why is it important? Mainly for two reasons. First one is, we feel safer knowing what is going under the hood. We cannot simply "believe" outputted answer without digging into specifics on what grounds it was constructed. It gives us sense of security and provides a way of detecting possible miscalculations. Second reason is, these models, due to their mathematical construction (often minimizing value of loss function) in many cases proved to tend towards biases. 
 This cannot be accepted while building systems supporting banks or hospitals. 
 
-In the article below, we are facing the problem of creating explainable classifier for German bank credit score [@2-2-yu2010comparative; @2-2-religia2020south]. We will build black-box model and then employ XAI methods in order for us to understand which features and statistics tend to outbalance model's decision towards good/bad borrower classification.
+In the article below, we are facing the problem of creating explainable classifier for German bank credit score [@2-2-yu2010comparative; @2-2-religia2020south]. We will build black-box model and then employ XAI methods in order for us to understand which features and statistics tend to outbalance model's decision towards good or bad borrower classification.
 
-### Dataset and models {-}
+### Dataset and models 
 
-During entire analysis, we'll be operating on publicly available data set containing information about German borrowers. Input was processed/collected by Professor Dr. Hans Hofmann from [University of Hamburg](https://www.uni-hamburg.de/en.html) and is available [here](https://archive.ics.uci.edu/ml/datasets/statlog+(german+credit+data)).
+During entire analysis, we'll be operating on publicly available data set containing information about German borrowers. Input was collected and processed by Professor Dr. Hans Hofmann from [University of Hamburg](https://www.uni-hamburg.de/en.html) and is available [here](https://archive.ics.uci.edu/ml/datasets/statlog+(german+credit+data)).
 
 Data set provider, basing on academic research,  have chosen certain variables to describe each borrower. Some of them are presented in the Table \@ref(tab:variables). That combination of numerical and qualitative variables proved to carry certain importance/influence on probability of paying back borrowed assets. 
 
 
-```{r echo=FALSE}
+```{r variables, echo=FALSE}
 Statistic <- c('checking_status', 'duration', 'credit_history', 'purpose', 'credit_amount', 'savings_status', 'age')
 Description <- c('Status of existing checking account (qualitative)', 'Credit duration in months (numerical)', 'Credit history (qualitative)', 'Purpose (qualitative)', 'Purpose (qualitative)', 'Savings account/bonds (qualitative)', 'Age in years (numerical)')
 
 df <- data.frame(Statistic, Description)
 
-knitr::kable(df, col.names = gsub("[.]", " ", names(df)), caption = 'Some variables from the dataset.')
+knitr::kable(df, col.names = gsub("[.]", " ", names(df)), caption = '7 out of 20 variables that turned out to be significant in later analyzes.')
 
 ```
 
@@ -41,9 +41,9 @@ After careful deliberation and testing using multiple metrics the team decided t
 standard forest voting and random forest is that in the latter case, only random subset of features is considered during selecting most important feature (with lowest gini index value [@2-2-lerman1984note]).
 Model performed exceptionally good during cross-validation [@2-2-browne2000cross], even without fine parameter hyper-tuning.
 
-### Local explanations {-}
+### Local explanations 
 
-To better understand the behavior of Random Forest, we employed a set of machine learning explanation methods. In order to comprehend the reasoning behind model predictions and interactions between variables we began at the local level, i.e. single observation. This way, we could compare influence of each variable within a clearly defined context of every potential borrower. Our primary motivation in selecting observations to present in this paper was to show interesting cases and how variables interact with one another in our model in creating predictions. As a result we selected various observations. Methods employed by us were Break-down [@2-2-staniak2018explanations], SHAP [@2-2-maksymiuk2020landscape], LIME [@2-2-ribeiro2016should] and Ceteris Paribus [@2-2-biecek2021explanatory; @2-2-biecek2018dalex].
+To better understand the behavior of Random Forest, we employed a set of machine learning explanation methods [@gilpin2018explaining]. In order to comprehend the reasoning behind model predictions and interactions between variables we began at the local level, i.e. single observation. This way, we could compare influence of each variable within a clearly defined context of every potential borrower. Our primary motivation in selecting observations to present in this paper was to show interesting cases and how variables interact with one another in our model in creating predictions. As a result we selected various observations. Methods employed by us were Break-down [@gosiewska2019not; @2-2-staniak2018explanations], SHAP [@lundberg2017unified; @2-2-maksymiuk2020landscape], LIME [@2-2-ribeiro2016should] and Ceteris Paribus [@2-2-biecek2021explanatory; @2-2-biecek2018dalex].
 
 We began by analyzing the output of the Break-down method on two random observations (see Figure \@ref(fig:2-2-breakdown)). Once compared side-by-side (see the figure) several key differences emerge. First of all, the importance of *checking status* variable (which will return in forthcoming sections). One can also notice the importance of the *age* variable, which seems intuitive. A further conclusion can be drawn from this - influence of a variable depends on its value. In fact, depending on interactions between variables in the data set even the same value can have opposite effects. An example (although miniscule) can be found in the Figure \@ref(fig:2-2-bd-different-impact) by comparing observations $4^{th}$ and $7^{th}$ (both classified correctly). The same value of *job* variable (i.e. "skilled") gives opposite influences (-1.7% "bad" probability and +1.4% respectively). Thus we should always take into account context in which each variable is evaluated.
  
@@ -123,9 +123,9 @@ Again, features *duration*, *checking status* and *credit hisotry* have the grea
 
 
 
-### Global explanations {-}
+### Global explanations 
 
-A major shortcoming of local explanations is that they are just that - local. It is the ability to see "the bigger picture" that allows us to achieve a better understanding of the model. Thus, we resolved to using Global Explanation methods in order to properly grasp approach behind predictions in our machine learning model.
+A major shortcoming of local explanations is that they are just that - local. It is the ability to see "the bigger picture" that allows us to achieve a better understanding of the model. Thus, we resolved to using Global Explanation methods [@gilpin2018explaining] in order to properly grasp approach behind predictions in our machine learning model.
 
 #### Feature Importance {-}
 
@@ -191,7 +191,7 @@ knitr::include_graphics('images/2-2-pdp-age.png')
 The *age* plot (Figure \@ref(fig:2-2-pdp-age)) is consistent with our earlier assumptions and intuition - young borrowers who do not yet have a stable position on the labor market and their income is uncertain are the clients for whom credit risk is the highest. Subsequently, the prediction increases to peak for an approximately 38-year-old borrower. Statistically, people of this age have a stable job with high earnings. Thereafter, the prediction remains steadily high until around 55 years after which it begins to decline - this corresponds to the period when borrowers begin to retire which causes their incomes to decline frequently.
 
 
-### Summary and conclusions {-}
+### Summary and conclusions 
 
 Applying XAI methods to our black-box model helped understand it, turning it, even if by a minimal margin, into more of a glass-box model. We found the most important features (that is *checking status*, *duration*, *credit amount* and *age*) and the rules governing their influence on predictions. We also confirmed the validity of a "common sense" intuition, e.g. the probability of being a "good" borrower being lower for very young and very old people. This allows us not only to validate the performance of our model, but also to better understand the rules governing this dataset. 
 
