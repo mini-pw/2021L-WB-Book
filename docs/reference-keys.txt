@@ -445,14 +445,13 @@ problem
 erscovid-workflow
 lung-segmentation
 transforming-the-data-for-second-network
-classifing-patients
+classifying-patients
 data-1
 original-data-1
 our-data-1
 training
 changes-to-original-model
 dropout
-normalization
 regularization-1
 auxiliary-training
 creating-new-scans-with-gans
