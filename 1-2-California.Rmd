@@ -48,9 +48,18 @@ All in all machine learning models with application in regression tasks around h
 
 For this project we used the `housing` dataset which we acquired from Kaggle repository. This is a modified version of dataset provided by StatLib. It has been extracted from 1990 US census. Each row represents a single house in California area and contains information about its location and details about bloc it is situated in. Our target variable for this regression task is `median_house_value`. We present the structure of said dataset in detail in the table below.
 
-```{r 1-2-data-table, fig.align="center", echo=FALSE, fig.cap='Housing data frame details'}
-knitr::include_graphics('images/1-2-data_table.png')
-```
+|Column Name | Type | Description |
+|--- |--- |--- |
+|longitude | numeric | a measure of how far west a house is; a higher value is farther west |
+|latitude | numeric   | a measure of how far north a house is; a higher value is farther north |
+|housing_median_age | numeric | median age of a house within a block; a lower number is a newer building |
+|total_rooms | numeric | total number of rooms within a block |
+|total_bedrooms | numeric | total number of bedrooms within a block |
+|population | numeric | total number of people residing within a block   |
+|households | numeric | total number of households, a group of people residing within a home unit, for a block |
+|median_income | numeric | median income for households within a block of houses (measured in tens of thousands of US Dollars) |
+|median_house_value | numeric | median house value for households within a block (measured in US Dollars) |
+|ocean_proximity | categorical | location of the house with respect to the ocean |
 
 `Housing` consists of 20640 records and missing values appears only in `total_bedrooms` column. There are total of 207 rows with missing values in `total_bedrooms` field, which makes up for approximately 1% of all records. Our data will evolve over the course of next sections, however whenever we implement any changes to dataset we will clarify them fully.
 
@@ -71,24 +80,20 @@ knitr::include_graphics('images/1-2-target_dist.png')
 Next we took a closer look at our only categorical variable, `ocean_proximity`. What we wanted to see is what are the 5 categories and how many records each of them contains. Simple diagram (Fig. 3) made us realize that  `ISLAND` category consists of only 5 rows. We made a decision to remove these rows. 
 
 ```{r 1-2-ocean-proximity, fig.align="center", echo=FALSE, fig.cap='Ocean proximity categories'}
-knitr::include_graphics('images/1-2-ocean_proximity_categories.png')
+knitr::include_graphics('images/1-2-ocean_proximity.jpg')
 ```
 
 Then, in order to discover correlations between different variables we constructed diagram in the form of matrix. It made us aware off high correlations between some of the factors, problems connected with this will be discussed more in details later on.
 
-```{r 1-2-correlation-matrix, fig.align="center", echo=FALSE, fig.cap='Correlation matrix'}
+```{r 1-2-correlation-matrix, fig.align="center",out.width="500", echo=FALSE, fig.cap='Correlation matrix'}
 knitr::include_graphics('images/1-2-correlation_matrix.png')
 ```
 
 Finally we superimposed houses locations on California's map. On the first map we plotted all of the houses while on the second map we plotted only houses with `median_house_value` over $490.000. This allowed us to find two clusters of the most expensive estates around San Francisco and Los Angeles.
 
-```{r 1-2-map-all, fig.align="center", echo=FALSE, fig.cap='Map of all houses'}
-knitr::include_graphics('images/1-2-map_all.png')
+```{r 1-2-map, fig.align="center", echo=FALSE, fig.cap='Map of all houses (left) and of houses worth more than $490.000'}
+knitr::include_graphics('images/1-2-map.png')
 ```
-```{r 1-2-map-expensive, fig.align="center", echo=FALSE, fig.cap='Map of houses worth more than $490.000'}
-knitr::include_graphics('images/1-2-map_expensive.png')
-```
-
 EDA turned out to be invaluable, it pointed out numerous interesting facts but also made us aware of some underlying problems with data frame such as missing values.
 It is also worth noting that our EDA consisted of more visualizations, however it felt more natural to skip those which did not provide any valuable insight.
 
@@ -205,7 +210,7 @@ As for the width, the location of these cities is again very important - we see 
 
 We can see that the places of declines in the charts can be translated into the location of large agglomerations, but this does not explain the trend. Local growth, and not global decline, would be expected.
 
-```{r latlong-map, out.width="700", fig.align="center", echo=FALSE, fig.cap='Map of California'}
+```{r latlong-map, fig.align="center", out.width = "70%", echo=FALSE, fig.cap='Map of California'}
 knitr::include_graphics('images/1-2-latlong_map.jpg')
 ```
 
