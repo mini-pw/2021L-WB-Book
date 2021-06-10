@@ -1,8 +1,12 @@
+<<<<<<< Updated upstream
 ## Classifying people as good or bad credit risks {#xai1-explainable-german-credits} 
+=======
+## Classifying people as good or bad credit risks {#xai2-german-credit-data} 
+>>>>>>> Stashed changes
 
 *Authors: Paweł Fijałkowski, Paulina Jaszczuk, Jakub Szypuła (Warsaw University of Technology)*
 
-### Abstract
+### Abstract 
 
 Computer science researchers currently face a significant conflict of interest between responsible data processing and effective and quickly-developed business oriented solutions. This study aims to construct and explain machine-learning model in order to prove importance of Explainable Artificial Intelligence. During analysis we will be using both local and global explanations with the purpose of building interpretable glass-box credit score classifier. Foundation of our analysis will be based on data concerning german credit borrowers. Variety of statistics provided about each client (e.g checking status or credit history) will pose considerable noise-canceling problem in our explanations. Due to the large number of employed tools and their inevitable bias, researchers will aggregate resulting metrics in order to obtain clearest understanding of model's contributions. Each case-study will also include summarization for non-technical business representative. The result will layout heuristics of feature important order as well as our explanation and logic behind the outcome.
 
@@ -17,14 +21,22 @@ This cannot be accepted while building systems supporting banks or hospitals.
 
 In the article below, we are facing the problem of creating explainable classifier for German bank credit score [@2-2-yu2010comparative; @2-2-religia2020south]. We will build black-box model and then employ XAI methods in order for us to understand which features and statistics tend to outbalance model's decision towards good or bad borrower classification.
 
+<<<<<<< Updated upstream
 ### Dataset and models 
+=======
+### Dataset and models
+>>>>>>> Stashed changes
 
 During entire analysis, we'll be operating on publicly available data set containing information about German borrowers. Input was collected and processed by Professor Dr. Hans Hofmann from [University of Hamburg](https://www.uni-hamburg.de/en.html) and is available [here](https://archive.ics.uci.edu/ml/datasets/statlog+(german+credit+data)).
 
 Data set provider, basing on academic research,  have chosen certain variables to describe each borrower. Some of them are presented in the Table \@ref(tab:variables). That combination of numerical and qualitative variables proved to carry certain importance/influence on probability of paying back borrowed assets. 
 
 
+<<<<<<< Updated upstream
 ```{r variables, echo=FALSE}
+=======
+```{r variables echo=FALSE}
+>>>>>>> Stashed changes
 Statistic <- c('checking_status', 'duration', 'credit_history', 'purpose', 'credit_amount', 'savings_status', 'age')
 Description <- c('Status of existing checking account (qualitative)', 'Credit duration in months (numerical)', 'Credit history (qualitative)', 'Purpose (qualitative)', 'Purpose (qualitative)', 'Savings account/bonds (qualitative)', 'Age in years (numerical)')
 
@@ -41,7 +53,11 @@ After careful deliberation and testing using multiple metrics the team decided t
 standard forest voting and random forest is that in the latter case, only random subset of features is considered during selecting most important feature (with lowest gini index value [@2-2-lerman1984note]).
 Model performed exceptionally good during cross-validation [@2-2-browne2000cross], even without fine parameter hyper-tuning.
 
+<<<<<<< Updated upstream
 ### Local explanations 
+=======
+### Local explanations
+>>>>>>> Stashed changes
 
 To better understand the behavior of Random Forest, we employed a set of machine learning explanation methods [@gilpin2018explaining]. In order to comprehend the reasoning behind model predictions and interactions between variables we began at the local level, i.e. single observation. This way, we could compare influence of each variable within a clearly defined context of every potential borrower. Our primary motivation in selecting observations to present in this paper was to show interesting cases and how variables interact with one another in our model in creating predictions. As a result we selected various observations. Methods employed by us were Break-down [@gosiewska2019not; @2-2-staniak2018explanations], SHAP [@lundberg2017unified; @2-2-maksymiuk2020landscape], LIME [@2-2-ribeiro2016should] and Ceteris Paribus [@2-2-biecek2021explanatory; @2-2-biecek2018dalex].
 
@@ -49,11 +65,11 @@ We began by analyzing the output of the Break-down method on two random observat
  
 Regarding specific conjectures on the data set one can draw from this comparison, we can see that both observations share 7 out of the top 10 most influential variables. Among them are, for example *age*, *checking status*, which would be expected by a "common sense" intuition. Influences confirm that intuition. Young age contributes negatively towards credit rating and lower duration positively. Same for checking status - the higher the better. 
 
-```{r 2-2-breakdown, out.width="700", fig.align="center", echo=FALSE, fig.cap='Comparison of plots of breakdown method for two observations - $1^{st}$ (left) and $94^{th}$ (right). Positive values indicate an increase in probability of being classified as a "good" borrower while negative values indicate the opposite.'}
+```{r 2-2-breakdown, out.width="700", fig.align="center", echo=FALSE, fig.cap='Comparison of plots of breakdown method for two observations - $1^{st}$ (above) and $94^{th}$ (below). Positive values indicate an increase in probability of being classified as a "good" borrower while negative values indicate the opposite.'}
 knitr::include_graphics('images/2-2-breakdown-comparison.png')
 ```
 
-```{r 2-2-bd-different-impact, out.width="700", fig.align="center", echo=FALSE, fig.cap='Comparison of plots of breakdown method for two observations - $4^{th}$ (left) and $7^{th}$ (right). The same value of job variable has a different effect on the prediction.'}
+```{r 2-2-bd-different-impact, out.width="700", fig.align="center", echo=FALSE, fig.cap='Comparison of plots of breakdown method for two observations - $4^{th}$ (above) and $7^{th}$ (below). The same value of job variable has a different effect on the prediction.'}
 knitr::include_graphics('images/2-2-bd-different-impact.png')
 ```
 
@@ -123,7 +139,11 @@ Again, features *duration*, *checking status* and *credit hisotry* have the grea
 
 
 
+<<<<<<< Updated upstream
 ### Global explanations 
+=======
+### Global explanations
+>>>>>>> Stashed changes
 
 A major shortcoming of local explanations is that they are just that - local. It is the ability to see "the bigger picture" that allows us to achieve a better understanding of the model. Thus, we resolved to using Global Explanation methods [@gilpin2018explaining] in order to properly grasp approach behind predictions in our machine learning model.
 
@@ -191,7 +211,11 @@ knitr::include_graphics('images/2-2-pdp-age.png')
 The *age* plot (Figure \@ref(fig:2-2-pdp-age)) is consistent with our earlier assumptions and intuition - young borrowers who do not yet have a stable position on the labor market and their income is uncertain are the clients for whom credit risk is the highest. Subsequently, the prediction increases to peak for an approximately 38-year-old borrower. Statistically, people of this age have a stable job with high earnings. Thereafter, the prediction remains steadily high until around 55 years after which it begins to decline - this corresponds to the period when borrowers begin to retire which causes their incomes to decline frequently.
 
 
+<<<<<<< Updated upstream
 ### Summary and conclusions 
+=======
+### Summary and conclusions
+>>>>>>> Stashed changes
 
 Applying XAI methods to our black-box model helped understand it, turning it, even if by a minimal margin, into more of a glass-box model. We found the most important features (that is *checking status*, *duration*, *credit amount* and *age*) and the rules governing their influence on predictions. We also confirmed the validity of a "common sense" intuition, e.g. the probability of being a "good" borrower being lower for very young and very old people. This allows us not only to validate the performance of our model, but also to better understand the rules governing this dataset. 
 
