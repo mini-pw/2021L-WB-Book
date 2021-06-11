@@ -24,7 +24,7 @@
 <meta name="author" content="Faculty of Mathematics and Information Science, Warsaw University of Technology" />
 
 
-<meta name="date" content="2021-06-10" />
+<meta name="date" content="2021-06-11" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -344,7 +344,7 @@
 <p><em>Authors: Paweł Fijałkowski, Paulina Jaszczuk, Jakub Szypuła (Warsaw University of Technology)</em></p>
 <div id="abstract-5" class="section level3">
 <h3><span class="header-section-number">2.2.1</span> Abstract</h3>
-<p>Computer science researchers currently face a significant conflict of interest between responsible data processing and effective and quickly-developed business oriented solutions. This study aims to construct and explain machine-learning model in order to prove importance of Explainable Artificial Intelligence. During analysis we will be using both local and global explanations with the purpose of building interpretable glass-box credit score classifier. Foundation of our analysis will be based on data concerning german credit borrowers. Variety of statistics provided about each client (e.g checking status or credit history) will pose considerable noise-canceling problem in our explanations. Due to the large number of employed tools and their inevitable bias, researchers will aggregate resulting metrics in order to obtain clearest understanding of model’s contributions. Each case-study will also include summarization for non-technical business representative. The result will layout heuristics of feature important order as well as our explanation and logic behind the outcome.</p>
+<p>Computer science researchers currently face a significant conflict of interest between responsible data processing effective and quickly-developed business oriented solutions. This study aims to construct and explain the machine learning model in order to prove importance of Explainable Artificial Intelligence. During analysis we will be using both local and global explanations with the purpose of building interpretable glass-box credit score classifier. The foundation of our analysis will be based on data concerning german credit borrowers. A variety of statistics provided about each client will pose considerable noise-canceling problem in our explanations. Due to many employed tools and their inevitable bias, researchers will aggregate results metrics in order to obtain clearest understanding of the model’s contributions. Each case-study will also include summarization for non-technical business representative. The result will layout heuristics of feature important order as well as our explanation and logic behind the outcome.</p>
 </div>
 <div id="introduction-2" class="section level3">
 <h3><span class="header-section-number">2.2.2</span> Introduction</h3>
@@ -357,9 +357,9 @@ This cannot be accepted while building systems supporting banks or hospitals.</p
 <div id="dataset-and-models" class="section level3">
 <h3><span class="header-section-number">2.2.3</span> Dataset and models</h3>
 <p>During entire analysis, we’ll be operating on publicly available data set containing information about German borrowers. Input was collected and processed by Professor Dr. Hans Hofmann from <a href="https://www.uni-hamburg.de/en.html">University of Hamburg</a> and is available <a href="https://archive.ics.uci.edu/ml/datasets/statlog+(german+credit+data)">here</a>.</p>
-<p>Data set provider, basing on academic research, have chosen certain variables to describe each borrower. Some of them are presented in the Table <a href="xai2-german-credit-data.html#tab:variables">2.1</a>. That combination of numerical and qualitative variables proved to carry certain importance/influence on probability of paying back borrowed assets.</p>
+<p>Data set provider, basing on academic research, have chosen certain variables to describe each borrower. Some of them are presented in the Table <a href="#tab:variables"><strong>??</strong></a>. That combination of numerical and qualitative variables proved to carry certain importance/influence on probability of paying back borrowed assets.</p>
 <table>
-<caption><span id="tab:variables">Table 2.1: </span>7 out of 20 variables that turned out to be significant in later analyzes.</caption>
+<caption><span id="tab:2-2-variables">Table 2.1: </span>7 out of 20 variables that turned out to be significant in later analyzes.</caption>
 <thead>
 <tr class="header">
 <th align="left">Statistic</th>
@@ -404,7 +404,7 @@ Model performed exceptionally good during cross-validation <span class="citation
 </div>
 <div id="local-explanations-4" class="section level3">
 <h3><span class="header-section-number">2.2.4</span> Local explanations</h3>
-<p>To better understand the behavior of Random Forest, we employed a set of machine learning explanation methods <span class="citation">(Gilpin et al. <a href="#ref-gilpin2018explaining" role="doc-biblioref">2018</a>)</span>. In order to comprehend the reasoning behind model predictions and interactions between variables we began at the local level, i.e. single observation. This way, we could compare influence of each variable within a clearly defined context of every potential borrower. Our primary motivation in selecting observations to present in this paper was to show interesting cases and how variables interact with one another in our model in creating predictions. As a result we selected various observations. Methods employed by us were Break-down <span class="citation">(Gosiewska and Biecek <a href="#ref-gosiewska2019not" role="doc-biblioref">2019</a>; Staniak and Biecek <a href="#ref-2-2-staniak2018explanations" role="doc-biblioref">2018</a>)</span>, SHAP <span class="citation">(Lundberg and Lee <a href="#ref-lundberg2017unified" role="doc-biblioref">2017</a>; Maksymiuk et al. <a href="#ref-2-2-maksymiuk2020landscape" role="doc-biblioref">2020</a>)</span>, LIME <span class="citation">(Ribeiro et al. <a href="#ref-2-2-ribeiro2016should" role="doc-biblioref">2016</a>)</span> and Ceteris Paribus <span class="citation">(Biecek <a href="#ref-2-2-biecek2018dalex" role="doc-biblioref">2018</a>; Przemyslaw Biecek and Burzykowski <a href="#ref-2-2-biecek2021explanatory" role="doc-biblioref">2021</a><a href="#ref-2-2-biecek2021explanatory" role="doc-biblioref">b</a>)</span>.</p>
+<p>To better understand the behavior of Random Forest, we employed a set of machine learning explanation methods <span class="citation">(Gilpin et al. <a href="#ref-gilpin2018explaining" role="doc-biblioref">2018</a>)</span>. In order to comprehend the reasoning behind model predictions and interactions between variables we began at the local level, i.e. single observation. “Local explanation” is a name for application of machine learning explanation methods for a single prediction<span class="citation">(Gilpin et al. <a href="#ref-gilpin2018explaining" role="doc-biblioref">2018</a>)</span>. This way, we could compare influence of each variable within a clearly defined context of every potential borrower. Our primary motivation in selecting observations to present in this paper was to show interesting cases and how variables interact with one another in our model in creating predictions. As a result we selected various observations. Methods employed by us were Break-down <span class="citation">(Gosiewska and Biecek <a href="#ref-gosiewska2019not" role="doc-biblioref">2019</a>; Staniak and Biecek <a href="#ref-2-2-staniak2018explanations" role="doc-biblioref">2018</a>)</span>, SHAP <span class="citation">(Lundberg and Lee <a href="#ref-lundberg2017unified" role="doc-biblioref">2017</a>; Maksymiuk et al. <a href="#ref-2-2-maksymiuk2020landscape" role="doc-biblioref">2020</a>)</span>, LIME <span class="citation">(Ribeiro et al. <a href="#ref-2-2-ribeiro2016should" role="doc-biblioref">2016</a>)</span> and Ceteris Paribus <span class="citation">(Biecek <a href="#ref-2-2-biecek2018dalex" role="doc-biblioref">2018</a>; Przemyslaw Biecek and Burzykowski <a href="#ref-2-2-biecek2021explanatory" role="doc-biblioref">2021</a><a href="#ref-2-2-biecek2021explanatory" role="doc-biblioref">b</a>)</span>.</p>
 <p>We began by analyzing the output of the Break-down method on two random observations (see Figure <a href="xai2-german-credit-data.html#fig:2-2-breakdown">2.1</a>). Once compared side-by-side (see the figure) several key differences emerge. First of all, the importance of <em>checking status</em> variable (which will return in forthcoming sections). One can also notice the importance of the <em>age</em> variable, which seems intuitive. A further conclusion can be drawn from this - influence of a variable depends on its value. In fact, depending on interactions between variables in the data set even the same value can have opposite effects. An example (although miniscule) can be found in the Figure <a href="xai2-german-credit-data.html#fig:2-2-bd-different-impact">2.2</a> by comparing observations <span class="math inline">\(4^{th}\)</span> and <span class="math inline">\(7^{th}\)</span> (both classified correctly). The same value of <em>job</em> variable (i.e. “skilled”) gives opposite influences (-1.7% “bad” probability and +1.4% respectively). Thus we should always take into account context in which each variable is evaluated.</p>
 <p>Regarding specific conjectures on the data set one can draw from this comparison, we can see that both observations share 7 out of the top 10 most influential variables. Among them are, for example <em>age</em>, <em>checking status</em>, which would be expected by a “common sense” intuition. Influences confirm that intuition. Young age contributes negatively towards credit rating and lower duration positively. Same for checking status - the higher the better.</p>
 <div class="figure" style="text-align: center"><span id="fig:2-2-breakdown"></span>
@@ -430,18 +430,18 @@ Figure 2.3: A plot of results of SHAP method for <span class="math inline">\(1^{
 <h4>The most certain predictions</h4>
 <p>Our model classifies clients in binary terms as good and bad potential borrowers but the certainty of its predictions is not always the same. We decided to analyze the cases in which it has no doubts which group to assign a given client to. For this purpose, we used the Cateris Paribus method which checks how the prediction for a given observation would change for different values of one variable while the others remain constant.</p>
 <div class="figure" style="text-align: center"><span id="fig:2-2-cp21"></span>
-<img src="images/2-2-cp21.png" alt="A plot of results of CP method for $21^{st}$ observation." width="700" />
+<img src="images/2-2-cp21.png" alt="A plot of results of CP method for $21^{st}$ observation. Lines represent change in prediction according to change of a certain variable under the assumption that others would remain the same. One can observe that Duration, credit_amount and age have much more impact than the others. The unique shape for age variable appears, starting with low predictions for younger credit takers, going up with age and flattening near 30 until very old age (70+). Higher credit amount and longer duration decrease probability of being classified as a &quot;good&quot; credit taker." width="700" />
 <p class="caption">
-Figure 2.4: A plot of results of CP method for <span class="math inline">\(21^{st}\)</span> observation.
+Figure 2.4: A plot of results of CP method for <span class="math inline">\(21^{st}\)</span> observation. Lines represent change in prediction according to change of a certain variable under the assumption that others would remain the same. One can observe that Duration, credit_amount and age have much more impact than the others. The unique shape for age variable appears, starting with low predictions for younger credit takers, going up with age and flattening near 30 until very old age (70+). Higher credit amount and longer duration decrease probability of being classified as a “good” credit taker.
 </p>
 </div>
 <p>Looking at the Cateris Paribus plot for an observation that the model classified as a good borrower with almost 97% certainty (see Figure <a href="xai2-german-credit-data.html#fig:2-2-cp21">2.4</a>), we can draw several conclusions. First, the variables were divided into those important and less important for the model prediction. <em>Duration</em>, <em>credit amount</em>, and <em>age</em> would clearly change the result if they had a different value - for example, a few thousand higher credit amount would significantly reduce the prediction, as would the <em>duration</em> value. On the other hand we see plots of <em>installment commitment</em>, <em>residence since</em>, <em>existing credits</em> and <em>num dependents</em> which are almost straight lines - changing their values would hardly affect the model’s predictions. This allows us to conclude that in this case it was the values of these three variables (listed first) that mainly determined the classification of the borrower.</p>
 <p>The explanations also once again confirm our intuition - the high certainty of the model as to the classification of the customer as a good borrower was motivated by logical arguments -
 a relatively low loan amount, short loan duration and the average age of the borrower.</p>
 <div class="figure" style="text-align: center"><span id="fig:2-2-cp64"></span>
-<img src="images/2-2-cp64.png" alt="A plot of results of CP method for $64^{th}$ observation." width="700" />
+<img src="images/2-2-cp64.png" alt="A plot of results of CP method for $64^{th}$ observation. Again, difference in importance between duration, credit amount, age and other variables can be noted. This time shape of age subplot lacks the old age decrease, but otherwise remains the same. Dependency between duration and credit amount seen in previous figure remains here as well." width="700" />
 <p class="caption">
-Figure 2.5: A plot of results of CP method for <span class="math inline">\(64^{th}\)</span> observation.
+Figure 2.5: A plot of results of CP method for <span class="math inline">\(64^{th}\)</span> observation. Again, difference in importance between duration, credit amount, age and other variables can be noted. This time shape of age subplot lacks the old age decrease, but otherwise remains the same. Dependency between duration and credit amount seen in previous figure remains here as well.
 </p>
 </div>
 <p>Cateris Paribus plots for an observation confidently classified as a bad borrower (see Figure <a href="xai2-german-credit-data.html#fig:2-2-cp64">2.5</a>) are almost the opposite of the previous ones. This time the client is very young, he wants to take a high loan with a long repayment period. All these features have a negative effect on prediction. Interestingly, if only a few years older client applied for the same loan, the model’s prediction would be much higher.</p>
@@ -490,14 +490,14 @@ Again, features <em>duration</em>, <em>checking status</em> and <em>credit hisot
 </div>
 <div id="global-explanations-5" class="section level3">
 <h3><span class="header-section-number">2.2.5</span> Global explanations</h3>
-<p>A major shortcoming of local explanations is that they are just that - local. It is the ability to see “the bigger picture” that allows us to achieve a better understanding of the model. Thus, we resolved to using Global Explanation methods <span class="citation">(Gilpin et al. <a href="#ref-gilpin2018explaining" role="doc-biblioref">2018</a>)</span> in order to properly grasp approach behind predictions in our machine learning model.</p>
+<p>A major shortcoming of local explanations is that they are just that - local. It is the ability to see “the bigger picture” that allows us to achieve a better understanding of the model. Thus, we resolved to using Global Explanation methods, i.e. methods focused on the entire dataset, not singular predictions <span class="citation">(Gilpin et al. <a href="#ref-gilpin2018explaining" role="doc-biblioref">2018</a>)</span> in order to properly grasp approach behind predictions in our machine learning model.</p>
 <div id="feature-importance" class="section level4 unnumbered">
 <h4>Feature Importance</h4>
 <p>First of all, we began with Feature Importance method <span class="citation">(Przemyslaw Biecek and Burzykowski <a href="#ref-2-2-biecek2021explanatory" role="doc-biblioref">2021</a><a href="#ref-2-2-biecek2021explanatory" role="doc-biblioref">b</a>)</span> which gives information on the importance of features in the model. Importance is measured by resampling and permuting values of a certain variable, to simulate effect of its removal. The main intuition can be summarised in form of a question: “how much the model suffers if this feature is removed”. The results of applying this method on our model can be seen in the Figure <a href="xai2-german-credit-data.html#fig:2-2-feature-importance">2.10</a>.</p>
 <div class="figure" style="text-align: center"><span id="fig:2-2-feature-importance"></span>
-<img src="images/2-2-featureimportance.png" alt="A plot of Feature Importance values for each variable for our model." width="700" />
+<img src="images/2-2-featureimportance.png" alt="A plot of Feature Importance values for each variable for our model. The exponential shape of importance can be noted. Checking status, duration, credit amount and age are among the most important variables." width="700" />
 <p class="caption">
-Figure 2.10: A plot of Feature Importance values for each variable for our model.
+Figure 2.10: A plot of Feature Importance values for each variable for our model. The exponential shape of importance can be noted. Checking status, duration, credit amount and age are among the most important variables.
 </p>
 </div>
 <p>As one can notice, results are in line with local explanations. That is, the domination of such features as <em>checking status</em>, credit <em>duration</em> and <em>credit amount</em>. Then follows <em>age</em>, <em>saving status</em> and <em>purpose.</em> Yet again, our “common sense” intuition seems to be confirmed. Noteworthy, the plot resembles an exponential function, hinting that predictions are based mostly on the first few most important features, a trait not so obvious to observe in local explanations. It should be noted, however, that the low impact on the prediction of some variables may be dictated by a small number of observations - e.g. the number of non-foreign workers in our data set is just under 4%.</p>
@@ -509,9 +509,9 @@ Figure 2.10: A plot of Feature Importance values for each variable for our model
 <h4>Dependence of variables</h4>
 <p>The feature importance method seems to be very helpful in exploring the model, but it also has some drawbacks. One is that it does not perform well on correlated variables - permutating only one dependent variable while the other remains constant is not the best solution. In the case of our data set this problem also occurs - for example, the duration of the loan is strongly correlated with its amount. For this reason, we decided to use the triplot package <span class="citation">(Pekala et al. <a href="#ref-2-2-pekala2021triplot" role="doc-biblioref">2021</a>)</span> which enables the analysis of grouped variables. We divided the features of our data into 3 categories - those relating to the loan (e.g. <em>credit amount</em> and <em>duration</em>), the client’s account (e.g. <em>checking</em> and <em>savings status</em>) and the borrower himsefl (e.g. <em>age</em> and <em>employment</em>). Then we explained the contribution of the whole groups of variables (see Figure <a href="xai2-german-credit-data.html#fig:2-2-triplot">2.11</a>).</p>
 <div class="figure" style="text-align: center"><span id="fig:2-2-triplot"></span>
-<img src="images/2-2-triplot.png" alt="triplot for grouped variables." width="700" />
+<img src="images/2-2-triplot.png" alt="A plot representing importance of grouped variables. Credit - credit amount and duration, personal - age, employment and rating - checking status and savings status. The most important factor remains the credit itself." width="700" />
 <p class="caption">
-Figure 2.11: triplot for grouped variables.
+Figure 2.11: A plot representing importance of grouped variables. Credit - credit amount and duration, personal - age, employment and rating - checking status and savings status. The most important factor remains the credit itself.
 </p>
 </div>
 <p>As we can see, although according to Feature Importance the most important variable for our model is <em>checking status</em> (rating group), the total prediction is influenced most by the characteristics of the loan itself while the variables connected with the current account have the most marginal effect on the model</p>
@@ -522,9 +522,9 @@ Figure 2.11: triplot for grouped variables.
 <div id="checking-status" class="section level5 unnumbered">
 <h5>Checking status</h5>
 <div class="figure" style="text-align: center"><span id="fig:2-2-pdp-checking-status"></span>
-<img src="images/2-2-pdp-checking-status.png" alt="PDP plot for checking status variable." width="700" />
+<img src="images/2-2-pdp-checking-status.png" alt="PDP plot for checking status variable, showing average probability of being classified as a &quot;good&quot; credit taker for each value." width="700" />
 <p class="caption">
-Figure 2.12: PDP plot for checking status variable.
+Figure 2.12: PDP plot for checking status variable, showing average probability of being classified as a “good” credit taker for each value.
 </p>
 </div>
 <p>As we can see in the Figure <a href="xai2-german-credit-data.html#fig:2-2-pdp-checking-status">2.12</a> a customer with a negative checking status has the lowest probability of being a good borrower according to the model and the best borrowers turn out to be those without a current account. It is somewhat surprising that the slightly higher prediction applies to customers with a lower positive checking status than those with a higher one. This may be due to the small number of clients with high checking status - just over 6% of all while other values are evenly matched.</p>
@@ -532,9 +532,9 @@ Figure 2.12: PDP plot for checking status variable.
 <div id="duration" class="section level5 unnumbered">
 <h5>Duration</h5>
 <div class="figure" style="text-align: center"><span id="fig:2-2-pdp-duration"></span>
-<img src="images/2-2-pdp-duration.png" alt="PDP plot for duration variable." width="700" />
+<img src="images/2-2-pdp-duration.png" alt="PDP plot for duration variable, showing average probability of being classified as a &quot;good&quot; credit taker for duration variable." width="700" />
 <p class="caption">
-Figure 2.13: PDP plot for duration variable.
+Figure 2.13: PDP plot for duration variable, showing average probability of being classified as a “good” credit taker for duration variable.
 </p>
 </div>
 <p>The variable <em>duration</em> plot (Figure <a href="xai2-german-credit-data.html#fig:2-2-pdp-duration">2.13</a>) leads us to similar conclusions as for the local explanations. The longer the loan term, the greater the credit risk. For the initial values the prediction of a good borrower decreases almost linearly (the jagged graph is the result of using the random forest model), to a certain threshold of around 40 months when the loan duration is already so long that this variable does not have a significant impact on the prediction.</p>
@@ -542,9 +542,9 @@ Figure 2.13: PDP plot for duration variable.
 <div id="credit-amount" class="section level5 unnumbered">
 <h5>Credit amount</h5>
 <div class="figure" style="text-align: center"><span id="fig:2-2-pdp-credit-amount"></span>
-<img src="images/2-2-pdp-credit-amount.png" alt="PDP plot for credit amount variable." width="700" />
+<img src="images/2-2-pdp-credit-amount.png" alt="PDP plot for credit amount variable, showing average probability of being classified as a &quot;good&quot; credit taker for credit amount variable." width="700" />
 <p class="caption">
-Figure 2.14: PDP plot for credit amount variable.
+Figure 2.14: PDP plot for credit amount variable, showing average probability of being classified as a “good” credit taker for credit amount variable.
 </p>
 </div>
 <p>The plot of <em>credit amount</em> (Figure <a href="xai2-german-credit-data.html#fig:2-2-pdp-credit-amount">2.14</a>) is somewhat similar to that of <em>duration.</em> As the loan amount increases, the probability that the customer will turn out to be a good borrower decreases until the loan is so high (around 12,000) that increasing it no longer has a significant impact on the prediction. The initial low value of the prediction and the increase for the loan amount from 0 to 4000 may be due to the fact that clients taking loans for small amounts may have problems with financial liquidity.</p>
@@ -552,9 +552,9 @@ Figure 2.14: PDP plot for credit amount variable.
 <div id="age" class="section level5 unnumbered">
 <h5>Age</h5>
 <div class="figure" style="text-align: center"><span id="fig:2-2-pdp-age"></span>
-<img src="images/2-2-pdp-age.png" alt="PDP plot for age variable." width="700" />
+<img src="images/2-2-pdp-age.png" alt="PDP plot for age variable, showing average probability of being classified as a &quot;good&quot; credit taker for age variable." width="700" />
 <p class="caption">
-Figure 2.15: PDP plot for age variable.
+Figure 2.15: PDP plot for age variable, showing average probability of being classified as a “good” credit taker for age variable.
 </p>
 </div>
 <p>The <em>age</em> plot (Figure <a href="xai2-german-credit-data.html#fig:2-2-pdp-age">2.15</a>) is consistent with our earlier assumptions and intuition - young borrowers who do not yet have a stable position on the labor market and their income is uncertain are the clients for whom credit risk is the highest. Subsequently, the prediction increases to peak for an approximately 38-year-old borrower. Statistically, people of this age have a stable job with high earnings. Thereafter, the prediction remains steadily high until around 55 years after which it begins to decline - this corresponds to the period when borrowers begin to retire which causes their incomes to decline frequently.</p>

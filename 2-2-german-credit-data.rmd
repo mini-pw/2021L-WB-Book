@@ -54,7 +54,7 @@ We began by analyzing the output of the Break-down method on two random observat
  
 Regarding specific conjectures on the data set one can draw from this comparison, we can see that both observations share 7 out of the top 10 most influential variables. Among them are, for example *age*, *checking status*, which would be expected by a "common sense" intuition. Influences confirm that intuition. Young age contributes negatively towards credit rating and lower duration positively. Same for checking status - the higher the better. 
 
-```{r 2-2-breakdown, out.width="700", fig.align="center", echo=FALSE, fig.cap='Comparison of plots of breakdown method for two observations - $1^{st}$ (above) and $94^{th}$ (below). Positive values indicate an increase in probability of being classified as a "good" borrower while negative values indicate the opposite.'}
+```{r 2-2-breakdown, out.width="700", fig.align="center", echo=FALSE, fig.cap='Comparison of plots of breakdown method for two observations - $1^{st}$ (above) and $94^{th}$ (below). Positive values indicate an increase in probability of being classified as a \"good\" borrower while negative values indicate the opposite.'}
 knitr::include_graphics('images/2-2-breakdown-comparison.png')
 ```
 
@@ -65,7 +65,7 @@ knitr::include_graphics('images/2-2-bd-different-impact.png')
 
 Consequently, we used SHAP method to analyze the first observation (see Figure \@ref(fig:2-2-shap)) and compare results with the Break-Down method. The results of this can be seen in the figure below. *Duration* and *checking status* remain the two most important variables, while *age* grows in importance. 8 of the top 10 variables remain the same, with around the same influences. The major difference being absence of information on *existing credits* and *residence since*, have been replaced with *credit amount* and *purpose*. This method offers new information, primarily about the variation of influence of each variable. One can notice that *age* is the most varied (since it can affect the prediction both positively and negatively), which again would correspond to the "common sense" intuition (as with *duration*, the *credit amount* and *checking status*). The opposite occurs with *credit history*, *purpose*, *property magnitude* and *length of employment*, where variation remains lower compared to influence. Changes, in order of importance are rather small, only the *installment commitment* moves by more than 3 places (from number 5 to number 10). The rest is swapping of *checking status* and *duration*, fall of *property magnitude* by 2 places, *employment* by 1 place and rise of *age* by 2 places. It should be noted that all these changes occur similar or very similar absolute influence values in break-down method. One can judge that importance of variables is a trait that can remain consistent between various explanation methods.
 
-```{r 2-2-shap, out.width="700", fig.align="center", echo=FALSE, fig.cap='A plot of results of SHAP method for $1^{st}$ observation. One can note the variance in the age variable. With our "common sense" intuition one could imagine that an old person could either be "good" or "bad" credit taker.'}
+```{r 2-2-shap, out.width="700", fig.align="center", echo=FALSE, fig.cap='A plot of results of SHAP method for $1^{st}$ observation. One can note the variance in the age variable. With our \"common sense\" intuition one could imagine that an old person could either be \"good\" or \"bad\" credit taker.'}
 knitr::include_graphics('images/2-2-shap.png')
 ```
 
@@ -73,7 +73,7 @@ knitr::include_graphics('images/2-2-shap.png')
 
 Our model classifies clients in binary terms as good and bad potential borrowers but the certainty of its predictions is not always the same. We decided to analyze the cases in which it has no doubts which group to assign a given client to. For this purpose, we used the Cateris Paribus method which checks how the prediction for a given observation would change for different values of one variable while the others remain constant.
 
-```{r 2-2-cp21, out.width="700", fig.align="center", echo=FALSE, fig.cap='A plot of results of CP method for $21^{st}$ observation. Lines represent change in prediction according to change of a certain variable under the assumption that others would remain the same. One can observe that Duration, credit_amount and age have much more impact than the others. The unique shape for age variable appears, starting with low predictions for younger credit takers, going up with age and flattening near 30 until very old age (70+). Higher credit amount and longer duration decrease probability of being classified as a "good" credit taker".'}
+```{r 2-2-cp21, out.width="700", fig.align="center", echo=FALSE, fig.cap='A plot of results of CP method for $21^{st}$ observation. Lines represent change in prediction according to change of a certain variable under the assumption that others would remain the same. One can observe that Duration, credit_amount and age have much more impact than the others. The unique shape for age variable appears, starting with low predictions for younger credit takers, going up with age and flattening near 30 until very old age (70+). Higher credit amount and longer duration decrease probability of being classified as a \"good\" credit taker.'}
 knitr::include_graphics('images/2-2-cp21.png')
 ```
 
@@ -165,7 +165,7 @@ In order to better understand the influence of specific variables on the model p
 
 ##### Checking status {-}
 
-```{r 2-2-pdp-checking-status, out.width="700", fig.align="center", echo=FALSE, fig.cap='PDP plot for checking status variable, showing average probability of being classified as a "good" credit taker for each value.'}
+```{r 2-2-pdp-checking-status, out.width="700", fig.align="center", echo=FALSE, fig.cap='PDP plot for checking status variable, showing average probability of being classified as a \"good\" credit taker for each value.'}
 knitr::include_graphics('images/2-2-pdp-checking-status.png')
 ```
 
@@ -173,7 +173,7 @@ As we can see in the Figure \@ref(fig:2-2-pdp-checking-status) a customer with a
 
 ##### Duration {-}
 
-```{r 2-2-pdp-duration, out.width="700", fig.align="center", echo=FALSE, fig.cap='PDP plot for duration variable, showing average probability of being classified as a "good" credit taker for duration variable.'}
+```{r 2-2-pdp-duration, out.width="700", fig.align="center", echo=FALSE, fig.cap='PDP plot for duration variable, showing average probability of being classified as a \"good\" credit taker for duration variable.'}
 knitr::include_graphics('images/2-2-pdp-duration.png')
 ```
 
@@ -181,7 +181,7 @@ The variable *duration* plot (Figure \@ref(fig:2-2-pdp-duration)) leads us to si
 
 ##### Credit amount {-}
 
-```{r 2-2-pdp-credit-amount, out.width="700", fig.align="center", echo=FALSE, fig.cap='PDP plot for credit amount variable, showing average probability of being classified as a "good" credit taker for credit amount variable.''}
+```{r 2-2-pdp-credit-amount, out.width="700", fig.align="center", echo=FALSE, fig.cap='PDP plot for credit amount variable, showing average probability of being classified as a \"good\" credit taker for credit amount variable.'}
 knitr::include_graphics('images/2-2-pdp-credit-amount.png')
 ```
 
@@ -189,7 +189,7 @@ The plot of *credit amount* (Figure \@ref(fig:2-2-pdp-credit-amount)) is somewha
 
 ##### Age {-}
 
-```{r 2-2-pdp-age, out.width="700", fig.align="center", echo=FALSE, fig.cap='PDP plot for age variable, showing average probability of being classified as a "good" credit taker for age variable.'}
+```{r 2-2-pdp-age, out.width="700", fig.align="center", echo=FALSE, fig.cap='PDP plot for age variable, showing average probability of being classified as a \"good\" credit taker for age variable.'}
 knitr::include_graphics('images/2-2-pdp-age.png')
 ```
 
