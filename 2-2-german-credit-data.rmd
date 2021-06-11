@@ -28,7 +28,7 @@ Data set provider, basing on academic research,  have chosen certain variables t
 
 
 
-```{r variables, echo=FALSE}
+```{r 2-2-variables, echo=FALSE}
 Statistic <- c('checking_status', 'duration', 'credit_history', 'purpose', 'credit_amount', 'savings_status', 'age')
 Description <- c('Status of existing checking account (qualitative)', 'Credit duration in months (numerical)', 'Credit history (qualitative)', 'Purpose (qualitative)', 'Purpose (qualitative)', 'Savings account/bonds (qualitative)', 'Age in years (numerical)')
 
