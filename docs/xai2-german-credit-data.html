@@ -24,7 +24,7 @@
 <meta name="author" content="Faculty of Mathematics and Information Science, Warsaw University of Technology" />
 
 
-<meta name="date" content="2021-06-11" />
+<meta name="date" content="2021-06-12" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -33,14 +33,15 @@
   
 <link rel="prev" href="xai2-phones.html"/>
 <link rel="next" href="how-to-predict-the-probability-of-subsequent-blood-donations.html"/>
-<script src="libs/jquery-2.2.3/jquery.min.js"></script>
-<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
-<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
-<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
-<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
-<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
-<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
-<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+<script src="libs/header-attrs/header-attrs.js"></script>
+<script src="libs/jquery/jquery.min.js"></script>
+<link href="libs/gitbook/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook/css/plugin-clipboard.css" rel="stylesheet" />
 
 
 
@@ -50,11 +51,35 @@
 
 
 
-<link href="libs/anchor-sections-1.0.1/anchor-sections.css" rel="stylesheet" />
-<script src="libs/anchor-sections-1.0.1/anchor-sections.js"></script>
+<link href="libs/anchor-sections/anchor-sections.css" rel="stylesheet" />
+<script src="libs/anchor-sections/anchor-sections.js"></script>
+<script src="libs/kePrint/kePrint.js"></script>
+<link href="libs/lightable/lightable.css" rel="stylesheet" />
 
 
 
+<style type="text/css">
+/* Used with Pandoc 2.11+ new --citeproc when CSL is used */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+}
+.hanging div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}
+</style>
 
 <link rel="stylesheet" href="css/style.css" type="text/css" />
 </head>
@@ -72,18 +97,22 @@
 <li><a href="./"><h3>Case Studies</h3></a></li>
 
 <li class="divider"></li>
-<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Preface</a><ul>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Preface</a>
+<ul>
 <li class="chapter" data-level="" data-path="technical-setup.html"><a href="technical-setup.html"><i class="fa fa-check"></i>Technical Setup</a></li>
 </ul></li>
-<li class="chapter" data-level="1" data-path="explainable-artificial-intelligence-1.html"><a href="explainable-artificial-intelligence-1.html"><i class="fa fa-check"></i><b>1</b> Explainable Artificial Intelligence 1</a><ul>
-<li class="chapter" data-level="1.1" data-path="xai1-explainable-cards.html"><a href="xai1-explainable-cards.html"><i class="fa fa-check"></i><b>1.1</b> Explaining Credit Card Customers churns</a><ul>
+<li class="chapter" data-level="1" data-path="explainable-artificial-intelligence-1.html"><a href="explainable-artificial-intelligence-1.html"><i class="fa fa-check"></i><b>1</b> Explainable Artificial Intelligence 1</a>
+<ul>
+<li class="chapter" data-level="1.1" data-path="xai1-explainable-cards.html"><a href="xai1-explainable-cards.html"><i class="fa fa-check"></i><b>1.1</b> Explaining Credit Card Customers churns</a>
+<ul>
 <li class="chapter" data-level="1.1.1" data-path="xai1-explainable-cards.html"><a href="xai1-explainable-cards.html#introduction-and-motivation"><i class="fa fa-check"></i><b>1.1.1</b> Introduction and Motivation</a></li>
 <li class="chapter" data-level="1.1.2" data-path="xai1-explainable-cards.html"><a href="xai1-explainable-cards.html#methodology"><i class="fa fa-check"></i><b>1.1.2</b> Methodology</a></li>
 <li class="chapter" data-level="1.1.3" data-path="xai1-explainable-cards.html"><a href="xai1-explainable-cards.html#local-explanations"><i class="fa fa-check"></i><b>1.1.3</b> Local explanations</a></li>
 <li class="chapter" data-level="1.1.4" data-path="xai1-explainable-cards.html"><a href="xai1-explainable-cards.html#global-explanations"><i class="fa fa-check"></i><b>1.1.4</b> Global explanations</a></li>
 <li class="chapter" data-level="1.1.5" data-path="xai1-explainable-cards.html"><a href="xai1-explainable-cards.html#summary"><i class="fa fa-check"></i><b>1.1.5</b> Summary</a></li>
 </ul></li>
-<li class="chapter" data-level="1.2" data-path="xai-in-real-estate-pricing-a-case-study.html"><a href="xai-in-real-estate-pricing-a-case-study.html"><i class="fa fa-check"></i><b>1.2</b> XAI in real estate pricing: A case study</a><ul>
+<li class="chapter" data-level="1.2" data-path="xai-in-real-estate-pricing-a-case-study.html"><a href="xai-in-real-estate-pricing-a-case-study.html"><i class="fa fa-check"></i><b>1.2</b> XAI in real estate pricing: A case study</a>
+<ul>
 <li class="chapter" data-level="1.2.1" data-path="xai-in-real-estate-pricing-a-case-study.html"><a href="xai-in-real-estate-pricing-a-case-study.html#abstract"><i class="fa fa-check"></i><b>1.2.1</b> Abstract</a></li>
 <li class="chapter" data-level="1.2.2" data-path="xai-in-real-estate-pricing-a-case-study.html"><a href="xai-in-real-estate-pricing-a-case-study.html#introduction"><i class="fa fa-check"></i><b>1.2.2</b> Introduction</a></li>
 <li class="chapter" data-level="1.2.3" data-path="xai-in-real-estate-pricing-a-case-study.html"><a href="xai-in-real-estate-pricing-a-case-study.html#related-work"><i class="fa fa-check"></i><b>1.2.3</b> Related Work</a></li>
@@ -91,7 +120,8 @@
 <li class="chapter" data-level="1.2.5" data-path="xai-in-real-estate-pricing-a-case-study.html"><a href="xai-in-real-estate-pricing-a-case-study.html#results"><i class="fa fa-check"></i><b>1.2.5</b> Results</a></li>
 <li class="chapter" data-level="1.2.6" data-path="xai-in-real-estate-pricing-a-case-study.html"><a href="xai-in-real-estate-pricing-a-case-study.html#summary-and-conclusions"><i class="fa fa-check"></i><b>1.2.6</b> Summary and conclusions</a></li>
 </ul></li>
-<li class="chapter" data-level="1.3" data-path="coronary-artery-disease-is-it-worth-trusting-ml-when-it-comes-to-our-health.html"><a href="coronary-artery-disease-is-it-worth-trusting-ml-when-it-comes-to-our-health.html"><i class="fa fa-check"></i><b>1.3</b> Coronary artery disease: Is it worth trusting ML when it comes to our health?</a><ul>
+<li class="chapter" data-level="1.3" data-path="coronary-artery-disease-is-it-worth-trusting-ml-when-it-comes-to-our-health.html"><a href="coronary-artery-disease-is-it-worth-trusting-ml-when-it-comes-to-our-health.html"><i class="fa fa-check"></i><b>1.3</b> Coronary artery disease: Is it worth trusting ML when it comes to our health?</a>
+<ul>
 <li class="chapter" data-level="1.3.1" data-path="coronary-artery-disease-is-it-worth-trusting-ml-when-it-comes-to-our-health.html"><a href="coronary-artery-disease-is-it-worth-trusting-ml-when-it-comes-to-our-health.html#abstract-1"><i class="fa fa-check"></i><b>1.3.1</b> Abstract</a></li>
 <li class="chapter" data-level="1.3.2" data-path="coronary-artery-disease-is-it-worth-trusting-ml-when-it-comes-to-our-health.html"><a href="coronary-artery-disease-is-it-worth-trusting-ml-when-it-comes-to-our-health.html#introduction-and-motivation-1"><i class="fa fa-check"></i><b>1.3.2</b> Introduction and Motivation</a></li>
 <li class="chapter" data-level="1.3.3" data-path="coronary-artery-disease-is-it-worth-trusting-ml-when-it-comes-to-our-health.html"><a href="coronary-artery-disease-is-it-worth-trusting-ml-when-it-comes-to-our-health.html#related-work-1"><i class="fa fa-check"></i><b>1.3.3</b> Related Work</a></li>
@@ -99,7 +129,8 @@
 <li class="chapter" data-level="1.3.5" data-path="coronary-artery-disease-is-it-worth-trusting-ml-when-it-comes-to-our-health.html"><a href="coronary-artery-disease-is-it-worth-trusting-ml-when-it-comes-to-our-health.html#results-1"><i class="fa fa-check"></i><b>1.3.5</b> Results</a></li>
 <li class="chapter" data-level="1.3.6" data-path="coronary-artery-disease-is-it-worth-trusting-ml-when-it-comes-to-our-health.html"><a href="coronary-artery-disease-is-it-worth-trusting-ml-when-it-comes-to-our-health.html#summary-and-conclusions-1"><i class="fa fa-check"></i><b>1.3.6</b> Summary and conclusions</a></li>
 </ul></li>
-<li class="chapter" data-level="1.4" data-path="xai1-explainable-wine.html"><a href="xai1-explainable-wine.html"><i class="fa fa-check"></i><b>1.4</b> Red wine mystery: using explainable AI to inspect factors behind wine quality</a><ul>
+<li class="chapter" data-level="1.4" data-path="xai1-explainable-wine.html"><a href="xai1-explainable-wine.html"><i class="fa fa-check"></i><b>1.4</b> Red wine mystery: using explainable AI to inspect factors behind wine quality</a>
+<ul>
 <li class="chapter" data-level="1.4.1" data-path="xai1-explainable-wine.html"><a href="xai1-explainable-wine.html#abstract-2"><i class="fa fa-check"></i><b>1.4.1</b> Abstract</a></li>
 <li class="chapter" data-level="1.4.2" data-path="xai1-explainable-wine.html"><a href="xai1-explainable-wine.html#introduction-and-motivation-2"><i class="fa fa-check"></i><b>1.4.2</b> Introduction and Motivation</a></li>
 <li class="chapter" data-level="1.4.3" data-path="xai1-explainable-wine.html"><a href="xai1-explainable-wine.html#methodology-3"><i class="fa fa-check"></i><b>1.4.3</b> Methodology</a></li>
@@ -109,7 +140,8 @@
 <li class="chapter" data-level="1.4.7" data-path="xai1-explainable-wine.html"><a href="xai1-explainable-wine.html#summary-1"><i class="fa fa-check"></i><b>1.4.7</b> Summary</a></li>
 <li class="chapter" data-level="1.4.8" data-path="xai1-explainable-wine.html"><a href="xai1-explainable-wine.html#conclusions"><i class="fa fa-check"></i><b>1.4.8</b> Conclusions</a></li>
 </ul></li>
-<li class="chapter" data-level="1.5" data-path="xai1-explainable-hotels.html"><a href="xai1-explainable-hotels.html"><i class="fa fa-check"></i><b>1.5</b> Explanatory approach to modeling the risk of hotel booking cancellations</a><ul>
+<li class="chapter" data-level="1.5" data-path="xai1-explainable-hotels.html"><a href="xai1-explainable-hotels.html"><i class="fa fa-check"></i><b>1.5</b> Explanatory approach to modeling the risk of hotel booking cancellations</a>
+<ul>
 <li class="chapter" data-level="1.5.1" data-path="xai1-explainable-hotels.html"><a href="xai1-explainable-hotels.html#abstract-3"><i class="fa fa-check"></i><b>1.5.1</b> Abstract</a></li>
 <li class="chapter" data-level="1.5.2" data-path="xai1-explainable-hotels.html"><a href="xai1-explainable-hotels.html#introduction-1"><i class="fa fa-check"></i><b>1.5.2</b> Introduction</a></li>
 <li class="chapter" data-level="1.5.3" data-path="xai1-explainable-hotels.html"><a href="xai1-explainable-hotels.html#dataset_models"><i class="fa fa-check"></i><b>1.5.3</b> Dataset and models</a></li>
@@ -118,16 +150,18 @@
 <li class="chapter" data-level="1.5.6" data-path="xai1-explainable-hotels.html"><a href="xai1-explainable-hotels.html#summary-and-conclusions-2"><i class="fa fa-check"></i><b>1.5.6</b> Summary and conclusions</a></li>
 </ul></li>
 </ul></li>
-<li class="chapter" data-level="2" data-path="explainable-artificial-intelligence-2.html"><a href="explainable-artificial-intelligence-2.html"><i class="fa fa-check"></i><b>2</b> Explainable Artificial Intelligence 2</a><ul>
-<li class="chapter" data-level="2.1" data-path="xai2-phones.html"><a href="xai2-phones.html"><i class="fa fa-check"></i><b>2.1</b> Does brand has an impact on smartphone prices?</a><ul>
+<li class="chapter" data-level="2" data-path="explainable-artificial-intelligence-2.html"><a href="explainable-artificial-intelligence-2.html"><i class="fa fa-check"></i><b>2</b> Explainable Artificial Intelligence 2</a>
+<ul>
+<li class="chapter" data-level="2.1" data-path="xai2-phones.html"><a href="xai2-phones.html"><i class="fa fa-check"></i><b>2.1</b> Does brand has an impact on smartphone prices?</a>
+<ul>
 <li class="chapter" data-level="2.1.1" data-path="xai2-phones.html"><a href="xai2-phones.html#abstract-4"><i class="fa fa-check"></i><b>2.1.1</b> Abstract</a></li>
-<li class="chapter" data-level="2.1.2" data-path="xai2-phones.html"><a href="xai2-phones.html#introduction-and-motivation-3"><i class="fa fa-check"></i><b>2.1.2</b> Introduction and Motivation</a></li>
-<li class="chapter" data-level="2.1.3" data-path="xai2-phones.html"><a href="xai2-phones.html#related-work-2"><i class="fa fa-check"></i><b>2.1.3</b> Related work</a></li>
-<li class="chapter" data-level="2.1.4" data-path="xai2-phones.html"><a href="xai2-phones.html#methodology-4"><i class="fa fa-check"></i><b>2.1.4</b> Methodology</a></li>
-<li class="chapter" data-level="2.1.5" data-path="xai2-phones.html"><a href="xai2-phones.html#results-2"><i class="fa fa-check"></i><b>2.1.5</b> Results</a></li>
-<li class="chapter" data-level="2.1.6" data-path="xai2-phones.html"><a href="xai2-phones.html#summary-and-conclusion"><i class="fa fa-check"></i><b>2.1.6</b> Summary and conclusion</a></li>
+<li class="chapter" data-level="2.1.2" data-path="xai2-phones.html"><a href="xai2-phones.html#introduction-motivation-and-related-work"><i class="fa fa-check"></i><b>2.1.2</b> Introduction, motivation and related work</a></li>
+<li class="chapter" data-level="2.1.3" data-path="xai2-phones.html"><a href="xai2-phones.html#methodology-4"><i class="fa fa-check"></i><b>2.1.3</b> Methodology</a></li>
+<li class="chapter" data-level="2.1.4" data-path="xai2-phones.html"><a href="xai2-phones.html#results-2"><i class="fa fa-check"></i><b>2.1.4</b> Results</a></li>
+<li class="chapter" data-level="2.1.5" data-path="xai2-phones.html"><a href="xai2-phones.html#summary-and-conclusion"><i class="fa fa-check"></i><b>2.1.5</b> Summary and conclusion</a></li>
 </ul></li>
-<li class="chapter" data-level="2.2" data-path="xai2-german-credit-data.html"><a href="xai2-german-credit-data.html"><i class="fa fa-check"></i><b>2.2</b> Classifying people as good or bad credit risks</a><ul>
+<li class="chapter" data-level="2.2" data-path="xai2-german-credit-data.html"><a href="xai2-german-credit-data.html"><i class="fa fa-check"></i><b>2.2</b> Classifying people as good or bad credit risks</a>
+<ul>
 <li class="chapter" data-level="2.2.1" data-path="xai2-german-credit-data.html"><a href="xai2-german-credit-data.html#abstract-5"><i class="fa fa-check"></i><b>2.2.1</b> Abstract</a></li>
 <li class="chapter" data-level="2.2.2" data-path="xai2-german-credit-data.html"><a href="xai2-german-credit-data.html#introduction-2"><i class="fa fa-check"></i><b>2.2.2</b> Introduction</a></li>
 <li class="chapter" data-level="2.2.3" data-path="xai2-german-credit-data.html"><a href="xai2-german-credit-data.html#dataset-and-models"><i class="fa fa-check"></i><b>2.2.3</b> Dataset and models</a></li>
@@ -135,16 +169,19 @@
 <li class="chapter" data-level="2.2.5" data-path="xai2-german-credit-data.html"><a href="xai2-german-credit-data.html#global-explanations-5"><i class="fa fa-check"></i><b>2.2.5</b> Global explanations</a></li>
 <li class="chapter" data-level="2.2.6" data-path="xai2-german-credit-data.html"><a href="xai2-german-credit-data.html#summary-and-conclusions-3"><i class="fa fa-check"></i><b>2.2.6</b> Summary and conclusions</a></li>
 </ul></li>
-<li class="chapter" data-level="2.3" data-path="how-to-predict-the-probability-of-subsequent-blood-donations.html"><a href="how-to-predict-the-probability-of-subsequent-blood-donations.html"><i class="fa fa-check"></i><b>2.3</b> How to predict the probability of subsequent blood donations?</a><ul>
+<li class="chapter" data-level="2.3" data-path="how-to-predict-the-probability-of-subsequent-blood-donations.html"><a href="how-to-predict-the-probability-of-subsequent-blood-donations.html"><i class="fa fa-check"></i><b>2.3</b> How to predict the probability of subsequent blood donations?</a>
+<ul>
 <li class="chapter" data-level="2.3.1" data-path="how-to-predict-the-probability-of-subsequent-blood-donations.html"><a href="how-to-predict-the-probability-of-subsequent-blood-donations.html#abstract-6"><i class="fa fa-check"></i><b>2.3.1</b> Abstract</a></li>
-<li class="chapter" data-level="2.3.2" data-path="how-to-predict-the-probability-of-subsequent-blood-donations.html"><a href="how-to-predict-the-probability-of-subsequent-blood-donations.html#introduction-and-motivation-4"><i class="fa fa-check"></i><b>2.3.2</b> Introduction and motivation</a></li>
-<li class="chapter" data-level="2.3.3" data-path="how-to-predict-the-probability-of-subsequent-blood-donations.html"><a href="how-to-predict-the-probability-of-subsequent-blood-donations.html#related-work-3"><i class="fa fa-check"></i><b>2.3.3</b> Related work</a></li>
-<li class="chapter" data-level="2.3.4" data-path="how-to-predict-the-probability-of-subsequent-blood-donations.html"><a href="how-to-predict-the-probability-of-subsequent-blood-donations.html#data-and-model"><i class="fa fa-check"></i><b>2.3.4</b> Data and model</a></li>
-<li class="chapter" data-level="2.3.5" data-path="how-to-predict-the-probability-of-subsequent-blood-donations.html"><a href="how-to-predict-the-probability-of-subsequent-blood-donations.html#global-explanations-6"><i class="fa fa-check"></i><b>2.3.5</b> Global explanations</a></li>
-<li class="chapter" data-level="2.3.6" data-path="how-to-predict-the-probability-of-subsequent-blood-donations.html"><a href="how-to-predict-the-probability-of-subsequent-blood-donations.html#local-explanations-5"><i class="fa fa-check"></i><b>2.3.6</b> Local explanations</a></li>
-<li class="chapter" data-level="2.3.7" data-path="how-to-predict-the-probability-of-subsequent-blood-donations.html"><a href="how-to-predict-the-probability-of-subsequent-blood-donations.html#conclusions-and-summary"><i class="fa fa-check"></i><b>2.3.7</b> Conclusions and summary</a></li>
+<li class="chapter" data-level="2.3.2" data-path="how-to-predict-the-probability-of-subsequent-blood-donations.html"><a href="how-to-predict-the-probability-of-subsequent-blood-donations.html#introduction-and-motivation-3"><i class="fa fa-check"></i><b>2.3.2</b> Introduction and motivation</a></li>
+<li class="chapter" data-level="2.3.3" data-path="how-to-predict-the-probability-of-subsequent-blood-donations.html"><a href="how-to-predict-the-probability-of-subsequent-blood-donations.html#related-work-2"><i class="fa fa-check"></i><b>2.3.3</b> Related work</a></li>
+<li class="chapter" data-level="2.3.4" data-path="how-to-predict-the-probability-of-subsequent-blood-donations.html"><a href="how-to-predict-the-probability-of-subsequent-blood-donations.html#data-analysis-and-pre-processing"><i class="fa fa-check"></i><b>2.3.4</b> Data analysis and pre-processing</a></li>
+<li class="chapter" data-level="2.3.5" data-path="how-to-predict-the-probability-of-subsequent-blood-donations.html"><a href="how-to-predict-the-probability-of-subsequent-blood-donations.html#models-preparation-and-selection"><i class="fa fa-check"></i><b>2.3.5</b> Models preparation and selection</a></li>
+<li class="chapter" data-level="2.3.6" data-path="how-to-predict-the-probability-of-subsequent-blood-donations.html"><a href="how-to-predict-the-probability-of-subsequent-blood-donations.html#global-explanations-6"><i class="fa fa-check"></i><b>2.3.6</b> Global explanations</a></li>
+<li class="chapter" data-level="2.3.7" data-path="how-to-predict-the-probability-of-subsequent-blood-donations.html"><a href="how-to-predict-the-probability-of-subsequent-blood-donations.html#local-explanations-5"><i class="fa fa-check"></i><b>2.3.7</b> Local explanations</a></li>
+<li class="chapter" data-level="2.3.8" data-path="how-to-predict-the-probability-of-subsequent-blood-donations.html"><a href="how-to-predict-the-probability-of-subsequent-blood-donations.html#conclusions-and-summary"><i class="fa fa-check"></i><b>2.3.8</b> Conclusions and summary</a></li>
 </ul></li>
-<li class="chapter" data-level="2.4" data-path="explaining-diabetes-indicators.html"><a href="explaining-diabetes-indicators.html"><i class="fa fa-check"></i><b>2.4</b> Explaining diabetes indicators</a><ul>
+<li class="chapter" data-level="2.4" data-path="explaining-diabetes-indicators.html"><a href="explaining-diabetes-indicators.html"><i class="fa fa-check"></i><b>2.4</b> Explaining diabetes indicators</a>
+<ul>
 <li class="chapter" data-level="2.4.1" data-path="explaining-diabetes-indicators.html"><a href="explaining-diabetes-indicators.html#abstract-7"><i class="fa fa-check"></i><b>2.4.1</b> Abstract</a></li>
 <li class="chapter" data-level="2.4.2" data-path="explaining-diabetes-indicators.html"><a href="explaining-diabetes-indicators.html#keywords"><i class="fa fa-check"></i><b>2.4.2</b> Keywords</a></li>
 <li class="chapter" data-level="2.4.3" data-path="explaining-diabetes-indicators.html"><a href="explaining-diabetes-indicators.html#introduction-3"><i class="fa fa-check"></i><b>2.4.3</b> Introduction</a></li>
@@ -155,7 +192,8 @@
 <li class="chapter" data-level="2.4.8" data-path="explaining-diabetes-indicators.html"><a href="explaining-diabetes-indicators.html#discussion"><i class="fa fa-check"></i><b>2.4.8</b> Discussion</a></li>
 <li class="chapter" data-level="2.4.9" data-path="explaining-diabetes-indicators.html"><a href="explaining-diabetes-indicators.html#conclusion"><i class="fa fa-check"></i><b>2.4.9</b> Conclusion</a></li>
 </ul></li>
-<li class="chapter" data-level="2.5" data-path="how-the-price-of-the-house-is-influenced-by-neighborhood-xai-methods-for-interpretation-the-black-box-model.html"><a href="how-the-price-of-the-house-is-influenced-by-neighborhood-xai-methods-for-interpretation-the-black-box-model.html"><i class="fa fa-check"></i><b>2.5</b> How the price of the house is influenced by neighborhood? XAI methods for interpretation the black box model</a><ul>
+<li class="chapter" data-level="2.5" data-path="how-the-price-of-the-house-is-influenced-by-neighborhood-xai-methods-for-interpretation-the-black-box-model.html"><a href="how-the-price-of-the-house-is-influenced-by-neighborhood-xai-methods-for-interpretation-the-black-box-model.html"><i class="fa fa-check"></i><b>2.5</b> How the price of the house is influenced by neighborhood? XAI methods for interpretation the black box model</a>
+<ul>
 <li class="chapter" data-level="2.5.1" data-path="how-the-price-of-the-house-is-influenced-by-neighborhood-xai-methods-for-interpretation-the-black-box-model.html"><a href="how-the-price-of-the-house-is-influenced-by-neighborhood-xai-methods-for-interpretation-the-black-box-model.html#abstract-8"><i class="fa fa-check"></i><b>2.5.1</b> Abstract</a></li>
 <li class="chapter" data-level="2.5.2" data-path="how-the-price-of-the-house-is-influenced-by-neighborhood-xai-methods-for-interpretation-the-black-box-model.html"><a href="how-the-price-of-the-house-is-influenced-by-neighborhood-xai-methods-for-interpretation-the-black-box-model.html#introduction-4"><i class="fa fa-check"></i><b>2.5.2</b> Introduction</a></li>
 <li class="chapter" data-level="2.5.3" data-path="how-the-price-of-the-house-is-influenced-by-neighborhood-xai-methods-for-interpretation-the-black-box-model.html"><a href="how-the-price-of-the-house-is-influenced-by-neighborhood-xai-methods-for-interpretation-the-black-box-model.html#literature"><i class="fa fa-check"></i><b>2.5.3</b> Literature</a></li>
@@ -164,15 +202,18 @@
 <li class="chapter" data-level="2.5.6" data-path="how-the-price-of-the-house-is-influenced-by-neighborhood-xai-methods-for-interpretation-the-black-box-model.html"><a href="how-the-price-of-the-house-is-influenced-by-neighborhood-xai-methods-for-interpretation-the-black-box-model.html#conclusion-1"><i class="fa fa-check"></i><b>2.5.6</b> Conclusion</a></li>
 </ul></li>
 </ul></li>
-<li class="chapter" data-level="3" data-path="deep-learning-1.html"><a href="deep-learning-1.html"><i class="fa fa-check"></i><b>3</b> Deep Learning 1</a><ul>
-<li class="chapter" data-level="3.1" data-path="lungnet.html"><a href="lungnet.html"><i class="fa fa-check"></i><b>3.1</b> LungNet</a><ul>
+<li class="chapter" data-level="3" data-path="deep-learning-1.html"><a href="deep-learning-1.html"><i class="fa fa-check"></i><b>3</b> Deep Learning 1</a>
+<ul>
+<li class="chapter" data-level="3.1" data-path="lungnet.html"><a href="lungnet.html"><i class="fa fa-check"></i><b>3.1</b> LungNet</a>
+<ul>
 <li class="chapter" data-level="3.1.1" data-path="lungnet.html"><a href="lungnet.html#introduction-5"><i class="fa fa-check"></i><b>3.1.1</b> Introduction</a></li>
 <li class="chapter" data-level="3.1.2" data-path="lungnet.html"><a href="lungnet.html#data"><i class="fa fa-check"></i><b>3.1.2</b> Data</a></li>
 <li class="chapter" data-level="3.1.3" data-path="lungnet.html"><a href="lungnet.html#original-model"><i class="fa fa-check"></i><b>3.1.3</b> Original model</a></li>
 <li class="chapter" data-level="3.1.4" data-path="lungnet.html"><a href="lungnet.html#new-models"><i class="fa fa-check"></i><b>3.1.4</b> New models</a></li>
 <li class="chapter" data-level="3.1.5" data-path="lungnet.html"><a href="lungnet.html#summary-2"><i class="fa fa-check"></i><b>3.1.5</b> Summary</a></li>
 </ul></li>
-<li class="chapter" data-level="3.2" data-path="on-the-reproducibility-of-the-bcdu-net-model.html"><a href="on-the-reproducibility-of-the-bcdu-net-model.html"><i class="fa fa-check"></i><b>3.2</b> On the reproducibility of the BCDU-Net model</a><ul>
+<li class="chapter" data-level="3.2" data-path="on-the-reproducibility-of-the-bcdu-net-model.html"><a href="on-the-reproducibility-of-the-bcdu-net-model.html"><i class="fa fa-check"></i><b>3.2</b> On the reproducibility of the BCDU-Net model</a>
+<ul>
 <li class="chapter" data-level="3.2.1" data-path="on-the-reproducibility-of-the-bcdu-net-model.html"><a href="on-the-reproducibility-of-the-bcdu-net-model.html#abstract-9"><i class="fa fa-check"></i><b>3.2.1</b> Abstract</a></li>
 <li class="chapter" data-level="3.2.2" data-path="on-the-reproducibility-of-the-bcdu-net-model.html"><a href="on-the-reproducibility-of-the-bcdu-net-model.html#introduction-6"><i class="fa fa-check"></i><b>3.2.2</b> Introduction</a></li>
 <li class="chapter" data-level="3.2.3" data-path="on-the-reproducibility-of-the-bcdu-net-model.html"><a href="on-the-reproducibility-of-the-bcdu-net-model.html#reproduction-of-the-results"><i class="fa fa-check"></i><b>3.2.3</b> Reproduction of the results</a></li>
@@ -180,13 +221,15 @@
 <li class="chapter" data-level="3.2.5" data-path="on-the-reproducibility-of-the-bcdu-net-model.html"><a href="on-the-reproducibility-of-the-bcdu-net-model.html#other-tools-applied-to-the-model"><i class="fa fa-check"></i><b>3.2.5</b> Other tools applied to the model</a></li>
 <li class="chapter" data-level="3.2.6" data-path="on-the-reproducibility-of-the-bcdu-net-model.html"><a href="on-the-reproducibility-of-the-bcdu-net-model.html#results-and-conclusions"><i class="fa fa-check"></i><b>3.2.6</b> Results and conclusions</a></li>
 </ul></li>
-<li class="chapter" data-level="3.3" data-path="an-exploration-of-deepcovidexplainer-explainable-covid-19-diagnosis-from-chest-x-rays.html"><a href="an-exploration-of-deepcovidexplainer-explainable-covid-19-diagnosis-from-chest-x-rays.html"><i class="fa fa-check"></i><b>3.3</b> An Exploration of DeepCovidExplainer: Explainable COVID-19 Diagnosis from Chest X-rays</a><ul>
-<li class="chapter" data-level="3.3.1" data-path="an-exploration-of-deepcovidexplainer-explainable-covid-19-diagnosis-from-chest-x-rays.html"><a href="an-exploration-of-deepcovidexplainer-explainable-covid-19-diagnosis-from-chest-x-rays.html#introduction-and-motivation-5"><i class="fa fa-check"></i><b>3.3.1</b> Introduction and motivation <!-- DONE --></a></li>
-<li class="chapter" data-level="3.3.2" data-path="an-exploration-of-deepcovidexplainer-explainable-covid-19-diagnosis-from-chest-x-rays.html"><a href="an-exploration-of-deepcovidexplainer-explainable-covid-19-diagnosis-from-chest-x-rays.html#related-work-4"><i class="fa fa-check"></i><b>3.3.2</b> Related work</a></li>
+<li class="chapter" data-level="3.3" data-path="an-exploration-of-deepcovidexplainer-explainable-covid-19-diagnosis-from-chest-x-rays.html"><a href="an-exploration-of-deepcovidexplainer-explainable-covid-19-diagnosis-from-chest-x-rays.html"><i class="fa fa-check"></i><b>3.3</b> An Exploration of DeepCovidExplainer: Explainable COVID-19 Diagnosis from Chest X-rays</a>
+<ul>
+<li class="chapter" data-level="3.3.1" data-path="an-exploration-of-deepcovidexplainer-explainable-covid-19-diagnosis-from-chest-x-rays.html"><a href="an-exploration-of-deepcovidexplainer-explainable-covid-19-diagnosis-from-chest-x-rays.html#introduction-and-motivation-4"><i class="fa fa-check"></i><b>3.3.1</b> Introduction and motivation <!-- DONE --></a></li>
+<li class="chapter" data-level="3.3.2" data-path="an-exploration-of-deepcovidexplainer-explainable-covid-19-diagnosis-from-chest-x-rays.html"><a href="an-exploration-of-deepcovidexplainer-explainable-covid-19-diagnosis-from-chest-x-rays.html#related-work-3"><i class="fa fa-check"></i><b>3.3.2</b> Related work</a></li>
 <li class="chapter" data-level="3.3.3" data-path="an-exploration-of-deepcovidexplainer-explainable-covid-19-diagnosis-from-chest-x-rays.html"><a href="an-exploration-of-deepcovidexplainer-explainable-covid-19-diagnosis-from-chest-x-rays.html#our-work"><i class="fa fa-check"></i><b>3.3.3</b> Our work</a></li>
 <li class="chapter" data-level="3.3.4" data-path="an-exploration-of-deepcovidexplainer-explainable-covid-19-diagnosis-from-chest-x-rays.html"><a href="an-exploration-of-deepcovidexplainer-explainable-covid-19-diagnosis-from-chest-x-rays.html#conclusions-and-summary-1"><i class="fa fa-check"></i><b>3.3.4</b> Conclusions and summary</a></li>
 </ul></li>
-<li class="chapter" data-level="3.4" data-path="erscovid.html"><a href="erscovid.html"><i class="fa fa-check"></i><b>3.4</b> ERSCovid</a><ul>
+<li class="chapter" data-level="3.4" data-path="erscovid.html"><a href="erscovid.html"><i class="fa fa-check"></i><b>3.4</b> ERSCovid</a>
+<ul>
 <li class="chapter" data-level="3.4.1" data-path="erscovid.html"><a href="erscovid.html#abstract-10"><i class="fa fa-check"></i><b>3.4.1</b> Abstract</a></li>
 <li class="chapter" data-level="3.4.2" data-path="erscovid.html"><a href="erscovid.html#problem"><i class="fa fa-check"></i><b>3.4.2</b> Problem</a></li>
 <li class="chapter" data-level="3.4.3" data-path="erscovid.html"><a href="erscovid.html#erscovid-workflow"><i class="fa fa-check"></i><b>3.4.3</b> ERSCovid workflow</a></li>
@@ -195,18 +238,21 @@
 <li class="chapter" data-level="3.4.6" data-path="erscovid.html"><a href="erscovid.html#changes-to-original-model"><i class="fa fa-check"></i><b>3.4.6</b> Changes to original model</a></li>
 <li class="chapter" data-level="3.4.7" data-path="erscovid.html"><a href="erscovid.html#summary-3"><i class="fa fa-check"></i><b>3.4.7</b> Summary</a></li>
 </ul></li>
-<li class="chapter" data-level="3.5" data-path="reproducing-and-modifying-covid-net.html"><a href="reproducing-and-modifying-covid-net.html"><i class="fa fa-check"></i><b>3.5</b> Reproducing and modifying COVID-Net</a><ul>
+<li class="chapter" data-level="3.5" data-path="reproducing-and-modifying-covid-net.html"><a href="reproducing-and-modifying-covid-net.html"><i class="fa fa-check"></i><b>3.5</b> Reproducing and modifying COVID-Net</a>
+<ul>
 <li class="chapter" data-level="3.5.1" data-path="reproducing-and-modifying-covid-net.html"><a href="reproducing-and-modifying-covid-net.html#abstract-11"><i class="fa fa-check"></i><b>3.5.1</b> Abstract</a></li>
-<li class="chapter" data-level="3.5.2" data-path="reproducing-and-modifying-covid-net.html"><a href="reproducing-and-modifying-covid-net.html#introduction-and-motivation-6"><i class="fa fa-check"></i><b>3.5.2</b> Introduction and motivation</a></li>
-<li class="chapter" data-level="3.5.3" data-path="reproducing-and-modifying-covid-net.html"><a href="reproducing-and-modifying-covid-net.html#related-work-5"><i class="fa fa-check"></i><b>3.5.3</b> Related work</a></li>
+<li class="chapter" data-level="3.5.2" data-path="reproducing-and-modifying-covid-net.html"><a href="reproducing-and-modifying-covid-net.html#introduction-and-motivation-5"><i class="fa fa-check"></i><b>3.5.2</b> Introduction and motivation</a></li>
+<li class="chapter" data-level="3.5.3" data-path="reproducing-and-modifying-covid-net.html"><a href="reproducing-and-modifying-covid-net.html#related-work-4"><i class="fa fa-check"></i><b>3.5.3</b> Related work</a></li>
 <li class="chapter" data-level="3.5.4" data-path="reproducing-and-modifying-covid-net.html"><a href="reproducing-and-modifying-covid-net.html#dataset-5"><i class="fa fa-check"></i><b>3.5.4</b> Dataset</a></li>
 <li class="chapter" data-level="3.5.5" data-path="reproducing-and-modifying-covid-net.html"><a href="reproducing-and-modifying-covid-net.html#reproducibility"><i class="fa fa-check"></i><b>3.5.5</b> Reproducibility</a></li>
 <li class="chapter" data-level="3.5.6" data-path="reproducing-and-modifying-covid-net.html"><a href="reproducing-and-modifying-covid-net.html#further-experiments-and-network-modifications"><i class="fa fa-check"></i><b>3.5.6</b> Further experiments and network modifications</a></li>
 <li class="chapter" data-level="3.5.7" data-path="reproducing-and-modifying-covid-net.html"><a href="reproducing-and-modifying-covid-net.html#summary-4"><i class="fa fa-check"></i><b>3.5.7</b> Summary</a></li>
 </ul></li>
 </ul></li>
-<li class="chapter" data-level="4" data-path="deep-learning-2.html"><a href="deep-learning-2.html"><i class="fa fa-check"></i><b>4</b> Deep Learning 2</a><ul>
-<li class="chapter" data-level="4.1" data-path="what-makes-an-article-reproducible-comparison-of-the-fer-paper-and-axondeepseg.html"><a href="what-makes-an-article-reproducible-comparison-of-the-fer-paper-and-axondeepseg.html"><i class="fa fa-check"></i><b>4.1</b> What makes an article reproducible? Comparison of the FER+ paper and AxonDeepSeg</a><ul>
+<li class="chapter" data-level="4" data-path="deep-learning-2.html"><a href="deep-learning-2.html"><i class="fa fa-check"></i><b>4</b> Deep Learning 2</a>
+<ul>
+<li class="chapter" data-level="4.1" data-path="what-makes-an-article-reproducible-comparison-of-the-fer-paper-and-axondeepseg.html"><a href="what-makes-an-article-reproducible-comparison-of-the-fer-paper-and-axondeepseg.html"><i class="fa fa-check"></i><b>4.1</b> What makes an article reproducible? Comparison of the FER+ paper and AxonDeepSeg</a>
+<ul>
 <li class="chapter" data-level="4.1.1" data-path="what-makes-an-article-reproducible-comparison-of-the-fer-paper-and-axondeepseg.html"><a href="what-makes-an-article-reproducible-comparison-of-the-fer-paper-and-axondeepseg.html#abstract-12"><i class="fa fa-check"></i><b>4.1.1</b> Abstract</a></li>
 <li class="chapter" data-level="4.1.2" data-path="what-makes-an-article-reproducible-comparison-of-the-fer-paper-and-axondeepseg.html"><a href="what-makes-an-article-reproducible-comparison-of-the-fer-paper-and-axondeepseg.html#introduction-7"><i class="fa fa-check"></i><b>4.1.2</b> Introduction</a></li>
 <li class="chapter" data-level="4.1.3" data-path="what-makes-an-article-reproducible-comparison-of-the-fer-paper-and-axondeepseg.html"><a href="what-makes-an-article-reproducible-comparison-of-the-fer-paper-and-axondeepseg.html#analyzing-the-ferplus-paper"><i class="fa fa-check"></i><b>4.1.3</b> Analyzing the FERPlus paper</a></li>
@@ -215,7 +261,8 @@
 <li class="chapter" data-level="4.1.6" data-path="what-makes-an-article-reproducible-comparison-of-the-fer-paper-and-axondeepseg.html"><a href="what-makes-an-article-reproducible-comparison-of-the-fer-paper-and-axondeepseg.html#reproducibility-analysis-1"><i class="fa fa-check"></i><b>4.1.6</b> Reproducibility analysis</a></li>
 <li class="chapter" data-level="4.1.7" data-path="what-makes-an-article-reproducible-comparison-of-the-fer-paper-and-axondeepseg.html"><a href="what-makes-an-article-reproducible-comparison-of-the-fer-paper-and-axondeepseg.html#conclusion-2"><i class="fa fa-check"></i><b>4.1.7</b> Conclusion</a></li>
 </ul></li>
-<li class="chapter" data-level="4.2" data-path="can-you-classify-histopathological-data-at-home-reproducing-the-ara-cnn-models-data-and-performance-.html"><a href="can-you-classify-histopathological-data-at-home-reproducing-the-ara-cnn-models-data-and-performance-.html"><i class="fa fa-check"></i><b>4.2</b> Can you classify histopathological data at home? Reproducing the ARA-CNN model’s data and performance.</a><ul>
+<li class="chapter" data-level="4.2" data-path="can-you-classify-histopathological-data-at-home-reproducing-the-ara-cnn-models-data-and-performance-.html"><a href="can-you-classify-histopathological-data-at-home-reproducing-the-ara-cnn-models-data-and-performance-.html"><i class="fa fa-check"></i><b>4.2</b> Can you classify histopathological data at home? Reproducing the ARA-CNN model’s data and performance.</a>
+<ul>
 <li class="chapter" data-level="4.2.1" data-path="can-you-classify-histopathological-data-at-home-reproducing-the-ara-cnn-models-data-and-performance-.html"><a href="can-you-classify-histopathological-data-at-home-reproducing-the-ara-cnn-models-data-and-performance-.html#abstract-13"><i class="fa fa-check"></i><b>4.2.1</b> Abstract</a></li>
 <li class="chapter" data-level="4.2.2" data-path="can-you-classify-histopathological-data-at-home-reproducing-the-ara-cnn-models-data-and-performance-.html"><a href="can-you-classify-histopathological-data-at-home-reproducing-the-ara-cnn-models-data-and-performance-.html#introduction-8"><i class="fa fa-check"></i><b>4.2.2</b> Introduction</a></li>
 <li class="chapter" data-level="4.2.3" data-path="can-you-classify-histopathological-data-at-home-reproducing-the-ara-cnn-models-data-and-performance-.html"><a href="can-you-classify-histopathological-data-at-home-reproducing-the-ara-cnn-models-data-and-performance-.html#definition"><i class="fa fa-check"></i><b>4.2.3</b> Definition</a></li>
@@ -223,20 +270,23 @@
 <li class="chapter" data-level="4.2.5" data-path="can-you-classify-histopathological-data-at-home-reproducing-the-ara-cnn-models-data-and-performance-.html"><a href="can-you-classify-histopathological-data-at-home-reproducing-the-ara-cnn-models-data-and-performance-.html#results-4"><i class="fa fa-check"></i><b>4.2.5</b> Results</a></li>
 <li class="chapter" data-level="4.2.6" data-path="can-you-classify-histopathological-data-at-home-reproducing-the-ara-cnn-models-data-and-performance-.html"><a href="can-you-classify-histopathological-data-at-home-reproducing-the-ara-cnn-models-data-and-performance-.html#summary-and-conclusions-4"><i class="fa fa-check"></i><b>4.2.6</b> Summary and conclusions</a></li>
 </ul></li>
-<li class="chapter" data-level="4.3" data-path="rethinking-the-u-net-architecture-for-multimodal-biomedical-image-segmentation.html"><a href="rethinking-the-u-net-architecture-for-multimodal-biomedical-image-segmentation.html"><i class="fa fa-check"></i><b>4.3</b> Rethinking the U-Net architecture for multimodal biomedical image segmentation</a><ul>
+<li class="chapter" data-level="4.3" data-path="rethinking-the-u-net-architecture-for-multimodal-biomedical-image-segmentation.html"><a href="rethinking-the-u-net-architecture-for-multimodal-biomedical-image-segmentation.html"><i class="fa fa-check"></i><b>4.3</b> Rethinking the U-Net architecture for multimodal biomedical image segmentation</a>
+<ul>
 <li class="chapter" data-level="4.3.1" data-path="rethinking-the-u-net-architecture-for-multimodal-biomedical-image-segmentation.html"><a href="rethinking-the-u-net-architecture-for-multimodal-biomedical-image-segmentation.html#abstrac"><i class="fa fa-check"></i><b>4.3.1</b> Abstrac</a></li>
 <li class="chapter" data-level="4.3.2" data-path="rethinking-the-u-net-architecture-for-multimodal-biomedical-image-segmentation.html"><a href="rethinking-the-u-net-architecture-for-multimodal-biomedical-image-segmentation.html#what-reproducibility-is"><i class="fa fa-check"></i><b>4.3.2</b> What Reproducibility Is?</a></li>
 <li class="chapter" data-level="4.3.3" data-path="rethinking-the-u-net-architecture-for-multimodal-biomedical-image-segmentation.html"><a href="rethinking-the-u-net-architecture-for-multimodal-biomedical-image-segmentation.html#first-article-an-improvement-of-data-classification-using-random-multimodel-deep-learning-rmdl"><i class="fa fa-check"></i><b>4.3.3</b> First article (An Improvement of Data Classification Using Random Multimodel Deep Learning (RMDL) )</a></li>
 <li class="chapter" data-level="4.3.4" data-path="rethinking-the-u-net-architecture-for-multimodal-biomedical-image-segmentation.html"><a href="rethinking-the-u-net-architecture-for-multimodal-biomedical-image-segmentation.html#second-article-multiresunet-rethinking-the-u-net-architecture-for-multimodal-biomedical-image-segmentation"><i class="fa fa-check"></i><b>4.3.4</b> Second article (MultiResUNet : Rethinking the U-Net architecture for multimodal biomedical image segmentation)</a></li>
 <li class="chapter" data-level="4.3.5" data-path="rethinking-the-u-net-architecture-for-multimodal-biomedical-image-segmentation.html"><a href="rethinking-the-u-net-architecture-for-multimodal-biomedical-image-segmentation.html#conclusion-3"><i class="fa fa-check"></i><b>4.3.5</b> Conclusion</a></li>
 </ul></li>
-<li class="chapter" data-level="4.4" data-path="dl2-rmdl-unet.html"><a href="dl2-rmdl-unet.html"><i class="fa fa-check"></i><b>4.4</b> The reproducibility analysis of articles covering RMDL and UNet++ architectures churns</a><ul>
+<li class="chapter" data-level="4.4" data-path="dl2-rmdl-unet.html"><a href="dl2-rmdl-unet.html"><i class="fa fa-check"></i><b>4.4</b> The reproducibility analysis of articles covering RMDL and UNet++ architectures churns</a>
+<ul>
 <li class="chapter" data-level="4.4.1" data-path="dl2-rmdl-unet.html"><a href="dl2-rmdl-unet.html#background"><i class="fa fa-check"></i><b>4.4.1</b> Background</a></li>
 <li class="chapter" data-level="4.4.2" data-path="dl2-rmdl-unet.html"><a href="dl2-rmdl-unet.html#random-multimodel-deep-learning-for-classification"><i class="fa fa-check"></i><b>4.4.2</b> Random Multimodel Deep Learning for Classification</a></li>
 <li class="chapter" data-level="4.4.3" data-path="dl2-rmdl-unet.html"><a href="dl2-rmdl-unet.html#a-nested-u-net-architecture-for-medical-image-segmentation"><i class="fa fa-check"></i><b>4.4.3</b> A Nested U-Net Architecture for Medical Image Segmentation</a></li>
 <li class="chapter" data-level="4.4.4" data-path="dl2-rmdl-unet.html"><a href="dl2-rmdl-unet.html#conclusions-1"><i class="fa fa-check"></i><b>4.4.4</b> Conclusions</a></li>
 </ul></li>
-<li class="chapter" data-level="4.5" data-path="can-you-trust-science-on-reproduction-in-deep-learning-.html"><a href="can-you-trust-science-on-reproduction-in-deep-learning-.html"><i class="fa fa-check"></i><b>4.5</b> Can you trust science? On Reproduction in Deep Learning.</a><ul>
+<li class="chapter" data-level="4.5" data-path="can-you-trust-science-on-reproduction-in-deep-learning-.html"><a href="can-you-trust-science-on-reproduction-in-deep-learning-.html"><i class="fa fa-check"></i><b>4.5</b> Can you trust science? On Reproduction in Deep Learning.</a>
+<ul>
 <li class="chapter" data-level="4.5.1" data-path="can-you-trust-science-on-reproduction-in-deep-learning-.html"><a href="can-you-trust-science-on-reproduction-in-deep-learning-.html#abstract-14"><i class="fa fa-check"></i><b>4.5.1</b> Abstract</a></li>
 <li class="chapter" data-level="4.5.2" data-path="can-you-trust-science-on-reproduction-in-deep-learning-.html"><a href="can-you-trust-science-on-reproduction-in-deep-learning-.html#introduction-10"><i class="fa fa-check"></i><b>4.5.2</b> Introduction</a></li>
 <li class="chapter" data-level="4.5.3" data-path="can-you-trust-science-on-reproduction-in-deep-learning-.html"><a href="can-you-trust-science-on-reproduction-in-deep-learning-.html#methodology-6"><i class="fa fa-check"></i><b>4.5.3</b> Methodology</a></li>
@@ -244,15 +294,18 @@
 <li class="chapter" data-level="4.5.5" data-path="can-you-trust-science-on-reproduction-in-deep-learning-.html"><a href="can-you-trust-science-on-reproduction-in-deep-learning-.html#discussion-1"><i class="fa fa-check"></i><b>4.5.5</b> Discussion</a></li>
 </ul></li>
 </ul></li>
-<li class="chapter" data-level="5" data-path="machine-learning-1.html"><a href="machine-learning-1.html"><i class="fa fa-check"></i><b>5</b> Machine Learning</a><ul>
-<li class="chapter" data-level="5.1" data-path="validation-and-comparison-of-covid-19-mortality-prediction-models-on-multi-source-data.html"><a href="validation-and-comparison-of-covid-19-mortality-prediction-models-on-multi-source-data.html"><i class="fa fa-check"></i><b>5.1</b> Validation and comparison of COVID-19 mortality prediction models on multi-source data</a><ul>
+<li class="chapter" data-level="5" data-path="machine-learning-1.html"><a href="machine-learning-1.html"><i class="fa fa-check"></i><b>5</b> Machine Learning</a>
+<ul>
+<li class="chapter" data-level="5.1" data-path="validation-and-comparison-of-covid-19-mortality-prediction-models-on-multi-source-data.html"><a href="validation-and-comparison-of-covid-19-mortality-prediction-models-on-multi-source-data.html"><i class="fa fa-check"></i><b>5.1</b> Validation and comparison of COVID-19 mortality prediction models on multi-source data</a>
+<ul>
 <li class="chapter" data-level="5.1.1" data-path="validation-and-comparison-of-covid-19-mortality-prediction-models-on-multi-source-data.html"><a href="validation-and-comparison-of-covid-19-mortality-prediction-models-on-multi-source-data.html#abstract-15"><i class="fa fa-check"></i><b>5.1.1</b> Abstract</a></li>
 <li class="chapter" data-level="5.1.2" data-path="validation-and-comparison-of-covid-19-mortality-prediction-models-on-multi-source-data.html"><a href="validation-and-comparison-of-covid-19-mortality-prediction-models-on-multi-source-data.html#introduction-11"><i class="fa fa-check"></i><b>5.1.2</b> Introduction</a></li>
 <li class="chapter" data-level="5.1.3" data-path="validation-and-comparison-of-covid-19-mortality-prediction-models-on-multi-source-data.html"><a href="validation-and-comparison-of-covid-19-mortality-prediction-models-on-multi-source-data.html#data-description-1"><i class="fa fa-check"></i><b>5.1.3</b> Data description</a></li>
 <li class="chapter" data-level="5.1.4" data-path="validation-and-comparison-of-covid-19-mortality-prediction-models-on-multi-source-data.html"><a href="validation-and-comparison-of-covid-19-mortality-prediction-models-on-multi-source-data.html#comparison-of-the-models"><i class="fa fa-check"></i><b>5.1.4</b> Comparison of the models</a></li>
 <li class="chapter" data-level="5.1.5" data-path="validation-and-comparison-of-covid-19-mortality-prediction-models-on-multi-source-data.html"><a href="validation-and-comparison-of-covid-19-mortality-prediction-models-on-multi-source-data.html#conclusion-4"><i class="fa fa-check"></i><b>5.1.5</b> Conclusion</a></li>
 </ul></li>
-<li class="chapter" data-level="5.2" data-path="one-model-to-fit-them-all-covid-19-survival-prediction-using-multinational-data.html"><a href="one-model-to-fit-them-all-covid-19-survival-prediction-using-multinational-data.html"><i class="fa fa-check"></i><b>5.2</b> One model to fit them all: COVID-19 survival prediction using multinational data</a><ul>
+<li class="chapter" data-level="5.2" data-path="one-model-to-fit-them-all-covid-19-survival-prediction-using-multinational-data.html"><a href="one-model-to-fit-them-all-covid-19-survival-prediction-using-multinational-data.html"><i class="fa fa-check"></i><b>5.2</b> One model to fit them all: COVID-19 survival prediction using multinational data</a>
+<ul>
 <li class="chapter" data-level="5.2.1" data-path="one-model-to-fit-them-all-covid-19-survival-prediction-using-multinational-data.html"><a href="one-model-to-fit-them-all-covid-19-survival-prediction-using-multinational-data.html#abstract-16"><i class="fa fa-check"></i><b>5.2.1</b> Abstract</a></li>
 <li class="chapter" data-level="5.2.2" data-path="one-model-to-fit-them-all-covid-19-survival-prediction-using-multinational-data.html"><a href="one-model-to-fit-them-all-covid-19-survival-prediction-using-multinational-data.html#introduction-12"><i class="fa fa-check"></i><b>5.2.2</b> Introduction</a></li>
 <li class="chapter" data-level="5.2.3" data-path="one-model-to-fit-them-all-covid-19-survival-prediction-using-multinational-data.html"><a href="one-model-to-fit-them-all-covid-19-survival-prediction-using-multinational-data.html#data-sources"><i class="fa fa-check"></i><b>5.2.3</b> Data sources</a></li>
@@ -260,7 +313,8 @@
 <li class="chapter" data-level="5.2.5" data-path="one-model-to-fit-them-all-covid-19-survival-prediction-using-multinational-data.html"><a href="one-model-to-fit-them-all-covid-19-survival-prediction-using-multinational-data.html#discussion-2"><i class="fa fa-check"></i><b>5.2.5</b> Discussion</a></li>
 <li class="chapter" data-level="5.2.6" data-path="one-model-to-fit-them-all-covid-19-survival-prediction-using-multinational-data.html"><a href="one-model-to-fit-them-all-covid-19-survival-prediction-using-multinational-data.html#summary-6"><i class="fa fa-check"></i><b>5.2.6</b> Summary</a></li>
 </ul></li>
-<li class="chapter" data-level="5.3" data-path="transparent-machine-learning-to-support-predicting-covid-19-infection-risk-based-on-chronic-diseases.html"><a href="transparent-machine-learning-to-support-predicting-covid-19-infection-risk-based-on-chronic-diseases.html"><i class="fa fa-check"></i><b>5.3</b> Transparent machine learning to support predicting COVID-19 infection risk based on chronic diseases</a><ul>
+<li class="chapter" data-level="5.3" data-path="transparent-machine-learning-to-support-predicting-covid-19-infection-risk-based-on-chronic-diseases.html"><a href="transparent-machine-learning-to-support-predicting-covid-19-infection-risk-based-on-chronic-diseases.html"><i class="fa fa-check"></i><b>5.3</b> Transparent machine learning to support predicting COVID-19 infection risk based on chronic diseases</a>
+<ul>
 <li class="chapter" data-level="5.3.1" data-path="transparent-machine-learning-to-support-predicting-covid-19-infection-risk-based-on-chronic-diseases.html"><a href="transparent-machine-learning-to-support-predicting-covid-19-infection-risk-based-on-chronic-diseases.html#abstract-17"><i class="fa fa-check"></i><b>5.3.1</b> Abstract</a></li>
 <li class="chapter" data-level="5.3.2" data-path="transparent-machine-learning-to-support-predicting-covid-19-infection-risk-based-on-chronic-diseases.html"><a href="transparent-machine-learning-to-support-predicting-covid-19-infection-risk-based-on-chronic-diseases.html#introduction-13"><i class="fa fa-check"></i><b>5.3.2</b> Introduction</a></li>
 <li class="chapter" data-level="5.3.3" data-path="transparent-machine-learning-to-support-predicting-covid-19-infection-risk-based-on-chronic-diseases.html"><a href="transparent-machine-learning-to-support-predicting-covid-19-infection-risk-based-on-chronic-diseases.html#flaws"><i class="fa fa-check"></i><b>5.3.3</b> Flaws</a></li>
@@ -269,7 +323,8 @@
 <li class="chapter" data-level="5.3.6" data-path="transparent-machine-learning-to-support-predicting-covid-19-infection-risk-based-on-chronic-diseases.html"><a href="transparent-machine-learning-to-support-predicting-covid-19-infection-risk-based-on-chronic-diseases.html#application"><i class="fa fa-check"></i><b>5.3.6</b> Application</a></li>
 <li class="chapter" data-level="5.3.7" data-path="transparent-machine-learning-to-support-predicting-covid-19-infection-risk-based-on-chronic-diseases.html"><a href="transparent-machine-learning-to-support-predicting-covid-19-infection-risk-based-on-chronic-diseases.html#conclusions-2"><i class="fa fa-check"></i><b>5.3.7</b> Conclusions</a></li>
 </ul></li>
-<li class="chapter" data-level="5.4" data-path="comparison-of-neural-networks-and-tree-based-models-in-the-clinical-prediction-of-the-course-of-covid-19-illness.html"><a href="comparison-of-neural-networks-and-tree-based-models-in-the-clinical-prediction-of-the-course-of-covid-19-illness.html"><i class="fa fa-check"></i><b>5.4</b> Comparison of neural networks and tree-based models in the clinical prediction of the course of COVID-19 illness</a><ul>
+<li class="chapter" data-level="5.4" data-path="comparison-of-neural-networks-and-tree-based-models-in-the-clinical-prediction-of-the-course-of-covid-19-illness.html"><a href="comparison-of-neural-networks-and-tree-based-models-in-the-clinical-prediction-of-the-course-of-covid-19-illness.html"><i class="fa fa-check"></i><b>5.4</b> Comparison of neural networks and tree-based models in the clinical prediction of the course of COVID-19 illness</a>
+<ul>
 <li class="chapter" data-level="5.4.1" data-path="comparison-of-neural-networks-and-tree-based-models-in-the-clinical-prediction-of-the-course-of-covid-19-illness.html"><a href="comparison-of-neural-networks-and-tree-based-models-in-the-clinical-prediction-of-the-course-of-covid-19-illness.html#abstract-18"><i class="fa fa-check"></i><b>5.4.1</b> Abstract</a></li>
 <li class="chapter" data-level="5.4.2" data-path="comparison-of-neural-networks-and-tree-based-models-in-the-clinical-prediction-of-the-course-of-covid-19-illness.html"><a href="comparison-of-neural-networks-and-tree-based-models-in-the-clinical-prediction-of-the-course-of-covid-19-illness.html#introduction-14"><i class="fa fa-check"></i><b>5.4.2</b> Introduction</a></li>
 <li class="chapter" data-level="5.4.3" data-path="comparison-of-neural-networks-and-tree-based-models-in-the-clinical-prediction-of-the-course-of-covid-19-illness.html"><a href="comparison-of-neural-networks-and-tree-based-models-in-the-clinical-prediction-of-the-course-of-covid-19-illness.html#methods-2"><i class="fa fa-check"></i><b>5.4.3</b> Methods</a></li>
@@ -278,8 +333,10 @@
 <li class="chapter" data-level="5.4.6" data-path="comparison-of-neural-networks-and-tree-based-models-in-the-clinical-prediction-of-the-course-of-covid-19-illness.html"><a href="comparison-of-neural-networks-and-tree-based-models-in-the-clinical-prediction-of-the-course-of-covid-19-illness.html#source-code"><i class="fa fa-check"></i><b>5.4.6</b> Source code</a></li>
 </ul></li>
 </ul></li>
-<li class="chapter" data-level="6" data-path="rashomonml.html"><a href="rashomonml.html"><i class="fa fa-check"></i><b>6</b> RashomonML</a><ul>
-<li class="chapter" data-level="6.1" data-path="how-to-compare-many-good-machine-learning-models.html"><a href="how-to-compare-many-good-machine-learning-models.html"><i class="fa fa-check"></i><b>6.1</b> How to compare many good machine learning models?</a><ul>
+<li class="chapter" data-level="6" data-path="rashomonml.html"><a href="rashomonml.html"><i class="fa fa-check"></i><b>6</b> RashomonML</a>
+<ul>
+<li class="chapter" data-level="6.1" data-path="how-to-compare-many-good-machine-learning-models.html"><a href="how-to-compare-many-good-machine-learning-models.html"><i class="fa fa-check"></i><b>6.1</b> How to compare many good machine learning models?</a>
+<ul>
 <li class="chapter" data-level="6.1.1" data-path="how-to-compare-many-good-machine-learning-models.html"><a href="how-to-compare-many-good-machine-learning-models.html#abstract-19"><i class="fa fa-check"></i><b>6.1.1</b> Abstract</a></li>
 <li class="chapter" data-level="6.1.2" data-path="how-to-compare-many-good-machine-learning-models.html"><a href="how-to-compare-many-good-machine-learning-models.html#introduction-15"><i class="fa fa-check"></i><b>6.1.2</b> Introduction</a></li>
 <li class="chapter" data-level="6.1.3" data-path="how-to-compare-many-good-machine-learning-models.html"><a href="how-to-compare-many-good-machine-learning-models.html#literature-review"><i class="fa fa-check"></i><b>6.1.3</b> Literature review</a></li>
@@ -287,7 +344,8 @@
 <li class="chapter" data-level="6.1.5" data-path="how-to-compare-many-good-machine-learning-models.html"><a href="how-to-compare-many-good-machine-learning-models.html#results-9"><i class="fa fa-check"></i><b>6.1.5</b> Results</a></li>
 <li class="chapter" data-level="6.1.6" data-path="how-to-compare-many-good-machine-learning-models.html"><a href="how-to-compare-many-good-machine-learning-models.html#summary-and-conclusions-5"><i class="fa fa-check"></i><b>6.1.6</b> Summary and conclusions</a></li>
 </ul></li>
-<li class="chapter" data-level="6.2" data-path="analysis-of-models-predicting-death-probability-during-icu-stays.html"><a href="analysis-of-models-predicting-death-probability-during-icu-stays.html"><i class="fa fa-check"></i><b>6.2</b> Analysis of models predicting death probability during ICU stays</a><ul>
+<li class="chapter" data-level="6.2" data-path="analysis-of-models-predicting-death-probability-during-icu-stays.html"><a href="analysis-of-models-predicting-death-probability-during-icu-stays.html"><i class="fa fa-check"></i><b>6.2</b> Analysis of models predicting death probability during ICU stays</a>
+<ul>
 <li class="chapter" data-level="6.2.1" data-path="analysis-of-models-predicting-death-probability-during-icu-stays.html"><a href="analysis-of-models-predicting-death-probability-during-icu-stays.html#abstract-20"><i class="fa fa-check"></i><b>6.2.1</b> Abstract</a></li>
 <li class="chapter" data-level="6.2.2" data-path="analysis-of-models-predicting-death-probability-during-icu-stays.html"><a href="analysis-of-models-predicting-death-probability-during-icu-stays.html#introduction-16"><i class="fa fa-check"></i><b>6.2.2</b> Introduction</a></li>
 <li class="chapter" data-level="6.2.3" data-path="analysis-of-models-predicting-death-probability-during-icu-stays.html"><a href="analysis-of-models-predicting-death-probability-during-icu-stays.html#literature-review-1"><i class="fa fa-check"></i><b>6.2.3</b> Literature review</a></li>
@@ -295,24 +353,27 @@
 <li class="chapter" data-level="6.2.5" data-path="analysis-of-models-predicting-death-probability-during-icu-stays.html"><a href="analysis-of-models-predicting-death-probability-during-icu-stays.html#results-10"><i class="fa fa-check"></i><b>6.2.5</b> Results</a></li>
 <li class="chapter" data-level="6.2.6" data-path="analysis-of-models-predicting-death-probability-during-icu-stays.html"><a href="analysis-of-models-predicting-death-probability-during-icu-stays.html#summary-7"><i class="fa fa-check"></i><b>6.2.6</b> Summary</a></li>
 </ul></li>
-<li class="chapter" data-level="6.3" data-path="rashomon-ml-with-addition-of-dimensional-reduction.html"><a href="rashomon-ml-with-addition-of-dimensional-reduction.html"><i class="fa fa-check"></i><b>6.3</b> Rashomon ML with addition of dimensional reduction</a><ul>
+<li class="chapter" data-level="6.3" data-path="rashomon-ml-with-addition-of-dimensional-reduction.html"><a href="rashomon-ml-with-addition-of-dimensional-reduction.html"><i class="fa fa-check"></i><b>6.3</b> Rashomon ML with addition of dimensional reduction</a>
+<ul>
 <li class="chapter" data-level="6.3.1" data-path="rashomon-ml-with-addition-of-dimensional-reduction.html"><a href="rashomon-ml-with-addition-of-dimensional-reduction.html#abstract-21"><i class="fa fa-check"></i><b>6.3.1</b> Abstract</a></li>
 <li class="chapter" data-level="6.3.2" data-path="rashomon-ml-with-addition-of-dimensional-reduction.html"><a href="rashomon-ml-with-addition-of-dimensional-reduction.html#introduction-and-related-works"><i class="fa fa-check"></i><b>6.3.2</b> Introduction and related works</a></li>
 <li class="chapter" data-level="6.3.3" data-path="rashomon-ml-with-addition-of-dimensional-reduction.html"><a href="rashomon-ml-with-addition-of-dimensional-reduction.html#methodology-9"><i class="fa fa-check"></i><b>6.3.3</b> Methodology</a></li>
 <li class="chapter" data-level="6.3.4" data-path="rashomon-ml-with-addition-of-dimensional-reduction.html"><a href="rashomon-ml-with-addition-of-dimensional-reduction.html#results-11"><i class="fa fa-check"></i><b>6.3.4</b> Results</a></li>
 <li class="chapter" data-level="6.3.5" data-path="rashomon-ml-with-addition-of-dimensional-reduction.html"><a href="rashomon-ml-with-addition-of-dimensional-reduction.html#summary-and-conclusions-6"><i class="fa fa-check"></i><b>6.3.5</b> Summary and conclusions</a></li>
 </ul></li>
-<li class="chapter" data-level="6.4" data-path="roshomon-sets-on-death-prediction-xgb-models-using-mimic-iii-database.html"><a href="roshomon-sets-on-death-prediction-xgb-models-using-mimic-iii-database.html"><i class="fa fa-check"></i><b>6.4</b> Roshomon sets on death prediction XGB models using MIMIC-III database</a><ul>
+<li class="chapter" data-level="6.4" data-path="roshomon-sets-on-death-prediction-xgb-models-using-mimic-iii-database.html"><a href="roshomon-sets-on-death-prediction-xgb-models-using-mimic-iii-database.html"><i class="fa fa-check"></i><b>6.4</b> Roshomon sets on death prediction XGB models using MIMIC-III database</a>
+<ul>
 <li class="chapter" data-level="6.4.1" data-path="roshomon-sets-on-death-prediction-xgb-models-using-mimic-iii-database.html"><a href="roshomon-sets-on-death-prediction-xgb-models-using-mimic-iii-database.html#abstract-22"><i class="fa fa-check"></i><b>6.4.1</b> Abstract</a></li>
 <li class="chapter" data-level="6.4.2" data-path="roshomon-sets-on-death-prediction-xgb-models-using-mimic-iii-database.html"><a href="roshomon-sets-on-death-prediction-xgb-models-using-mimic-iii-database.html#related-works-and-introduction"><i class="fa fa-check"></i><b>6.4.2</b> Related works and introduction</a></li>
 <li class="chapter" data-level="6.4.3" data-path="roshomon-sets-on-death-prediction-xgb-models-using-mimic-iii-database.html"><a href="roshomon-sets-on-death-prediction-xgb-models-using-mimic-iii-database.html#methodology-10"><i class="fa fa-check"></i><b>6.4.3</b> Methodology</a></li>
 <li class="chapter" data-level="6.4.4" data-path="roshomon-sets-on-death-prediction-xgb-models-using-mimic-iii-database.html"><a href="roshomon-sets-on-death-prediction-xgb-models-using-mimic-iii-database.html#results-12"><i class="fa fa-check"></i><b>6.4.4</b> Results</a></li>
 <li class="chapter" data-level="6.4.5" data-path="roshomon-sets-on-death-prediction-xgb-models-using-mimic-iii-database.html"><a href="roshomon-sets-on-death-prediction-xgb-models-using-mimic-iii-database.html#conclusions-3"><i class="fa fa-check"></i><b>6.4.5</b> Conclusions</a></li>
 </ul></li>
-<li class="chapter" data-level="6.5" data-path="rashomon-sets-of-in-hospital-mortality-prediction-random-forest-models.html"><a href="rashomon-sets-of-in-hospital-mortality-prediction-random-forest-models.html"><i class="fa fa-check"></i><b>6.5</b> Rashomon sets of in-hospital mortality prediction random forest models</a><ul>
+<li class="chapter" data-level="6.5" data-path="rashomon-sets-of-in-hospital-mortality-prediction-random-forest-models.html"><a href="rashomon-sets-of-in-hospital-mortality-prediction-random-forest-models.html"><i class="fa fa-check"></i><b>6.5</b> Rashomon sets of in-hospital mortality prediction random forest models</a>
+<ul>
 <li class="chapter" data-level="6.5.1" data-path="rashomon-sets-of-in-hospital-mortality-prediction-random-forest-models.html"><a href="rashomon-sets-of-in-hospital-mortality-prediction-random-forest-models.html#abstract-23"><i class="fa fa-check"></i><b>6.5.1</b> Abstract</a></li>
 <li class="chapter" data-level="6.5.2" data-path="rashomon-sets-of-in-hospital-mortality-prediction-random-forest-models.html"><a href="rashomon-sets-of-in-hospital-mortality-prediction-random-forest-models.html#introduction-17"><i class="fa fa-check"></i><b>6.5.2</b> Introduction</a></li>
-<li class="chapter" data-level="6.5.3" data-path="rashomon-sets-of-in-hospital-mortality-prediction-random-forest-models.html"><a href="rashomon-sets-of-in-hospital-mortality-prediction-random-forest-models.html#related-work-6"><i class="fa fa-check"></i><b>6.5.3</b> Related work</a></li>
+<li class="chapter" data-level="6.5.3" data-path="rashomon-sets-of-in-hospital-mortality-prediction-random-forest-models.html"><a href="rashomon-sets-of-in-hospital-mortality-prediction-random-forest-models.html#related-work-5"><i class="fa fa-check"></i><b>6.5.3</b> Related work</a></li>
 <li class="chapter" data-level="6.5.4" data-path="rashomon-sets-of-in-hospital-mortality-prediction-random-forest-models.html"><a href="rashomon-sets-of-in-hospital-mortality-prediction-random-forest-models.html#mimic-iii-dataset"><i class="fa fa-check"></i><b>6.5.4</b> MIMIC-III Dataset</a></li>
 <li class="chapter" data-level="6.5.5" data-path="rashomon-sets-of-in-hospital-mortality-prediction-random-forest-models.html"><a href="rashomon-sets-of-in-hospital-mortality-prediction-random-forest-models.html#rashomon-sets"><i class="fa fa-check"></i><b>6.5.5</b> Rashomon Sets</a></li>
 <li class="chapter" data-level="6.5.6" data-path="rashomon-sets-of-in-hospital-mortality-prediction-random-forest-models.html"><a href="rashomon-sets-of-in-hospital-mortality-prediction-random-forest-models.html#results-13"><i class="fa fa-check"></i><b>6.5.6</b> Results</a></li>
@@ -339,91 +400,125 @@
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="xai2-german-credit-data" class="section level2">
+<div id="xai2-german-credit-data" class="section level2" number="2.2">
 <h2><span class="header-section-number">2.2</span> Classifying people as good or bad credit risks</h2>
 <p><em>Authors: Paweł Fijałkowski, Paulina Jaszczuk, Jakub Szypuła (Warsaw University of Technology)</em></p>
-<div id="abstract-5" class="section level3">
+<div id="abstract-5" class="section level3" number="2.2.1">
 <h3><span class="header-section-number">2.2.1</span> Abstract</h3>
 <p>Computer science researchers currently face a significant conflict of interest between responsible data processing effective and quickly-developed business oriented solutions. This study aims to construct and explain the machine learning model in order to prove importance of Explainable Artificial Intelligence. During analysis we will be using both local and global explanations with the purpose of building interpretable glass-box credit score classifier. The foundation of our analysis will be based on data concerning german credit borrowers. A variety of statistics provided about each client will pose considerable noise-canceling problem in our explanations. Due to many employed tools and their inevitable bias, researchers will aggregate results metrics in order to obtain clearest understanding of the model’s contributions. Each case-study will also include summarization for non-technical business representative. The result will layout heuristics of feature important order as well as our explanation and logic behind the outcome.</p>
 </div>
-<div id="introduction-2" class="section level3">
+<div id="introduction-2" class="section level3" number="2.2.2">
 <h3><span class="header-section-number">2.2.2</span> Introduction</h3>
-<p>In 1980s first ever PC was introduced to the public. Since then, rapid technological progress in computer-science lead to enormous demand for implementing and developing previously theoretical studies to suit capable of remembering and performing extensive calculations machines <span class="citation">(Campbell-Kelly et al. <a href="#ref-2-2-campbell2018computer" role="doc-biblioref">2018</a>)</span>. By combining academic effort with pragmatical, engineer approach, humanity succeeded in building complex infrastructure that is able to solve pretty much any problem we have ever faced <span class="citation">(Quandt <a href="#ref-2-2-quandt1983computational" role="doc-biblioref">1983</a>; Siler <a href="#ref-2-2-siler2013computers" role="doc-biblioref">2013</a>)</span>.</p>
-<p>We found ourselves in the point, where machine-learning algorithms make sensitive and in many cases opinion-based decisions, based on numerical and statistical analysis <span class="citation">(Deo <a href="#ref-2-2-deo2015machine" role="doc-biblioref">2015</a>; Mattern et al. <a href="#ref-2-2-mattern2010ict" role="doc-biblioref">2010</a>; Yoo <a href="#ref-2-2-yoo2010computing" role="doc-biblioref">2010</a>)</span>. It may seem harmless on the first glance, but do we really “trust” these models when it comes to predicting lung cancer? Or granting us a credit? In many cases, we do not and we should not.</p>
-<p>This is where XAI or Explainable Artificial Intelligence <span class="citation">(Adadi and Berrada <a href="#ref-2-2-adadi2018peeking" role="doc-biblioref">2018</a>; Arrieta et al. <a href="#ref-2-2-arrieta2020explainable" role="doc-biblioref">2020</a>; Gunning et al. <a href="#ref-2-2-gunning2019xai" role="doc-biblioref">2019</a>)</span> kicks in. It is a branch of AI, which results can be clearly understand and interpreted by experts in a given field (in order to e.g. comply with regulations or improve model user experience). XAI, using multiple complementary tools, turns black-box (meaning, very hard to interpret and understand even by specialist) ML models into glass-box predictable solutions. Why is it important? Mainly for two reasons. First one is, we feel safer knowing what is going under the hood. We cannot simply “believe” outputted answer without digging into specifics on what grounds it was constructed. It gives us sense of security and provides a way of detecting possible miscalculations. Second reason is, these models, due to their mathematical construction (often minimizing value of loss function) in many cases proved to tend towards biases.
+<p>In 1980s first ever PC was introduced to the public. Since then, rapid technological progress in computer-science lead to enormous demand for implementing and developing previously theoretical studies to suit capable of remembering and performing extensive calculations machines <span class="citation">(<a href="#ref-2-2-campbell2018computer" role="doc-biblioref">Campbell-Kelly et al. 2018</a>)</span>. By combining academic effort with pragmatical, engineer approach, humanity succeeded in building complex infrastructure that is able to solve pretty much any problem we have ever faced <span class="citation">(<a href="#ref-2-2-quandt1983computational" role="doc-biblioref">Quandt 1983</a>; <a href="#ref-2-2-siler2013computers" role="doc-biblioref">Siler 2013</a>)</span>.</p>
+<p>We found ourselves in the point, where machine-learning algorithms make sensitive and in many cases opinion-based decisions, based on numerical and statistical analysis <span class="citation">(<a href="#ref-2-2-deo2015machine" role="doc-biblioref">Deo 2015</a>; <a href="#ref-2-2-mattern2010ict" role="doc-biblioref">Mattern et al. 2010</a>; <a href="#ref-2-2-yoo2010computing" role="doc-biblioref">Yoo 2010</a>)</span>. It may seem harmless on the first glance, but do we really “trust” these models when it comes to predicting lung cancer? Or granting us a credit? In many cases, we do not and we should not.</p>
+<p>This is where XAI or Explainable Artificial Intelligence <span class="citation">(<a href="#ref-2-2-adadi2018peeking" role="doc-biblioref">Adadi and Berrada 2018</a>; <a href="#ref-2-2-arrieta2020explainable" role="doc-biblioref">Arrieta et al. et al. 2020</a>; <a href="#ref-2-2-gunning2019xai" role="doc-biblioref">Gunning et al. 2019</a>)</span> kicks in. It is a branch of AI, which results can be clearly understand and interpreted by experts in a given field (in order to e.g. comply with regulations or improve model user experience). XAI, using multiple complementary tools, turns black-box (meaning, very hard to interpret and understand even by specialist) ML models into glass-box predictable solutions. Why is it important? Mainly for two reasons. First one is, we feel safer knowing what is going under the hood. We cannot simply “believe” outputted answer without digging into specifics on what grounds it was constructed. It gives us sense of security and provides a way of detecting possible miscalculations. Second reason is, these models, due to their mathematical construction (often minimizing value of loss function) in many cases proved to tend towards biases.
 This cannot be accepted while building systems supporting banks or hospitals.</p>
-<p>In the article below, we are facing the problem of creating explainable classifier for German bank credit score <span class="citation">(Religia et al. <a href="#ref-2-2-religia2020south" role="doc-biblioref">2020</a>; Yu et al. <a href="#ref-2-2-yu2010comparative" role="doc-biblioref">2010</a>)</span>. We will build black-box model and then employ XAI methods in order for us to understand which features and statistics tend to outbalance model’s decision towards good or bad borrower classification.</p>
+<p>In the article below, we are facing the problem of creating explainable classifier for German bank credit score <span class="citation">(<a href="#ref-2-2-religia2020south" role="doc-biblioref">Religia et al. 2020</a>; <a href="#ref-2-2-yu2010comparative" role="doc-biblioref">Yu et al. 2010</a>)</span>. We will build black-box model and then employ XAI methods in order for us to understand which features and statistics tend to outbalance model’s decision towards good or bad borrower classification.</p>
 </div>
-<div id="dataset-and-models" class="section level3">
+<div id="dataset-and-models" class="section level3" number="2.2.3">
 <h3><span class="header-section-number">2.2.3</span> Dataset and models</h3>
 <p>During entire analysis, we’ll be operating on publicly available data set containing information about German borrowers. Input was collected and processed by Professor Dr. Hans Hofmann from <a href="https://www.uni-hamburg.de/en.html">University of Hamburg</a> and is available <a href="https://archive.ics.uci.edu/ml/datasets/statlog+(german+credit+data)">here</a>.</p>
-<p>Data set provider, basing on academic research, have chosen certain variables to describe each borrower. Some of them are presented in the Table <a href="#tab:variables"><strong>??</strong></a>. That combination of numerical and qualitative variables proved to carry certain importance/influence on probability of paying back borrowed assets.</p>
+<p>Data set provider, basing on academic research, have chosen certain variables to describe each borrower. Some of them are presented in the Table <a href="xai1-explainable-hotels.html#tab:variables">1.2</a>. That combination of numerical and qualitative variables proved to carry certain importance/influence on probability of paying back borrowed assets.</p>
 <table>
-<caption><span id="tab:2-2-variables">Table 2.1: </span>7 out of 20 variables that turned out to be significant in later analyzes.</caption>
+<caption>
+<span id="tab:2-2-variables">Table 2.1: </span>7 out of 20 variables that turned out to be significant in later analyzes.
+</caption>
 <thead>
-<tr class="header">
-<th align="left">Statistic</th>
-<th align="left">Description</th>
+<tr>
+<th style="text-align:left;">
+Statistic
+</th>
+<th style="text-align:left;">
+Description
+</th>
 </tr>
 </thead>
 <tbody>
-<tr class="odd">
-<td align="left">checking_status</td>
-<td align="left">Status of existing checking account (qualitative)</td>
+<tr>
+<td style="text-align:left;">
+checking_status
+</td>
+<td style="text-align:left;">
+Status of existing checking account (qualitative)
+</td>
 </tr>
-<tr class="even">
-<td align="left">duration</td>
-<td align="left">Credit duration in months (numerical)</td>
+<tr>
+<td style="text-align:left;">
+duration
+</td>
+<td style="text-align:left;">
+Credit duration in months (numerical)
+</td>
 </tr>
-<tr class="odd">
-<td align="left">credit_history</td>
-<td align="left">Credit history (qualitative)</td>
+<tr>
+<td style="text-align:left;">
+credit_history
+</td>
+<td style="text-align:left;">
+Credit history (qualitative)
+</td>
 </tr>
-<tr class="even">
-<td align="left">purpose</td>
-<td align="left">Purpose (qualitative)</td>
+<tr>
+<td style="text-align:left;">
+purpose
+</td>
+<td style="text-align:left;">
+Purpose (qualitative)
+</td>
 </tr>
-<tr class="odd">
-<td align="left">credit_amount</td>
-<td align="left">Purpose (qualitative)</td>
+<tr>
+<td style="text-align:left;">
+credit_amount
+</td>
+<td style="text-align:left;">
+Purpose (qualitative)
+</td>
 </tr>
-<tr class="even">
-<td align="left">savings_status</td>
-<td align="left">Savings account/bonds (qualitative)</td>
+<tr>
+<td style="text-align:left;">
+savings_status
+</td>
+<td style="text-align:left;">
+Savings account/bonds (qualitative)
+</td>
 </tr>
-<tr class="odd">
-<td align="left">age</td>
-<td align="left">Age in years (numerical)</td>
+<tr>
+<td style="text-align:left;">
+age
+</td>
+<td style="text-align:left;">
+Age in years (numerical)
+</td>
 </tr>
 </tbody>
 </table>
 <p>Author also suggest using cost function that “punishes” model more for false-positives (classification of bad customer as a good one) than for false-negatives. For a model user (i.e bank-owner), it is much worse to classify bad customer as a good one, than the other way around.</p>
-<p>After careful deliberation and testing using multiple metrics the team decided to use random forest <span class="citation">(Pal <a href="#ref-2-2-pal2005random" role="doc-biblioref">2005</a>)</span> as a baseline model for further modeling and explanations. Random forest is a supervised machine learning algorithm, basing on a simple idea of decision tree. Each decision tree is making a classification prediction and then their votes are counted/merged. Only difference between
-standard forest voting and random forest is that in the latter case, only random subset of features is considered during selecting most important feature (with lowest gini index value <span class="citation">(Lerman and Yitzhaki <a href="#ref-2-2-lerman1984note" role="doc-biblioref">1984</a>)</span>).
-Model performed exceptionally good during cross-validation <span class="citation">(Browne <a href="#ref-2-2-browne2000cross" role="doc-biblioref">2000</a>)</span>, even without fine parameter hyper-tuning.</p>
+<p>After careful deliberation and testing using multiple metrics the team decided to use random forest <span class="citation">(<a href="#ref-2-2-pal2005random" role="doc-biblioref">Pal 2005</a>)</span> as a baseline model for further modeling and explanations. Random forest is a supervised machine learning algorithm, basing on a simple idea of decision tree. Each decision tree is making a classification prediction and then their votes are counted/merged. Only difference between
+standard forest voting and random forest is that in the latter case, only random subset of features is considered during selecting most important feature (with lowest gini index value <span class="citation">(<a href="#ref-2-2-lerman1984note" role="doc-biblioref">Lerman and Yitzhaki 1984</a>)</span>).
+Model performed exceptionally good during cross-validation <span class="citation">(<a href="#ref-2-2-browne2000cross" role="doc-biblioref">Browne 2000</a>)</span>, even without fine parameter hyper-tuning.</p>
 </div>
-<div id="local-explanations-4" class="section level3">
+<div id="local-explanations-4" class="section level3" number="2.2.4">
 <h3><span class="header-section-number">2.2.4</span> Local explanations</h3>
-<p>To better understand the behavior of Random Forest, we employed a set of machine learning explanation methods <span class="citation">(Gilpin et al. <a href="#ref-gilpin2018explaining" role="doc-biblioref">2018</a>)</span>. In order to comprehend the reasoning behind model predictions and interactions between variables we began at the local level, i.e. single observation. “Local explanation” is a name for application of machine learning explanation methods for a single prediction<span class="citation">(Gilpin et al. <a href="#ref-gilpin2018explaining" role="doc-biblioref">2018</a>)</span>. This way, we could compare influence of each variable within a clearly defined context of every potential borrower. Our primary motivation in selecting observations to present in this paper was to show interesting cases and how variables interact with one another in our model in creating predictions. As a result we selected various observations. Methods employed by us were Break-down <span class="citation">(Gosiewska and Biecek <a href="#ref-gosiewska2019not" role="doc-biblioref">2019</a>; Staniak and Biecek <a href="#ref-2-2-staniak2018explanations" role="doc-biblioref">2018</a>)</span>, SHAP <span class="citation">(Lundberg and Lee <a href="#ref-lundberg2017unified" role="doc-biblioref">2017</a>; Maksymiuk et al. <a href="#ref-2-2-maksymiuk2020landscape" role="doc-biblioref">2020</a>)</span>, LIME <span class="citation">(Ribeiro et al. <a href="#ref-2-2-ribeiro2016should" role="doc-biblioref">2016</a>)</span> and Ceteris Paribus <span class="citation">(Biecek <a href="#ref-2-2-biecek2018dalex" role="doc-biblioref">2018</a>; Przemyslaw Biecek and Burzykowski <a href="#ref-2-2-biecek2021explanatory" role="doc-biblioref">2021</a><a href="#ref-2-2-biecek2021explanatory" role="doc-biblioref">b</a>)</span>.</p>
-<p>We began by analyzing the output of the Break-down method on two random observations (see Figure <a href="xai2-german-credit-data.html#fig:2-2-breakdown">2.1</a>). Once compared side-by-side (see the figure) several key differences emerge. First of all, the importance of <em>checking status</em> variable (which will return in forthcoming sections). One can also notice the importance of the <em>age</em> variable, which seems intuitive. A further conclusion can be drawn from this - influence of a variable depends on its value. In fact, depending on interactions between variables in the data set even the same value can have opposite effects. An example (although miniscule) can be found in the Figure <a href="xai2-german-credit-data.html#fig:2-2-bd-different-impact">2.2</a> by comparing observations <span class="math inline">\(4^{th}\)</span> and <span class="math inline">\(7^{th}\)</span> (both classified correctly). The same value of <em>job</em> variable (i.e. “skilled”) gives opposite influences (-1.7% “bad” probability and +1.4% respectively). Thus we should always take into account context in which each variable is evaluated.</p>
+<p>To better understand the behavior of Random Forest, we employed a set of machine learning explanation methods <span class="citation">(<a href="#ref-gilpin2018explaining" role="doc-biblioref"><strong>gilpin2018explaining?</strong></a>)</span>. In order to comprehend the reasoning behind model predictions and interactions between variables we began at the local level, i.e. single observation. “Local explanation” is a name for application of machine learning explanation methods for a single prediction<span class="citation">(<a href="#ref-gilpin2018explaining" role="doc-biblioref"><strong>gilpin2018explaining?</strong></a>)</span>. This way, we could compare influence of each variable within a clearly defined context of every potential borrower. Our primary motivation in selecting observations to present in this paper was to show interesting cases and how variables interact with one another in our model in creating predictions. As a result we selected various observations. Methods employed by us were Break-down <span class="citation">(<a href="#ref-2-2-staniak2018explanations" role="doc-biblioref">Staniak and Biecek 2018b</a>; <a href="#ref-gosiewska2019not" role="doc-biblioref"><strong>gosiewska2019not?</strong></a>)</span>, SHAP <span class="citation">(<a href="#ref-2-2-maksymiuk2020landscape" role="doc-biblioref">Maksymiuk et al. 2020</a>; <a href="#ref-lundberg2017unified" role="doc-biblioref"><strong>lundberg2017unified?</strong></a>)</span>, LIME <span class="citation">(<a href="#ref-2-2-ribeiro2016should" role="doc-biblioref">Ribeiro et al. 2016c</a>)</span> and Ceteris Paribus <span class="citation">(<a href="#ref-2-2-biecek2018dalex" role="doc-biblioref">Przemysław Biecek 2018</a>; <a href="#ref-2-2-biecek2021explanatory" role="doc-biblioref">Przemyslaw Biecek and Burzykowski 2021b</a>)</span>.</p>
+<p>We began by analyzing the output of the Break-down method on two random observations (see Figure <a href="xai2-german-credit-data.html#fig:2-2-breakdown">2.17</a>). Once compared side-by-side (see the figure) several key differences emerge. First of all, the importance of <em>checking status</em> variable (which will return in forthcoming sections). One can also notice the importance of the <em>age</em> variable, which seems intuitive. A further conclusion can be drawn from this - influence of a variable depends on its value. In fact, depending on interactions between variables in the data set even the same value can have opposite effects. An example (although miniscule) can be found in the Figure <a href="xai2-german-credit-data.html#fig:2-2-bd-different-impact">2.18</a> by comparing observations <span class="math inline">\(4^{th}\)</span> and <span class="math inline">\(7^{th}\)</span> (both classified correctly). The same value of <em>job</em> variable (i.e. “skilled”) gives opposite influences (-1.7% “bad” probability and +1.4% respectively). Thus we should always take into account context in which each variable is evaluated.</p>
 <p>Regarding specific conjectures on the data set one can draw from this comparison, we can see that both observations share 7 out of the top 10 most influential variables. Among them are, for example <em>age</em>, <em>checking status</em>, which would be expected by a “common sense” intuition. Influences confirm that intuition. Young age contributes negatively towards credit rating and lower duration positively. Same for checking status - the higher the better.</p>
 <div class="figure" style="text-align: center"><span id="fig:2-2-breakdown"></span>
 <img src="images/2-2-breakdown-comparison.png" alt="Comparison of plots of breakdown method for two observations - $1^{st}$ (above) and $94^{th}$ (below). Positive values indicate an increase in probability of being classified as a &quot;good&quot; borrower while negative values indicate the opposite." width="700" />
 <p class="caption">
-Figure 2.1: Comparison of plots of breakdown method for two observations - <span class="math inline">\(1^{st}\)</span> (above) and <span class="math inline">\(94^{th}\)</span> (below). Positive values indicate an increase in probability of being classified as a “good” borrower while negative values indicate the opposite.
+Figure 2.17: Comparison of plots of breakdown method for two observations - <span class="math inline">\(1^{st}\)</span> (above) and <span class="math inline">\(94^{th}\)</span> (below). Positive values indicate an increase in probability of being classified as a “good” borrower while negative values indicate the opposite.
 </p>
 </div>
 <div class="figure" style="text-align: center"><span id="fig:2-2-bd-different-impact"></span>
 <img src="images/2-2-bd-different-impact.png" alt="Comparison of plots of breakdown method for two observations - $4^{th}$ (above) and $7^{th}$ (below). The same value of job variable has a different effect on the prediction." width="700" />
 <p class="caption">
-Figure 2.2: Comparison of plots of breakdown method for two observations - <span class="math inline">\(4^{th}\)</span> (above) and <span class="math inline">\(7^{th}\)</span> (below). The same value of job variable has a different effect on the prediction.
+Figure 2.18: Comparison of plots of breakdown method for two observations - <span class="math inline">\(4^{th}\)</span> (above) and <span class="math inline">\(7^{th}\)</span> (below). The same value of job variable has a different effect on the prediction.
 </p>
 </div>
-<p>Consequently, we used SHAP method to analyze the first observation (see Figure <a href="xai2-german-credit-data.html#fig:2-2-shap">2.3</a>) and compare results with the Break-Down method. The results of this can be seen in the figure below. <em>Duration</em> and <em>checking status</em> remain the two most important variables, while <em>age</em> grows in importance. 8 of the top 10 variables remain the same, with around the same influences. The major difference being absence of information on <em>existing credits</em> and <em>residence since</em>, have been replaced with <em>credit amount</em> and <em>purpose</em>. This method offers new information, primarily about the variation of influence of each variable. One can notice that <em>age</em> is the most varied (since it can affect the prediction both positively and negatively), which again would correspond to the “common sense” intuition (as with <em>duration</em>, the <em>credit amount</em> and <em>checking status</em>). The opposite occurs with <em>credit history</em>, <em>purpose</em>, <em>property magnitude</em> and <em>length of employment</em>, where variation remains lower compared to influence. Changes, in order of importance are rather small, only the <em>installment commitment</em> moves by more than 3 places (from number 5 to number 10). The rest is swapping of <em>checking status</em> and <em>duration</em>, fall of <em>property magnitude</em> by 2 places, <em>employment</em> by 1 place and rise of <em>age</em> by 2 places. It should be noted that all these changes occur similar or very similar absolute influence values in break-down method. One can judge that importance of variables is a trait that can remain consistent between various explanation methods.</p>
+<p>Consequently, we used SHAP method to analyze the first observation (see Figure <a href="xai2-german-credit-data.html#fig:2-2-shap">2.19</a>) and compare results with the Break-Down method. The results of this can be seen in the figure below. <em>Duration</em> and <em>checking status</em> remain the two most important variables, while <em>age</em> grows in importance. 8 of the top 10 variables remain the same, with around the same influences. The major difference being absence of information on <em>existing credits</em> and <em>residence since</em>, have been replaced with <em>credit amount</em> and <em>purpose</em>. This method offers new information, primarily about the variation of influence of each variable. One can notice that <em>age</em> is the most varied (since it can affect the prediction both positively and negatively), which again would correspond to the “common sense” intuition (as with <em>duration</em>, the <em>credit amount</em> and <em>checking status</em>). The opposite occurs with <em>credit history</em>, <em>purpose</em>, <em>property magnitude</em> and <em>length of employment</em>, where variation remains lower compared to influence. Changes, in order of importance are rather small, only the <em>installment commitment</em> moves by more than 3 places (from number 5 to number 10). The rest is swapping of <em>checking status</em> and <em>duration</em>, fall of <em>property magnitude</em> by 2 places, <em>employment</em> by 1 place and rise of <em>age</em> by 2 places. It should be noted that all these changes occur similar or very similar absolute influence values in break-down method. One can judge that importance of variables is a trait that can remain consistent between various explanation methods.</p>
 <div class="figure" style="text-align: center"><span id="fig:2-2-shap"></span>
 <img src="images/2-2-shap.png" alt="A plot of results of SHAP method for $1^{st}$ observation. One can note the variance in the age variable. With our &quot;common sense&quot; intuition one could imagine that an old person could either be &quot;good&quot; or &quot;bad&quot; credit taker." width="700" />
 <p class="caption">
-Figure 2.3: A plot of results of SHAP method for <span class="math inline">\(1^{st}\)</span> observation. One can note the variance in the age variable. With our “common sense” intuition one could imagine that an old person could either be “good” or “bad” credit taker.
+Figure 2.19: A plot of results of SHAP method for <span class="math inline">\(1^{st}\)</span> observation. One can note the variance in the age variable. With our “common sense” intuition one could imagine that an old person could either be “good” or “bad” credit taker.
 </p>
 </div>
 <div id="the-most-certain-predictions" class="section level4 unnumbered">
@@ -432,19 +527,19 @@ Figure 2.3: A plot of results of SHAP method for <span class="math inline">\(1^{
 <div class="figure" style="text-align: center"><span id="fig:2-2-cp21"></span>
 <img src="images/2-2-cp21.png" alt="A plot of results of CP method for $21^{st}$ observation. Lines represent change in prediction according to change of a certain variable under the assumption that others would remain the same. One can observe that Duration, credit_amount and age have much more impact than the others. The unique shape for age variable appears, starting with low predictions for younger credit takers, going up with age and flattening near 30 until very old age (70+). Higher credit amount and longer duration decrease probability of being classified as a &quot;good&quot; credit taker." width="700" />
 <p class="caption">
-Figure 2.4: A plot of results of CP method for <span class="math inline">\(21^{st}\)</span> observation. Lines represent change in prediction according to change of a certain variable under the assumption that others would remain the same. One can observe that Duration, credit_amount and age have much more impact than the others. The unique shape for age variable appears, starting with low predictions for younger credit takers, going up with age and flattening near 30 until very old age (70+). Higher credit amount and longer duration decrease probability of being classified as a “good” credit taker.
+Figure 2.20: A plot of results of CP method for <span class="math inline">\(21^{st}\)</span> observation. Lines represent change in prediction according to change of a certain variable under the assumption that others would remain the same. One can observe that Duration, credit_amount and age have much more impact than the others. The unique shape for age variable appears, starting with low predictions for younger credit takers, going up with age and flattening near 30 until very old age (70+). Higher credit amount and longer duration decrease probability of being classified as a “good” credit taker.
 </p>
 </div>
-<p>Looking at the Cateris Paribus plot for an observation that the model classified as a good borrower with almost 97% certainty (see Figure <a href="xai2-german-credit-data.html#fig:2-2-cp21">2.4</a>), we can draw several conclusions. First, the variables were divided into those important and less important for the model prediction. <em>Duration</em>, <em>credit amount</em>, and <em>age</em> would clearly change the result if they had a different value - for example, a few thousand higher credit amount would significantly reduce the prediction, as would the <em>duration</em> value. On the other hand we see plots of <em>installment commitment</em>, <em>residence since</em>, <em>existing credits</em> and <em>num dependents</em> which are almost straight lines - changing their values would hardly affect the model’s predictions. This allows us to conclude that in this case it was the values of these three variables (listed first) that mainly determined the classification of the borrower.</p>
+<p>Looking at the Cateris Paribus plot for an observation that the model classified as a good borrower with almost 97% certainty (see Figure <a href="xai2-german-credit-data.html#fig:2-2-cp21">2.20</a>), we can draw several conclusions. First, the variables were divided into those important and less important for the model prediction. <em>Duration</em>, <em>credit amount</em>, and <em>age</em> would clearly change the result if they had a different value - for example, a few thousand higher credit amount would significantly reduce the prediction, as would the <em>duration</em> value. On the other hand we see plots of <em>installment commitment</em>, <em>residence since</em>, <em>existing credits</em> and <em>num dependents</em> which are almost straight lines - changing their values would hardly affect the model’s predictions. This allows us to conclude that in this case it was the values of these three variables (listed first) that mainly determined the classification of the borrower.</p>
 <p>The explanations also once again confirm our intuition - the high certainty of the model as to the classification of the customer as a good borrower was motivated by logical arguments -
 a relatively low loan amount, short loan duration and the average age of the borrower.</p>
 <div class="figure" style="text-align: center"><span id="fig:2-2-cp64"></span>
 <img src="images/2-2-cp64.png" alt="A plot of results of CP method for $64^{th}$ observation. Again, difference in importance between duration, credit amount, age and other variables can be noted. This time shape of age subplot lacks the old age decrease, but otherwise remains the same. Dependency between duration and credit amount seen in previous figure remains here as well." width="700" />
 <p class="caption">
-Figure 2.5: A plot of results of CP method for <span class="math inline">\(64^{th}\)</span> observation. Again, difference in importance between duration, credit amount, age and other variables can be noted. This time shape of age subplot lacks the old age decrease, but otherwise remains the same. Dependency between duration and credit amount seen in previous figure remains here as well.
+Figure 2.21: A plot of results of CP method for <span class="math inline">\(64^{th}\)</span> observation. Again, difference in importance between duration, credit amount, age and other variables can be noted. This time shape of age subplot lacks the old age decrease, but otherwise remains the same. Dependency between duration and credit amount seen in previous figure remains here as well.
 </p>
 </div>
-<p>Cateris Paribus plots for an observation confidently classified as a bad borrower (see Figure <a href="xai2-german-credit-data.html#fig:2-2-cp64">2.5</a>) are almost the opposite of the previous ones. This time the client is very young, he wants to take a high loan with a long repayment period. All these features have a negative effect on prediction. Interestingly, if only a few years older client applied for the same loan, the model’s prediction would be much higher.</p>
+<p>Cateris Paribus plots for an observation confidently classified as a bad borrower (see Figure <a href="xai2-german-credit-data.html#fig:2-2-cp64">2.21</a>) are almost the opposite of the previous ones. This time the client is very young, he wants to take a high loan with a long repayment period. All these features have a negative effect on prediction. Interestingly, if only a few years older client applied for the same loan, the model’s prediction would be much higher.</p>
 <p>Once again, <em>installment commitment</em>, <em>existing credits</em> and <em>num dependents</em> features do not seem to be important in the classification. However, the variable <em>residence since</em> is different, as if it had assumed the value 1, it would significantly increase the prediction.</p>
 </div>
 <div id="explanations-for-misclasiffied-observations" class="section level4 unnumbered">
@@ -455,15 +550,15 @@ Figure 2.5: A plot of results of CP method for <span class="math inline">\(64^{t
 <div class="figure" style="text-align: center"><span id="fig:2-2-false-pos"></span>
 <img src="images/2-2-lime_false_pos.png" alt="A plot of results of LIME method for $56^{th}$ observation which was missclasified by our model and predicted as false positive." width="700" />
 <p class="caption">
-Figure 2.6: A plot of results of LIME method for <span class="math inline">\(56^{th}\)</span> observation which was missclasified by our model and predicted as false positive.
+Figure 2.22: A plot of results of LIME method for <span class="math inline">\(56^{th}\)</span> observation which was missclasified by our model and predicted as false positive.
 </p>
 </div>
-<p>As we can see in the Figure <a href="xai2-german-credit-data.html#fig:2-2-false-pos">2.6</a> the model classified the observation positively mainly on the basis of the features <em>duration</em> (12 months) and <em>savings status</em> (no known savings). This is in line with our earlier conclusions - a short loan duration has a positive effect on prediction.</p>
-<p>To better understand the operation of the model in this case, we also made an explanation using the SHAP method (see Figure <a href="xai2-german-credit-data.html#fig:2-2-false-pos2">2.7</a>).</p>
+<p>As we can see in the Figure <a href="xai2-german-credit-data.html#fig:2-2-false-pos">2.22</a> the model classified the observation positively mainly on the basis of the features <em>duration</em> (12 months) and <em>savings status</em> (no known savings). This is in line with our earlier conclusions - a short loan duration has a positive effect on prediction.</p>
+<p>To better understand the operation of the model in this case, we also made an explanation using the SHAP method (see Figure <a href="xai2-german-credit-data.html#fig:2-2-false-pos2">2.23</a>).</p>
 <div class="figure" style="text-align: center"><span id="fig:2-2-false-pos2"></span>
 <img src="images/2-2-shap_false_pos.png" alt="A plot of results of SHAP method for $56^{th}$ observation which was missclasified by our model and predicted as false positive." width="700" />
 <p class="caption">
-Figure 2.7: A plot of results of SHAP method for <span class="math inline">\(56^{th}\)</span> observation which was missclasified by our model and predicted as false positive.
+Figure 2.23: A plot of results of SHAP method for <span class="math inline">\(56^{th}\)</span> observation which was missclasified by our model and predicted as false positive.
 </p>
 </div>
 <p>The explanations agree on the influence of feature <em>savings status</em> but according to the SHAP method, <em>duration</em> has a marginal positive effect on prediction. Interestingly, both methods give <em>checking status</em> as the most influential feature. Its value (in the range from 0 to 200) negatively affects the prediction which is how the model should classify this observation but this is outweighed by the positive effects of other features.</p>
@@ -473,14 +568,14 @@ Figure 2.7: A plot of results of SHAP method for <span class="math inline">\(56^
 <div class="figure" style="text-align: center"><span id="fig:2-2-false-neg"></span>
 <img src="images/2-2-lime_false_neg.png" alt="A plot of results of LIME method for $945^{th}$ observation which was missclasified by our model and predicted as false negative." width="700" />
 <p class="caption">
-Figure 2.8: A plot of results of LIME method for <span class="math inline">\(945^{th}\)</span> observation which was missclasified by our model and predicted as false negative.
+Figure 2.24: A plot of results of LIME method for <span class="math inline">\(945^{th}\)</span> observation which was missclasified by our model and predicted as false negative.
 </p>
 </div>
-<p>As we can see in the figure <a href="xai2-german-credit-data.html#fig:2-2-false-neg">2.8</a> the model’s prediction was not certain, but it indicated that the client is a bad borrower with a probability of 65%. The biggest negative contributions are related to <em>checking status</em> (in the range from 0 to 200), <em>credit history</em> (no credits/all paid) and <em>duration</em> (48 months). While the relatively long loan term may indeed have a negative effect on the prediction, the fact that there are no other loans seems to be contradictory. The LIME method did not answer all our questions. To dispel any doubts we also explained the observations using the SHAP method (see Figure <a href="xai2-german-credit-data.html#fig:2-2-false-neg2">2.9</a>).</p>
+<p>As we can see in the figure <a href="xai2-german-credit-data.html#fig:2-2-false-neg">2.24</a> the model’s prediction was not certain, but it indicated that the client is a bad borrower with a probability of 65%. The biggest negative contributions are related to <em>checking status</em> (in the range from 0 to 200), <em>credit history</em> (no credits/all paid) and <em>duration</em> (48 months). While the relatively long loan term may indeed have a negative effect on the prediction, the fact that there are no other loans seems to be contradictory. The LIME method did not answer all our questions. To dispel any doubts we also explained the observations using the SHAP method (see Figure <a href="xai2-german-credit-data.html#fig:2-2-false-neg2">2.25</a>).</p>
 <div class="figure" style="text-align: center"><span id="fig:2-2-false-neg2"></span>
 <img src="images/2-2-shap_false_neg.png" alt="A plot of results of SHAP method for $945^{th}$ observation which was missclasified by our model and predicted as false negative." width="700" />
 <p class="caption">
-Figure 2.9: A plot of results of SHAP method for <span class="math inline">\(945^{th}\)</span> observation which was missclasified by our model and predicted as false negative.
+Figure 2.25: A plot of results of SHAP method for <span class="math inline">\(945^{th}\)</span> observation which was missclasified by our model and predicted as false negative.
 </p>
 </div>
 <p>SHAP’s explanations are very similar to those LIME’s ones.
@@ -488,16 +583,16 @@ Again, features <em>duration</em>, <em>checking status</em> and <em>credit hisot
 </div>
 </div>
 </div>
-<div id="global-explanations-5" class="section level3">
+<div id="global-explanations-5" class="section level3" number="2.2.5">
 <h3><span class="header-section-number">2.2.5</span> Global explanations</h3>
-<p>A major shortcoming of local explanations is that they are just that - local. It is the ability to see “the bigger picture” that allows us to achieve a better understanding of the model. Thus, we resolved to using Global Explanation methods, i.e. methods focused on the entire dataset, not singular predictions <span class="citation">(Gilpin et al. <a href="#ref-gilpin2018explaining" role="doc-biblioref">2018</a>)</span> in order to properly grasp approach behind predictions in our machine learning model.</p>
+<p>A major shortcoming of local explanations is that they are just that - local. It is the ability to see “the bigger picture” that allows us to achieve a better understanding of the model. Thus, we resolved to using Global Explanation methods, i.e. methods focused on the entire dataset, not singular predictions <span class="citation">(<a href="#ref-gilpin2018explaining" role="doc-biblioref"><strong>gilpin2018explaining?</strong></a>)</span> in order to properly grasp approach behind predictions in our machine learning model.</p>
 <div id="feature-importance" class="section level4 unnumbered">
 <h4>Feature Importance</h4>
-<p>First of all, we began with Feature Importance method <span class="citation">(Przemyslaw Biecek and Burzykowski <a href="#ref-2-2-biecek2021explanatory" role="doc-biblioref">2021</a><a href="#ref-2-2-biecek2021explanatory" role="doc-biblioref">b</a>)</span> which gives information on the importance of features in the model. Importance is measured by resampling and permuting values of a certain variable, to simulate effect of its removal. The main intuition can be summarised in form of a question: “how much the model suffers if this feature is removed”. The results of applying this method on our model can be seen in the Figure <a href="xai2-german-credit-data.html#fig:2-2-feature-importance">2.10</a>.</p>
+<p>First of all, we began with Feature Importance method <span class="citation">(<a href="#ref-2-2-biecek2021explanatory" role="doc-biblioref">Przemyslaw Biecek and Burzykowski 2021b</a>)</span> which gives information on the importance of features in the model. Importance is measured by resampling and permuting values of a certain variable, to simulate effect of its removal. The main intuition can be summarised in form of a question: “how much the model suffers if this feature is removed.” The results of applying this method on our model can be seen in the Figure <a href="xai2-german-credit-data.html#fig:2-2-feature-importance">2.26</a>.</p>
 <div class="figure" style="text-align: center"><span id="fig:2-2-feature-importance"></span>
 <img src="images/2-2-featureimportance.png" alt="A plot of Feature Importance values for each variable for our model. The exponential shape of importance can be noted. Checking status, duration, credit amount and age are among the most important variables." width="700" />
 <p class="caption">
-Figure 2.10: A plot of Feature Importance values for each variable for our model. The exponential shape of importance can be noted. Checking status, duration, credit amount and age are among the most important variables.
+Figure 2.26: A plot of Feature Importance values for each variable for our model. The exponential shape of importance can be noted. Checking status, duration, credit amount and age are among the most important variables.
 </p>
 </div>
 <p>As one can notice, results are in line with local explanations. That is, the domination of such features as <em>checking status</em>, credit <em>duration</em> and <em>credit amount</em>. Then follows <em>age</em>, <em>saving status</em> and <em>purpose.</em> Yet again, our “common sense” intuition seems to be confirmed. Noteworthy, the plot resembles an exponential function, hinting that predictions are based mostly on the first few most important features, a trait not so obvious to observe in local explanations. It should be noted, however, that the low impact on the prediction of some variables may be dictated by a small number of observations - e.g. the number of non-foreign workers in our data set is just under 4%.</p>
@@ -507,61 +602,61 @@ Figure 2.10: A plot of Feature Importance values for each variable for our model
 </div>
 <div id="dependence-of-variables" class="section level4 unnumbered">
 <h4>Dependence of variables</h4>
-<p>The feature importance method seems to be very helpful in exploring the model, but it also has some drawbacks. One is that it does not perform well on correlated variables - permutating only one dependent variable while the other remains constant is not the best solution. In the case of our data set this problem also occurs - for example, the duration of the loan is strongly correlated with its amount. For this reason, we decided to use the triplot package <span class="citation">(Pekala et al. <a href="#ref-2-2-pekala2021triplot" role="doc-biblioref">2021</a>)</span> which enables the analysis of grouped variables. We divided the features of our data into 3 categories - those relating to the loan (e.g. <em>credit amount</em> and <em>duration</em>), the client’s account (e.g. <em>checking</em> and <em>savings status</em>) and the borrower himsefl (e.g. <em>age</em> and <em>employment</em>). Then we explained the contribution of the whole groups of variables (see Figure <a href="xai2-german-credit-data.html#fig:2-2-triplot">2.11</a>).</p>
+<p>The feature importance method seems to be very helpful in exploring the model, but it also has some drawbacks. One is that it does not perform well on correlated variables - permutating only one dependent variable while the other remains constant is not the best solution. In the case of our data set this problem also occurs - for example, the duration of the loan is strongly correlated with its amount. For this reason, we decided to use the triplot package <span class="citation">(<a href="#ref-2-2-pekala2021triplot" role="doc-biblioref">Pekala et al. 2021b</a>)</span> which enables the analysis of grouped variables. We divided the features of our data into 3 categories - those relating to the loan (e.g. <em>credit amount</em> and <em>duration</em>), the client’s account (e.g. <em>checking</em> and <em>savings status</em>) and the borrower himsefl (e.g. <em>age</em> and <em>employment</em>). Then we explained the contribution of the whole groups of variables (see Figure <a href="xai2-german-credit-data.html#fig:2-2-triplot">2.27</a>).</p>
 <div class="figure" style="text-align: center"><span id="fig:2-2-triplot"></span>
 <img src="images/2-2-triplot.png" alt="A plot representing importance of grouped variables. Credit - credit amount and duration, personal - age, employment and rating - checking status and savings status. The most important factor remains the credit itself." width="700" />
 <p class="caption">
-Figure 2.11: A plot representing importance of grouped variables. Credit - credit amount and duration, personal - age, employment and rating - checking status and savings status. The most important factor remains the credit itself.
+Figure 2.27: A plot representing importance of grouped variables. Credit - credit amount and duration, personal - age, employment and rating - checking status and savings status. The most important factor remains the credit itself.
 </p>
 </div>
 <p>As we can see, although according to Feature Importance the most important variable for our model is <em>checking status</em> (rating group), the total prediction is influenced most by the characteristics of the loan itself while the variables connected with the current account have the most marginal effect on the model</p>
 </div>
 <div id="global-impact-of-specific-variables" class="section level4 unnumbered">
 <h4>Global impact of specific variables</h4>
-<p>In order to better understand the influence of specific variables on the model prediction in relation to the global reference, we decided to perform the PDP explanations <span class="citation">(Greenwell <a href="#ref-2-2-greenwell2017pdp" role="doc-biblioref">2017</a>)</span>. This method works similarly to Cateris Paribus - it shows the prediction of the model for different values of the variable while maintaining other features of the model constants. We explained the four features that turned out to be the most significant for our model according to Feature Importance (<em>checking status</em>, <em>duration</em>, <em>credit amount</em>, <em>age</em>).</p>
+<p>In order to better understand the influence of specific variables on the model prediction in relation to the global reference, we decided to perform the PDP explanations <span class="citation">(<a href="#ref-2-2-greenwell2017pdp" role="doc-biblioref">Brandon M. Greenwell 2017a</a>)</span>. This method works similarly to Cateris Paribus - it shows the prediction of the model for different values of the variable while maintaining other features of the model constants. We explained the four features that turned out to be the most significant for our model according to Feature Importance (<em>checking status</em>, <em>duration</em>, <em>credit amount</em>, <em>age</em>).</p>
 <div id="checking-status" class="section level5 unnumbered">
 <h5>Checking status</h5>
 <div class="figure" style="text-align: center"><span id="fig:2-2-pdp-checking-status"></span>
 <img src="images/2-2-pdp-checking-status.png" alt="PDP plot for checking status variable, showing average probability of being classified as a &quot;good&quot; credit taker for each value." width="700" />
 <p class="caption">
-Figure 2.12: PDP plot for checking status variable, showing average probability of being classified as a “good” credit taker for each value.
+Figure 2.28: PDP plot for checking status variable, showing average probability of being classified as a “good” credit taker for each value.
 </p>
 </div>
-<p>As we can see in the Figure <a href="xai2-german-credit-data.html#fig:2-2-pdp-checking-status">2.12</a> a customer with a negative checking status has the lowest probability of being a good borrower according to the model and the best borrowers turn out to be those without a current account. It is somewhat surprising that the slightly higher prediction applies to customers with a lower positive checking status than those with a higher one. This may be due to the small number of clients with high checking status - just over 6% of all while other values are evenly matched.</p>
+<p>As we can see in the Figure <a href="xai2-german-credit-data.html#fig:2-2-pdp-checking-status">2.28</a> a customer with a negative checking status has the lowest probability of being a good borrower according to the model and the best borrowers turn out to be those without a current account. It is somewhat surprising that the slightly higher prediction applies to customers with a lower positive checking status than those with a higher one. This may be due to the small number of clients with high checking status - just over 6% of all while other values are evenly matched.</p>
 </div>
 <div id="duration" class="section level5 unnumbered">
 <h5>Duration</h5>
 <div class="figure" style="text-align: center"><span id="fig:2-2-pdp-duration"></span>
 <img src="images/2-2-pdp-duration.png" alt="PDP plot for duration variable, showing average probability of being classified as a &quot;good&quot; credit taker for duration variable." width="700" />
 <p class="caption">
-Figure 2.13: PDP plot for duration variable, showing average probability of being classified as a “good” credit taker for duration variable.
+Figure 2.29: PDP plot for duration variable, showing average probability of being classified as a “good” credit taker for duration variable.
 </p>
 </div>
-<p>The variable <em>duration</em> plot (Figure <a href="xai2-german-credit-data.html#fig:2-2-pdp-duration">2.13</a>) leads us to similar conclusions as for the local explanations. The longer the loan term, the greater the credit risk. For the initial values the prediction of a good borrower decreases almost linearly (the jagged graph is the result of using the random forest model), to a certain threshold of around 40 months when the loan duration is already so long that this variable does not have a significant impact on the prediction.</p>
+<p>The variable <em>duration</em> plot (Figure <a href="xai2-german-credit-data.html#fig:2-2-pdp-duration">2.29</a>) leads us to similar conclusions as for the local explanations. The longer the loan term, the greater the credit risk. For the initial values the prediction of a good borrower decreases almost linearly (the jagged graph is the result of using the random forest model), to a certain threshold of around 40 months when the loan duration is already so long that this variable does not have a significant impact on the prediction.</p>
 </div>
 <div id="credit-amount" class="section level5 unnumbered">
 <h5>Credit amount</h5>
 <div class="figure" style="text-align: center"><span id="fig:2-2-pdp-credit-amount"></span>
 <img src="images/2-2-pdp-credit-amount.png" alt="PDP plot for credit amount variable, showing average probability of being classified as a &quot;good&quot; credit taker for credit amount variable." width="700" />
 <p class="caption">
-Figure 2.14: PDP plot for credit amount variable, showing average probability of being classified as a “good” credit taker for credit amount variable.
+Figure 2.30: PDP plot for credit amount variable, showing average probability of being classified as a “good” credit taker for credit amount variable.
 </p>
 </div>
-<p>The plot of <em>credit amount</em> (Figure <a href="xai2-german-credit-data.html#fig:2-2-pdp-credit-amount">2.14</a>) is somewhat similar to that of <em>duration.</em> As the loan amount increases, the probability that the customer will turn out to be a good borrower decreases until the loan is so high (around 12,000) that increasing it no longer has a significant impact on the prediction. The initial low value of the prediction and the increase for the loan amount from 0 to 4000 may be due to the fact that clients taking loans for small amounts may have problems with financial liquidity.</p>
+<p>The plot of <em>credit amount</em> (Figure <a href="xai2-german-credit-data.html#fig:2-2-pdp-credit-amount">2.30</a>) is somewhat similar to that of <em>duration.</em> As the loan amount increases, the probability that the customer will turn out to be a good borrower decreases until the loan is so high (around 12,000) that increasing it no longer has a significant impact on the prediction. The initial low value of the prediction and the increase for the loan amount from 0 to 4000 may be due to the fact that clients taking loans for small amounts may have problems with financial liquidity.</p>
 </div>
 <div id="age" class="section level5 unnumbered">
 <h5>Age</h5>
 <div class="figure" style="text-align: center"><span id="fig:2-2-pdp-age"></span>
 <img src="images/2-2-pdp-age.png" alt="PDP plot for age variable, showing average probability of being classified as a &quot;good&quot; credit taker for age variable." width="700" />
 <p class="caption">
-Figure 2.15: PDP plot for age variable, showing average probability of being classified as a “good” credit taker for age variable.
+Figure 2.31: PDP plot for age variable, showing average probability of being classified as a “good” credit taker for age variable.
 </p>
 </div>
-<p>The <em>age</em> plot (Figure <a href="xai2-german-credit-data.html#fig:2-2-pdp-age">2.15</a>) is consistent with our earlier assumptions and intuition - young borrowers who do not yet have a stable position on the labor market and their income is uncertain are the clients for whom credit risk is the highest. Subsequently, the prediction increases to peak for an approximately 38-year-old borrower. Statistically, people of this age have a stable job with high earnings. Thereafter, the prediction remains steadily high until around 55 years after which it begins to decline - this corresponds to the period when borrowers begin to retire which causes their incomes to decline frequently.</p>
+<p>The <em>age</em> plot (Figure <a href="xai2-german-credit-data.html#fig:2-2-pdp-age">2.31</a>) is consistent with our earlier assumptions and intuition - young borrowers who do not yet have a stable position on the labor market and their income is uncertain are the clients for whom credit risk is the highest. Subsequently, the prediction increases to peak for an approximately 38-year-old borrower. Statistically, people of this age have a stable job with high earnings. Thereafter, the prediction remains steadily high until around 55 years after which it begins to decline - this corresponds to the period when borrowers begin to retire which causes their incomes to decline frequently.</p>
 </div>
 </div>
 </div>
-<div id="summary-and-conclusions-3" class="section level3">
+<div id="summary-and-conclusions-3" class="section level3" number="2.2.6">
 <h3><span class="header-section-number">2.2.6</span> Summary and conclusions</h3>
 <p>Applying XAI methods to our black-box model helped understand it, turning it, even if by a minimal margin, into more of a glass-box model. We found the most important features (that is <em>checking status</em>, <em>duration</em>, <em>credit amount</em> and <em>age</em>) and the rules governing their influence on predictions. We also confirmed the validity of a “common sense” intuition, e.g. the probability of being a “good” borrower being lower for very young and very old people. This allows us not only to validate the performance of our model, but also to better understand the rules governing this dataset.</p>
 <p>We can confidently say, that the main aim of our work has been achieved. The model has been explained and various explanations remained stable between methods used. Assuming our methodology was correct, it would mean that it is an adequate explanation that works not only within the model, but also within the data. With real-life data this can approach could prove useful in finding dependencies and interactions with phenomena, one would not connect with machine learning on first instinct. However, this would require greater research, far exceeding scope of this article.</p>
@@ -569,78 +664,69 @@ Figure 2.15: PDP plot for age variable, showing average probability of being cla
 </div>
 </div>
 <h3>References</h3>
-<div id="refs" class="references">
-<div id="ref-2-2-adadi2018peeking">
-<p>Adadi, A., &amp; Berrada, M. (2018). Peeking inside the black-box: A survey on explainable artificial intelligence (xai). <em>IEEE access</em>, <em>6</em>, 52138–52160. <a href="https://doi.org/10.1109/ACCESS.2018.2870052">https://doi.org/10.1109/ACCESS.2018.2870052</a></p>
+<div id="refs" class="references csl-bib-body hanging-indent" line-spacing="2">
+<div id="ref-2-2-adadi2018peeking" class="csl-entry">
+Adadi, A., &amp; Berrada, M. (2018). Peeking inside the black-box: A survey on explainable artificial intelligence (XAI). <em>IEEE access</em>, <em>6</em>, 52138–52160. <a href="https://doi.org/10.1109/ACCESS.2018.2870052">https://doi.org/10.1109/ACCESS.2018.2870052</a>
 </div>
-<div id="ref-2-2-arrieta2020explainable">
-<p>Arrieta, A. B., Dı́az-Rodrı́guez, N., Del Ser, J., Bennetot, A., Tabik, S., Barbado, A., et al. (2020). Explainable artificial intelligence (xai): Concepts, taxonomies, opportunities and challenges toward responsible ai. <em>Information Fusion</em>, <em>58</em>, 82–115. <a href="https://doi.org/10.1016/j.inffus.2019.12.012">https://doi.org/10.1016/j.inffus.2019.12.012</a></p>
+<div id="ref-2-2-arrieta2020explainable" class="csl-entry">
+Arrieta, A. B., Dı́az-Rodrı́guez, N., Del Ser, J., Bennetot, A., Tabik, S., Barbado, A., et al., et al. (2020). Explainable artificial intelligence (XAI): Concepts, taxonomies, opportunities and challenges toward responsible AI. <em>Information Fusion</em>, <em>58</em>, 82–115. <a href="https://doi.org/10.1016/j.inffus.2019.12.012">https://doi.org/10.1016/j.inffus.2019.12.012</a>
 </div>
-<div id="ref-2-2-biecek2018dalex">
-<p>Biecek, P. (2018). DALEX: Explainers for complex predictive models in r. <em>The Journal of Machine Learning Research</em>, <em>19</em>(1), 3245–3249.</p>
+<div id="ref-2-2-biecek2018dalex" class="csl-entry">
+Biecek, Przemysław. (2018). DALEX: Explainers for complex predictive models in r. <em>The Journal of Machine Learning Research</em>, <em>19</em>(1), 3245–3249.
 </div>
-<div id="ref-2-2-biecek2021explanatory">
-<p>Biecek, P., &amp; Burzykowski, T. (2021b). <em>Explanatory model analysis: Explore, explain, and examine predictive models</em>. CRC Press.</p>
+<div id="ref-2-2-biecek2021explanatory" class="csl-entry">
+Biecek, Przemyslaw, &amp; Burzykowski, T. (2021b). <em>Explanatory model analysis: Explore, explain, and examine predictive models</em>. CRC Press.
 </div>
-<div id="ref-2-2-browne2000cross">
-<p>Browne, M. W. (2000). Cross-validation methods. <em>Journal of mathematical psychology</em>, <em>44</em>(1), 108–132. <a href="https://doi.org/10.1006/jmps.1999.1279">https://doi.org/10.1006/jmps.1999.1279</a></p>
+<div id="ref-2-2-browne2000cross" class="csl-entry">
+Browne, M. W. (2000). Cross-validation methods. <em>Journal of mathematical psychology</em>, <em>44</em>(1), 108–132. <a href="https://doi.org/10.1006/jmps.1999.1279">https://doi.org/10.1006/jmps.1999.1279</a>
 </div>
-<div id="ref-2-2-campbell2018computer">
-<p>Campbell-Kelly, M., Aspray, W., Ensmenger, N., &amp; Yost, J. R. (2018). <em>Computer: A history of the information machine</em>. Routledge. <a href="https://doi.org/10.4324/9780429495373">https://doi.org/10.4324/9780429495373</a></p>
+<div id="ref-2-2-campbell2018computer" class="csl-entry">
+Campbell-Kelly, M., Aspray, W., Ensmenger, N., &amp; Yost, J. R. (2018). <em>Computer: A history of the information machine</em>. Routledge. <a href="https://doi.org/10.4324/9780429495373">https://doi.org/10.4324/9780429495373</a>
 </div>
-<div id="ref-2-2-deo2015machine">
-<p>Deo, R. C. (2015). Machine learning in medicine. <em>Circulation</em>, <em>132</em>(20), 1920–1930. <a href="https://doi.org/10.1161/CIRCULATIONAHA.115.001593">https://doi.org/10.1161/CIRCULATIONAHA.115.001593</a></p>
+<div id="ref-2-2-deo2015machine" class="csl-entry">
+Deo, R. C. (2015). Machine learning in medicine. <em>Circulation</em>, <em>132</em>(20), 1920–1930. <a href="https://doi.org/10.1161/CIRCULATIONAHA.115.001593">https://doi.org/10.1161/CIRCULATIONAHA.115.001593</a>
 </div>
-<div id="ref-gilpin2018explaining">
-<p>Gilpin, L. H., Bau, D., Yuan, B. Z., Bajwa, A., Specter, M., &amp; Kagal, L. (2018). Explaining explanations: An overview of interpretability of machine learning. In <em>2018 ieee 5th international conference on data science and advanced analytics (dsaa)</em> (pp. 80–89). IEEE. <a href="https://doi.org/10.1109/DSAA.2018.00018">https://doi.org/10.1109/DSAA.2018.00018</a></p>
+<div id="ref-2-2-greenwell2017pdp" class="csl-entry">
+Greenwell, Brandon M. (2017a). Pdp: An r package for constructing partial dependence plots. <em>R J.</em>, <em>9</em>(1), 421. <a href="https://doi.org/10.32614/RJ-2017-016">https://doi.org/10.32614/RJ-2017-016</a>
 </div>
-<div id="ref-gosiewska2019not">
-<p>Gosiewska, A., &amp; Biecek, P. (2019). Do not trust additive explanations. <em>arXiv preprint arXiv:1903.11420</em>. <a href="https://doi.org/arXiv:1903.11420">https://doi.org/arXiv:1903.11420</a></p>
+<div id="ref-2-2-gunning2019xai" class="csl-entry">
+Gunning, D., Stefik, M., Choi, J., Miller, T., Stumpf, S., &amp; Yang, G.-Z. (2019). XAI—explainable artificial intelligence. <em>Science Robotics</em>, <em>4</em>(37). <a href="https://doi.org/10.1126/scirobotics.aay7120">https://doi.org/10.1126/scirobotics.aay7120</a>
 </div>
-<div id="ref-2-2-greenwell2017pdp">
-<p>Greenwell, B. M. (2017). Pdp: An r package for constructing partial dependence plots. <em>R J.</em>, <em>9</em>(1), 421. <a href="https://doi.org/10.32614/RJ-2017-016">https://doi.org/10.32614/RJ-2017-016</a></p>
+<div id="ref-2-2-lerman1984note" class="csl-entry">
+Lerman, R. I., &amp; Yitzhaki, S. (1984). A note on the calculation and interpretation of the gini index. <em>Economics Letters</em>, <em>15</em>(3-4), 363–368. <a href="https://doi.org/10.1016/0165-1765(84)90126-5">https://doi.org/10.1016/0165-1765(84)90126-5</a>
 </div>
-<div id="ref-2-2-gunning2019xai">
-<p>Gunning, D., Stefik, M., Choi, J., Miller, T., Stumpf, S., &amp; Yang, G.-Z. (2019). XAI—explainable artificial intelligence. <em>Science Robotics</em>, <em>4</em>(37). <a href="https://doi.org/10.1126/scirobotics.aay7120">https://doi.org/10.1126/scirobotics.aay7120</a></p>
+<div id="ref-2-2-maksymiuk2020landscape" class="csl-entry">
+Maksymiuk, S., Gosiewska, A., &amp; Biecek, P. (2020). Landscape of r packages for eXplainable artificial intelligence. <em>arXiv preprint arXiv:2009.13248</em>. <a href="https://doi.org/arXiv:2009.13248">https://doi.org/arXiv:2009.13248</a>
 </div>
-<div id="ref-2-2-lerman1984note">
-<p>Lerman, R. I., &amp; Yitzhaki, S. (1984). A note on the calculation and interpretation of the gini index. <em>Economics Letters</em>, <em>15</em>(3-4), 363–368. <a href="https://doi.org/10.1016/0165-1765(84)90126-5">https://doi.org/10.1016/0165-1765(84)90126-5</a></p>
+<div id="ref-2-2-mattern2010ict" class="csl-entry">
+Mattern, F., Staake, T., &amp; Weiss, M. (2010). ICT for green: How computers can help us to conserve energy. In <em>Proceedings of the 1st international conference on energy-efficient computing and networking</em> (pp. 1–10). <a href="https://doi.org/10.1145/1791314.1791316">https://doi.org/10.1145/1791314.1791316</a>
 </div>
-<div id="ref-lundberg2017unified">
-<p>Lundberg, S., &amp; Lee, S.-I. (2017). A unified approach to interpreting model predictions. <em>arXiv preprint arXiv:1705.07874</em>. <a href="https://doi.org/arXiv:1705.07874">https://doi.org/arXiv:1705.07874</a></p>
+<div id="ref-2-2-pal2005random" class="csl-entry">
+Pal, M. (2005). Random forest classifier for remote sensing classification. <em>International journal of remote sensing</em>, <em>26</em>(1), 217–222. <a href="https://doi.org/10.1080/01431160412331269698">https://doi.org/10.1080/01431160412331269698</a>
 </div>
-<div id="ref-2-2-maksymiuk2020landscape">
-<p>Maksymiuk, S., Gosiewska, A., &amp; Biecek, P. (2020). Landscape of r packages for eXplainable artificial intelligence. <em>arXiv preprint arXiv:2009.13248</em>. <a href="https://doi.org/arXiv:2009.13248">https://doi.org/arXiv:2009.13248</a></p>
+<div id="ref-2-2-pekala2021triplot" class="csl-entry">
+Pekala, K., Woznica, K., &amp; Biecek, P. (2021b). Triplot: Model agnostic measures and visualisations for variable importance in predictive models that take into account the hierarchical correlation structure. <em>arXiv preprint arXiv:2104.03403</em>. <a href="https://doi.org/arXiv:2104.03403">https://doi.org/arXiv:2104.03403</a>
 </div>
-<div id="ref-2-2-mattern2010ict">
-<p>Mattern, F., Staake, T., &amp; Weiss, M. (2010). ICT for green: How computers can help us to conserve energy. In <em>Proceedings of the 1st international conference on energy-efficient computing and networking</em> (pp. 1–10). <a href="https://doi.org/10.1145/1791314.1791316">https://doi.org/10.1145/1791314.1791316</a></p>
+<div id="ref-2-2-quandt1983computational" class="csl-entry">
+Quandt, R. E. (1983). Computational problems and methods. <em>Handbook of econometrics</em>, <em>1</em>, 699–764. <a href="https://doi.org/10.1016/S1573-4412(83)01016-8">https://doi.org/10.1016/S1573-4412(83)01016-8</a>
 </div>
-<div id="ref-2-2-pal2005random">
-<p>Pal, M. (2005). Random forest classifier for remote sensing classification. <em>International journal of remote sensing</em>, <em>26</em>(1), 217–222. <a href="https://doi.org/10.1080/01431160412331269698">https://doi.org/10.1080/01431160412331269698</a></p>
+<div id="ref-2-2-religia2020south" class="csl-entry">
+Religia, Y., Pranoto, G. T., &amp; Santosa, E. D. (2020). South german credit data classification using random forest algorithm to predict bank credit receipts. <em>JISA (Jurnal Informatika dan Sains)</em>, <em>3</em>(2), 62–66. <a href="https://doi.org/10.31326/jisa.v3i2.837">https://doi.org/10.31326/jisa.v3i2.837</a>
 </div>
-<div id="ref-2-2-pekala2021triplot">
-<p>Pekala, K., Woznica, K., &amp; Biecek, P. (2021). Triplot: Model agnostic measures and visualisations for variable importance in predictive models that take into account the hierarchical correlation structure. <em>arXiv preprint arXiv:2104.03403</em>. <a href="https://doi.org/arXiv:2104.03403">https://doi.org/arXiv:2104.03403</a></p>
+<div id="ref-2-2-ribeiro2016should" class="csl-entry">
+Ribeiro, M. T., Singh, S., &amp; Guestrin, C. (2016c). " why should i trust you?" Explaining the predictions of any classifier. In <em>Proceedings of the 22nd ACM SIGKDD international conference on knowledge discovery and data mining</em> (pp. 1135–1144). <a href="https://doi.org/10.1145/2939672.2939778">https://doi.org/10.1145/2939672.2939778</a>
 </div>
-<div id="ref-2-2-quandt1983computational">
-<p>Quandt, R. E. (1983). Computational problems and methods. <em>Handbook of econometrics</em>, <em>1</em>, 699–764. <a href="https://doi.org/10.1016/S1573-4412(83)01016-8">https://doi.org/10.1016/S1573-4412(83)01016-8</a></p>
+<div id="ref-2-2-siler2013computers" class="csl-entry">
+Siler, W. (2013). <em>Computers in life science research</em> (Vol. 2). Springer Science &amp; Business Media.
 </div>
-<div id="ref-2-2-religia2020south">
-<p>Religia, Y., Pranoto, G. T., &amp; Santosa, E. D. (2020). South german credit data classification using random forest algorithm to predict bank credit receipts. <em>JISA (Jurnal Informatika dan Sains)</em>, <em>3</em>(2), 62–66. <a href="https://doi.org/10.31326/jisa.v3i2.837">https://doi.org/10.31326/jisa.v3i2.837</a></p>
+<div id="ref-2-2-staniak2018explanations" class="csl-entry">
+Staniak, M., &amp; Biecek, P. (2018b). Explanations of model predictions with live and breakDown packages. <em>arXiv preprint arXiv:1804.01955</em>. <a href="https://doi.org/10.32614/RJ-2018-072">https://doi.org/10.32614/RJ-2018-072</a>
 </div>
-<div id="ref-2-2-ribeiro2016should">
-<p>Ribeiro, M. T., Singh, S., &amp; Guestrin, C. (2016). " Why should i trust you?" Explaining the predictions of any classifier. In <em>Proceedings of the 22nd acm sigkdd international conference on knowledge discovery and data mining</em> (pp. 1135–1144). <a href="https://doi.org/10.1145/2939672.2939778">https://doi.org/10.1145/2939672.2939778</a></p>
+<div id="ref-2-2-yoo2010computing" class="csl-entry">
+Yoo, Y. (2010). Computing in everyday life: A call for research on experiential computing. <em>MIS quarterly</em>, 213–231. <a href="https://doi.org/10.2307/20721425">https://doi.org/10.2307/20721425</a>
 </div>
-<div id="ref-2-2-siler2013computers">
-<p>Siler, W. (2013). <em>Computers in life science research</em> (Vol. 2). Springer Science &amp; Business Media.</p>
-</div>
-<div id="ref-2-2-staniak2018explanations">
-<p>Staniak, M., &amp; Biecek, P. (2018). Explanations of model predictions with live and breakDown packages. <em>arXiv preprint arXiv:1804.01955</em>. <a href="https://doi.org/10.32614/RJ-2018-072">https://doi.org/10.32614/RJ-2018-072</a></p>
-</div>
-<div id="ref-2-2-yoo2010computing">
-<p>Yoo, Y. (2010). Computing in everyday life: A call for research on experiential computing. <em>MIS quarterly</em>, 213–231. <a href="https://doi.org/10.2307/20721425">https://doi.org/10.2307/20721425</a></p>
-</div>
-<div id="ref-2-2-yu2010comparative">
-<p>Yu, H., Huang, X., Hu, X., &amp; Cai, H. (2010). A comparative study on data mining algorithms for individual credit risk evaluation. In <em>2010 international conference on management of e-commerce and e-government</em> (pp. 35–38). IEEE. <a href="https://doi.org/10.1109/ICMeCG.2010.16">https://doi.org/10.1109/ICMeCG.2010.16</a></p>
+<div id="ref-2-2-yu2010comparative" class="csl-entry">
+Yu, H., Huang, X., Hu, X., &amp; Cai, H. (2010). A comparative study on data mining algorithms for individual credit risk evaluation. In <em>2010 international conference on management of e-commerce and e-government</em> (pp. 35–38). IEEE. <a href="https://doi.org/10.1109/ICMeCG.2010.16">https://doi.org/10.1109/ICMeCG.2010.16</a>
 </div>
 </div>
             </section>
@@ -652,15 +738,15 @@ Figure 2.15: PDP plot for age variable, showing average probability of being cla
 <a href="how-to-predict-the-probability-of-subsequent-blood-donations.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
-<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
-<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
-<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
-<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
-<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
-<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
-<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
-<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
-<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script src="libs/gitbook/js/app.min.js"></script>
+<script src="libs/gitbook/js/lunr.js"></script>
+<script src="libs/gitbook/js/clipboard.min.js"></script>
+<script src="libs/gitbook/js/plugin-search.js"></script>
+<script src="libs/gitbook/js/plugin-sharing.js"></script>
+<script src="libs/gitbook/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook/js/jquery.highlight.js"></script>
+<script src="libs/gitbook/js/plugin-clipboard.js"></script>
 <script>
 gitbook.require(["gitbook"], function(gitbook) {
 gitbook.start({
