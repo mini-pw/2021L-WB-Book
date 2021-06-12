@@ -129,7 +129,9 @@ fig:2-3-roc
 fig:2-3-pr
 fig:2-3-permutation
 fig:2-3-pdp
+tab:ab
 fig:2-3-ale
+tab:obs
 fig:2-3-ceteris1
 fig:2-3-ceteris2
 fig:2-3-break1
@@ -333,11 +335,8 @@ how-to-predict-the-probability-of-subsequent-blood-donations
 abstract-6
 introduction-and-motivation-3
 related-work-2
-data-and-model
-original-dataset
-data-analysis
-pre-processing
-final-model
+data-analysis-and-pre-processing
+models-preparation-and-selection
 global-explanations-6
 permutation-feature-importance
 partial-dependence-profile
