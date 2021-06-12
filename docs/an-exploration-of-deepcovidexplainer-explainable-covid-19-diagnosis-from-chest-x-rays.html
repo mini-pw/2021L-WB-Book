@@ -24,7 +24,7 @@
 <meta name="author" content="Faculty of Mathematics and Information Science, Warsaw University of Technology" />
 
 
-<meta name="date" content="2021-06-10" />
+<meta name="date" content="2021-06-12" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -590,11 +590,11 @@ Figure 3.14: DenseNet161 architecture
 <li>histogram stretching (contrast enhancement),</li>
 <li>reducing noise with anisotropic diffusion,</li>
 <li>converting from RGB to greyscale format for better performance,</li>
-<li>creation of a mask using the threshold function from the OpenCV library (detection of the brightest spots in the photo),</li>
-<li>modifying (thickening) the mask using the dilate function from OpenCV (in order to be able to detect thin lines),</li>
-<li>removing annotations from the image using the inpaint function from OpenCV and using the already created mask.</li>
+<li>creation of a text-detecting mask using the threshold function from the OpenCV library (detection of the brightest spots in the photo),</li>
+<li>modifying (thickening) the mask using the dilate function from OpenCV (for greater effectiveness),</li>
+<li>removing all text from the image using the mask created in the earlier steps and inpaint function from OpenCV.</li>
 </ul>
-<p>We have also dropped the part of the authors’ code where they introduce the division between the right and left side of the image, as they did not use this later in the code and it does not seem necessary.</p>
+<p>We have also decided to drop the part of the authors’ code where they introduce the division between the right and left side of the image, as they did not use this later in the code and it does not seem necessary.</p>
 <div class="figure" style="text-align: center"><span id="fig:BeforeAfter"></span>
 <img src="images/3-3-preprocessing.png" alt="Before and after preprocessing" height="300" />
 <p class="caption">
