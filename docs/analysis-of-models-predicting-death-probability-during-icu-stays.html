@@ -24,7 +24,7 @@
 <meta name="author" content="Faculty of Mathematics and Information Science, Warsaw University of Technology" />
 
 
-<meta name="date" content="2021-06-12" />
+<meta name="date" content="2021-06-13" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -420,32 +420,32 @@ div.csl-indent {
 </div>
 <div id="methodology-8" class="section level3" number="6.2.4">
 <h3><span class="header-section-number">6.2.4</span> Methodology</h3>
-<p>In our experiment, we want to use real data and use models in a similar way they may be used in commercial applications. Because of these two factors, we decide to use MIMIC-III database <span class="citation">(<a href="#ref-6-0-mimic" role="doc-biblioref">A. E. Johnson et al. 2016</a>)</span>. This base contains a very large quantity of real medical data and it’s frequently used in machine learning oriented and other research. In our article, we use a subset of transformed features from this database directly correlated to patient health.</p>
-<p>To create the Rashomon set we need to specify the exact task we want to test. To do this we examine already created articles about usage of this data in machine learning. We encountered many problems with reproducibility such as no longer supported or outdated code or badly optimized functions. Finally, we decide to use previous research about reproducibility of MIMIC studies <span class="citation">(<a href="#ref-6-0-johnson17reproducibility" role="doc-biblioref">A. E. W. Johnson et al. 2017</a>)</span>. In this article, the researchers examine several articles involving MIMIC and try to replicate their results. In our study, we choose one of the analyzed articles.
-The chosen study <span class="citation">(<a href="#ref-6-2-CALVERT" role="doc-biblioref">Calvert et al. 2016</a>)</span> concerns predicting death probability during ICU stays. More detailed explanations about feature generation and record selection can be found in the mentioned article.</p>
-<p>To perform our analysis we create extreme gradient boosting (farther referred to as XGB) models from package <span class="citation">(<a href="#ref-5-3-xgboost" role="doc-biblioref">Wright and Ziegler 2016</a>)</span>. We decide to use XGB because of its relative sensitivity to hyperparameters. Models are trained using random search with 1000 iterations and 3 folds. Data were split randomly to each fold. Hyperparameter space used in training can be found <span class="citation">(<a href="#ref-6-3-tunability" role="doc-biblioref">Probst et al. 2019</a>)</span>. This article contains recommended parameter spaces for this type of research. In the evaluation and selection of models, we use mean accuracy across folds and decide to choose a subset of models over a certain threshold. To examine how selected models work, we use feature importance plots with drop-out loss as a metric from package <span class="citation">(<a href="#ref-dalex" role="doc-biblioref">Baniecki et al. 2020a</a>)</span> and partial dependency profiles (farther referred as PDP) also from the same package.</p>
+<p>In our experiment, we want to use real data and use models in a similar way they may be used in commercial applications. Because of these two factors, we decide to use <span class="citation">(<a href="#ref-6-0-mimic" role="doc-biblioref">A. E. Johnson et al. 2016</a>)</span>. This base contains a very large quantity of real medical data and it’s frequently used in machine learning oriented and other research. In our article, we use a subset of transformed features from this database directly correlated to patient health.</p>
+<p>To create the Rashomon set we need to specify the exact task we want to test. To do this we examine already created articles about usage of this data in machine learning. We encountered many problems with reproducibility such as no longer supported or outdated code or badly optimized functions. Finally, we decide to use previous research <span class="citation">(<a href="#ref-6-0-johnson17reproducibility" role="doc-biblioref">A. E. W. Johnson et al. 2017</a>)</span> about reproducibility of MIMIC studies. In this article, the researchers examine several articles involving MIMIC and try to replicate their results. In our study, we choose one of the analyzed articles.
+The <span class="citation">(<a href="#ref-6-2-CALVERT" role="doc-biblioref">Calvert et al. 2016</a>)</span> concerns predicting death probability during ICU stays. More detailed explanations about feature generation and record selection can be found in the mentioned article.</p>
+<p>To perform our analysis we create extreme gradient boosting (farther referred to as XGB) models <span class="citation">(<a href="#ref-5-3-xgboost" role="doc-biblioref">Wright and Ziegler 2016</a>)</span>. We decide to use XGB because of its relative sensitivity to hyperparameters. Models are trained using random search with 1000 iterations and 3 folds. Data were split randomly to each fold. Hyperparameter space used in training can be found <span class="citation">(<a href="#ref-6-3-tunability" role="doc-biblioref">Probst et al. 2019</a>)</span>. This article contains recommended parameter spaces for this type of research. In the evaluation and selection of models, we use mean accuracy across folds and decide to choose a subset of models over a certain threshold. To examine how selected models work, we use feature importance plots with drop-out loss as a metric from <span class="citation">(<a href="#ref-dalex" role="doc-biblioref">Baniecki et al. 2020a</a>)</span> and partial dependency profiles (farther referred as PDP) also from the same package.</p>
 </div>
 <div id="results-10" class="section level3" number="6.2.5">
 <h3><span class="header-section-number">6.2.5</span> Results</h3>
-<p>Firstly, we take a look at the generated feature importance plots. The most notable thing about them is that they do not differ a lot from one another. The three most important features are the same for almost every model although with different rankings. These features include age and two measures referring to Glasgow Coma Scale. The rankings of the other features vary across all models, but their importance also diminishes rapidly. And that brings another issue – even the most important features have very low drop-out loss. Overall, it seems that most of the models have a lot of similarly important features rather than only a few of significantly increased importance.</p>
-<div class="figure" style="text-align: center"><span id="fig:feature-importance"></span>
-<img src="images/6-2-feature-importance.png" alt="Top 10 features ranked by importance for various models."  />
-<p class="caption">
-Figure 6.1: Top 10 features ranked by importance for various models.
-</p>
+<p>Firstly, we take a look at the generated feature importance plots in <a href="analysis-of-models-predicting-death-probability-during-icu-stays.html#fig:1">Figure 1</a>. The most notable thing about them is that they do not differ a lot from one another. The three most important features are the same for almost every model although with different rankings. These features include age and two measures referring to Glasgow Coma Scale. The rankings of the other features vary across all models, but their importance also diminishes rapidly. And that brings another issue – even the most important features have very low drop-out loss. Overall, it seems that most of the models have a lot of similarly important features rather than only a few of significantly increased importance.</p>
+<div id="fig:1">
+<div class="figure">
+<img src="images/6-2-feature-importance.png" alt="" />
+<p class="caption">Top 10 features ranked by importance for various models.</p>
 </div>
-<p>In the second part of our analysis, we focus on the created PDP plots. The curves of various models from the Rashomon set appear quite similar to one another. There are some slight differences, but not as many nor as big as we expected. Instead, we come to another conclusion - from these plots one can learn about the features themselves. The most obvious are the trends for data like age, oxygen saturation level, white blood count or Glasgow Coma Scale values. It is clearly visible how these variables relate approximately linearly to the death prediction. Another and perhaps more interesting conclusion is to be drawn from the sodium level plot. Thanks to the big, sudden shift of all the models’ curves it is possible to find out the values of normal sodium levels at 135-145 units <span class="citation">(<a href="#ref-6-2-Shea764" role="doc-biblioref">Shea et al. 2008</a>)</span>. It is surprising to be able to find these levels so accurately relying only on the data, without any kind of professional knowledge.</p>
-<div class="figure" style="text-align: center"><span id="fig:pdp-trends"></span>
-<img src="images/6-2-pdp-trends.png" alt="Visible trends relating to death prediction in selected features."  />
-<p class="caption">
-Figure 6.2: Visible trends relating to death prediction in selected features.
-</p>
 </div>
-<div class="figure" style="text-align: center"><span id="fig:pdp-sodium"></span>
-<img src="images/6-2-pdp-sodium.png" alt="Clearly visible sodium levels with lowest predictions are actualy normal blood sodium levels."  />
-<p class="caption">
-Figure 6.3: Clearly visible sodium levels with lowest predictions are actualy normal blood sodium levels.
-</p>
+<p>In the second part of our analysis, we focus on the created PDP plots. The curves of various models from the Rashomon set appear quite similar to one another. There are some slight differences, but not as many nor as big as we expected. Instead, we come to another conclusion - from these plots one can learn about the features themselves. The most obvious are the trends for data like age, oxygen saturation level, white blood count or Glasgow Coma Scale values. It is clearly visible in <a href="analysis-of-models-predicting-death-probability-during-icu-stays.html#fig:2">Figure 2</a> how these variables relate approximately linearly to the death prediction. Another and perhaps more interesting conclusion is to be drawn from the sodium level plot in <a href="analysis-of-models-predicting-death-probability-during-icu-stays.html#fig:3">Figure 3</a>. Thanks to the big, sudden shift of all the models’ curves it is possible to find out the values of normal sodium levels at 135-145 units <span class="citation">(<a href="#ref-6-2-Shea764" role="doc-biblioref">Shea et al. 2008</a>)</span>. It is surprising to be able to find these levels so accurately relying only on the data, without any kind of professional knowledge.</p>
+<div id="fig:2">
+<div class="figure">
+<img src="images/6-2-pdp-trends.png" alt="" />
+<p class="caption">Visible trends relating to death prediction in selected features.</p>
+</div>
+</div>
+<div id="fig:3">
+<div class="figure">
+<img src="images/6-2-pdp-sodium.png" alt="" />
+<p class="caption">Clearly visible sodium levels with lowest predictions are actualy normal blood sodium levels.</p>
+</div>
 </div>
 </div>
 <div id="summary-7" class="section level3" number="6.2.6">

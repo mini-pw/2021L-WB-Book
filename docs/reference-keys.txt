@@ -225,9 +225,6 @@ fig:fig3
 fig:fig4
 fig:fig5
 fig:fig6
-fig:feature-importance
-fig:pdp-trends
-fig:pdp-sodium
 tab:unnamed-chunk-18
 tab:unnamed-chunk-19
 tab:unnamed-chunk-20

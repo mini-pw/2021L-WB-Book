@@ -24,7 +24,7 @@
 <meta name="author" content="Faculty of Mathematics and Information Science, Warsaw University of Technology" />
 
 
-<meta name="date" content="2021-06-12" />
+<meta name="date" content="2021-06-13" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -433,7 +433,7 @@ div.csl-indent {
 <p>After performing steps listed above we obtained the following results.</p>
 <div id="hyperparameters-1" class="section level4" number="6.3.4.1">
 <h4><span class="header-section-number">6.3.4.1</span> Hyperparameters</h4>
-<p>After executing PCA and KMeans clustering that were mentioned before, our Rashomon set looked as follows in <a href="rashomon-ml-with-addition-of-dimensional-reduction.html#fig:1">Figure 6.1</a>:</p>
+<p>After executing PCA and KMeans clustering that were mentioned before, our Rashomon set looked as follows in <a href="analysis-of-models-predicting-death-probability-during-icu-stays.html#fig:1">Figure 6.1</a>:</p>
 <div id="fig:1">
 <div class="figure">
 <img src="images/6-3-pca.png" alt="" />
@@ -455,7 +455,7 @@ div.csl-indent {
 </div>
 <p>Basing on the mean scores (<a href="rashomon-ml-with-addition-of-dimensional-reduction.html#tab:2">Table 6.2</a>) of three metrics that we used (<code>roc_auc</code>, <code>f1</code>, <code>accuracy</code>), we can see that on average the best models are in cluster 3 and then respectively 2, 4, 1.</p>
 <p>When we look closely at <a href="rashomon-ml-with-addition-of-dimensional-reduction.html#tab:1">Table 6.1</a> with hyperparameters we can notice which of them are responsible for that difference. The biggest difference appears to be the value of <code>alpha</code>. We can see that cluster that achieved best results have value of that hyperparameters equal around 2.7 while the rest of the clusters have this value either too low or too high.</p>
-Then we decided to check the impact of hyperparameters (<code>alpha</code>, <code>colsample_bylevel</code>, <code>eta</code>) on different metrics and we also added the best performing models from each cluster (in terms of <code>roc_auc</code> score) to see if there is any specific value of some hyperparameter that boost performance of our models. The results are presented in <a href="rashomon-ml-with-addition-of-dimensional-reduction.html#fig:2">Figure 6.2</a>.
+Then we decided to check the impact of hyperparameters (<code>alpha</code>, <code>colsample_bylevel</code>, <code>eta</code>) on different metrics and we also added the best performing models from each cluster (in terms of <code>roc_auc</code> score) to see if there is any specific value of some hyperparameter that boost performance of our models. The results are presented in <a href="analysis-of-models-predicting-death-probability-during-icu-stays.html#fig:2">Figure 6.2</a>.
 <div id="fig:2">
 <p><img src="images/6-3-alpha.png" />
 <img src="images/6-3-colsample_bylevel.png" />
@@ -465,7 +465,7 @@ Then we decided to check the impact of hyperparameters (<code>alpha</code>, <cod
 </div>
 <div id="variable-importance-1" class="section level4" number="6.3.4.2">
 <h4><span class="header-section-number">6.3.4.2</span> Variable Importance</h4>
-<p>To look deeper in our models’ behavior, we calculated variable importance for the best model in each cluster. In the <a href="rashomon-ml-with-addition-of-dimensional-reduction.html#fig:3">Figure 6.3</a> the best performing model according to <code>roc_auc</code> score is XGB 1. Unfortunately, since there were a lot of variables in our training set, we cannot observe that some variables were key factors in models’ predictions. Moreover, the differences between these 4 models are not very significant.</p>
+<p>To look deeper in our models’ behavior, we calculated variable importance for the best model in each cluster. In the <a href="analysis-of-models-predicting-death-probability-during-icu-stays.html#fig:3">Figure 6.3</a> the best performing model according to <code>roc_auc</code> score is XGB 1. Unfortunately, since there were a lot of variables in our training set, we cannot observe that some variables were key factors in models’ predictions. Moreover, the differences between these 4 models are not very significant.</p>
 <div id="fig:3">
 <div class="figure">
 <img src="images/6-3-vi.png" alt="" />

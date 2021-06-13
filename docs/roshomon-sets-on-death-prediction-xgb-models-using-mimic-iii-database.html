@@ -24,7 +24,7 @@
 <meta name="author" content="Faculty of Mathematics and Information Science, Warsaw University of Technology" />
 
 
-<meta name="date" content="2021-06-12" />
+<meta name="date" content="2021-06-13" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -473,7 +473,7 @@ With the random search use, we obtained 100 models, for which the learning proce
 <p>For the rest of experiments we decided to choose 20 best models, where difference of AUC scores between the first and the twentieth was equal to 0.012 and the best score achieved was 0.906.</p>
 <div id="predictions-resemblance-and-grounds-of-the-splits-performed-similarity-context-." class="section level4" number="6.4.4.1">
 <h4><span class="header-section-number">6.4.4.1</span> Predictions resemblance and grounds of the splits performed similarity context .</h4>
-<p>For each model we analysed the features importances and chose 5 most critical variables, which were assigned a score from 5 (most important variable) to 1 (the fifth most important variable). All remaining features were given a score of 0. The scores achieved by features which were included in at least one model’s top five most important variables are presented on <a href="rashomon-ml-with-addition-of-dimensional-reduction.html#fig:1">Figure 1</a>:</p>
+<p>For each model we analysed the features importances and chose 5 most critical variables, which were assigned a score from 5 (most important variable) to 1 (the fifth most important variable). All remaining features were given a score of 0. The scores achieved by features which were included in at least one model’s top five most important variables are presented on <a href="analysis-of-models-predicting-death-probability-during-icu-stays.html#fig:1">Figure 1</a>:</p>
 <div id="fig:1">
 <div class="figure">
 <img src="images/6-4-boxplot.png" alt="" />
@@ -481,7 +481,7 @@ With the random search use, we obtained 100 models, for which the learning proce
 </div>
 <p>The feature importances of the models, as seen on the plot, were quite similar. Not only only eleven variables achieved any non-zero score, but also three of them were included in every model’s top five most important features.<br />
 Quite interestingly those three features all happen to be related to Glasgow Scale which is a clinical scale used to reliably measure a person’s level of consciousness. The variable <em>gcseyes_last</em> describes the dynamic of the patient’s eyes opening, <em>gcsmotor_last</em> - the dynamic of the patient’s motoric movement and <em>gcsverbal_last</em> - the person’s verbal dynamic. For all these characteristics, the higher the value, the better the patient’s condition.<br />
-Figures <a href="rashomon-ml-with-addition-of-dimensional-reduction.html#fig:2">Figure 2</a> to <a href="rashomon-ml-with-addition-of-dimensional-reduction.html#fig:4">Figure 4</a> present the PDP charts for these three variables for each of the twenty models alongside their histograms. On each chart, almost all of the lines presented seem to be pararel, which means that the models treat the variables in a similar way.</p>
+Figures <a href="analysis-of-models-predicting-death-probability-during-icu-stays.html#fig:2">Figure 2</a> to <a href="rashomon-ml-with-addition-of-dimensional-reduction.html#fig:4">Figure 4</a> present the PDP charts for these three variables for each of the twenty models alongside their histograms. On each chart, almost all of the lines presented seem to be pararel, which means that the models treat the variables in a similar way.</p>
 <div id="fig:2">
 <div class="figure">
 <img src="images/6-4-pdp-eyes.png" alt="" />
