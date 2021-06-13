@@ -611,7 +611,7 @@ results-11
 hyperparameters-1
 variable-importance-1
 summary-and-conclusions-6
-roshomon-sets-on-death-prediction-xgb-models-using-mimic-iii-database
+rashomon-sets-on-death-prediction-xgb-models-using-mimic-iii-database
 abstract-23
 related-works-and-introduction
 methodology-10
@@ -619,7 +619,7 @@ experiment-settings
 analysis-workflow
 results-12
 predictions-resemblance-and-grounds-of-the-splits-performed-similarity-context-.
-the-study-on-models-parameter-grids-similarity-degree-in-groups-built-with-respect-to-the-f1-measure.
+the-study-on-models-parameter-grids-similarity.
 conclusions-3
 rashomon-sets-of-in-hospital-mortality-prediction-random-forest-models
 abstract-24
