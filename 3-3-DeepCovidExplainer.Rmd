@@ -122,11 +122,11 @@ Our preprocessing consisted of:
  * histogram stretching (contrast enhancement),
  * reducing noise with anisotropic diffusion,
  * converting from RGB to greyscale format for better performance,
- * creation of a mask using the threshold function from the OpenCV library (detection of the brightest spots in the photo),
- * modifying (thickening) the mask using the dilate function from OpenCV (in order to be able to detect thin lines),
- * removing annotations from the image using the inpaint function from OpenCV and using the already created mask.
+ * creation of a text-detecting mask using the threshold function from the OpenCV library (detection of the brightest spots in the photo),
+ * modifying (thickening) the mask using the dilate function from OpenCV (for greater effectiveness),
+ * removing all text from the image using the mask created in the earlier steps and inpaint function from OpenCV.
 
-We have also dropped the part of the authors' code where they introduce the division between the right and left side of the image, as they did not use this later in the code and it does not seem necessary.
+We have also decided to drop the part of the authors' code where they introduce the division between the right and left side of the image, as they did not use this later in the code and it does not seem necessary.
 
 ```{r BeforeAfter, out.height="300", fig.align="center", echo=FALSE, fig.cap='Before and after preprocessing'}
 knitr::include_graphics('images/3-3-preprocessing.png')
