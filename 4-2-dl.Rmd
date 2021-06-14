@@ -101,7 +101,7 @@ And our visualization from the data we retrieved:
 ![Results ROC](images/4-2-ROC-results.png)  
 In the case of acquiring the AUC data, we were almost fully successful in reproducing the article's data. Our results are slightly worse than the article's, nevertheless, the overall score is shown in the parentheses mark almost full success if comes to the score. Even the largest error is lesser than 2% of the relative value. Having said that, we are sure to confirm the results in this case. The average AUC for the original case was 0.995, and in our 0.990, hence the relative error is around 0.5%.  
 **Precision-recall curve**  
-As in the previous example, first, we will supply you with the original graph: 
+As in the previous example, first, we will supply you with the original graph:  
 ![Original Precission-Recall](images/4-2-precission-recall-original.png)  
 And now with our results:  
 ![Results Precission-Recall](images/4-2-precission-recall-results.png)  
