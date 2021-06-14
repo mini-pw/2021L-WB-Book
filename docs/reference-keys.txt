@@ -136,9 +136,11 @@ fig:2-3-ceteris1
 fig:2-3-ceteris2
 fig:2-3-break1
 fig:2-3-break2
+fig:2-5-ColumnDescription
 fig:2-5-HeatmapOfMedianHouseValue
 fig:2-5-OceanProximityOnMap
 fig:2-5-local-map
+fig:2-5-Housing-1-and-2000
 fig:2-5-BreakDownProfile
 fig:2-5-lime
 fig:2-5-single-ceteris
@@ -473,7 +475,7 @@ generative-adversarial-network
 tensorboard
 xai
 model-ensemble
-mulitmodal-input
+multimodal-input
 summary-4
 deep-learning-2
 what-makes-an-article-reproducible-comparison-of-the-fer-paper-and-axondeepseg
