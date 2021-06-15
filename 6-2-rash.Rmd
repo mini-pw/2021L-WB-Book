@@ -21,7 +21,7 @@ In this article, we analyse PD profiles used on models that predict death in the
 
 ### Literature review
 
-The Rashomon effect was introduced to predictive modelling in [@6-0-breiman2001statistical]. It explained the concept of the Rashomon effect, gave examples of where it can be used and the benefits that it gives.[@5-2-variableimportance] gave more instances of Rashomon usage. The paper describes ways to use the Rashomon effect to analyse variable importance. 
+The Rashomon effect was introduced to predictive modelling in [@6-0-breiman2001statistical]. It explained the concept of the Rashomon effect, gave examples of where it can be used and the benefits that it gives. @5-2-variableimportance gave more instances of Rashomon usage. The paper describes ways to use the Rashomon effect to analyse variable importance. 
 
 The development of mortality prediction models is popular in machine learning. Every created model is different when it comes to its performance and methodology. To organize achievements [@6-2-CALVERT] compared different models that predict mortality. They compare 38 experiments using 28 published studies and attempt to reproduce their code. The code they made is available on their Github page. 
 
@@ -30,7 +30,7 @@ The development of mortality prediction models is popular in machine learning. E
 In our experiment, we want to use real data and use models in a similar way they may be used in commercial applications. Because of these two factors, we decide to use [@6-0-mimic]. This base contains a very large quantity of real medical data and it's frequently used in machine learning oriented and other research. In our article, we use a subset of transformed features from this database directly correlated to patient health.
 
 To create the Rashomon set we need to specify the exact task we want to test. To do this we examine already created articles about usage of this data in machine learning. We encountered many problems with reproducibility such as no longer supported or outdated code or badly optimized functions. Finally, we decide to use previous research   about reproducibility of MIMIC studies [@6-0-johnson17reproducibility]. In this article, the researchers examine several articles involving MIMIC and try to replicate their results. In our study, we choose one of the analyzed articles. 
-[@6-2-CALVERT] concerns predicting death probability during ICU stays. More detailed explanations about feature generation and record selection can be found in the mentioned article. 
+@6-2-CALVERT concerns predicting death probability during ICU stays. More detailed explanations about feature generation and record selection can be found in the mentioned article. 
 
 To perform our analysis we create extreme gradient boosting (farther referred to as XGB) models [@5-3-xgboost]. We decide to use XGB because of its relative sensitivity to hyperparameters. Models are trained using random search with 1000 iterations and 3 folds. Data were split randomly to each fold. Hyperparameter space used in training can be found in [@6-3-tunability]. This article contains recommended parameter spaces for this type of research. In the evaluation and selection of models, we use mean accuracy across folds and decide to choose a subset of models over a certain threshold. To examine how selected models work, we use feature importance plots with drop-out loss as a metric from [@dalex] and partial dependency profiles (farther referred as PDP) also from the same package. 
 
