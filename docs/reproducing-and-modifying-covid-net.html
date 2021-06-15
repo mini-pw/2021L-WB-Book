@@ -24,7 +24,7 @@
 <meta name="author" content="Faculty of Mathematics and Information Science, Warsaw University of Technology" />
 
 
-<meta name="date" content="2021-06-13" />
+<meta name="date" content="2021-06-15" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -443,9 +443,9 @@ Moreover, each one is in JPG format and on a grayscale. Unfortunately every phot
 <h3><span class="header-section-number">3.5.5</span> Reproducibility</h3>
 <p>Having composed a proper dataset we could try to reproduce results presented in the article. However, many changes in the training script had to be made. First of all, labels provided had inconsistent format. Before proper corrections this resulted in error while acquiring proper label for an image. There was no information about requirements and which versions of which packages are needed so we had to figure them out experimentally. In order to use TensorFlow v2, we had to provide appropriate compatibility within the training script. Those changes were sufficient to obtain solid results within 10 epochs.</p>
 <div class="figure" style="text-align: center"><span id="fig:reproduction"></span>
-<img src="images/3-5-reproduction.png" alt="Training results"  />
+<img src="images/3-5-reproduction.png" alt="Results on test set after 10 epochs"  />
 <p class="caption">
-Figure 3.29: Training results
+Figure 3.29: Results on test set after 10 epochs
 </p>
 </div>
 <p>This is not the only attempt to acquire COVID-Net results. The way described above wouldn’t allow any major architecture modifications, therefore we were forced to created our own training and evaluation scripts using generators to be able to train Keras implementation of this network. Despite many tries to improve the training, the accuracy of this model was around <span class="math inline">\(33\%\)</span>, it remained a random classifier.</p>
@@ -460,9 +460,9 @@ Figure 3.29: Training results
 <p>First change was motivated by high probability of the model being heavily underfitted. Having considered this, it seems very reasonable to reduce the number of parameters.</p>
 <p>We have decided to get rid off the very last group of PEPX modules.</p>
 <div class="figure" style="text-align: center"><span id="fig:architecure"></span>
-<img src="images/3-5-architecture-modification.png" alt="Modified architecture"  />
+<img src="images/3-5-architecture-modification.png" alt="Structure of modified architecture"  />
 <p class="caption">
-Figure 3.30: Modified architecture
+Figure 3.30: Structure of modified architecture
 </p>
 </div>
 <p>Removal of the 4th group of PEPX modules consisting of relatively large layers allowed for a noticeable reduction of the number of trainable parameters from <span class="math inline">\(183M\)</span> to <span class="math inline">\(133M\)</span>. However, this modification wasn’t sufficient to eliminate randomness of the model. Accuracy after 30 epochs still tends to vary around <span class="math inline">\(33\%\)</span> with no much of a promise for quick improvement. We though compare this performance to the original on the training set. Accuracy there achieved <span class="math inline">\(70\%\)</span> and is comparable to previous.</p>
@@ -475,9 +475,9 @@ Figure 3.30: Modified architecture
 <h5><span class="header-section-number">3.5.6.2.1</span> L1 and L2 regularization</h5>
 <p>L1 regularization adds the penalty term in cost function, which is calculated by adding the absolute value of weight parameters. L2 regularization is in fact adding L2 norm to the cost function - adding squared value of weights. We tried both having set the alpha parameter to <span class="math inline">\(10^{(-3)}\)</span>. However, our model after 20 epochs still needs a lot of training and is nowhere near overfitting. We expected that it might worsen the results, but it went even further and a quite good classifier became a random one.</p>
 <div class="figure" style="text-align: center"><span id="fig:norm"></span>
-<img src="images/3-5-l2-norm.png" alt="L2 regularization results"  />
+<img src="images/3-5-l2-norm.png" alt="Results after applying L2 regularization"  />
 <p class="caption">
-Figure 3.31: L2 regularization results
+Figure 3.31: Results after applying L2 regularization
 </p>
 </div>
 </div>
@@ -493,9 +493,9 @@ Figure 3.31: L2 regularization results
 <h4><span class="header-section-number">3.5.6.3</span> Generative Adversarial Network</h4>
 <p>Generative Adversarial Network is a pair of two specific neural networks - generator and discriminator, which train each other by generating by the generator data similar to the original training set and assessing the quality of the generated sample by the discriminator.</p>
 <div class="figure" style="text-align: center"><span id="fig:discriminator"></span>
-<img src="images/3-5-gan.png" alt="Disicriminator architecture"  />
+<img src="images/3-5-gan.png" alt="Architecture of GAN"  />
 <p class="caption">
-Figure 3.32: Disicriminator architecture
+Figure 3.32: Architecture of GAN
 </p>
 </div>
 <p>In paper titled ‘Detection of Coronavirus (COVID-19) Associated Pneumonia based on Generative Adversarial Networks and a Fine-Tuned Deep Transfer Learning Model using Chest X-ray Dataset’ the authors provide an analysis of how the use of GAN in various neural networks in issues related to the processing of x-ray images of the lungs (including the diagnosis of COVID-19) increased the efficiency of classification.</p>
@@ -518,30 +518,30 @@ Figure 3.34: Generator architecture
 <h4><span class="header-section-number">3.5.6.4</span> TensorBoard</h4>
 <p>TensorBoard was used to visualize some statistics and the dataset. Starting with the first one, we showed on the plots the increase in the accuracy of the model on the training set after 20 epochs and the decrease of the loss.</p>
 <div class="figure" style="text-align: center"><span id="fig:unnamed-chunk-13"></span>
-<img src="images/3-5-plot.jpg" alt="TensorBoard Plot"  />
+<img src="images/3-5-plot.jpg" alt="TensorBoard - accuracy and loss function"  />
 <p class="caption">
-Figure 3.35: TensorBoard Plot
+Figure 3.35: TensorBoard - accuracy and loss function
 </p>
 </div>
 <p>This tool has given us a handful of opportunities to test some behavior of our model. We could also smoothen the curve if we wanted to see better results. Furthermore, we had an access to the distribution of the values of the weight matrixes (kernel) and the bias after each iteration. Here is an example for the PEPX layer.</p>
 <div class="figure" style="text-align: center"><span id="fig:unnamed-chunk-14"></span>
-<img src="images/3-5-distribution.jpg" alt="TensorBoard Plot"  />
+<img src="images/3-5-distribution.jpg" alt="TensorBoard - weight distribution for each layer"  />
 <p class="caption">
-Figure 3.36: TensorBoard Plot
+Figure 3.36: TensorBoard - weight distribution for each layer
 </p>
 </div>
 <p>Also to show the complexity of the model we could display the graph of it. The TensorBoard gave us such a possibility:</p>
 <div class="figure" style="text-align: center"><span id="fig:unnamed-chunk-15"></span>
-<img src="images/3-5-model.jpg" alt="TensorBoard Plot"  />
+<img src="images/3-5-model.jpg" alt="TensorBoard - graph representing the architecture"  />
 <p class="caption">
-Figure 3.37: TensorBoard Plot
+Figure 3.37: TensorBoard - graph representing the architecture
 </p>
 </div>
 <p>Moving on to an overview of the dataset. To our surprise, TensorBoard performed very well. We were able to use the PCA and T-SNE algorithm to see the dataset in the 3D world. It also gave us some information about the similarities of the individual samples, as both are clustering methods. Here we display the screen of that experiment:</p>
 <div class="figure" style="text-align: center"><span id="fig:unnamed-chunk-16"></span>
-<img src="images/3-5-dataset.jpg" alt="TensorBoard Plot"  />
+<img src="images/3-5-dataset.jpg" alt="TensorBoard - dataset in 3D space after PCA"  />
 <p class="caption">
-Figure 3.38: TensorBoard Plot
+Figure 3.38: TensorBoard - dataset in 3D space after PCA
 </p>
 </div>
 </div>
@@ -549,9 +549,9 @@ Figure 3.38: TensorBoard Plot
 <h4><span class="header-section-number">3.5.6.5</span> XAI</h4>
 <p>Convolutional neural network presented by COVID-Net team is a type of “black box” model, however, it is possible to investigate how the classifier itself works. In order to get better understanding of results achieved, we have implemented one of explainable artificial intelligence methods. Framework iNNvestigate offers many analyzers with LPR being one of them. LRP (Layer-Wise Relevance Propagation) attributes recursively to each neuron’s input relevance proportional to its contribution of the neuron output. Thanks to it, humans can monitor areas of interest of the model. Output achieved with LPR can be another evidence of in fact poor performance of the model and its complete randomness.</p>
 <div class="figure" style="text-align: center"><span id="fig:xai"></span>
-<img src="images/3-5-xai-pluca.png" alt="Chest X-Ray input"  />
+<img src="images/3-5-xai-pluca.png" alt="Chest X-Ray input image"  />
 <p class="caption">
-Figure 3.39: Chest X-Ray input
+Figure 3.39: Chest X-Ray input image
 </p>
 </div>
 <div class="figure" style="text-align: center"><span id="fig:xai2"></span>
@@ -565,29 +565,29 @@ Figure 3.40: Output of LPR model
 <h4><span class="header-section-number">3.5.6.6</span> Model Ensemble</h4>
 <p>It is common to observe an ensemble of models to perform significantly better than the single model on the given task, especially in the image recognition field. In this modification, we devised a simple stacking ensemble.</p>
 <div class="figure" style="text-align: center"><span id="fig:generator2"></span>
-<img src="images/3-5-ens.png" alt="Generator architecture"  />
+<img src="images/3-5-ens.png" alt="Scheme of model ensemble"  />
 <p class="caption">
-Figure 3.41: Generator architecture
+Figure 3.41: Scheme of model ensemble
 </p>
 </div>
 <p>It was composed of two models - COVID-Net and ConvPool-CNN-C and trained to combine the predictions of both of the models, which in this case was simply averaging outputs, which in problem of classification on images is acceptable approach.</p>
 <p>However, we cannot determine how effective is this approach in terms of enhancing initial COVID-Net performance.</p>
 <p>What we can observe and what can provide even remote insight in hypothetical performance of proposed ensemble is “side-by-side” performance of both models individually after one epoch on subset of data with over 1500 samples. Unfortunately, both models of an ensemble trained during this experiment simply classified all samples into one category, which isn’t a base for any further conclusions.</p>
 </div>
-<div id="mulitmodal-input" class="section level4" number="3.5.6.7">
-<h4><span class="header-section-number">3.5.6.7</span> Mulitmodal input</h4>
+<div id="multimodal-input" class="section level4" number="3.5.6.7">
+<h4><span class="header-section-number">3.5.6.7</span> Multimodal input</h4>
 <p>We decided to modify COVID-Net architecture so it would accept multiple different types of input training data, particularly numerical and encoded categorical data apart from images.</p>
 <div class="figure" style="text-align: center"><span id="fig:generator3"></span>
-<img src="images/3-5-2inputs.png" alt="Generator architecture"  />
+<img src="images/3-5-2inputs.png" alt="Architecture of COVID-Net with multimodal input"  />
 <p class="caption">
-Figure 3.42: Generator architecture
+Figure 3.42: Architecture of COVID-Net with multimodal input
 </p>
 </div>
 <p>We decided that additional data will be represented as a vector and processed by new branch added to COVID-Net consisting of two Dense layers, implemented in Keras.</p>
 <div class="figure" style="text-align: center"><span id="fig:generator4"></span>
-<img src="images/3-5-branch.png" alt="Generator architecture"  />
+<img src="images/3-5-branch.png" alt="Implementation of added branch"  />
 <p class="caption">
-Figure 3.43: Generator architecture
+Figure 3.43: Implementation of added branch
 </p>
 </div>
 <p>The most prominent problem with this modification are imperfections of dataset. Metadata regarding x-ray images utilized during training are scarce at best, and above all incomplete beyond imputation.</p>

@@ -24,7 +24,7 @@
 <meta name="author" content="Faculty of Mathematics and Information Science, Warsaw University of Technology" />
 
 
-<meta name="date" content="2021-06-13" />
+<meta name="date" content="2021-06-15" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -412,80 +412,31 @@ div.csl-indent {
 <h3><span class="header-section-number">2.5.2</span> Introduction</h3>
 <p>Being able to predict the potential price of a house is crucial for the real estate market. Therefore, over the years, many papers have been focused on improving prediction methods <span class="citation">(<a href="#ref-2-5-housingprediction-ml2" role="doc-biblioref">Ge et al. 2021</a>; <a href="#ref-2-5-housingprediction-ml1" role="doc-biblioref">Park and Bae 2015</a>)</span>. The main question regarding forecasts is what data influences the price. In addition to physical factors of the house, such as size, number of rooms, the condition of the building, the price is also influenced by the area in which the house is located. The neighborhood affects the price of the house and the house affects the value of the surrounding buildings. Thus, house price prediction models based on neighborhood data were created <span class="citation">(<a href="#ref-2-5-neighborhood3" role="doc-biblioref">Can 1990</a>; <a href="#ref-2-5-neighborhood2" role="doc-biblioref">Heyman and Sommervoll 2019</a>; <a href="#ref-2-5-neighborhood1" role="doc-biblioref">Law 2017</a>)</span>.</p>
 <p>With the development of artificial intelligence and machine learning, the use of this type of algorithm is gaining popularity in the field of forecasting house prices <span class="citation">(<a href="#ref-2-5-housingprediction-ml1" role="doc-biblioref">Park and Bae 2015</a>)</span>. In machine learning, we can distinguish two types of models: glass-box and black-box models. In the glass-box model human can follow the steps from inputs to outputs. Black-box models is also an important part of machine learning, however unlike glass-box models, they do not have a clear, human-readable way of determining predictions <span class="citation">(<a href="#ref-EMA" role="doc-biblioref">Przemyslaw Biecek and Burzykowski 2021a</a>)</span>. So why do we use them when we have glass-box models at our disposal? The complexity of black-box models is both an advantage and disadvantage at the same time. Due to it, we get better, more tailored predictions, but we also doom ourselves to the lack of precise information on how the given result was obtained.</p>
-<p>Using algorithms, we would like to know what influenced the prediction result and how. We are not inclined to trust such a difficult and complicated activity to algorithms whose decisions are unclear to human. Therefore, in this paper we use Explainable Artificial Intelligence (XAI) methods to analyze the output of the black-box model.</p>
+<p>Using algorithms, we would like to know what influenced the prediction result and how. We are not inclined to trust such a difficult and complicated activity to algorithms whose decisions are unclear to human. Therefore, in this paper we use Explainable Artificial Intelligence (XAI) methods <span class="citation">(<a href="#ref-2-5-XAI" role="doc-biblioref">Barredo Arrieta et al. 2020b</a>; <a href="#ref-2-5-xailandscape" role="doc-biblioref">Maksymiuk et al. 2020b</a>)</span> to analyze the output of the black-box model. XAI is a field of AI that aims to create more transparent and human understandable models while not losing the quality of explanations, and to create explanations for black-box models that enable people to understand and trust the prediction results.</p>
 <p><strong>Data</strong></p>
 <p>The data that was used was the <em>California Housing Data Set</em>.
-This data was initially featured in the following paper:<span class="citation">(<a href="#ref-2-5-pace1997sparse" role="doc-biblioref">Pace and Barry 1997</a>)</span>.The data pertains to the houses found in a given California district and some summary stats about them based on the 1990 census data. Data is cleaned, contains no empty information. Table 1 shows the explanation of each variable.</p>
-<table>
-<caption>Table 1: the meaning of the variables in the data set</caption>
-<colgroup>
-<col width="12%" />
-<col width="87%" />
-</colgroup>
-<thead>
-<tr class="header">
-<th>Column title</th>
-<th>Description</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td>longitude</td>
-<td>A measure of how far west a house is; a higher value is farther west</td>
-</tr>
-<tr class="even">
-<td>latitude</td>
-<td>A measure of how far north a house is; a higher value is farther north</td>
-</tr>
-<tr class="odd">
-<td>housingMedianAge</td>
-<td>Median age of a house within a block; a lower number is a newer building</td>
-</tr>
-<tr class="even">
-<td>totalRooms</td>
-<td>Total number of rooms within a block</td>
-</tr>
-<tr class="odd">
-<td>totalBedrooms</td>
-<td>Total number of bedrooms within a block</td>
-</tr>
-<tr class="even">
-<td>population</td>
-<td>Total number of people residing within a block</td>
-</tr>
-<tr class="odd">
-<td>households</td>
-<td>Total number of households, a group of people residing within a home unit, for a block</td>
-</tr>
-<tr class="even">
-<td>medianIncome</td>
-<td>Median income for households within a block of houses (measured in tens of thousands of US Dollars)</td>
-</tr>
-<tr class="odd">
-<td>medianHouseValue</td>
-<td>Median house value for households within a block (measured in US Dollars)</td>
-</tr>
-<tr class="even">
-<td>oceanProximity</td>
-<td>Location relative to the ocean described as however in the category: “NEAR BAY,” “&lt;1H OCEAN,” “INLAND,” “NEAR OCEAN,” “ISLAND”</td>
-</tr>
-</tbody>
-</table>
+This data was initially featured in the following paper:<span class="citation">(<a href="#ref-2-5-pace1997sparse" role="doc-biblioref">Pace and Barry 1997</a>)</span>.The data pertains to the houses found in a given California district and some summary stats about them based on the 1990 census data. Data is cleaned, contains no empty information. Table <a href="how-the-price-of-the-house-is-influenced-by-neighborhood-xai-methods-for-interpretation-the-black-box-model.html#fig:2-5-ColumnDescription">2.43</a> shows the explanation of each variable.</p>
+<div class="figure" style="text-align: center"><span id="fig:2-5-ColumnDescription"></span>
+<img src="images/2-5-ColumnDescription.png" alt="Meaning of the variables in the California Housing Data Set" width="1000" />
+<p class="caption">
+Figure 2.43: Meaning of the variables in the California Housing Data Set
+</p>
+</div>
 <div class="figure" style="text-align: center"><span id="fig:2-5-HeatmapOfMedianHouseValue"></span>
 <img src="images/2-5-HeatmapOfMedianHouseValue.png" alt="Map of property distribution within the state of California. The brightness of the points reflects the price." width="500" />
 <p class="caption">
-Figure 2.43: Map of property distribution within the state of California. The brightness of the points reflects the price.
+Figure 2.44: Map of property distribution within the state of California. The brightness of the points reflects the price.
 </p>
 </div>
-<p>The map <a href="how-the-price-of-the-house-is-influenced-by-neighborhood-xai-methods-for-interpretation-the-black-box-model.html#fig:2-5-HeatmapOfMedianHouseValue">2.43</a> shows a density of bright blue dots in two locations, these are expensive properties located within two urban centers, Los Angeles, San Francisco, and San Diego.
+<p>The map <a href="how-the-price-of-the-house-is-influenced-by-neighborhood-xai-methods-for-interpretation-the-black-box-model.html#fig:2-5-HeatmapOfMedianHouseValue">2.44</a> shows a density of bright blue dots in two locations, these are expensive properties located within two urban centers, Los Angeles, San Francisco, and San Diego.
 Also, more expensive properties are located along the Pacific coast.</p>
 <div class="figure" style="text-align: center"><span id="fig:2-5-OceanProximityOnMap"></span>
 <img src="images/2-5-OceanProximityOnMap.png" alt="Map of property distribution within the state of California. Colors show the value of the oceanProximity column." width="500" />
 <p class="caption">
-Figure 2.44: Map of property distribution within the state of California. Colors show the value of the oceanProximity column.
+Figure 2.45: Map of property distribution within the state of California. Colors show the value of the oceanProximity column.
 </p>
 </div>
-<p>Property map <a href="how-the-price-of-the-house-is-influenced-by-neighborhood-xai-methods-for-interpretation-the-black-box-model.html#fig:2-5-OceanProximityOnMap">2.44</a>, packing the <code>ocean_proximity</code> feature. Properties with the ‘NEAR BAY’ category colored blue, appear in only one grouping next to San Francisco, <code>NEAR BAY</code> means San Francisco Bay. Green category, <code>ISLAND</code> collects 10 properties located on one island near Los Angeles.</p>
+<p>Property map <a href="how-the-price-of-the-house-is-influenced-by-neighborhood-xai-methods-for-interpretation-the-black-box-model.html#fig:2-5-OceanProximityOnMap">2.45</a>, packing the <code>ocean_proximity</code> feature. Properties with the ‘NEAR BAY’ category colored blue, appear in only one grouping next to San Francisco, <code>NEAR BAY</code> means San Francisco Bay. Green category, <code>ISLAND</code> collects 10 properties located on one island near Los Angeles.</p>
 <p><strong>Machine learning model</strong></p>
 <p>The machine learning model explained is from <a href="https://www.kaggle.com/camnugent/introduction-to-machine-learning-in-r-tutorial" class="uri">https://www.kaggle.com/camnugent/introduction-to-machine-learning-in-r-tutorial</a>.
 A random forest model<span class="citation">(<a href="#ref-2-5-breiman1999random" role="doc-biblioref">Breiman 1999</a>)</span> from the randomForest <span class="citation">(<a href="#ref-2-5-randomForest-lib" role="doc-biblioref">Liaw and Wiener 2002</a>)</span> library with parameters <em>(ntree = 500, importance = TRUE)</em> was used to predict property values. This model does not require scaling of data or decoding of categorical data. This makes it easier to analyze the results.</p>
@@ -501,97 +452,105 @@ Another example is the article written by Robin A. Dubin <span class="citation">
 </div>
 <div id="local-explanations-6" class="section level3" number="2.5.4">
 <h3><span class="header-section-number">2.5.4</span> Local explanations</h3>
-<p>Local explanations tells us, how model behaves in the area near given observation. Hence, it can not be used to explain how model works for whole set. On the other hand, it is useful to find out what can be done to change model’s prediction for observations we already have in our data set.
-We used observation 1 and 2000, because they are far from each other in the set so that they have different value.The location of the selected property is shown on the map <a href="how-the-price-of-the-house-is-influenced-by-neighborhood-xai-methods-for-interpretation-the-black-box-model.html#fig:2-5-local-map">2.45</a></p>
+<p>Local explanations <span class="citation">(<a href="#ref-2-5-explanations" role="doc-biblioref"><strong>2-5-explanations?</strong></a>)</span> tells us, how model behaves in the area near given observation. Hence, it can not be used to explain how model works for whole set. It is useful to find out what can be done to change model’s prediction for observations we already have in our data set.
+We used observation 1 and 2000, because they are far from each other in the set so that they have different value.The location of the selected property is shown on the map <a href="how-the-price-of-the-house-is-influenced-by-neighborhood-xai-methods-for-interpretation-the-black-box-model.html#fig:2-5-local-map">2.46</a>, the precise data for these properties is shown in the table <a href="how-the-price-of-the-house-is-influenced-by-neighborhood-xai-methods-for-interpretation-the-black-box-model.html#fig:2-5-Housing-1-and-2000">2.47</a></p>
 <div class="figure" style="text-align: center"><span id="fig:2-5-local-map"></span>
 <img src="images/2-5-map.png" alt="Choosen observations presented on a map. Red point - observation 1, green point - observation 2000" width="1000" />
 <p class="caption">
-Figure 2.45: Choosen observations presented on a map. Red point - observation 1, green point - observation 2000
+Figure 2.46: Choosen observations presented on a map. Red point - observation 1, green point - observation 2000
+</p>
+</div>
+<div class="figure" style="text-align: center"><span id="fig:2-5-Housing-1-and-2000"></span>
+<img src="images/2-5-Housing-1-and-2000.png" alt="Precise data of two selected observations analyzed by local explanations, observations with numbers 1 and 2000" width="1000" />
+<p class="caption">
+Figure 2.47: Precise data of two selected observations analyzed by local explanations, observations with numbers 1 and 2000
 </p>
 </div>
 <p><strong>Break Down</strong></p>
 <p>Break down provides a way to show the local importance of variables and the effect of individual values on predictions<span class="citation">(<a href="#ref-2-5-iBreakDown" role="doc-biblioref">Gosiewska and Biecek 2019</a>)</span>.
 The basic idea is to calculate the contribution of variable in prediction of <span class="math inline">\(f(x)\)</span> as changes in the expected model response given other variables. This means that we start with the mean expected model response of the model, successively adding variables to the conditioning. Of course, the order in which the variables are arranged also influences the contribution values.</p>
 <div class="figure" style="text-align: center"><span id="fig:2-5-BreakDownProfile"></span>
-<img src="images/2-5-BreakDownProfile.png" alt="Break Down decomposition (L) observation 1, (R) observation 2000" width="100%" />
+<img src="images/2-5-BreakDownProfile.png" alt="Break Down decomposition for (L) observation 1, (R) observation 2000. Bars show the contributions of the variables. Green indicates positive impact on the house value, while red indicates negative impact. First bar starts at the value of the mean expected model response.The last, blue bar indicates the difference between this mean response and the model prediction for the choosen observation. " width="100%" />
 <p class="caption">
-Figure 2.46: Break Down decomposition (L) observation 1, (R) observation 2000
+Figure 2.48: Break Down decomposition for (L) observation 1, (R) observation 2000. Bars show the contributions of the variables. Green indicates positive impact on the house value, while red indicates negative impact. First bar starts at the value of the mean expected model response.The last, blue bar indicates the difference between this mean response and the model prediction for the choosen observation.
 </p>
 </div>
-<p>Figure <a href="how-the-price-of-the-house-is-influenced-by-neighborhood-xai-methods-for-interpretation-the-black-box-model.html#fig:2-5-BreakDownProfile">2.46</a> shows the result of using Break Down method from DALEX <span class="citation">(<a href="#ref-dalex" role="doc-biblioref">Baniecki et al. 2020a</a>)</span> package.
+<p>Figure <a href="how-the-price-of-the-house-is-influenced-by-neighborhood-xai-methods-for-interpretation-the-black-box-model.html#fig:2-5-BreakDownProfile">2.48</a> shows the result of using Break Down method from DALEX <span class="citation">(<a href="#ref-2-3-dalex" role="doc-biblioref">Przemyslaw Biecek 2018a</a>)</span> package.
 The variables are ranked in terms of the importance of their impact on the predictions. The most important characteristic for both properties is <code>median income</code>. Median income is indicative of neighborhood status. Residents who earn more are likely to purchase more expensive properties. For both observations the influences are strong but opposite, high earnings for the first observation at $83,000 per year have a positive influence. In contrast, for property number 2000, earnings around $15 thousand per year are the reason why the model lowers the predicted price.
-<code>Longitude</code> is the second significant feature. Average number of rooms and location relative to the ocean was also significant. Interestingly, in observation number 2000, the inland location raises the price. From the map <a href="how-the-price-of-the-house-is-influenced-by-neighborhood-xai-methods-for-interpretation-the-black-box-model.html#fig:2-5-HeatmapOfMedianHouseValue">2.43</a>, it appears that it is the homes farthest from the ocean that are the cheapest.</p>
+<code>Longitude</code> is the second significant feature. Average number of rooms and location relative to the ocean was also significant. Interestingly, in observation number 2000, the inland location raises the price. From the map <a href="how-the-price-of-the-house-is-influenced-by-neighborhood-xai-methods-for-interpretation-the-black-box-model.html#fig:2-5-HeatmapOfMedianHouseValue">2.44</a>, it appears that it is the homes farthest from the ocean that are the cheapest.</p>
 <p><strong>Lime</strong></p>
 <p>Local Interpretable Model-agnostic Explanations (LIME) was firstly proposed by Ribeiro, Singh, and Guestrin <span class="citation">(<a href="#ref-2-5-lime" role="doc-biblioref">Ribeiro et al. 2016b</a>)</span>.</p>
-<p>In LIME decomposition, our goal is to create an approximate glass-box model for a given observation. That model would be fully human-readable and can be easier analyzed. To do so, we create an artificial data set and teach the chosen glass-box model on it. The coefficients on the variables for the created model are the coefficients on the validity of the variables for our observation.</p>
+<p>In LIME decomposition, our goal is to create an approximate glass-box model for an area around given observation. That model would be fully human-readable and can be easier analyzed. To do so, we create an artificial data set and teach the chosen glass-box model on it. The coefficients on the variables for the created model are the coefficients on the validity of the variables for our observation.</p>
 <div class="figure" style="text-align: center"><span id="fig:2-5-lime"></span>
-<img src="images/2-5-lime.png" alt="Lime decomposition  (L) observation 1, (R) observation 2000" width="1000" />
+<img src="images/2-5-lime.png" alt="Lime decomposition for (L) observation 1, (R) observation 2000. The size of the bar indicates the magnitude of the the estimated coefficient. Features with blue bar have positive sign of the estimated coefficient and feature with red bar have negative sign of the estimated coefficient. " width="1000" />
 <p class="caption">
-Figure 2.47: Lime decomposition (L) observation 1, (R) observation 2000
+Figure 2.49: Lime decomposition for (L) observation 1, (R) observation 2000. The size of the bar indicates the magnitude of the the estimated coefficient. Features with blue bar have positive sign of the estimated coefficient and feature with red bar have negative sign of the estimated coefficient.
 </p>
 </div>
-<p>Figure above <a href="how-the-price-of-the-house-is-influenced-by-neighborhood-xai-methods-for-interpretation-the-black-box-model.html#fig:2-5-lime">2.47</a> shows the result of using LIME method <span class="citation">(<a href="#ref-lime" role="doc-biblioref"><strong>lime?</strong></a>)</span> from DALEX <span class="citation">(<a href="#ref-dalex" role="doc-biblioref">Baniecki et al. 2020a</a>)</span> package. Common for both observations is that the <code>median_income</code> variable has the largest effect on prediction. However, the impact in the case 1 is large positive but in the case 2000 it is large negative. It is caused by the value of the variable. It is worth noting that the variables longitude and latitude have opposite signs in both cases. This is because these variables are negatively correlated. The second most valuable variable is the map location variable.</p>
-<p>It follows that for the observations, the key variables are <code>median_income</code> and some kind of location. This is consistent with our expectation and intuition that the higher the earnings of residents, the richer and more valued the neighborhood. Consequently, the houses themselves are also priced higher. Additionally, plots show us that impact of <code>population</code>,<code>households</code> or <code>housing_median_age</code> is not significant.</p>
-<p>What is interesting, in the case 2000 above <a href="how-the-price-of-the-house-is-influenced-by-neighborhood-xai-methods-for-interpretation-the-black-box-model.html#fig:2-5-BreakDownProfile">2.46</a> BreakDown as opposed to LIME found the location <code>ocean_proximity = INLAND</code> to be positive.</p>
+<p>Figure above <a href="how-the-price-of-the-house-is-influenced-by-neighborhood-xai-methods-for-interpretation-the-black-box-model.html#fig:2-5-lime">2.49</a> shows the result of using LIME method <span class="citation">(<a href="#ref-2-5-lime" role="doc-biblioref">Ribeiro et al. 2016b</a>)</span> from DALEX <span class="citation">(<a href="#ref-dalex" role="doc-biblioref">Baniecki et al. 2020a</a>)</span> package. Common for both observations is that the <code>median_income</code> variable has the largest effect on prediction. However, the impact in the case 1 is large positive but in the case 2000 it is large negative. It is caused by the value of the variable. It is worth noting that the variables longitude and latitude have opposite signs in both cases. This is because these variables are negatively correlated. The second most valuable variable is the map location variable.</p>
+<p>It follows that for the observations, the key variables are <code>median_income</code> and some kind of location. This is consistent with our expectation and intuition that the higher the earnings of residents, the richer and more valued the neighborhood. Consequently, the houses themselves are also priced higher. Additionally, plots show us that impact of <code>population</code>or <code>households</code> is not significant.</p>
+<p>What is interesting, in the case 2000 above <a href="how-the-price-of-the-house-is-influenced-by-neighborhood-xai-methods-for-interpretation-the-black-box-model.html#fig:2-5-BreakDownProfile">2.48</a> BreakDown as opposed to LIME found the location <code>ocean_proximity = INLAND</code> to be positive.</p>
 <p><strong>Ceteris Paribus</strong></p>
 <p><em>Ceteris Paribus</em> is a phrase that comes from Latin. Word for word meaning is “other things equal,” but in XAI much more meaningful translation would be “other things held constant.” In fact, these few words describe this method deeply - we choose one variable from observation, change it’s value, while other variables held constant and calculate new model’s prediction. Output of this operation is a function that shows us how prediction changes.</p>
 <center>
 <div class="figure"><span id="fig:2-5-single-ceteris"></span>
-<img src="images/2-5-single-ceteris.png" alt="Ceteris Paribus: first observation" width="100%" />
+<img src="images/2-5-single-ceteris.png" alt="Ceteris Paribus profiles for the first observation. Blue dot is the actual value of the variable for this observation. The line indicates the change in prediction when the value of the variable changes." width="100%" />
 <p class="caption">
-Figure 2.48: Ceteris Paribus: first observation
+Figure 2.50: Ceteris Paribus profiles for the first observation. Blue dot is the actual value of the variable for this observation. The line indicates the change in prediction when the value of the variable changes.
 </p>
 </div>
 </center>
-<p>Plot <a href="how-the-price-of-the-house-is-influenced-by-neighborhood-xai-methods-for-interpretation-the-black-box-model.html#fig:2-5-single-ceteris">2.48</a> above shows <em>Ceteris Paribus</em> calculated for first observation of data set. As we can see, in most cases it is straight line with change for small values. <code>Households</code> and <code>population</code> profiles are similar, which seems to be reasonable, because not many people look for apartment in a remote area. <code>Latitude</code> and <code>longitude</code> profiles are vertical lines with one decrease. Hence, a region on map can separated where <code>median value</code> would be the highest.<code>Mean rooms</code> is hard to explain in the opposition to <code>mean bedrooms</code> where we can see that the more bedrooms the higher the value is. It stops at certain value, above which valuation doesn’t change. <code>Median income</code> is almost linear function, which is understandable as rich people can afford expensive apartments.</p>
+<p>Plot <a href="how-the-price-of-the-house-is-influenced-by-neighborhood-xai-methods-for-interpretation-the-black-box-model.html#fig:2-5-single-ceteris">2.50</a> above shows <em>Ceteris Paribus</em> calculated for first observation of data set. As we can see, in most cases it is straight line with change for small values. <code>Households</code> and <code>population</code> profiles are similar, which seems to be reasonable, because not many people look for apartment in a remote area. <code>Latitude</code> and <code>longitude</code> profiles are vertical lines with one decrease. Hence, a region on map can separated where <code>median value</code> would be the highest.<code>Mean rooms</code> is hard to explain in the opposition to <code>mean bedrooms</code> where we can see that the more bedrooms the higher the value is. It stops at certain value, above which valuation doesn’t change. <code>Median income</code> is almost linear function, which is understandable as rich people can afford expensive apartments.</p>
 <center>
 <div class="figure"><span id="fig:2-5-double-ceteris"></span>
-<img src="images/2-5-double-ceteris.png" alt="Ceteris Paribus: first and 2000th observation" width="100%" />
+<img src="images/2-5-double-ceteris.png" alt="Ceteris Paribus profiles for the first and 2000th observation. Blue line indicates changes for first observation and green indicates changes for 2000th observation. Dots are actual values of the variables for observations. " width="100%" />
 <p class="caption">
-Figure 2.49: Ceteris Paribus: first and 2000th observation
+Figure 2.51: Ceteris Paribus profiles for the first and 2000th observation. Blue line indicates changes for first observation and green indicates changes for 2000th observation. Dots are actual values of the variables for observations.
 </p>
 </div>
 </center>
-<p>Next plot <a href="how-the-price-of-the-house-is-influenced-by-neighborhood-xai-methods-for-interpretation-the-black-box-model.html#fig:2-5-double-ceteris">2.49</a> shows <em>Ceteris Paribus</em> calculated for two different observations. Specially two observations with massive difference in <code>median value</code> where chosen to observe what would change. Clear differences can be observed. Especially <code>latitude</code>, <code>mean bedrooms</code>, <code>mean rooms</code> and <code>population</code> shows major changes. Rest of variables have similar profiles, but these four are great example why shouldn’t we draw conclusions about whole data set based on one <em>ceteris paribus</em> calculation.</p>
+<p>Next plot <a href="how-the-price-of-the-house-is-influenced-by-neighborhood-xai-methods-for-interpretation-the-black-box-model.html#fig:2-5-double-ceteris">2.51</a> shows <em>Ceteris Paribus</em> calculated for two different observations. Specially two observations with massive difference in <code>median value</code> where chosen to observe what would change. Clear differences can be observed. Especially <code>latitude</code>, <code>mean bedrooms</code>, <code>mean rooms</code> and <code>population</code> shows major changes. Rest of variables have similar profiles, but these four are great example why shouldn’t we draw conclusions about whole data set based on one <em>ceteris paribus</em> calculation.</p>
 <p><strong>Local explanations conclusions</strong></p>
 <p>As it could be observed, local explanations tells a lot about given observation. Unfortunately, juxtaposition of two different observations showed us, that they can have totally different explanations. Hence, local XAI, in this case, would allow us to increase already built house’s value rather than give an instruction how to build expensive property. To get this instruction global explanations should be used.</p>
 </div>
 <div id="global-explanations-7" class="section level3" number="2.5.5">
 <h3><span class="header-section-number">2.5.5</span> Global explanations</h3>
-<p>In global explanations, we want to find out what influenced the model as a whole in the data, rather than looking at individual observations. This gives us an overall view of the predictions for the population. We can use this information to construct new observation with desirable value of target variable.</p>
+<p>In global explanations <span class="citation">(<a href="#ref-2-5-explanations" role="doc-biblioref"><strong>2-5-explanations?</strong></a>)</span>, we want to find out what influenced the model as a whole in the data, rather than looking at individual observations. This gives us an overall view of the predictions for the population. We can use this information to construct new observation with desirable value of target variable.</p>
 <p><strong>Feature Importance</strong></p>
 <p>Idea of permutation-based variable-importance<span class="citation">(<a href="#ref-2-5-fisher2019all" role="doc-biblioref">A. Fisher et al. 2019b</a>)</span>:
 If a variable is important in a model, then after its permutation the model prediction should be less precise. The permutation importance of a variable <span class="math inline">\(k\)</span> is the difference between model prediction for original data and prediction for data with permutation variable <span class="math inline">\(k\)</span>.</p>
 <div class="figure" style="text-align: center"><span id="fig:2-5-FeatureImportance"></span>
-<img src="images/2-5-FeatureImportance.png" alt="Feature Importance" width="100%" />
+<img src="images/2-5-FeatureImportance.png" alt="Feature Importance plot shows the root mean square error after 10 parmutation of every variable. Bars indicate the mean value of RMSE and at the ends of the bars are boxplots created from all permutation results. " width="100%" />
 <p class="caption">
-Figure 2.50: Feature Importance
+Figure 2.52: Feature Importance plot shows the root mean square error after 10 parmutation of every variable. Bars indicate the mean value of RMSE and at the ends of the bars are boxplots created from all permutation results.
 </p>
 </div>
-<p>Plot <a href="how-the-price-of-the-house-is-influenced-by-neighborhood-xai-methods-for-interpretation-the-black-box-model.html#fig:2-5-FeatureImportance">2.50</a> show, <code>Median income</code> turns out to be the most important feature for the model under study. Removing the median income information by permutations, resulted in the largest decrease in the RMSE measure. This means that without this feature the model is much less precise.
+<p>Plot <a href="how-the-price-of-the-house-is-influenced-by-neighborhood-xai-methods-for-interpretation-the-black-box-model.html#fig:2-5-FeatureImportance">2.52</a> show, <code>Median income</code> turns out to be the most important feature for the model under study. Removing the median income information by permutations, resulted in the largest decrease in the RMSE measure. This means that without this feature the model is much less precise.
 The geographic variables, <code>longitude</code> <code>latitude</code> and <code>ocean proximity</code> also turn out to be important for prediction.
 The average number of rooms, age, and the number of householders already have less impact on the prediction.
 The <code>mean bedrooms</code> category has the smallest and ambiguous impact. Whiskers extending beyond the left border of the bars indicate that there were draws where removing the variable improved the model results. The model may ignore this feature, having partial information about it in the form of number of rooms and household members.</p>
+<p>If we go back to <em>Break down</em> section, we can observe a few similarities. First of all, <code>median income</code> is very important for valuation in <em>Break down</em> and is in the first place in <em>feature importance’s</em> ranking. After that, on following places there are features related to geographic location. In general, they are important for <em>Break down</em> as well. If we take a look on
+bottom part of <em>feature importance</em> plot, three worst features - <code>mean bedrooms</code>, <code>population</code> and <code>households</code> have tiny contribution for both <em>Break down’s</em> cases. To sum up, these methods gives similar results and differences are due to different samples (one observation vs whole data set).</p>
 <p><strong>PDP</strong></p>
 <p>PDP <span class="citation">(<a href="#ref-xai1-pdp" role="doc-biblioref">Friedman 2000a</a>)</span> stands for partial dependence plot and it is connected with <em>Ceteris Paribus</em>. We take a random sample from data set, and calculate <em>ceteris paribus</em> for each one. After that, mean of all these functions is calculated, which leaves us with one profile for whole data set. In the plot below thick blue line is PDP and thin grey lines are <em>Ceteris Paribus</em> calculations for each observation.</p>
 <center>
 <div class="figure"><span id="fig:2-5-pdp"></span>
-<img src="images/2-5-pdp.png" alt="PPD" width="100%" />
+<img src="images/2-5-pdp.png" alt="Partial-dependance profiles (PDP). Grey lines are Ceteris Paribus profiles for each calculations, and blue line is PDP (mean of all Ceteris Paribus functions). The line indicates the change in prediction when the value of the variable changes. " width="100%" />
 <p class="caption">
-Figure 2.51: PPD
+Figure 2.53: Partial-dependance profiles (PDP). Grey lines are Ceteris Paribus profiles for each calculations, and blue line is PDP (mean of all Ceteris Paribus functions). The line indicates the change in prediction when the value of the variable changes.
 </p>
 </div>
 </center>
-<p>As we can see above <a href="how-the-price-of-the-house-is-influenced-by-neighborhood-xai-methods-for-interpretation-the-black-box-model.html#fig:2-5-pdp">2.51</a>, <code>households</code>, <code>mean bedrooms</code>, <code>mean rooms</code> and <code>population</code> profiles are almost straight lines with fluctuations for small values. <code>Housing median value</code> is a interesting case, because small curvature can be observed at the end of line. This is probably due to the fact that new apartments are expensive, because they are modern and old ones are expensive because of historical background behind they. <code>Latitude</code> shows that most expensive houses are located on south, especially below <span class="math inline">\(34 ^{\circ} N\)</span>, in California this is area near Los Angeles. <code>Median house value</code> is highest for <code>longitude</code> values lower than <span class="math inline">\(118 ^{\circ} E\)</span> (majority of a state except of San Diego and surrounding area). As it was in <em>ceteris paribus</em>, <code>median income</code> grows together with <code>median house value</code> to the level where income money simply doesn’t matter.</p>
+<p>As we can see above <a href="how-the-price-of-the-house-is-influenced-by-neighborhood-xai-methods-for-interpretation-the-black-box-model.html#fig:2-5-pdp">2.53</a>, <code>households</code>, <code>mean bedrooms</code>, <code>mean rooms</code> and <code>population</code> profiles are almost straight lines with fluctuations for small values. <code>Housing median value</code> is a interesting case, because small curvature can be observed at the end of line. This is probably due to the fact that new apartments are expensive, because they are modern and old ones are expensive because of historical background behind they. <code>Latitude</code> shows that most expensive houses are located on south, especially below <span class="math inline">\(34 ^{\circ} N\)</span>, in California this is area near Los Angeles. <code>Median house value</code> is highest for <code>longitude</code> values lower than <span class="math inline">\(118 ^{\circ} E\)</span> (majority of a state except of San Diego and surrounding area). As it was in <em>ceteris paribus</em>, <code>median income</code> grows together with <code>median house value</code> to the level where income money simply doesn’t matter.</p>
 <center>
 <div class="figure"><span id="fig:2-5-pdp-groups"></span>
-<img src="images/2-5-pdp-groups.png" alt="PPD in groups" width="100%" />
+<img src="images/2-5-pdp-groups.png" alt="Partial-dependence profiles for separate ocean proximity values. Each line of a different color corresponds to a PDP for observations belonging to one category." width="100%" />
 <p class="caption">
-Figure 2.52: PPD in groups
+Figure 2.54: Partial-dependence profiles for separate ocean proximity values. Each line of a different color corresponds to a PDP for observations belonging to one category.
 </p>
 </div>
 </center>
-<p>PDP makes it possible to create separate profiles for different groups of observation. In our case, we used <code>ocean proximity</code> as it is a categorical variable. In the plot <a href="how-the-price-of-the-house-is-influenced-by-neighborhood-xai-methods-for-interpretation-the-black-box-model.html#fig:2-5-pdp-groups">2.52</a> above we can observe, that all profiles are similar to each other, the only significant difference is vertical shift. Conclusion drawn from this plot is the fact that houses <code>1h &lt;Ocean</code> are most expensive, <code>inland</code> apartments are the cheapest, while <code>near ocean</code> and <code>near bay</code> behave similar to each other and have average prices. If we take a look at the plot from <em>Data</em> paragraph, conclusions look reasonable. <code>1h &lt;Ocean</code> houses are the ones located in Los Angeles and in the suburbs of San Francisco, which are well known from expensive neighborhoods.</p>
+<p>PDP makes it possible to create separate profiles for different groups of observation. In our case, we used <code>ocean proximity</code> as it is a categorical variable. In the plot <a href="how-the-price-of-the-house-is-influenced-by-neighborhood-xai-methods-for-interpretation-the-black-box-model.html#fig:2-5-pdp-groups">2.54</a> above we can observe, that all profiles are similar to each other, the only significant difference is vertical shift. Conclusion drawn from this plot is the fact that houses <code>1h &lt;Ocean</code> are most expensive, <code>inland</code> apartments are the cheapest, while <code>near ocean</code> and <code>near bay</code> behave similar to each other and have average prices. If we take a look at the plot from <em>Data</em> paragraph, conclusions look reasonable. <code>1h &lt;Ocean</code> houses are the ones located in Los Angeles and in the suburbs of San Francisco, which are well known from expensive neighborhoods.</p>
 <p><strong>Global explanations conclusions</strong></p>
 <p>In contrast to local explanations, global explanations give a more general picture of the entire data set. With PDP profiles, we can see the relationships between the data. The future importance graph allows understanding what variables are relevant to the model.</p>
 </div>
@@ -615,6 +574,9 @@ Baniecki, H., Kretowicz, W., Piatyszek, P., Wisniewski, J., &amp; Biecek, P. (20
 </div>
 <div id="ref-2-5-XAI" class="csl-entry">
 Barredo Arrieta, A., Díaz-Rodríguez, N., Del Ser, J., Bennetot, A., Tabik, S., Barbado, A., et al. (2020b). Explainable artificial intelligence (XAI): Concepts, taxonomies, opportunities and challenges toward responsible AI. <em>Information Fusion</em>, <em>58</em>, 82–115. <a href="http://www.sciencedirect.com/science/article/pii/S1566253519308103">http://www.sciencedirect.com/science/article/pii/S1566253519308103</a>
+</div>
+<div id="ref-2-3-dalex" class="csl-entry">
+Biecek, Przemyslaw. (2018a). <span class="nocase">DALEX: Explainers for Complex Predictive Models in R</span>. <em>Journal of Machine Learning Research</em>, <em>19</em>(84), 1–5. <a href="http://jmlr.org/papers/v19/18-416.html">http://jmlr.org/papers/v19/18-416.html</a>
 </div>
 <div id="ref-EMA" class="csl-entry">
 Biecek, Przemyslaw, &amp; Burzykowski, T. (2021a). <em><span>Explanatory Model Analysis</span></em>. Chapman; Hall/CRC, New York. <a href="https://pbiecek.github.io/ema/">https://pbiecek.github.io/ema/</a>
@@ -654,6 +616,9 @@ Law, S. (2017). Defining street-based local area and measuring its effect on hou
 </div>
 <div id="ref-2-5-randomForest-lib" class="csl-entry">
 Liaw, A., &amp; Wiener, M. (2002). Classification and regression by randomForest. <em>R News</em>, <em>2</em>(3), 18–22. <a href="https://CRAN.R-project.org/doc/Rnews/">https://CRAN.R-project.org/doc/Rnews/</a>
+</div>
+<div id="ref-2-5-xailandscape" class="csl-entry">
+Maksymiuk, S., Gosiewska, A., &amp; Biecek, P. (2020b). Landscape of r packages for eXplainable artificial intelligence. <em>arXiv</em>. <a href="https://arxiv.org/abs/2009.13248">https://arxiv.org/abs/2009.13248</a>
 </div>
 <div id="ref-2-5-pace1997sparse" class="csl-entry">
 Pace, R. K., &amp; Barry, R. (1997). Sparse spatial autoregressions. <em>Statistics &amp; Probability Letters</em>, <em>33</em>(3), 291–297.
