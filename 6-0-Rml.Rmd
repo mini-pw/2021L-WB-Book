@@ -1,1 +1,6 @@
 # RashomonML
+
+Machine learning is increasingly used as decision support systems in complex processes. In most modeled prediction problems, we do not know the relationship between the variables and the explanatory variable and rely on the relationships discovered by the machine learning algorithm. Different algorithms present different approaches to finding these relationships and we can draw diverse and even contradictory conclusions about the modeled phenomenon. Checking the consistency and coherence of the obtained conclusions is especially important for medical applications where the decisions made have serious consequences. So far, the approach of selecting the best model has been based on choosing the one giving the smallest error on the validation set or possibly extending the audit to explainable machine learning techniques [@EMA]. This may not be sufficient and an alternative is to audit the entire set of accurate models, referred to as the Rashomon set [@6-0-breiman2001statistical]. 
+
+In this class, we focused on analyzing Rashomon model committees using explainable model analysis techniques. Considered problem was the prediction of the probability of patient death from MIMIC-III data [@6-0-mimic].
+
