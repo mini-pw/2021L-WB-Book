@@ -24,7 +24,7 @@
 <meta name="author" content="Faculty of Mathematics and Information Science, Warsaw University of Technology" />
 
 
-<meta name="date" content="2021-06-15" />
+<meta name="date" content="2021-06-16" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -33,15 +33,15 @@
   
 <link rel="prev" href="how-to-predict-the-probability-of-subsequent-blood-donations.html"/>
 <link rel="next" href="how-the-price-of-the-house-is-influenced-by-neighborhood-xai-methods-for-interpretation-the-black-box-model.html"/>
-<script src="libs/header-attrs-2.7/header-attrs.js"></script>
-<script src="libs/jquery-2.2.3/jquery.min.js"></script>
-<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
-<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
-<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
-<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
-<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
-<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
-<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+<script src="libs/header-attrs/header-attrs.js"></script>
+<script src="libs/jquery/jquery.min.js"></script>
+<link href="libs/gitbook/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook/css/plugin-clipboard.css" rel="stylesheet" />
 
 
 
@@ -51,8 +51,10 @@
 
 
 
-<link href="libs/anchor-sections-1.0.1/anchor-sections.css" rel="stylesheet" />
-<script src="libs/anchor-sections-1.0.1/anchor-sections.js"></script>
+<link href="libs/anchor-sections/anchor-sections.css" rel="stylesheet" />
+<script src="libs/anchor-sections/anchor-sections.js"></script>
+<script src="libs/kePrint/kePrint.js"></script>
+<link href="libs/lightable/lightable.css" rel="stylesheet" />
 
 
 
@@ -407,7 +409,7 @@ div.csl-indent {
 </div>
 <div id="introduction-3" class="section level3" number="2.4.2">
 <h3><span class="header-section-number">2.4.2</span> Introduction</h3>
-<p>Machine Learning is a field of studies that is concerned with constructing algorithms that can <em>learn</em> using existing data and improve their performance with experience. Thus it allows predicting the unknown information with measurable certainty. With the rise in popularity of Machine Learning algorithms people started questioning the solutions obtained by computers’ calculations. Sometimes it does not matter how high the performance measures of the algorithm are, if we do not understand the reasoning behind its decisions. Therefore, the real problem is the lack of tools for model exploration, explanation (obtaining insight into model-based predictions) and examination (evaluation of model’s performance and understanding the weaknesses). As an answer a whole new branch of AI has been formed - Explainable Artificial Intelligence (XAI) <span class="citation">(<a href="#ref-2-4-XAI" role="doc-biblioref">Biecek and Burzykowski n.d.</a>)</span>.</p>
+<p>Machine Learning is a field of studies that is concerned with constructing algorithms that can <em>learn</em> using existing data and improve their performance with experience. Thus it allows predicting the unknown information with measurable certainty. With the rise in popularity of Machine Learning algorithms people started questioning the solutions obtained by computers’ calculations. Sometimes it does not matter how high the performance measures of the algorithm are, if we do not understand the reasoning behind its decisions. Therefore, the real problem is the lack of tools for model exploration, explanation (obtaining insight into model-based predictions) and examination (evaluation of model’s performance and understanding the weaknesses). As an answer a whole new branch of AI has been formed - Explainable Artificial Intelligence (XAI) <span class="citation">(<a href="#ref-2-4-XAI" role="doc-biblioref">Przemyslaw Biecek and Burzykowski n.d.</a>)</span>.</p>
 <p>The deep understanding of the model decision making is particularly important in medicine, where any misprediction can have fatal consequences.</p>
 <p>Two areas which may benefit from the application of ML techniques in the medical field are diagnosis and outcome prediction. This includes a possibility for the identification of high risk for medical emergencies such as relapse or transition into another disease state. ML algorithms have recently been successfully employed to classify skin cancer using images with comparable accuracy to a trained dermatologist and to predict the progression from pre-diabetes to type 2 diabetes using routinely-collected electronic health record data <span class="citation">(<a href="#ref-2-4-ml-in-medicine" role="doc-biblioref"><span>“Machine learning in medicine”</span> n.d.</a>)</span>.</p>
 <p>In this article we attempt to find the relationship between different biomarkers and positive diagnosis of diabetes based on the data of over 700 women of Indian ancestry (Pima tribe) collected by the National Institute of Diabetes and Digestive and Kidney Diseases. In order to do that, we used XAI tools on our black box models to present the decision making process of algorithms in understandable for humans way from which we could later draw conclusions.</p>
@@ -431,10 +433,10 @@ div.csl-indent {
 <div class="figure" style="text-align: center"><span id="fig:2-4-distributions"></span>
 <img src="images/2-4-distributions.png" alt="Distributions of features and target in the original dataset" width="100%" />
 <p class="caption">
-Figure 2.1: Distributions of features and target in the original dataset
+Figure 2.43: Distributions of features and target in the original dataset
 </p>
 </div>
-<p>The dataset did not have any missing data, however after analysing the feature distributions (Figure <a href="explaining-diabetes-indicators.html#fig:2-4-distributions">2.1</a>) and their meaning we found many 0 values that made no sense and were not physically possible (for example 0 value of <code>mass</code> which is BMI index - mass (in kilograms) divided by squared height (in meters)). According to an article about cost-sensitive classification <span class="citation">(<a href="#ref-2-4-cost" role="doc-biblioref">Turney 1995</a>)</span>, which addressed this dataset it is possible that some tests had never been carried out for some patients. This meant that the 0 values in our dataset (for features other than <code>preg</code> and <code>class</code> for which they absolutely make sense) were actually missing values.</p>
+<p>The dataset did not have any missing data, however after analysing the feature distributions (Figure <a href="explaining-diabetes-indicators.html#fig:2-4-distributions">2.43</a>) and their meaning we found many 0 values that made no sense and were not physically possible (for example 0 value of <code>mass</code> which is BMI index - mass (in kilograms) divided by squared height (in meters)). According to an article about cost-sensitive classification <span class="citation">(<a href="#ref-2-4-cost" role="doc-biblioref">Turney 1995</a>)</span>, which addressed this dataset it is possible that some tests had never been carried out for some patients. This meant that the 0 values in our dataset (for features other than <code>preg</code> and <code>class</code> for which they absolutely make sense) were actually missing values.</p>
 <p> </p>
 <p><strong>Dataset versions</strong></p>
 <p>During preprocessing and based on the observations of our first models 4 different versions of dataset were created and later used to train the models. First, the dataset was randomly divided into a training dataset (70% of data) and testing dataset (30% of data). Then the datasets were individually modificated in the following way:</p>
@@ -444,9 +446,9 @@ Figure 2.1: Distributions of features and target in the original dataset
 <li><p><strong>mice</strong> - base dataset with all missing values imputed with mice (Multivariate Imputation by Chained Equations) package using PMM method. <span class="citation">(<a href="#ref-2-4-mice" role="doc-biblioref">van Buuren and Groothuis-Oudshoorn 2011</a>)</span> Mice is suitable for this dataset, since the values are missing at random.</p></li>
 <li><p><strong>skip</strong> - base dataset excluding features <code>skin</code>, <code>insu</code> and <code>pres</code> with missing values in <code>mass</code> and <code>plas</code> imputed with mice package</p></li>
 </ul>
-<p>The details of dataset versions are shown in table <a href="explaining-diabetes-indicators.html#tab:dataset-versions">2.1</a>.</p>
+<p>The details of dataset versions are shown in table <a href="explaining-diabetes-indicators.html#tab:dataset-versions">2.4</a>.</p>
 <table>
-<caption><span id="tab:dataset-versions">Table 2.1: </span> Number of rows and columns in each version of the dataset: original, naomit, mice and skip.</caption>
+<caption><span id="tab:dataset-versions">Table 2.4: </span> Number of rows and columns in each version of the dataset: original, naomit, mice and skip.</caption>
 <thead>
 <tr class="header">
 <th>Dataset</th>
@@ -484,7 +486,7 @@ Figure 2.1: Distributions of features and target in the original dataset
 </table>
 <p> </p>
 <p><strong>Measures</strong></p>
-<p>For the assessment of the model in our experiment we will use three commonly known measures, available in <code>mlr</code> package <span class="citation">(<a href="#ref-2-4-mlr" role="doc-biblioref">Bischl et al. 2016</a>)</span>:</p>
+<p>For the assessment of the model in our experiment we will use three commonly known measures, available in <code>mlr</code> package <span class="citation">(<a href="#ref-2-4-mlr" role="doc-biblioref">Bischl et al. 2016b</a>)</span>:</p>
 <ol style="list-style-type: decimal">
 <li><strong>AUC - Area Under ROC Curve</strong></li>
 </ol>
@@ -507,8 +509,8 @@ TPR (True Positive Rate) and FPR (False Positive Rate), defined as:</p>
 <p>To identify the models, that could potentially be efficient classificators on this dataset, we measured the AUC, Balanced Accuracy and False Negative Rate measures on 6 different classification models from <code>mlr</code> package:</p>
 <p>Tree-based models:</p>
 <ul>
-<li><p><strong>Random Forest</strong> - Random Forest <span class="citation">(<a href="#ref-2-4-randomForest" role="doc-biblioref">Liaw and Wiener 2002</a>)</span></p></li>
-<li><p><strong>Ranger</strong> - Random regression forest <span class="citation">(<a href="#ref-2-4-ranger" role="doc-biblioref">Wright and Ziegler 2017</a>)</span></p></li>
+<li><p><strong>Random Forest</strong> - Random Forest <span class="citation">(<a href="#ref-2-4-randomForest" role="doc-biblioref">Liaw and Wiener 2002a</a>)</span></p></li>
+<li><p><strong>Ranger</strong> - Random regression forest <span class="citation">(<a href="#ref-2-4-ranger" role="doc-biblioref">Wright and Ziegler 2017c</a>)</span></p></li>
 </ul>
 <p>Boosting models:</p>
 <ul>
@@ -523,62 +525,62 @@ TPR (True Positive Rate) and FPR (False Positive Rate), defined as:</p>
 </div>
 <div id="explanations" class="section level3" number="2.4.4">
 <h3><span class="header-section-number">2.4.4</span> Explanations</h3>
-<p>In this section we will take time to introduce some model explanations that we will be using later. Feel free to use this chapter as reference for quick overview. For more in-depth knowledge please refer to paper <span class="citation">(<a href="#ref-2-4-XAI" role="doc-biblioref">Biecek and Burzykowski n.d.</a>)</span> All images in this section are also taken from this article.
-Explanations themselves were implemented in the DALEX <span class="citation">(<a href="#ref-2-4-DALEX" role="doc-biblioref">Biecek 2018</a>)</span> and DALEXtra <span class="citation">(<a href="#ref-2-4-DALEXtra" role="doc-biblioref">Maksymiuk and Biecek 2020</a>)</span> package.</p>
+<p>In this section we will take time to introduce some model explanations that we will be using later. Feel free to use this chapter as reference for quick overview. For more in-depth knowledge please refer to paper <span class="citation">(<a href="#ref-2-4-XAI" role="doc-biblioref">Przemyslaw Biecek and Burzykowski n.d.</a>)</span> All images in this section are also taken from this article.
+Explanations themselves were implemented in the DALEX <span class="citation">(<a href="#ref-2-4-DALEX" role="doc-biblioref">Przemyslaw Biecek 2018b</a>)</span> and DALEXtra <span class="citation">(<a href="#ref-2-4-DALEXtra" role="doc-biblioref">Maksymiuk and Biecek 2020b</a>)</span> package.</p>
 <p><strong>Local Explanations</strong></p>
 <p>Local explanations allow us to better understand model’s prediction from the level of single observations. This can be useful when we want to evaluate predictions for certain instances. For example, which values have the most importance for the particular observations, or how the change in variables would impact the result. Local explanations combined with professional expertise could sometimes hint towards potential problems with the model in case they contradict each other.</p>
 <ul>
 <li><strong>Break Down</strong></li>
 </ul>
-<p>In Break Down explanation <span class="citation">(<a href="#ref-xai1-breakdown" role="doc-biblioref">Staniak and Biecek 2018</a>)</span> all observations start from the same base that is the mean prediction for all data. Next steps consist of fixing consecutive variables on values from the observation in question and measuring the change in mean prediction that is now calculated with some of the values fixed. This shift in mean prediction is interpreted as the impact of this variable’s value on prediction for this observation. Figure <a href="explaining-diabetes-indicators.html#fig:2-4-break-down">2.2</a> shows the corresponding steps.</p>
+<p>In Break Down explanation <span class="citation">(<a href="#ref-xai1-breakdown" role="doc-biblioref">Staniak and Biecek 2018a</a>)</span> all observations start from the same base that is the mean prediction for all data. Next steps consist of fixing consecutive variables on values from the observation in question and measuring the change in mean prediction that is now calculated with some of the values fixed. This shift in mean prediction is interpreted as the impact of this variable’s value on prediction for this observation. Figure <a href="explaining-diabetes-indicators.html#fig:2-4-break-down">2.44</a> shows the corresponding steps.</p>
 <div class="figure" style="text-align: center"><span id="fig:2-4-break-down"></span>
 <img src="images/2-4-break_down_distr.png" alt="Panel A shows the distribution of target values: in the first row overall distribution, and on the subsequent ones - distribution from the previous row with fixed value of the variable written on the left. For example, in the third row values of age and class variables are fixed. The red dot represents the mean of the distribution. On panel B only the mean value is shown. On panel C the change in mean (average impact) is calculated and assigned to corresponding variables." width="100%" />
 <p class="caption">
-Figure 2.2: Panel A shows the distribution of target values: in the first row overall distribution, and on the subsequent ones - distribution from the previous row with fixed value of the variable written on the left. For example, in the third row values of age and class variables are fixed. The red dot represents the mean of the distribution. On panel B only the mean value is shown. On panel C the change in mean (average impact) is calculated and assigned to corresponding variables.
+Figure 2.44: Panel A shows the distribution of target values: in the first row overall distribution, and on the subsequent ones - distribution from the previous row with fixed value of the variable written on the left. For example, in the third row values of age and class variables are fixed. The red dot represents the mean of the distribution. On panel B only the mean value is shown. On panel C the change in mean (average impact) is calculated and assigned to corresponding variables.
 </p>
 </div>
-<p>A big drawback for this method is how the order of variable can influence the explanation outcome. This problem occurs most often as a result of existing interactions between variables as seen in figure <a href="explaining-diabetes-indicators.html#fig:2-4-ordering">2.3</a>.</p>
+<p>A big drawback for this method is how the order of variable can influence the explanation outcome. This problem occurs most often as a result of existing interactions between variables as seen in figure <a href="explaining-diabetes-indicators.html#fig:2-4-ordering">2.45</a>.</p>
 <div class="figure" style="text-align: center"><span id="fig:2-4-ordering"></span>
 <img src="images/2-4-ordering.png" alt="Break Down output for the same observation but with different order of variables. Variables age and class interact with each other. Hence the change in order results in different values on plots." width="100%" />
 <p class="caption">
-Figure 2.3: Break Down output for the same observation but with different order of variables. Variables age and class interact with each other. Hence the change in order results in different values on plots.
+Figure 2.45: Break Down output for the same observation but with different order of variables. Variables age and class interact with each other. Hence the change in order results in different values on plots.
 </p>
 </div>
 <ul>
 <li><strong>Shap</strong></li>
 </ul>
-<p>Shap <span class="citation">(<a href="#ref-xai1-shapleyvalues" role="doc-biblioref">Lundberg and Lee 2017</a>)</span> is a direct response to the biggest problem of Break Down method that is the ordering chosen for explanation being able to alter the results. Shap takes a number of permutation and calculates the average response of Break Down on these permutations. More permutations result in more stable explanations. Exemplary output is shown in figure <a href="explaining-diabetes-indicators.html#fig:2-4-shap-ordering">2.4</a>.</p>
+<p>Shap <span class="citation">(<a href="#ref-xai1-shapleyvalues" role="doc-biblioref">Scott M. Lundberg and Lee 2017</a>)</span> is a direct response to the biggest problem of Break Down method that is the ordering chosen for explanation being able to alter the results. Shap takes a number of permutation and calculates the average response of Break Down on these permutations. More permutations result in more stable explanations. Exemplary output is shown in figure <a href="explaining-diabetes-indicators.html#fig:2-4-shap-ordering">2.46</a>.</p>
 <div class="figure" style="text-align: center"><span id="fig:2-4-shap-ordering"></span>
 <img src="images/2-4-shap_ordering.png" alt="Shap output for Johny D observation. Average impact of the variable on the prediction calculated with Break Down for 10 permutations, with boxplots showing the distribution of impacts from different permutations." width="100%" />
 <p class="caption">
-Figure 2.4: Shap output for Johny D observation. Average impact of the variable on the prediction calculated with Break Down for 10 permutations, with boxplots showing the distribution of impacts from different permutations.
+Figure 2.46: Shap output for Johny D observation. Average impact of the variable on the prediction calculated with Break Down for 10 permutations, with boxplots showing the distribution of impacts from different permutations.
 </p>
 </div>
 <ul>
 <li><strong>Lime</strong></li>
 </ul>
-<p>The essence of Lime <span class="citation">(<a href="#ref-xai1-lime" role="doc-biblioref">Ribeiro et al. 2016</a>)</span> is to locally approximate the black box model with a glass box one. Then we can use it for local explanations that should yield results appropriate for the black box. Firstly, we generate data “close” to our observation (also called Point of Interest) and make predictions with black box model. Based on those predictions we try to fit the glass box model that accurately predicts those observations. In result we receive a glass box model that should behave the same as original model as long as we remain close to the Point of interest. Figure <a href="explaining-diabetes-indicators.html#fig:2-4-lime-introduction">2.5</a> describes the idea.</p>
+<p>The essence of Lime <span class="citation">(<a href="#ref-xai1-lime" role="doc-biblioref">Ribeiro et al. 2016a</a>)</span> is to locally approximate the black box model with a glass box one. Then we can use it for local explanations that should yield results appropriate for the black box. Firstly, we generate data “close” to our observation (also called Point of Interest) and make predictions with black box model. Based on those predictions we try to fit the glass box model that accurately predicts those observations. In result we receive a glass box model that should behave the same as original model as long as we remain close to the Point of interest. Figure <a href="explaining-diabetes-indicators.html#fig:2-4-lime-introduction">2.47</a> describes the idea.</p>
 <div class="figure" style="text-align: center"><span id="fig:2-4-lime-introduction"></span>
 <img src="images/2-4-lime_introduction.png" alt="Colored areas correspond to different prediction for the black box model. Black cross is our Point of Interest and circles are generated data. The line represents our simpler model that approximates original model around Point of Interest." width="100%" />
 <p class="caption">
-Figure 2.5: Colored areas correspond to different prediction for the black box model. Black cross is our Point of Interest and circles are generated data. The line represents our simpler model that approximates original model around Point of Interest.
+Figure 2.47: Colored areas correspond to different prediction for the black box model. Black cross is our Point of Interest and circles are generated data. The line represents our simpler model that approximates original model around Point of Interest.
 </p>
 </div>
 <p>This method is often used for datasets consisting of many variables. Methods like Break down and Shap come out short in these situations.</p>
 <ul>
 <li><strong>Ceteris Paribus</strong></li>
 </ul>
-<p>Ceteris Paribus <span class="citation">(<a href="#ref-EMA" role="doc-biblioref">Biecek and Burzykowski 2021</a>)</span> is a Latin phrase meaning “all else unchanged.” This accurately describes what it does. For the certain observation we take values that are interesting to us and observe how the prediction changes as we change values in those columns one at a time. This can yield interesting conclusions about change in values and its impact on predictions. Figures <a href="explaining-diabetes-indicators.html#fig:2-4-titanicCeterisProfile01E">2.6</a> and <a href="explaining-diabetes-indicators.html#fig:2-4-ceteris">2.7</a> show prediction change as response to variable change.</p>
+<p>Ceteris Paribus <span class="citation">(<a href="#ref-EMA" role="doc-biblioref">Przemyslaw Biecek and Burzykowski 2021a</a>)</span> is a Latin phrase meaning “all else unchanged.” This accurately describes what it does. For the certain observation we take values that are interesting to us and observe how the prediction changes as we change values in those columns one at a time. This can yield interesting conclusions about change in values and its impact on predictions. Figures <a href="explaining-diabetes-indicators.html#fig:2-4-titanicCeterisProfile01E">2.48</a> and <a href="explaining-diabetes-indicators.html#fig:2-4-ceteris">2.49</a> show prediction change as response to variable change.</p>
 <div class="figure" style="text-align: center"><span id="fig:2-4-titanicCeterisProfile01E"></span>
 <img src="images/2-4-titanicCeterisProfile01E-1.png" alt="Ceteris-paribus profile for observation Henry using Logistic Regression and Random Forest models. Shape of lines shows how the prediction would change depending on the value of age and fare variables with all the other variables unchanged. Dot shows the real value and models prediction for this particular observation." width="100%" />
 <p class="caption">
-Figure 2.6: Ceteris-paribus profile for observation Henry using Logistic Regression and Random Forest models. Shape of lines shows how the prediction would change depending on the value of age and fare variables with all the other variables unchanged. Dot shows the real value and models prediction for this particular observation.
+Figure 2.48: Ceteris-paribus profile for observation Henry using Logistic Regression and Random Forest models. Shape of lines shows how the prediction would change depending on the value of age and fare variables with all the other variables unchanged. Dot shows the real value and models prediction for this particular observation.
 </p>
 </div>
 <div class="figure" style="text-align: center"><span id="fig:2-4-ceteris"></span>
 <img src="images/2-4-titanicCeterisProfile01D-1.png" alt=" Ceteris Paribus profile using Random Forest for two observations.Shape of lines shows how the prediction would change depending on the value of age and fare variables with all the other variables unchanged. Dot shows the real value and models prediction for this particular observation." width="100%" />
 <p class="caption">
-Figure 2.7:  Ceteris Paribus profile using Random Forest for two observations.Shape of lines shows how the prediction would change depending on the value of age and fare variables with all the other variables unchanged. Dot shows the real value and models prediction for this particular observation.
+Figure 2.49:  Ceteris Paribus profile using Random Forest for two observations.Shape of lines shows how the prediction would change depending on the value of age and fare variables with all the other variables unchanged. Dot shows the real value and models prediction for this particular observation.
 </p>
 </div>
 <p>Ceteris Paribus is very popular due to its simplicity and interpretability. The biggest drawback however is the possibility of unpredictable or misleading results. For example, with fixed variable age set to 18, predicting outcome for a significant number of pregnancies does not make sense. It is also hard to capture interactions when working with variables separately.</p>
@@ -587,42 +589,42 @@ Figure 2.7:  Ceteris Paribus profile using Random Forest for two observations.Sh
 <ul>
 <li><strong>Feature Importance</strong></li>
 </ul>
-<p>The main idea behind Feature Importance <span class="citation">(<a href="#ref-2-4-pfi" role="doc-biblioref">Fisher et al. 2018</a>)</span> is measuring how important each variable is for model’s predictions. To do that we measure the change in AUC after permutating values of each variable. The bigger the change, the bigger importance of variable. To stabilize the results, we can measure average change for a number of permutations. In figure <a href="explaining-diabetes-indicators.html#fig:2-4-TitanicRFFeatImp">2.8</a> we can see that variable gender is the most important for model’s prediction.</p>
+<p>The main idea behind Feature Importance <span class="citation">(<a href="#ref-2-4-pfi" role="doc-biblioref">A. Fisher et al. 2018b</a>)</span> is measuring how important each variable is for model’s predictions. To do that we measure the change in AUC after permutating values of each variable. The bigger the change, the bigger importance of variable. To stabilize the results, we can measure average change for a number of permutations. In figure <a href="explaining-diabetes-indicators.html#fig:2-4-TitanicRFFeatImp">2.50</a> we can see that variable gender is the most important for model’s prediction.</p>
 <div class="figure" style="text-align: center"><span id="fig:2-4-TitanicRFFeatImp"></span>
 <img src="images/2-4-TitanicRFFeatImp10-1.png" alt="The average change in AUC after permutating values of each variable (Feature Importance) for 10 permutations, with boxplots showing the distribution of changes from different permutations." width="100%" />
 <p class="caption">
-Figure 2.8: The average change in AUC after permutating values of each variable (Feature Importance) for 10 permutations, with boxplots showing the distribution of changes from different permutations.
+Figure 2.50: The average change in AUC after permutating values of each variable (Feature Importance) for 10 permutations, with boxplots showing the distribution of changes from different permutations.
 </p>
 </div>
 <ul>
 <li><strong>Partial Dependence</strong></li>
 </ul>
-<p>To put it short, Partial Dependence <span class="citation">(<a href="#ref-2-4-pdp" role="doc-biblioref">B. M. Greenwell 2017</a>)</span> is the average of Ceteris Paribus for whole data. This results in average importance and impact of variable and its values. The similarities can be observed in figure <a href="explaining-diabetes-indicators.html#fig:2-4-pdpIntuition-1">2.9</a>.</p>
+<p>To put it short, Partial Dependence <span class="citation">(<a href="#ref-2-4-pdp" role="doc-biblioref">Brandon M. Greenwell 2017c</a>)</span> is the average of Ceteris Paribus for whole data. This results in average importance and impact of variable and its values. The similarities can be observed in figure <a href="explaining-diabetes-indicators.html#fig:2-4-pdpIntuition-1">2.51</a>.</p>
 <div class="figure" style="text-align: center"><span id="fig:2-4-pdpIntuition-1"></span>
 <img src="images/2-4-pdpIntuition-1.png" alt="On the left panel, Ceteris Paribus profile for age variable for multiple observations. On the right, their average as Partial Dependence, showing how the prediction would change depending on the value of age." width="100%" />
 <p class="caption">
-Figure 2.9: On the left panel, Ceteris Paribus profile for age variable for multiple observations. On the right, their average as Partial Dependence, showing how the prediction would change depending on the value of age.
+Figure 2.51: On the left panel, Ceteris Paribus profile for age variable for multiple observations. On the right, their average as Partial Dependence, showing how the prediction would change depending on the value of age.
 </p>
 </div>
-<p>As we can see observations can return different shapes for Ceteris Paribus, hence averaging them could mean loss of information. To answer this problem Partial Dependence implements grouping and clustering that could show the difference as shown in figure <a href="explaining-diabetes-indicators.html#fig:2-4-pdpPart5-1">2.10</a>.</p>
+<p>As we can see observations can return different shapes for Ceteris Paribus, hence averaging them could mean loss of information. To answer this problem Partial Dependence implements grouping and clustering that could show the difference as shown in figure <a href="explaining-diabetes-indicators.html#fig:2-4-pdpPart5-1">2.52</a>.</p>
 <div class="figure" style="text-align: center"><span id="fig:2-4-pdpPart5-1"></span>
 <img src="images/2-4-pdpPart5-1.png" alt="Partial Dependence of the prediction on the age variable for Random Forest model, with the observations grouped by gender. Shows how the average prediction differs for male and female passengers" width="100%" />
 <p class="caption">
-Figure 2.10: Partial Dependence of the prediction on the age variable for Random Forest model, with the observations grouped by gender. Shows how the average prediction differs for male and female passengers
+Figure 2.52: Partial Dependence of the prediction on the age variable for Random Forest model, with the observations grouped by gender. Shows how the average prediction differs for male and female passengers
 </p>
 </div>
 <p>Like Ceteris Paribus, this method is very simple and understandable. However, it also carries over the same problems resulting from correlated variables.</p>
 <ul>
 <li><strong>Accumulated Dependence</strong></li>
 </ul>
-<p>Also referred as Accumulated-Local Dependence <span class="citation">(<a href="#ref-xai1-ale" role="doc-biblioref">Apley and Zhu 2020</a>)</span>. It is the direct answer for correlation issue in Partial Dependence. The construction of Accumulated Dependence is the same as in Ceteris Paribus. The only difference being how the observations are summarized. Partial Dependence uses marginal distribution while Accumulated Dependence uses conditional distribution. This means that when there are at most negligible correlations, Accumulated Dependence yields results very similar to Partial Dependence.</p>
+<p>Also referred as Accumulated-Local Dependence <span class="citation">(<a href="#ref-xai1-ale" role="doc-biblioref">D. W. Apley and Zhu 2020</a>)</span>. It is the direct answer for correlation issue in Partial Dependence. The construction of Accumulated Dependence is the same as in Ceteris Paribus. The only difference being how the observations are summarized. Partial Dependence uses marginal distribution while Accumulated Dependence uses conditional distribution. This means that when there are at most negligible correlations, Accumulated Dependence yields results very similar to Partial Dependence.</p>
 </div>
 <div id="results-3" class="section level3" number="2.4.5">
 <h3><span class="header-section-number">2.4.5</span> Results</h3>
 <p><strong>Dataset versions comparison</strong></p>
-<p>We compared the performance of the Ranger model with default values on the testing datasets, using AUC, Balanced Accuracy and False Negative Rate measures. The results are shown in the table <a href="explaining-diabetes-indicators.html#tab:dataset-comparison">2.2</a>.</p>
+<p>We compared the performance of the Ranger model with default values on the testing datasets, using AUC, Balanced Accuracy and False Negative Rate measures. The results are shown in the table <a href="explaining-diabetes-indicators.html#tab:dataset-comparison">2.5</a>.</p>
 <table>
-<caption><span id="tab:dataset-comparison">Table 2.2: </span> The value of performance measures AUC, Balanced Accuracy and False Negative Rate of Ranger model on all dataset versions: original, naomit, mice and skip. For measures AUC and BAC higher value indicates better model, while for FNR - worse model.</caption>
+<caption><span id="tab:dataset-comparison">Table 2.5: </span> The value of performance measures AUC, Balanced Accuracy and False Negative Rate of Ranger model on all dataset versions: original, naomit, mice and skip. For measures AUC and BAC higher value indicates better model, while for FNR - worse model.</caption>
 <thead>
 <tr class="header">
 <th></th>
@@ -661,12 +663,12 @@ Figure 2.10: Partial Dependence of the prediction on the age variable for Random
 <p>The <code>naomit</code> dataset has the best scores, however, using this dataset version may cause the loss of valuable information. Because of that, we are going to use <code>original</code> and <code>skip</code> versions for further analysis.</p>
 <p> </p>
 <p><strong>Model comparison</strong></p>
-<p>The models were checked with AUC, Balanced Accuracy and False Negative Rate measures on both <code>original</code> and <code>skip</code> dataset version, with the results shown in tables <a href="explaining-diabetes-indicators.html#tab:dataset-original">2.3</a> and <a href="explaining-diabetes-indicators.html#tab:dataset-skip">2.4</a>.</p>
+<p>The models were checked with AUC, Balanced Accuracy and False Negative Rate measures on both <code>original</code> and <code>skip</code> dataset version, with the results shown in tables <a href="explaining-diabetes-indicators.html#tab:dataset-original">2.6</a> and <a href="explaining-diabetes-indicators.html#tab:dataset-skip">2.7</a>.</p>
 <ul>
 <li><strong>Data Original</strong></li>
 </ul>
 <table>
-<caption><span id="tab:dataset-original">Table 2.3: </span> The value of performance measures AUC, Balanced Accuracy and False Negative Rate on original dataset version using 6 classification models. For measures AUC and BAC higher value indicates better model, while for FNR - worse model.</caption>
+<caption><span id="tab:dataset-original">Table 2.6: </span> The value of performance measures AUC, Balanced Accuracy and False Negative Rate on original dataset version using 6 classification models. For measures AUC and BAC higher value indicates better model, while for FNR - worse model.</caption>
 <thead>
 <tr class="header">
 <th></th>
@@ -719,7 +721,7 @@ Figure 2.10: Partial Dependence of the prediction on the age variable for Random
 <li><strong>Data Skip</strong></li>
 </ul>
 <table>
-<caption><span id="tab:dataset-skip">Table 2.4: </span> The value of performance measures AUC, Balanced Accuracy and False Negative Rate on dataset version with skipped columns, using 6 classification models. For measures AUC and BAC higher value indicates better model, while for FNR - worse model.</caption>
+<caption><span id="tab:dataset-skip">Table 2.7: </span> The value of performance measures AUC, Balanced Accuracy and False Negative Rate on dataset version with skipped columns, using 6 classification models. For measures AUC and BAC higher value indicates better model, while for FNR - worse model.</caption>
 <thead>
 <tr class="header">
 <th></th>
@@ -792,9 +794,9 @@ Based on the results, two models: Ranger and Ada were chosen for further experim
 <li>minbucket = 4,</li>
 <li>maxdepth = 1</li>
 </ul>
-<p>The tuned models were checked with AUC, Balanced Accuracy and False Negative Rate measures on <code>skip</code> dataset version, with the results shown in table <a href="explaining-diabetes-indicators.html#tab:dataset-tuned">2.5</a>.</p>
+<p>The tuned models were checked with AUC, Balanced Accuracy and False Negative Rate measures on <code>skip</code> dataset version, with the results shown in table <a href="explaining-diabetes-indicators.html#tab:dataset-tuned">2.8</a>.</p>
 <table>
-<caption><span id="tab:dataset-tuned">Table 2.5: </span> The value of performance measures AUC, Balanced Accuracy and False Negative Rate on 2 dataset versions: original and with skipped columns, using tuned classification models Ranger and Ada. For measures AUC and BAC higher value indicates better model, while for FNR - worse model.</caption>
+<caption><span id="tab:dataset-tuned">Table 2.8: </span> The value of performance measures AUC, Balanced Accuracy and False Negative Rate on 2 dataset versions: original and with skipped columns, using tuned classification models Ranger and Ada. For measures AUC and BAC higher value indicates better model, while for FNR - worse model.</caption>
 <thead>
 <tr class="header">
 <th></th>
@@ -822,14 +824,14 @@ Based on the results, two models: Ranger and Ada were chosen for further experim
 <p> </p>
 <p><strong>Global explanations results</strong></p>
 <p>In this section we’ll explain the prediction of the Ranger and Ada model on th <code>skip</code> dataset version.</p>
-<p>Figure <a href="explaining-diabetes-indicators.html#fig:2-4-feature-importance">2.11</a> shows Feature Importance for both Ada and Ranger models. As we can see, both agree with each other as to what variables are most important to them. Their predictions are mostly based on the values of <code>plas</code> variable and then <code>mass</code> and <code>age</code> come second.</p>
+<p>Figure <a href="explaining-diabetes-indicators.html#fig:2-4-feature-importance">2.53</a> shows Feature Importance for both Ada and Ranger models. As we can see, both agree with each other as to what variables are most important to them. Their predictions are mostly based on the values of <code>plas</code> variable and then <code>mass</code> and <code>age</code> come second.</p>
 <div class="figure" style="text-align: center"><span id="fig:2-4-feature-importance"></span>
 <img src="images/2-4-feature-importance.png" alt=" Variable importance for Ada and Ranger based on average AUC loss after 10 permutations of this variable. Boxplots show the distribution of changes from different permutations." width="100%" />
 <p class="caption">
-Figure 2.11:  Variable importance for Ada and Ranger based on average AUC loss after 10 permutations of this variable. Boxplots show the distribution of changes from different permutations.
+Figure 2.53:  Variable importance for Ada and Ranger based on average AUC loss after 10 permutations of this variable. Boxplots show the distribution of changes from different permutations.
 </p>
 </div>
-<p>Partial Dependence profile seen in figure <a href="explaining-diabetes-indicators.html#fig:2-4-pdp">2.12</a> gives us perhaps the most interesting results. Firstly, they are adequate to Feature importance in Figure <a href="explaining-diabetes-indicators.html#fig:2-4-feature-importance">2.11</a>. The more important variables return wider range of average prediction and less important give less varied predictions. Secondly, we can observe the difference in model’s inner characteristics based on the shape of their PDP functions. Ada is more edgy and straight while Ranger is more smooth.
+<p>Partial Dependence profile seen in figure <a href="explaining-diabetes-indicators.html#fig:2-4-pdp">2.54</a> gives us perhaps the most interesting results. Firstly, they are adequate to Feature importance in Figure <a href="explaining-diabetes-indicators.html#fig:2-4-feature-importance">2.53</a>. The more important variables return wider range of average prediction and less important give less varied predictions. Secondly, we can observe the difference in model’s inner characteristics based on the shape of their PDP functions. Ada is more edgy and straight while Ranger is more smooth.
 Based on results yielded by PDP and according to these two models we can conclude that, generally speaking, the bigger the values the higher the chance of positive diabetes test result.</p>
 <p>Some other key observations include:</p>
 <ul>
@@ -841,66 +843,66 @@ Based on results yielded by PDP and according to these two models we can conclud
 <div class="figure" style="text-align: center"><span id="fig:2-4-pdp"></span>
 <img src="images/2-4-pdp.png" alt="Average predictions with PDP for Ada and Ranger, showing how the prediction would change depending on the value of given variable. Shows the trend, that for most cases the bigger the value of variable the higher the chance of positive diabetes test result." width="100%" />
 <p class="caption">
-Figure 2.12: Average predictions with PDP for Ada and Ranger, showing how the prediction would change depending on the value of given variable. Shows the trend, that for most cases the bigger the value of variable the higher the chance of positive diabetes test result.
+Figure 2.54: Average predictions with PDP for Ada and Ranger, showing how the prediction would change depending on the value of given variable. Shows the trend, that for most cases the bigger the value of variable the higher the chance of positive diabetes test result.
 </p>
 </div>
-<p>Accumulated Dependence gave us similar results to Partial Dependence, thus we can conclude that our dataset does not contain any problematic correlations. Comparison between PD and AD is plotted on the figure <a href="explaining-diabetes-indicators.html#fig:2-4-pdp-ale-mass">2.13</a> for <code>mass</code> variable.</p>
+<p>Accumulated Dependence gave us similar results to Partial Dependence, thus we can conclude that our dataset does not contain any problematic correlations. Comparison between PD and AD is plotted on the figure <a href="explaining-diabetes-indicators.html#fig:2-4-pdp-ale-mass">2.55</a> for <code>mass</code> variable.</p>
 <div class="figure" style="text-align: center"><span id="fig:2-4-pdp-ale-mass"></span>
 <img src="images/2-4-pdp-ale-mass.png" alt="Average predictions with PDP and ALE for Ada and Ranger. Simmilar shape of the PDP and ALE plots for each respective model indicates no problematic correlations with `mass` variable." width="100%" />
 <p class="caption">
-Figure 2.13: Average predictions with PDP and ALE for Ada and Ranger. Simmilar shape of the PDP and ALE plots for each respective model indicates no problematic correlations with <code>mass</code> variable.
+Figure 2.55: Average predictions with PDP and ALE for Ada and Ranger. Simmilar shape of the PDP and ALE plots for each respective model indicates no problematic correlations with <code>mass</code> variable.
 </p>
 </div>
 <p> </p>
 <p><strong>Local explanations results</strong></p>
 <p>Local explainations for Ada and Ranger models are very similar, therefore we focus on the one with a bit better metrics - Ranger.</p>
-<p>Ceteris Paribus shows us results adequate to Pratial Dependence Profile (See Figures <a href="explaining-diabetes-indicators.html#fig:2-4-ceteris-paribus">2.14</a> and <a href="explaining-diabetes-indicators.html#fig:2-4-lime-190">2.15</a>). Predictions are very consistent in variable <code>plas</code>. However in <code>age</code> and <code>pedi</code> cases we can spot different trends in prediction behaviour. This could hint towards potential interactions between variables. As for <code>mass</code> and <code>preg</code> they differ mostly in initial prediction value. Overall tendency is rising.</p>
+<p>Ceteris Paribus shows us results adequate to Pratial Dependence Profile (See Figures <a href="explaining-diabetes-indicators.html#fig:2-4-ceteris-paribus">2.56</a> and <a href="explaining-diabetes-indicators.html#fig:2-4-lime-190">2.57</a>). Predictions are very consistent in variable <code>plas</code>. However in <code>age</code> and <code>pedi</code> cases we can spot different trends in prediction behaviour. This could hint towards potential interactions between variables. As for <code>mass</code> and <code>preg</code> they differ mostly in initial prediction value. Overall tendency is rising.</p>
 <div class="figure" style="text-align: center"><span id="fig:2-4-ceteris-paribus"></span>
 <img src="images/2-4-ceteris-paribus.png" alt="Ceteris Paribus predictions for five selected observations: 140, 190, 202, 214 and 74. Plot shows how the prediction would change depending on the value of given variable. Dot shows the real value and models prediction for this particular observation." width="100%" />
 <p class="caption">
-Figure 2.14: Ceteris Paribus predictions for five selected observations: 140, 190, 202, 214 and 74. Plot shows how the prediction would change depending on the value of given variable. Dot shows the real value and models prediction for this particular observation.
+Figure 2.56: Ceteris Paribus predictions for five selected observations: 140, 190, 202, 214 and 74. Plot shows how the prediction would change depending on the value of given variable. Dot shows the real value and models prediction for this particular observation.
 </p>
 </div>
 <p><strong><em>Observation 190</em></strong></p>
-<p>Let us analyze observation 190 in more detail. Lime explanation (Figure <a href="explaining-diabetes-indicators.html#fig:2-4-lime-190">2.15</a>) tells us three biggest factors approximated by glass box model. Having <code>plas</code> lower than 100 in our case has significant negative impact on positive diagnosis of diabetes. On the other hand, having high <code>mass</code> value and being in 30’s adds to our probability of having diabetes.</p>
+<p>Let us analyze observation 190 in more detail. Lime explanation (Figure <a href="explaining-diabetes-indicators.html#fig:2-4-lime-190">2.57</a>) tells us three biggest factors approximated by glass box model. Having <code>plas</code> lower than 100 in our case has significant negative impact on positive diagnosis of diabetes. On the other hand, having high <code>mass</code> value and being in 30’s adds to our probability of having diabetes.</p>
 <div class="figure" style="text-align: center"><span id="fig:2-4-lime-190"></span>
 <img src="images/2-4-lime_190.png" alt="Lime output for observation 190. The predicted value was 0.162, indicating a healthy patient. This prediction was mostly influenced by a low value of `plas` variable, lowering the risk of diabetes. Patients age and mass slighly heightened the risk." width="100%" />
 <p class="caption">
-Figure 2.15: Lime output for observation 190. The predicted value was 0.162, indicating a healthy patient. This prediction was mostly influenced by a low value of <code>plas</code> variable, lowering the risk of diabetes. Patients age and mass slighly heightened the risk.
+Figure 2.57: Lime output for observation 190. The predicted value was 0.162, indicating a healthy patient. This prediction was mostly influenced by a low value of <code>plas</code> variable, lowering the risk of diabetes. Patients age and mass slighly heightened the risk.
 </p>
 </div>
-<p>Breakdown and Shap (Figures <a href="explaining-diabetes-indicators.html#fig:2-4-bd-190">2.16</a> and <a href="explaining-diabetes-indicators.html#fig:2-4-shap-190">2.17</a>) as opposed to Lime give us prediction change for exact values, not intervals. Because of that the results may be different. So is the case with the <code>age</code> variable which behaves differently for Lime. According to Breakdown and Shap being 29 years of age slightly decreases prediction but Lime says otherwise. Not only it increases but also by a significant amount. Other variables seem to match their impact if just scaled down a bit for BD and Shap.</p>
+<p>Breakdown and Shap (Figures <a href="explaining-diabetes-indicators.html#fig:2-4-bd-190">2.58</a> and <a href="explaining-diabetes-indicators.html#fig:2-4-shap-190">2.59</a>) as opposed to Lime give us prediction change for exact values, not intervals. Because of that the results may be different. So is the case with the <code>age</code> variable which behaves differently for Lime. According to Breakdown and Shap being 29 years of age slightly decreases prediction but Lime says otherwise. Not only it increases but also by a significant amount. Other variables seem to match their impact if just scaled down a bit for BD and Shap.</p>
 <div class="figure" style="text-align: center"><span id="fig:2-4-bd-190"></span>
 <img src="images/2-4-bd_190.png" alt="Breakdown output for observation 190, influences of each variable of the prediction - red indicates lowering, and green heightening the prediction value" width="100%" />
 <p class="caption">
-Figure 2.16: Breakdown output for observation 190, influences of each variable of the prediction - red indicates lowering, and green heightening the prediction value
+Figure 2.58: Breakdown output for observation 190, influences of each variable of the prediction - red indicates lowering, and green heightening the prediction value
 </p>
 </div>
 <div class="figure" style="text-align: center"><span id="fig:2-4-shap-190"></span>
 <img src="images/2-4-shap_190.png" alt="Shap output for observation 190. Average impact of the variable on the prediction calculated with Break Down for 10 permutations, with boxplots showing the distribution of impacts from different permutations" width="100%" />
 <p class="caption">
-Figure 2.17: Shap output for observation 190. Average impact of the variable on the prediction calculated with Break Down for 10 permutations, with boxplots showing the distribution of impacts from different permutations
+Figure 2.59: Shap output for observation 190. Average impact of the variable on the prediction calculated with Break Down for 10 permutations, with boxplots showing the distribution of impacts from different permutations
 </p>
 </div>
 <p><strong><em>Observation 214</em></strong></p>
-<p>The next observation we analyze is observation 214 for which the model has a prediction of about 44% for positive diagnosis of diabetes. Lime explanation (Figure <a href="explaining-diabetes-indicators.html#fig:2-4-lime-214">2.18</a>) tells us that three biggest factors for this prediction are <code>pedi</code>, <code>plas</code> and <code>mass</code>. This time the first one is <code>pedi</code> with high value of over 0.5. Despite high values of <code>plas</code> (over 115) and <code>mass</code> (over 33), the prediction is higher than average for this dataset but still lower than 50%.</p>
+<p>The next observation we analyze is observation 214 for which the model has a prediction of about 44% for positive diagnosis of diabetes. Lime explanation (Figure <a href="explaining-diabetes-indicators.html#fig:2-4-lime-214">2.60</a>) tells us that three biggest factors for this prediction are <code>pedi</code>, <code>plas</code> and <code>mass</code>. This time the first one is <code>pedi</code> with high value of over 0.5. Despite high values of <code>plas</code> (over 115) and <code>mass</code> (over 33), the prediction is higher than average for this dataset but still lower than 50%.</p>
 <div class="figure" style="text-align: center"><span id="fig:2-4-lime-214"></span>
 <img src="images/2-4-lime_214.png" alt="Lime output for observation 214. The predicted value was 0.446, indicating a healthy patient, but with less certainty. This prediction was mostly influenced by higher values of `pedi`, `plas` and `mass` variables." width="100%" />
 <p class="caption">
-Figure 2.18: Lime output for observation 214. The predicted value was 0.446, indicating a healthy patient, but with less certainty. This prediction was mostly influenced by higher values of <code>pedi</code>, <code>plas</code> and <code>mass</code> variables.
+Figure 2.60: Lime output for observation 214. The predicted value was 0.446, indicating a healthy patient, but with less certainty. This prediction was mostly influenced by higher values of <code>pedi</code>, <code>plas</code> and <code>mass</code> variables.
 </p>
 </div>
-<p>Breakdown and Shap (Figures <a href="explaining-diabetes-indicators.html#fig:2-4-bd-214">2.19</a> and <a href="explaining-diabetes-indicators.html#fig:2-4-shap-214">2.20</a>) show similar results, just toned down. The biggest difference is the impact of <code>pedi</code> which in Lime was nearly twice as big as the impact of <code>plas</code> and <code>mass</code>. The only value making it less probable that the observation would have diabetes is <code>age</code> equal to 28.</p>
+<p>Breakdown and Shap (Figures <a href="explaining-diabetes-indicators.html#fig:2-4-bd-214">2.61</a> and <a href="explaining-diabetes-indicators.html#fig:2-4-shap-214">2.62</a>) show similar results, just toned down. The biggest difference is the impact of <code>pedi</code> which in Lime was nearly twice as big as the impact of <code>plas</code> and <code>mass</code>. The only value making it less probable that the observation would have diabetes is <code>age</code> equal to 28.</p>
 <div class="figure" style="text-align: center"><span id="fig:2-4-bd-214"></span>
 <img src="images/2-4-bd_214.png" alt="Breakdown output for observation 214, influences of each variable of the prediction - red indicates lowering, and green heightening the prediction value" width="100%" />
 <p class="caption">
-Figure 2.19: Breakdown output for observation 214, influences of each variable of the prediction - red indicates lowering, and green heightening the prediction value
+Figure 2.61: Breakdown output for observation 214, influences of each variable of the prediction - red indicates lowering, and green heightening the prediction value
 </p>
 </div>
 <div class="figure" style="text-align: center"><span id="fig:2-4-shap-214"></span>
 <img src="images/2-4-shap_214.png" alt="Shap output for observation 214. Average impact of the variable on the prediction calculated with Break Down for 10 permutations, with boxplots showing the distribution of impacts from different permutations" width="100%" />
 <p class="caption">
-Figure 2.20: Shap output for observation 214. Average impact of the variable on the prediction calculated with Break Down for 10 permutations, with boxplots showing the distribution of impacts from different permutations
+Figure 2.62: Shap output for observation 214. Average impact of the variable on the prediction calculated with Break Down for 10 permutations, with boxplots showing the distribution of impacts from different permutations
 </p>
 </div>
 </div>
@@ -958,40 +960,40 @@ Figure 2.20: Shap output for observation 214. Average impact of the variable on 
 Apley, D. W., &amp; Zhu, J. (2020). <span class="nocase">Visualizing the effects of predictor variables in black box supervised learning models</span>. <em>Journal of the Royal Statistical Society Series B</em>, <em>82</em>(4), 1059–1086. <a href="https://doi.org/10.1111/rssb.12377">https://doi.org/10.1111/rssb.12377</a>
 </div>
 <div id="ref-2-4-DALEX" class="csl-entry">
-Biecek, P. (2018). <span class="nocase">DALEX: Explainers for Complex Predictive Models in R</span>. <em>Journal of Machine Learning Research</em>, <em>19</em>(84), 1–5. <a href="http://jmlr.org/papers/v19/18-416.html">http://jmlr.org/papers/v19/18-416.html</a>
+Biecek, Przemyslaw. (2018b). <span class="nocase">DALEX: Explainers for Complex Predictive Models in R</span>. <em>Journal of Machine Learning Research</em>, <em>19</em>(84), 1–5. <a href="http://jmlr.org/papers/v19/18-416.html">http://jmlr.org/papers/v19/18-416.html</a>
 </div>
 <div id="ref-2-4-XAI" class="csl-entry">
-Biecek, P., &amp; Burzykowski, T. (n.d.). <a href="https://ema.drwhy.ai/introduction.html">https://ema.drwhy.ai/introduction.html</a>
+Biecek, Przemyslaw, &amp; Burzykowski, T. (n.d.). <a href="https://ema.drwhy.ai/introduction.html">https://ema.drwhy.ai/introduction.html</a>
 </div>
 <div id="ref-EMA" class="csl-entry">
-Biecek, P., &amp; Burzykowski, T. (2021). <em><span>Explanatory Model Analysis</span></em>. Chapman; Hall/CRC, New York. <a href="https://pbiecek.github.io/ema/">https://pbiecek.github.io/ema/</a>
+Biecek, Przemyslaw, &amp; Burzykowski, T. (2021a). <em><span>Explanatory Model Analysis</span></em>. Chapman; Hall/CRC, New York. <a href="https://pbiecek.github.io/ema/">https://pbiecek.github.io/ema/</a>
 </div>
 <div id="ref-2-4-mlr" class="csl-entry">
-Bischl, B., Lang, M., Kotthoff, L., Schiffner, J., Richter, J., Studerus, E., et al. (2016). <span class="nocase">mlr</span>: Machine learning in r. <em>Journal of Machine Learning Research</em>, <em>17</em>(170), 1–5. <a href="https://jmlr.org/papers/v17/15-066.html">https://jmlr.org/papers/v17/15-066.html</a>
+Bischl, B., Lang, M., Kotthoff, L., Schiffner, J., Richter, J., Studerus, E., et al. (2016b). <span class="nocase">mlr</span>: Machine learning in r. <em>Journal of Machine Learning Research</em>, <em>17</em>(170), 1–5. <a href="https://jmlr.org/papers/v17/15-066.html">https://jmlr.org/papers/v17/15-066.html</a>
 </div>
 <div id="ref-2-4-ada" class="csl-entry">
 Culp, M., Johnson, K., &amp; Michailidis, G. (2016). <em>Ada: The r package ada for stochastic boosting</em>. <a href="https://CRAN.R-project.org/package=ada">https://CRAN.R-project.org/package=ada</a>
 </div>
 <div id="ref-2-4-pfi" class="csl-entry">
-Fisher, A., Rudin, C., &amp; Dominici, F. (2018). <span class="nocase">All Models are Wrong, but Many are Useful: Learning a Variable’s Importance by Studying an Entire Class of Prediction Models Simultaneously</span>. <em>arXiv</em>. <a href="https://arxiv.org/abs/1801.01489">https://arxiv.org/abs/1801.01489</a>
+Fisher, A., Rudin, C., &amp; Dominici, F. (2018b). <span class="nocase">All Models are Wrong, but Many are Useful: Learning a Variable’s Importance by Studying an Entire Class of Prediction Models Simultaneously</span>. <em>arXiv</em>. <a href="https://arxiv.org/abs/1801.01489">https://arxiv.org/abs/1801.01489</a>
+</div>
+<div id="ref-2-4-pdp" class="csl-entry">
+Greenwell, Brandon M. (2017c). <span class="nocase">pdp: An R Package for Constructing Partial Dependence Plots</span>. <em>The R Journal</em>, <em>9</em>(1), 421–436. <a href="http://doi.org/10.32614/RJ-2017-016">http://doi.org/10.32614/RJ-2017-016</a>
 </div>
 <div id="ref-2-4-gbm" class="csl-entry">
 Greenwell, B., Boehmke, B., Cunningham, J., &amp; Developers, G. (2020). <em>Gbm: Generalized boosted regression models</em>. <a href="https://CRAN.R-project.org/package=gbm">https://CRAN.R-project.org/package=gbm</a>
 </div>
-<div id="ref-2-4-pdp" class="csl-entry">
-Greenwell, B. M. (2017). <span class="nocase">pdp: An R Package for Constructing Partial Dependence Plots</span>. <em>The R Journal</em>, <em>9</em>(1), 421–436. <a href="http://doi.org/10.32614/RJ-2017-016">http://doi.org/10.32614/RJ-2017-016</a>
-</div>
 <div id="ref-2-4-randomForest" class="csl-entry">
-Liaw, A., &amp; Wiener, M. (2002). Classification and regression by randomForest. <em>R News</em>, <em>2</em>(3), 18–22. <a href="https://CRAN.R-project.org/doc/Rnews/">https://CRAN.R-project.org/doc/Rnews/</a>
+Liaw, A., &amp; Wiener, M. (2002a). Classification and regression by randomForest. <em>R News</em>, <em>2</em>(3), 18–22. <a href="https://CRAN.R-project.org/doc/Rnews/">https://CRAN.R-project.org/doc/Rnews/</a>
 </div>
 <div id="ref-xai1-shapleyvalues" class="csl-entry">
-Lundberg, S. M., &amp; Lee, S.-I. (2017). A unified approach to interpreting model predictions. In I. Guyon, U. V. Luxburg, S. Bengio, H. Wallach, R. Fergus, S. Vishwanathan, &amp; R. Garnett (Eds.), <em>Advances in neural information processing systems 30</em> (pp. 4765–4774). Montreal: Curran Associates. <a href="http://papers.nips.cc/paper/7062-a-unified-approach-to-interpreting-model-predictions.pdf">http://papers.nips.cc/paper/7062-a-unified-approach-to-interpreting-model-predictions.pdf</a>
+Lundberg, Scott M., &amp; Lee, S.-I. (2017). A unified approach to interpreting model predictions. In I. Guyon, U. V. Luxburg, S. Bengio, H. Wallach, R. Fergus, S. Vishwanathan, &amp; R. Garnett (Eds.), <em>Advances in neural information processing systems 30</em> (pp. 4765–4774). Montreal: Curran Associates. <a href="http://papers.nips.cc/paper/7062-a-unified-approach-to-interpreting-model-predictions.pdf">http://papers.nips.cc/paper/7062-a-unified-approach-to-interpreting-model-predictions.pdf</a>
 </div>
 <div id="ref-2-4-ml-in-medicine" class="csl-entry">
 Machine learning in medicine: A practical introduction. (n.d.). <a href="https://bmcmedresmethodol.biomedcentral.com/articles/10.1186/s12874-019-0681-4#ref-CR2">https://bmcmedresmethodol.biomedcentral.com/articles/10.1186/s12874-019-0681-4#ref-CR2</a>
 </div>
 <div id="ref-2-4-DALEXtra" class="csl-entry">
-Maksymiuk, S., &amp; Biecek, P. (2020). <em><span class="nocase">DALEXtra: Extension for ’DALEX’ Package</span></em>. <a href="https://CRAN.R-project.org/package=DALEXtra">https://CRAN.R-project.org/package=DALEXtra</a>
+Maksymiuk, S., &amp; Biecek, P. (2020b). <em><span class="nocase">DALEXtra: Extension for ’DALEX’ Package</span></em>. <a href="https://CRAN.R-project.org/package=DALEXtra">https://CRAN.R-project.org/package=DALEXtra</a>
 </div>
 <div id="ref-2-4-e1071" class="csl-entry">
 Meyer, D., Dimitriadou, E., Hornik, K., Weingessel, A., &amp; Leisch, F. (2020). <em>e1071: Misc functions of the department of statistics, probability theory group (formerly: E1071), TU wien</em>. <a href="https://CRAN.R-project.org/package=e1071">https://CRAN.R-project.org/package=e1071</a>
@@ -1000,10 +1002,10 @@ Meyer, D., Dimitriadou, E., Hornik, K., Weingessel, A., &amp; Leisch, F. (2020).
 R Core Team. (2021). <em>R: A language and environment for statistical computing</em>. Vienna, Austria: R Foundation for Statistical Computing. <a href="https://www.R-project.org/">https://www.R-project.org/</a>
 </div>
 <div id="ref-xai1-lime" class="csl-entry">
-Ribeiro, M. T., Singh, S., &amp; Guestrin, C. (2016). "<span class="nocase">Why should I trust you</span>?": Explaining the predictions of any classifier. In <em>Proceedings of the 22nd <span>ACM</span> <span>SIGKDD</span> international conference on knowledge discovery and data mining, KDD san francisco, CA</em> (pp. 1135–1144). New York, NY: Association for Computing Machinery.
+Ribeiro, M. T., Singh, S., &amp; Guestrin, C. (2016a). "<span class="nocase">Why should I trust you</span>?": Explaining the predictions of any classifier. In <em>Proceedings of the 22nd <span>ACM</span> <span>SIGKDD</span> international conference on knowledge discovery and data mining, KDD san francisco, CA</em> (pp. 1135–1144). New York, NY: Association for Computing Machinery.
 </div>
 <div id="ref-xai1-breakdown" class="csl-entry">
-Staniak, M., &amp; Biecek, P. (2018). Explanations of model predictions with live and breakDown packages.
+Staniak, M., &amp; Biecek, P. (2018a). Explanations of model predictions with live and breakDown packages.
 </div>
 <div id="ref-2-4-cost" class="csl-entry">
 Turney, P. D. (1995). Cost-sensitive classification: Empirical evaluationof a hybrid genetic decision tree induction algorithm. <a href="https://www.jair.org/index.php/jair/article/view/10129/23991">https://www.jair.org/index.php/jair/article/view/10129/23991</a>
@@ -1012,7 +1014,7 @@ Turney, P. D. (1995). Cost-sensitive classification: Empirical evaluationof a hy
 van Buuren, S., &amp; Groothuis-Oudshoorn, K. (2011). <span class="nocase">mice</span>: Multivariate imputation by chained equations in r. <em>Journal of Statistical Software</em>, <em>45</em>(3), 1–67. <a href="https://www.jstatsoft.org/v45/i03/">https://www.jstatsoft.org/v45/i03/</a>
 </div>
 <div id="ref-2-4-ranger" class="csl-entry">
-Wright, M. N., &amp; Ziegler, A. (2017). <span class="nocase">ranger</span>: A fast implementation of random forests for high dimensional data in <span>C++</span> and <span>R</span>. <em>Journal of Statistical Software</em>, <em>77</em>(1), 1–17. <a href="https://doi.org/10.18637/jss.v077.i01">https://doi.org/10.18637/jss.v077.i01</a>
+Wright, M. N., &amp; Ziegler, A. (2017c). <span class="nocase">ranger</span>: A fast implementation of random forests for high dimensional data in <span>C++</span> and <span>R</span>. <em>Journal of Statistical Software</em>, <em>77</em>(1), 1–17. <a href="https://doi.org/10.18637/jss.v077.i01">https://doi.org/10.18637/jss.v077.i01</a>
 </div>
 </div>
             </section>
@@ -1024,15 +1026,15 @@ Wright, M. N., &amp; Ziegler, A. (2017). <span class="nocase">ranger</span>: A f
 <a href="how-the-price-of-the-house-is-influenced-by-neighborhood-xai-methods-for-interpretation-the-black-box-model.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
-<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
-<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
-<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
-<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
-<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
-<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
-<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
-<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
-<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script src="libs/gitbook/js/app.min.js"></script>
+<script src="libs/gitbook/js/lunr.js"></script>
+<script src="libs/gitbook/js/clipboard.min.js"></script>
+<script src="libs/gitbook/js/plugin-search.js"></script>
+<script src="libs/gitbook/js/plugin-sharing.js"></script>
+<script src="libs/gitbook/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook/js/jquery.highlight.js"></script>
+<script src="libs/gitbook/js/plugin-clipboard.js"></script>
 <script>
 gitbook.require(["gitbook"], function(gitbook) {
 gitbook.start({
