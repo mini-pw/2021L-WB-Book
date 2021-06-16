@@ -24,7 +24,7 @@
 <meta name="author" content="Faculty of Mathematics and Information Science, Warsaw University of Technology" />
 
 
-<meta name="date" content="2021-06-14" />
+<meta name="date" content="2021-06-15" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -403,7 +403,21 @@ div.csl-indent {
             <section class="normal" id="section-">
 <div id="rashomonml" class="section level1" number="6">
 <h1><span class="header-section-number">Chapter 6</span> RashomonML</h1>
+<p>Machine learning is increasingly used as decision support systems in complex processes. In most modeled prediction problems, we do not know the relationship between the variables and the explanatory variable and rely on the relationships discovered by the machine learning algorithm. Different algorithms present different approaches to finding these relationships and we can draw diverse and even contradictory conclusions about the modeled phenomenon. Checking the consistency and coherence of the obtained conclusions is especially important for medical applications where the decisions made have serious consequences. So far, the approach of selecting the best model has been based on choosing the one giving the smallest error on the validation set or possibly extending the audit to explainable machine learning techniques <span class="citation">(<a href="#ref-EMA" role="doc-biblioref">Przemyslaw Biecek and Burzykowski 2021a</a>)</span>. This may not be sufficient and an alternative is to audit the entire set of accurate models, referred to as the Rashomon set <span class="citation">(<a href="#ref-6-0-breiman2001statistical" role="doc-biblioref">Breiman et al. 2001</a>)</span>.</p>
+<p>In this class, we focused on analyzing Rashomon model committees using explainable model analysis techniques. Considered problem was the prediction of the probability of patient death from MIMIC-III data <span class="citation">(<a href="#ref-6-0-mimic" role="doc-biblioref">A. E. Johnson et al. 2016</a>)</span>.</p>
 <!--chapter:end:6-0-Rml.Rmd-->
+</div>
+<h3>References</h3>
+<div id="refs" class="references csl-bib-body hanging-indent" line-spacing="2">
+<div id="ref-EMA" class="csl-entry">
+Biecek, Przemyslaw, &amp; Burzykowski, T. (2021a). <em><span>Explanatory Model Analysis</span></em>. Chapman; Hall/CRC, New York. <a href="https://pbiecek.github.io/ema/">https://pbiecek.github.io/ema/</a>
+</div>
+<div id="ref-6-0-breiman2001statistical" class="csl-entry">
+Breiman, L. et al. (2001). Statistical modeling: The two cultures (with comments and a rejoinder by the author). <em>Statistical science</em>, <em>16</em>(3), 199–231.
+</div>
+<div id="ref-6-0-mimic" class="csl-entry">
+Johnson, A. E., Pollard, T. J., Shen, L., Li-Wei, H. L., Feng, M., Ghassemi, M., et al. (2016). MIMIC-III, a freely accessible critical care database. <em>Scientific data</em>, <em>3</em>(1), 1–9.
+</div>
 </div>
             </section>
 

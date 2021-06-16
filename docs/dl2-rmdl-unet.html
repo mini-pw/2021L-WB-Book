@@ -24,7 +24,7 @@
 <meta name="author" content="Faculty of Mathematics and Information Science, Warsaw University of Technology" />
 
 
-<meta name="date" content="2021-06-14" />
+<meta name="date" content="2021-06-15" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -417,7 +417,7 @@ div.csl-indent {
 </div>
 <div id="random-multimodel-deep-learning-for-classification" class="section level3" number="4.4.3">
 <h3><span class="header-section-number">4.4.3</span> Random Multimodel Deep Learning for Classification</h3>
-<p>The first article to discuss is <em>RMDL: Random multimodel deep learning for classification</em> <span class="citation">(<a href="#ref-4-1-RMDL" role="doc-biblioref">Kowsari et al. 2018</a>)</span>, which expounds RMDL – a voting ensemble technique that uses randomly generated deep neural networks with various architectures. The idea of such an approach is to benefit from the advantages of each neural network architecture used. Therefore RMDL is versatile and suitable for various types of classification problems such as text, video, or image classification. In the article, the model’s text and image classification performance is presented on the examples of popular data sets: MNIST, CIFAR-10, WOS, Reuters, IMDB, and 20newsgroup.</p>
+<p>The first article to discuss is <em>RMDL: Random multimodel deep learning for classification</em> <span class="citation">(<a href="#ref-4-1-RMDL" role="doc-biblioref">Kowsari et al. 2018b</a>)</span>, which expounds RMDL – a voting ensemble technique that uses randomly generated deep neural networks with various architectures. The idea of such an approach is to benefit from the advantages of each neural network architecture used. Therefore RMDL is versatile and suitable for various types of classification problems such as text, video, or image classification. In the article, the model’s text and image classification performance is presented on the examples of popular data sets: MNIST, CIFAR-10, WOS, Reuters, IMDB, and 20newsgroup.</p>
 <p>RMDL generates multiple neural network models based on three architectures: Multi-Layer Perceptron, Convolutional Neural Network, and Recurrent Neural Network (more precisely, RNN with LSTM and GRU units). The number of generated Random Deep Learning models (RDL) is explicitly defined with a parameter. The number of layers and nodes for all of these RDL models are generated randomly and all the models are trained in parallel.</p>
 <p>For text feature extractions, RMDL might use various methods like word embedding, TF-IDF, and n-grams. In text classification examples, word vectorization technique (GloVe) is used. Every RDL has an output layer that uses softmax to determine the prediction of class. The final prediction from all of the RDL models is determined through the use of a majority vote.</p>
 <p>Each generated RDL model can use different optimizers. Therefore, if several generated models do not provide a good fit, they can be ignored for the time of voting. Each of the used architectures, feature engineering techniques or optimizers are described briefly in the article. Presented results show that RMDL performed better than baseline models for each exemplary data set. On Google Scholar this paper has 81 citations, which indicates mediocre relevance. Such a solution is neither commonly used nor quoted.</p>
@@ -601,7 +601,7 @@ div.csl-indent {
 <h3>References</h3>
 <div id="refs" class="references csl-bib-body hanging-indent" line-spacing="2">
 <div id="ref-4-1-RMDL" class="csl-entry">
-Kowsari, K., Heidarysafa, M., Brown, D. E., Meimandi, K. J., &amp; Barnes, L. E. (2018). Rmdl: Random multimodel deep learning for classification. In <em>Proceedings of the 2nd international conference on information system and data mining</em> (pp. 19–28).
+Kowsari, K., Heidarysafa, M., Brown, D. E., Meimandi, K. J., &amp; Barnes, L. E. (2018b). Rmdl: Random multimodel deep learning for classification. In <em>Proceedings of the 2nd international conference on information system and data mining</em> (pp. 19–28).
 </div>
 <div id="ref-4-1-taxonomy-of-reproducibility" class="csl-entry">
 Tatman, R., VanderPlas, J., &amp; Dane, S. (2018). A practical taxonomy of reproducibility for machine learning research.
